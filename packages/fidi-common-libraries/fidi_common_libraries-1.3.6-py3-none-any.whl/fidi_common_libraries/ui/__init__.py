@@ -1,0 +1,42 @@
+"""
+Biblioteca de Interação com Interface do Usuário para Sistema RM.
+
+Esta biblioteca encapsula operações comuns do Pywinauto para tornar o código
+mais robusto, legível e manutenível, seguindo as melhores práticas de automação de UI.
+
+"""
+
+from .core.application import RMApplication
+from .core.element_finder import ElementFinder
+from .core.interactions import UIInteractions
+from .core.waits import UIWaits
+from .core.position_finder import PositionFinder, ScreenRegion, PositionReference
+from .core.image_finder import ImageFinder, ImageMatchResult
+from .core.rm_navigator import RMNavigator
+from .locators.locator_service import LocatorService, LocatorMode
+from .exceptions.ui_exceptions import (
+    UIConnectionError,
+    UIElementNotFoundError,
+    UIInteractionError,
+    UITimeoutError
+)
+
+__version__ = "1.3.6"
+__all__ = [
+    "RMApplication",
+    "ElementFinder", 
+    "UIInteractions",
+    "UIWaits",
+    "PositionFinder",
+    "ImageFinder",
+    "RMNavigator",
+    "LocatorService",
+    "LocatorMode",
+    "ScreenRegion",
+    "PositionReference",
+    "ImageMatchResult",
+    "UIConnectionError",
+    "UIElementNotFoundError", 
+    "UIInteractionError",
+    "UITimeoutError"
+]
