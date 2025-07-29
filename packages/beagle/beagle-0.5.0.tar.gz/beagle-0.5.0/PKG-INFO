@@ -1,0 +1,33 @@
+Metadata-Version: 2.4
+Name: beagle
+Version: 0.5.0
+Summary: Command Line Client for Hound
+Author-email: Doug Hellmann <doug@doughellmann.com>
+License: Apache-2.0
+License-File: LICENSE
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Python: >=3.9
+Provides-Extra: test
+Requires-Dist: coverage; extra == 'test'
+Requires-Dist: fixtures; extra == 'test'
+Requires-Dist: flake8; extra == 'test'
+Requires-Dist: pytest; extra == 'test'
+Requires-Dist: pytest-cov; extra == 'test'
+Requires-Dist: testtools; extra == 'test'
+Description-Content-Type: text/x-rst
+
+=======================================
+ Beagle: Command-line Client for Hound
+=======================================
+
+Beagle is a command line client for Hound_, the code search tool.
+
+.. _Hound: https://github.com/etsy/hound
+
+The source code is available from https://github.com/beaglecli/beagle.
+
+The documentation is available from http://beagle-hound.readthedocs.io/en/latest/
