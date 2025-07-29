@@ -1,0 +1,56 @@
+{% extends "base.j2" -%}
+{%- import 'snippets/stripe.j2' as stripe with context -%}
+
+{% block content -%}
+
+<section class="two-column">
+
+  <section class="checkout-left well">
+
+  {% if active_card %}
+  <h2><b>Active Card</b></h2>
+
+  {{ stripe.display_card(active_card, actions=False) }}
+
+  <br>
+
+ {% if request.shop and request.shop.is_ready %}
+ <a href="/billing" class="product-edit-button mps-button">Use a different card</a>
+ {% endif %}
+  {% else %}
+  <h2><b>Payment</b></h2>
+  <p>No payment required for this order.</p>
+  <br>
+  {% endif %}
+
+ {% if request.user.active_address %}
+  <h2>Active Shipping Address</h2>
+  <pre>{{- request.user.active_address.data -}}</pre>
+ <a href="/u/addresses" class="product-edit-button mps-button">Use a different address</a>
+ {% endif %}
+
+  </section>
+
+  <section class="checkout-right well">
+
+  <h2>Cart Total: ${{ '{:,.2f}'.format(cart.total) }}</h2>
+  
+  <br/>
+  Are you sure you want to charge <br/>
+  <b>${{ '{:,.2f}'.format(cart.total) }}</b> to your active credit card?
+  
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+   
+  <form method="POST" action="{{ request.route_url('user_cart_complete_checkout', cart_id=cart.id) }}">
+  {% include "snippets/csrf.j2" %}
+  <button type="submit" class="cart-checkout-button mps-button">Yes, Complete Checkout</button>
+</form>
+  
+
+  </section>
+</section>
+
+{%- endblock -%}
