@@ -1,0 +1,137 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:  # Allow manual triggering
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11", "3.12"]
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install uv
+      uses: astral-sh/setup-uv@v4
+      with:
+        version: "latest"
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      run: uv python install ${{ matrix.python-version }}
+    
+    - name: Install dependencies
+      run: uv sync --all-extras
+    
+    - name: Run tests
+      run: uv run pytest tests/ -v --cov=lombardi
+    
+    - name: Test CLI
+      run: |
+        uv run lombardi --help
+        uv run lombardi analyze --sql "SELECT * FROM test_table"
+    
+    - name: Run linting
+      run: |
+        uv run ruff check .
+        uv run ruff format --check .
+
+  release-and-publish:
+    needs: test
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+    
+    - name: Install uv
+      uses: astral-sh/setup-uv@v4
+      with:
+        version: "latest"
+    
+    - name: Set up Python
+      run: uv python install 3.11
+    
+    - name: Install dependencies
+      run: uv sync --all-extras
+    
+    - name: Extract version from pyproject.toml
+      id: version
+      run: |
+        VERSION=$(uv run python -c "import tomllib; print(tomllib.load(open('pyproject.toml', 'rb'))['project']['version'])")
+        echo "version=v$VERSION" >> $GITHUB_OUTPUT
+        echo "raw_version=$VERSION" >> $GITHUB_OUTPUT
+    
+    - name: Check if tag already exists
+      id: tag_check
+      run: |
+        if git tag -l "${{ steps.version.outputs.version }}" | grep -q "${{ steps.version.outputs.version }}"; then
+          echo "exists=true" >> $GITHUB_OUTPUT
+        else
+          echo "exists=false" >> $GITHUB_OUTPUT
+        fi
+    
+    - name: Create git tag
+      if: steps.tag_check.outputs.exists == 'false'
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git tag -a ${{ steps.version.outputs.version }} -m "Release ${{ steps.version.outputs.version }}"
+        git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} ${{ steps.version.outputs.version }}
+    
+    - name: Generate release notes
+      if: steps.tag_check.outputs.exists == 'false'
+      id: release_notes
+      run: |
+        cat > release_notes.md << EOF
+        ## Release ${{ steps.version.outputs.raw_version }}
+        
+        ### Changes
+        - Automated release from commit ${{ github.sha }}
+        
+        ### Installation
+        \`\`\`bash
+        pip install lombardi==${{ steps.version.outputs.raw_version }}
+        \`\`\`
+        
+        ### Usage
+        \`\`\`bash
+        lombardi analyze --sql "SELECT * FROM table" --dialect snowflake
+        \`\`\`
+        
+        For full documentation, visit [PyPI](https://pypi.org/project/lombardi/).
+        EOF
+    
+    - name: Create GitHub Release
+      if: steps.tag_check.outputs.exists == 'false'
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.version.outputs.version }}
+        release_name: Release ${{ steps.version.outputs.version }}
+        body_path: release_notes.md
+        draft: false
+        prerelease: false
+    
+    - name: Build package
+      if: steps.tag_check.outputs.exists == 'false'
+      run: uv build
+    
+    - name: Publish to PyPI
+      if: steps.tag_check.outputs.exists == 'false'
+      run: uv publish
+      env:
+        UV_PUBLISH_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
