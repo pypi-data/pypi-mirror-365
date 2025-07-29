@@ -1,0 +1,10 @@
+recursive-include src/configwebui/static *
+recursive-include src/configwebui/templates *
+
+prune .github
+prune demo
+prune utils
+
+exclude .gitattributes
+exclude .gitignore
+exclude requirements.txt
