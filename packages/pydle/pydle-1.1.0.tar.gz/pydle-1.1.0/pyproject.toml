@@ -1,0 +1,40 @@
+[project]
+name = "pydle"
+version = "1.1.0"
+description = "A compact, flexible, and standards-abiding IRC library for python3."
+authors = [
+    {name = "Shiz", email = "hi@shiz.me"}
+]
+maintainers = [
+    {name = "polyfloyd", email = "floyd@polyfloyd.net"}
+]
+repository = "https://github.com/Shizmob/pydle"
+keywords = ["irc", "library","python3","compact","flexible"]
+license = "BSD-3-Clause"
+readme = "README.md"
+requires-python = ">= 3.10"
+
+[project.urls]
+documentation = "https://pydle.readthedocs.io/"
+source = "https://github.com/shizmob/pydle"
+issues = "https://github.com/shizmob/pydle/issues"
+
+[project.optional-dependencies]
+sasl = [
+    "pure-sasl>=0.6.1"
+]
+dev = [
+    "build",
+    "sphinx-rtd-theme~=1.0.0",
+    "Sphinx~=5.0.2",
+    "pytest",
+    "pytest-asyncio",
+]
+
+[project.scripts]
+pydle = "pydle.utils.run:main"
+pydle-irccat = 'pydle.utils.irccat:main'
+
+[build-system]
+requires = ["poetry-core>=2.1.3"]
+build-backend = "poetry.core.masonry.api"
