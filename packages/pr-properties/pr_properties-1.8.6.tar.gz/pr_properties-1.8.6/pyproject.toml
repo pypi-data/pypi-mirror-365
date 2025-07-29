@@ -1,0 +1,26 @@
+[project]
+name = "pr_properties"
+version = "1.8.6"
+description = ""
+license = {text = "Apache-2.0"}
+readme = "README.md"
+authors = [
+    {name = "Franciz", email = "Franciz467@163.com"}
+]
+requires-python = ">=3.7"
+dependencies = [
+    "filelock==3.12.2"
+]
+repository = "https://gitee.com/FrancizTest_admin/pr_properties"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+dev-dependencies = []
