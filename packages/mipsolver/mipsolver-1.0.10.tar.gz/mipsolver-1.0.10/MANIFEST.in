@@ -1,0 +1,7 @@
+include README.md
+include CMakeLists.txt
+include mipsolver/py.typed
+recursive-include mipsolver *.py
+recursive-include src *.cpp *.h
+recursive-include api *.cpp *.h
+recursive-include bindings *.cpp
