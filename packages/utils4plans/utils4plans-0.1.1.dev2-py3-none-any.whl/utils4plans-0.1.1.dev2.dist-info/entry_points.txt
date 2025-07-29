@@ -1,0 +1,3 @@
+[console_scripts]
+to-pypi = uv version --bump dev & source .env & uv build & uv publish 
+
