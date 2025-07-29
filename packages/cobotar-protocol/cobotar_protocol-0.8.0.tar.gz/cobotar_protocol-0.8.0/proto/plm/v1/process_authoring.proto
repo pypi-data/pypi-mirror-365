@@ -1,0 +1,19 @@
+syntax = "proto3";
+package plm.v1;
+
+import "plm/v1/process.proto";
+
+option csharp_namespace = "Messages.Plm.V1";
+option go_package = "github.com/cobotar/protocol/messages/plm/v1";
+
+message NewProcessMessage {
+  string name = 3;
+  string description = 4;
+  ProcessType type = 5;
+}
+
+message UpdateProcessMessage {}
+
+message DeleteProcessMessage {
+  string process_id = 1;
+}
