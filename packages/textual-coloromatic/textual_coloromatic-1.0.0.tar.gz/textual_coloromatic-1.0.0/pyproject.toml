@@ -1,0 +1,57 @@
+[project]
+name = "textual-coloromatic"
+version = "1.0.0"
+description = "A Textual widget for displaying ASCII art with color effects and animations."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "textual>=5.0.0",
+    "textual-slidecontainer>=0.6.0",
+]
+license = { text = "MIT" }
+keywords = ["python", "textual", "tui", "ascii", "widget", "color", "coloromatic", "art"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3 :: Only",
+]
+
+[project.urls]
+Repository = "https://github.com/edward-jazzhands/textual-coloromatic"
+Changelog = "https://github.com/edward-jazzhands/textual-coloromatic/blob/master/Changelog.md"
+
+
+[dependency-groups]
+dev = [
+    "basedpyright>=1.31.0",
+    "black>=25.1.0",
+    "mypy>=1.16.0",
+    "ruff>=0.11.13",
+    "textual-dev>=1.7.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+textual-coloromatic = "textual_coloromatic.demo:run_demo"
+
+[tool.black]
+line-length = 110
+
+[tool.mypy]
+pretty = true
+strict = true
+
+[tool.basedpyright]
+include = ["src"]
+typeCheckingMode = "strict"
+
