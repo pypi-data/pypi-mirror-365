@@ -1,0 +1,139 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "flokkit-flow"
+version = "0.2.1"
+description = "A type-safe, async-first flow-based programming framework for Python"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Your Name", email = "your.email@example.com"},
+]
+keywords = ["flow-based-programming", "fbp", "dataflow", "async", "pipeline"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+
+# No dependencies! 🎉
+dependencies = []
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
+    "coverage[toml]>=7.0",
+]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "basedpyright>=1.10.0",
+    "ruff>=0.1.0",
+]
+docs = [
+    "sphinx>=7.0",
+    "sphinx-rtd-theme>=2.0",
+    "sphinx-autodoc-typehints>=2.0",
+    "sphinx-copybutton>=0.5",
+    "myst-parser>=2.0",
+    "sphinx-autobuild>=2024.0",
+    "linkify-it-py>=2.0",
+]
+
+[project.urls]
+Homepage = "https://gitlab.com/flokkit/flow"
+Documentation = "https://flokkit.gitlab.io/flow/"
+Repository = "https://gitlab.com/flokkit/flow"
+Issues = "https://gitlab.com/flokkit/flow/-/issues"
+
+[tool.setuptools]
+packages = ["flow", "flow.core", "flow.nodes"]
+
+[tool.setuptools.package-data]
+"*" = ["py.typed"]
+
+[tool.basedpyright]
+# Use standard mode for a good balance of strictness and practicality
+typeCheckingMode = "standard"
+
+# Specific settings we want strict
+reportMissingImports = true
+reportMissingTypeStubs = false  # Don't complain about missing stubs
+reportUnknownMemberType = false  # Too noisy for examples
+reportUnknownVariableType = false  # Too noisy for examples
+reportUnknownArgumentType = false  # Too noisy for examples
+reportUnknownParameterType = false
+reportUnknownLambdaType = false
+reportGeneralTypeIssues = true
+reportPropertyTypeMismatch = true
+reportMissingTypeArgument = true
+reportPrivateUsage = false  # Allow _is_dag() in tests
+reportUnusedVariable = false  # Examples often have demo variables
+
+# Python version and environment
+pythonVersion = "3.8"
+pythonPlatform = "All"
+
+# Focus type checking on the main module
+include = ["flowy"]
+exclude = ["**/__pycache__", ".venv", "venv", "examples", "tests"]
+
+# Use venv if it exists
+venvPath = "."
+venv = ".venv"
+
+[tool.coverage.run]
+source = ["flowy"]
+omit = ["*/tests/*", "*/examples/*", "*/__pycache__/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+show_missing = true
+skip_covered = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+asyncio_mode = "auto"
+addopts = "-v --tb=short --doctest-modules"
+doctest_optionflags = ["NORMALIZE_WHITESPACE", "ELLIPSIS"]
+
+[tool.ruff]
+# Minimum Python version
+target-version = "py38"
+
+# Minimal customization - mostly use Ruff defaults
+[tool.ruff.lint]
+# Just ignore the few things that don't make sense for this project
+ignore = [
+    "N999",    # Invalid module name (we use numbered examples like 01_basic_flow.py)
+]
+
+# Per-file ignores for special cases
+[tool.ruff.lint.per-file-ignores]
+"examples/*" = ["T201", "T203"]  # Allow print() in examples
+"docs/conf.py" = ["A001"]         # copyright variable is OK
