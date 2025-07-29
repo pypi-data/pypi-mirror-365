@@ -1,0 +1,65 @@
+Metadata-Version: 2.4
+Name: mcp-ableton-live
+Version: 0.1.0
+Summary: MCP server for Ableton Live integration
+Author-email: Your Name <your.email@example.com>
+License: MIT
+Project-URL: Homepage, https://github.com/yourusername/mcp-ableton-live
+Project-URL: Repository, https://github.com/yourusername/mcp-ableton-live
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: mcp>=1.0.0
+Dynamic: license-file
+
+# MCP Ableton Live Server
+
+A Model Context Protocol (MCP) server for Ableton Live integration.
+
+## Features
+
+- Connect to Ableton Live via Live API
+- Control playback, recording, and transport
+- Access track and device parameters
+- Manage clips and scenes
+
+## Installation
+
+```bash
+pip install mcp-ableton-live
+```
+
+## Usage
+
+Add to your MCP configuration:
+
+```json
+{
+  "mcpServers": {
+    "ableton-live": {
+      "command": "uvx",
+      "args": ["mcp-ableton-live"],
+      "disabled": false
+    }
+  }
+}
+```
+
+## Requirements
+
+- Ableton Live 11 or later
+- Python 3.8+
+- Live API enabled in Ableton Live preferences
+
+## License
+
+MIT
