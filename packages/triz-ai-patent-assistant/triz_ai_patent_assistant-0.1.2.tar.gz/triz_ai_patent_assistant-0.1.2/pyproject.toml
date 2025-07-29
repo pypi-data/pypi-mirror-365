@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "triz_ai_patent_assistant"
+version = "0.1.2"
+description = "AI + TRIZ system for patent formula generation and analysis"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "Sergei Voronin", email = "your@email.com"},
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
+dependencies = [
+    "streamlit",
+    "openai",
+    "pymystem3",
+    "pytest"
+]
+
+[project.urls]
+Homepage = "https://github.com/voroninsergei/triz-ai-patent-assistant"
+Source = "https://github.com/voroninsergei/triz-ai-patent-assistant"
+Documentation = "https://github.com/voroninsergei/triz-ai-patent-assistant#readme"
+Tracker = "https://github.com/voroninsergei/triz-ai-patent-assistant/issues"
+
+[tool.setuptools]
+license-files = ["LICENSE"]
