@@ -1,0 +1,83 @@
+Metadata-Version: 2.4
+Name: eclyptic
+Version: 1.2.0
+Summary: Eclyptic Asymmetric Encryption: Minimal ECIES-style encryption with elliptic curves.
+Author-email: JT Steinbach <jacob@jts.gg>
+License: Proprietary Use-Only License
+        
+        Copyright (c) 2025 JT Steinbach
+        All rights reserved.
+        
+        This software and accompanying documentation (the “Software”) is licensed, not sold, and is the proprietary work of JT Steinbach.  Permission is hereby granted to any person or entity to use the Software for any lawful purpose, including commercial, personal, educational, or governmental uses, without fee or royalty.
+        
+        **You may:**
+        
+        * Use the Software for any purpose.
+        * Integrate and deploy the Software in your own applications, products, or services.
+        
+        **You may NOT:**
+        
+        1. **Modify** the Software in any way, including adaptation, translation, or derivative works.
+        2. **Redistribute** or share the Software, in source or binary form, to any third party.
+        3. **Rent, lease, sublicense, or lend** the Software or rights thereto.
+        4. **Reverse engineer, decompile, disassemble, or attempt** to derive the Software’s source code or internal structure.
+        
+        **Attribution:**
+        Any use of the Software must include this notice.
+        
+        **Disclaimer of Warranty:**
+        THE SOFTWARE IS PROVIDED “AS IS,” WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.
+        
+        **Limitation of Liability:**
+        IN NO EVENT SHALL JT STEINBACH BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+        
+        **Governing Law:**
+        This license is governed by the laws of the State of California, U.S.A., without regard to conflict of law principles.
+Project-URL: Homepage, https://jts.gg/eclyptic
+Project-URL: Repository, https://github.com/jtsteinbach/eclyptic
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: cryptography<43,>=42.0.5
+Dynamic: license-file
+
+# Eclyptic Asymmetric Encryption
+
+**Version**: 1.2.0
+**License**: [LICENSE](https://r2.jts.gg/license)
+**Developer**: [jts.gg/eclyptic](https://jts.gg/eclyptic)
+
+---
+
+Eclyptic is a lightweight Python library that implements a streamlined ECIES‑style encryption scheme utilizing:
+
+* **Elliptic‑Curve Diffie‑Hellman (ECDH)** for key agreement
+* **HKDF‑SHA256** for symmetric key derivation
+* **AES‑GCM** for authenticated encryption
+* **Compressed ECC public keys** with compact **Base64 URL-safe encoding** (no padding)
+
+Designed for ease of use, forward secrecy, and efficiency with arbitrary binary and text payloads.
+
+## Installation
+
+```bash
+# install from PyPI
+pip3 install eclyptic
+```
+
+## Quick Start
+
+```python
+import eclyptic
+
+# generate a compact base64-encoded keypair
+priv, pub = eclyptic.keypair()
+
+# encrypt data (bytes or UTF-8 string)
+data = "secret data"
+encrypted_data = eclyptic.encrypt(pub, data)
+
+# decrypt back into raw bytes or UTF-8 text
+decrypted_bytes = eclyptic.decrypt(priv, encrypted_data)
+plaintext = decrypted_bytes.decode('utf-8')
+```
