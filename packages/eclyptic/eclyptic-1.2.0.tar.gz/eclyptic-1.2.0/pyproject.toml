@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eclyptic"
+version = "1.2.0"
+authors = [
+  { name="JT Steinbach", email="jacob@jts.gg" },
+]
+description = "Eclyptic Asymmetric Encryption: Minimal ECIES-style encryption with elliptic curves."
+readme = "README.md"
+license = {file = "LICENSE"}
+requires-python = ">=3.8"
+dependencies = [
+  "cryptography>=42.0.5,<43"
+]
+
+[project.urls]
+Homepage = "https://jts.gg/eclyptic"
+Repository = "https://github.com/jtsteinbach/eclyptic"
