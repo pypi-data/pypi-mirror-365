@@ -1,0 +1,90 @@
+Metadata-Version: 2.4
+Name: edi-cli
+Version: 0.1.0
+Summary: A modern, developer-friendly CLI for parsing and testing EDI files
+Author-email: EDI CLI Project <info@edi-cli.com>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/edi-cli/edi-cli
+Project-URL: Documentation, https://github.com/edi-cli/edi-cli#readme
+Project-URL: Repository, https://github.com/edi-cli/edi-cli.git
+Project-URL: Bug Tracker, https://github.com/edi-cli/edi-cli/issues
+Keywords: edi,cli,healthcare,x12,hipaa,parsing
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Healthcare Industry
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Text Processing
+Classifier: Topic :: Office/Business :: Financial
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: typer>=0.9.0
+Dynamic: license-file
+
+# edi-cli
+
+A modern, developer-friendly CLI tool for parsing and testing EDI (Electronic Data Interchange) files.
+
+## 🚧 Early Release Notice
+
+This is an early release to reserve the `edi-cli` namespace on PyPI. The current version provides basic CLI infrastructure and will be expanded with full EDI parsing capabilities in upcoming releases.
+
+## Installation
+
+```bash
+pip install edi-cli
+```
+
+## Usage
+
+After installation, you can run:
+
+```bash
+edi-cli
+```
+
+This will display the current status and version information.
+
+### Available Commands
+
+- `edi-cli` - Show status and version
+- `edi-cli version` - Display version information  
+- `edi-cli status` - Show installation status
+- `edi-cli --help` - Display help information
+
+## Coming Soon
+
+- 📄 Full EDI file parsing (X12, HIPAA)
+- ✅ Validation against EDI standards
+- 🔄 Format conversion (EDI ↔ JSON ↔ CSV)
+- 🔍 EDI file inspection and analysis
+- 📊 Detailed validation reports
+- 🎯 Support for common transaction sets (835, 837, 270, 271, 276, 277)
+
+## Development
+
+This tool is being actively developed. Follow the project for updates:
+
+- **Repository**: https://github.com/edi-cli/edi-cli
+- **Issues**: https://github.com/edi-cli/edi-cli/issues
+
+## Requirements
+
+- Python 3.7 or higher
+- typer (automatically installed)
+
+## License
+
+MIT License - see LICENSE file for details.
+
+## Support
+
+For questions, bug reports, or feature requests, please visit our GitHub repository.
