@@ -1,0 +1,24 @@
+Metadata-Version: 2.4
+Name: pralekh
+Version: 0.1.0
+Summary: Unified document text and table extractor for PDFs, DOCX, PPTX, XLSX, and TXT (with OCR support)
+Home-page: https://github.com/JastegSingh19/pralekh
+Author: Jasteg Singh
+Author-email: jastegsingh007@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Requires-Dist: pdfplumber
+Requires-Dist: pytesseract
+Requires-Dist: python-docx
+Requires-Dist: python-pptx
+Requires-Dist: pandas
+Requires-Dist: Pillow
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
