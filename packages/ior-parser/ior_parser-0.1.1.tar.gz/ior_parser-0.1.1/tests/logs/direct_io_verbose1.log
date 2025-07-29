@@ -1,0 +1,46 @@
+IOR-4.0.0: MPI Coordinated Test of Parallel I/O
+Began               : Sun Jul 27 10:07:14 2025
+Command line        : bin/ior -a POSIX -s 128 -b 4M -t 1M -O useO_DIRECT=1 -F -o /tmp/data/testfile -v
+Machine             : Linux corona211
+TestID              : 0
+StartTime           : Sun Jul 27 10:07:14 2025
+Path                : /tmp/data/testfile.00000000
+FS                  : 14.2 TiB   Used FS: 0.4%   Inodes: 190.7 Mi   Used Inodes: 0.4%
+Participating tasks : 1
+
+Options: 
+api                 : POSIX
+apiVersion          : 
+test filename       : /tmp/data/testfile
+access              : file-per-process
+type                : independent
+segments            : 128
+ordering in a file  : sequential
+ordering inter file : no tasks offsets
+nodes               : 1
+tasks               : 1
+clients per node    : 1
+repetitions         : 1
+xfersize            : 1 MiB
+blocksize           : 4 MiB
+aggregate filesize  : 512 MiB
+verbose             : 1
+
+Results: 
+
+access    bw(MiB/s)  IOPS       Latency(s)  block(KiB) xfer(KiB)  open(s)    wr/rd(s)   close(s)   total(s)   iter
+------    ---------  ----       ----------  ---------- ---------  --------   --------   --------   --------   ----
+Commencing write performance test: Sun Jul 27 10:07:14 2025
+write     278.22     278.68     0.459305    4096       1024.00    0.002435   1.84       0.000583   1.84       0   
+Commencing read performance test: Sun Jul 27 10:07:16 2025
+
+read      366.75     367.26     0.348526    4096       1024.00    0.001381   1.39       0.000555   1.40       0   
+remove    -          -          -           -          -          -          -          -          0.002595   0   
+Max Write: 278.22 MiB/sec (291.74 MB/sec)
+Max Read:  366.75 MiB/sec (384.56 MB/sec)
+
+Summary of all tests:
+Operation   Max(MiB)   Min(MiB)  Mean(MiB)     StdDev   Max(OPs)   Min(OPs)  Mean(OPs)     StdDev    Mean(s) Stonewall(s) Stonewall(MiB) Test# #Tasks tPN reps fPP reord reordoff reordrand seed segcnt   blksiz    xsize aggs(MiB)   API RefNum
+write         278.22     278.22     278.22       0.00     278.22     278.22     278.22       0.00    1.84025         NA            NA     0      1   1    1   1     0        1         0    0    128  4194304  1048576     512.0 POSIX      0
+read          366.75     366.75     366.75       0.00     366.75     366.75     366.75       0.00    1.39605         NA            NA     0      1   1    1   1     0        1         0    0    128  4194304  1048576     512.0 POSIX      0
+Finished            : Sun Jul 27 10:07:17 2025

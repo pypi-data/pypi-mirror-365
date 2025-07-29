@@ -1,0 +1,38 @@
+IOR-4.0.0: MPI Coordinated Test of Parallel I/O
+Began               : Sun Jul 27 08:35:42 2025
+Command line        : bin/ior -a POSIX -s 512 -b 1M -t 256K -F -o /tmp/small_blocks/data/testfile
+Machine             : Linux corona211
+TestID              : 0
+StartTime           : Sun Jul 27 08:35:42 2025
+Path                : /tmp/small_blocks/data/testfile.00000000
+FS                  : 14.3 TiB   Used FS: 0.4%   Inodes: 190.7 Mi   Used Inodes: 0.4%
+
+Options: 
+api                 : POSIX
+apiVersion          : 
+test filename       : /tmp/small_blocks/data/testfile
+access              : file-per-process
+type                : independent
+segments            : 512
+ordering in a file  : sequential
+ordering inter file : no tasks offsets
+nodes               : 1
+tasks               : 1
+clients per node    : 1
+repetitions         : 1
+xfersize            : 262144 bytes
+blocksize           : 1 MiB
+aggregate filesize  : 512 MiB
+
+Results: 
+
+access    bw(MiB/s)  IOPS       Latency(s)  block(KiB) xfer(KiB)  open(s)    wr/rd(s)   close(s)   total(s)   iter
+------    ---------  ----       ----------  ---------- ---------  --------   --------   --------   --------   ----
+write     485.92     1961.02    0.261089    1024.00    256.00     0.001268   1.04       0.008054   1.05       0   
+read      220.61     883.04     0.579815    1024.00    256.00     0.001209   2.32       0.000327   2.32       0   
+
+Summary of all tests:
+Operation   Max(MiB)   Min(MiB)  Mean(MiB)     StdDev   Max(OPs)   Min(OPs)  Mean(OPs)     StdDev    Mean(s) Stonewall(s) Stonewall(MiB) Test# #Tasks tPN reps fPP reord reordoff reordrand seed segcnt   blksiz    xsize aggs(MiB)   API RefNum
+write         485.92     485.92     485.92       0.00    1943.67    1943.67    1943.67       0.00    1.05368         NA            NA     0      1   1    1   1     0        1         0    0    512  1048576   262144     512.0 POSIX      0
+read          220.61     220.61     220.61       0.00     882.46     882.46     882.46       0.00    2.32080         NA            NA     0      1   1    1   1     0        1         0    0    512  1048576   262144     512.0 POSIX      0
+Finished            : Sun Jul 27 08:35:46 2025
