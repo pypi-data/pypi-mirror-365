@@ -1,0 +1,32 @@
+#@meta {desc: 'configure the SciSpacy BioNLP parser', date: '2024-04-06'}
+#@meta {doc: 'A spaCy NER model trained on the BIONLP13CG corpus.'}
+#@meta {url: 'https://allenai.github.io/scispacy/'}
+
+
+## Natural language
+#
+# use the biomedical NER
+mednlp_biomed_doc_parser:
+  model_name: en_ner_bionlp13cg_md
+  auto_install_model: ${mednlp_requirements:biomed_parser}
+
+
+## Vectorization
+#
+medent_spacy_feature_vectorizer:
+  class_name: zensols.deepnlp.vectorize.spacy.SpacyFeatureVectorizer
+  feature_id: medent
+  description: medical named entity recognition
+  torch_config: 'instance: gpu_torch_config'
+  model: >-
+    call({'param': {'attribute': 'model'}}): mednlp_biomed_doc_parser
+  symbols: ner
+
+# uncomment to add the vectorizer to the default configuration in `vectorizer.conf`
+# language_vectorizer_manager:
+#   configured_spacy_vectorizers: >-
+#     instance: tuple:
+#       ner_spacy_feature_vectorizer,
+#       dep_spacy_feature_vectorizer,
+#       pos_spacy_feature_vectorizer,
+#       medent_spacy_feature_vectorizer
