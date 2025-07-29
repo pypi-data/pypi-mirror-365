@@ -1,0 +1,74 @@
+name: Publish Python Package
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        if [ -f requirements-dev.txt ]; then pip install -r requirements-dev.txt; fi
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Run tests
+      run: |
+        pytest
+    - name: Build
+      run: |
+        python -m build
+    - name: Archive production artifacts
+      run: |
+        tar -zcvf artifacts.tar.gz dist/*
+
+    - name: Fetch all tags
+      run: git fetch --tags --force
+      
+    - name: Get the previous tag
+      id: previous_tag
+      run: echo "::set-output name=tag::$(git describe --tags --abbrev=0 HEAD^)"
+    - name: Generate Release Notes
+      id: generate_release_notes
+      run: |
+        previous_tag=${{ steps.previous_tag.outputs.tag }}
+        current_tag=${{ github.ref }}
+        echo "Fetching commit messages from $previous_tag to $current_tag"
+
+        commit_messages=$(git log $previous_tag..$current_tag --pretty=format:"%s")
+        echo "## Changes in this Release" > release_notes.md
+        echo "$commit_messages" >> release_notes.md
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        body: |
+          $(cat release_notes.md)
+
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }} 
+        asset_path: ./artifacts.tar.gz
+        asset_name: artifacts.tar.gz
+        asset_content_type: application/gzip
+
+    - name: Publish to PyPI
+      uses: pypa/gh-action-pypi-publish@v1.5.1
+      with:
+        password: ${{ secrets.PYPI_API_TOKEN }}
