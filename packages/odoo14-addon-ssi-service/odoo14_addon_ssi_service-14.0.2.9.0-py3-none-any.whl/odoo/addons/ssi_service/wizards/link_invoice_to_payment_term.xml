@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+
+<record id="link_invoice_to_payment_term_view_form" model="ir.ui.view">
+    <field name="name">Link Invoice To Service Contract Payment Term</field>
+    <field name="model">link_invoice_to_payment_term</field>
+    <field name="arch" type="xml">
+        <form>
+            <group name="group_1" colspan="4" col="2">
+                <field name="term_id" invisible="1" />
+                <field name="allowed_invoice_ids" invisible="1" />
+                <field
+                        name="invoice_id"
+                        domain="[('id','in',allowed_invoice_ids)]"
+                        required="1"
+                    />
+            </group>
+            <footer>
+                <button
+                        string="Confirm"
+                        name="action_confirm"
+                        type="object"
+                        class="oe_highlight"
+                        confirm="Are you sure?"
+                    />
+                or
+                <button string="Cancel" class="oe_link" special="cancel" />
+            </footer>
+        </form>
+    </field>
+</record>
+
+<record id="link_invoice_to_payment_term_action" model="ir.actions.act_window">
+    <field name="name">Link Invoice To Service Contract Payment Term</field>
+    <field name="res_model">link_invoice_to_payment_term</field>
+    <field name="view_mode">form</field>
+    <field name="view_id" ref="link_invoice_to_payment_term_view_form" />
+    <field name="target">new</field>
+</record>
+
+</odoo>
