@@ -1,0 +1,58 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+
+[project]
+
+name = "demakein"
+
+authors = [
+    { name="Paul Harrison", email="paul.francis.harrison@gmail.com" }
+]
+
+description = "Design woodwind instruments and make them with a 3D printer or CNC mill."
+
+readme = "README.md"
+
+requires-python = ">=3.8"
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Multimedia :: Graphics :: 3D Modeling",
+]
+
+license = "LGPL-2.1"
+license-files = ["LICENSE"]
+
+dependencies = [
+#    "cffi",      # Needed for CGAL 3D engine, no longer the default 3D engine.
+    "trimesh",
+    "manifold3d", # Needed by trimesh for correct boolean operations.
+    "scipy",      # Needed by trimesh for convex hull, used in milling. Also KDTree for merging nearby vertices to clean up meshes.
+    "shapely",    # Needed for milling.
+]
+
+dynamic = [ "version" ]
+
+[project.scripts]
+demakein = "demakein:main"
+
+[project.urls]
+Homepage = "https://logarithmic.net/pfh/design"
+Source = "https://github.com/pfh/demakein"
+
+
+[tool.hatch.build.targets.sdist]
+only-include = [ "demakein" ]
+
+[tool.hatch.version]
+path = "demakein/__init__.py"
+pattern = "VERSION = '(?P<version>[^']+)'"
+
+[tool.hatch.envs.pypy]
+type = "virtual"
+installer = "uv"
+python = "pypy"
