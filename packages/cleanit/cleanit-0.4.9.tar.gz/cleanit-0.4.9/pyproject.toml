@@ -1,0 +1,61 @@
+[tool.poetry]
+name = "cleanit"
+version = "0.4.9"
+description = "Subtitles extremely clean"
+authors = [
+    "Rato",
+]
+license = "Apache License 2.0"
+readme = "README.md"
+repository = "https://github.com/ratoaq2/cleanit"
+keywords = [
+    "subtitle",
+    "subtitles",
+    "clean",
+    "denylist",
+    "replace",
+    "ocr",
+    "fix",
+    "tidy",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Multimedia :: Video",
+]
+include = [
+    { path = "scripts/**", format = "sdist" },
+    { path = "tests/**", format = "sdist" },
+    { path = "setup.cfg", format = "sdist" },
+]
+
+[tool.poetry.scripts]
+cleanit = "cleanit.cli:cleanit"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<4.0"
+appdirs = "^1.4.4"
+babelfish = "^0.6.1"
+chardet = "^5.2.0"
+click = "^8.2.1"
+jsonschema = "^4.25.0"
+pysrt = "^1.1.2"
+pyyaml = "^6.0.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.1"
+pytest-cov = "^6.2.1"
+flake8 = "^7.3.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
