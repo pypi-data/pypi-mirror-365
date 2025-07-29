@@ -1,0 +1,104 @@
+Metadata-Version: 2.4
+Name: parse-slice
+Version: 0.1.0a0
+Summary: A Python function that normalizes and validates slice objects, converting `None` values to infinity and ensuring correct bounds based on the step direction.
+Author-email: Jifeng Wu <jifengwu2k@gmail.com>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/jifengwu2k/parse-slice
+Project-URL: Bug Tracker, https://github.com/jifengwu2k/parse-slice/issues
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=2
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# `parse-slice`
+
+A Python function that normalizes and validates slice objects, converting `None` values to infinity and ensuring correct bounds based on the step direction.
+
+## Installation
+
+```bash
+pip install parse-slice
+```
+
+## Usage
+
+```python
+def parse_slice(slice_object: slice) -> tuple[float | int, float | int, int]: ...
+```
+
+### Parameters
+
+- **`slice_object`** (`slice`): A Python slice object (e.g., `slice(1, 5, 2)`).
+
+### Returns
+
+- **`tuple`** `(start, stop, step)`:
+    - `start`/`stop`: Integers or `inf`/`-inf`.
+    - `step`: Non-zero integer (defaults to `1`).
+
+### Behavior
+
+- **Handles `None` values**:
+    - `start=None` → `-inf` (if `step > 0`) or `inf` (if `step < 0`).
+    - `stop=None` → `inf` (if `step > 0`) or `-inf` (if `step < 0`).
+
+- **Validates inputs**:
+    - Raises `ValueError` if `step` is zero or non-integer.
+    - Raises `ValueError` if `start`/`stop` are non-integer (and not `None`).
+
+- **Adjusts bounds**:
+    - For `step > 0`: Clamps `stop` to `start` if `stop < start`.
+    - For `step < 0`: Clamps `stop` to `start` if `stop > start`.
+
+## Examples
+
+```python
+# Basic usage
+from parse_slice import parse_slice
+
+# Start only
+start, stop, step = parse_slice(slice(0, None, None))  # (0, inf, 1)
+
+# Stop only
+start, stop, step = parse_slice(slice(None, 0, None))  # (-inf, 0, 1)
+
+# Step only
+start, stop, step = parse_slice(slice(None, None, 1))  # (-inf, inf, 1)
+start, stop, step = parse_slice(slice(None, None, -1))  # (inf, -inf, -1)
+
+# Start + stop
+start, stop, step = parse_slice(slice(0, 10, None))  # (0, 10, 1)
+start, stop, step = parse_slice(slice(10, 0, None))  # (10, 10, 1)
+
+# Start + step
+start, stop, step = parse_slice(slice(0, None, 1))  # (0, inf, 1)
+start, stop, step = parse_slice(slice(0, None, -1))  # (0, -inf, -1)
+
+# Stop + step
+start, stop, step = parse_slice(slice(None, 10, 1))  # (-inf, 10, 1)
+start, stop, step = parse_slice(slice(None, 10, -1))  # (inf, 10, -1)
+
+# Start + stop + step
+start, stop, step = parse_slice(slice(0, 10, 1))  # (0, 10, 1)
+start, stop, step = parse_slice(slice(10, 0, 1))  # (10, 10, 1)
+start, stop, step = parse_slice(slice(0, 10, -1))  # (0, 0, -1)
+start, stop, step = parse_slice(slice(10, 0, -1))  # (10, 0, -1)
+```
+
+## Use Cases
+
+- Implementing custom sequence types.
+- Normalizing slices for mathematical operations (e.g., array indexing).
+- Debugging or logging slice behavior.
+
+## Contributing
+
+Contributions are welcome! Please submit pull requests or open issues on the GitHub repository.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
