@@ -1,0 +1,157 @@
+Metadata-Version: 2.4
+Name: gnuhealth-all-modules
+Version: 5.0.0
+Summary: GNU Health HMIS: Hospital Management Information System
+Home-page: https://www.gnuhealth.org
+Author: GNU Solidario
+Author-email: health@gnusolidario.org
+License: GPLv3+
+Project-URL: Homepage, https://www.gnuhealth.org/
+Project-URL: Source Code, https://gitlab.com/geraldwiese/gnu-health-all-modules-pypi
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Plugins
+Classifier: Framework :: Tryton
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Healthcare Industry
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Topic :: Scientific/Engineering :: Medical Science Apps.
+Requires-Python: >=3.7, <4
+License-File: LICENSE.txt
+Requires-Dist: trytond-account<7.1,>=7.0
+Requires-Dist: trytond-account-invoice<7.1,>=7.0
+Requires-Dist: trytond-account-invoice-stock<7.1,>=7.0
+Requires-Dist: trytond-account-product<7.1,>=7.0
+Requires-Dist: trytond-company<7.1,>=7.0
+Requires-Dist: trytond-country<7.1,>=7.0
+Requires-Dist: trytond-currency<7.1,>=7.0
+Requires-Dist: trytond-party<7.1,>=7.0
+Requires-Dist: trytond-product<7.1,>=7.0
+Requires-Dist: trytond-purchase<7.1,>=7.0
+Requires-Dist: trytond-purchase-request<7.1,>=7.0
+Requires-Dist: trytond-stock<7.1,>=7.0
+Requires-Dist: trytond-stock-lot<7.1,>=7.0
+Requires-Dist: trytond-stock-supply<7.1,>=7.0
+Requires-Dist: proteus<7.1,>=7.0
+Requires-Dist: gnuhealth-archives==5.0.0
+Requires-Dist: gnuhealth-caldav==5.0.0
+Requires-Dist: gnuhealth-calendar==5.0.0
+Requires-Dist: gnuhealth-contact-tracing==5.0.0
+Requires-Dist: gnuhealth-crypto==5.0.0
+Requires-Dist: gnuhealth-crypto-lab==5.0.0
+Requires-Dist: gnuhealth-dentistry==5.0.0
+Requires-Dist: gnuhealth-disability==5.0.0
+Requires-Dist: gnuhealth-ems==5.0.0
+Requires-Dist: gnuhealth-federation==5.0.0
+Requires-Dist: gnuhealth-genetics==5.0.0
+Requires-Dist: gnuhealth-genetics-uniprot==5.0.0
+Requires-Dist: gnuhealth-gyneco==5.0.0
+Requires-Dist: gnuhealth-history==5.0.0
+Requires-Dist: gnuhealth-icd10==5.0.0
+Requires-Dist: gnuhealth-icd10pcs==5.0.0
+Requires-Dist: gnuhealth-icd11==5.0.0
+Requires-Dist: gnuhealth-icd9procs==5.0.0
+Requires-Dist: gnuhealth-icpm==5.0.0
+Requires-Dist: gnuhealth-icu==5.0.0
+Requires-Dist: gnuhealth-imaging==5.0.0
+Requires-Dist: gnuhealth-imaging-worklist==5.0.0
+Requires-Dist: gnuhealth-inpatient==5.0.0
+Requires-Dist: gnuhealth-inpatient-calendar==5.0.0
+Requires-Dist: gnuhealth-insurance==5.0.0
+Requires-Dist: gnuhealth-iss==5.0.0
+Requires-Dist: gnuhealth-lab==5.0.0
+Requires-Dist: gnuhealth-lifestyle==5.0.0
+Requires-Dist: gnuhealth-mdg6==5.0.0
+Requires-Dist: gnuhealth-ntd==5.0.0
+Requires-Dist: gnuhealth-ntd-chagas==5.0.0
+Requires-Dist: gnuhealth-ntd-dengue==5.0.0
+Requires-Dist: gnuhealth-nursing==5.0.0
+Requires-Dist: gnuhealth-ophthalmology==5.0.0
+Requires-Dist: gnuhealth-orthanc==5.0.0
+Requires-Dist: gnuhealth-pediatrics==5.0.0
+Requires-Dist: gnuhealth-pediatrics-growth-charts==5.0.0
+Requires-Dist: gnuhealth-pediatrics-growth-charts-who==5.0.0
+Requires-Dist: gnuhealth-qrcodes==5.0.0
+Requires-Dist: gnuhealth-reporting==5.0.0
+Requires-Dist: gnuhealth-services==5.0.0
+Requires-Dist: gnuhealth-services-imaging==5.0.0
+Requires-Dist: gnuhealth-services-lab==5.0.0
+Requires-Dist: gnuhealth-socioeconomics==5.0.0
+Requires-Dist: gnuhealth-stock==5.0.0
+Requires-Dist: gnuhealth-stock-inpatient==5.0.0
+Requires-Dist: gnuhealth-stock-nursing==5.0.0
+Requires-Dist: gnuhealth-stock-surgery==5.0.0
+Requires-Dist: gnuhealth-surgery==5.0.0
+Requires-Dist: gnuhealth-surgery-protocols==5.0.0
+Requires-Dist: gnuhealth-webdav3-server==5.0.0
+Requires-Dist: gnuhealth-who-essential-medicines==5.0.0
+Requires-Dist: psycopg2
+Requires-Dist: psycopg2cffi
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: project-url
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+GNU Health - All modules
+========================
+
+This package aims to install GNU Health, all of its ~50 modules, underlying
+trytond modules and dependencies.
+In order to install GNU Health and all modules this way you need:
+
+* Python > 3.6
+* Some system packages, e.g. on Debian based systems: python3-pip python3-dev python3-virtualenv libpq-dev gcc
+* PostgreSQL backend and a database
+* Configuration file(s) for trytond
+
+You might also want to add:
+
+* Certificates & TLS
+* Systemd .service file
+* uWSGI
+* Reverse Proxy
+
+You can find configuration templates in gnuhealth-all-modules/etc. They will be shipped during installation as well.
+After installation the folder can be located by running 'pip3 show gnuhealth-all-modules'.
+
+Check 'HOWTO' for informations on packaging, using testpypi, signatures and hashes.
+
+This content is available both on PyPI and on GitLab in case you want to double check the integrity:
+
+https://pypi.org/project/gnuhealth-all-modules/
+
+https://gitlab.com/geraldwiese/gnu-health-all-modules-pypi
+
+This package is used by the Ansible based installation of GNU Health which also targets the OS packages e.g. for the psycopg2 compiling:
+
+https://www.gnuhealth.org/docs/ansible/
+
+Further reading:
+
+GNU Health core package
+https://pypi.org/project/gnuhealth/
+
+GNU Health documentation
+https://www.gnuhealth.org/docs/
+
+GNU Health vanilla installation
+https://docs.gnuhealth.org/hmis/techguide/installation/vanilla.html
+
+Tryton documentation
+https://docs.tryton.org/en/latest/
+
+GNU Health bug tracker
+https://savannah.gnu.org/bugs/?group=health
+
+GNU Health homepage
+https://www.gnuhealth.org/index.html
