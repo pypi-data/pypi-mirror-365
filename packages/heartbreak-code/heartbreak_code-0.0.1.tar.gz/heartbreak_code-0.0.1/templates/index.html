@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HeartbreakCode Template</title>
+</head>
+<body>
+    <h1>Welcome to HeartbreakCode!</h1>
+    <p>This is a dynamic page rendered with The Storyboard.</p>
+    
+    <p>Your name is: {{ user_name }}</p>
+    <p>Your age is: {{ user_age }}</p>
+
+    <h2>Songs:</h2>
+    <ul>
+        {% For every song in songs: Speak Now: %}
+            <li>{{ song }}</li>
+        {% End Tour %}
+    </ul>
+
+    {% Would've user_age is greater than 30 Speak Now: %}
+        <p>You're over 30!</p>
+    {% Could've user_age is 30 Speak Now: %}
+        <p>You're exactly 30!</p>
+    {% Should've Speak Now: %}
+        <p>You're under 30!</p>
+    {% End Verse %}
+
+</body>
+</html>
