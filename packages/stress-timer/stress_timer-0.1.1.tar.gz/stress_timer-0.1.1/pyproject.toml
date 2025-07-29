@@ -1,0 +1,38 @@
+[project]
+name = "stress-timer"
+version = "0.1.1"
+description = "A timer that says the time, and stresses you out, it also provides tracking for questions and the time spent on the questions."
+authors = [
+    {name = "Oce4nM4n",email = "ayushmansihag@gmail.com"}
+]
+
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.10,<3.13"
+
+classifiers = [
+    "Topic :: Utilities",
+    "Environment :: MacOS X"
+]
+
+dependencies = [
+    "simpleaudio (>=1.0.4,<2.0.0)",
+    "pynput (>=1.8.1,<2.0.0)",
+    "coqui-tts (>=0.27.0,<0.28.0)",
+    "pandas (>=2.3.1,<3.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "stress_timer_oce4nm4n", from = "src"}]
+
+[tool.poetry.scripts]
+stress-timer = "stress_timer_oce4nm4n.main:main"
+
+[tool.poetry.group.dev.dependencies]
+coqui-tts = "^0.27.0"
+pynput = "^1.8.1"
+simpleaudio = "^1.0.4"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
