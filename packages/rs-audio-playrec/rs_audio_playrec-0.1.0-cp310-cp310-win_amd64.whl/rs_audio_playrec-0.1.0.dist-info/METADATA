@@ -1,0 +1,240 @@
+Metadata-Version: 2.4
+Name: rs-audio-playrec
+Version: 0.1.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Rust
+Classifier: Topic :: Multimedia :: Sound/Audio
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Summary: High-performance audio playback and recording library
+Author-email: hiroshi-tamura <your-email@example.com>
+License: MIT
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+Project-URL: Homepage, https://github.com/hiroshi-tamura/rs_audio_playrec
+Project-URL: Repository, https://github.com/hiroshi-tamura/rs_audio_playrec
+Project-URL: Issues, https://github.com/hiroshi-tamura/rs_audio_playrec/issues
+
+# rs_audio_playrec
+
+高速・低負荷なオーディオ再生・録音ライブラリ（Python用）
+
+[![CI](https://github.com/hiroshi-tamura/rs_audio_playrec/workflows/CI/badge.svg)](https://github.com/hiroshi-tamura/rs_audio_playrec/actions)
+[![PyPI version](https://badge.fury.io/py/rs-audio-playrec.svg)](https://badge.fury.io/py/rs-audio-playrec)
+[![Python](https://img.shields.io/pypi/pyversions/rs-audio-playrec.svg)](https://pypi.org/project/rs-audio-playrec/)
+
+## 特徴
+
+- **高速レスポンス**: Rust製コアによる最適化されたパフォーマンス
+- **低負荷**: ゼロコピー設計とSIMD最適化
+- **マルチフォーマット対応**: WAV、AIF、MP3
+- **高音質**: 22.05kHz〜192kHzのサンプリングレート、64チャンネルまで対応
+- **クロスプラットフォーム**: Windows、macOS、Linux対応
+
+## インストール
+
+```bash
+pip install rs-audio-playrec
+```
+
+## 対応仕様
+
+### オーディオフォーマット
+- **ファイル形式**: WAV、AIF、MP3
+- **サンプリングレート**: 22.05kHz、24kHz、32kHz、44.1kHz、48kHz、88.2kHz、96kHz、192kHz
+- **ビット深度**: 8bit、16bit、24bit、32bit float、64bit float
+- **チャンネル数**: 1〜64チャンネル
+
+### オーディオAPI
+- **Windows**: WASAPI、DirectSound、waveOut、ASIO
+- **macOS**: CoreAudio、ASIO
+- **Linux**: ALSA、PulseAudio、ASIO
+
+## 使用例
+
+### 基本的な再生
+
+```python
+import rs_audio_playrec as rap
+
+# 簡単な再生
+player = rap.play_file("music.wav", volume=0.8)
+
+# 詳細な制御
+player = rap.Player()
+player.load("music.wav")
+player.set_volume(0.8)
+player.set_loop(True)
+player.play()
+
+# 再生制御
+player.pause()
+player.seek(30.0)  # 30秒の位置へ
+player.play()
+player.stop()
+```
+
+### 基本的な録音
+
+```python
+import rs_audio_playrec as rap
+import time
+
+# 簡単な録音
+recorder = rap.record_to_file("recording.wav", duration=5.0)
+
+# 詳細な制御
+recorder = rap.Recorder(sample_rate=48000, channels=2)
+recorder.start()
+time.sleep(5)
+recorder.stop()
+recorder.save("recording.wav")
+
+# レベル監視
+while recorder.is_recording():
+    peak = recorder.get_peak_level()
+    rms = recorder.get_rms_level()
+    print(f"Peak: {peak:.3f}, RMS: {rms:.3f}")
+    time.sleep(0.1)
+```
+
+### オーディオファイル操作
+
+```python
+import rs_audio_playrec as rap
+
+# ファイル読み込み
+samples, channels, sample_rate, bit_depth = rap.load_audio_file("input.wav")
+
+# ファイル保存
+rap.save_audio_file("output.wav", samples, channels, sample_rate, 16)
+
+# ファイル情報取得
+sr, ch, bd, duration = rap.get_audio_info("audio.wav")
+print(f"Sample Rate: {sr}, Channels: {ch}, Duration: {duration:.2f}s")
+
+# フォーマット変換
+rap.convert_audio("input.mp3", "output.wav", sample_rate=48000, bit_depth=24)
+```
+
+### デバイス管理
+
+```python
+import rs_audio_playrec as rap
+
+# 出力デバイス一覧
+output_devices = rap.list_output_devices()
+for device in output_devices:
+    print(f"Output: {device}")
+
+# 入力デバイス一覧
+input_devices = rap.list_input_devices()
+for device in input_devices:
+    print(f"Input: {device}")
+
+# 特定デバイスで再生/録音
+player = rap.Player(device="Speakers")
+recorder = rap.Recorder(device="Microphone")
+```
+
+### 高度な使用例
+
+```python
+import rs_audio_playrec as rap
+import numpy as np
+
+# 音声データ生成
+duration = 1.0
+sample_rate = 44100
+t = np.linspace(0, duration, int(duration * sample_rate))
+frequency = 440.0  # A4
+samples = np.sin(2 * np.pi * frequency * t) * 0.5
+
+# ステレオに変換
+stereo_samples = []
+for sample in samples:
+    stereo_samples.extend([sample, sample])  # L, R
+
+# 再生
+player = rap.Player()
+player.load_data(stereo_samples, channels=2, sample_rate=sample_rate)
+player.play()
+
+# リアルタイム処理
+recorder = rap.Recorder()
+recorder.start()
+
+while True:
+    data = recorder.get_data()
+    if len(data[0]) > 0:
+        # 音声データを処理
+        samples = np.array(data[0])
+        # ... 何らかの処理 ...
+        break
+```
+
+## パフォーマンス
+
+このライブラリは高性能を重視して設計されています：
+
+- **Rustコア**: メモリ安全性と最大パフォーマンス
+- **ゼロコピー**: 不要なメモリコピーを回避
+- **SIMD最適化**: 音量調整やフォーマット変換の高速化
+- **ロックフリー**: 並行処理でのボトルネック回避
+- **非同期I/O**: ブロッキング操作の最小化
+
+## 開発
+
+### 必要なツール
+
+```bash
+# Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# Python依存関係
+pip install maturin pytest numpy
+
+# システム依存関係（Ubuntu）
+sudo apt-get install libasound2-dev portaudio19-dev
+
+# システム依存関係（macOS）
+brew install portaudio
+```
+
+### ビルド
+
+```bash
+# 開発ビルド
+maturin develop
+
+# リリースビルド
+maturin build --release
+
+# テスト実行
+cargo test
+pytest tests/
+
+# ベンチマーク
+cargo bench
+```
+
+## ライセンス
+
+MIT License
+
+## 貢献
+
+プルリクエストやイシューの報告を歓迎します。
+
+## 更新履歴
+
+### v0.1.0
+- 初回リリース
+- 基本的な再生・録音機能
+- WAV、AIF、MP3対応
+- クロスプラットフォーム対応
