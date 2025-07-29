@@ -1,0 +1,32 @@
+Metadata-Version: 2.4
+Name: aic-sdk
+Version: 0.5.3.post1
+Summary: Python bindings for the ai|coustics speech-enhancement SDK
+Author-email: ai-coustics GmbH <info@ai-coustics.com>
+License-Expression: Apache-2.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: C
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy
+Dynamic: license-file
+
+# ai-coustics SDK for Python (`aic`)
+
+This repository provides prebuilt Python wheels for the ai|coustics real-time audio enhancement SDK, compatible with a variety of platforms and Python versions.
+
+
+## 🚀 Example: Enhance WAV File
+
+This repository includes a script to process WAV files using the SDK.
+
+### Usage
+
+```bash
+python enhance.py input.wav output.wav --strength 80
+
+```
