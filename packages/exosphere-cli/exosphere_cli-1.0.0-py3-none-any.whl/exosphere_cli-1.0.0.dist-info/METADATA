@@ -1,0 +1,81 @@
+Metadata-Version: 2.4
+Name: exosphere-cli
+Version: 1.0.0
+Summary: A simple centralized patch reporting tool for unix systems
+Author: Alexandre Gauthier
+Author-email: Alexandre Gauthier <alex@underwares.org>
+License-Expression: MIT
+License-File: LICENSE
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: System :: Monitoring
+Classifier: Topic :: System :: Systems Administration
+Classifier: Topic :: Utilities
+Classifier: Typing :: Typed
+Requires-Dist: click-shell[readline]>=2.1 ; sys_platform != 'win32'
+Requires-Dist: click-shell>=2.1 ; sys_platform == 'win32'
+Requires-Dist: fabric>=3.2.2
+Requires-Dist: typer>=0.15.2
+Requires-Dist: textual>=4.0.0
+Requires-Dist: pyyaml>=6.0.2
+Requires-Dist: textual-serve>=1.1.2
+Requires-Dist: pyreadline3>=3.5.4 ; sys_platform == 'win32'
+Requires-Dist: platformdirs>=4.3.8
+Requires-Python: >=3.13
+Project-URL: homepage, https://github.com/mrdaemon/exosphere
+Project-URL: issues, https://github.com/mrdaemon/exosphere/issues
+Project-URL: repository, https://github.com/mrdaemon/exosphere
+Description-Content-Type: text/markdown
+
+# Exosphere
+
+[![Exosphere Test Suite](https://github.com/mrdaemon/exosphere/actions/workflows/exosphere-test.yml/badge.svg)](https://github.com/mrdaemon/exosphere/actions/workflows/exosphere-test.yml)
+
+Exosphere is a CLI and Text UI driven application that offers aggregated patch
+and security update reporting as well as basic system status across multiple
+Unix-like hosts over SSH.
+
+It is targeted at small to medium sized networks, and is designed to be simple
+to deploy and use, requiring no central server, agents and complex dependencies
+on remote hosts.
+
+If you have SSH access to the hosts and your keypairs are loaded in a SSH Agent,
+you are good to go!
+
+## Key Features
+
+- Rich interactive command line interface (CLI)
+- Text-based User Interface (TUI), offering menus, tables and dashboards
+- Consistent view information across different platforms and package managers
+- See everything in one spot, at a glance, without complex automation or enterprise
+  solutions
+
+## Compatibility
+
+Exosphere itself is written in Python and is compatible with Python 3.13 or later.
+It can run nearly anywhere where Python is available, including Linux, MacOS,
+and Windows (natively).
+
+Supported platforms for remote hosts include:
+
+- Debian/Ubuntu and derivatives (using APT)
+- Red Hat/CentOS and derivatives (using YUM/DNF)
+- FreeBSD (using pkg)
+
+## Quick Start
+
+Simply follow the [Quickstart Guide](https://exosphere.readthedocs.io/en/latest/quickstart.html).
+
+## Documentation
+
+For installation instructions, configuration and usage examples,
+[full documentation](https://exosphere.readthedocs.io/) is available.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
