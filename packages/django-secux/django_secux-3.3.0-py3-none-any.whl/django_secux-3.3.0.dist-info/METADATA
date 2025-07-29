@@ -1,0 +1,63 @@
+Metadata-Version: 2.4
+Name: django-secux
+Version: 3.3.0
+Summary: A smart Django security package to auto-block suspicious traffic
+Home-page: https://github.com/xo-aria/django-secux
+Author: XO Aria
+Author-email: XO Aria <hf18950@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/xo-aria/django-secux
+Project-URL: Repository, https://github.com/xo-aria/django-secux
+Project-URL: Issues, https://github.com/xo-aria/django-secux/issues
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 4.2
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: Django>=4.2
+Requires-Dist: Pillow>=9.0.0
+Dynamic: author
+Dynamic: home-page
+Dynamic: license-file
+
+# django-secux - All-in-One Django Security & Optimization
+
+![django-secux](https://raw.githubusercontent.com/xo-aria/django-secux/refs/heads/main/django-secux.png)
+
+[![Downloads](https://pepy.tech/badge/django-secux)](https://pepy.tech/project/django-secux)
+[![PyPI version](https://img.shields.io/pypi/v/django-secux.svg)](https://pypi.org/project/django-secux/)
+![Django](https://img.shields.io/badge/Django-3.2%20|%204.2%20|%205.0-green?logo=django)
+[![License](https://img.shields.io/github/license/xo-aria/django-secux)](https://github.com/xo-aria/django-secux/blob/main/LICENSE)
+![Status](https://img.shields.io/badge/status-active-brightgreen)
+
+- [Document](https://xo-aria.github.io/django-secux/doc/) 
+- [Telegram](https://t.me/xo_community_dev)
+- [Author](https://t.me/ghanon_dar)
+
+## Features
+`v1.0.0`
+- [+] AI ratelimit ( Check website/page traffic, and when abnormal traffic is detected, block the page. )
+- [+] Fake CDN ( Smart compressor with built-in caching )
+
+`v2.0.0`
+- [+] Minifing all pages
+
+`v3.0.0` **[NEW]**
+- [+] Manage user sessions ( Manage an account with all sessions for that account )
+- [+] Utils ( A simple and safe method for get `IP` and `User Agent` and ... )
+
+`v4.0.0` **[SOON]**
+- Attack notification ( you can use it for `signals.py` )
+- Compress images size ( for `imageField` in `models` )
+
+`v5.0.0` **[SOON]**
+- Captcha ( A captcha image system )
+- SEO ( automatic generate meta seo tags )
+- Honeypot ( A trap for url and fake web page )
