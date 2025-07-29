@@ -1,0 +1,50 @@
+Metadata-Version: 2.4
+Name: synthatdelays
+Version: 1.0.1
+Summary: A library with a minimal model of operations between airports, designed to synthetise realistic time series of delays and operations.
+Author: Carlson Büth
+Author-email: Massimiliano Zanin <massimiliano.zanin@gmail.com>
+License-Expression: AGPL-3.0-only
+Project-URL: Homepage, https://gitlab.com/MZanin/synth-at-delays
+Project-URL: Issues, https://gitlab.com/MZanin/synth-at-delays/issues
+Project-URL: Documentation, https://gitlab.com/MZanin/synth-at-delays/-/wikis/home
+Project-URL: Repository, https://gitlab.com/MZanin/synth-at-delays
+Project-URL: Changelog, https://gitlab.com/MZanin/synth-at-delays/-/wikis/Home/Version-History
+Keywords: air transport,flight delays,simulation,synthetic data,aviation research
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.13
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy>=2.0.0
+Requires-Dist: statsmodels
+Provides-Extra: lint
+Requires-Dist: ruff; extra == "lint"
+Provides-Extra: test
+Requires-Dist: pytest; extra == "test"
+Requires-Dist: pytest-cov; extra == "test"
+Requires-Dist: coverage; extra == "test"
+Provides-Extra: tutorials
+Requires-Dist: matplotlib; extra == "tutorials"
+Provides-Extra: all
+Requires-Dist: synthatdelays[lint,test,tutorials]; extra == "all"
+Dynamic: license-file
+
+# Synthetic Air Transport Delays
+
+Welcome to Synth-AT-Delays, a Python package designed to produce synthetic delay information from highly tuneable scenarios. Compared to other options, these scenarios are not aimed at mimicking the behaviour of the real system; but rather to test specific conditions and hypotheses, and how subsequent analyses are able to capture these. You may use this package to create a hypothetical system composed of a few airports, and generate time series representing the evolution of the average delays when changing their capacity. Similarly, different events and conditions can be simulated, e.g. the appearance of delays in specific routes, the dependence of different flights from the same crew, or the length of the buffer time between subsequent operations. 
+
+
+
+## Getting started
+
+Information about how to set up a simulation and extract results is available in the wiki: [Go to the wiki](https://gitlab.com/MZanin/synth-at-delays/-/wikis/home).
+
+A good starting point are also the [Tutorial files](https://gitlab.com/MZanin/synth-at-delays/-/wikis/Home/Tutorials), which guide you in scenarios of increasing complexity.
+
+
+
+## Change log
+
+See the [Version History](https://gitlab.com/MZanin/synth-at-delays/-/wikis/Home/Version-History) section of the Wiki for details.
+
