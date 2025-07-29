@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+
+<html lang="fr" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Configuration &#8212; Documentation Diacamma adhérent 2.7.5.25071011</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/haiku.css?v=dfa0e015" />
+    <script src="_static/documentation_options.js?v=8bb00c31"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=041d0952"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="prev" title="Reçus fiscaux" href="taxreceipt.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="index.html">
+          <span>Documentation Diacamma adhérent 2.7.5.25071011</span></a></h1>
+        <h2 class="heading"><span>Configuration</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="Top">
+      
+        <p>
+        «&#160;&#160;<a href="taxreceipt.html">Reçus fiscaux</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contenu</a>
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <section id="configuration">
+<h1>Configuration<a class="headerlink" href="#configuration" title="Lien vers cette rubrique">¶</a></h1>
+<p>Pour vous permettre d’exploiter au mieux le logiciel, certains paramétrages sont nécessaires.</p>
+<section id="generale">
+<h2>Générale<a class="headerlink" href="#generale" title="Lien vers cette rubrique">¶</a></h2>
+<blockquote>
+<div><p>Menu <em>Administration/Configuration générale</em>, onglet <em>Adhérents</em></p>
+</div></blockquote>
+<p>Vous pouvez modifier les paramètrages généraux relatifs à la gestion des adhésions.</p>
+<a class="reference internal image-reference" href="_images/conf_general.png"><img alt="_images/conf_general.png" class="align-center" src="_images/conf_general.png" style="height: 400px;" />
+</a>
+<ul class="simple">
+<li><p><strong>Type de structure “famille”</strong> : Pour activer la gestion des adhérents par famille.
+Vous devez préciser ici comment les familles  seront classifiées(structure morales).</p></li>
+<li><p><strong>Activer la création de connexion</strong> : Permet d’attribuer un accès de connexion par adhérent.
+« Par adhérent »: une action permettra d’attribué une connexion à tout les adhérents actifs.
+« Après demande »: l’outil « mot de passe oublié » permet d’activé une connexion si l’adhérents associé est actif.</p></li>
+<li><p><strong>Mode de cotisation</strong> : Possibilité de créer une cotisation à la demande.</p></li>
+<li><p><strong>Résultats par page</strong> : Taille par défaut de la pagination des adhérents.</p></li>
+<li><p><strong>Catégorie de facturation pour les cotisations</strong> : Catégorie à appliquer pour la facturation des cotisations.</p></li>
+<li><p><strong>code comptable des reçus fiscaux</strong> : Préciser la liste des codes comptable soumis à défiscalisation.</p></li>
+<li><p><strong>Règlement par défaut des reçus fiscaux</strong> : Pour les règlements soumis à défiscalisation et qui n’aurait pas de mode défini.</p></li>
+<li><p><strong>groupe des adhérents actifs</strong> : Groupe de connexion associé à un adhérent actif (enlevé si non renouvelé).</p></li>
+<li><p><strong>Filtrage pour le renouvellement</strong> : Filtrage supplémentaire pour l’écran de renouvellement d’adhésion.</p></li>
+</ul>
+</section>
+<section id="saisons-et-cotisations">
+<h2>Saisons et cotisations<a class="headerlink" href="#saisons-et-cotisations" title="Lien vers cette rubrique">¶</a></h2>
+<blockquote>
+<div><p>Menu <em>Administration/Modules (conf.)/Les saisons et les cotisations</em></p>
+</div></blockquote>
+<p>Vous pouvez modifier les paramètres de la gestion des licences sportives, en l’occurrence, les saisons sportives et les types de cotisations.</p>
+<p><strong>Les Saisons</strong></p>
+<a class="reference internal image-reference" href="_images/season_list.png"><img alt="_images/season_list.png" class="align-center" src="_images/season_list.png" style="height: 400px;" />
+</a>
+<p>Ici, vous pourrez ajouter de nouvelles saisons au fur et à mesure de l’utilisation du logiciel. Vous pourrez également déterminer la saison courante (dite active).
+De plus, chaque saison est découpée en quatre périodes et en douze mois.</p>
+<p>C’est la plus petite date de début et la plus grande de fin qui définissent la plage de votre saison. Vos saisons peuvent être d’une durée supérieure à un an et peuvent se chevaucher.
+Vous pouvez modifier les dates de début et de fin de chaque période. Vous pouvez aussi ajouter ou supprimer une période, mais vous devez toujours en avoir au moins deux.
+Deux périodes peuvent se chevaucher ou être disjointes (dans ce cas, un message d’avertissement vous prévient).
+Le premier des douze mois commence le mois de la plus petite date de début de période. Même si votre saison couvre plus d’une année calendaire, il n’y aura pas de treizième mois dans votre saison.</p>
+<p>Vous pouvez associer à chaque saison une liste de documents que chaque adhérent devra vous fournir pour finaliser son inscription.</p>
+<a class="reference internal image-reference" href="_images/documents.png"><img alt="_images/documents.png" class="align-center" src="_images/documents.png" style="height: 400px;" />
+</a>
+<p><strong>Les types de cotisation</strong></p>
+<a class="reference internal image-reference" href="_images/cotisations.png"><img alt="_images/cotisations.png" class="align-center" src="_images/cotisations.png" style="height: 400px;" />
+</a>
+<p>Ici vous pourrez saisir les différents types de cotisation proposés par votre association. Par exemple, pour une association pratiquant plusieurs activités sportives distinctes, vous pouvez avoir un type de cotisation pour chaque activité, un autre pour plusieurs de ces activités, et encore des types différents selon une pratique en compétition ou hors compétition des activités.</p>
+<p>Quatre modes de durées différentes peuvent être affectées à un type de cotisation :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Annuelle : cotisation couvrant l’ensemble de la saison.</p></li>
+<li><p>Périodique : cotisation couvrant une période (4 par défaut) de la saison.</p></li>
+<li><p>Mensuelle : cotisation couvrant un des douze mois de la saison.</p></li>
+<li><p>Calendaire : cotisation couvrant une année calendaire. Cette cotisation peut donc être à cheval sur deux saisons.</p></li>
+</ul>
+</div></blockquote>
+<p>Pour le lien avec le module <em>Facturier</em> vous devez définir un prix de vente de votre cotisation en créant et en associant des articles.
+Vous pouvez rattacher plusieurs articles à  une cotisation. Cela vous permet de distinguer, par exemple, la part de cotisation relative à votre club, de la licence de votre fédération.
+Avec ces liens entre les cotisations et les articles,vous pourrez générer automatiquement des factures lors de vos procédures d’adhésion. Si une cotisation n’est liée au aucun article, aucune facture ne sera émise.</p>
+<p>De même, vous pouvez aussi personnaliser le code comptable du tiers associé à vos adhérants dans le cas d’un création automatique.</p>
+</section>
+<section id="categories">
+<h2>Catégories<a class="headerlink" href="#categories" title="Lien vers cette rubrique">¶</a></h2>
+<p>Le menu <em>Administration/Modules (conf.)/Catégories</em> vous permet de modifier ce qui peut catégoriser un adhérent : les catégories d’âge, les équipes ou cours et les activités ainsi que la possibilité d’activer ou non ces différentes classifications.</p>
+<p>Vous pouvez ne pas vouloir utiliser certaines catégories. Pour cela, désactivez-les depuis l’écran de paramétrage.
+De la même façon, vous pouvez préciser si vous souhaitez pouvoir créer automatiquement une connexion par adhérent actif, afficher un numéro d’adhérent ou gérer des numéros de licence.
+Vous pouvez également personnaliser la désignation “équipe” et “activité”.</p>
+<a class="reference internal image-reference" href="_images/categories.png"><img alt="_images/categories.png" class="align-center" src="_images/categories.png" style="height: 400px;" />
+</a>
+<p><strong>Les âges</strong></p>
+<p>Vous pourrez ici renseigner les catégories d’âges existantes dans votre association avec un nom de catégorie, une année (de naissance) de début et de fin de la catégorie.</p>
+<p>Vous n’aurez pas besoin de changer les valeurs des années de naissance ultérieurement : le décalage est effectué automatiquement d’année en année.</p>
+<a class="reference internal image-reference" href="_images/age.png"><img alt="_images/age.png" class="align-center" src="_images/age.png" style="height: 400px;" />
+</a>
+<p><strong>Les équipes/cours</strong></p>
+<p>Vous gérez différentes équipes ou différents cours et vous souhaitez pouvoir gérer vos adhérents selon ce critère.
+Renseignez-les ici, vous pourrez alors affecter des adhérents à ces équipes ou cours et ainsi les retrouver plus facilement.</p>
+<a class="reference internal image-reference" href="_images/team.png"><img alt="_images/team.png" class="align-center" src="_images/team.png" style="height: 400px;" />
+</a>
+<p><strong>Les activités</strong></p>
+<p>Vous gérez différentes activités (par exemple plusieurs arts martiaux) dans votre association ? Les renseigner ici vous permettra ensuite de classer vos adhérents en fonction de ces différentes activités, mais aussi de saisir pour eux plusieurs licences par an si nécessaire.</p>
+<p>Exemple : une association regroupant judo et karaté, et donc affiliée à deux fédérations sportives différentes.
+Vous pourriez alors saisir 2 licences par adhérent (sous réserve que vos adhérents pratiquent les deux sports et soient licenciés des deux fédérations).</p>
+<a class="reference internal image-reference" href="_images/activity.png"><img alt="_images/activity.png" class="align-center" src="_images/activity.png" style="height: 400px;" />
+</a>
+<p>Il est possible de supprimer ou de désactiver une activité.
+Il n’est pas possible de supprimer une activité utilisée (par exemple dans une ancienne cotisation), dans ce cas là, désactivez la si vous ne vous en servez plus.
+Il doit toujours avoir au moins une activité active.</p>
+</section>
+</section>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="Bottom">
+      
+        <p>
+        «&#160;&#160;<a href="taxreceipt.html">Reçus fiscaux</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contenu</a>
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, sd-libre.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,407 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-03 14:20+0000\n"
+"PO-Revision-Date: 2024-06-25 19:12+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.3\n"
+
+#: __init__.py:43 views_conf.py:124
+msgid "Diacamma event"
+msgstr "Diacamma event"
+
+#: editors.py:60
+msgid "No activity!"
+msgstr "No activity!"
+
+#: editors.py:88
+msgid "Show trainning/outing"
+msgstr "Show trainning/outing"
+
+#: editors.py:91 views.py:116
+msgid "Show examination"
+msgstr "Show examination"
+
+#: models.py:52 models.py:98
+msgid "name"
+msgstr "name"
+
+#: models.py:53 models.py:99
+msgid "level"
+msgstr "level"
+
+#: models.py:55 models.py:133
+msgid "activity"
+msgstr "activity"
+
+#: models.py:92
+msgid "degree type"
+msgstr "degree type"
+
+#: models.py:93
+msgid "degree types"
+msgstr "degree types"
+
+#: models.py:118
+msgid "sub degree type"
+msgstr "sub degree type"
+
+#: models.py:119
+msgid "sub degree types"
+msgstr "sub degree types"
+
+#: models.py:127
+msgid "examination"
+msgstr "examination"
+
+#: models.py:127
+msgid "trainning/outing"
+msgstr "trainning/outing"
+
+#: models.py:131
+msgid "building event"
+msgstr "building"
+
+#: models.py:131
+msgid "valid event"
+msgstr "valid"
+
+#: models.py:134 models.py:143 models.py:283
+msgid "date"
+msgstr "date"
+
+#: models.py:135 models.py:414
+msgid "comment"
+msgstr "comment"
+
+#: models.py:136
+msgid "status"
+msgstr "status"
+
+#: models.py:137
+msgid "event type"
+msgstr "event type"
+
+#: models.py:138
+msgid "end date"
+msgstr "end date"
+
+#: models.py:139 models.py:173
+msgid "default article (member)"
+msgstr "default article (member)"
+
+#: models.py:140 models.py:173
+msgid "default article (no member)"
+msgstr "default article (no member)"
+
+#: models.py:141
+msgid "cost accounting"
+msgstr "cost accounting"
+
+#: models.py:196 models.py:209 models.py:544
+#, python-format
+msgid "%s validated!"
+msgstr "%s validated!"
+
+#: models.py:211
+msgid "no responsible!"
+msgstr "no responsible!"
+
+#: models.py:213
+msgid "no participant!"
+msgstr "no participant!"
+
+#: models.py:221
+msgid "Validation"
+msgstr "Validation"
+
+#: models.py:232 models.py:238 models.py:284 models.py:410
+msgid "event"
+msgstr "event"
+
+#: models.py:233
+msgid "events"
+msgstr "events"
+
+#: models.py:239 models.py:411
+msgid "contact"
+msgstr "contact"
+
+#: models.py:240
+msgid "responsible"
+msgstr "responsible"
+
+#: models.py:270 models.py:400
+msgid "examination validated!"
+msgstr "examination validated!"
+
+#: models.py:274
+msgid "organizer"
+msgstr "organizer"
+
+#: models.py:275
+msgid "organizers"
+msgstr "organizers"
+
+#: models.py:280
+msgid "adherent"
+msgstr "adherent"
+
+#: models.py:281 models.py:404
+msgid "degree"
+msgstr "degree"
+
+#: models.py:282
+msgid "sub degree"
+msgstr "sub degree"
+
+#: models.py:405
+msgid "degrees"
+msgstr "degrees"
+
+#: models.py:412
+msgid "degree result"
+msgstr "degree result"
+
+#: models.py:413
+msgid "sub-degree result"
+msgstr "sub-degree result"
+
+#: models.py:415 models.py:422
+msgid "article"
+msgstr "article"
+
+#: models.py:416
+msgid "reduce"
+msgstr "reduce"
+
+#: models.py:418
+msgid "bill"
+msgstr "bill"
+
+#: models.py:420
+msgid "subscript?"
+msgstr "subscript?"
+
+#: models.py:421
+msgid "current"
+msgstr "current"
+
+#: models.py:432 models.py:434
+#, python-format
+msgid "%s result"
+msgstr "%s result"
+
+#: models.py:536
+#, python-format
+msgid "Participant: %s"
+msgstr "Participant: %s"
+
+#: models.py:565
+msgid "participant"
+msgstr "participant"
+
+#: models.py:566
+msgid "participants"
+msgstr "participants"
+
+#: models.py:572
+msgid "event-degree-enable"
+msgstr "Activate examination"
+
+#: models.py:574
+msgid "event-subdegree-enable"
+msgstr "sub-degree enable"
+
+#: models.py:576
+msgid "event-degree-text"
+msgstr "degree text"
+
+#: models.py:577 views_degree.py:46
+msgid "Degree"
+msgstr "Degree"
+
+#: models.py:578
+msgid "event-subdegree-text"
+msgstr "sub-degree text"
+
+#: models.py:579
+msgid "Sub-degree"
+msgstr "Sub-degree"
+
+#: models.py:581
+msgid "event-comment-text"
+msgstr "default comment of examination"
+
+#: views.py:50
+msgid "Events"
+msgstr "Events"
+
+#: views.py:50
+msgid "Management of events."
+msgstr "Management of events."
+
+#: views.py:76 views.py:83
+msgid "Event manage"
+msgstr "Event manage"
+
+#: views.py:79
+msgid "Examination"
+msgstr "Examination"
+
+#: views.py:86
+msgid "Training or outing"
+msgstr "Training or outing"
+
+#: views.py:90
+msgid "To find an event"
+msgstr "To find an event"
+
+#: views.py:95
+msgid "Search event"
+msgstr "Search event"
+
+#: views.py:106
+msgid "Add event"
+msgstr "Add event"
+
+#: views.py:107
+msgid "Modify event"
+msgstr "Modify event"
+
+#: views.py:185
+msgid "Delete examination"
+msgstr "Delete examination"
+
+#: views.py:194
+msgid "Print event"
+msgstr "Print event"
+
+#: views.py:203 views.py:216
+msgid "Add organizer"
+msgstr "Add organizer"
+
+#: views.py:231
+msgid "Delete organizer"
+msgstr "Delete organizer"
+
+#: views.py:234 views.py:240
+msgid "Responsible"
+msgstr "Responsible"
+
+#: views.py:251 views.py:268 views.py:284 views.py:296 views.py:311
+msgid "Add participant"
+msgstr "Add participant"
+
+#: views.py:292
+msgid "Add contact"
+msgstr "Add contact"
+
+#: views.py:312
+msgid "Modify participant"
+msgstr "Modify participant"
+
+#: views.py:322
+msgid "Delete participant"
+msgstr "Delete participant"
+
+#: views.py:325
+msgid "Statistic of degrees"
+msgstr "Statistic of degrees"
+
+#: views.py:330 views.py:419
+msgid "Statistic"
+msgstr "Statistic"
+
+#: views.py:365 views.py:375
+msgid "Total"
+msgstr "Total"
+
+#: views.py:397
+msgid "season"
+msgstr "season"
+
+#: views.py:400
+msgid "allocated in this season"
+msgstr "allocated in this season"
+
+#: views.py:404
+msgid "higher allocated"
+msgstr "higher allocated"
+
+#: views.py:407
+msgid "laster allocated"
+msgstr "laster allocated"
+
+#: views_conf.py:56
+msgid "Management of degrees"
+msgstr "Management of degrees"
+
+#: views_conf.py:59
+msgid "Configuration of degrees"
+msgstr "Configuration of degrees"
+
+#: views_conf.py:62 views_conf.py:125
+msgid "Parameters"
+msgstr "Parameters"
+
+#: views_conf.py:81
+msgid "Add degree type"
+msgstr "Add degree type"
+
+#: views_conf.py:82
+msgid "Modify degree type"
+msgstr "Modify degree type"
+
+#: views_conf.py:96
+msgid "Delete degree type"
+msgstr "Delete degree type"
+
+#: views_conf.py:106
+msgid "Add sub degree type"
+msgstr "Add sub degree type"
+
+#: views_conf.py:107
+msgid "Modify sub degree type"
+msgstr "Modify sub degree type"
+
+#: views_conf.py:116
+msgid "Delete sub degree type"
+msgstr "Delete sub degree type"
+
+#: views_conf.py:124
+msgid "Degrees"
+msgstr "Degrees"
+
+#: views_conf.py:124
+msgid "Configuration of degree parameters"
+msgstr "Define the configuration of your degrees and add them."
+
+#: views_degree.py:62
+msgid "Add degree"
+msgstr "Add degree"
+
+#: views_degree.py:63
+msgid "Modify degree"
+msgstr "Modify degree"
+
+#: views_degree.py:72
+msgid "Delete degree"
+msgstr "Delete degree"
+
+#~ msgid "no degree!"
+#~ msgstr "no degree!"
+
+#~ msgid "valid"
+#~ msgstr "valid"
