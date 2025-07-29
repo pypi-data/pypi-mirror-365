@@ -1,0 +1,24 @@
+name: 'Install CMIPLD Library'
+description: 'Installs the CMIPLD Python library from a GitHub repository'
+
+inputs:
+  branch:
+    description: 'Branch of the repository. Can also be a tag or commit hash'
+    required: false
+    default: 'main'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout the library repository
+      uses: actions/checkout@v4
+      with:
+        repository: WCRP-CMIP/CMIPLD
+        ref: ${{ inputs.branch }}
+
+    - name: Install library
+      shell: bash
+      run: |
+        pip install git+https://github.com/WCRP-CMIP/CMIPLD.git@${{ inputs.branch }}
+
+        echo "- [x] Installed CMIPLD library from branch ${{ inputs.branch }}" >> $GITHUB_STEP_SUMMARY

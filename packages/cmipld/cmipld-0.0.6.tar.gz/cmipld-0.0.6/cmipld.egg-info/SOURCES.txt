@@ -1,0 +1,310 @@
+.gitignore
+.nojekyll
+MANIFEST.in
+README.md
+install_scripts.sh
+legacy.zip
+meta.yaml
+pyproject.toml
+setup_scripts_example.py
+.github/ISSUE_TEMPLATE/blank.md
+.github/ISSUE_TEMPLATE/blank.yml
+.github/ISSUE_TEMPLATE/config.yml
+.github/workflows/ci.yml
+.github/workflows/conda.yml
+.github/workflows/pip_install.yml
+.github/workflows/publish2pypi.yml
+.github/workflows/static.yml
+actions/cached_cmipld.yml
+actions/commit_as.yml
+actions/delta_dir_last_commit.yml
+actions/load_artifact.yml
+actions/save_artifact.yml
+actions/action_output/action.yml
+actions/action_output/action_output.workflow
+actions/check-graph/action.yml
+actions/cmipld/action.yml
+actions/commit-all/action.yml
+actions/compile-pkg/action.yml
+actions/compile-pkg/actionexample.yml
+actions/legacy/jsonld_old/action.yml
+actions/legacy/workflows (examples)/new y from issue.yaml
+actions/legacy/workflows (examples)/newld.yml
+actions/new-issue/action.yml
+actions/process_jsonld/action.yml
+actions/publish2pages/action.yml
+actions/publish2pages/static.yml
+actions/pushpr/action.yml
+actions/pypi/action.yml
+actions/run-all-files/action.yml
+actions/setup-machine/action.yml
+actions/updated-dirs/action.yml
+bin/cmipld-help
+bin/coauthor_file
+bin/dev
+bin/ld2graph
+bin/rmbak
+bin/rmgraph
+bin/validjsonld
+cmipld/__init__.py
+cmipld/cli.py
+cmipld/gettest.py
+cmipld/import_graph.pdf
+cmipld/locations.py
+cmipld/prefix_mappings.json
+cmipld/version.py
+cmipld.egg-info/PKG-INFO
+cmipld.egg-info/SOURCES.txt
+cmipld.egg-info/dependency_links.txt
+cmipld.egg-info/entry_points.txt
+cmipld.egg-info/requires.txt
+cmipld.egg-info/top_level.txt
+cmipld/copier/__init__.py
+cmipld/copier/project/copier.yml
+cmipld/cvs/__init__.py
+cmipld/cvs/cmip6plus.py
+cmipld/cvs/generate.py
+cmipld/cvs/parse.py
+cmipld/cvs/review.ipynb
+cmipld/generate/__init__.py
+cmipld/generate/create_readme.py
+cmipld/generate/elastic.ipynb
+cmipld/generate/elasticmipcvs.py
+cmipld/generate/generate_summary.py
+cmipld/generate/git_coauthor_demo.py.bak
+cmipld/generate/legacy.zip
+cmipld/generate/new_issue.py
+cmipld/generate/update_all.py
+cmipld/generate/update_ctx.py
+cmipld/generate/validate_json.py
+cmipld/generate/validate_json_with_coauthors.py.bak
+cmipld/generate/issue-template/test.ipynb
+cmipld/misc/graph.pdf
+cmipld/misc/import_graph.dot
+cmipld/misc/legacy.zip
+cmipld/misc/pycallgraph.png
+cmipld/misc/scalpel.ipynb
+cmipld/scripts/development/coauthor_file
+cmipld/scripts/directory-utilities/dev
+cmipld/scripts/directory-utilities/ld2graph
+cmipld/scripts/directory-utilities/validjsonld
+cmipld/scripts/jsonld-util/rmbak
+cmipld/scripts/jsonld-util/rmgraph
+cmipld/tests/__init__.py
+cmipld/tests/inputs.py
+cmipld/tests/legacy.zip
+cmipld/tests/cvs/conftest.py
+cmipld/tests/cvs/cvfile_test.py
+cmipld/tests/jsonld/__init__.py
+cmipld/tests/jsonld/EMD/sample.ipynb
+cmipld/tests/jsonld/components/README.md
+cmipld/tests/jsonld/components/__init__.py
+cmipld/tests/jsonld/components/check_exists.py
+cmipld/tests/jsonld/components/date.py
+cmipld/tests/jsonld/components/description.py
+cmipld/tests/jsonld/components/id.py
+cmipld/tests/jsonld/components/stringcheck.py
+cmipld/tests/jsonld/components/type.py
+cmipld/tests/jsonld/experiment/__init__.py
+cmipld/tests/jsonld/organisation/__init__.py
+cmipld/tests/jsonld/organisation/ror.py
+cmipld/utils/__init__.py
+cmipld/utils/checksum.py
+cmipld/utils/io.py
+cmipld/utils/jsontools.py
+cmipld/utils/ld2graph.py.bak
+cmipld/utils/ldparse.py
+cmipld/utils/sanitiser.py
+cmipld/utils/shell_wrappers.py
+cmipld/utils/urltools.py
+cmipld/utils/validate_json.py
+cmipld/utils/write06.py
+cmipld/utils/extract/__init__.py
+cmipld/utils/extract/frame_examples.py
+cmipld/utils/extract/links.py
+cmipld/utils/extract/read.py
+cmipld/utils/git/__init__.py
+cmipld/utils/git/actions.py
+cmipld/utils/git/coauthors.py
+cmipld/utils/git/gh_utils.py
+cmipld/utils/git/git_actions_management.py
+cmipld/utils/git/git_api.py
+cmipld/utils/git/git_branch_management.py
+cmipld/utils/git/git_commit_management.py
+cmipld/utils/git/git_core.py
+cmipld/utils/git/git_issues.py
+cmipld/utils/git/git_pull_request.py
+cmipld/utils/git/git_repo_metadata.py
+cmipld/utils/git/legacy.zip
+cmipld/utils/git/projects.ipynb
+cmipld/utils/git/release.py
+cmipld/utils/git/repo_info.py
+cmipld/utils/git/tree.py
+cmipld/utils/git/examples/file_changes_example.py
+cmipld/utils/git/examples/test_remote_functions.py
+cmipld/utils/git/manual/remove_automated_commits.py
+cmipld/utils/git/manual/rm_tag.py
+cmipld/utils/git/projects/__init__.py
+cmipld/utils/git/projects/issues.py
+cmipld/utils/git/projects/labels.py
+cmipld/utils/git/projects/milestones.py
+cmipld/utils/git/projects/projects.py
+cmipld/utils/git/projects/teams.py
+cmipld/utils/git/projects/utils.py
+cmipld/utils/logging/__init__.py
+cmipld/utils/logging/unique original.py
+cmipld/utils/logging/unique.py
+cmipld/utils/server_tools/PATCH_SUMMARY.md
+cmipld/utils/server_tools/__init__.py
+cmipld/utils/server_tools/__main__.py
+cmipld/utils/server_tools/jsonld_ssl_debug.py
+cmipld/utils/server_tools/loader.py
+cmipld/utils/server_tools/monkeypatch_requests.py
+cmipld/utils/server_tools/monkeypatch_requests_patched.py
+cmipld/utils/server_tools/offline.py
+cmipld/utils/server_tools/offline_patched.py
+cmipld/utils/server_tools/pyld_requests.py
+cmipld/utils/server_tools/server.py
+cmipld/utils/server_tools/server_patched.py
+cmipld/utils/server_tools/test_ssl_patches.py
+copier/mkdocs/auto-setup.py
+copier/mkdocs/copier.yml
+copier/mkdocs/.src/mkdocs/ignore or action.zip
+copier/mkdocs/.src/mkdocs/mkdocs.yml.jinja
+copier/mkdocs/.src/mkdocs/requirements.txt.jinja
+copier/mkdocs/.src/mkdocs/.github/workflows/.generate-stats.yml.jinja.bak
+copier/mkdocs/.src/mkdocs/.github/workflows/generate-stats.yml.jinja
+copier/mkdocs/.src/mkdocs/hooks/.add_stats_nav.py.jinja.bak
+copier/mkdocs/.src/mkdocs/hooks/nav_post_gen_v2.py.jinja
+copier/mkdocs/.src/mkdocs/overrides/partials/footer.html
+copier/mkdocs/.src/mkdocs/scripts/.generate_simple_stats.py.jinja.bak
+copier/mkdocs/.src/mkdocs/scripts/copy_static_assets.py.jinja
+copier/mkdocs/.src/mkdocs/scripts/embed.js.jinja
+copier/mkdocs/.src/mkdocs/scripts/generate_repo_stats.py.jinja
+copier/mkdocs/.src/mkdocs/scripts/process_json_summaries.py.jinja
+copier/mkdocs/.src/mkdocs/scripts/process_src_data_robust.py.jinja
+copier/mkdocs/.src/mkdocs/stylesheets/extra.css.jinja
+copier/mkdocs/docs/999_acknowlegements.md.jinja
+copier/mkdocs/docs/index.md.jinja
+copier/mkdocs/docs/assets/CMIP_Icon_CMYK_negative.svg
+copier/mkdocs/docs/auxillary/general.md.jinja
+copier/mkdocs/docs/auxillary/stats.md
+copier/mkdocs/docs/scripts/embed.js
+copier/mkdocs/docs/stylesheets/extra.css
+docs/index.md
+notebooks/LocalCopyOfflineMode.ipynb
+notebooks/all_available.ipynb
+notebooks/outdated/README
+notebooks/outdated/embedded_framing.ipynb
+notebooks/outdated/extracting_all_experiments.ipynb
+notebooks/outdated/get_activity_of_parent_experiment.ipynb
+notebooks/outdated/getting_data.ipynb
+notebooks/outdated/intro.ipynb
+notebooks/outdated/testing_offline.ipynb
+notebooks/outdated/using_pyld.ipynb
+static/Firefly A spaceman stands on the surface of a planet looking into space. here there are other galaxi (1).jpg
+static/Firefly Density of clustering of stars is high. Density of space between clusters is low. Spacing be.jpg
+static/Firefly Tighter groupings of stars like a network. A spaceman stands on the surface of a planet look.jpg
+static/logo.jpg
+static/viewer archive.zip
+static/viewer mkii archive.zip
+static/404README/404.html
+static/404README/404_restful.js
+static/404README/old404.html
+static/404README/old404_restful.js
+static/circlepacked/bundle.js
+static/circlepacked/index.html
+static/circlepacked/index.js
+static/circlepacked/package.json
+static/network/d3-annotation.min.js
+static/network/index.html
+static/network/network.json
+static/packed/bundle.js
+static/packed/index.html
+static/packed/index.js
+static/packed/package.json
+static/treemap/index.html
+static/treemap/index.js
+static/treemap/style.css
+static/viewer/README.md
+static/viewer/config.js
+static/viewer/index.html
+static/viewer/styles.css
+static/viewer/template.js
+static/viewer/viewer.js
+static/viewer copy 2/README.md
+static/viewer copy 2/config.js
+static/viewer copy 2/index.html
+static/viewer copy 2/styles.css
+static/viewer copy 2/template.js
+static/viewer copy 2/viewer-old.js
+static/viewer copy 2/viewer.js
+static/viewer copy 2/modules/config.js
+static/viewer copy 2/modules/context-expander.js
+static/viewer copy 2/modules/document-loader.js
+static/viewer copy 2/modules/json-renderer.js
+static/viewer copy 2/modules/jsonld-processor.js
+static/viewer copy 2/modules/linked-item-resolver.js
+static/viewer copy 2/modules/reference-manager.js
+static/viewer copy 2/modules/ui-manager.js
+static/viewer copy 2/modules/url-manager.js
+static/viewer copy 2/modules/utils.js
+static/viewer copy 9/README.md
+static/viewer copy 9/config.js
+static/viewer copy 9/index.html
+static/viewer copy 9/styles.css
+static/viewer copy 9/template.js
+static/viewer copy 9/viewer.js
+static/viewer copy 9/modules/auto-substitution-manager.js
+static/viewer copy 9/modules/config.js
+static/viewer copy 9/modules/context-expander.js
+static/viewer copy 9/modules/context-resolution-manager.js
+static/viewer copy 9/modules/display-manager.js
+static/viewer copy 9/modules/document-loader.js
+static/viewer copy 9/modules/enhanced-link-substitution-manager.js
+static/viewer copy 9/modules/event-manager.js
+static/viewer copy 9/modules/export-manager.js
+static/viewer copy 9/modules/inline-document-manager.js
+static/viewer copy 9/modules/json-renderer-fix.js.bak
+static/viewer copy 9/modules/json-renderer.js
+static/viewer copy 9/modules/jsonld-processor.js
+static/viewer copy 9/modules/link-content-resolver.js
+static/viewer copy 9/modules/linked-document-manager.js
+static/viewer copy 9/modules/linked-item-resolver.js
+static/viewer copy 9/modules/reference-manager.js
+static/viewer copy 9/modules/state-manager.js
+static/viewer copy 9/modules/ui-manager.js
+static/viewer copy 9/modules/url-manager.js
+static/viewer copy 9/modules/utils.js
+static/viewer copy 9/modules/view-manager.js
+static/viewer copy 9/modules/core/data-loading-manager.js
+static/viewer copy 9/modules/core/initialization-manager.js
+static/viewer copy 9/modules/core/module-factory.js
+static/viewer copy 9/modules/core/workflow-manager.js
+static/viewer/modules/auto-substitution-manager.js
+static/viewer/modules/config.js
+static/viewer/modules/context-expander.js
+static/viewer/modules/context-resolution-manager.js
+static/viewer/modules/display-manager.js
+static/viewer/modules/document-loader.js
+static/viewer/modules/enhanced-link-substitution-manager.js
+static/viewer/modules/event-manager.js
+static/viewer/modules/export-manager.js
+static/viewer/modules/inline-document-manager.js
+static/viewer/modules/json-renderer-fix.js.bak
+static/viewer/modules/json-renderer.js
+static/viewer/modules/jsonld-processor.js
+static/viewer/modules/jsonld-validator.js
+static/viewer/modules/link-content-resolver.js
+static/viewer/modules/linked-document-manager.js
+static/viewer/modules/linked-item-resolver.js
+static/viewer/modules/reference-manager.js
+static/viewer/modules/state-manager.js
+static/viewer/modules/ui-manager.js
+static/viewer/modules/url-manager.js
+static/viewer/modules/utils.js
+static/viewer/modules/view-manager.js
+static/viewer/modules/core/data-loading-manager.js
+static/viewer/modules/core/initialization-manager.js
+static/viewer/modules/core/module-factory.js
+static/viewer/modules/core/workflow-manager.js
