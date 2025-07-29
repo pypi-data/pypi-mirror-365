@@ -1,0 +1,148 @@
+name: Build Wheels
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_version:
+        description: 'Release version to build'
+        required: false
+        type: string
+  release:
+    types: [published]
+  pull_request:
+    paths:
+      - 'pyproject.toml'
+      - 'CMakeLists.txt'
+      - 'src/**'
+      - '.github/workflows/wheels.yml'
+
+jobs:
+  build_sdist:
+    name: Build Source Distribution
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v3
+      
+      - name: Build sdist
+        run: uv build --sdist
+      
+      - name: Check sdist
+        run: |
+          pip install twine
+          twine check dist/*.tar.gz
+      
+      - name: Upload sdist
+        uses: actions/upload-artifact@v4
+        with:
+          name: sdist
+          path: dist/*.tar.gz
+
+  build_wheels:
+    name: Build wheels on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Set up QEMU
+        if: runner.os == 'Linux'
+        uses: docker/setup-qemu-action@v3
+        with:
+          platforms: all
+      
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v2.21.3
+        env:
+          CIBW_SKIP: "*-musllinux_* pp*"
+          CIBW_ARCHS_LINUX: auto aarch64
+          CIBW_ARCHS_MACOS: x86_64 arm64
+          CIBW_ARCHS_WINDOWS: AMD64
+          CIBW_MACOSX_DEPLOYMENT_TARGET: "14.0"
+      
+      - name: Upload wheels
+        uses: actions/upload-artifact@v4
+        with:
+          name: wheels-${{ matrix.os }}
+          path: ./wheelhouse/*.whl
+
+  test_wheels:
+    name: Test wheels
+    needs: [build_wheels, build_sdist]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      
+      - name: List artifacts
+        run: ls -la dist/
+      
+      - name: Test wheel installation
+        run: |
+          # Install the x86_64 wheel on Linux runners
+          pip install dist/*-cp38-abi3-manylinux*_x86_64.whl
+          # Debug: show installed files
+          pip show -f libpresign
+          # Change to a different directory to avoid import conflicts with source
+          cd /tmp
+          python -c "import libpresign; print(f'Version: {libpresign.__version__}')"
+          python -c "from libpresign import get; print(get)"
+
+  publish:
+    name: Publish to PyPI
+    needs: [test_wheels]
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release' || (github.event_name == 'workflow_dispatch' && github.event.inputs.release_version != '')
+    environment:
+      name: pypi
+      url: https://pypi.org/project/libpresign/
+    permissions:
+      id-token: write
+    
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      
+      - name: List artifacts
+        run: ls -la dist/
+      
+      - name: Publish to TestPyPI
+        if: github.event_name == 'workflow_dispatch'
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          skip-existing: true
+          verbose: true
+      
+      - name: Publish to PyPI
+        if: github.event_name == 'release'
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          verbose: true

@@ -1,0 +1,134 @@
+# Build directories
+build/
+dist/
+*egg-info/
+cmake-build/
+cmake-build-*/
+_skbuild/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.pyd
+*.pdb
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.env
+
+# uv
+.uv/
+uv.lock
+
+# Testing
+.coverage
+.coverage.*
+htmlcov/
+.pytest_cache/
+.tox/
+coverage.xml
+*.cover
+.hypothesis/
+.benchmarks/
+
+# Type checking
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+
+# Linting
+.ruff_cache/
+
+# Documentation
+site/
+docs/_build/
+.doctrees/
+
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+*.bak
+*.swp
+*.swo
+*~
+.~*
+
+# Archives
+*.tar
+*.tar.gz
+*.zip
+*.whl
+
+# C++ build artifacts
+*.o
+*.obj
+*.a
+*.lib
+*.dll
+*.dylib
+*.exe
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+CTestTestfile.cmake
+_deps/
+
+# Local configuration
+.env.local
+.envrc
+
+# act (GitHub Actions local testing)
+.secrets
+.github/act-event.json
+.actrc
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+.npm
+.yarn-integrity
+
+# Semantic Release
+.releaserc.json
+
+# Local test scripts
+test_multi_python.py
+test-env-*/
+
+# Build scripts (keep in repo but ignore local modifications)
+build-linux-direct.sh
+build-linux-wheel-simple.sh
+build-linux-wheels-local.sh
+
+# Documentation drafts
+CHANGES_PHASE*.md
+REFACTORING_*.md
+INTEGRATION_TESTING.md

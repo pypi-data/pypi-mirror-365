@@ -1,0 +1,258 @@
+[build-system]
+requires = ["scikit-build-core>=0.8.0"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "libpresign"
+version = "1.2.0"
+description = "High-performance library for generating AWS S3 presigned URLs"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Mykola Bashmakov", email = "mykola@bashmakov.agency"},
+]
+keywords = ["aws", "s3", "presigned-url", "performance", "c++"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: C++",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = []
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "pytest-benchmark>=4.0",
+    "boto3>=1.26.0",
+    "psutil>=5.9.0",
+    "numpy>=1.21.0",
+]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "pytest-benchmark>=4.0",
+    "boto3>=1.26.0",
+    "psutil>=5.9.0",
+    "numpy>=1.21.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0",
+    "build>=1.0",
+    "twine>=4.0",
+    "cibuildwheel>=2.16",
+    "python-semantic-release>=8.0",
+    "mkdocs>=1.5",
+    "mkdocs-material>=9.4",
+    "mkdocstrings[python]>=0.24",
+]
+docs = [
+    "mkdocs>=1.5",
+    "mkdocs-material>=9.4",
+    "mkdocstrings[python]>=0.24",
+    "markdown>=3.4",
+]
+
+[project.urls]
+Homepage = "https://github.com/myk0la-b/libpresign"
+Documentation = "https://myk0la-b.github.io/libpresign/"
+Repository = "https://github.com/myk0la-b/libpresign.git"
+Issues = "https://github.com/myk0la-b/libpresign/issues"
+Changelog = "https://github.com/myk0la-b/libpresign/blob/main/CHANGELOG.md"
+
+[tool.scikit-build]
+cmake.version = ">=3.15"
+cmake.build-type = "Release"
+wheel.expand-macos-universal-tags = true
+wheel.py-api = "cp38"  # emit *.abi3.whl when used with stable ABI
+
+[tool.scikit-build.cmake.define]
+BUILD_PYTHON_MODULE = "ON"
+BUILD_SHARED_LIB = "OFF"
+BUILD_STATIC_LIB = "OFF"
+Py_LIMITED_API = "0x03080000"
+Python3_FIND_REGISTRY = "NEVER"
+Python3_FIND_STRATEGY = "LOCATION"
+Python3_FIND_COMPONENTS = "Interpreter;Development.Module;Development.SABIModule"
+CMAKE_OSX_DEPLOYMENT_TARGET = "14.0"
+
+[[tool.scikit-build.generate]]
+path = "libpresign/_version.py"
+template = '''
+__version__ = "${version}"
+'''
+
+[tool.cibuildwheel]
+build = "cp38-* cp39-* cp310-* cp311-* cp312-* cp313-*"
+skip = "*-musllinux_i686"
+test-requires = "pytest>=7.0"
+test-command = "python -c \"import libpresign; print('libpresign version:', libpresign.__version__); from libpresign import get; print('Successfully imported get function')\""
+build-verbosity = 1
+
+[tool.cibuildwheel.linux]
+manylinux-x86_64-image = "manylinux2014"
+manylinux-aarch64-image = "manylinux2014"
+before-all = """
+if command -v yum > /dev/null; then
+  yum install -y openssl-devel
+elif command -v apt-get > /dev/null; then
+  apt-get update && apt-get install -y libssl-dev
+fi
+"""
+
+[tool.cibuildwheel.macos]
+archs = ["x86_64", "arm64"]
+before-all = """
+# Install ARM64 OpenSSL (native on Apple Silicon runners)
+brew install openssl@3
+# Install x86_64 OpenSSL for Intel builds
+if [[ $(uname -m) == "arm64" ]]; then
+  # On Apple Silicon, install Rosetta and x86_64 Homebrew
+  softwareupdate --install-rosetta --agree-to-license || true
+  arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  arch -x86_64 /usr/local/bin/brew install openssl@3
+fi
+"""
+repair-wheel-command = [
+  "delocate-listdeps {wheel}",
+  "delocate-wheel --require-archs {delocate_archs} -w {dest_dir} -v {wheel}",
+]
+
+[tool.cibuildwheel.macos.environment]
+CIBUILDWHEEL = "1"
+
+
+[[tool.cibuildwheel.overrides]]
+select = "*-macosx_x86_64"
+environment = { OPENSSL_ROOT_DIR = "/usr/local/opt/openssl@3", CMAKE_PREFIX_PATH = "/usr/local/opt/openssl@3", DYLD_FALLBACK_LIBRARY_PATH = "/usr/local/opt/openssl@3/lib:$DYLD_FALLBACK_LIBRARY_PATH", MACOSX_DEPLOYMENT_TARGET = "14.0", CMAKE_OSX_DEPLOYMENT_TARGET = "14.0"}
+
+[[tool.cibuildwheel.overrides]]
+select = "*-macosx_arm64"
+environment = { OPENSSL_ROOT_DIR = "/opt/homebrew/opt/openssl@3", CMAKE_PREFIX_PATH = "/opt/homebrew/opt/openssl@3", DYLD_FALLBACK_LIBRARY_PATH = "/opt/homebrew/opt/openssl@3/lib:$DYLD_FALLBACK_LIBRARY_PATH", MACOSX_DEPLOYMENT_TARGET = "14.0", CMAKE_OSX_DEPLOYMENT_TARGET = "14.0" }
+
+[tool.cibuildwheel.windows]
+before-all = """
+choco install openssl -y --no-progress
+where nuget || (powershell -Command "Invoke-WebRequest https://dist.nuget.org/win-x86-commandline/latest/nuget.exe -OutFile nuget.exe" && set PATH=%CD%;%PATH%)
+"""
+environment = { OPENSSL_ROOT_DIR = "C:/Program Files/OpenSSL", CMAKE_PREFIX_PATH = "C:/Program Files/OpenSSL", SETUPTOOLS_USE_DISTUTILS = "stdlib" }
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "pytest-benchmark>=4.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0",
+    "build>=1.0",
+    "twine>=4.0",
+    "cibuildwheel>=2.16",
+    "python-semantic-release>=8.0",
+    "boto3>=1.26.0",
+    "psutil>=5.9.0",
+    "numpy>=1.21.0",
+    "mkdocs>=1.5",
+    "mkdocs-material>=9.4",
+    "mkdocstrings[python]>=0.24",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py38"
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort
+    "B",    # flake8-bugbear
+    "C4",   # flake8-comprehensions
+    "UP",   # pyupgrade
+    "ARG",  # flake8-unused-arguments
+    "SIM",  # flake8-simplify
+]
+ignore = []
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--verbose",
+    "--cov=libpresign",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--cov-report=xml",
+    "--cov-fail-under=65",
+]
+
+[tool.coverage.run]
+source = ["libpresign"]
+omit = ["*/tests/*", "*/_version.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if __name__ == .__main__.:",
+    "raise AssertionError",
+    "raise NotImplementedError",
+]
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[tool.semantic_release]
+version_toml = ["pyproject.toml:project.version"]
+version_pattern = [
+    "src/module.cpp:__version__ = \"{version}\"",
+    "CMakeLists.txt:project\\(libpresign VERSION {version}",
+]
+branch = "main"
+changelog_file = "CHANGELOG.md"
+build_command = "uv build"
+dist_path = "dist/"
+upload_to_pypi = true
+upload_to_release = true
+commit_version_number = true
+tag_commit = true
+changelog_sections = [
+    {type = "feat", section = "Features"},
+    {type = "fix", section = "Bug Fixes"},
+    {type = "perf", section = "Performance"},
+    {type = "refactor", section = "Refactoring"},
+    {type = "docs", section = "Documentation"},
+    {type = "test", section = "Tests"},
+    {type = "build", section = "Build System"},
+    {type = "ci", section = "Continuous Integration"},
+]
+commit_parser = "angular"

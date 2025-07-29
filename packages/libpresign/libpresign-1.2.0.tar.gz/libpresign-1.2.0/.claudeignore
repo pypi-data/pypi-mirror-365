@@ -1,0 +1,63 @@
+# Claude Code ignore file
+# This file tells Claude Code which files and directories to skip
+
+# Dependencies
+node_modules/
+venv/
+env/
+.venv/
+.env/
+test-env-*/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+_skbuild/
+cmake-build*/
+wheelhouse/
+htmlcov/
+site/
+docs/_build/
+
+# Binary files
+*.so
+*.dylib
+*.dll
+*.pyd
+*.whl
+*.tar.gz
+*.zip
+
+# Cache and temporary files
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+.coverage.*
+.mypy_cache/
+.ruff_cache/
+*.log
+*.tmp
+*.temp
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+
+# Version control
+.git/
+
+# Large documentation files that Claude doesn't need to read
+CHANGES_PHASE*.md
+REFACTORING_*.md
+
+# Lock files (can be regenerated)
+uv.lock
+package-lock.json
+yarn.lock
+
+# Test data
+test-env-*/
+.benchmarks/
