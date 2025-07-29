@@ -1,0 +1,362 @@
+# Flight Display ✈️
+
+**Fully Configurable Aircraft Tracker with Airport Departure Board Style Display**
+
+A beautiful Python CLI tool that tracks nearby aircraft and displays them in an airport departure board style interface using real-time ADS-B data from the OpenSky Network. Now with **comprehensive configuration support** for complete customization!
+
+## ✨ Features
+
+- 🌍 **Auto-location detection** - Automatically detects your location using IP geolocation
+- 📡 **Real-time aircraft tracking** - Uses OpenSky Network's free API for live aircraft data
+- 🎯 **Adaptive radius search** - Automatically expands search radius to find aircraft
+- 🏢 **Airline identification** - Enhanced operator detection with online airline database
+- 🎨 **Beautiful display** - Color-coded departure board style interface
+- ⚡ **Rate limit handling** - Smart retry logic for API reliability
+- ⚙️ **Fully configurable** - JSON-based configuration for all aspects of the application
+- 🎨 **Customizable colors & thresholds** - Adjust altitude thresholds, distance ranges, display limits
+- 🌐 **Flexible APIs** - Configure endpoints, timeouts, and data sources
+- 🛩️ **Aircraft type recognition** - Customizable aircraft type mappings and patterns
+
+## 🎉 What's New in v1.0.0
+
+✅ **Complete Configuration System** - All hardcoded values are now configurable  
+✅ **JSON Configuration Files** - Easy-to-edit configuration with example templates  
+✅ **Backwards Compatibility** - All existing usage patterns still work  
+✅ **Environment-Specific Configs** - Different settings for different use cases  
+✅ **Enhanced Documentation** - Comprehensive configuration guides  
+
+## 🚀 Installation
+
+### Option 1: Install from PyPI (Recommended)
+
+```bash
+pip install flight-display
+```
+
+### Option 2: Install from source
+
+```bash
+# Clone the repository
+git clone <repository-url>
+cd flight-display
+
+# Install the package
+pip install -e .
+# or with uv
+uv pip install -e .
+```
+
+### Option 2: Run directly with Python
+
+```bash
+# Install dependencies
+pip install -r requirements.txt
+# or with uv
+uv pip install -r requirements.txt
+
+# Run directly
+python main.py
+```
+
+## 🎮 Usage
+
+### Quick Start
+
+```bash
+# Auto-detect location and start tracking
+flight-display
+
+# Use specific coordinates (latitude, longitude)
+flight-display --lat 40.7128 --lon -74.0060
+
+# Set custom search radius and update interval
+flight-display --radius 100 --interval 30
+```
+
+### Configuration System
+
+**NEW!** Flight Display now supports comprehensive JSON-based configuration:
+
+```bash
+# Create an example configuration file
+flight-display --create-config
+
+# Use your custom configuration
+cp config_example.json config.json
+# Edit config.json to your preferences
+flight-display --config config.json
+```
+
+### Command Line Options
+
+```bash
+# Auto-detect location and start tracking
+flight-display
+
+# Use specific coordinates (latitude, longitude)
+flight-display --lat 40.7128 --lon -74.0060
+
+# Set custom search radius (default: from config or 50km)
+flight-display --radius 100
+
+# Set update interval (default: from config or 10 seconds)
+flight-display --interval 30
+
+# Use custom configuration file
+flight-display --config my-config.json
+
+# Skip online airline database for faster startup
+flight-display --no-online-db
+
+# Create example configuration file
+flight-display --create-config
+```
+
+## ⚙️ Configuration
+
+Flight Display supports comprehensive JSON configuration files. All aspects of the application can be customized without modifying code.
+
+### Quick Configuration Setup
+
+1. **Generate example config:**
+   ```bash
+   flight-display --create-config
+   ```
+
+2. **Copy and customize:**
+   ```bash
+   cp config_example.json config.json
+   # Edit config.json with your preferences
+   ```
+
+3. **Use your configuration:**
+   ```bash
+   flight-display  # Automatically uses config.json if present
+   # OR
+   flight-display --config my-custom-config.json
+   ```
+
+### What's Configurable
+
+| Category | Examples |
+|----------|----------|
+| **Display** | Colors, thresholds, table format, aircraft limit |
+| **Location** | Default coordinates, fallback location, radius |
+| **Aircraft Types** | Type mappings (Boeing 737 → B737), unknown codes |
+| **Registration** | Country patterns (N → US, G- → UK), private aircraft |
+| **APIs** | Endpoints, timeouts, retry behavior |
+| **Units** | Conversion factors, distance calculations |
+
+### Example Customizations
+
+**Change default location:**
+```json
+{
+  "location": {
+    "default_latitude": 51.5074,
+    "default_longitude": -0.1278,
+    "default_location_name": "London, UK"
+  }
+}
+```
+
+**Adjust display settings:**
+```json
+{
+  "display": {
+    "max_aircraft_displayed": 20,
+    "high_altitude_threshold": 35000,
+    "default_update_interval": 5
+  }
+}
+```
+
+**Add custom aircraft types:**
+```json
+{
+  "aircraft_types": {
+    "type_mappings": {
+      "Cessna 172": "C172",
+      "Piper Cherokee": "PA28"
+    }
+  }
+}
+```
+
+For complete configuration documentation, see [CONFIGURATION.md](CONFIGURATION.md).
+
+# Use fixed radius (disable adaptive search)
+flight-display --no-adaptive --radius 50
+
+# Quiet mode (less verbose output)
+flight-display --quiet
+
+# Show help
+flight-display --help
+```
+
+### Legacy Usage (Backward compatible)
+
+```bash
+# Auto-detect location
+python main.py
+
+# Manual coordinates
+python main.py 40.7128 -74.0060
+```
+
+## 📊 Display Information
+
+The departure board displays the following information for each aircraft:
+
+| Column       | Description                           |
+| ------------ | ------------------------------------- |
+| **CALLSIGN** | Aircraft callsign or registration     |
+| **OPERATOR** | Airline or operator name              |
+| **TYPE**     | Aircraft type (e.g., B737, A320)      |
+| **ALTITUDE** | Current altitude with color coding    |
+| **SPEED**    | Ground speed in knots                 |
+| **TRACK**    | Heading in degrees                    |
+| **V/SPEED**  | Vertical rate with directional arrows |
+| **DISTANCE** | Distance from your location           |
+
+### Color Coding
+
+- **🔴 Red**: Close aircraft (<10km), ground level, descending rapidly
+- **🟡 Yellow**: Medium distance (10-25km), low altitude (10,000-30,000ft)
+- **🟢 Green**: Far aircraft (>25km), cruising altitude (>30,000ft), climbing
+- **🔵 Cyan**: High altitude cruise (>30,000ft)
+
+## 🔧 Configuration Options
+
+### Command Line Arguments
+
+```bash
+# Location Options
+--lat, --latitude FLOAT    Your latitude coordinate
+--lon, --longitude FLOAT   Your longitude coordinate
+
+# Display Options
+--radius, -r FLOAT         Search radius in km (default: 25)
+--interval, -i INT         Update interval in seconds (default: 15)
+--max-radius FLOAT         Maximum search radius for adaptive search (default: 200)
+
+# Data Options
+--no-online-db            Skip fetching online airline database
+--no-adaptive             Disable adaptive radius search
+
+# Output Options
+--quiet, -q               Reduce output verbosity
+--version, -v             Show version information
+--help, -h                Show help message
+```
+
+## 🌐 Data Sources
+
+- **OpenSky Network**: Free ADS-B aircraft position data
+- **OpenFlights Database**: Airline ICAO codes and operator information
+- **IP Geolocation**: Automatic location detection via ipapi.co and ipinfo.io
+
+## 🚨 Rate Limiting
+
+The tool includes smart rate limiting handling:
+
+- **Automatic retries** with exponential backoff
+- **Respectful API usage** with appropriate delays
+- **User-friendly messages** explaining any delays
+- **Graceful fallbacks** when APIs are unavailable
+
+## 🛠️ Development
+
+### Project Structure
+
+```
+flight-display/
+├── src/flight_display/
+│   ├── __init__.py         # Package initialization
+│   ├── tracker.py          # Core aircraft tracking logic
+│   └── cli.py             # Command-line interface
+├── main.py                # Backward compatibility wrapper
+├── main_legacy.py         # Legacy implementation
+├── pyproject.toml         # Package configuration
+└── README.md              # This file
+```
+
+### Building and Testing
+
+```bash
+# Install in development mode
+pip install -e .
+
+# Test the CLI
+flight-display --help
+
+# Test with specific coordinates
+flight-display --lat 51.5074 --lon -0.1278 --radius 50
+```
+
+## 📝 Examples
+
+### Basic Usage
+
+```bash
+# Start with auto-detection
+flight-display
+```
+
+### London Heathrow Area
+
+```bash
+flight-display --lat 51.4700 --lon -0.4543 --radius 50
+```
+
+### New York Area with Custom Settings
+
+```bash
+flight-display --lat 40.7128 --lon -74.0060 --radius 75 --interval 10
+```
+
+### Quick Start (No Airline DB)
+
+```bash
+flight-display --no-online-db --radius 30
+```
+
+## 🔍 Troubleshooting
+
+### No Aircraft Found
+
+- **Check your location**: Make sure you're in an area with air traffic
+- **Increase radius**: Try `--radius 100` or higher
+- **Check time**: More aircraft during business hours and near airports
+- **API issues**: Wait a few minutes and try again
+
+### API Rate Limiting
+
+- The tool handles rate limits automatically with retries
+- If persistent, wait 5-10 minutes before trying again
+- OpenSky API is free but has usage limits
+
+### Installation Issues
+
+```bash
+# Update pip/uv first
+pip install --upgrade pip
+uv self update
+
+# Clean install
+pip uninstall flight-display
+pip install -e .
+```
+
+## 📜 License
+
+MIT License - See LICENSE file for details.
+
+## 🤝 Contributing
+
+Contributions welcome! Please feel free to submit issues and pull requests.
+
+---
+
+**Happy flight tracking! ✈️**
