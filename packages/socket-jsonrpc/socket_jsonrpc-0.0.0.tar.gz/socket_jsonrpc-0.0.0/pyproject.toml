@@ -1,0 +1,88 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "socket-jsonrpc"
+version = "0.0.0"
+description = "Library for JSONRPC 2.0 over TCP/IP and UNIX sockets"
+authors = [
+    {name = "FrankySnow9", email = "clairicia.rcj.francis@gmail.com"},
+]
+dependencies = []
+requires-python = ">=3.13"
+readme = "README.md"
+license-files = ["LICENSE"]
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "Framework :: AsyncIO",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: BSD",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Networking",
+    "Typing :: Typed"
+]
+keywords = [
+    "rpc",
+    "jsonrpc",
+    "networking",
+    "socket",
+    "server",
+    "client",
+    "async",
+    "asynchronous",
+]
+
+[project.urls]
+"Issue Tracker" = "https://github.com/francis-clairicia/socket-jsonrpc/issues"
+"Release Notes" = "https://github.com/francis-clairicia/socket-jsonrpc/releases"
+"Source Code" = "https://github.com/francis-clairicia/socket-jsonrpc"
+
+[dependency-groups]
+dev = [
+    "bump2version>=1.0.1,<2",
+    "hatch>=1.8,<2",
+]
+build = [
+    "build>=1.0.3,<2",
+]
+pre-commit = [
+    "pre-commit>=4.0,<5",
+]
+format = [
+    "isort>=6.0,<7",
+    "black>=22.6.0",
+]
+mypy = [
+    "mypy~=1.17",
+]
+flake8 = [
+    "flake8>=7.0,<8",
+    "git+https://github.com/francis-clairicia/flake8-dunder-all.git@v0.1.0",
+]
+
+[tool.pdm]
+distribution = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/socket_jsonrpc"]
+
+[tool.isort]
+profile = "black"
+line_length = 130
+combine_as_imports = true
+sections = ["FUTURE", "STDLIB", "SOCKETJSONRPC", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+known_socketjsonrpc = ["socket_jsonrpc"]
+add_imports = ["from __future__ import annotations"]
+
+[tool.black]
+line-length = 130
+target-version = ["py313"]

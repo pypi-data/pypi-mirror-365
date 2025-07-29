@@ -1,0 +1,61 @@
+default_language_version:
+  python: python3.12
+minimum_pre_commit_version: '3.7.0'
+
+ci:
+  autoupdate_branch: 'pre-commit/autoupdate'
+  autoupdate_schedule: quarterly
+
+repos:
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.20.0
+    hooks:
+      - id: pyupgrade
+        args: ['--py312-plus']
+  - repo: https://github.com/PyCQA/isort
+    rev: '6.0.1'
+    hooks:
+      - id: isort
+        args: ['--filter-files', '--settings-file', 'pyproject.toml']
+  - repo: https://github.com/psf/black
+    rev: '25.1.0'
+    hooks:
+      - id: black
+        args: ['--config', 'pyproject.toml']
+  - repo: https://github.com/PyCQA/flake8
+    rev: '7.3.0'
+    hooks:
+      - id: flake8
+        args: ['--config', '.flake8']
+        additional_dependencies: [
+          'git+https://github.com/francis-clairicia/flake8-dunder-all.git@v0.1.0'
+        ]
+  - repo: https://github.com/aio-libs/sort-all
+    rev: 'v1.3.0'
+    hooks:
+      - id: sort-all
+        types: []  # Overwrite with empty in order to fallback to types_or
+        types_or: [python, pyi]
+  - repo: https://github.com/pdm-project/pdm
+    rev: '2.25.4'
+    hooks:
+      - id: pdm-lock-check
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: 'v1.10.0'
+    hooks:
+      - id: python-check-blanket-noqa
+      - id: python-no-log-warn
+      - id: rst-backticks
+      - id: rst-directive-colons
+      - id: rst-inline-touching-normal
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: 'v5.0.0'
+    hooks:
+      - id: mixed-line-ending
+        args: [--fix=lf]
+      - id: trailing-whitespace
+        exclude: \.bumpversion\.cfg  # Will always be triggered...
+      - id: end-of-file-fixer
+      - id: check-json
+      - id: check-toml
+      - id: check-yaml
