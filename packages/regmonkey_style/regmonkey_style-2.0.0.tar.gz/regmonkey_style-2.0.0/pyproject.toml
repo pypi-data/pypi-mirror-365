@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "regmonkey_style"
+version = "2.0.0"
+description = "plotly and matplotlib style for statistics-for-regression-monkey"
+authors = ["RyoNak <nakagamiryo0901@gmail.com>"]
+license = "MIT"
+readme = "README.md" 
+package-mode = true
+homepage = "https://github.com/RyoNakagami"
+repository = "https://github.com/RyoNakagami/regmonkey-style"
+
+[tool.poetry.dependencies]
+python = "^3.11,<4.0"
+matplotlib = "^3.9.2"
+pydantic = "^2.9.2"
+pyyaml = "^6.0.2"
+seaborn = "^0.13.2"
+plotly = "^6.2.0"
+kaleido = "^1.0.0"
+
+
+[tool.poetry.group.development.dependencies]
+ipykernel = "^6.29.5"
+nbformat = "^5.10.4"
+jinja2 = "^3.1.4"
+numpy = "^2.1.1"
+pandas = "^2.2.3"
+scipy = "^1.14.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
