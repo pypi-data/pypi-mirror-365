@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "opsgw-sdk"
+version = "1.0.0"
+description = "具有健康监测功能的HTTP SDK"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "OpsGW Team", email = "team@opsgw.com"}
+]
+maintainers = [
+    {name = "OpsGW Team", email = "team@opsgw.com"}
+]
+keywords = ["http", "client", "sdk", "health", "check", "dns", "load", "balancer"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+requires-python = ">=3.7"
+dependencies = [
+    "requests>=2.31.0",
+    "dnspython>=2.4.0",
+    "aiohttp>=3.8.0",
+    "asyncio-throttle>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "pytest-asyncio>=0.18.0",
+    "pytest-cov>=2.10",
+    "black>=21.0",
+    "flake8>=3.8",
+    "mypy>=0.800",
+]
+
+[project.urls]
+Homepage = "https://github.com/opsgw/opsgw-sdk-python"
+Documentation = "https://github.com/opsgw/opsgw-sdk-python/blob/main/README.md"
+Repository = "https://github.com/opsgw/opsgw-sdk-python"
+Issues = "https://github.com/opsgw/opsgw-sdk-python/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["opsgw_sdk*"]
+
+[tool.setuptools.package-data]
+opsgw_sdk = ["*.pyi", "py.typed"] 
