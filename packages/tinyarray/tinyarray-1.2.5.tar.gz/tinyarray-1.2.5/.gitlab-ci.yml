@@ -1,0 +1,31 @@
+image: kwant/tinyarray-testing
+
+stages:
+  - test
+  - deploy
+
+python2:
+    script:
+        - python2 setup.py build_ext -i
+        - python2 test_tinyarray.py
+
+python3:
+    script:
+        - python3 setup.py build_ext -i
+        - python3 test_tinyarray.py
+
+create conda dev package:
+  image: condaforge/linux-anvil
+  stage: deploy
+  only:
+    - master@kwant/tinyarray
+  script:
+    - git clone https://gitlab.kwant-project.org/kwant/conda-recipes.git
+    - conda build -c conda-forge --python 3.4 conda-recipes/tinyarray-dev
+    - conda build -c conda-forge --python 3.5 conda-recipes/tinyarray-dev
+    - conda build -c conda-forge --python 3.6 conda-recipes/tinyarray-dev
+    - mv /opt/conda/conda-bld/linux-64/tinyarray-dev*.tar.bz2 .
+    - anaconda --token=$ANACONDA_TOKEN upload --force tinyarray-dev*tar.bz2
+  artifacts:
+    paths:
+      - tinyarray-dev*.tar.bz2
