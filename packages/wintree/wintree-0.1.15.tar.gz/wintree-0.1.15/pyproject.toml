@@ -1,0 +1,46 @@
+[project]
+name = "wintree"
+version = "0.1.15"
+description = "A lightweight Python library and CLI tool for displaying visually structured directory trees with optional emoji and exclusion filters."
+authors = [
+    {name = "harumiWeb"}
+]
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.12,<4.0"
+dependencies = [
+]
+
+[project.urls]
+Repository = "https://github.com/harumiWeb/wintree"
+
+[tool.poetry]
+packages = [{include = "wintree", from = "src"}]
+
+[tool.poetry.scripts]
+wintree = "wintree.cli:main"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.1"
+pytest-mock = "^3.14.1"
+taskipy = "^1.14.1"
+pytest-clarity = "^1.0.1"
+pytest-cov = "^6.2.1"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+addopts = "--strict-markers --strict-config"
+testpaths = ["tests"]
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+]
+
+[tool.taskipy.tasks]
+test = "pytest --cov=wintree --cov-report=term-missing --cov-report=html"
+release_patch = "poetry version patch && poetry build && poetry publish"
+release_minor = "poetry version minor && poetry build && poetry publish"
+release_major = "poetry version major && poetry build && poetry publish"
