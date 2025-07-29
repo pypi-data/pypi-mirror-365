@@ -1,0 +1,10 @@
+# pyproject.toml
+[project]
+name = "FernetKeyGen"
+version = "1.0.0"
+requires-python = ">=3.13"
+dependencies = [
+    "cffi>=1.17.1",
+    "cryptography>=45.0.5",
+    "pycparser>=2.22"
+]
