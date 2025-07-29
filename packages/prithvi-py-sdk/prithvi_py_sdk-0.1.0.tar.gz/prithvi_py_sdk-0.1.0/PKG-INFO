@@ -1,0 +1,125 @@
+Metadata-Version: 2.4
+Name: prithvi-py-sdk
+Version: 0.1.0
+Summary: Official Python SDK for Prithvi in-memory key-value database.
+Home-page: https://github.com/psidh/prithvi-py-sdk
+Author: Sidharth P
+Author-email: philkhanasidharth14@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-python
+Dynamic: summary
+
+Prithvi Python SDK
+
+Official **Python SDK** for [Prithvi](https://github.com/psidh/prithvi) — a fast, in-memory key-value database built from scratch in Java.  
+This SDK allows Python developers to easily connect and interact with a running Prithvi server over TCP.
+
+---
+
+## Features
+
+- Easy connection to Prithvi server over TCP
+- Support for all major commands:
+  - `SET`, `GET`, `DEL`, `EXISTS`, `KEYS`
+  - List ops: `LPUSH`, `RPUSH`, `LPOP`, `RPOP`, `GETLIST`
+  - Set ops: `SADD`, `SREM`, `SMEMBERS`
+  - Persistence: `SAVE`, `LOAD`, `FLUSH`
+  - Auth: `AUTH`, `TOKEN`
+- Auto-reconnect with retry logic
+- Token storage and reuse
+- Tiny and dependency-free
+
+---
+
+## Installation
+
+```bash
+pip install prithvi-py-sdk
+````
+
+---
+
+## Usage
+
+```python
+from prithvi_client import PrithviClient
+
+client = PrithviClient("127.0.0.1", 1902)
+client.connect()
+
+print(client.auth("sidharth"))               # Authenticate and store token
+print(client.token())                        # Send stored token for verification
+
+print(client.set("mykey", "myvalue"))        # Store key
+print(client.get("mykey"))                   # Retrieve key
+
+print(client.lpush("mylist", "1"))           # Push to list
+print(client.get_list("mylist"))             # Get list
+
+client.close()                               # Close connection
+```
+
+---
+
+## Auth Flow
+
+```python
+client.auth("your-username")     # Receives and stores JWT-style token
+client.token()                   # Verifies with stored token
+```
+
+---
+
+## Available Commands
+
+| Type   | Methods                                          |
+| ------ | ------------------------------------------------ |
+| Keys   | `set`, `get`, `del`, `exists`, `keys`            |
+| Lists  | `lpush`, `rpush`, `lpop`, `rpop`, `get_list`     |
+| Sets   | `sadd`, `srem`, `smembers`                       |
+| Auth   | `auth`, `token`, `get_stored_token`              |
+| System | `save`, `load`, `flush`, `quit`, `help`, `close` |
+
+---
+
+## Requirements
+
+* Python 3.7+
+* A running [Prithvi Server](https://github.com/psidh/prithvi) on port `1902`
+
+---
+
+## Contributing
+
+Pull requests are welcome.
+For major changes, open an issue first to discuss what you want to change.
+
+---
+
+## License
+
+[MIT](./LICENSE)
+
+---
+
+## 💡 About Prithvi
+
+Prithvi is a custom-built, lightweight, Redis-like in-memory key-value store with TTL, LRU cache, multithreading, authentication, and persistence.
+
+> 🔗 GitHub: [github.com/psidh/prithvi](https://github.com/psidh/prithvi)
+
+```
+
+---
+
+
