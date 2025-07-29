@@ -1,0 +1,8 @@
+include README.md
+include LICENSE
+include requirements.txt
+include streamlit_app.py
+include run_gui.py
+recursive-include tests *
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co] 

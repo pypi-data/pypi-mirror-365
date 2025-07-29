@@ -1,0 +1,73 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ml-sniff"
+version = "1.0.0"
+description = "Advanced Machine Learning Problem Detection with CLI and GUI interfaces"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Sherin Joseph Roy", email = "sherin.joseph2217@gmail.com"}
+]
+maintainers = [
+    {name = "Sherin Joseph Roy", email = "sherin.joseph2217@gmail.com"}
+]
+keywords = ["machine-learning", "data-analysis", "classification", "regression", "clustering", "automation", "streamlit", "gui"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "pandas>=1.3.0",
+    "numpy>=1.20.0",
+    "matplotlib>=3.3.0",
+    "seaborn>=0.11.0",
+    "scikit-learn>=1.0.0",
+    "scipy>=1.7.0",
+    "plotly>=5.0.0",
+    "streamlit>=1.28.0",
+    "streamlit-option-menu>=0.3.0",
+    "streamlit-aggrid>=0.3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "pytest-cov>=2.0",
+    "black>=21.0",
+    "flake8>=3.8",
+    "mypy>=0.800",
+]
+
+[project.urls]
+Homepage = "https://github.com/Sherin-SEF-AI/ml-sniffer"
+Documentation = "https://github.com/Sherin-SEF-AI/ml-sniffer#readme"
+Repository = "https://github.com/Sherin-SEF-AI/ml-sniffer"
+"Bug Tracker" = "https://github.com/Sherin-SEF-AI/ml-sniffer/issues"
+"Author Website" = "https://sherin-sef-ai.github.io/"
+
+[project.scripts]
+ml-sniff = "ml_sniff.cli:main"
+ml-sniff-gui = "ml_sniff.gui:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ml_sniff*"]
+
+[tool.setuptools.package-data]
+ml_sniff = ["*.py", "*.md", "*.txt"] 
