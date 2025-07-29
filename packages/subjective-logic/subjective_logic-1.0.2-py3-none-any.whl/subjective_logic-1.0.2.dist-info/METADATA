@@ -1,0 +1,82 @@
+Metadata-Version: 2.4
+Name: subjective_logic
+Version: 1.0.2
+Summary: A Python implementation of subjective logic.
+Author-email: Waleed Khan <waleedqk@gmail.com>
+Maintainer-email: Waleed Khan <waleedqk@gmail.com>
+License: MIT License
+        
+        Copyright (c) 2024 Waleed Khan
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: Homepage, https://github.com/waleedqk/subjective-logic
+Project-URL: Documentation, https://github.com/waleedqk/subjective-logic/blob/main/README.md
+Project-URL: Repository, https://github.com/waleedqk/subjective-logic
+Project-URL: Issues, https://github.com/waleedqk/subjective-logic/issues
+Project-URL: Changelog, https://github.com/waleedqk/subjective-logic/CHANGELOG.md
+Keywords: subjective logic,opinion,python
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy>=1.24.0
+Provides-Extra: dev
+Requires-Dist: tox; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Provides-Extra: doc
+Requires-Dist: sphinx; extra == "doc"
+Requires-Dist: sphinx-rtd-theme; extra == "doc"
+Provides-Extra: test
+Requires-Dist: pytest>=6.0; extra == "test"
+Requires-Dist: pytest-cov; extra == "test"
+Dynamic: license-file
+
+# subjective-logic
+
+A subjective logic implementaion in python
+
+## Install
+
+```bash
+python -m pip install subjective-logic --force-reinstall
+```
+
+### Developer Install
+
+```bash
+pip install -e .
+```
+
+## Tests
+
+To test the code base, simply run tox from the root directory of your project:
+
+```bash
+pip install -e .[dev]
+tox
+```
+
+## References
+
+Audun Jøsang. “Categories of Belief Fusion”. In: _Journal of Advances in Information Fusion_ 13.2 (2018), pp. 235–254.
+
+Audun  Jøsang. _Subjective  Logic  -  A  Formalism  for  Reasoning  Under  Uncertainty_. Artificial Intelligence: Foundations, Theory, and Algorithms. Springer, 2016
