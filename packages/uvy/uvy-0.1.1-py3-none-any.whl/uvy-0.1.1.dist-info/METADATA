@@ -1,0 +1,38 @@
+Metadata-Version: 2.4
+Name: uvy
+Version: 0.1.1
+Summary: A toolkit for uv monorepos
+Requires-Python: <3.14,>=3.8
+Requires-Dist: hatchling
+Requires-Dist: packaging
+Requires-Dist: rustworkx
+Requires-Dist: tomli
+Description-Content-Type: text/markdown
+
+# Uvy
+
+Uvy is a toolkit for Python monorepos that use [uv](https://github.com/astral-sh/uv). It aims to provide a set of utilities to enhance the development experience, streamline workflows, and make managing large monorepos easier. In the future, Uvy will offer a variety of commands and features tailored for uv-based monorepos.
+
+---
+
+## The `list` Command
+
+The `list` command lists and filters packages in the current uv monorepo. It helps you quickly view, organize, and analyze package information, making it easier to manage your project's structure.
+
+**Usage:**
+
+```sh
+uvy packages [OPTIONS]
+```
+
+**Main options:**
+
+- `-c, --columns <columns>`: Comma-separated list of columns to display (e.g., name, path, version, tags). Can be specified multiple times. Defaults to `name,path,version,tags`.
+- `-f, --format <format>`: Output format. Choices: ascii, json, markdown, text, unicode. Defaults to `unicode`.
+- `-t, --tags <tags>`: Filter packages by tags. Supports regex patterns. Can be specified multiple times or as a comma-separated list.
+- `--with-dependents`: Include packages that the listed packages depend on.
+- `--with-dependees`: Include packages that depend on the listed packages.
+
+---
+
+More commands and features are coming soon!
