@@ -1,0 +1,105 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tensor-ipc"
+dynamic = ["version"]
+description = "High-performance IPC for tensor data with seamless ROS integration"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Daniel Hou", email = "houhd@umich.edu"},
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers", 
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9", 
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Networking",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "numpy>=1.21.0",
+    "cyclonedds==0.10.5",
+    "posix-ipc>=1.0.0",
+]
+
+[project.optional-dependencies]
+torch = [
+    "torch>=1.10.0",
+]
+dev = [
+    "pytest>=7.0",
+]
+test = [
+    "pytest>=7.0",
+]
+all = [
+    "torch>=1.10.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/danielhou315/tensor-ipc"
+Repository = "https://github.com/danielhou315/tensor-ipc.git"
+Issues = "https://github.com/danielhou315/tensor-ipc/issues"
+
+[tool.setuptools_scm]
+write_to = "src/tensor_ipc/_version.py"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short --strict-markers"
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+]
+
+[tool.coverage.run]
+source = ["src/tensor_ipc"]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "*/_version.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+]
+
+[tool.black]
+line-length = 88
+target-version = ["py38", "py39", "py310"]
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true

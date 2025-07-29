@@ -1,0 +1,15 @@
+numpy>=1.21.0
+cyclonedds==0.10.5
+posix-ipc>=1.0.0
+
+[all]
+torch>=1.10.0
+
+[dev]
+pytest>=7.0
+
+[test]
+pytest>=7.0
+
+[torch]
+torch>=1.10.0
