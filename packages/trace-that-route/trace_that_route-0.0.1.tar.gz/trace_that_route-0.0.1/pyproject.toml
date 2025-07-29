@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=77.0.3", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "trace-that-route"
+version = "0.0.1"
+description = "Simple python script adding a wrapper around the traceroute command."
+readme = "README.md"
+authors = [
+    { name = "LeStegii" }
+]
+keywords = ["traceroute", "network", "ip", "python"]
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: POSIX :: Linux",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/LeStegii/trace-that-route"
+Issues = "https://github.com/LeStegii/trace-that-route/issues"

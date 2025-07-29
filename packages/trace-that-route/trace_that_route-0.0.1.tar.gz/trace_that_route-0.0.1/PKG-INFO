@@ -1,0 +1,35 @@
+Metadata-Version: 2.4
+Name: trace-that-route
+Version: 0.0.1
+Summary: Simple python script adding a wrapper around the traceroute command.
+Author: LeStegii
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/LeStegii/trace-that-route
+Project-URL: Issues, https://github.com/LeStegii/trace-that-route/issues
+Keywords: traceroute,network,ip,python
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: POSIX :: Linux
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE.md
+Dynamic: license-file
+
+# Trace that route!
+
+Simple python script adding a wrapper around the `traceroute` command.
+
+## Installation
+
+```bash
+pip install trace-that-route
+```
+
+## Usage
+
+```python
+result = traceroute(target = "1.2.3.4", queries = 3, max_steps = 30, protocol = Protocol.TCP)
+print(f"It took {len(result.hops)} steps to reach the target:")
+for hop in result.hops:
+    for router in hop.routers:
+        print(f"{hop.hop_number}: {router.ip} ({router.hostname}) - {router.rtts} ms")
+```
