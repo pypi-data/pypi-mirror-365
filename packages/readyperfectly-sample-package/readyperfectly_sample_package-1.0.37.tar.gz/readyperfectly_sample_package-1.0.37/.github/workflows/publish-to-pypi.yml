@@ -1,0 +1,51 @@
+name: Publish to PyPI (Manual)
+
+run-name: Publish to PyPI -- ${{ github.run_id }}
+
+on:
+    workflow_dispatch:
+        inputs:
+            run_id:
+                description: 'The Run ID of the "Continuous Integration (CI)" workflow to get artifacts from.'
+                required: true
+                type: string
+            artifact_name:
+                description: 'Name of the artifact to download (e.g., python-package-distributions)'
+                required: true
+                default: 'python-package-distributions'
+                type: string
+            # pypi_repository_url:
+            #     description: 'Optional: Custom PyPI repository URL (e.g., for TestPyPI)'
+            #     required: false
+            #     type: string
+
+jobs:
+    publish:
+        if: github.event_name == 'workflow_dispatch'
+        name: Publish Python Package to PyPI
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                shell: pwsh
+        environment:
+            name: pypi
+        steps:
+            - name: Download Build Artifacts
+              uses: actions/download-artifact@v4
+              with:
+                github-token: ${{ secrets.GITHUB_TOKEN }}
+                run-id: ${{ github.event.inputs.run_id }}
+                name: ${{ github.event.inputs.artifact_name }}
+                path: dist/
+
+            - name: List downloaded files (for debugging)
+              run: ls -R dist/
+
+            - name: Publish package to PyPI
+              uses: pypa/gh-action-pypi-publish@release/v1
+              with:
+                user: __token__
+                password: ${{ secrets.PYPI_API_TOKEN }}
+                attestations: false
+                # repository_url: ${{ github.event.inputs.pypi_repository_url }}
+                
