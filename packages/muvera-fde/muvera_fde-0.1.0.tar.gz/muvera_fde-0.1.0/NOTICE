@@ -1,0 +1,20 @@
+Muvera FDE - Python Bindings
+Copyright 2025 Yasyf Mohamedali
+
+This project includes code derived from Google's graph-mining project:
+https://github.com/google/graph-mining
+
+Original Fixed Dimensional Encoding implementation:
+Copyright 2025 Google LLC
+Licensed under the Apache License, Version 2.0
+
+The Fixed Dimensional Encoding algorithm is described in:
+"MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings"
+https://research.google/blog/muvera-making-multi-vector-retrieval-as-fast-as-single-vector-search/
+
+Modifications for Python bindings:
+- Converted protobuf configurations to Python dataclasses
+- Replaced Bazel build system with CMake and scikit-build-core
+- Added pybind11 bindings with zero-copy numpy integration
+- Removed dependencies on Google-specific libraries
+- Added comprehensive Python test suite

@@ -1,0 +1,100 @@
+[project]
+name = "muvera-fde"
+version = "0.1.0"
+description = "Python bindings for Google's graph-mining Fixed Dimensional Encoding (FDE) from MUVERA"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Yasyf Mohamedali", email = "yasyfm@gmail.com" }]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Development Status :: 4 - Beta",
+    "Typing :: Typed",
+]
+keywords = [
+    "point-cloud",
+    "encoding",
+    "muvera",
+    "graph-mining",
+    "similarity-search",
+    "vector-search",
+]
+dependencies = ["numpy>=1.20.0"]
+
+[project.urls]
+"Original Implementation" = "https://github.com/google/graph-mining/tree/main/sketching/point_cloud"
+"Research Paper" = "https://research.google/blog/muvera-making-multi-vector-retrieval-as-fast-as-single-vector-search/"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+]
+
+[build-system]
+requires = [
+    "scikit-build-core>=0.8.0",
+    "pybind11>=2.11.0",
+    "cmake>=3.15",
+    "ninja; platform_system!='Windows'",
+]
+build-backend = "scikit_build_core.build"
+
+[tool.scikit-build]
+minimum-version = "0.8.0"
+build-dir = "build/{wheel_tag}"
+wheel.packages = ["src/muvera_fde"]
+cmake.source-dir = "."
+cmake.build-type = "Release"
+cmake.args = ["-DCMAKE_BUILD_TYPE=Release"]
+cmake.targets = ["_core"]
+install.components = ["python"]
+
+[tool.scikit-build.metadata.version]
+provider = "scikit_build_core.metadata.regex"
+input = "src/muvera_fde/__init__.py"
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+    "ipython>=8.0.0",
+    "matplotlib>=3.5.0",
+    "scikit-learn>=1.0.0",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+extend-select = ["B", "C", "E", "F", "W", "I", "N", "UP"]
+exclude = ["build", "dist", ".venv"]
+
+[tool.black]
+line-length = 88
+target-version = ['py311', 'py312', 'py313']
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+plugins = ["numpy.typing.mypy_plugin"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]

@@ -1,0 +1,188 @@
+Metadata-Version: 2.1
+Name: muvera-fde
+Version: 0.1.0
+Summary: Python bindings for Google's graph-mining Fixed Dimensional Encoding (FDE) from MUVERA
+Keywords: point-cloud,encoding,muvera,graph-mining,similarity-search,vector-search
+Author-Email: Yasyf Mohamedali <yasyfm@gmail.com>
+License: Apache-2.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Development Status :: 4 - Beta
+Classifier: Typing :: Typed
+Project-URL: Original Implementation, https://github.com/google/graph-mining/tree/main/sketching/point_cloud
+Project-URL: Research Paper, https://research.google/blog/muvera-making-multi-vector-retrieval-as-fast-as-single-vector-search/
+Requires-Python: >=3.11
+Requires-Dist: numpy>=1.20.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Requires-Dist: black>=23.0.0; extra == "dev"
+Requires-Dist: ruff>=0.1.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Description-Content-Type: text/markdown
+
+# MUVERA FDE
+
+Python bindings for Google's Fixed Dimensional Encoding (FDE) algorithm from the [graph-mining](https://github.com/google/graph-mining/tree/main/sketching/point_cloud) project, as described in the [MUVERA paper](https://research.google/blog/muvera-making-multi-vector-retrieval-as-fast-as-single-vector-search/).
+
+## Overview
+
+This library provides Python bindings for Google's Fixed Dimensional Encoding (FDE) algorithm, a key component of the MUVERA (Multi-Vector Retrieval Aggregation) system. FDE is a technique for encoding variable-sized sets of vectors into fixed-dimensional representations while preserving similarity structure.
+
+### Key Applications
+
+- **Multi-vector retrieval**: Efficiently search collections of multi-vector data (e.g., video segments, document chunks)
+- **Chamfer similarity approximation**: Approximate Chamfer distance between point clouds
+- **Fixed-size embeddings**: Convert variable-length sequences into fixed-size vectors for ML models
+- **Efficient similarity search**: Enable fast nearest-neighbor search on multi-vector data
+
+### Algorithm Details
+
+FDE uses SimHash projections to partition the input space and aggregates points within each partition. This approach preserves the similarity structure while providing a compact fixed-dimensional representation. The algorithm supports both sum aggregation (for queries) and average aggregation (for documents), making it suitable for asymmetric similarity search scenarios.
+
+### Relationship to MUVERA
+
+MUVERA (Multi-Vector Retrieval Aggregation) is Google's system for efficient multi-vector search that achieves single-vector search speeds. FDE is a core component of MUVERA that enables:
+
+1. **Compression**: Reducing multiple vectors to a single fixed-size representation
+2. **Similarity Preservation**: Maintaining approximate Chamfer distances between point sets
+3. **Asymmetric Search**: Different encodings for queries (sum) and documents (average)
+4. **Scalability**: Enabling billion-scale multi-vector retrieval
+
+This implementation focuses on the FDE component, which can be used standalone or as part of a larger retrieval system.
+
+## Features
+
+- **Zero-copy numpy integration**: Efficient memory usage with numpy arrays
+- **Flexible encoding types**: Support for both query (sum) and document (average) encodings
+- **Configurable parameters**: Control dimensionality, projections, and aggregation methods
+- **Modern Python packaging**: Built with `uv` and `scikit-build-core`
+
+## Installation
+
+### From source with uv
+
+```bash
+cd muvera-fde
+uv pip install -e .
+```
+
+### Development installation
+
+```bash
+uv pip install -e ".[dev]"
+```
+
+## Quick Start
+
+```python
+import numpy as np
+from muvera_fde import (
+    FixedDimensionalEncodingConfig,
+    FixedDimensionalEncoder,
+    EncodingType
+)
+
+# Create configuration
+config = FixedDimensionalEncodingConfig(
+    dimension=3,                    # Input point dimension
+    num_simhash_projections=8,      # Number of SimHash projections
+    num_repetitions=2,              # Number of repetitions for robustness
+    encoding_type=EncodingType.DEFAULT_SUM  # Sum aggregation for queries
+)
+
+# Initialize encoder
+encoder = FixedDimensionalEncoder(config)
+
+# Generate random point cloud
+points = np.random.randn(100, 3).astype(np.float32)
+
+# Encode the point cloud
+encoding = encoder.encode(points)
+print(f"Encoding shape: {encoding.shape}")
+print(f"Output dimension: {encoder.output_dimension}")
+```
+
+## Configuration Options
+
+The `FixedDimensionalEncodingConfig` dataclass supports the following parameters:
+
+- `dimension`: Dimension of input points (default: 3)
+- `num_repetitions`: Number of encoding repetitions (default: 1)
+- `num_simhash_projections`: Number of SimHash projections (default: 8)
+- `seed`: Random seed for reproducibility (default: 1)
+- `encoding_type`: `EncodingType.DEFAULT_SUM` for queries, `EncodingType.AVERAGE` for documents
+- `projection_dimension`: Optional dimension to project points before encoding
+- `projection_type`: `ProjectionType.DEFAULT_IDENTITY` or `ProjectionType.AMS_SKETCH`
+- `fill_empty_partitions`: Whether to fill empty partitions with zeros (default: False)
+- `final_projection_dimension`: Optional final output dimension
+
+## Advanced Usage
+
+### Query vs Document Encoding
+
+```python
+# Query encoding (sum aggregation)
+query_encoding = encoder.encode_query(query_points)
+
+# Document encoding (average aggregation)
+doc_encoding = encoder.encode_document(document_points)
+```
+
+### Dimensionality Reduction
+
+```python
+# Use AMS sketch projection
+config = FixedDimensionalEncodingConfig(
+    dimension=128,
+    projection_dimension=32,
+    projection_type=ProjectionType.AMS_SKETCH,
+    final_projection_dimension=256
+)
+```
+
+## Building from Source
+
+The project uses CMake and scikit-build-core for building the C++ extension. Eigen is automatically downloaded during the build process.
+
+```bash
+# Clean build
+uv pip install --force-reinstall -e .
+
+# Run tests
+uv run pytest
+```
+
+## Citation
+
+If you use this library in your research, please cite the MUVERA paper:
+
+```bibtex
+@article{muvera2024,
+  title={MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings},
+  author={Google Research Team},
+  journal={Google Research Blog},
+  year={2024},
+  url={https://research.google/blog/muvera-making-multi-vector-retrieval-as-fast-as-single-vector-search/}
+}
+```
+
+## License
+
+This project is licensed under the Apache License 2.0, the same license as the original Google graph-mining project. See the LICENSE file for details.
+
+## Acknowledgments
+
+This library provides Python bindings for the Fixed Dimensional Encoding implementation from:
+- [Google's graph-mining project](https://github.com/google/graph-mining/tree/main/sketching/point_cloud)
+- [MUVERA: Multi-Vector Retrieval via Fixed Dimensional Encodings](https://research.google/blog/muvera-making-multi-vector-retrieval-as-fast-as-single-vector-search/)
+
+The core C++ implementation is adapted from Google's original code with modifications for Python integration.

@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+.env
+
+# Build
+build/
+dist/
+*.egg-info/
+.eggs/
+wheelhouse/
+
+# C++ build
+*.o
+*.so
+*.dylib
+*.dll
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.mypy_cache/
+.ruff_cache/
+
+# scikit-build
+_skbuild/
+_cmake_test_compile/
+
+# Examples output
+examples/*.png
+examples/*.jpg
+
+# uv
+.python-version
