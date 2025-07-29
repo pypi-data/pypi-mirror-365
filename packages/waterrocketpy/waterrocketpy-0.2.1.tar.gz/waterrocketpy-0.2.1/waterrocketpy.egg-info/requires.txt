@@ -1,0 +1,17 @@
+numpy
+scipy
+matplotlib
+
+[all]
+waterrocketpy[extra]
+waterrocketpy[dev]
+
+[dev]
+pytest>=7.0
+pytest-cov
+coverage
+ruff
+mypy
+
+[extra]
+pandas

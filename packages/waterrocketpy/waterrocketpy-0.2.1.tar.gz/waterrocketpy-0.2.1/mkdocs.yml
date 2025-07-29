@@ -1,0 +1,117 @@
+site_name: waterrocketpy
+site_description: A modular Python package for simulating water rockets.
+site_author: Cube002
+site_url: https://Cube002.github.io/waterrocketpy
+repo_url: https://github.com/Cube002/waterrocketpy
+
+copyright: "Copyright &copy; 2024 - 2024 Pablo M"
+
+theme:
+    palette:
+        - scheme: default
+          #   primary: blue
+          #   accent: indigo
+          toggle:
+              icon: material/toggle-switch-off-outline
+              name: Switch to dark mode
+        - scheme: slate
+          primary: indigo
+          accent: indigo
+          toggle:
+              icon: material/toggle-switch
+              name: Switch to light mode
+    name: material
+    icon:
+        repo: fontawesome/brands/github
+    # logo: assets/logo.png
+    # favicon: assets/favicon.png
+    features:
+        - navigation.instant
+        - navigation.tracking
+        - navigation.top
+        - search.highlight
+        - search.share
+    custom_dir: "docs/overrides"
+    font:
+        text: Google Sans
+        code: Regular
+
+plugins:
+    - search
+    - mkdocstrings:
+        handlers:
+            python:
+                paths: ["."]
+    - git-revision-date
+    - git-revision-date-localized:
+          enable_creation_date: true
+          type: timeago
+    # - pdf-export
+    - mkdocs-jupyter:
+          include_source: True
+          ignore_h1_titles: True
+          execute: True
+          allow_errors: false
+          ignore: ["conf.py"]
+          execute_ignore: ["*ignore.ipynb"]
+
+markdown_extensions:
+    - admonition
+    - abbr
+    - attr_list
+    - def_list
+    - footnotes
+    - meta
+    - md_in_html
+    - pymdownx.superfences
+    - pymdownx.highlight:
+          linenums: true
+    - toc:
+          permalink: true
+
+# extra:
+#     analytics:
+#         provider: google
+#         property: UA-XXXXXXXXX-X
+
+nav:
+    - Home: index.md
+    - Installation: installation.md
+    - Usage: usage.md
+    - Contributing: contributing.md
+    #- FAQ: faq.md
+    - Changelog: changelog.md
+    - Report Issues: https://github.com/Cube002/waterrocketpy/issues
+    - Examples:
+        - examples/intro.ipynb
+        - examples/getting_started.ipynb
+    - API Reference:
+        - Analysis:
+            - Energy Breakdown: api/analysis/energy_breakdown
+            - Energy Breakdown Plot: api/analysis/energy_breakdown_plot
+        - Common: api/common
+        - Core:
+            - Constants: api/core/constants
+            - Physics Engine: api/core/physics_engine
+            - Simulation: api/core/simulation
+            - Validation: api/core/validation
+        - Legacy:
+            - Builder Legacy: api/legacy/builder_legacy
+            - Core: api/legacy/Core
+            - Main: api/legacy/main
+            - Plotter: api/legacy/plotter
+        - Main: api/main
+        - Optimization:
+            - Water Rocket Optimizer: api/optimization/water_rocket_optimizer
+        - Rocket:
+            - Builder: api/rocket/builder
+            - Geometry: api/rocket/geometry
+            - Materials: api/rocket/materials
+        - Utils:
+            - Loader: api/utils/loader
+            - Saver: api/utils/saver
+        - Visualization:
+            - Flight Animation: api/visualization/flight_animation
+            - Parameter Explorer: api/visualization/parameter_explorer
+            - Parameter Explorer Debugging: api/visualization/parameter_explorer_debugging
+            - Plot Flight Data: api/visualization/plot_flight_data
