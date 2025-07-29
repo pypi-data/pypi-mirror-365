@@ -1,0 +1,229 @@
+Metadata-Version: 2.4
+Name: marmel-grammar
+Version: 0.1.8b2
+Summary: Библиотека русской морфологии и транслитерации для Python
+Home-page: https://t.me/dev_marmel
+Author: Dev-Marmel
+Author-email: marmelgpt@gmail.com
+Project-URL: Bug Reports, https://t.me/dev_marmel
+Project-URL: Source, https://t.me/dev_marmel
+Project-URL: Documentation, https://t.me/dev_marmel
+Project-URL: Telegram, https://t.me/dev_marmel
+Keywords: russian,morphology,declension,grammar,transliteration,names,verbs,linguistic
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Text Processing :: Linguistic
+Classifier: Natural Language :: Russian
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: isort; extra == "dev"
+Provides-Extra: telegram
+Requires-Dist: python-telegram-bot>=20.7; extra == "telegram"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: project-url
+Dynamic: provides-extra
+Dynamic: requires-python
+Dynamic: summary
+
+
+# marmel-grammar
+
+Библиотека русской морфологии и транслитерации для Python
+
+## Установка
+
+```bash
+pip install marmel-grammar
+```
+
+## Быстрый старт
+
+```python
+from marmel_grammar import MarmelGrammar
+
+# Создание экземпляра библиотеки
+grammar = MarmelGrammar()
+```
+
+## Основные возможности
+
+### 1. Транслитерация имен
+
+```python
+# Создаем экземпляр
+grammar = MarmelGrammar()
+
+# Перевод с английского на русский
+russian_name = grammar.transliterate_to_russian("Alexander")
+print(russian_name)  # Александр
+
+# Обратная транслитерация
+english_name = grammar.transliterate_to_english("Александр")
+print(english_name)  # Alexander
+
+# Пакетная транслитерация
+names = ["Alexander", "Maria", "John"]
+result = grammar.batch_transliterate(names)
+print(result)  # {'Alexander': 'Александр', 'Maria': 'Мария', 'John': 'Джон'}
+```
+
+### 2. Определение рода
+
+```python
+grammar = MarmelGrammar()
+
+# Определение рода имени
+gender = grammar.detect_gender("Мария")
+print(gender)  # female
+
+gender = grammar.detect_gender("Иван")
+print(gender)  # male
+
+gender = grammar.detect_gender("Саша")
+print(gender)  # unisex
+```
+
+### 3. Склонение имен по падежам
+
+```python
+grammar = MarmelGrammar()
+
+# Склонение имени по падежам
+name = "Мария"
+
+# Отдельные падежи
+print(grammar.decline(name, "nom"))   # Мария (именительный)
+print(grammar.decline(name, "gen"))   # Марии (родительный)
+print(grammar.decline(name, "dat"))   # Марии (дательный)
+print(grammar.decline(name, "acc"))   # Марию (винительный)
+print(grammar.decline(name, "prep"))  # Марии (предложный)
+
+# Все формы сразу
+all_forms = grammar.get_all_forms("Ника")
+print(all_forms)
+# {'nom': 'Ника', 'gen': 'Ники', 'dat': 'Нике', 'acc': 'Нику', 'prep': 'Нике'}
+```
+
+### 4. Спряжение глаголов
+
+```python
+grammar = MarmelGrammar()
+
+# Простое спряжение
+sentence = grammar.asc("Мария", "танцевать")
+print(sentence)  # Мария танцевала
+
+sentence = grammar.asc("Иван", "читать")
+print(sentence)  # Иван читал
+
+# Спряжение с указанием времени
+verb = grammar.conjugate("танцевать", "past", "Мария")
+print(verb)  # танцевала
+
+verb = grammar.conjugate("танцевать", "present", "я")
+print(verb)  # танцую
+```
+
+### 5. Создание предложений
+
+```python
+grammar = MarmelGrammar()
+
+# Обычные предложения (субъект + глагол + объект)
+sentence = grammar.make_sentence("Иван", "читать", "Анна")
+print(sentence)  # Иван читал Анну.
+
+# Предложения с предлогом "для"
+sentence = grammar.make_sentence_for("Газенваген", "пукнуть", "Ника")
+print(sentence)  # Газенваген пукнул для Ники.
+
+sentence = grammar.make_sentence_for("Александр", "работать", "Мария")
+print(sentence)  # Александр работал для Марии.
+```
+
+### 6. Добавление новых имен
+
+```python
+grammar = MarmelGrammar()
+
+# Добавление нового имени с падежными формами
+new_name_cases = {
+    "nom": "Артур",
+    "gen": "Артура", 
+    "dat": "Артуру",
+    "acc": "Артура",
+    "prep": "Артуре"
+}
+
+grammar.add_name("Артур", "male", new_name_cases)
+
+# Теперь можно использовать новое имя
+print(grammar.decline("Артур", "gen"))  # Артура
+```
+
+## Полный пример использования
+
+```python
+from marmel_grammar import MarmelGrammar
+
+# Создаем экземпляр библиотеки
+grammar = MarmelGrammar()
+
+# Транслитерируем имя
+english_name = "Alexander"
+russian_name = grammar.transliterate_to_russian(english_name)
+print(f"{english_name} → {russian_name}")  # Alexander → Александр
+
+# Определяем род
+gender = grammar.detect_gender(russian_name)
+print(f"Род: {gender}")  # Род: male
+
+# Склоняем имя
+print("Падежи:")
+cases = ["nom", "gen", "dat", "acc", "prep"]
+for case in cases:
+    form = grammar.decline(russian_name, case)
+    print(f"  {case}: {form}")
+
+# Создаем предложения
+print("\nПредложения:")
+print(grammar.asc(russian_name, "работать"))  # Александр работал
+print(grammar.make_sentence(russian_name, "читать", "Мария"))  # Александр читал Марию.
+print(grammar.make_sentence_for(russian_name, "готовить", "Анна"))  # Александр готовил для Анны.
+```
+
+## Поддерживаемые падежи
+
+- `nom` — именительный (кто? что?)
+- `gen` — родительный (кого? чего?)
+- `dat` — дательный (кому? чему?)
+- `acc` — винительный (кого? что?)
+- `prep` — предложный (о ком? о чем?)
+
+## Поддерживаемые роды
+
+- `male` — мужской род
+- `female` — женский род
+- `unisex` — универсальные имена
+
+## Разработчик
+
+**Dev-Marmel**  
+Telegram: [@dev_marmel](https://t.me/dev_marmel)
