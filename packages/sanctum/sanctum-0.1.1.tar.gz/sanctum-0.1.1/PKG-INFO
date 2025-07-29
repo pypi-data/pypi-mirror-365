@@ -1,0 +1,287 @@
+Metadata-Version: 2.1
+Name: sanctum
+Version: 0.1.1
+Summary: Developer-friendly AWS Cognito client for Python, with clean APIs for managing user pools and authentication flows.
+Home-page: https://github.com/nerdmonkey/python-sanctum
+License: MIT
+Keywords: aws,cognito,authentication,rbac,jwt,user-management
+Author: Sydel Palinlin
+Author-email: sydel.palinlin@gmail.com
+Requires-Python: >=3.8,<4.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Security
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Dist: PyJWT (>=2.8.0,<3.0.0)
+Requires-Dist: boto3 (>=1.34.0,<2.0.0)
+Requires-Dist: botocore (>=1.34.0,<2.0.0)
+Project-URL: Documentation, https://github.com/nerdmonkey/python-sanctum/tree/main/docs
+Project-URL: Repository, https://github.com/nerdmonkey/python-sanctum
+Description-Content-Type: text/markdown
+
+# Sanctum
+
+Developer-friendly AWS Cognito client for Python, with clean APIs for managing user pools and authentication flows.
+
+[![Tests](https://img.shields.io/badge/tests-151_passing-green)](./tests)
+[![Coverage](https://img.shields.io/badge/coverage-89%25-brightgreen)](./tests)
+[![Python](https://img.shields.io/badge/python-3.8%2B-blue)](https://python.org)
+[![License](https://img.shields.io/badge/license-MIT-blue)](./LICENSE)
+
+## Installation
+
+```bash
+pip install sanctum
+```
+
+## Quick Start
+
+```python
+from sanctum import SanctumClient
+
+# Initialize the client
+client = SanctumClient(
+    user_pool_id="us-east-1_123456789",
+    client_id="your-app-client-id",
+    region="us-east-1"
+)
+
+# User authentication
+try:
+    auth_result = client.authenticate_user(
+        username="user@example.com",
+        password="SecurePassword123!"
+    )
+    print(f"Login successful! Access token: {auth_result['AccessToken']}")
+except AuthenticationError as e:
+    print(f"Authentication failed: {e}")
+
+# User management
+user_info = client.create_user(
+    username="newuser@example.com",
+    password="TempPassword123!",
+    email="newuser@example.com",
+    temporary_password=True
+)
+
+# RBAC (Role-Based Access Control)
+# Create groups and manage permissions
+admin_group = client.create_group(
+    group_name="admin",
+    description="System administrators",
+    precedence=1
+)
+
+# Add user to group
+client.add_user_to_group(
+    username="user@example.com",
+    group_name="admin"
+)
+
+# Check user permissions
+has_admin_access = client.user_has_group(
+    username="user@example.com",
+    group_name="admin"
+)
+```
+
+## Features
+
+### 🔐 Authentication & Authorization
+- **Multiple Auth Flows**: USER_PASSWORD_AUTH, ADMIN_NO_SRP_AUTH, CUSTOM_AUTH
+- **MFA Support**: SMS, TOTP, and custom challenge responses
+- **Token Management**: Automatic refresh token handling
+- **Role-Based Access Control (RBAC)**: AWS Cognito User Pool Groups integration
+
+### 👥 User Management
+- **User Lifecycle**: Create, update, delete users
+- **Profile Management**: Update user attributes and preferences
+- **Admin Operations**: Admin-initiated password changes and user management
+- **User Status**: Enable, disable, confirm users
+
+### 🛡️ Security Features
+- **JWT Token Processing**: Parse and validate access tokens
+- **Group-Based Permissions**: Check user group memberships from tokens
+- **Secure Hash Calculation**: HMAC-SHA256 for client secret validation
+- **Comprehensive Error Handling**: Detailed error reporting and handling
+
+### 🏗️ Developer Experience
+- **Clean, Intuitive API**: Pythonic interface for AWS Cognito operations
+- **Comprehensive Testing**: 151 tests with 89% code coverage
+- **Type Hints**: Full type annotation support
+- **Modular Architecture**: Use individual components or the unified client
+
+## API Overview
+
+### Main Client
+
+```python
+from sanctum import SanctumClient
+
+client = SanctumClient(
+    user_pool_id="us-east-1_123456789",
+    client_id="your-app-client-id",
+    region="us-east-1",
+    client_secret="your-client-secret"  # Optional
+)
+```
+
+### Authentication Methods
+
+```python
+# User password authentication
+auth_result = client.authenticate_user("user@example.com", "password")
+
+# Admin authentication (no SRP)
+auth_result = client.admin_authenticate("user@example.com", "password")
+
+# Custom authentication flow
+auth_result = client.initiate_custom_auth("user@example.com", auth_parameters={})
+```
+
+### User Management
+
+```python
+# Create user
+user = client.create_user(
+    username="user@example.com",
+    password="TempPass123!",
+    email="user@example.com",
+    temporary_password=True
+)
+
+# Update user attributes
+client.update_user_attributes("user@example.com", {"name": "John Doe"})
+
+# Delete user
+client.delete_user("user@example.com")
+```
+
+### RBAC Operations
+
+```python
+# Group management
+client.create_group("admin", "Administrators", precedence=1)
+client.add_user_to_group("user@example.com", "admin")
+
+# Permission checking
+is_admin = client.user_has_group("user@example.com", "admin")
+
+# JWT token group extraction
+groups = client.rbac.get_groups_from_token(access_token)
+```
+
+### Token Management
+
+```python
+# Refresh tokens
+new_tokens = client.refresh_token(refresh_token)
+
+# Respond to auth challenges
+challenge_response = client.respond_to_auth_challenge(
+    challenge_name="SMS_MFA",
+    session="challenge-session",
+    challenge_responses={"SMS_MFA_CODE": "123456"}
+)
+```
+
+## Advanced Usage
+
+### Using Individual Components
+
+If you prefer to use specific components directly:
+
+```python
+from sanctum import RBACManager, TokenManager, UserManager
+
+# Direct component usage
+rbac = RBACManager(user_pool_id, client_id, region)
+tokens = TokenManager(user_pool_id, client_id, region)
+users = UserManager(user_pool_id, client_id, region)
+```
+
+### Error Handling
+
+```python
+from sanctum.exceptions import AuthenticationError, ValidationError, SanctumError
+
+try:
+    result = client.authenticate_user("user@example.com", "wrong-password")
+except AuthenticationError as e:
+    print(f"Authentication failed: {e}")
+except ValidationError as e:
+    print(f"Validation error: {e}")
+except SanctumError as e:
+    print(f"General Sanctum error: {e}")
+```
+
+## Documentation
+
+- [Installation Guide](./docs/installation.rst)
+- [Quick Start Tutorial](./docs/quickstart.rst)
+- [API Reference](./docs/api.rst)
+- [Examples & Use Cases](./docs/examples.rst)
+- [Architecture Overview](./docs/architecture.md)
+
+## Examples
+
+Check out the [examples directory](./examples/) for comprehensive usage examples:
+
+- **[Basic Usage](./examples/basic_usage.py)**: Authentication and user management
+- **[Advanced Usage](./examples/advanced_usage.py)**: Complex workflows and error handling
+- **[RBAC Examples](./examples/rbac_example.py)**: Role-based access control scenarios
+- **[Test Workflows](./examples/test_workflow.py)**: Integration testing patterns
+
+## Development
+
+### Requirements
+
+- Python 3.8+
+- AWS account with Cognito User Pool configured
+- boto3 and other dependencies (see `requirements.txt`)
+
+### Testing
+
+The project includes comprehensive tests with 89% coverage:
+
+```bash
+# Run all tests
+python -m pytest tests/ --cov=sanctum --cov-report=term-missing
+
+# Run specific test modules
+python -m pytest tests/test_rbac.py -v
+python -m pytest tests/test_client.py -v
+
+# Run tests with coverage report
+python -m pytest tests/ --cov=sanctum --cov-report=html
+```
+
+## Contributing
+
+We welcome contributions! Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Make your changes
+4. Add tests for new functionality
+5. Ensure all tests pass (`python -m pytest`)
+6. Submit a pull request
+
+## License
+
+MIT License - see [LICENSE](./LICENSE) file for details.
+
+## Changelog
+
+See [CHANGELOG.md](./CHANGELOG.md) for a detailed history of changes.
+
