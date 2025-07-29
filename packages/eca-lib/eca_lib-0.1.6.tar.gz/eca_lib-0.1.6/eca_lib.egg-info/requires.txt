@@ -1,0 +1,12 @@
+
+[all]
+eca-lib[redis]
+eca-lib[postgres]
+
+[postgres]
+psycopg2-binary>=2.9.0
+pgvector>=0.2.0
+SQLAlchemy>=2.0.0
+
+[redis]
+redis>=5.0.0
