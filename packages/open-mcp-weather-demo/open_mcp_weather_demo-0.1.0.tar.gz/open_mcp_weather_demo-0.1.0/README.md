@@ -1,0 +1,205 @@
+# Weather MCP Server
+
+一个基于 Model Context Protocol (MCP) 的天气查询服务器，使用 OpenWeatherMap API 提供实时天气信息和天气预报。
+
+## 功能特性
+
+- 🌤️ **实时天气查询**: 获取指定城市的当前天气信息
+- 📅 **5天天气预报**: 提供未来5天的详细天气预报
+- 🌍 **全球支持**: 支持全球各地的天气查询
+- 🌡️ **多单位支持**: 支持摄氏度(metric)和华氏度(imperial)
+- 📍 **智能定位**: 自动解析城市名称并获取准确坐标
+- 🛠️ **MCP 工具装饰器**: 使用 `@mcp.tool()` 装饰器，便于其他模型通过 MCP 协议调用
+
+## 安装
+
+1. 确保你已安装 Python 3.13 或更高版本
+2. 克隆或下载此项目
+3. 安装依赖:
+
+```bash
+cd mcp-weather
+uv sync
+```
+
+## 使用方法
+
+### 作为 MCP Server 运行
+
+```bash
+# 直接运行
+python main.py
+
+# 或者使用 uv
+uv run main.py
+```
+
+### 在 MCP 客户端中配置
+
+在你的 MCP 客户端配置文件中添加:
+
+```json
+{
+  "mcpServers": {
+    "weather": {
+      "command": "python",
+      "args": ["path/to/mcp-weather/main.py"]
+    }
+  }
+}
+```
+
+### 编程方式调用工具
+
+你也可以直接在代码中导入和使用这些工具：
+
+```python
+import asyncio
+from main import get_current_weather, get_weather_forecast
+
+async def example():
+    # 获取当前天气
+    weather = await get_current_weather("Beijing,CN", "metric")
+    print(weather)
+    
+    # 获取天气预报
+    forecast = await get_weather_forecast("London,GB", "metric")
+    print(forecast)
+
+asyncio.run(example())
+```
+
+## 可用工具
+
+### 1. get_current_weather
+
+获取指定位置的当前天气信息。
+
+**参数:**
+- `location` (必需): 城市名称，格式如 "London,GB" 或 "Beijing,CN"
+- `units` (可选): 温度单位，"metric" (摄氏度) 或 "imperial" (华氏度)，默认为 "metric"
+
+**示例:**
+```json
+{
+  "location": "Beijing,CN",
+  "units": "metric"
+}
+```
+
+**返回信息:**
+- 当前温度 (实际温度和体感温度)
+- 天气状况描述
+- 湿度百分比
+- 气压 (hPa)
+- 风速和风向
+- 能见度
+- 日出日落时间
+
+### 2. get_weather_forecast
+
+获取指定位置的5天天气预报。
+
+**参数:**
+- `location` (必需): 城市名称，格式如 "London,GB" 或 "Beijing,CN"
+- `units` (可选): 温度单位，"metric" (摄氏度) 或 "imperial" (华氏度)，默认为 "metric"
+
+**示例:**
+```json
+{
+  "location": "New York,US",
+  "units": "imperial"
+}
+```
+
+**返回信息:**
+- 未来5天的每日天气预报
+- 每日最高和最低温度
+- 主要天气状况
+
+## 支持的城市格式
+
+支持多种城市名称格式:
+
+- `"Beijing,CN"` - 城市名,国家代码
+- `"London,GB"` - 城市名,国家代码
+- `"New York,US"` - 城市名,国家代码
+- `"Tokyo,JP"` - 城市名,国家代码
+- `"Paris,FR"` - 城市名,国家代码
+
+## API 配置
+
+本服务器使用 OpenWeatherMap API，已配置 API Key。如需使用自己的 API Key，请修改 `main.py` 中的 `OPENWEATHER_API_KEY` 变量。
+
+## 技术实现
+
+### FastMCP 框架
+
+本项目使用 `FastMCP` 框架，它提供了简洁的 `@mcp.tool()` 装饰器来定义 MCP 工具：
+
+```python
+from mcp.server.fastmcp import FastMCP
+
+mcp = FastMCP("weather")
+
+@mcp.tool()
+async def get_current_weather(location: str, units: str = "metric") -> str:
+    """Get current weather information for a specific location."""
+    # 实现逻辑
+    return weather_info
+```
+
+### 工具装饰器优势
+
+- **简洁性**: 使用装饰器自动注册工具，无需手动定义工具列表
+- **类型安全**: 支持类型注解，提供更好的 IDE 支持
+- **文档化**: 函数文档字符串自动成为工具描述
+- **易维护**: 代码结构清晰，易于理解和维护
+
+## 错误处理
+
+服务器包含完善的错误处理机制:
+
+- 无效的城市名称会返回相应的错误信息
+- API 请求失败会提供详细的错误描述
+- 网络连接问题会被捕获并报告
+
+## 开发
+
+### 项目结构
+
+```
+mcp-weather/
+├── main.py          # 主服务器代码 (使用 FastMCP)
+├── demo.py          # 演示脚本
+├── test_tools.py    # 工具测试脚本
+├── pyproject.toml   # 项目配置和依赖
+├── README.md        # 项目文档
+└── uv.lock         # 依赖锁定文件
+```
+
+### 依赖项
+
+- `mcp[cli]>=1.12.1`: MCP 协议支持
+- `httpx>=0.25.0`: 异步 HTTP 客户端
+- `pydantic>=2.0.0`: 数据验证和序列化
+
+### 测试
+
+你可以通过以下方式测试服务器:
+
+1. 运行工具测试: `uv run python test_tools.py`
+2. 运行演示: `uv run python demo.py`
+3. 启动 MCP 服务器: `uv run python main.py`
+
+## 许可证
+
+本项目使用 MIT 许可证。
+
+## 贡献
+
+欢迎提交 Issue 和 Pull Request 来改进这个项目！
+
+## 支持
+
+如果你遇到任何问题或有疑问，请创建 GitHub Issue 或联系开发者。

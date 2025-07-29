@@ -1,0 +1,23 @@
+[build-system]
+requires =  ["setuptools>=61.0","wheel"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "open-mcp-weather-demo"
+version = "0.1.0"
+description = "Weather query MCP server using OpenWeatherMap API"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "mcp[cli]>=1.12.1",
+    "httpx>=0.25.0",
+    "pydantic>=2.0.0",
+	"openai>=1.75.0",
+	"python-dotenv>=1.75.0",
+]
+
+[project.scripts]
+open-mcp-weather-demo = "weather:mcp.run"
+[tool.setuptools]
+package-dir = {"" = "src"}
+[tool.setuptools.packages.find]
+where = ["src"]
