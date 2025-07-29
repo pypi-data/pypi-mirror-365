@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "raya-pdi"
+version = "0.1.1"
+description = "Plugin Driven Integration"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+    { name = "Diyorbek Ibragimov", email = "uzdevid@gmail.com" },
+]
+dependencies = ["event-dispatching>=0.2.0"]
+requires-python = ">=3.11"
+
+[project.urls]
+Homepage = "https://github.com/uzdevid/raya-pdi"
