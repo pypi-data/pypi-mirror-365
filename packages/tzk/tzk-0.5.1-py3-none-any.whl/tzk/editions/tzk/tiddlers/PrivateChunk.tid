@@ -1,0 +1,55 @@
+color: #000001
+created: 20200509180315396
+creator: soren
+icon: $:/core/images/excise
+modified: 20240723030607886
+modifier: soren
+refexplorer-hide: true
+tags: Meta Public
+title: PrivateChunk
+type: text/vnd.tiddlywiki
+
+\procedure .edit-button()
+	<small>
+	<$button
+		class="tc-btn-invisible tc-tiddlylink"
+		message="tm-edit-tiddler"
+		param=<<__tiddler__>> 
+		tooltip="Edit this private chunk."
+	>
+			<i class="fa fa-pen"/>
+	</$button>
+	</small>
+\end .edit-button
+
+<% if [all[current]field:title[PrivateChunk]] %>
+<!-- not being used as a template -->
+
+Tiddlers whose subject matter is sensitive or personal are typically not marked as public. However, sometimes a topic is almost entirely fit for publication, but you'd like to add a little bit of private commentary to it. In this case, you can use a //private chunk//. This is a separate tiddler, generally named the same as the public tiddler followed by a `/p`, and tagged <<tag PrivateChunk>> (this tiddler). To include the private chunk in the public tiddler, it is transcluded, using `PrivateChunk` (this tiddler again) as a template. Some magic hides this bit and shows the template bit when this is done.
+
+Since you won't mark the private chunk as public, when the wiki is published, the private chunks don't come along. The title must not contain any sensitive information, since the transclusion directive will still be present in the source, but this shouldn't be a concern if the naming convention above is followed.
+
+The lock button {{$:/core/images/locked-padlock}} on the editor toolbar (or Ctrl+Shift+E) can be used to create a new private chunk from the selected text.
+
+<% endif %>
+
+<% if [all[current]is[tiddler]!field:title[PrivateChunk]] %>
+<!-- being used as a template -->
+
+	<% if [all[current]!tag[PrivateChunk]] %>
+	
+		<span style="color: yellow;">Warning: This private chunk is not tagged PrivateChunk.</span>
+		<$fieldmangler tiddler=<<currentTiddler>>>
+		<$button>
+		  <$action-sendmessage $message="tm-add-tag" $param="PrivateChunk"/>
+		  Add tag
+		</$button>
+		</$fieldmangler>
+		
+	<% endif %>
+
+  <div class="sib-private-chunk"><$link to=<<currentTiddler>>>private</$link><<.edit-button>>
+		<$transclude name=<<currentTiddler>> mode="block"/>
+	</div>
+	
+<% endif %>
