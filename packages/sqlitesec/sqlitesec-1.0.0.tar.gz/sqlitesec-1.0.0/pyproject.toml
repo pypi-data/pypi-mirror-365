@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sqlitesec"
+version = "1.0.0"
+description = "Secure SQLite databases with AES-256 encryption"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "John Doe", email = "pypideveloperaccount.rejoicing466@passmail.net"}
+]
+maintainers = [
+    {name = "John Doe", email = "pypideveloperaccount.rejoicing466@passmail.net"}
+]
+keywords = ["sqlite", "encryption", "security", "database", "aes"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Database",
+    "Topic :: Security :: Cryptography",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "cryptography>=3.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/oyvinrog/sqlitesec"
+Documentation = "https://github.com/oyvinrog/sqlitesec#readme"
+Repository = "https://github.com/oyvinrog/sqlitesec.git"
+Issues = "https://github.com/oyvinrog/sqlitesec/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["sqlitesec*"]
+exclude = ["tests*"] 

@@ -1,0 +1,100 @@
+Metadata-Version: 2.4
+Name: sqlitesec
+Version: 1.0.0
+Summary: Secure SQLite databases with AES-256 encryption
+Author-email: John Doe <pypideveloperaccount.rejoicing466@passmail.net>
+Maintainer-email: John Doe <pypideveloperaccount.rejoicing466@passmail.net>
+License: MIT
+Project-URL: Homepage, https://github.com/oyvinrog/sqlitesec
+Project-URL: Documentation, https://github.com/oyvinrog/sqlitesec#readme
+Project-URL: Repository, https://github.com/oyvinrog/sqlitesec.git
+Project-URL: Issues, https://github.com/oyvinrog/sqlitesec/issues
+Keywords: sqlite,encryption,security,database,aes
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Database
+Classifier: Topic :: Security :: Cryptography
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: cryptography>=3.0.0
+Dynamic: license-file
+
+# SqliteSec
+
+**Secure SQLite databases with AES-256 encryption**
+
+SqliteSec protects your SQLite databases by encrypting them with industry-standard AES-256 encryption. Share sensitive data safely or work with confidential information without compromising security.
+
+## Installation
+
+```bash
+pip install sqlitesec
+```
+
+## Features
+
+- **AES-256 encryption** - Military-grade security for your databases
+- **Seamless integration** - Drop-in replacement for standard SQLite connections
+- **Automatic encryption/decryption** - Transparent operation with your existing code
+- **Secure file sharing** - Safely send encrypted databases to others
+
+## Quick Start
+
+```python
+from sqlitesec import SqliteSec
+import os
+
+# Initialize with your encryption key
+key = os.urandom(32)  # Generate a secure 256-bit key
+sqs = SqliteSec(key)
+
+# Create and use encrypted database
+conn = sqs.connect("secure.db")
+cursor = conn.cursor()
+
+# Standard SQLite operations work normally
+cursor.execute('CREATE TABLE users (id INTEGER PRIMARY KEY, name TEXT)')
+cursor.execute('INSERT INTO users (name) VALUES (?)', ('Alice',))
+conn.commit()
+
+# Always close properly to ensure encryption
+sqs.close(conn, "secure.db")
+```
+
+## Reading Encrypted Data
+
+```python
+# Reconnect and read data
+conn = sqs.connect("secure.db")
+cursor = conn.cursor()
+
+cursor.execute('SELECT name FROM users WHERE id = 1')
+user_name = cursor.fetchone()[0]
+print(f"User: {user_name}")
+
+sqs.close(conn, "secure.db")
+```
+
+## API Reference
+
+### `SqliteSec(key)`
+Initialize with encryption key (32 bytes for AES-256).
+
+### `connect(database_path)`
+Open encrypted database connection. Returns standard SQLite connection object.
+
+### `close(connection, database_path)`
+Properly close connection and ensure data is encrypted.
+
+---
+
+**Security Note**: Always use a strong, randomly generated key and store it securely.
