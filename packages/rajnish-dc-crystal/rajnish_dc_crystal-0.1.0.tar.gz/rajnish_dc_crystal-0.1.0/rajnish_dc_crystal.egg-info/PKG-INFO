@@ -1,0 +1,189 @@
+Metadata-Version: 2.4
+Name: rajnish-dc-crystal
+Version: 0.1.0
+Summary: Automate Crystal HR punch in/out operations
+Author-email: Rajnish Kumar <rajnish@example.com>
+License: MIT License
+        
+        Copyright (c) 2023 Rajnish Kumar
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests>=2.25.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Requires-Dist: black>=23.0.0; extra == "dev"
+Requires-Dist: isort>=5.0.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Requires-Dist: types-requests>=2.31.0.1; extra == "dev"
+Dynamic: license-file
+
+# Crystal HR Automation
+
+A Python package to automate Crystal HR punch in/out operations with configurable delays and email notifications.
+
+## Features
+
+- Automated punch in/out with configurable delays
+- Email notifications for successful/failed operations
+- Configurable via JSON config file
+- Command-line interface for easy use
+- Production-ready package structure
+
+## Installation
+
+### From PyPI (Recommended)
+
+```bash
+pip install rajnish-dc-crystal
+```
+
+### From Source
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/rajnish-dc-crystal.git
+   cd rajnish-dc-crystal
+   ```
+
+2. Install in development mode:
+   ```bash
+   pip install -e .[dev]
+   ```
+
+## Quick Start
+
+1. Initialize configuration:
+   ```bash
+   crystal-hr config init
+   ```
+
+2. Edit the config file (usually at `~/.config/crystal_hr/config.json`) with your credentials.
+
+3. Perform a punch in:
+   ```bash
+   crystal-hr punch in --delay 5
+   ```
+
+4. Perform a punch out:
+   ```bash
+   crystal-hr punch out
+   ```
+
+## Configuration
+
+The configuration file is stored in `~/.config/crystal_hr/config.json` by default. You can specify a different path using the `--config` option.
+
+Example configuration:
+
+```json
+{
+    "hr_system": {
+        "username": "your_username",
+        "password": "your_password",
+        "company_id": "1",
+        "base_url": "https://desicrewdtrial.crystalhr.com"
+    },
+    "email": {
+        "gmail_user": "your.email@gmail.com",
+        "gmail_app_password": "your_app_password",
+        "recipient_email": "recipient@example.com"
+    },
+    "behavior": {
+        "default_delay_minutes": 0,
+        "random_delay_max_minutes": 0
+    }
+}
+```
+
+## Usage
+
+### Punch In/Out
+
+```bash
+# Punch in with a 5-minute delay
+crystal-hr punch in --delay 5
+
+# Punch out immediately
+crystal-hr punch out
+```
+
+### Configuration Management
+
+```bash
+# Initialize a new config file
+crystal-hr config init
+
+# Show current configuration
+crystal-hr config show
+```
+
+## Development
+
+### Setup
+
+1. Clone the repository
+2. Install development dependencies:
+   ```bash
+   pip install -e .[dev]
+   ```
+
+### Running Tests
+
+```bash
+pytest
+```
+
+### Code Formatting
+
+```bash
+black .
+isort .
+```
+
+### Type Checking
+
+```bash
+mypy .
+```
+
+## License
+
+MIT
+
+## Contributing
+
+Contributions are welcome! Please open an issue or submit a pull request.
+
+## Disclaimer
+
+This software is provided as-is, without any warranties. Use it responsibly and in compliance with your organization's policies.
