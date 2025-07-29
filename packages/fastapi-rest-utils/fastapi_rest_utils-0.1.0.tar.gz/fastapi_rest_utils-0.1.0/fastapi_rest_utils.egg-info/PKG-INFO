@@ -1,0 +1,92 @@
+Metadata-Version: 2.4
+Name: fastapi-rest-utils
+Version: 0.1.0
+Summary: Utilities for building REST APIs with FastAPI
+Author-email: Babaian Daniel <babaian.daniel@icloud.com>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/yourusername/fastapi-rest-utils
+Project-URL: Repository, https://github.com/yourusername/fastapi-rest-utils
+Project-URL: Issues, https://github.com/yourusername/fastapi-rest-utils/issues
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: fastapi>=0.100.0
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: sqlalchemy>=2.0.0
+Requires-Dist: typing-extensions>=4.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.21.0; extra == "dev"
+Requires-Dist: black>=23.0.0; extra == "dev"
+Requires-Dist: isort>=5.12.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Dynamic: license-file
+
+# FastAPI REST Utils
+
+A collection of utilities for building REST APIs with FastAPI, providing common patterns and abstractions for viewset-based API development.
+
+## Features
+
+- **ViewSet Base Classes**: Abstract base classes for building RESTful viewsets
+- **Router Utilities**: Helper functions for creating and configuring FastAPI routers
+- **Dependency Injection**: Common dependency injection patterns for FastAPI
+- **SQLAlchemy Integration**: Utilities for working with SQLAlchemy models
+- **Type Safety**: Full type hints and Pydantic integration
+
+## Installation
+
+```bash
+pip install fastapi-rest-utils
+```
+
+## Quick Start
+
+```python
+from fastapi import FastAPI
+from fastapi_rest_utils import ViewSet, router_from_viewset
+from fastapi_rest_utils.viewsets.sqlalchemy import SQLAlchemyViewSet
+
+# Create your viewset
+class ProductViewSet(SQLAlchemyViewSet):
+    model = Product
+    response_model = ProductResponse
+    
+    # Define your CRUD operations
+    async def list(self) -> dict:
+        # Implementation here
+        pass
+
+# Create router from viewset
+app = FastAPI()
+router = router_from_viewset(ProductViewSet, prefix="/products")
+app.include_router(router)
+```
+
+## Development
+
+To install in development mode:
+
+```bash
+pip install -e ".[dev]"
+```
+
+## Tests
+
+Unit tests for this package are located in the `tests/` directory. To run the tests, use:
+
+```bash
+pytest
+```
+
+## License
+
+MIT License 
