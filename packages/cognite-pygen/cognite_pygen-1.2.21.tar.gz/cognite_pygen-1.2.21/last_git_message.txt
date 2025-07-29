@@ -1,0 +1,33 @@
+[PYG-402] 😕Consistent returning on instanceType (#494)
+
+# Description
+
+**Context**: Pygen creates `pydantic` classes for all views in a given
+data model. These comes as Write/Read DTO (data transfer object) classes
+for the request and the response. They have a different configurations,
+the read/response objects allow for extra properties, while the
+write/requests do not. This is in case new properties are added to the
+view, the DTO class should not fail when retrieving.
+
+This is causing an issue when the user call
+`.list(retrieve_connections="full")`. Pygen builds on top of the
+`cognite-sdk` .query method for instances. As part of the instantiation
+of the DTO class the nodes\edges are dumped to a dictionary. This dump
+includes a `instanceType` property. Since the read/response object
+accepts extra properties, this instanceType property gets set on the
+resulting DTO item. This is unexpected for the end-user.
+
+This PR removes that `instanceType` from response objects.
+
+## Bump
+
+- [x] Patch
+- [ ] Minor
+- [ ] Skip
+
+## Changelog
+### Fixed
+
+- When calling the `.list` method, the returning items no longer have
+`instanceType` attribute set when
+`retrieve_connections='full'/'identifier'
