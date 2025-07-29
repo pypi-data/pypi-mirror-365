@@ -1,0 +1,26 @@
+* Write CLI
+    * in progress, using click - https://click.pocoo.org/
+* Write GUI
+    * in progress (tkinter)
+* Write docs
+    * How? Sphinx? Needs research
+
+---
+
+One of the things curious about managing a game collection that doubles as a
+backlog is, you get games on systems that were originally on other systems. How
+do you classify those games? The original game is the actual content you're
+playing, but you bought it for the newer system! If you track ownership
+correctly, you'll put it under the new system. If you care about tracking the
+original release, you're a little stuck.
+
+A perfect example is Virtual Console games on the Wii, WiiU, and 3DS. These
+games should have their ownership tracked under Wii, WiiU, or 3DS, but the
+original releases are on NES, SNES, etc. Ideally, it should be tracked as a
+duplicate of the respective game on NES and SNES if you've owned or beaten them.
+That hints toward needing games to have pointers of some sort, to add some
+meaning to what's *truly* owned, and what's *been played through*.
+
+This points to the idea of release types. More experimentation is needed.
+
+---
