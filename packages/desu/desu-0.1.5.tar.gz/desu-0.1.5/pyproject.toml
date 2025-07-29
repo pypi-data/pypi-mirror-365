@@ -1,0 +1,27 @@
+[project]
+name = "desu"
+version = "0.1.5"
+description = "Lightweight utilities for data science, data engineering, and data analysis projects."
+authors = [
+    {name = "Misael García", email = "misagtor@gmail.com"},
+]
+readme = "Readme.md"
+requires-python = ">=3.8"
+license = "MIT"
+keywords = ["data", "utilities", "data-science", "data-engineering", "data-analysis"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "pandas >=1.0.0",
+    "seaborn",
+    "matplotlib"
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+exclude = ["tests*"]
