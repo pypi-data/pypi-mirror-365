@@ -1,0 +1,34 @@
+Metadata-Version: 2.4
+Name: gps-data-codec
+Version: 1.6.5
+Keywords: gps,data,encode,decode
+Home-Page: https://github.com/routechoices/gps-data-codec
+Author: Raphael Stefanini <raphael@routechoices.com>
+Author-email: Raphael Stefanini <raphael@routechoices.com>
+License: MIT
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+Project-URL: Source Code, https://github.com/routechoices/gps-data-codec.git
+
+# gps-data-codec
+
+Python library, implemented in rust, including base functions for encoding and decoding of gps data (timestamp, latitude, and longitude) using leb128 algorythm.
+It is used to store competitors data on https://www.routechoices.com
+
+## install
+ 
+```
+pip install gps-data-codec
+```
+
+
+```
+>> import gps_data_codec
+>> gps_data_codec.encode([(1628667993, 4.56543, -110.536214), ]) # [(time, lat, lon), ...]
+'qtaxyT}tzZhbtaT'
+>> gps_data_codec.decode('qtaxyT}tzZhbtaT')
+[(1628...
+```
+
+# Warning:  
+  - The list of GPS points must be sorted by increasing timestamps.
+
