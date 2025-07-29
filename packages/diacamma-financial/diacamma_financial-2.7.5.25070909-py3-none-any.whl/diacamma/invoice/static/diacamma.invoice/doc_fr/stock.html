@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+
+<html lang="fr" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Gestion de stock &#8212; Documentation Facturier Diacamma 2.7.5.25070909</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/haiku.css?v=dfa0e015" />
+    <script src="_static/documentation_options.js?v=97b7c773"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=041d0952"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Statistiques des ventes" href="statistics.html" />
+    <link rel="prev" title="Gestion du facturier" href="create_bill.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="index.html">
+          <span>Documentation Facturier Diacamma 2.7.5.25070909</span></a></h1>
+        <h2 class="heading"><span>Gestion de stock</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="Top">
+      
+        <p>
+        «&#160;&#160;<a href="create_bill.html">Gestion du facturier</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contenu</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="statistics.html">Statistiques des ventes</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <section id="gestion-de-stock">
+<h1>Gestion de stock<a class="headerlink" href="#gestion-de-stock" title="Lien vers cette rubrique">¶</a></h1>
+<section id="bordereau-de-stockage">
+<h2>Bordereau de stockage<a class="headerlink" href="#bordereau-de-stockage" title="Lien vers cette rubrique">¶</a></h2>
+<p>Depuis le menu <em>Facturier/Stockage/Bordereau de stockage</em> vous pouvez créer des bordereaux de reception ou sortie d’article stockable.</p>
+<p>Pour cela, vous devez préciser un lieu de stockage qui sera impacté par le mouvement de stock (configurable depuis <em>Administration/Modules (conf.)/Configuration du facturier</em>)
+Dans le cas d’une réception, vous pouvez optionnellement préciser une référence de fournisseur (raison social, facture)
+Ajoutez alors les articles ainsi que la valeur du mouvement.
+Pour un borderaux de sortie, il n’est pas possible de saisir un montant suppérieur au stock courrant.</p>
+</section>
+<section id="situation">
+<h2>Situation<a class="headerlink" href="#situation" title="Lien vers cette rubrique">¶</a></h2>
+<p>Depuis le menu <em>Facturier/Stockage/Situation</em> vous pouvez consulter, pour chaque lieu de stockage, la quantité de chaque article géré.</p>
+<p>Le bouton <em>imprimer</em> permet de sortir un rapport au format PDF, CSV ou ODS (importable via un tableur)</p>
+<p>Depuis la fiche d’un article, vous pouvez également consulter sa situation de stockage pour chacun des lieux de stockage défini.</p>
+</section>
+<section id="historique">
+<h2>Historique<a class="headerlink" href="#historique" title="Lien vers cette rubrique">¶</a></h2>
+<p>Depuis le menu <em>Facturier/Stockage/Situation</em> vous pouvez consulter, le mouvement des articles en réception et en sortie, pour une période de temps données.</p>
+<p>Le bouton <em>imprimer</em> permet également le même type de rapport que précédement.</p>
+</section>
+<section id="inventaire">
+<h2>Inventaire<a class="headerlink" href="#inventaire" title="Lien vers cette rubrique">¶</a></h2>
+<p>Depuis le menu <em>Facturier/Stockage/Bordereau d’inventaire</em> vous pouvez réaliser un inventaire de votre stock.</p>
+<p>Pour réaliser un inventaire, il faut commencer par créer un bordereau associé au lieu de stockage que l’on veut inventorier.
+De là, le bordereau est alors automatiquement remplis avec l’ensemble des articles stockables référencés.</p>
+<p>Vous ne pouvez valider votre bordereau d’inventaire qu’une fois la quantité de chaque articles resaisi.
+<em>astuce</em> : Le bouton <em>Copie</em>, utilisable sur plusieurs ligne sélectionné, permet d’automatiquement assigné la quantité actuelle.</p>
+<p>Une fois votre bordereau correctement remplis, et une fois validé, 2 bordereaux de strockages peuvent être alors automatiquement généré afin de réaliser le réajustement (en plus ou en moins) de vos stocks.</p>
+<p>Le bouton <em>imprimer</em> permet d’éditer en PDF, en CSV ou en ODS la list de l’inventaire.</p>
+</section>
+</section>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="Bottom">
+      
+        <p>
+        «&#160;&#160;<a href="create_bill.html">Gestion du facturier</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contenu</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="statistics.html">Statistiques des ventes</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, sd-libre.
+    </div>
+  </body>
+</html>

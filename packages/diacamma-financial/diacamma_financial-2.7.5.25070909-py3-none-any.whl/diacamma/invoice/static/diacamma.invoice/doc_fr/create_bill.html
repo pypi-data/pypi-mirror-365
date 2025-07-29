@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+
+<html lang="fr" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Gestion du facturier &#8212; Documentation Facturier Diacamma 2.7.5.25070909</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="_static/haiku.css?v=dfa0e015" />
+    <script src="_static/documentation_options.js?v=97b7c773"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=041d0952"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Recherche" href="search.html" />
+    <link rel="next" title="Gestion de stock" href="stock.html" />
+    <link rel="prev" title="Les articles" href="articles.html" /> 
+  </head><body>
+      <div class="header" role="banner"><h1 class="heading"><a href="index.html">
+          <span>Documentation Facturier Diacamma 2.7.5.25070909</span></a></h1>
+        <h2 class="heading"><span>Gestion du facturier</span></h2>
+      </div>
+      <div class="topnav" role="navigation" aria-label="Top">
+      
+        <p>
+        «&#160;&#160;<a href="articles.html">Les articles</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contenu</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="stock.html">Gestion de stock</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content" role="main">
+        
+        
+  <section id="gestion-du-facturier">
+<h1>Gestion du facturier<a class="headerlink" href="#gestion-du-facturier" title="Lien vers cette rubrique">¶</a></h1>
+<section id="type-de-justificatif">
+<h2>Type de justificatif<a class="headerlink" href="#type-de-justificatif" title="Lien vers cette rubrique">¶</a></h2>
+<p>Dans le facturier <em>Diacamma</em>, il y a 5 type différents de justificatif de facturation:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Panier</strong></p></li>
+</ul>
+<p>Le type <em>panier</em> n’est activable que depuis le menu <em>Administration/Modules (conf.)/Configuration commercial du facturier</em>, onglet <em>Panier</em>.
+Il permet l’utilisation d’un outil de gestion d’achat en ligne: remplissage d’un panier d’achat.</p>
+<p>Une fois activé, un nouveau menu <em>General/Panier d’achat</em> apparait alors à tout les utilisateurs ayant le droit spécifique « [Facturier Diacamma] facture : panier ».
+Par défaut, ce type (et l’écran associé) n’est pas actif.</p>
+<p>Une fois le document « panier » rempli et validé par l’acheteur, celui-ci est transformé en <em>Devis</em> (un par lieu de stockage différent si les articles sont stockable).</p>
+<ul class="simple">
+<li><p><strong>Devis</strong></p></li>
+</ul>
+<p>Le <em>devis</em> permet d’envoyer à un acheteur potentiel, un document indiquant l’estimation du prix d’un ensemble d’articles de services ou de biens.</p>
+<p>Un <em>devis</em> peut-être créé directement depuis le facturier <em>Diacamma</em> ou venant d’une transformation d’un <em>panier</em>.
+Un <em>devis</em> peut-être transformer en <em>commande</em> “validée” ou en <em>facture</em> “en création”.</p>
+<ul class="simple">
+<li><p><strong>Commande</strong></p></li>
+</ul>
+<p>Le type <em>commande</em> n’est activable que depuis le menu <em>Administration/Modules (conf.)/Configuration commercial du facturier</em>, onglet <em>Paramètres</em>.</p>
+<p>Une <em>commande</em> est une démarche de vente résultant d’un <em>devis</em> accepté formellement par un acheteur.
+C’est une mise en attente de réalisation suite à des contraintes logistique (transport) ou d’approvisionnement avant de pouvoir être transformer en <em>facture</em>.</p>
+<p>Par contre, contrairement à un <em>devis</em>, un règlement peut lui être associée (prouvant l’acceptation de l’acheteur).</p>
+<p>Une <em>commande</em> ne peux venir que d’un devis, ne peux pas être à l’état “en création” et ne peux qu’être transformer en <em>facture</em>.</p>
+<ul class="simple">
+<li><p><strong>Facture</strong></p></li>
+</ul>
+<p>Une <em>facture</em> est le justificatif d’achat prouvant la vente d’un ensemble d’articles.
+Un ensemble de paiement peux lui-etre attachée.</p>
+<p>Une <em>facture</em> peut-être créé directement depuis le facturier <em>Diacamma</em> ou venant d’une transformation d’un <em>devis</em>, d’une <em>commande</em> ou d’un <em>avoir</em>.
+Elle peux également être transformer en <em>avoir</em> (droit spécifique « [Facturier Diacamma] facture : avoir »)</p>
+<ul class="simple">
+<li><p><strong>Avoir</strong></p></li>
+</ul>
+<p>Un <em>avoir</em> est le justificatif prouvant le remboursement d’un ensemble d’articles.
+Un ensemble de paiement peux lui-etre attachée.</p>
+<p>Une <em>avoir</em> peut-être créé directement depuis le facturier <em>Diacamma</em> ou venant d’une transformation d’une <em>facture</em>.
+Il peux également être transformer en <em>facture</em> (droit spécifique « [Facturier Diacamma] facture : avoir »)</p>
+</div></blockquote>
+</section>
+<section id="creation">
+<h2>Création<a class="headerlink" href="#creation" title="Lien vers cette rubrique">¶</a></h2>
+<p>Depuis le menu <em>Facturier/Facture</em> vous pouvez éditer ou ajouter une nouvelle facture.</p>
+<p>Commencez par définir le type de document (devis, facture, reçu ou avoir) que vous souhaitez créer ainsi que la date d’émission et un commentaire qui figurera dessus.</p>
+<p>Dans cette facture, vous devez préciser le client associé, c’est à dire le tiers comptable imputable de l’opération.</p>
+<a class="reference internal image-reference" href="_images/bill_edit.png"><img alt="_images/bill_edit.png" class="align-center" src="_images/bill_edit.png" style="height: 400px;" />
+</a>
+<p>Ensuite ajoutez ou enlevez autant d’articles que vous le désirez.</p>
+<a class="reference internal image-reference" href="_images/add_article.png"><img alt="_images/add_article.png" class="align-center" src="_images/add_article.png" style="height: 400px;" />
+</a>
+<p>Par défaut, vous obtenez la désignation et le prix par défaut de l’article sélectionné, mais l’ensemble est modifiable. Vous pouvez choisir aussi l’article divers: aucune information par défaut n’est alors proposé.</p>
+<p>Si l’article a été défini comme <em>stockable</em>, vous devrez en plus préciser depuis quel lieu de stockage il sera sortie.
+Il n’est bien sur pas possible de vendre plus d’article stockable que l’on possède dans le stock.</p>
+</section>
+<section id="creation-en-lot">
+<h2>Création en lot<a class="headerlink" href="#creation-en-lot" title="Lien vers cette rubrique">¶</a></h2>
+<p>Depuis le menu <em>Facturier/Facture</em>, vous pouvez créer des factures en lot via le bouton « En lot ».</p>
+<p>Pour cela, vous devez définir un « critère sauvegarder » de recherche de tiers (à réaliser via le menu « Comptabilité &gt; Tiers » - bouton « Recherche »).
+Précisez également le type de document (devis, facture, avoir ou reçu) à réaliser ainsi que l’article à inclure (un seul possible).</p>
+<p>Valider la création: la génération des justificatifs, liés aux tiers définis dans la recherche, sera alors réalisée.
+Ces justificatifs seront à l’état « en création »: vous pouvez donc les controler avant de les valider et les envoyer.</p>
+</section>
+<section id="changement-d-etat">
+<h2>Changement d’état<a class="headerlink" href="#changement-d-etat" title="Lien vers cette rubrique">¶</a></h2>
+<p>Depuis le menu <em>Facturier/Facture</em> vous pouvez consulter les factures en cours, validé ou fini.</p>
+<p>Un devis, une facture, un reçu ou un avoir dans l’état « en cours » est un document en cours de conception et il n’est pas encore envoyé au client.</p>
+<p>Depuis la fiche du document, vous pouvez le valider: il devient alors imprimable et non modifiable.</p>
+<p>Dans ces deux cas, une écriture comptable est alors automatiquement générée.</p>
+<p>Un devis validé peut facilement être transformé en facture dans le cas de son acceptation par votre client. La facture ainsi créé se retrouve alors dans l’état « en cours » pour vous permettre de la réajuster.</p>
+<p>Une fois qu’une facture (ou un avoir) est considéré comme terminée (c’est à dire réglée ou définie comme pertes et profits), vous pouvez définir son état à «fini».</p>
+<p>Depuis une facture « fini », il vous est possible de créer un avoir correspondant à l’état « en cours ». Cette fonctionnalité vous sera utile si vous êtes amené à rembourser un client d’un bien ou un service précédemment facturé.</p>
+<p>Vous pouvez également archiver des justificatifs (devis, facture, avoir) quand ceux-ci ont été gérés (droit spécifique « [Facturier Diacamma] facture : archivé »).
+Notez que si un avoir et un facture sont totalement lié, c’est à dire qu’ils n’ont qu’un règlement interne de l’un vers l’autre, leurs états sont forcés à l’identique entre « validé » et « archivé ».</p>
+<p>Si une facture contiens des articles <em>stockable</em>, un bordereau de sortie est automatiquement générer pour correspondre à cette vente.
+La situation du stock est alors mise à jour automatiquement.</p>
+</section>
+<section id="impression">
+<h2>Impression<a class="headerlink" href="#impression" title="Lien vers cette rubrique">¶</a></h2>
+<p>Depuis la fiche d’un document (devis, facture, reçu ou avoir) vous pouvez à tout moment imprimer ou réimprimer celui-ci s’il n’est pas à l’état «en cours».</p>
+<p>Pour les factures, les reçus ou les avoirs, une sauvegarde officielle (d’après le patron d’impression par défaut) est automatiquement sauvegardée dans le gestionnaire de documents au moment de la validation.
+Lorsque vous voulez imprimer le justificatif, on vous propose alors par défaut de télécharger ce document sauvegardé.
+Vous pouvez régénérer un nouveau PDF, par exemple avec un autre patron d’impression. Par contre celui-ci comportera la mention « duplicata » en filigrane.</p>
+</section>
+<section id="paiement">
+<h2>Paiement<a class="headerlink" href="#paiement" title="Lien vers cette rubrique">¶</a></h2>
+<p>Si ceux-ci sont configurés (menu <em>Administration/Modules (conf.)/Configuration du règlement</em>), vous pouvez consulter les moyens de paiement d’une facture, d’un reçu ou d’un devis.
+Si vous l’envoyez par courriel, vous pouvez également les faire apparaitre dans votre message.</p>
+<p>Dans le cas d’un paiement via PayPal, MoneticoPaiement ou Hello-Asso, si votre <em>Diacamma</em> est accessible par internet, le logiciel sera automatiquement notifié du règlement.
+Dans le cas d’un devis, celui-ci sera automatiquement archivé et une facture équivalente sera générée.
+Un nouveau réglement sera ajouté dans votre facture.</p>
+<p>Dans l’écran <em>Comptabilité/Transactions bancaires</em>, vous pouvez consulté précisement la notification reçu de PayPal, MoneticoPaiement ou Hello-Asso.
+En cas d’état « échec », la raison est alors précisé: il vous faudra manuellement vérifier votre compte (PayPal, MoneticoPaiement ou Hello-Asso) et rétablir l’éventuellement paiment erroné manuellement.</p>
+</section>
+</section>
+
+
+      </div>
+      <div class="bottomnav" role="navigation" aria-label="Bottom">
+      
+        <p>
+        «&#160;&#160;<a href="articles.html">Les articles</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contenu</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="stock.html">Gestion de stock</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, sd-libre.
+    </div>
+  </body>
+</html>
