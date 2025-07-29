@@ -1,0 +1,42 @@
+[project]
+name = "hawadata"
+version = "0.17.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "databases==0.5.3",
+    "decorator==5.1.1",
+    "loguru==0.6.0",
+    "mongo-log==0.0.4",
+    "mongoengine==0.24.2",
+    "munch==2.5.0",
+    "mysqlclient>=2.2.7",
+    "numpy==1.24.2",
+    "pandas==2.0.1",
+    "pendulum==2.1.2",
+    "pingouin>=0.5.5",
+    "pydantic==1.10.2",
+    "pymongo==4.3.3",
+    "pymysql==1.0.2",
+    "redis==4.3.5",
+    "requests==2.28.1",
+    "scikit-learn>=1.7.1",
+    "scipy==1.10.1",
+    "seaborn==0.12.1",
+    "setuptools>=80.9.0",
+    "sqlalchemy==1.4.46",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+]
+
+# 添加 build system 配置
+[build-system]
+requires = ["uv_build>=0.8.3,<0.9.0"]
+build-backend = "uv_build"
+[tool.uv.build-backend]
+module-name = "hawa"
+module-root = ""
