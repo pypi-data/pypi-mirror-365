@@ -1,0 +1,34 @@
+# OUTLINE
+
+- intro (5 min)
+  - motivation: standard methodology
+  - hard, slow, error prone
+  - difficult to scale the expressive power of the language
+- programmatic semantics (10 min)
+  - SMT solvers (Z3)
+  - bitvectors as states
+  - primitive sorts in Z3
+  - model-checker to facilitate
+    - translate into Z3 constraints
+    - find a model if there is one
+    - use model to interpret and print
+  - DEMO 1: IMPOSITION SEMANTICS
+    - run examples
+    - unit tests
+- computability as a theoretical virtue (10 min) -- MIGUEL
+  - cost of a primitive scales exponentially with arity (go through space complexity)
+  - compare one-place, two-place, and three-place
+  - other?
+  - DEMO MAXIMIZER FOR IMPOSITION SEMANTICS
+- imposition defined (5 min)
+  - maximal compatible parts
+  - alternative worlds
+  - semantics for counterfactuals
+  - DEMO COMPARISON
+- modality defined (5 min)
+  - `\Box A := \top \boxright A` over `\Box A := \neg A \boxright \bot`
+    - iterated modals don't force counterfactuals into the antecedent
+    - intuitive reading: if anything were the case, A would be the case
+  - imposition theory admits countermodels to this definition
+    - many vacuous countermodels
+    - but good logic
