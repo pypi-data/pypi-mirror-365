@@ -1,0 +1,27 @@
+Metadata-Version: 2.4
+Name: my-package-himanshi
+Version: 0.1
+Summary: A Python package to interface with local LLM Gemma:2b via Ollama
+Home-page: https://github.com/yourusername/my-package-himanshi
+Author: Himanshi
+Author-email: your.email@example.com
+Keywords: zunno chatbot ollama gemma
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# my-package-himanshi
+
+This is a sample package that contains a Zunno class to interact with a chatbot.
