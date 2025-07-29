@@ -1,0 +1,12 @@
+include README.md
+include LICENSE
+include requirements.txt
+include PUBLISHING_GUIDE.md
+recursive-include coptic *.py
+recursive-include examples *.ipynb *.py
+recursive-include datasets *.csv
+prune coptic/__pycache__
+prune */__pycache__
+prune */*/__pycache__
+global-exclude *.pyc
+global-exclude .DS_Store
