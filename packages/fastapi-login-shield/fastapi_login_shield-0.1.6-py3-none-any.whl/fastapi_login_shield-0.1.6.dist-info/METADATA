@@ -1,0 +1,31 @@
+Metadata-Version: 2.4
+Name: fastapi-login-shield
+Version: 0.1.6
+Summary: Protect FastAPI login endpoints from brute-force attacks
+Project-URL: Homepage, https://github.com/MrMrProgrammer/fastapi-login-shield
+Project-URL: Repository, https://github.com/MrMrProgrammer/fastapi-login-shield
+Author-email: MrMrProgrammer <mrmrprogrammer@gmail.com>
+License: MIT
+Requires-Python: >=3.7
+Requires-Dist: fastapi>=0.95.0
+Requires-Dist: starlette>=0.27.0
+Description-Content-Type: text/markdown
+
+# fastapi-login-shield
+
+A simple FastAPI middleware to protect login endpoints from brute-force attacks.
+
+## Features
+- Exponential backoff delay on failed login attempts
+- Ignores the first 3 failed attempts (no delay)
+- Monitors only the specified login path
+- No external dependencies or complex setup required
+
+## Usage
+```python
+from fastapi import FastAPI
+from your_module import LoginShieldMiddleware
+
+app = FastAPI()
+app.add_middleware(LoginShieldMiddleware, login_path="/login")
+```
