@@ -1,0 +1,89 @@
+Metadata-Version: 2.3
+Name: quantmllib
+Version: 0.0.1.dev0
+Summary: Quant ML Lib helps portfolio managers and traders who want to leverage the power of machine learning by providing reproducible, interpretable, and easy to use tools.
+Keywords: machinelearning,finance,investment,education
+Author: D. Danchev
+Author-email: D. Danchev <12420863+danchev@users.noreply.github.com>
+License: AGPL-3.0-or-later
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)
+Classifier: Development Status :: 2 - Pre-Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Financial and Insurance Industry
+Classifier: License :: Other/Proprietary License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Office/Business :: Financial :: Investment
+Requires-Dist: numpy>=2.1.3
+Requires-Dist: matplotlib>=3.10.3
+Requires-Dist: pandas>=2.3.0
+Requires-Dist: scikit-learn>=1.7.0
+Requires-Dist: scipy>=1.15.3
+Requires-Dist: statsmodels>=0.14.5
+Requires-Dist: cython>=3.1.2
+Requires-Dist: pot>=0.9.5
+Requires-Dist: numba>=0.61.2
+Requires-Dist: networkx>=3.3.1
+Requires-Dist: dash>=3.1.1
+Requires-Dist: dash-cytoscape>=1.0.2
+Requires-Dist: dash-bootstrap-components>=2.0.3
+Requires-Dist: tensorflow>=2.19.0
+Requires-Dist: joblib>=1.5.1
+Requires-Dist: decorator>=4.4.2
+Requires-Dist: analytics-python>=1.4.post1
+Requires-Dist: getmac>=0.9.5
+Requires-Dist: cvxpy>=1.6.5
+Requires-Dist: tf-keras>=2.19.0
+Requires-Dist: cupy-cuda12x>=13.4.1 ; extra == 'gpu'
+Requires-Python: >=3.11
+Project-URL: Bug Reports, https://github.com/danchev/quantmllib/issues
+Project-URL: Documentation, https://danchev.github.io/quantmllib/
+Project-URL: Project Boards, https://github.com/danchev/projects
+Project-URL: Source, https://github.com/danchev/quantmllib
+Provides-Extra: gpu
+Description-Content-Type: text/markdown
+
+# Quant ML Lib
+
+Quant ML Lib is a Python package for financial machine learning, providing reproducible, interpretable, and easy-to-use tools for portfolio managers and traders.
+
+## Features
+- Peer-reviewed algorithms from top financial journals
+- Techniques from leading authors in financial machine learning
+- Extensive documentation and tutorials
+- Community support and sponsorship model
+
+## Installation
+Install Quant ML Lib using pip:
+
+```bash
+pip install quantmllib
+```
+
+## Usage
+Import Quant ML Lib in your Python code:
+
+```python
+import quantmllib
+```
+
+Refer to the [documentation](https://danchev.github.io/quantmllib/) for detailed examples and API reference.
+
+## Documentation & Tutorials
+- [Online Documentation](https://danchev.github.io/quantmllib/)
+- [Tutorial Notebooks](https://github.com/danchev/quantmllib-research)
+
+## Contributing
+Contributions are welcome! Please see our [contributing guidelines](https://github.com/danchev/quantmllib/blob/master/CONTRIBUTING.md) for details.
+
+## License
+This project is licensed under an all rights reserved license. See [LICENSE.txt](https://github.com/danchev/quantmllib/blob/master/LICENSE.txt) for details.
+
+## Attribution
+This project is a fork of the MLFInLab library, a comprehensive framework for financial machine learning. Our objective is to build upon its foundation, with a renewed emphasis on reproducibility and interpretability in the development and application of financial ML methodologies.
