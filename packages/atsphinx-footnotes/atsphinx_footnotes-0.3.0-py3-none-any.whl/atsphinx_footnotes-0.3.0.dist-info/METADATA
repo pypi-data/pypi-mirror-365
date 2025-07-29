@@ -1,0 +1,61 @@
+Metadata-Version: 2.4
+Name: atsphinx-footnotes
+Version: 0.3.0
+Summary: Powered footnotes extension for Sphinx.
+Author-email: Kazuya Takei <myself@attakei.net>
+Requires-Python: >= 3.8
+Description-Content-Type: text/x-rst
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: Sphinx
+Classifier: Framework :: Sphinx :: Extension
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Documentation :: Sphinx
+License-File: LICENSE
+Requires-Dist: sphinx
+Project-URL: Home, https://github.com/atsphinx/footnotes
+
+==================
+atsphinx-footnotes
+==================
+
+Powered footnote tools for Sphinx.
+
+Example
+=======
+
+When using standard reStructuredText,
+you must write footnotes into last of source to render into last of document.
+
+.. code:: rst
+
+   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. [#]_
+
+   The quick brown fox jumps over the lazy dog [#]_
+
+   .. [#] This is first sentence of "Lorem ipusum"
+   .. [#] This is one of pangram.
+
+When you use this extension, you can write footnotes nearby refer contents.
+
+.. code:: rst
+
+   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. [#]_
+
+   .. [#] This is first sentence of "Lorem ipusum"
+
+   The quick brown fox jumps over the lazy dog [#]_
+
+   .. [#] This is one of pangram.
+
+Getting started
+===============
+
+(TBD)
+
