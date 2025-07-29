@@ -1,0 +1,64 @@
+[project]
+name = "archguide-mcp-python"
+version = "0.2.0"
+description = "Architecture Guidelines MCP Server - Inject architectural best practices into AI workflows"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+    { name = "Ioan Salau", email = "salauioan@yahoo.com" }
+]
+maintainers = [
+    { name = "Ioan Salau", email = "salauioan@yahoo.com" }
+]
+requires-python = ">=3.12"
+keywords = [
+    "mcp", "architecture", "guidelines", "patterns", "ai", "claude", "fastmcp",
+    "design-patterns", "best-practices", "microservices", "software-architecture"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: Documentation",
+    "Topic :: System :: Systems Administration",
+    "Typing :: Typed",
+]
+dependencies = [
+    "fastmcp>=0.9.0",
+    "pydantic>=2.0.0",
+    "python-frontmatter>=1.0.0",
+    "whoosh>=2.7.0",
+    "pydantic-settings>=2.0.0",
+    "click>=8.0.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/ioansalau/archguide-mcp-python"
+"Bug Reports" = "https://github.com/ioansalau/archguide-mcp-python/issues"
+"Source" = "https://github.com/ioansalau/archguide-mcp-python"
+"Documentation" = "https://github.com/ioansalau/archguide-mcp-python#readme"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+]
+
+[project.scripts]
+archguide-mcp = "archguide_mcp_python.server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+    "pytest-asyncio>=1.1.0",
+]
