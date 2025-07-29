@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ProtonDBclient"
+version = "0.1.1"
+description = "Python wrapper for ProtonDB, a custom TCP-based NoSQL database"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {text = "MIT"}
+authors = [
+    {name = "Sarvesh", email = "sarveshjrgar@gmail.com"}
+]
+dependencies = []
+
+[project.urls]
+"Homepage" = "https://github.com/sarveshsarvs/ProtonDB"
+"Repository" = "https://github.com/sarveshsarvs/ProtonDB/tree/master/Wrapper/pyproton"
