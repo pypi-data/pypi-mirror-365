@@ -1,0 +1,35 @@
+[project]
+name = "ecbrates"
+version = "0.1.4"
+description = "Unofficial package: European Central Bank Foreign Exchange Rates"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "requests",
+    "diskcache",
+    "holidays",
+    "freezegun"
+]
+
+[project.optional-dependencies]
+cli = [
+    "typer"
+]
+test = [
+    "pytest",
+    "pytest-benchmark",
+    "pytest-cov"
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+ecbrates = "ecbrates.cli:app"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
