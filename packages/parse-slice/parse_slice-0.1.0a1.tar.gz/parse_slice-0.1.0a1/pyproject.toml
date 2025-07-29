@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "parse-slice"
+version = "0.1.0a1"
+description = "A Python function that normalizes and validates slice objects, ensuring correct bounds based on the step direction."
+readme = "README.md"
+requires-python = ">=2"
+license = "MIT"
+authors = [
+  { name="Jifeng Wu", email="jifengwu2k@gmail.com" }
+]
+classifiers = [
+    "Programming Language :: Python :: 2",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/jifengwu2k/parse-slice"
+"Bug Tracker" = "https://github.com/jifengwu2k/parse-slice/issues"
