@@ -1,0 +1,25 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="imio.dummypackage"
+    >
+
+  <genericsetup:registerProfile
+      name="default"
+      title="imio dummypackage: Install"
+      description="Package to configure a new imio dummypackage site"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/default"
+      />
+
+
+  <genericsetup:registerProfile
+      name="uninstall"
+      title="imio dummypackage: Uninstall"
+      description="Uninstall imio dummypackage setup."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/uninstall"
+      />
+
+
+</configure>

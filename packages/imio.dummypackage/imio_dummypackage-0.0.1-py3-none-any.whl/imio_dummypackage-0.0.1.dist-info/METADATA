@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: imio.dummypackage
+Version: 0.0.1
+Summary: A dummy package for Plone development with IMIO
+Author-email: remdub <remi.dubois@imio.be>
+License-Expression: GPL-2.0-only
+Keywords: CMS,Plone,Python
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Plone
+Classifier: Framework :: Plone :: 6.1
+Classifier: Framework :: Plone :: Addon
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Python: <3.14,>=3.10
+Requires-Dist: plone-api
+Requires-Dist: plone-classicui
+Requires-Dist: products-cmfplone
