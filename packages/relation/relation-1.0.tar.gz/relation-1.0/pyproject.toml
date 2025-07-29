@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "relation"  
+version = "1.0"
+description = "a python module for making relationships between classes"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{name = "Phyo Thet Pai", email = "developer@phyotp.dev"}]
+dependencies = ["pyvis"]
+
+[project.urls]
+Homepage = "https://github.com/PhyoTP/Relation"
+
+[tool.setuptools]
+packages = ["relation"]
+

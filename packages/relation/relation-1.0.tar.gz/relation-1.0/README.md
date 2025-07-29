@@ -1,0 +1,29 @@
+# Relation
+a python module for making relationships between classes
+## how to use
+download relation.py to your project and import it:
+```py
+from relation import Relator
+```
+- to define a new relator (a custom class), use `class insert_name_here(Relator):`  
+- to add a relation to a relator, multiply them
+- to add a child to a relator, use `parent+child`
+  - you can do `parent+[child1,child2,child3...]` to add multiple children
+- to merge 2 relators, use `|` to change both or `|=` to change the first one
+- to access a relator's relationships as a list of strings, use `.[insert relationship]_names`  
+see examples for more usage
+## mindmap (new)
+import mindmap with
+```
+from relation.map import create_graph
+```
+create graphs with `create_graph`. you can define the depth and whether to include relations, parents, children or self from the graph.
+the function will return a pyvis network, so make sure you have pyvis installed and show the graph with `graph.show`.
+## roadmap
+- [x] Python File
+- [x] More examples and features
+  -  [x] mindmaps
+- [ ] Upload to PyPi to able to be pip installed
+- [ ] Swift Package
+- [ ] NPM Package
+
