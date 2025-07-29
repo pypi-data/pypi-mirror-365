@@ -1,0 +1,19 @@
+[project]
+name = "auto-modeling"
+version = "0.2.0"
+description = "Automated model selection and optimization using scikit-learn and Optuna"
+authors = [
+    { name = "Cristóbal Torres Rojas", email = "ctorres.ai@hotmail.com" }
+]
+requires-python = ">=3.8"
+dependencies = [
+    "scikit-learn>=1.3.2",
+    "optuna>=4.3.0"
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["automodeling*"]
