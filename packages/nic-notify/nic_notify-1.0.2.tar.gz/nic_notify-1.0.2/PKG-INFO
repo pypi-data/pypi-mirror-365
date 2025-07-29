@@ -1,0 +1,52 @@
+Metadata-Version: 2.4
+Name: nic_notify
+Version: 1.0.2
+Summary: A notification tool.
+Author-email: Asmita <shahasmita379@gmail.com>
+Maintainer-email: Asmita <shahasmita379@gmail.com>
+License: MIT
+Project-URL: bugs, https://github.com/audreyfeldroy/notify_service/issues
+Project-URL: changelog, https://github.com/audreyfeldroy/notify_service/blob/master/changelog.md
+Project-URL: homepage, https://github.com/audreyfeldroy/notify_service
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Framework :: Django
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: typer
+Requires-Dist: Django>=4.0
+Requires-Dist: twilio
+Provides-Extra: test
+Requires-Dist: coverage; extra == "test"
+Requires-Dist: pytest; extra == "test"
+Requires-Dist: ruff; extra == "test"
+Requires-Dist: ty; extra == "test"
+Provides-Extra: dev
+Requires-Dist: coverage; extra == "dev"
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Requires-Dist: ty; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+Dynamic: license-file
+
+# notify-service
+
+![PyPI version](https://img.shields.io/pypi/v/nic_notify.svg)
+[![Documentation Status](https://readthedocs.org/projects/nic_notify/badge/?version=latest)](https://notify-service.readthedocs.io/en/latest/?version=latest)
+
+Python Boilerplate contains all the boilerplate you need to create a Python package.
+
+* Free software: MIT License
+* Documentation: https://nic_notify.readthedocs.io.
+
+## Features
+
+* TODO
+
+## Credits
+
+This package was created with [Cookiecutter](https://github.com/audreyfeldroy/cookiecutter) and the [audreyfeldroy/cookiecutter-pypackage](https://github.com/audreyfeldroy/cookiecutter-pypackage) project template.
