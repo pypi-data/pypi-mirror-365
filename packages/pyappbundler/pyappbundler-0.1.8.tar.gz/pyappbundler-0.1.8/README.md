@@ -1,0 +1,1 @@
+Automate bundle a Python application and all its dependencies into a single package with [PyInstaller](https://pyinstaller.org/en/stable). And then (for Windows), put it all into a setup file with [Inno Setup](https://jrsoftware.org/isdl.php#stable).

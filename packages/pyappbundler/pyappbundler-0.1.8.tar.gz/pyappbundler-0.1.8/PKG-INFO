@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: pyappbundler
+Version: 0.1.8
+Summary: automate bundle a Python application into a single package
+Author-email: inerject <kumbalup@gmail.com>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/inerject/pyappbundler
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pyinstaller<6.0,>=5.13
+Requires-Dist: Jinja2<4.0,>=3.1
+Dynamic: license-file
+
+Automate bundle a Python application and all its dependencies into a single package with [PyInstaller](https://pyinstaller.org/en/stable). And then (for Windows), put it all into a setup file with [Inno Setup](https://jrsoftware.org/isdl.php#stable).

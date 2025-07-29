@@ -1,0 +1,47 @@
+#define MyAppName "[{{ app_name }}]"
+#define MyAppVersion "[{{ app_ver }}]"
+#define MyAppExeName "[{{ app_name }}].exe"
+#define Dist "[{{ dist }}]"
+
+[Setup]
+AppId={[{{ app_guid }}]
+AppName={#MyAppName}
+AppVersion={#MyAppVersion}
+;AppVerName={#MyAppName} {#MyAppVersion}
+DefaultDirName={autopf}\{#MyAppName}
+DisableProgramGroupPage=yes
+; Uncomment the following line to run in non administrative install mode (install for current user only.)
+;PrivilegesRequired=lowest
+OutputDir={#Dist}
+OutputBaseFilename={#MyAppName}_setup__{#MyAppVersion}
+{%% if app_ico %%}
+SetupIconFile=[{{ app_ico }}]
+{%% endif %%}
+Compression=lzma
+SolidCompression=yes
+WizardStyle=modern
+
+[Languages]
+Name: "english"; MessagesFile: "compiler:Default.isl"
+Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"
+Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
+
+[Tasks]
+Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+
+[Files]
+{%% if is_onefile %%}
+Source: "{#Dist}\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+{%% else %%}
+Source: "{#Dist}\{#MyAppName}\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#Dist}\{#MyAppName}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+{%% endif %%}
+; NOTE: Don't use "Flags: ignoreversion" on any shared system files
+
+[Icons]
+Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
+Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
+
+[Run]
+Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
+
