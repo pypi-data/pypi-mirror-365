@@ -1,0 +1,50 @@
+title   = "Shadows over Greyhaven"
+setting = "A misty Victorian port city plagued by occult secrets."
+outline = ""
+style_genre = "Gothic mystery adventure"
+n_acts = 3
+n_scenes=2
+n_npcs=4
+
+[[npcs]]
+name        = "Inspector Eliza Hart"
+description = "A sharp, overworked inspector trying to keep order in Greyhaven."
+personality = "Pragmatic, dry wit, secretly superstitious."
+
+[[npcs]]
+name        = "Brother Malachai"
+role        = "Cult Priest"
+description = "Charismatic leader of the Eclipsed Sun, cloaked in ritual garb."
+personality = "Zealous, eloquent, manipulative."
+
+[[acts]]
+name        = "Act I: Gathering Fog"
+description = "The heroes arrive and investigate strange disappearances."
+
+  [[acts.scenes]]
+  name        = "Arrival at Greyhaven Docks"
+  description = "Fog rolls in as the party disembarks; rumors swirl among dockworkers."
+  location    = "Old Wharf District"
+
+  [[acts.scenes]]
+  name        = "Questions at the Crow's Nest Inn"
+  location    = "Crow's Nest Inn"
+
+[[acts]]
+name        = "Act II: The Eclipse Looms"
+description = "Clues converge on the lighthouse as the cult prepares its rite."
+
+  [[acts.scenes]]
+  name        = "Raid on the Abandoned Warehouse"
+  description = "Evidence of rituals—and a map to the lighthouse—is uncovered."
+
+  [[acts.scenes]]
+  description = "A frightened cultist reveals the timing of the eclipse ceremony."
+  location    = "City Watch Barracks"
+
+[[acts]]
+name        = "Act III: Light devoured"
+
+  [[acts.scenes]]
+  name        = "Lighthouse Summit"
+  description = "A desperate battle to stop the ritual as darkness falls."
