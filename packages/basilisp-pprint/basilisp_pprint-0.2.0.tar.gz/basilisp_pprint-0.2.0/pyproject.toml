@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "basilisp-pprint"
+version = "0.2.0"
+description = ""
+authors = ["ikappaki <ikappaki@users.noreply.github.com>"]
+readme = "README.md"
+packages = [{include = "basilisp_pprint", from = "src"}]
+
+[project.urls]
+Homepage = "https://github.com/ikappaki/basilisp-pprint"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+basilisp = ">=0.4.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+
+[build-system]
+requires = ["poetry-core<2"]
+build-backend = "poetry.core.masonry.api"
