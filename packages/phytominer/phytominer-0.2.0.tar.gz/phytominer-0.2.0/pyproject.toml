@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "phytominer"
+version = "0.2.0"
+authors = [
+  { name="Kris Kari", email="toffe.kari@gmail.com" }
+]
+description = "A Python library for efficiently fetching and processing gene homolog data from the Phytozome database."
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Topic :: Scientific/Engineering :: Bio-Informatics"
+]
+dependencies = [
+    "pandas",
+    "intermine",
+    "requests",
+    "seaborn",
+    "matplotlib",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/boffus/PhytoMiner"
+"Bug Tracker" = "https://github.com/boffus/PhytoMiner/issues"
+
+[project.optional-dependencies]
+dev = ["pytest", "pytest-mock"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["phytominer*"]
+
+[tool.pytest.ini_options]
+pythonpath = "."
