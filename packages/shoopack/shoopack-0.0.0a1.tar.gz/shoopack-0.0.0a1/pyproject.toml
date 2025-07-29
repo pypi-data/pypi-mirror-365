@@ -1,0 +1,17 @@
+[project]
+name = "shoopack"
+version = "0.0.0-alpha.1"
+description = "A short description of your package"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [
+  { name="zygn", email="rikochet@kakao.com" }
+]
+dependencies = [
+  "pyzmq"
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
