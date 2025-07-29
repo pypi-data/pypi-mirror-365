@@ -1,0 +1,620 @@
+"""Integration tests for nested configuration scenarios.
+
+This module tests complex nested configuration handling:
+- Nested DynamicConfig objects
+- Lists of DynamicConfig objects
+- Deep nesting (3+ levels)
+- Mixed static and dynamic fields
+- Shared dependencies across nesting levels
+- Partial instantiation of nested structures
+"""
+
+from __future__ import annotations
+
+import logging
+from pathlib import Path
+from typing import Any
+
+import yaml
+
+from frostbound.pydanticonf import (
+    ConfigFactory,
+    DynamicConfig,
+    config_registry,
+)
+
+# Import MemoryCache from conftest
+from tests.integration.conftest import MemoryCache
+
+
+# Test configuration models
+class DatabasePoolConfig(DynamicConfig[Any]):
+    """Configuration for database connection pool."""
+
+    min_connections: int = 5
+    max_connections: int = 20
+    timeout: float = 30.0
+    retry_interval: float = 1.0
+
+
+class DatabaseConfig(DynamicConfig[Any]):
+    """Configuration for database with nested pool config."""
+
+    host: str
+    port: int
+    database: str
+    username: str
+    password: str
+    pool_config: DatabasePoolConfig | None = None
+
+    def extract_config_kwargs(self) -> dict[str, Any]:
+        """Extract kwargs, excluding nested configs and database field."""
+        return {
+            "host": self.host,
+            "port": self.port,
+            "username": self.username,
+            "password": self.password,
+        }
+
+
+class CacheConfig(DynamicConfig[Any]):
+    """Configuration for cache service."""
+
+    backend: str = "memory"
+    ttl: int = 300
+    max_size: int = 1000
+    serializer: str = "json"
+
+    def extract_config_kwargs(self) -> dict[str, Any]:
+        """Extract kwargs, providing default service_name for ServiceWithDependencies."""
+        kwargs = super().extract_config_kwargs()
+        # Provide a default service_name only for ServiceWithDependencies
+        if "service_name" not in kwargs and self.target_ and "ServiceWithDependencies" in self.target_:
+            kwargs["service_name"] = f"CacheService_{self.backend}"
+        return kwargs
+
+
+class ServiceEndpointConfig(DynamicConfig[Any]):
+    """Configuration for a service endpoint."""
+
+    path: str
+    method: str = "GET"
+    timeout: int = 30
+    retry_count: int = 3
+    headers: dict[str, str] = {}
+
+
+class MicroserviceConfig(DynamicConfig[Any]):
+    """Configuration for a microservice with multiple nested configs."""
+
+    name: str
+    version: str
+    database: DatabaseConfig | None = None
+    cache: CacheConfig | None = None
+    endpoints: list[ServiceEndpointConfig] = []
+    dependencies: dict[str, DynamicConfig] = {}
+    metadata: dict[str, Any] = {}
+
+    def extract_config_kwargs(self) -> dict[str, Any]:
+        """Extract kwargs, mapping name to service_name for ServiceWithDependencies."""
+        kwargs = super().extract_config_kwargs()
+        # Map the name field to service_name only for ServiceWithDependencies
+        if "name" in kwargs and self.target_ and "ServiceWithDependencies" in self.target_:
+            kwargs["service_name"] = kwargs.pop("name")
+        return kwargs
+
+
+class ApplicationConfig(DynamicConfig[Any]):
+    """Top-level application configuration."""
+
+    app_name: str
+    environment: str
+    debug: bool = False
+    services: list[MicroserviceConfig] = []
+    shared_resources: dict[str, DynamicConfig] = {}
+
+
+class TestNestedDynamicConfigs:
+    """Test suite for nested DynamicConfig objects."""
+
+    def test_simple_nested_config(self) -> None:
+        """Verify basic nested configuration instantiation."""
+        # Arrange
+        pool_config = DatabasePoolConfig(
+            target_="tests.integration.conftest.ConfigurablePlugin",
+            plugin_name="ConnectionPool",
+            min_connections=10,
+            max_connections=50,
+        )
+
+        db_config = DatabaseConfig(
+            target_="tests.integration.conftest.DatabaseClient",
+            host="nested.db.host",
+            port=5432,
+            database="test_db",
+            username="test_user",
+            password="test_pass",
+            pool_config=pool_config,
+        )
+
+        # Act
+        db_client = db_config.instantiate()
+
+        # Assert
+        assert db_client.__class__.__name__ == "DatabaseClient"
+        assert db_client.host == "nested.db.host"
+
+        # Pool config should be instantiated
+        assert db_config.pool_config is not None
+        pool = db_config.pool_config.instantiate()
+        assert pool.__class__.__name__ == "ConfigurablePlugin"
+        assert pool.plugin_name == "ConnectionPool"
+        assert pool.options["min_connections"] == 10
+
+    def test_deep_nesting_three_levels(self) -> None:
+        """Verify instantiation with 3+ levels of nesting."""
+        # Arrange
+        service_config = MicroserviceConfig(
+            target_="tests.integration.conftest.NestedComponent",
+            name="DeepService",
+            version="1.0.0",
+            database=DatabaseConfig(
+                target_="tests.integration.conftest.DatabaseClient",
+                host="deep.db.host",
+                port=5432,
+                database="deep_db",
+                username="user",
+                password="pass",
+                pool_config=DatabasePoolConfig(
+                    target_="tests.integration.conftest.ConfigurablePlugin", plugin_name="DeepPool", max_connections=100
+                ),
+            ),
+            cache=CacheConfig(
+                target_="tests.integration.conftest.ConfigurablePlugin",
+                plugin_name="DeepCache",
+                backend="redis",
+                ttl=600,
+            ),
+        )
+
+        # Act
+        service = service_config.instantiate()
+
+        # Assert
+        assert service.name == "DeepService"
+
+        # Instantiate nested database
+        db = service_config.database.instantiate()
+        assert db.__class__.__name__ == "DatabaseClient"
+
+        # Instantiate deeply nested pool
+        pool = service_config.database.pool_config.instantiate()
+        assert pool.plugin_name == "DeepPool"
+        assert pool.options["max_connections"] == 100
+
+    def test_circular_reference_prevention(self) -> None:
+        """Verify circular references don't cause infinite loops."""
+        # Arrange
+        # Create configs that reference each other
+        config_a = MicroserviceConfig(
+            target_="tests.integration.conftest.SimpleService", name="ServiceA", version="1.0.0"
+        )
+
+        config_b = MicroserviceConfig(
+            target_="tests.integration.conftest.SimpleService", name="ServiceB", version="1.0.0"
+        )
+
+        # Create circular reference
+        config_a.dependencies = {"service_b": config_b}
+        config_b.dependencies = {"service_a": config_a}
+
+        # Act - Should not cause infinite recursion
+        service_a = config_a.instantiate()
+
+        # Assert
+        assert service_a.name == "ServiceA"
+
+
+class TestListOfDynamicConfigs:
+    """Test suite for lists containing DynamicConfig objects."""
+
+    def test_list_of_configs_instantiation(self) -> None:
+        """Verify lists of DynamicConfig objects are handled correctly."""
+        # Arrange
+        app_config = ApplicationConfig(
+            target_="tests.integration.conftest.NestedComponent",
+            app_name="ListTestApp",
+            environment="test",
+            services=[
+                MicroserviceConfig(
+                    target_="tests.integration.conftest.SimpleService", name="Service1", version="1.0.0", port=8001
+                ),
+                MicroserviceConfig(
+                    target_="tests.integration.conftest.SimpleService", name="Service2", version="2.0.0", port=8002
+                ),
+                MicroserviceConfig(
+                    target_="tests.integration.conftest.SimpleService", name="Service3", version="3.0.0", port=8003
+                ),
+            ],
+        )
+
+        # Act - Instantiate services
+        services = [service_config.instantiate() for service_config in app_config.services]
+
+        # Assert
+        assert len(services) == 3
+        assert services[0].name == "Service1"
+        assert services[1].name == "Service2"
+        assert services[2].name == "Service3"
+        assert services[0].port == 8001
+        assert services[2].port == 8003
+
+    def test_mixed_list_with_configs_and_dicts(self) -> None:
+        """Verify handling mixed lists with configs and regular dicts."""
+        # Arrange
+        endpoints = [
+            ServiceEndpointConfig(
+                target_="tests.integration.conftest.ConfigurablePlugin",
+                plugin_name="RestEndpoint",
+                path="/api/users",
+                method="GET",
+                timeout=60,
+            ),
+            {
+                "_target_": "tests.integration.conftest.ConfigurablePlugin",
+                "plugin_name": "GraphQLEndpoint",
+                "path": "/graphql",
+                "method": "POST",
+                "headers": {"Content-Type": "application/json"},
+            },
+        ]
+
+        # Act
+        instantiated = []
+        for endpoint in endpoints:
+            if isinstance(endpoint, DynamicConfig):
+                instantiated.append(endpoint.instantiate())
+            elif isinstance(endpoint, dict) and "_target_" in endpoint:
+                instantiated.append(ConfigFactory.create(endpoint))
+
+        # Assert
+        assert len(instantiated) == 2
+        assert instantiated[0].plugin_name == "RestEndpoint"
+        assert instantiated[1].plugin_name == "GraphQLEndpoint"
+        assert instantiated[1].options["headers"]["Content-Type"] == "application/json"
+
+    def test_nested_lists_of_configs(self) -> None:
+        """Verify nested lists of configurations."""
+        # Arrange
+        config = {
+            "clusters": [
+                {
+                    "name": "cluster1",
+                    "nodes": [
+                        {"_target_": "tests.integration.conftest.SimpleService", "name": "node1", "port": 7001},
+                        {"_target_": "tests.integration.conftest.SimpleService", "name": "node2", "port": 7002},
+                    ],
+                },
+                {
+                    "name": "cluster2",
+                    "nodes": [{"_target_": "tests.integration.conftest.SimpleService", "name": "node3", "port": 7003}],
+                },
+            ]
+        }
+
+        # Act - Process nested structure
+        clusters = []
+        for cluster_data in config["clusters"]:
+            nodes = [ConfigFactory.create(node_config) for node_config in cluster_data["nodes"]]
+            clusters.append({"name": cluster_data["name"], "nodes": nodes})
+
+        # Assert
+        assert len(clusters) == 2
+        assert len(clusters[0]["nodes"]) == 2
+        assert len(clusters[1]["nodes"]) == 1
+        assert clusters[0]["nodes"][0].name == "node1"
+        assert clusters[1]["nodes"][0].port == 7003
+
+
+class TestMixedStaticDynamicFields:
+    """Test configurations with mixed static and dynamic fields."""
+
+    def test_mixed_fields_in_config(self) -> None:
+        """Verify configs with both static data and dynamic objects."""
+        # Arrange
+        service_config = MicroserviceConfig(
+            target_="tests.integration.conftest.ServiceWithDependencies",
+            name="MixedService",
+            version="1.0.0",
+            # Dynamic field
+            database=DatabaseConfig(
+                target_="tests.integration.conftest.DatabaseClient",
+                host="db.example.com",
+                port=5432,
+                database="app_db",
+                username="app_user",
+                password="secret",
+            ),
+            # Static fields
+            metadata={
+                "team": "backend",
+                "cost_center": "12345",
+                "tags": ["production", "critical"],
+                "monitoring": {"alerts_enabled": True, "metrics_interval": 60},
+            },
+        )
+
+        # Act
+        service_config.instantiate()
+        db = service_config.database.instantiate()
+
+        # Assert - Dynamic field instantiated
+        assert db.__class__.__name__ == "DatabaseClient"
+        assert db.host == "db.example.com"
+
+        # Assert - Static fields preserved
+        assert service_config.metadata["team"] == "backend"
+        assert service_config.metadata["tags"] == ["production", "critical"]
+        assert service_config.metadata["monitoring"]["alerts_enabled"] is True
+
+    def test_partial_instantiation(self) -> None:
+        """Verify selective instantiation of nested configs."""
+        # Arrange
+        app_config = ApplicationConfig(
+            target_="tests.integration.conftest.NestedComponent",
+            app_name="PartialApp",
+            environment="development",
+            debug=True,
+            shared_resources={
+                "main_db": DatabaseConfig(
+                    target_="tests.integration.conftest.DatabaseClient",
+                    host="main.db.local",
+                    port=5432,
+                    database="main",
+                    username="user",
+                    password="pass",
+                ),
+                "cache": CacheConfig(
+                    target_="tests.integration.conftest.ConfigurablePlugin", plugin_name="MainCache", backend="redis"
+                ),
+                "logger": {"_target_": "logging.Logger", "name": "app.logger"},
+            },
+        )
+
+        # Act - Only instantiate specific resources
+        main_db = app_config.shared_resources["main_db"].instantiate()
+        # Don't instantiate cache
+        logger = ConfigFactory.create(app_config.shared_resources["logger"])
+
+        # Assert
+        assert main_db.__class__.__name__ == "DatabaseClient"
+        assert main_db.host == "main.db.local"
+
+        # Cache not instantiated
+        assert isinstance(app_config.shared_resources["cache"], CacheConfig)
+        assert not hasattr(app_config.shared_resources["cache"], "__class__.__name__")
+
+        assert isinstance(logger, logging.Logger)
+        assert logger.name == "app.logger"
+
+
+class TestNestedConfigsWithDependencies:
+    """Test nested configurations with shared dependencies."""
+
+    def test_shared_dependencies_across_levels(self) -> None:
+        """Verify dependencies are shared across nesting levels."""
+        # Arrange
+        # Register shared dependencies
+        shared_logger = logging.getLogger("shared.logger")
+        ConfigFactory.register_dependency("logger", shared_logger)
+        ConfigFactory.register_dependency("api_key", "shared-api-key-123")
+
+        # Create nested config that uses dependencies at multiple levels
+        config = {
+            "_target_": "tests.integration.conftest.ServiceWithDependencies",
+            "service_name": "ParentService",
+            "config": {
+                "child_service": {
+                    "_target_": "tests.integration.conftest.ServiceWithDependencies",
+                    "service_name": "ChildService",
+                    "config": {
+                        "grandchild_service": {
+                            "_target_": "tests.integration.conftest.ServiceWithDependencies",
+                            "service_name": "GrandchildService",
+                        }
+                    },
+                }
+            },
+        }
+
+        # Act
+        parent = ConfigFactory.create(config)
+        child = ConfigFactory.create(config["config"]["child_service"])
+        grandchild = ConfigFactory.create(config["config"]["child_service"]["config"]["grandchild_service"])
+
+        # Assert - All levels share the same dependencies
+        assert parent.logger is shared_logger
+        assert child.logger is shared_logger
+        assert grandchild.logger is shared_logger
+        assert parent.api_key == "shared-api-key-123"
+        assert grandchild.api_key == "shared-api-key-123"
+
+    def test_dependency_override_in_nested_context(self) -> None:
+        """Verify dependency overrides work in nested contexts."""
+        # Arrange
+        default_cache = MemoryCache(max_size=100)
+        special_cache = MemoryCache(max_size=500)
+
+        ConfigFactory.register_dependency("cache", default_cache)
+
+        config = MicroserviceConfig(
+            target_="tests.integration.conftest.ServiceWithDependencies",
+            name="ServiceWithOverride",
+            version="1.0.0",
+            cache=CacheConfig(
+                target_="tests.integration.conftest.ServiceWithDependencies",
+                backend="special",
+                cache=special_cache,  # Override for nested service
+            ),
+        )
+
+        # Act
+        config.instantiate()
+        cache_service = config.cache.instantiate()
+
+        # Assert
+        # Main service uses default cache through dependency injection
+        # Nested service uses the explicitly provided special cache
+        assert hasattr(cache_service, "cache")
+        assert cache_service.cache is special_cache
+
+
+class TestComplexNestedScenarios:
+    """Test complex real-world nested configuration scenarios."""
+
+    def test_microservices_architecture_config(self) -> None:
+        """Verify complex microservices configuration handling."""
+        # Arrange
+        config = {
+            "platform": {
+                "name": "MicroservicePlatform",
+                "version": "3.0.0",
+                "services": {
+                    "api_gateway": {
+                        "_target_": "tests.integration.conftest.ServiceWithDependencies",
+                        "service_name": "APIGateway",
+                        "config": {
+                            "routes": [
+                                {
+                                    "_target_": "tests.integration.conftest.ConfigurablePlugin",
+                                    "plugin_name": "AuthRoute",
+                                    "path": "/auth/*",
+                                    "backend": "auth_service",
+                                },
+                                {
+                                    "_target_": "tests.integration.conftest.ConfigurablePlugin",
+                                    "plugin_name": "ApiRoute",
+                                    "path": "/api/*",
+                                    "backend": "data_service",
+                                },
+                            ],
+                            "middleware": {
+                                "cors": {
+                                    "_target_": "tests.integration.conftest.ConfigurablePlugin",
+                                    "plugin_name": "CORSMiddleware",
+                                    "allowed_origins": ["*"],
+                                },
+                                "rate_limit": {
+                                    "_target_": "tests.integration.conftest.ConfigurablePlugin",
+                                    "plugin_name": "RateLimitMiddleware",
+                                    "requests_per_minute": 100,
+                                },
+                            },
+                        },
+                    },
+                    "auth_service": {
+                        "_target_": "tests.integration.conftest.ServiceWithDependencies",
+                        "service_name": "AuthService",
+                        "db_client": {
+                            "_target_": "tests.integration.conftest.DatabaseClient",
+                            "host": "auth.db.local",
+                            "port": 5432,
+                            "username": "auth_user",
+                            "password": "auth_pass",
+                        },
+                    },
+                },
+            }
+        }
+
+        # Act
+        gateway = ConfigFactory.create(config["platform"]["services"]["api_gateway"])
+        auth_service = ConfigFactory.create(config["platform"]["services"]["auth_service"])
+
+        # Process routes
+        routes = [
+            ConfigFactory.create(route_config)
+            for route_config in config["platform"]["services"]["api_gateway"]["config"]["routes"]
+        ]
+
+        # Assert
+        assert gateway.service_name == "APIGateway"
+        assert auth_service.service_name == "AuthService"
+        assert len(routes) == 2
+        assert routes[0].plugin_name == "AuthRoute"
+        assert routes[1].options["backend"] == "data_service"
+
+        # Check nested database
+        assert auth_service.db_client.__class__.__name__ == "DatabaseClient"
+        assert auth_service.db_client.host == "auth.db.local"
+
+    def test_load_nested_config_from_yaml(self, test_module_path: Path) -> None:
+        """Verify loading and instantiating nested configs from YAML.
+
+        Parameters
+        ----------
+        test_module_path : Path
+            Path to test fixtures directory.
+        """
+        # Arrange
+        yaml_path = test_module_path.parent / "fixtures" / "nested_config.yaml"
+
+        # Act
+        with open(yaml_path) as f:
+            config = yaml.safe_load(f)
+
+        # Instantiate auth service
+        auth_service = ConfigFactory.create(config["application"]["services"]["auth"])
+
+        # Instantiate first component with sub-components
+        component = ConfigFactory.create(config["application"]["components"][0])
+
+        # Assert
+        assert auth_service.__class__.__name__ == "SimpleService"
+        assert auth_service.name == "AuthService"
+        assert auth_service.port == 9001
+
+        assert component.__class__.__name__ == "NestedComponent"
+        assert component.name == "Component1"
+        assert len(component.sub_components) == 2
+
+    def test_config_registry_with_nested_types(self) -> None:
+        """Verify ConfigRegistry works with nested configurations."""
+
+        # Arrange
+        @config_registry.register_decorator("custom.database")
+        class CustomDatabaseConfig(DatabaseConfig):
+            custom_field: str = "custom_value"
+
+        @config_registry.register_decorator("custom.service")
+        class CustomServiceConfig(MicroserviceConfig):
+            custom_service_field: bool = True
+
+        # Act
+        # Resolve custom types
+        db_class = config_registry.get_config_class("custom.database")
+        service_class = config_registry.get_config_class("custom.service")
+
+        # Create instances
+        db_config = db_class(
+            target_="tests.integration.conftest.DatabaseClient",
+            host="custom.host",
+            port=5432,
+            database="custom_db",
+            username="user",
+            password="pass",
+            custom_field="overridden",
+        )
+
+        service_config = service_class(
+            target_="tests.integration.conftest.SimpleService",
+            name="CustomService",
+            version="1.0.0",
+            database=db_config,
+            custom_service_field=False,
+        )
+
+        # Assert
+        assert db_config.custom_field == "overridden"
+        assert service_config.custom_service_field is False
+        assert service_config.database is db_config

@@ -1,0 +1,31 @@
+# Configuration for Demo 03: YAML Loading
+# This file demonstrates structured configuration in YAML
+
+# Basic application settings
+app_name: "YAML Demo App"
+debug: true
+version: "1.2.0"
+
+# Logger configuration
+logger:
+  name: "yaml_logger"
+  level: "DEBUG"
+  format: "structured"
+
+# Cache configuration  
+cache:
+  backend: "redis"
+  ttl: 7200  # 2 hours
+  max_size: 5000
+
+# Additional services (as examples of flexible config)
+services:
+  database:
+    _target_: "some.database.PostgreSQL"
+    host: "localhost"
+    port: 5432
+  
+  email:
+    _target_: "some.email.SMTPService"
+    host: "smtp.gmail.com"
+    port: 587

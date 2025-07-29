@@ -1,0 +1,55 @@
+# Nested configuration with dynamic instantiation targets
+application:
+  name: NestedApp
+  services:
+    auth:
+      _target_: fixtures.test_classes.SimpleService
+      name: AuthService
+      port: 9001
+    
+    data:
+      _target_: fixtures.test_classes.SimpleService
+      name: DataService
+      port: 9002
+    
+    cache:
+      _target_: fixtures.test_classes.ConfigurablePlugin
+      plugin_name: RedisCache
+      host: localhost
+      port: 6379
+      ttl: 3600
+      max_connections: 50
+
+  database:
+    primary:
+      _target_: fixtures.test_classes.DatabaseClient
+      host: primary.db.local
+      port: 5432
+      username: app_user
+      password: primary_password
+    
+    replica:
+      _target_: fixtures.test_classes.DatabaseClient
+      host: replica.db.local
+      port: 5432
+      username: readonly_user
+      password: replica_password
+
+  components:
+    - _target_: fixtures.test_classes.NestedComponent
+      name: Component1
+      sub_components:
+        - _target_: fixtures.test_classes.SimpleService
+          name: SubService1
+          port: 7001
+        - _target_: fixtures.test_classes.SimpleService
+          name: SubService2
+          port: 7002
+    
+    - _target_: fixtures.test_classes.NestedComponent
+      name: Component2
+      sub_components:
+        - _target_: fixtures.test_classes.ConfigurablePlugin
+          plugin_name: LoggerPlugin
+          level: DEBUG
+          format: json

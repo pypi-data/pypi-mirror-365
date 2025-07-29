@@ -1,0 +1,53 @@
+# Base configuration to be merged with other sources
+app:
+  name: MultiSourceApp
+  environment: development
+  
+server:
+  host: 0.0.0.0
+  port: 8000
+  ssl_enabled: false
+  
+database:
+  connection:
+    host: localhost
+    port: 5432
+    database: dev_db
+  pool:
+    min_size: 5
+    max_size: 20
+    
+logging:
+  level: INFO
+  handlers:
+    - console
+    - file
+  
+features:
+  authentication:
+    enabled: true
+    provider: local
+    session_timeout: 3600
+  
+  rate_limiting:
+    enabled: false
+    requests_per_minute: 60
+  
+  caching:
+    enabled: true
+    backend: memory
+    ttl: 300
+
+integrations:
+  payment:
+    provider: stripe
+    api_key: sk_test_default
+    webhook_secret: whsec_test_default
+    
+  email:
+    provider: smtp
+    host: localhost
+    port: 1025
+    username: test
+    password: test
+    from_address: noreply@example.com

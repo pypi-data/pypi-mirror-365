@@ -1,0 +1,13 @@
+# Configuration for Demo 05: Precedence
+# These values override code defaults
+
+app_name: "YAMLApp"
+environment: "development"
+# debug not set - will use code default (False)
+timeout: 60  # Override default of 30
+
+service:
+  name: "yaml_service"
+  host: "yaml.server"
+  port: 8888
+  enabled: true

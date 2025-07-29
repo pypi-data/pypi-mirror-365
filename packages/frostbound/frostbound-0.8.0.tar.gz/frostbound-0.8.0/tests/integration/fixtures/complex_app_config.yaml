@@ -1,0 +1,158 @@
+# Complex real-world application configuration
+microservice:
+  name: OrderProcessingService
+  version: 2.1.0
+  instance_id: ${INSTANCE_ID:instance-001}
+  
+  server:
+    http:
+      host: 0.0.0.0
+      port: ${HTTP_PORT:8080}
+      timeout: 30
+    grpc:
+      host: 0.0.0.0
+      port: ${GRPC_PORT:50051}
+      max_message_size: 4194304
+  
+  databases:
+    postgres:
+      master:
+        _target_: fixtures.test_classes.DatabaseClient
+        host: ${DB_MASTER_HOST:pg-master.internal}
+        port: ${DB_MASTER_PORT:5432}
+        username: ${DB_USER:order_service}
+        password: ${DB_PASSWORD:changeme}
+      
+      read_replicas:
+        - _target_: fixtures.test_classes.DatabaseClient
+          host: ${DB_REPLICA1_HOST:pg-replica1.internal}
+          port: 5432
+          username: ${DB_USER:order_service}
+          password: ${DB_PASSWORD:changeme}
+        
+        - _target_: fixtures.test_classes.DatabaseClient
+          host: ${DB_REPLICA2_HOST:pg-replica2.internal}
+          port: 5432
+          username: ${DB_USER:order_service}
+          password: ${DB_PASSWORD:changeme}
+    
+    redis:
+      cache:
+        _target_: fixtures.test_classes.ConfigurablePlugin
+        plugin_name: RedisCache
+        host: ${REDIS_HOST:redis-cache.internal}
+        port: ${REDIS_PORT:6379}
+        password: ${REDIS_PASSWORD:}
+        db: 0
+        key_prefix: "order_service:cache:"
+        
+      sessions:
+        _target_: fixtures.test_classes.ConfigurablePlugin
+        plugin_name: RedisSession
+        host: ${REDIS_HOST:redis-session.internal}
+        port: ${REDIS_PORT:6379}
+        password: ${REDIS_PASSWORD:}
+        db: 1
+        ttl: 86400
+  
+  message_queue:
+    _target_: fixtures.test_classes.ConfigurablePlugin
+    plugin_name: RabbitMQ
+    host: ${RABBITMQ_HOST:rabbitmq.internal}
+    port: ${RABBITMQ_PORT:5672}
+    username: ${RABBITMQ_USER:guest}
+    password: ${RABBITMQ_PASSWORD:guest}
+    vhost: /orders
+    
+    exchanges:
+      - name: orders.events
+        type: topic
+        durable: true
+      - name: orders.commands
+        type: direct
+        durable: true
+    
+    queues:
+      - name: order.created
+        durable: true
+        arguments:
+          x-message-ttl: 3600000
+      - name: order.processed
+        durable: true
+        arguments:
+          x-max-priority: 10
+  
+  services:
+    payment:
+      _target_: fixtures.test_classes.ServiceWithDependencies
+      config:
+        provider: ${PAYMENT_PROVIDER:stripe}
+        api_key: ${PAYMENT_API_KEY:sk_test_key}
+        webhook_secret: ${PAYMENT_WEBHOOK_SECRET:whsec_test}
+        retry_attempts: 3
+        timeout: 15
+    
+    inventory:
+      _target_: fixtures.test_classes.ServiceWithDependencies
+      config:
+        base_url: ${INVENTORY_SERVICE_URL:http://inventory.internal}
+        api_key: ${INVENTORY_API_KEY:inv_test_key}
+        circuit_breaker:
+          failure_threshold: 5
+          recovery_timeout: 60
+          half_open_requests: 3
+    
+    notification:
+      _target_: fixtures.test_classes.ServiceWithDependencies
+      config:
+        channels:
+          email:
+            enabled: ${EMAIL_ENABLED:true}
+            provider: sendgrid
+            api_key: ${SENDGRID_API_KEY:sg_test_key}
+          sms:
+            enabled: ${SMS_ENABLED:false}
+            provider: twilio
+            account_sid: ${TWILIO_ACCOUNT_SID:}
+            auth_token: ${TWILIO_AUTH_TOKEN:}
+          push:
+            enabled: ${PUSH_ENABLED:true}
+            provider: firebase
+            credentials_path: ${FIREBASE_CREDS_PATH:/etc/firebase/creds.json}
+  
+  monitoring:
+    metrics:
+      enabled: ${METRICS_ENABLED:true}
+      provider: prometheus
+      port: 9090
+      path: /metrics
+      
+    tracing:
+      enabled: ${TRACING_ENABLED:true}
+      provider: jaeger
+      agent_host: ${JAEGER_AGENT_HOST:localhost}
+      agent_port: ${JAEGER_AGENT_PORT:6831}
+      service_name: order-processing-service
+      
+    health_check:
+      enabled: true
+      path: /health
+      checks:
+        - database
+        - redis
+        - message_queue
+  
+  feature_flags:
+    new_payment_flow:
+      enabled: ${FF_NEW_PAYMENT_FLOW:false}
+      rollout_percentage: ${FF_NEW_PAYMENT_ROLLOUT:0}
+    
+    async_order_processing:
+      enabled: ${FF_ASYNC_PROCESSING:true}
+      batch_size: ${FF_ASYNC_BATCH_SIZE:10}
+      
+    experimental_pricing:
+      enabled: ${FF_EXPERIMENTAL_PRICING:false}
+      user_segments:
+        - beta_testers
+        - internal_users

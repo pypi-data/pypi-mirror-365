@@ -1,0 +1,114 @@
+name: Bug Report
+description: Report a bug in the frost library
+title: "[BUG] "
+labels: ["bug", "triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report this bug! Please fill out the form below to help us understand and fix the issue.
+
+  - type: dropdown
+    id: module
+    attributes:
+      label: Affected Module
+      description: Which frost module is experiencing the issue?
+      options:
+        - monads (Either, Maybe)
+        - resilience (Circuit Breaker, Retry)
+        - experiments (Builder, Storage, Models)
+        - versioning (Git utilities)
+        - proxy (Immutable)
+        - Other/Multiple modules
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is
+      placeholder: |
+        When I use the Either monad with a specific type annotation...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to Reproduce
+      description: Minimal code example that demonstrates the issue
+      placeholder: |
+        ```python
+        from frost.monads import Either
+        
+        # Your code here
+        result = Either.right(42)
+        # What happens vs what you expected
+        ```
+      render: python
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What you expected to happen
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened (include error messages/stack traces)
+      render: python
+
+  - type: input
+    id: version
+    attributes:
+      label: frost Version
+      description: Which version of frost are you using?
+      placeholder: "0.1.0"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: python-version
+    attributes:
+      label: Python Version
+      options:
+        - "3.12"
+        - "3.13"
+        - "Other (please specify in additional context)"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating System
+      placeholder: "e.g., Ubuntu 22.04, macOS 14.0, Windows 11"
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Any other context about the problem (logs, screenshots, related issues, etc.)
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched existing issues to ensure this bug hasn't been reported
+          required: true
+        - label: I am using the latest version of frost
+          required: false
+        - label: I have provided a minimal reproducible example
+          required: true

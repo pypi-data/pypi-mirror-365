@@ -1,0 +1,93 @@
+name: Documentation Issue
+description: Report issues or suggest improvements for documentation
+title: "[DOCS] "
+labels: ["documentation", "good first issue"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Help us improve frost's documentation! Whether it's a typo, unclear explanation, or missing information, we appreciate your feedback.
+
+  - type: dropdown
+    id: doc-type
+    attributes:
+      label: Documentation Type
+      description: What type of documentation is this about?
+      options:
+        - API Reference
+        - Code Examples
+        - README
+        - Docstrings
+        - Type Hints
+        - Tutorial/Guide
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      description: Where in the documentation did you find this issue?
+      placeholder: "e.g., frost/monads/either.py line 42, README.md section 'Getting Started'"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: issue-type
+    attributes:
+      label: Issue Type
+      description: What kind of documentation issue is this?
+      options:
+        - Missing information
+        - Incorrect information
+        - Unclear explanation
+        - Typo/Grammar
+        - Missing example
+        - Outdated content
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: current
+    attributes:
+      label: Current Documentation
+      description: Quote or describe the current documentation (if applicable)
+      placeholder: |
+        The current documentation says:
+        "The Either monad represents values with two possibilities..."
+
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested Improvement
+      description: How would you improve this documentation?
+      placeholder: |
+        I suggest adding an example that shows how to chain multiple Either operations:
+        ```python
+        result = (Either.right(10)
+                  .map(lambda x: x * 2)
+                  .flat_map(validate_positive)
+                  .get_or_else(0))
+        ```
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Any other context that might help (related issues, external references, etc.)
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have checked that this documentation issue hasn't been reported
+          required: true
+        - label: I am willing to submit a PR to fix this documentation
+          required: false

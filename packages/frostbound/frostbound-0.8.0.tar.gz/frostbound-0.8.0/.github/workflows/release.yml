@@ -1,0 +1,239 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (e.g., v1.0.0)'
+        required: false
+        type: string
+      prerelease:
+        description: 'Create as prerelease'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  id-token: write  # IMPORTANT: Required for trusted publishing (OIDC)
+  attestations: write  # Required for generating attestations
+
+env:
+  PYTHON_VERSION: "3.12"
+  UV_SYSTEM_PYTHON: 1
+
+jobs:
+  build:
+    name: Build Distribution
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: Install dependencies
+        run: uv sync --all-extras
+
+      - name: Build package
+        run: |
+          # Build with --no-sources to ensure compatibility
+          uv build --no-sources
+          
+          # Display build artifacts
+          echo "Build artifacts:"
+          ls -la dist/
+
+      - name: Check dist
+        run: |
+          # Install twine for checking
+          uv pip install --system twine
+          
+          # Check distribution files
+          python -m twine check --strict dist/*
+          
+          # Verify wheel contents
+          uv pip install --system check-wheel-contents
+          check-wheel-contents dist/*.whl
+
+      - name: Upload dist artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  publish-testpypi:
+    name: Publish to TestPyPI
+    needs: [build]
+    runs-on: ubuntu-latest
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/p/frostbound
+    steps:
+      - name: Download dist artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Publish to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          skip-existing: true
+
+  test-install:
+    name: Test Installation
+    needs: [publish-testpypi]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ["3.12", "3.13"]
+    steps:
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          enable-cache: true
+
+      - name: Set up Python ${{ matrix.python-version }}
+        run: uv python install ${{ matrix.python-version }}
+
+      - name: Install from TestPyPI
+        run: |
+          # Create temporary project to test installation
+          uv init test-install
+          cd test-install
+          
+          # Install from TestPyPI with dependencies from PyPI
+          uv add --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ frostbound
+          
+          # Test import
+          uv run python -c "import frostbound; print(f'Successfully installed frostbound {frostbound.__version__}')"
+          
+          # Verify key functionality
+          uv run python -c "from frostbound.pydanticonf import ConfigDict; print('Core imports working')"
+
+  publish-pypi:
+    name: Publish to PyPI
+    needs: [test-install]
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/frostbound
+    steps:
+      - name: Download dist artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+
+  create-release:
+    name: Create GitHub Release
+    needs: [publish-pypi]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download dist artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Generate release notes
+        id: notes
+        run: |
+          VERSION=${{ github.ref_name }}
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+
+          # Create comprehensive release notes
+          cat > release_notes.md << 'EOF'
+          # Release ${VERSION}
+          
+          ## What's Changed
+          EOF
+          
+          # Get previous tag
+          PREVIOUS_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+          
+          if [ -n "$PREVIOUS_TAG" ]; then
+            # Generate changelog from conventional commits
+            git log --pretty=format:"* %s" "${PREVIOUS_TAG}..HEAD" | grep -E '^\* (feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)' >> release_notes.md || true
+          else
+            echo "* Initial release" >> release_notes.md
+          fi
+          
+          cat >> release_notes.md << 'EOF'
+          
+          ## Installation
+          
+          ### Using pip
+          ```bash
+          pip install frostbound==${VERSION#v}
+          ```
+          
+          ### Using uv
+          ```bash
+          uv add frostbound==${VERSION#v}
+          ```
+          
+          ## Verification
+          
+          This release includes digital attestations for enhanced security.
+          You can verify the authenticity of the distribution files using:
+          
+          ```bash
+          pip install sigstore
+          python -m sigstore verify <distribution-file>
+          ```
+          
+          ## Documentation
+          
+          Full documentation is available at: https://github.com/gaohn/frost
+          EOF
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ steps.notes.outputs.version }}
+          body_path: release_notes.md
+          files: dist/*
+          draft: false
+          prerelease: ${{ inputs.prerelease || contains(github.ref_name, 'rc') || contains(github.ref_name, 'beta') || contains(github.ref_name, 'alpha') || contains(github.ref_name, 'dev') }}
+          generate_release_notes: true  # Supplement with GitHub's auto-generated notes
+
+  announce:
+    name: Announce Release
+    needs: [create-release]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post to Discord/Slack
+        run: |
+          echo "Posted release announcement to Discord/Slack"
+          # Add actual webhook calls here
+
+      - name: Update documentation
+        run: |
+          echo "Triggered documentation update"
+          # Add documentation update trigger here

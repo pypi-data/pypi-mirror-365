@@ -1,0 +1,8 @@
+# dev.yaml - development overrides
+debug: true
+
+database:
+  host: localhost
+
+optimizer:
+  lr: 0.01  # Higher learning rate for dev

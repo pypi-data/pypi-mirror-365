@@ -1,0 +1,92 @@
+# config.yaml - matching the tmpppp.md example
+source_lang: &source_lang en
+target_lang: &target_lang de
+debug: true
+
+database:
+  host: localhost
+  port: 5432
+  db: app
+  username: postgres
+  # password from .env.dev
+
+optimizer:
+  _target_: mocks.Optimizer
+  algo: SGD
+  lr: 0.01
+
+openai:
+  random_field: random_field
+  # api_key and base_url from .env.dev
+
+llm:
+  _target_: mocks.LLM
+  model: gpt-4o-mini
+  temperature: 0.5
+  max_tokens: 1000
+
+alignment_config:
+  aligners:
+    - _target_: mocks.ExactHashAligner
+      enabled: true
+      require_type_match: false
+
+    - _target_: mocks.MultiLinguistEmbedding
+      enabled: true
+      threshold: 0.65
+      top_k: 10
+      require_type_match: false
+      matching_strategy: one_to_one
+
+    - _target_: mocks.BacktranslationEmbedding
+      enabled: true
+      threshold: 0.55
+      top_k: 10
+      max_concurrent_requests: 128
+      source_language: *source_lang
+      target_language: *target_lang
+      model: gpt-4o-mini
+      require_type_match: false
+      matching_strategy: one_to_one
+
+    - _target_: mocks.LanguageModelAligner
+      enabled: true
+      model: gpt-4o-mini
+      source_language: *source_lang
+      target_language: *target_lang
+      min_confidence: 0.6
+      max_concurrent_requests: 32
+      batch_size: 8
+      require_type_match: false
+
+    # SmartNeighborhoodAligner with nested aligners
+    - _target_: mocks.SmartNeighborhoodAligner
+      enabled: true
+
+      # Anchor configuration
+      min_anchor_confidence: 0.65
+      anchor_segment_types:
+        - section_header
+        - caption
+      anchor_aligner:
+        _target_: mocks.BacktranslationEmbedding
+        threshold: 0.65
+        top_k: 3
+        max_concurrent_requests: 8
+        source_language: *source_lang
+        target_language: *target_lang
+        model: gpt-4o-mini
+        require_type_match: false
+        matching_strategy: one_to_one
+
+      # Content aligners
+      content_aligners:
+        # MultiLinguistEmbedding (fast, embedding-based)
+        - _target_: mocks.MultiLinguistEmbedding
+          threshold: 0.65
+          top_k: 5
+          matching_strategy: one_to_one
+          require_type_match: false
+
+      # Neighborhood management
+      max_neighborhood_size: 50

@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(find:*)",
+      "WebFetch(domain:docs.astral.sh)",
+      "Bash(ls:*)",
+      "Bash(test:*)",
+      "Bash(uv run:*)",
+      "WebFetch(domain:github.com)",
+      "Bash(chmod:*)",
+      "Bash(make:*)",
+      "Bash(scripts/format.sh:*)",
+      "Bash(python:*)",
+      "Bash(pyright:*)",
+      "Bash(rg:*)",
+      "Bash(grep:*)",
+      "mcp__ide__getDiagnostics",
+      "Bash(rm:*)",
+      "Bash(sed:*)",
+      "Bash(/dev/null)",
+      "Bash(npx markdownlint:*)",
+      "WebFetch(domain:medium.com)"
+    ],
+    "deny": []
+  }
+}

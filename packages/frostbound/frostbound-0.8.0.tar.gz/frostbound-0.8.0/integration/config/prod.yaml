@@ -1,0 +1,16 @@
+# prod.yaml - production overrides
+debug: false
+
+database:
+  host: db.production.com
+
+optimizer:
+  lr: 0.0001  # Lower learning rate for production
+
+alignment_config:
+  aligners:
+    # Add more aligners in production
+    - _target_: mock_aligners.MultiLinguistEmbedding
+      enabled: true
+      threshold: 0.8
+      top_k: 5

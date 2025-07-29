@@ -1,0 +1,41 @@
+FROM ghcr.io/astral-sh/uv:bookworm-slim AS builder
+
+ENV UV_COMPILE_BYTECODE=1 \
+    UV_LINK_MODE=copy \
+    UV_PYTHON_INSTALL_DIR=/python \
+    UV_PYTHON_PREFERENCE=only-managed
+
+RUN uv python install 3.13
+
+WORKDIR /app
+
+RUN --mount=type=cache,target=/root/.cache/uv \
+    --mount=type=bind,source=uv.lock,target=uv.lock \
+    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
+    uv sync --locked --no-install-project
+
+COPY . /app
+
+RUN --mount=type=cache,target=/root/.cache/uv \
+    uv sync --locked
+
+FROM debian:bookworm-slim
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN groupadd -r python && useradd -r -g python python && \
+    groupadd -r app && useradd -r -g app -m -d /home/app app
+
+COPY --from=builder --chown=python:python /python /python
+
+COPY --from=builder /uv /uvx /usr/local/bin/
+
+COPY --from=builder --chown=app:app /app /app
+
+ENV PATH="/app/.venv/bin:/python/bin:$PATH"
+
+WORKDIR /app
+
+USER app

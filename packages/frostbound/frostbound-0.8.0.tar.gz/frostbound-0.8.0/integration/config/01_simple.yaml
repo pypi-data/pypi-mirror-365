@@ -1,0 +1,12 @@
+debug: true
+
+database:
+  host: localhost
+  port: 5432
+  db: myapp
+  username: appuser
+
+optimizer:
+  _target_: __main__.Optimizer
+  algo: Adam
+  lr: 0.001

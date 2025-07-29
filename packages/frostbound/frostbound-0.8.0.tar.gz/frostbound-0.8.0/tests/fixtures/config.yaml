@@ -1,0 +1,92 @@
+# config.yaml - Test fixture matching tmpppp.md
+source_lang: &source_lang en
+target_lang: &target_lang de
+debug: true
+
+database:
+    host: localhost
+    port: 5432
+    db: app
+    username: postgres
+    # password from .env.dev
+
+optimizer:
+    _target_: module.path.to.Optimizer
+    algo: SGD
+    lr: 0.01
+
+openai:
+    _target_: module.path.to.OpenAI
+    # api_key and base_url from .env.dev
+
+llm:
+    _target_: module.path.to.LLM
+    model: gpt-4o-mini
+    temperature: 0.5
+    max_tokens: 1000
+
+alignment_config:
+    aligners:
+        - _target_: module.path.to.ExactHashAligner
+          enabled: true
+          require_type_match: false
+
+        - _target_: module.path.to.MultiLinguistEmbedding
+          enabled: true
+          threshold: 0.65
+          top_k: 10
+          require_type_match: false
+          matching_strategy: one_to_one
+
+        - _target_: module.path.to.BacktranslationEmbedding
+          enabled: true
+          threshold: 0.55
+          top_k: 10
+          max_concurrent_requests: 128
+          source_language: *source_lang
+          target_language: *target_lang
+          model: gpt-4o-mini
+          require_type_match: false
+          matching_strategy: one_to_one
+          
+        - _target_: module.path.to.LanguageModelAligner
+          enabled: true
+          model: gpt-4o-mini
+          source_language: *source_lang
+          target_language: *target_lang
+          min_confidence: 0.6
+          max_concurrent_requests: 32
+          batch_size: 8
+          require_type_match: false
+
+        # Second: Run SmartNeighborhoodAligner with SINGLE fast content aligner
+        - _target_: module.path.to.SmartNeighborhoodAligner
+          enabled: false
+
+          # Anchor configuration
+          min_anchor_confidence: 0.65 # Lower threshold to include more anchors
+          anchor_segment_types:
+              - section_header
+              - caption
+          anchor_aligner:
+              _target_: module.path.to.BacktranslationEmbedding
+              threshold: 0.65
+              top_k: 3
+              max_concurrent_requests: 8 # Reduced from 32 for better resource management
+              source_language: *source_lang
+              target_language: *target_lang
+              model: gpt-4o-mini
+              require_type_match: false
+              matching_strategy: one_to_one
+
+          # Content aligners: SIMPLIFIED to just one fast aligner
+          content_aligners:
+              # Only MultiLinguistEmbedding (fast, embedding-based)
+              - _target_: module.path.to.MultiLinguistEmbedding
+                threshold: 0.65 # Lower threshold to catch more matches
+                top_k: 5 # Reduced from 10
+                matching_strategy: one_to_one
+                require_type_match: false
+
+          # Neighborhood management
+          max_neighborhood_size: 50 # Larger neighborhoods for efficiency

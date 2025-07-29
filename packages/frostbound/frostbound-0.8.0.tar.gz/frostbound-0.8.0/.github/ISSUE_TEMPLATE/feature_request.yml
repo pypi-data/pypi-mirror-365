@@ -1,0 +1,106 @@
+name: Feature Request
+description: Suggest a new feature or enhancement for frost
+title: "[FEATURE] "
+labels: ["enhancement", "triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a feature! Please provide as much detail as possible to help us understand your proposal.
+
+  - type: dropdown
+    id: module
+    attributes:
+      label: Target Module
+      description: Which frost module would this feature belong to?
+      options:
+        - monads (Either, Maybe)
+        - resilience (Circuit Breaker, Retry)
+        - experiments (Builder, Storage, Models)
+        - versioning (Git utilities)
+        - proxy (Immutable)
+        - New module
+        - Cross-module feature
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: Describe the problem or use case this feature would solve
+      placeholder: |
+        I often need to chain multiple operations that might fail, but the current API...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe your proposed solution, including API design if applicable
+      placeholder: |
+        ```python
+        # Example API
+        from frost.monads import Either
+        
+        result = (Either.right(42)
+                  .flat_map(lambda x: Either.right(x * 2))
+                  .filter(lambda x: x > 50)
+                  .get_or_else(0))
+        ```
+      render: python
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions
+      description: Have you considered any alternative approaches?
+      placeholder: |
+        - Alternative 1: Use existing functionality with...
+        - Alternative 2: Implement as a separate utility...
+
+  - type: dropdown
+    id: breaking-change
+    attributes:
+      label: Breaking Change
+      description: Would this feature require breaking changes to existing APIs?
+      options:
+        - "No - fully backward compatible"
+        - "Yes - would require API changes"
+        - "Unsure"
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-cases
+    attributes:
+      label: Use Cases
+      description: Provide specific examples of how this feature would be used
+      render: python
+    validations:
+      required: true
+
+  - type: textarea
+    id: implementation
+    attributes:
+      label: Implementation Ideas
+      description: If you have ideas about how this could be implemented, share them here
+      placeholder: |
+        This could potentially be implemented by extending the base Monad class...
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched existing issues and this feature hasn't been requested
+          required: true
+        - label: This feature aligns with frost's goal of providing enterprise-grade utilities
+          required: true
+        - label: I am willing to help implement this feature
+          required: false

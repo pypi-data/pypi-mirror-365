@@ -1,0 +1,96 @@
+name: Question
+description: Ask a question about using frost
+title: "[QUESTION] "
+labels: ["question", "triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Need help with frost? Ask your question here! Please provide as much context as possible.
+
+  - type: dropdown
+    id: module
+    attributes:
+      label: Related Module
+      description: Which frost module is your question about?
+      options:
+        - monads (Either, Maybe)
+        - resilience (Circuit Breaker, Retry)
+        - experiments (Builder, Storage, Models)
+        - versioning (Git utilities)
+        - proxy (Immutable)
+        - General usage
+        - Installation/Setup
+        - Type hints/MyPy
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Question
+      description: What would you like to know?
+      placeholder: |
+        How do I chain multiple Either operations where each operation might fail?
+    validations:
+      required: true
+
+  - type: textarea
+    id: goal
+    attributes:
+      label: What are you trying to achieve?
+      description: Describe your use case or end goal
+      placeholder: |
+        I'm building a data pipeline where each step might fail with different error types...
+    validations:
+      required: true
+
+  - type: textarea
+    id: tried
+    attributes:
+      label: What have you tried?
+      description: Show us what you've attempted so far
+      placeholder: |
+        ```python
+        from frost.monads import Either
+        
+        # I tried this approach but it doesn't work as expected:
+        result = Either.right(data).map(process1).map(process2)
+        ```
+      render: python
+
+  - type: textarea
+    id: code-example
+    attributes:
+      label: Minimal Code Example
+      description: If applicable, provide a minimal example that demonstrates your question
+      render: python
+
+  - type: input
+    id: version
+    attributes:
+      label: frost Version
+      description: Which version of frost are you using?
+      placeholder: "0.1.0"
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Any other relevant information (error messages, related documentation, etc.)
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched existing issues and discussions for similar questions
+          required: true
+        - label: I have read the relevant documentation
+          required: true
+        - label: This is a question about using frost, not a bug report or feature request
+          required: true

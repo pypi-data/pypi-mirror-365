@@ -1,0 +1,86 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "frostbound"
+version = "0.8.0"
+description = "Enterprise-grade Python utilities."
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "MIT"}
+authors = [
+    {name = "GAO Hongnan", email = "hongnangao@gmail.com"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.12",
+    "Typing :: Typed",
+]
+dependencies = [
+    "anthropic>=0.55.0",
+    "google-genai>=1.27.0",
+    "google-generativeai>=0.8.5",
+    "instructor>=1.9.0",
+    "omegaconf>=2.3.0",
+    "pydantic>=2.0.0",
+    "pydantic-settings>=2.9.1",
+    "pyyaml>=6.0.2",
+    "rich",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=25.1.0",
+    "isort>=6.0.1",
+    "mypy>=1.16.0",
+    "pyright>=1.1.402",
+    "pytest>=8.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "pytest-mock>=3.14.1",
+    "ruff>=0.11.13",
+    "ty>=0.0.1a10",
+    "types-pyyaml>=6.0.12.20250516",
+]
+
+[dependency-groups]
+dev = [
+    "black>=25.1.0",
+    "isort>=6.0.1",
+    "mypy>=1.16.0",
+    "pyright>=1.1.402",
+    "pytest>=8.4.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.1.0",
+    "pytest-mock>=3.14.1",
+    "python-semantic-release>=10.1.0",
+    "ruff>=0.11.13",
+    "ty>=0.0.1a10",
+    "types-pyyaml>=6.0.12.20250516",
+]
+
+
+[tool.hatch.build.targets.wheel]
+packages = ["frostbound"]
+
+[tool.semantic_release]
+version_toml = ["pyproject.toml:project.version"]
+version_variables = ["frostbound/__init__.py:__version__"]
+major_on_zero = false
+allow_zero_version = true
+commit_parser = "conventional"
+tag_format = "v{version}"
+upload_to_pypi = false  # We handle this separately in GitHub Actions
+upload_to_release = true
+build_command = "uv build --no-sources"
+
+[tool.semantic_release.branches.main]
+match = "main"
+prerelease = false
+
+[tool.semantic_release.commit_parser_options]
+minor_types = ["feat"]
+patch_types = ["fix", "perf"]

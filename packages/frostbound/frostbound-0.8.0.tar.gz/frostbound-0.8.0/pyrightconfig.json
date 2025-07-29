@@ -1,0 +1,99 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/pyright/main/packages/vscode-pyright/schemas/pyrightconfig.schema.json",
+
+  "include": ["frostbound", "tests"],
+
+  "exclude": [
+    "**/node_modules",
+    "**/__pycache__",
+    "**/.*",
+    "venv",
+    ".venv",
+    "build",
+    "dist",
+    ".nox",
+    ".tox",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".ruff_cache"
+  ],
+
+  "defineConstant": {
+    "DEBUG": true
+  },
+
+  "stubPath": "typings",
+  "venvPath": ".",
+  "venv": ".venv",
+
+  "pythonVersion": "3.12",
+  "pythonPlatform": "All",
+
+  "typeCheckingMode": "strict",
+  "strictListInference": true,
+  "strictDictionaryInference": true,
+  "strictSetInference": true,
+  "strictParameterNoneValue": true,
+
+  "reportMissingImports": "error",
+  "reportMissingTypeStubs": false,
+  "reportUnusedImport": "warning",
+  "reportUnusedClass": "warning",
+  "reportUnusedFunction": "warning",
+  "reportUnusedVariable": "warning",
+  "reportDuplicateImport": "warning",
+  "reportPrivateUsage": "warning",
+  "reportConstantRedefinition": "error",
+  "reportIncompatibleMethodOverride": "error",
+  "reportIncompatibleVariableOverride": "error",
+  "reportInconsistentConstructor": "error",
+  "reportOverlappingOverload": "error",
+  "reportMissingTypeArgument": "error",
+  "reportUntypedFunctionDecorator": "error",
+  "reportUntypedClassDecorator": "error",
+  "reportUntypedBaseClass": "error",
+  "reportUntypedNamedTuple": "error",
+  "reportPrivateImportUsage": "error",
+  "reportTypeCommentUsage": "error",
+  "reportUnknownArgumentType": "warning",
+  "reportUnknownLambdaType": "warning",
+  "reportUnknownMemberType": "warning",
+  "reportUnknownParameterType": "warning",
+  "reportUnknownVariableType": "warning",
+  "reportUnnecessaryCast": "warning",
+  "reportUnnecessaryComparison": "warning",
+  "reportUnnecessaryContains": "warning",
+  "reportAssertAlwaysTrue": "warning",
+  "reportSelfClsParameterName": "warning",
+  "reportUnusedExpression": "warning",
+  "reportWildcardImportFromLibrary": "error",
+  "reportGeneralTypeIssues": "error",
+  "reportOptionalSubscript": "error",
+  "reportOptionalMemberAccess": "error",
+  "reportOptionalCall": "error",
+  "reportOptionalIterable": "error",
+  "reportOptionalContextManager": "error",
+  "reportOptionalOperand": "error",
+  "reportTypedDictNotRequiredAccess": "error",
+  "reportUnnecessaryIsInstance": "warning",
+  "reportUnnecessaryTypeIgnoreComment": "warning",
+  "reportMatchNotExhaustive": "error",
+
+  "executionEnvironments": [
+    {
+      "root": "src",
+      "pythonVersion": "3.12",
+      "extraPaths": []
+    },
+    {
+      "root": "frostbound",
+      "pythonVersion": "3.12",
+      "extraPaths": []
+    },
+    {
+      "root": "tests",
+      "pythonVersion": "3.12",
+      "extraPaths": ["frostbound"]
+    }
+  ]
+}

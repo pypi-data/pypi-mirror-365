@@ -1,0 +1,196 @@
+name: Release (UV Native)
+
+# This workflow demonstrates a fully UV-native publishing approach
+# It's currently experimental but shows the future direction
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release (e.g., v1.0.0)'
+        required: false
+        type: string
+      prerelease:
+        description: 'Create as prerelease'
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  id-token: write  # Required for trusted publishing (OIDC)
+  attestations: write  # Required for generating attestations
+
+env:
+  PYTHON_VERSION: "3.12"
+  UV_SYSTEM_PYTHON: 1
+
+jobs:
+  build-and-publish:
+    name: Build and Publish
+    runs-on: ubuntu-latest
+    environment: pypi
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          enable-cache: true
+          cache-dependency-glob: "uv.lock"
+
+      - name: Set up Python
+        run: uv python install ${{ env.PYTHON_VERSION }}
+
+      - name: Install dependencies
+        run: uv sync --all-extras
+
+      - name: Build package
+        run: |
+          # Build with --no-sources to ensure compatibility
+          uv build --no-sources
+          
+          # Display build artifacts
+          echo "Build artifacts:"
+          ls -la dist/
+
+      - name: Verify distributions
+        run: |
+          # Install verification tools
+          uv pip install --system twine check-wheel-contents
+          
+          # Check distribution files
+          python -m twine check --strict dist/*
+          
+          # Verify wheel contents
+          check-wheel-contents dist/*.whl
+
+      # Future: When uv publish supports trusted publishing
+      # - name: Publish to PyPI
+      #   run: uv publish
+      #   # No credentials needed with trusted publishing!
+
+      # Current: Use pypa/gh-action-pypi-publish
+      - name: Publish to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        # Attestations are generated automatically
+
+  create-release:
+    name: Create GitHub Release
+    needs: [build-and-publish]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate release notes
+        id: notes
+        run: |
+          VERSION=${{ github.ref_name }}
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
+
+          # Create comprehensive release notes
+          cat > release_notes.md << 'EOF'
+          # Release ${VERSION}
+          
+          ## Installation
+          
+          ### Using pip
+          ```bash
+          pip install frostbound==${VERSION#v}
+          ```
+          
+          ### Using uv
+          ```bash
+          uv add frostbound==${VERSION#v}
+          ```
+          
+          ## What's Changed
+          EOF
+          
+          # Get previous tag
+          PREVIOUS_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+          
+          if [ -n "$PREVIOUS_TAG" ]; then
+            # Generate changelog from conventional commits
+            git log --pretty=format:"* %s" "${PREVIOUS_TAG}..HEAD" | grep -E '^\\* (feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)' >> release_notes.md || true
+          else
+            echo "* Initial release" >> release_notes.md
+          fi
+          
+          cat >> release_notes.md << 'EOF'
+          
+          ## Verification
+          
+          This release includes digital attestations for enhanced security.
+          You can verify the authenticity using:
+          
+          ```bash
+          pip install sigstore
+          python -m sigstore verify <distribution-file>
+          ```
+          
+          ## Documentation
+          
+          Full documentation: https://github.com/gaohn/frost
+          EOF
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: ${{ steps.notes.outputs.version }}
+          body_path: release_notes.md
+          draft: false
+          prerelease: ${{ inputs.prerelease || contains(github.ref_name, 'rc') || contains(github.ref_name, 'beta') || contains(github.ref_name, 'alpha') || contains(github.ref_name, 'dev') }}
+          generate_release_notes: true
+
+  test-pypi:
+    name: Publish to TestPyPI (Optional)
+    runs-on: ubuntu-latest
+    environment: testpypi
+    # Only run on workflow_dispatch or pre-release tags
+    if: |
+      github.event_name == 'workflow_dispatch' || 
+      contains(github.ref_name, 'rc') || 
+      contains(github.ref_name, 'beta') || 
+      contains(github.ref_name, 'alpha')
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Set up Python
+        run: uv python install ${{ env.PYTHON_VERSION }}
+
+      - name: Build package
+        run: uv build --no-sources
+
+      - name: Publish to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+          skip-existing: true
+
+      - name: Test installation from TestPyPI
+        run: |
+          # Wait for package to be available
+          sleep 30
+          
+          # Create test project
+          uv init test-install
+          cd test-install
+          
+          # Install from TestPyPI
+          uv add --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ frostbound
+          
+          # Test import
+          uv run python -c "import frostbound; print(f'Successfully installed frostbound {frostbound.__version__}')"

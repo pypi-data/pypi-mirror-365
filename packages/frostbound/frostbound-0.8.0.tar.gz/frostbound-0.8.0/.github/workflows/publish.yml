@@ -1,0 +1,211 @@
+name: Publish to PyPI
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger on version tags
+  workflow_dispatch:  # Allow manual triggering
+    inputs:
+      test_pypi:
+        description: 'Publish to TestPyPI first'
+        required: false
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build distribution
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Fetch all history for tags
+    
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
+      with:
+        enable-cache: true
+        cache-dependency-glob: "uv.lock"
+    
+    - name: Set up Python
+      run: uv python install 3.12
+    
+    - name: Check version consistency
+      run: |
+        # Extract version from pyproject.toml
+        PACKAGE_VERSION=$(uv run python -c "import tomllib; print(tomllib.load(open('pyproject.toml', 'rb'))['project']['version'])")
+        echo "Package version: $PACKAGE_VERSION"
+        
+        # Check if we're on a tag
+        if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
+          TAG_VERSION="${GITHUB_REF#refs/tags/v}"
+          echo "Tag version: $TAG_VERSION"
+          
+          # Verify versions match
+          if [[ "$PACKAGE_VERSION" != "$TAG_VERSION" ]]; then
+            echo "::error::Version mismatch! Package version ($PACKAGE_VERSION) != Tag version ($TAG_VERSION)"
+            exit 1
+          fi
+        fi
+    
+    - name: Run quality checks
+      run: |
+        echo "::group::Linting"
+        uv run ruff check --output-format=github .
+        uv run ruff format --check .
+        echo "::endgroup::"
+        
+        echo "::group::Type checking"
+        uv run mypy frostbound
+        uv run pyright frostbound
+        echo "::endgroup::"
+    
+    - name: Run tests
+      run: |
+        uv run pytest tests/ --cov=frostbound --cov-report=xml --cov-report=term
+    
+    - name: Build package
+      run: |
+        uv build --no-sources
+        echo "::notice::Built packages:"
+        ls -la dist/
+    
+    - name: Check package metadata
+      run: |
+        uv run python -m twine check --strict dist/*
+    
+    - name: Store the distribution packages
+      uses: actions/upload-artifact@v4
+      with:
+        name: python-package-distributions
+        path: dist/
+
+  publish-testpypi:
+    name: Publish to TestPyPI
+    if: github.event_name == 'workflow_dispatch' && github.event.inputs.test_pypi == 'true'
+    needs:
+    - build
+    runs-on: ubuntu-latest
+    
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/p/frostbound
+    
+    permissions:
+      id-token: write  # IMPORTANT: mandatory for trusted publishing
+    
+    steps:
+    - name: Download all the dists
+      uses: actions/download-artifact@v4
+      with:
+        name: python-package-distributions
+        path: dist/
+    
+    - name: Publish to TestPyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        repository-url: https://test.pypi.org/legacy/
+        attestations: true  # Generate attestations
+    
+    - name: Verify installation from TestPyPI
+      run: |
+        sleep 30  # Wait for package to be available
+        pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ frostbound
+        python -c "import frostbound; print(f'Successfully installed frostbound {frostbound.__version__}')"
+
+  publish-pypi:
+    name: Publish to PyPI
+    if: github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.test_pypi == 'false')
+    needs:
+    - build
+    runs-on: ubuntu-latest
+    
+    environment:
+      name: pypi
+      url: https://pypi.org/p/frostbound
+    
+    permissions:
+      id-token: write  # IMPORTANT: mandatory for trusted publishing
+      contents: write  # For creating GitHub releases
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Download all the dists
+      uses: actions/download-artifact@v4
+      with:
+        name: python-package-distributions
+        path: dist/
+    
+    - name: Publish to PyPI
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        attestations: true  # Generate attestations
+    
+    - name: Create GitHub Release
+      if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        TAG_NAME="${GITHUB_REF#refs/tags/}"
+        gh release create "$TAG_NAME" \
+          --title "Release $TAG_NAME" \
+          --generate-notes \
+          --verify-tag \
+          dist/*
+    
+    - name: Verify installation from PyPI
+      run: |
+        sleep 60  # Wait for package to be available
+        pip install --no-cache-dir frostbound
+        python -c "import frostbound; print(f'Successfully installed frostbound {frostbound.__version__}')"
+
+  # Alternative: Direct uv publish (if not using trusted publishing)
+  publish-uv-direct:
+    name: Publish with uv (Alternative)
+    if: false  # Disabled by default, enable if needed
+    needs:
+    - build
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
+    
+    - name: Download all the dists
+      uses: actions/download-artifact@v4
+      with:
+        name: python-package-distributions
+        path: dist/
+    
+    - name: Publish to PyPI with uv
+      env:
+        UV_PUBLISH_TOKEN: ${{ secrets.PYPI_TOKEN }}
+      run: |
+        # This method requires storing PYPI_TOKEN as a secret
+        # Not recommended when trusted publishing is available
+        uv publish dist/*
+
+  notify:
+    name: Notify on completion
+    if: always()
+    needs: [build, publish-pypi]
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Send notification
+      if: needs.publish-pypi.result == 'success'
+      run: |
+        echo "::notice::🎉 Successfully published to PyPI!"
+    
+    - name: Report failure
+      if: needs.publish-pypi.result == 'failure'
+      run: |
+        echo "::error::❌ Failed to publish to PyPI"
+        exit 1

@@ -1,0 +1,19 @@
+# Invalid YAML for error handling tests
+# This has intentional syntax errors
+app:
+  name: InvalidApp
+  settings:
+    - item1: value1
+      item2: value2
+    invalid_indent:
+  should_fail: yes
+  
+server:
+  host: [not: valid: yaml}
+  
+# Missing closing quote
+database:
+  password: "unclosed string
+  
+# Tab character (invalid in YAML)
+	invalid_tab: true

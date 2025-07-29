@@ -1,0 +1,21 @@
+# Configuration for Demo 04: Environment Variables
+# This file provides base configuration that can be overridden
+
+# Basic settings
+environment: "development"
+debug: true
+log_level: "INFO"
+
+# Database configuration
+database:
+  host: "localhost"
+  port: 5432
+  username: "app_user"
+  database: "demo_db"
+  # password is intentionally not set here - should come from .env or environment
+
+# API configuration
+api:
+  base_url: "https://api.example.com"
+  timeout: 30
+  # api_key should come from environment for security

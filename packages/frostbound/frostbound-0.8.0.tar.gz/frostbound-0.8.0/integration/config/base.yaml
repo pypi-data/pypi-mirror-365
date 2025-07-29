@@ -1,0 +1,21 @@
+# base.yaml - shared configuration
+source_lang: en
+target_lang: de
+
+optimizer:
+  _target_: mock_aligners.Optimizer
+  algo: Adam
+  lr: 0.001
+
+database:
+  host: localhost  # default host
+  port: 5432
+  db: myapp
+  username: app_user
+  password: ""  # from env
+
+alignment_config:
+  aligners:
+    - _target_: mock_aligners.ExactHashAligner
+      enabled: true
+      require_type_match: false
