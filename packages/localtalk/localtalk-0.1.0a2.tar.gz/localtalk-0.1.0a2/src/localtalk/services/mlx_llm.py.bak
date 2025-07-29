@@ -1,0 +1,101 @@
+"""Language model service using MLX-VLM."""
+
+from mlx_vlm import generate, load
+from rich.console import Console
+
+from localtalk.models.config import MLXLMConfig
+
+
+class MLXLanguageModelService:
+    """Service for generating responses using MLX-LM."""
+
+    def __init__(self, config: MLXLMConfig, system_prompt: str, console: Console | None = None):
+        self.config = config
+        self.system_prompt = system_prompt
+        self.console = console or Console()
+        self.chat_history = {}
+        self._load_model()
+
+    def _load_model(self):
+        """Load the MLX model and processor."""
+        self.console.print(f"[cyan]Loading MLX model: {self.config.model}")
+        with self.console.status("Loading model - if using model for the first time. This step may take a while but will only happen one time.", spinner="dots"):
+            self.model, self.processor = load(self.config.model)
+        self.console.print("[green]Model loaded successfully!")
+
+    def _get_session_history(self, session_id: str) -> list[dict]:
+        """Get or create chat history for a session."""
+        if session_id not in self.chat_history:
+            self.chat_history[session_id] = []
+        return self.chat_history[session_id]
+
+    def generate_response(self, text: str, session_id: str = "default") -> str:
+        """Generate a response to the input text.
+
+        Args:
+            text: Input text from the user
+            session_id: Session ID for conversation history
+
+        Returns:
+            Generated response text
+        """
+        # Get conversation history
+        history = self._get_session_history(session_id)
+
+        # Build conversation with system prompt
+        conversation = []
+
+        # Add system message if this is the first message
+        if not history:
+            conversation.append({"role": "system", "content": self.system_prompt})
+
+        # Add conversation history
+        conversation.extend(history)
+
+        # Add current user message
+        conversation.append({"role": "user", "content": text})
+
+        # Apply chat template if processor has this method
+        if hasattr(self.processor, 'apply_chat_template'):
+            prompt = self.processor.apply_chat_template(
+                conversation,
+                add_generation_prompt=True
+            )
+        else:
+            # Fallback to simple prompt construction
+            prompt = f"{self.system_prompt}\n\n{text}"
+
+        # Generate response
+        with self.console.status("Generating response...", spinner="dots"):
+            result = generate(
+                model=self.model,
+                processor=self.processor,
+                prompt=prompt,
+                max_tokens=self.config.max_tokens,
+                temperature=self.config.temperature,
+                top_p=self.config.top_p,
+                repetition_penalty=self.config.repetition_penalty,
+                repetition_context_size=self.config.repetition_context_size,
+                verbose=False,
+            )
+
+        # Extract the generated text
+        response_text = result.text.strip()
+
+        # Update conversation history
+        history.append({"role": "user", "content": text})
+        history.append({"role": "assistant", "content": response_text})
+
+        # Keep only recent history (last 10 exchanges)
+        if len(history) > 20:
+            self.chat_history[session_id] = history[-20:]
+        else:
+            self.chat_history[session_id] = history
+
+        self.console.print(f"[cyan]Assistant: {response_text}")
+        return response_text
+
+    def clear_history(self, session_id: str = "default"):
+        """Clear conversation history for a session."""
+        if session_id in self.chat_history:
+            del self.chat_history[session_id]
