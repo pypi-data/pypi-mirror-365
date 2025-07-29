@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tachibind"
+version = "0.1.0"
+description = "CLI to fetch manga chapters and export one PDF per chapter (Kindle-friendly)."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [{ name = "Aryaman Saini", email = "83552832+ary5@users.noreply.github.com" }]
+dependencies = [
+  "requests",
+  "beautifulsoup4",
+  "Pillow"
+]
+
+[project.urls]
+Homepage = "https://github.com/ary5/tachibind"
+Repository = "https://github.com/ary5/tachibind"
+
+[project.scripts]
+tachibind = "tachibind.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

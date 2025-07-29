@@ -1,0 +1,50 @@
+Metadata-Version: 2.4
+Name: tachibind
+Version: 0.1.0
+Summary: CLI to fetch manga chapters and export one PDF per chapter (Kindle-friendly).
+Author-email: Aryaman Saini <83552832+ary5@users.noreply.github.com>
+License: MIT License
+        
+        Copyright (c) 2025 Your Name
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the “Software”), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        [...snip the rest of the standard MIT text if you prefer, or keep all...]
+        
+Project-URL: Homepage, https://github.com/ary5/tachibind
+Project-URL: Repository, https://github.com/ary5/tachibind
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests
+Requires-Dist: beautifulsoup4
+Requires-Dist: Pillow
+Dynamic: license-file
+
+# Manga Chapter → PDF (CLI)
+
+Fetch chapter images from supported sites and export **one PDF per chapter**.  
+Per-title folders, restart points, and batch limits.
+
+## Features
+- Per-chapter PDFs: `Title_ch123.pdf`
+- Output under `downloads/<Title_Slug>/`
+- Restart chapter via `mangas.json` (`start_at`)
+- Mangapill adapter (extensible), simple scraper pipeline
+- Batch mode with chapter limit and optional image cleanup
+
+## Quick start
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt  # or: pip install requests beautifulsoup4 Pillow
+
+# Edit mangas.json (title → url, selectors, start_at)
+python quick_dl.py 'Berserk' 3  # grab 3 chapters from your restart
+```
+```
