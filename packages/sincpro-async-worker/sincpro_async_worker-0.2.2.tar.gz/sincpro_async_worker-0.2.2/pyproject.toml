@@ -1,0 +1,36 @@
+[project]
+name = "sincpro-async-worker"
+version = "0.2.2"
+description = "Componente asíncrono para sincpro_framework que permite ejecutar tareas asíncronas en un entorno mayoritariamente sincrónico"
+authors = [
+    {name = "Gutierrez, Andres",email = "andru1236@gmail.com"}
+]
+readme = "README.md"
+license = "SINCPRO S.R.L."
+
+[[tool.poetry.source]]
+name = "fury"
+url = "https://pypi.fury.io/sincpro/"
+priority = "supplemental"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+[tool.poetry.group.dev.dependencies]
+isort = "^6.0.1"
+black = "^25.1.0"
+autoflake = "^2.3.1"
+pyright = "^1.1.399"
+pytest = "^8.3.5"
+pytest-asyncio = "^0.26.0"
+
+[tool.poetry]
+packages = [{include = "sincpro_async_worker"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 94
