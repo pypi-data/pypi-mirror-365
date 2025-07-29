@@ -1,0 +1,203 @@
+"""Factory classes for creating LLM and embedding provider instances.
+
+This module provides factory classes that abstract the creation of provider
+instances, handling configuration and provider selection logic.
+"""
+
+import logging
+from typing import Any
+
+try:
+    from langchain_core.embeddings import Embeddings
+    from langchain_core.language_models.chat_models import BaseChatModel
+except ImportError as e:
+    logging.error(f"Core LangChain imports failed: {e}")
+    raise
+
+from ..exceptions import ConfigurationError
+from .providers.embeddings import (
+    BedrockEmbeddingProvider,
+    OllamaEmbeddingProvider,
+    OpenAIEmbeddingProvider,
+)
+from .providers.llm import (
+    AnthropicLLMProvider,
+    BedrockLLMProvider,
+    OllamaLLMProvider,
+    OpenAILLMProvider,
+)
+
+logger = logging.getLogger(__name__)
+
+# Check provider availability
+PROVIDERS_AVAILABLE = {
+    'openai': False,
+    'anthropic': False,
+    'ollama': False,
+    'bedrock': False,
+}
+
+try:
+    import langchain_openai
+    PROVIDERS_AVAILABLE['openai'] = True
+except ImportError:
+    pass
+
+try:
+    import langchain_anthropic
+    PROVIDERS_AVAILABLE['anthropic'] = True
+except ImportError:
+    pass
+
+try:
+    import langchain_ollama
+    PROVIDERS_AVAILABLE['ollama'] = True
+except ImportError:
+    pass
+
+try:
+    import boto3
+    import langchain_aws
+    PROVIDERS_AVAILABLE['bedrock'] = True
+except ImportError:
+    pass
+
+
+class LLMFactory:
+    """Factory for creating LLM instances.
+    
+    This factory handles the creation of different LLM providers based on
+    configuration, abstracting away the specific implementation details.
+    """
+
+    _provider_classes = {
+        "openai": OpenAILLMProvider,
+        "anthropic": AnthropicLLMProvider,
+        "ollama": OllamaLLMProvider,
+        "bedrock": BedrockLLMProvider,
+    }
+
+    @classmethod
+    def create_llm(
+        cls,
+        provider: str,
+        model_name: str,
+        provider_config: Any | None = None,
+        **kwargs
+    ) -> BaseChatModel:
+        """Create an LLM instance.
+        
+        Args:
+            provider: The LLM provider to use
+            model_name: Name of the model to instantiate
+            provider_config: Provider-specific configuration (uses default if None)
+            **kwargs: Additional arguments to pass to the provider
+        
+        Returns:
+            Configured LLM instance ready for use
+            
+        Raises:
+            ConfigurationError: If the provider is unknown or unavailable
+        """
+        if provider not in cls._provider_classes:
+            raise ConfigurationError(f"Unknown LLM provider: {provider}")
+
+        # Check if provider module is available
+        if not PROVIDERS_AVAILABLE.get(provider, False):
+            raise ConfigurationError(
+                f"LLM provider '{provider}' is not available. "
+                f"Install with: uv add langchain-{provider}"
+            )
+
+        if provider_config is None:
+            raise ConfigurationError(
+                f"Provider configuration is required. "
+                f"Please provide configuration for '{provider}' provider."
+            )
+
+        provider_class = cls._provider_classes[provider]
+        provider_instance = provider_class(provider_config, model_name, **kwargs)
+
+        return provider_instance.model
+
+
+
+class EmbeddingFactory:
+    """Factory for creating embedding instances.
+    
+    This factory handles the creation of different embedding providers based on
+    configuration, abstracting away the specific implementation details.
+    """
+
+    _provider_classes = {
+        "openai": OpenAIEmbeddingProvider,
+        "ollama": OllamaEmbeddingProvider,
+        "bedrock": BedrockEmbeddingProvider,
+    }
+
+    @classmethod
+    def create_embeddings(
+        cls,
+        provider: str,
+        model_name: str,
+        provider_config: Any | None = None,
+        **kwargs
+    ) -> Embeddings:
+        """Create an embeddings instance.
+        
+        Args:
+            provider: The embedding provider to use
+            model_name: Name of the model to instantiate
+            provider_config: Provider-specific configuration (uses default if None)
+            **kwargs: Additional arguments to pass to the provider
+        
+        Returns:
+            Configured embeddings instance ready for use
+            
+        Raises:
+            ConfigurationError: If the provider is unknown or unavailable
+        """
+        if provider not in cls._provider_classes:
+            raise ConfigurationError(f"Unknown embedding provider: {provider}")
+
+        # Check if provider module is available
+        if not PROVIDERS_AVAILABLE.get(provider, False):
+            raise ConfigurationError(
+                f"Embedding provider '{provider}' is not available. "
+                f"Install with: uv add langchain-{provider}"
+            )
+
+        if provider_config is None:
+            raise ConfigurationError(
+                f"Provider configuration is required. "
+                f"Please provide configuration for '{provider}' provider."
+            )
+
+        provider_class = cls._provider_classes[provider]
+        provider_instance = provider_class(provider_config, model_name, **kwargs)
+
+        return provider_instance.model
+
+
+
+def get_available_providers() -> dict[str, dict[str, bool]]:
+    """Get information about available providers.
+    
+    This function checks which providers have their required dependencies
+    installed and returns availability information.
+    
+    Returns:
+        Dictionary mapping provider types to availability status
+    """
+    return {
+        'llm_providers': {
+            provider: PROVIDERS_AVAILABLE.get(provider, False)
+            for provider in PROVIDERS_AVAILABLE.keys()
+            if provider in ["openai", "anthropic", "ollama", "bedrock"]
+        },
+        'embedding_providers': {
+            provider: PROVIDERS_AVAILABLE.get(provider, False)
+            for provider in PROVIDERS_AVAILABLE.keys()
+            if provider in ["openai", "ollama", "bedrock"]
+        }
+    }
