@@ -1,0 +1,36 @@
+Metadata-Version: 2.4
+Name: zyro
+Version: 0.7.0
+Summary: A zero-code backend orchestrator that turns a YAML config into a fully functional, deployable API — no code, just config.
+Author-email: "M. Sanjay Uddith Raju" <uddithmachiraju@gmail.com>
+License-Expression: MIT
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: fastapi>=0.100.0
+Requires-Dist: uvicorn>=0.35.0
+Requires-Dist: pydantic>=2.11.7
+Requires-Dist: pyyaml>=6.0.2
+Requires-Dist: httpx>=0.28.1
+Requires-Dist: build>=0.10.0
+Requires-Dist: twine>=3.0.0
+Dynamic: license-file
+
+# ZYRO - Zero-Effort YAML Runtime Orchestrator
+
+>**Deploy APIs from YAML configs. Instantly.**
+
+Hey there! 👋  
+Welcome to **ZYRO** – a backend automation tool built with ❤️ in Python + FastAPI.  
+You just write your API structure in a simple `config.yaml` file, and boom! Your entire backend is up and running. No hardcoding, no boilerplate.
+
+## 🔧 What ZYRO Does
+
+- 🧾 Reads your API structure from YAML
+- ⚡ Spins up a FastAPI server automatically
+- 📦 Supports raw responses, HTML pages, or even custom Python functions
+- ☁️ Ready for Docker, AWS, and Kubernetes deployments
+- 🧠 Planned: Auth, validation, CLI, and monitoring built-in
+
+Built by **M. Sanjay Uddith Raju**  
+Let's make APIs boring again 😉

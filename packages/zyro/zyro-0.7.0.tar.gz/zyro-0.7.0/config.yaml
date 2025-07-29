@@ -1,0 +1,27 @@
+environment: dev
+
+dev: 
+  fastapi:
+    host: "0.0.0.0"
+    port: 8000
+    reload: true
+
+  docker:
+    dockerfile: Dockerfile 
+    ports:
+      host: 8000
+      container: 8001
+
+  endpoints:
+    - path: "/api"
+      method: ["GET"]
+      response: 
+        type: raw
+        value: "Hello, World!" 
+    - path: "/health"
+      method: ["GET"]
+      response: 
+        type: json
+        value: 
+          status: "ok"
+          uptime: 12345      

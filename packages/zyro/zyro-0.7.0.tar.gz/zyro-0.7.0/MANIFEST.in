@@ -1,0 +1,7 @@
+include pyproject.toml
+include README.md
+include LICENSE
+include config.yaml
+recursive-include zyro *
+recursive-include assets *
+recursive-include zyro/static *
