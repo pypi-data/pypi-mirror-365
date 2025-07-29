@@ -1,0 +1,42 @@
+Metadata-Version: 2.4
+Name: ingrain
+Version: 0.1.0
+Summary: Python client for the ingrain server
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: certifi>=2025.7.14
+Requires-Dist: numpy>=2.3.1
+Requires-Dist: pycurl>=7.45.6
+Requires-Dist: pydantic>=2.11.7
+
+# Ingrain Python Client
+
+[![PyPI Version](https://img.shields.io/pypi/v/ingrain)](https://pypi.org/project/ingrain/)
+![Test Status](https://github.com/OwenPendrighElliott/py-ingrain/actions/workflows/test.yml/badge.svg)
+
+This is the Python client for the Ingrain API. It provides a simple interface to interact with the Ingrain API.
+
+## Install
+    
+```bash
+pip install ingrain
+```
+
+## Dev Setup
+```bash
+uv sync --dev
+```
+
+### Testing
+
+#### Unit tests
+
+```bash
+uv run pytest
+```
+
+#### Integration tests and unit tests
+
+```bash
+uv run pytest --integration
+```
