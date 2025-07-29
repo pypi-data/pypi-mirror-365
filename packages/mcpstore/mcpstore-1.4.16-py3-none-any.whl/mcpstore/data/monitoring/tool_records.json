@@ -1,0 +1,55 @@
+{
+  "executions": [
+    {
+      "id": "1753531051358_7285",
+      "tool_name": "check_keyword_inclusion",
+      "service_name": "baidu_index",
+      "params": {
+        "keyword": "北京"
+      },
+      "result": "{\n  \"success\": true,\n  \"keyword\": \"北京\",\n  \"included\": true,\n  \"status_code\": 0,\n  \"status_info\": {\n    \"status\": \"success\",\n    \"message\": \"关键词已收录且有数据\"\n  },\n  \"message\": \"关键词已被百度指数收录\",\n  \"check_time\": \"2025-07-26T19:57:31.352410\"\n}",
+      "error": null,
+      "response_time": 338.27,
+      "execution_time": "2025-07-26T19:57:31.358411",
+      "timestamp": 1753531051
+    },
+    {
+      "id": "1753531056509_4404",
+      "tool_name": "get_baidu_index",
+      "service_name": "baidu_index",
+      "params": {
+        "keyword": "北京",
+        "start_date": "2025-01-01",
+        "end_date": "2025-01-31",
+        "retry_on_auth_error": true
+      },
+      "result": "{\n  \"success\": false,\n  \"keyword\": \"北京\",\n  \"start_date\": \"2025-01-01\",\n  \"end_date\": \"2025-01-31\",\n  \"status_code\": 10001,\n  \"status_info\": {\n    \"status\": \"request_block\",\n    \"message\": \"请求被阻止，账号被锁\"\n  },\n  \"crawl_time\": \"2025-07-26T19:57:36.502781\",\n  \"data\": null,\n  \"message\": \"请求被阻止，账号被锁\"\n}",
+      "error": null,
+      "response_time": 196.03,
+      "execution_time": "2025-07-26T19:57:36.509280",
+      "timestamp": 1753531056
+    }
+  ],
+  "summary": {
+    "total_executions": 2,
+    "by_tool": {
+      "check_keyword_inclusion": {
+        "count": 1,
+        "total_response_time": 338.27,
+        "avg_response_time": 338.27
+      },
+      "get_baidu_index": {
+        "count": 1,
+        "total_response_time": 196.03,
+        "avg_response_time": 196.03
+      }
+    },
+    "by_service": {
+      "baidu_index": {
+        "count": 2,
+        "total_response_time": 534.3,
+        "avg_response_time": 267.15
+      }
+    }
+  }
+}
