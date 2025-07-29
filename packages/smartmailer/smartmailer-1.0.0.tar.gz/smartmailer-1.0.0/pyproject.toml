@@ -1,0 +1,28 @@
+[build-system]
+requires = ["hatchling >= 1.26", "sqlalchemy", "tabulate", "pydantic>=2.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "smartmailer"
+version = "1.0.0"
+dependencies = [
+    "sqlalchemy",
+    "tabulate",
+    "pydantic>=2.0",
+]
+authors = [{ name = "Mahasvan", email = "mahasvan@gmail.com" }]
+description = "An email automation service that incorporates templates and state tracking for sending emails en masse."
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICENSE"]
+
+
+[project.urls]
+Homepage = "https://github.com/Mahasvan/SmartMailer/"
+Issues = "https://github.com/Mahasvan/SmartMailer/issues"
