@@ -1,0 +1,576 @@
+#!/usr/bin/env python3
+"""
+Smart om wrapper with aliases, shortcuts, and intelligent defaults
+Enhanced with advanced features from logbuch adaptation
+"""
+
+import sys
+import os
+import subprocess
+from datetime import datetime
+
+# Get the directory where this script is located
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+MAIN_PY = os.path.join(SCRIPT_DIR, 'main.py')
+QUICK_PY = os.path.join(SCRIPT_DIR, 'quick_actions.py')
+
+# Comprehensive command aliases for maximum convenience
+ALIASES = {
+    # Quick actions - core (ultra-fast)
+    'q': 'quick',
+    'qm': 'quick mood',
+    'qb': 'quick breathe', 
+    'qg': 'quick gratitude',
+    'qf': 'quick focus',
+    'qc': 'quick calm',
+    'qr': 'quick reset',
+    'qs': 'quick stretch',
+    'qe': 'quick energy',
+    'qa': 'quick affirmation',
+    'qgr': 'quick grounding',
+    'qch': 'quick checkin',
+    'qbox': 'quick box',
+    
+    # Core mental health functions
+    'm': 'mood',
+    'mood': 'mood_tracking',
+    'mt': 'mood_tracking',
+    'track': 'mood_tracking',
+    
+    # Breathing & meditation
+    'b': 'breathe',
+    'br': 'breathing',
+    'breath': 'breathing',
+    'med': 'meditate',
+    'meditation': 'enhanced_meditation',
+    'zen': 'enhanced_meditation',
+    
+    # Gratitude & positivity
+    'g': 'gratitude',
+    'grat': 'gratitude',
+    'thanks': 'gratitude',
+    'appreciate': 'gratitude',
+    
+    # Mental health support
+    'anx': 'anxiety',
+    'anxiety': 'anxiety_support',
+    'panic': 'anxiety_support',
+    'worry': 'anxiety_support',
+    
+    'dep': 'depression',
+    'depression': 'depression_support',
+    'sad': 'depression_support',
+    'down': 'depression_support',
+    
+    'cope': 'coping',
+    'coping': 'coping_strategies',
+    'strategies': 'coping_strategies',
+    'skills': 'coping_skills',
+    'cs': 'coping_skills',
+    
+    # Recovery & addiction
+    'rec': 'recovery',
+    'recovery': 'addiction_recovery',
+    'addiction': 'addiction_recovery',
+    'sober': 'addiction_recovery',
+    'clean': 'addiction_recovery',
+    
+    # Crisis & emergency
+    'resc': 'rescue',
+    'rescue': 'rescue_sessions',
+    'crisis': 'rescue_sessions',
+    'emergency': 'rescue_sessions',
+    'sos': 'rescue_sessions',
+    '911': 'rescue_sessions',
+    
+    # Sleep & insomnia
+    'sleep': 'sleep_optimization',
+    'insomnia': 'insomnia_support',
+    'tired': 'insomnia_support',
+    'rest': 'sleep_optimization',
+    'bedtime': 'sleep_optimization',
+    'nap': 'sleep_optimization nap',
+    'wake': 'sleep_optimization wake',
+    
+    # CBT & cognitive tools
+    'cbt': 'cbt_toolkit',
+    'thoughts': 'cbt_toolkit challenge',
+    'thinking': 'cbt_toolkit',
+    'cognitive': 'cbt_toolkit',
+    'challenge': 'cbt_toolkit challenge',
+    'reframe': 'cbt_toolkit challenge',
+    
+    # AI companion & chatbot
+    'ai': 'ai_companion',
+    'chat': 'ai_companion chat',
+    'talk': 'ai_companion chat',
+    'companion': 'ai_companion',
+    'bot': 'ai_companion',
+    'woebot': 'ai_companion chat',
+    
+    # Positive psychology
+    'positive': 'positive_psychology',
+    'three': 'positive_psychology three',
+    'strengths': 'positive_psychology strengths',
+    'optimism': 'positive_psychology optimism',
+    'best': 'positive_psychology best',
+    
+    # Body image & self-esteem
+    'body': 'body_image',
+    'image': 'body_image_support',
+    'self': 'body_image_support',
+    'esteem': 'body_image_support',
+    
+    # Physical wellness
+    's': 'stretch',
+    'stretch': 'physical',
+    'physical': 'physical',
+    'exercise': 'physical',
+    'move': 'physical',
+    'workout': 'physical',
+    
+    # Habits & tracking
+    'h': 'habits',
+    'habit': 'habits',
+    'track': 'habits',
+    'routine': 'habits',
+    
+    # Social & connection
+    'soc': 'social',
+    'social': 'social_connection',
+    'connect': 'social_connection',
+    'friends': 'social_connection',
+    'relationship': 'social_connection',
+    
+    # Journaling & reflection
+    'j': 'journal',
+    'journal': 'guided_journals',
+    'write': 'guided_journals',
+    'reflect': 'guided_journals',
+    'diary': 'guided_journals',
+    
+    # Learning & growth
+    'learn': 'learning',
+    'learning': 'learning_paths',
+    'study': 'learning_paths',
+    'grow': 'learning_paths',
+    'education': 'learning_paths',
+    'course': 'learning_paths',
+    
+    # Advanced techniques
+    'hyp': 'hypnosis',
+    'hypnosis': 'hypnosis_sessions',
+    'trance': 'hypnosis_sessions',
+    
+    'neuro': 'neurowave',
+    'neurowave': 'neurowave_stimulation',
+    'brain': 'neurowave_stimulation',
+    'waves': 'neurowave_stimulation',
+    
+    # AI & coaching features
+    'coach': 'coach',
+    'ai': 'coach',
+    'coaching': 'coach',
+    'mentor': 'coach',
+    'guide': 'coach',
+    
+    # Autopilot & automation
+    'auto': 'autopilot',
+    'pilot': 'autopilot',
+    'autopilot': 'autopilot',
+    'tasks': 'autopilot tasks',
+    'routine': 'autopilot',
+    
+    # Gamification & achievements
+    'game': 'gamify',
+    'gamify': 'gamify',
+    'achieve': 'gamify achievements',
+    'achievements': 'gamify achievements',
+    'points': 'gamify status',
+    'level': 'gamify status',
+    'stats': 'gamify status',
+    'progress': 'gamify status',
+    
+    # Dashboard & analytics
+    'd': 'dashboard',
+    'dash': 'dashboard',
+    'dashboard': 'dashboard',
+    'stats': 'dashboard',
+    'analytics': 'dashboard',
+    'data': 'dashboard',
+    'live': 'dashboard live',
+    'summary': 'dashboard summary',
+    'export': 'dashboard export',
+    
+    # Chat & interaction
+    'c': 'chat',
+    'chat': 'chatbot',
+    'talk': 'chatbot',
+    'bot': 'chatbot',
+    
+    # Emotion analysis
+    'emotion': 'analysis',
+    'analysis': 'emotion_analysis',
+    'analyze': 'emotion_analysis',
+    'patterns': 'emotion_analysis',
+    'triggers': 'emotion_analysis',
+    
+    # External integrations
+    'ext': 'external',
+    'external': 'external_integrations',
+    'integrate': 'external_integrations',
+    'tools': 'external_integrations',
+    
+    # Quick capture
+    'cap': 'capture',
+    'capture': 'quick_capture',
+    'quick': 'quick_capture',
+    'note': 'quick_capture',
+    'log': 'quick_capture',
+    
+    # System & meta
+    'a': 'about',
+    'about': 'about',
+    'info': 'about',
+    'docs': 'docs',
+    'doc': 'docs', 
+    'documentation': 'docs',
+    'help': 'help',
+    '?': 'help',
+    'version': '--version',
+    'v': '--version',
+    '?': '--help',
+    'status': 'status',
+    'st': 'status',
+    
+    # Natural language shortcuts
+    'stressed': 'quick breathe',
+    'anxious': 'quick grounding',
+    'overwhelmed': 'quick reset',
+    'unfocused': 'quick focus',
+    'grateful': 'quick gratitude',
+    'tense': 'quick stretch',
+    'low': 'quick affirmation',
+    'scattered': 'quick calm',
+    'restless': 'quick energy',
+    
+    # Time-based shortcuts
+    'morning': 'autopilot morning',
+    'evening': 'autopilot evening',
+    'daily': 'coach daily',
+    'checkin': 'quick checkin',
+    'routine': 'autopilot tasks',
+    
+    # Logbuch-inspired features
+    'checkin': 'daily_checkin',
+    'check': 'daily_checkin quick',
+    'morning': 'daily_checkin full',
+    'evening': 'daily_checkin evening',
+    'reflect': 'daily_checkin evening',
+    
+    # Enhanced mood tracking
+    'mood': 'enhanced_mood',
+    'moods': 'enhanced_mood list',
+    'mood_analytics': 'enhanced_mood analytics',
+    'mood_suggest': 'enhanced_mood suggest',
+    
+    # Wellness dashboard
+    'dashboard': 'wellness_dashboard',
+    'dash': 'wellness_dashboard',
+    'summary': 'wellness_dashboard summary',
+    'live': 'wellness_dashboard live',
+    'export': 'wellness_dashboard export',
+    
+    # Backup and data management
+    'backup': 'backup_export',
+    'save': 'backup_export create',
+    'restore': 'backup_export restore',
+    'import': 'backup_export import',
+    'export_data': 'backup_export export',
+    
+    # Quick stats and insights
+    'stats': 'wellness_dashboard summary',
+    'insights': 'enhanced_mood analytics',
+    'history': 'daily_checkin history',
+    'week': 'daily_checkin week',
+    'month': 'daily_checkin month',
+    
+    # API server
+    'api': 'api_server',
+    'server': 'api_server start',
+    'web': 'api_server web',
+    'api_start': 'api_server start',
+    'api_stop': 'api_server stop',
+    'api_status': 'api_server status',
+}
+
+# Smart suggestions based on time of day with new features
+def get_time_based_suggestions():
+    hour = datetime.now().hour
+    
+    if 5 <= hour < 9:  # Morning
+        return [
+            "🌅 Good morning! Try: om coach daily (get your AI coaching insight)",
+            "☕ Start your day: om dashboard summary (check your wellness status)",
+            "🧘 Center yourself: om autopilot tasks (see your wellness tasks)",
+            "📊 Track progress: om gamify status (view achievements)"
+        ]
+    elif 12 <= hour < 14:  # Lunch
+        return [
+            "🍽️ Midday check: om dashboard summary (wellness overview)",
+            "💪 Quick reset: om autopilot recommendations (get AI suggestions)",
+            "🧘 Lunch meditation: om coach daily (personalized guidance)",
+            "🎯 Check progress: om gamify challenge (daily challenge)"
+        ]
+    elif 17 <= hour < 20:  # Evening
+        return [
+            "🌆 Evening wind-down: om dashboard live (watch your progress)",
+            "📝 Reflect: om coach analyze (analyze your mood patterns)",
+            "🙏 Evening gratitude: om gamify achievements (celebrate progress)",
+            "🤖 Autopilot check: om autopilot status (wellness automation)"
+        ]
+    elif 20 <= hour < 24:  # Night
+        return [
+            "🌙 Prepare for rest: om dashboard export (save your progress)",
+            "😴 Sleep support: om coach urgent (check for urgent insights)",
+            "🧘 Night meditation: om autopilot complete (finish daily tasks)",
+            "🎮 Progress review: om gamify status (see today's achievements)"
+        ]
+    else:  # Late night/early morning
+        return [
+            "🌃 Late night support: om rescue (if you need help)",
+            "😰 Can't sleep?: om coach daily (get personalized support)",
+            "🫁 Calm your mind: om dashboard summary (check wellness status)",
+            "🤖 Auto support: om autopilot urgent (priority wellness tasks)"
+        ]
+
+def show_smart_help():
+    """Show contextual help with time-based suggestions and new features"""
+    print("🧘‍♀️ om - Your Advanced Mental Health Companion")
+    print("=" * 60)
+    
+    # Time-based suggestions
+    suggestions = get_time_based_suggestions()
+    print("💡 Suggestions for right now:")
+    for suggestion in suggestions:
+        print(f"   {suggestion}")
+    print()
+    
+    print("🆕 NEW ADVANCED FEATURES:")
+    print("   om coach daily     # AI mental health coaching")
+    print("   om dashboard live  # Real-time wellness dashboard")
+    print("   om autopilot tasks # Automated wellness management")
+    print("   om gamify status   # Achievement & progress tracking")
+    print()
+    
+    print("⚡ Quick Actions (10 seconds to 2 minutes):")
+    print("   om qm          # Quick mood check")
+    print("   om qb          # 2-minute breathing")
+    print("   om qg          # 30-second gratitude")
+    print("   om qf          # Focus reset")
+    print("   om qc          # Quick calm")
+    print("   om qr          # Complete reset")
+    print("   om qs          # Physical stretch")
+    print("   om qe          # Energy boost")
+    print("   om qa          # Positive affirmation")
+    print("   om qgr         # 5-4-3-2-1 grounding")
+    print()
+    
+    print("🎯 Most Used Commands:")
+    print("   om m           # Mood tracking")
+    print("   om b           # Breathing exercises")
+    print("   om cope        # Coping strategies")
+    print("   om resc        # Crisis support")
+    print("   om d           # Wellness dashboard")
+    print("   om coach       # AI coaching")
+    print()
+    
+    print("📱 Full Experience:")
+    print("   om             # Interactive menu (all features)")
+    print("   om dashboard   # Visual wellness dashboard")
+    print("   om autopilot   # Automated wellness system")
+    print("   om gamify      # Achievement system")
+    print("   om a           # About om")
+    print()
+    
+    print("🔤 Quick aliases:")
+    print("    Core: qm, qb, qg, m, b, d, coach, auto, game")
+    print("    Support: anx, dep, cope, rec, resc, j")
+    print("    Advanced: ai, pilot, achieve, dash, live")
+
+def expand_alias(args):
+    """Expand command aliases"""
+    if not args:
+        return args
+    
+    # Check for exact alias match first
+    if args[0] in ALIASES:
+        expanded = ALIASES[args[0]].split()
+        return expanded + args[1:]
+    
+    # Check for compound aliases like 'qm' (but only for specific quick patterns)
+    first_arg = args[0]
+    
+    # Only apply compound alias logic to quick commands (starting with 'q')
+    if first_arg.startswith('q') and len(first_arg) > 1:
+        for alias, expansion in ALIASES.items():
+            if alias.startswith('q') and first_arg.startswith(alias) and len(first_arg) > len(alias):
+                # Handle cases like 'qm' -> 'quick mood'
+                expanded = expansion.split()
+                remaining = first_arg[len(alias):]
+                if remaining:
+                    expanded.append(remaining)
+                return expanded + args[1:]
+    
+    return args
+
+def show_feature_spotlight():
+    """Show spotlight on new advanced features"""
+    print("✨ FEATURE SPOTLIGHT: Advanced Mental Health AI")
+    print("=" * 55)
+    print()
+    print("🧠 AI MENTAL HEALTH COACH")
+    print("   Get personalized insights based on your mood patterns")
+    print("   • om coach daily    - Daily personalized guidance")
+    print("   • om coach analyze  - Deep analysis of your data")
+    print("   • om coach urgent   - Priority mental health alerts")
+    print()
+    print("🤖 WELLNESS AUTOPILOT")
+    print("   Automated wellness task management and recommendations")
+    print("   • om autopilot tasks         - View wellness tasks")
+    print("   • om autopilot recommendations - Get AI suggestions")
+    print("   • om autopilot complete 1 8  - Complete task with rating")
+    print()
+    print("🎮 GAMIFICATION SYSTEM")
+    print("   Achievement tracking and progress motivation")
+    print("   • om gamify status       - View progress & level")
+    print("   • om gamify achievements - See unlocked achievements")
+    print("   • om gamify challenge    - Daily wellness challenge")
+    print()
+    print("📊 VISUAL DASHBOARD")
+    print("   Real-time wellness metrics and progress visualization")
+    print("   • om dashboard show    - Static wellness overview")
+    print("   • om dashboard live    - Live updating dashboard")
+    print("   • om dashboard export  - Export wellness data")
+    print()
+    print("💡 Try: om coach daily && om dashboard summary")
+    print("   Get your daily insight and wellness overview!")
+
+def run_command(args):
+    """Run the appropriate om command"""
+    if not args:
+        # No arguments - show interactive menu with feature spotlight
+        print("🧘‍♀️ Welcome to om - Advanced Mental Health CLI")
+        print()
+        show_feature_spotlight()
+        print()
+        print("Starting interactive menu...")
+        subprocess.run([sys.executable, MAIN_PY])
+        return
+    
+    # Expand aliases
+    expanded_args = expand_alias(args)
+    
+    # Handle quick actions
+    if expanded_args[0] == 'quick':
+        if len(expanded_args) > 1:
+            subprocess.run([sys.executable, QUICK_PY] + expanded_args[1:])
+        else:
+            subprocess.run([sys.executable, QUICK_PY, 'help'])
+        return
+    
+    # Handle help requests
+    if expanded_args[0] in ['--help', '-h', 'help', '?']:
+        subprocess.run([sys.executable, MAIN_PY, 'help'])
+        return
+    
+    # Handle version
+    if expanded_args[0] in ['--version', '-v', 'version']:
+        print("om 2.0.0 - Advanced Mental Health CLI Platform")
+        print("New features: AI Coach, Autopilot, Gamification, Dashboard")
+        print("Adapted from logbuch productivity features for mental health")
+        return
+    
+    # Handle feature spotlight
+    if expanded_args[0] in ['features', 'spotlight', 'new']:
+        show_feature_spotlight()
+        return
+    
+    # Handle smart combinations
+    if expanded_args[0] == 'morning':
+        print("🌅 Good morning! Starting your wellness routine...")
+        subprocess.run([sys.executable, MAIN_PY, 'coach', 'daily'])
+        subprocess.run([sys.executable, MAIN_PY, 'dashboard', 'summary'])
+        subprocess.run([sys.executable, MAIN_PY, 'autopilot', 'tasks'])
+        return
+    
+    if expanded_args[0] == 'evening':
+        print("🌆 Evening wellness check...")
+        subprocess.run([sys.executable, MAIN_PY, 'gamify', 'status'])
+        subprocess.run([sys.executable, MAIN_PY, 'dashboard', 'summary'])
+        subprocess.run([sys.executable, MAIN_PY, 'coach', 'analyze'])
+        return
+    
+    # Handle documentation
+    if expanded_args[0] in ['docs', 'documentation', 'doc']:
+        if len(expanded_args) > 1 and expanded_args[1] == 'serve':
+            print("📚 Starting documentation server...")
+            subprocess.run([os.path.join(SCRIPT_DIR, 'serve_docs.sh')])
+        else:
+            print("📚 om Documentation")
+            print()
+            print("Available commands:")
+            print("  om docs serve    - Start local documentation server")
+            print("  om docs build    - Build documentation")
+            print()
+            print("📖 Documentation locations:")
+            docs_dir = os.path.join(SCRIPT_DIR, 'docs', 'build', 'html')
+            if os.path.exists(docs_dir):
+                print(f"  Local: file://{docs_dir}/index.html")
+            else:
+                print("  Documentation not built yet. Run: om docs build")
+            print("  Online: https://github.com/yourusername/om/docs")
+        return
+    
+    if expanded_args[0] == 'docs-build':
+        print("🔨 Building documentation...")
+        docs_dir = os.path.join(SCRIPT_DIR, 'docs')
+        if os.path.exists(docs_dir):
+            subprocess.run(['make', 'html'], cwd=docs_dir)
+            print("✅ Documentation built successfully!")
+            print(f"📖 View at: file://{docs_dir}/build/html/index.html")
+        else:
+            print("❌ Documentation directory not found")
+        return
+    
+    # Handle wellness workflow
+    if expanded_args[0] == 'workflow':
+        print("🔄 Starting comprehensive wellness workflow...")
+        subprocess.run([sys.executable, MAIN_PY, 'mood'])
+        subprocess.run([sys.executable, MAIN_PY, 'coach', 'daily'])
+        subprocess.run([sys.executable, MAIN_PY, 'autopilot', 'recommendations'])
+        subprocess.run([sys.executable, MAIN_PY, 'gamify', 'challenge'])
+        return
+    
+    # Run main application with expanded arguments
+    subprocess.run([sys.executable, MAIN_PY] + expanded_args)
+
+def main():
+    try:
+        # Get command line arguments (excluding script name)
+        args = sys.argv[1:]
+        run_command(args)
+    except KeyboardInterrupt:
+        print("\n👋 Take care of your mental health!")
+        print("💡 Remember: om is always here when you need support")
+    except Exception as e:
+        print(f"Error: {e}")
+        print("Try: om help")
+        print()
+        print("🆕 New features available:")
+        print("  om coach daily    - AI coaching")
+        print("  om dashboard      - Wellness dashboard")
+        print("  om autopilot      - Automated wellness")
+
+if __name__ == "__main__":
+    main()

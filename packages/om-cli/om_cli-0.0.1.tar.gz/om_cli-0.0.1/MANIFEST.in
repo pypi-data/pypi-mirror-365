@@ -1,0 +1,14 @@
+include README.md
+include README_PYPI.md
+include LICENSE
+include requirements.txt
+include requirements_classifier.txt
+recursive-include modules *.py
+recursive-include docs *.rst *.md *.txt
+recursive-include database *.sql
+recursive-include api *.py *.html *.js
+recursive-include scripts *.sh
+include om
+include main.py
+include om_db.py
+include setup.py
