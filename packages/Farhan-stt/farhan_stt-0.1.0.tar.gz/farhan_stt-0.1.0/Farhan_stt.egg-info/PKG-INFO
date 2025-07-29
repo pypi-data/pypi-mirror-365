@@ -1,0 +1,37 @@
+Metadata-Version: 2.4
+Name: Farhan_stt
+Version: 0.1.0
+Summary: Offline speech-to-text tool using browser frontend and Python backend
+Author: Farhan Raza Shaikh
+Author-email: itsnobody@zohomail.in
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: requires-python
+Dynamic: summary
+
+# farhan_stt
+
+**Farhan_stt** is a lightweight offline Speech-to-Text tool that uses a browser-based frontend (HTML + JS) and Python backend via Selenium. It is designed to run speech recognition in a loop, capture your speech, and save it to a file or print in the terminal.
+
+---
+
+## 🔧 Features
+
+- 🎙️ Voice recognition using browser's Web Speech API  
+- 🔁 Continuous listening loop  
+- 📄 Saves recognized speech to a `.txt` file  
+- 💻 Terminal support with headless browser (Chrome)
+
+---
+
+## 🚀 Installation
+
+```bash
+pip install farhan_stt
