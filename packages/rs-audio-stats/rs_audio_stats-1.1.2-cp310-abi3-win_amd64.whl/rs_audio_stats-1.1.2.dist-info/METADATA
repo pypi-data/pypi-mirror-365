@@ -1,0 +1,177 @@
+Metadata-Version: 2.4
+Name: rs_audio_stats
+Version: 1.1.2
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Rust
+Classifier: Topic :: Multimedia :: Sound/Audio :: Analysis
+License-File: LICENSE
+Summary: Professional-grade audio analysis tool with EBU R128 loudness measurement
+Keywords: audio,loudness,ebu-r128,analysis,normalization
+Author: Hiroshi Tamura
+License: MIT
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+Project-URL: Homepage, https://github.com/hiroshi-tamura/rs_audio_stats
+Project-URL: Repository, https://github.com/hiroshi-tamura/rs_audio_stats
+
+# rs_audio_stats
+
+🎵 Professional-grade audio analysis and normalization library for Python with EBU R128 loudness measurement.
+
+[![PyPI version](https://badge.fury.io/py/rs-audio-stats.svg)](https://pypi.org/project/rs-audio-stats/)
+[![Python versions](https://img.shields.io/pypi/pyversions/rs-audio-stats.svg)](https://pypi.org/project/rs-audio-stats/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
+## ✨ Features
+
+- **📊 EBU R128 Loudness Analysis**: Industry-standard loudness measurement (±0.05 LUFS accuracy)
+- **🎛️ Audio Normalization**: Normalize to broadcast standards (-23 LUFS, streaming platforms)
+- **⚡ High Performance**: SIMD-optimized, multi-threaded batch processing
+- **🔄 Batch Processing**: Analyze entire directories with progress tracking
+- **📁 Multiple Formats**: WAV, FLAC, MP3, AAC, OGG, ALAC, MP4/M4A support
+- **📤 Export Options**: CSV, JSON, XML, TSV output formats
+- **🌍 Cross-Platform**: Windows, macOS (Intel/Apple Silicon), Linux - **No Rust required!**
+
+## 🚀 Quick Start
+
+```bash
+pip install rs-audio-stats
+```
+
+```python
+import rs_audio_stats
+
+# Analyze audio file
+info, results = rs_audio_stats.analyze_audio_all("audio.wav")
+print(f"Loudness: {results.integrated_loudness:.1f} LUFS")
+print(f"Peak: {results.true_peak:.1f} dBFS")
+
+# Normalize to streaming standard
+rs_audio_stats.normalize_to_lufs("input.wav", -14.0, "output.wav")
+```
+
+## 📖 Documentation
+
+- **[Complete Python Guide](COMPLETE_PYTHON_GUIDE.md)** - Comprehensive API documentation with examples
+- **[API Reference](API_REFERENCE.md)** - Detailed function reference
+- **[GitHub Repository](https://github.com/hiroshi-tamura/rs_audio_stats)** - Source code and issues
+
+## Installation
+
+### From Source (Requires Rust)
+
+```bash
+# Install maturin
+pip install maturin
+
+# Build and install in development mode
+maturin develop --features python
+
+# Build wheel for distribution
+maturin build --release --features python
+```
+
+### From Wheel (Windows)
+
+```bash
+pip install rs_audio_stats-1.1.0-cp39-abi3-win_amd64.whl
+```
+
+## Quick Start
+
+```python
+import rs_audio_stats as ras
+
+# Analyze audio file
+info, results = ras.analyze_audio_all("audio.wav")
+print(f"Integrated Loudness: {results.integrated_loudness} LUFS")
+
+# Normalize audio
+ras.normalize_to_lufs("input.wav", -23.0, "output.wav")
+```
+
+## Features
+
+- ✅ Complete Python API matching the EXE functionality
+- ✅ All analysis measurements (integrated loudness, peak, RMS, etc.)
+- ✅ Audio normalization to target levels
+- ✅ Batch processing capabilities
+- ✅ Export to CSV/JSON formats
+- ✅ Comprehensive error handling
+- ✅ Type hints and documentation
+- ✅ Cross-platform compatibility
+
+## Supported Audio Formats
+
+### Input
+- WAV (PCM, 16/24/32-bit)
+- FLAC, MP3, AAC, OGG, ALAC, MP4/M4A
+
+### Output  
+- WAV (32-bit float PCM)
+
+## API Overview
+
+### Core Functions
+- `analyze_audio()` - Analyze with specific measurements
+- `analyze_audio_all()` - Analyze with all measurements
+- `get_audio_info()` - Get file information only
+- `batch_analyze()` - Process multiple files
+
+### Normalization
+- `normalize_true_peak()` - Normalize to peak level
+- `normalize_integrated_loudness()` - Normalize to LUFS level
+- `normalize_rms_max()` - Normalize to RMS max level
+- `normalize_rms_average()` - Normalize to RMS average level
+
+### Export
+- `export_to_csv()` - Export results to CSV
+- `export_to_json()` - Export results to JSON
+
+### Utilities
+- `find_audio_files()` - Find audio files in directory
+- Convenience wrapper functions with simplified APIs
+
+## Testing
+
+```bash
+# Run API structure tests
+python test_rs_audio_stats.py
+
+# Expected output when bindings are not built:
+# Warning: Python bindings are not available.
+# This is expected in a cross-compilation environment.
+```
+
+## Building for Windows
+
+This package includes cross-compilation support for Windows from Linux:
+
+```bash
+# Add Windows target
+rustup target add x86_64-pc-windows-gnu
+
+# Build for Windows
+maturin build --release --target x86_64-pc-windows-gnu --features python
+```
+
+## Performance
+
+- WAV files: Ultra-fast analysis path
+- Other formats: Robust analysis with full decoding
+- SIMD optimizations enabled by default
+- Memory-efficient streaming processing
+
+## License
+
+MIT License - See LICENSE file for details.
+
+## Documentation
+
+See `API_REFERENCE.md` for complete API documentation with examples.
