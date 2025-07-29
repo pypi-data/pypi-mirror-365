@@ -1,0 +1,363 @@
+version: '3'
+
+# Version configuration
+vars:
+  PACKAGE_NAME: ado-mcp-raboley
+  VERSION_MAJOR: 0
+  VERSION_MINOR: 0
+
+dotenv: ['.env']
+
+env:
+  # Use values from .env file or fallback to defaults
+  ADO_ORGANIZATION_URL: 'https://dev.azure.com/RussellBoley'
+  ADO_PROJECT_NAME: "ado-mcp2"
+  
+  # Terraform Azure DevOps provider environment variables
+  AZDO_ORG_SERVICE_URL: 'https://dev.azure.com/RussellBoley'
+  # AZDO_PERSONAL_ACCESS_TOKEN will be loaded from .env via dotenv
+  
+  # Other environment variables  
+  PYPI_TOKEN: $(security find-generic-password -w -a pypi)
+  PYTHONPATH: "."
+
+tasks:
+  install:
+    desc: Install project dependencies
+    cmds:
+      - uv sync
+    sources:
+      - pyproject.toml
+    generates:
+      - uv.lock
+      - .venv/pyvenv.cfg
+
+  test:
+    desc: Run project tests in parallel with slowest tests first
+    cmds:
+      - uv run pytest -v -n auto --junitxml=pytest-results.xml --timeout=300 --slowest-first --durations=20
+
+  test-sequential:
+    desc: Run project tests sequentially (for debugging)
+    cmds:
+      - uv run pytest -v
+
+  test-single:
+    desc: Run a single test (use TEST_NAME variable)
+    cmds:
+      - uv run pytest {{.TEST_NAME}} -v -s
+
+
+  coverage:
+    desc: Generate code coverage report
+    cmds:
+      -  uv run pytest -v --cov -n auto
+
+  format:
+    desc: Format code with ruff
+    cmds:
+      - uv run ruff format .
+      - uv run ruff check --fix .
+
+  format-check:
+    desc: Check code formatting without making changes
+    cmds:
+      - uv run ruff format --check .
+      - uv run ruff check .
+
+  typecheck:
+    desc: Run type checking with mypy
+    cmds:
+      - uv run mypy .
+
+  pre-commit:
+    desc: Run all pre-commit checks (format, typecheck, tests)
+    deps:
+      - task: format
+      - task: typecheck
+      - task: test
+
+  run:
+    desc: Run the FastAPI application
+    cmds:
+      - uv run python server.py
+
+  inspect:
+    desc: Run the MCP Inspector on the server
+    deps:
+      - task: install
+    cmds:
+      - fastmcp dev server.py
+
+  docs-install:
+    cmds:
+      - uv sync --extra docs
+    sources:
+      - pyproject.toml
+    generates:
+      - .venv/lib/python*/site-packages/sphinx*
+
+  docs-build:
+    deps:
+      - task: docs-install
+    cmds:
+      - uv run sphinx-build -b html docs docs/_build/html
+    sources:
+      - docs/**/*
+      - ado/**/*.py
+      - server.py
+    generates:
+      - docs/_build/html/index.html
+
+  docs-serve:
+    desc: Build and serve documentation locally at http://localhost:8000
+    deps:
+      - task: docs-build
+    cmds:
+      - echo "📚 Documentation available at http://localhost:8000"
+      - uv run python -m http.server 8000 -d docs/_build/html
+
+  docs-clean:
+    cmds:
+      - rm -rf docs/_build docs/_autosummary
+
+  docs-watch:
+    deps:
+      - task: docs-install
+    cmds:
+      - uv run sphinx-autobuild docs docs/_build/html --host 0.0.0.0 --port 8000
+
+  auth-test:
+    desc: test your ado token
+    cmds:
+      - curl -s -u ":$AZURE_DEVOPS_EXT_PAT" "$ADO_ORGANIZATION_URL/_apis/ConnectionData?api-version=7.1-preview" | jq .
+
+  install-azure-cli:
+    desc: Install Azure CLI if not present
+    cmds:
+      - |
+        echo "Installing Azure CLI..."
+        brew install azure-cli
+    status:
+      - command -v az
+
+  install-azdo-extension:
+    desc: Install Azure DevOps CLI extension
+    deps:
+      - task: install-azure-cli
+    cmds:
+      - |
+        echo "Installing Azure DevOps CLI extension..."
+        az extension add --name azure-devops
+    status:
+      - az extension list --query "[?name=='azure-devops']" -o tsv | grep -q azure-devops
+
+  setup-ado-cli:
+    desc: Setup Azure DevOps CLI authentication
+    deps:
+      - task: install-azdo-extension
+    cmds:
+      - |
+        echo "Setting up Azure DevOps CLI authentication..."
+        echo "Using PAT from keychain..."
+        TOKEN=$(security find-generic-password -w -a ado-token)
+        if [ -z "$TOKEN" ]; then
+          echo "❌ Failed to retrieve token from keychain"
+          exit 1
+        fi
+        echo "$TOKEN" | az devops login --organization "{{.ADO_ORGANIZATION_URL}}"
+        az devops configure --defaults organization="{{.ADO_ORGANIZATION_URL}}" project="{{.ADO_PROJECT_NAME}}"
+        echo "✅ Azure DevOps CLI setup complete!"
+    status:
+      - az devops project list --organization "{{.ADO_ORGANIZATION_URL}}" &> /dev/null
+
+  setup-env:
+    desc: "Create .env file template for credentials"
+    cmds:
+      - |
+        if [ ! -f .env ]; then
+          echo "# Azure DevOps credentials for ado-mcp testing" > .env
+          echo "# Get your PAT from: https://dev.azure.com/[YourOrg]/_usersSettings/tokens" >> .env
+          echo "AZURE_DEVOPS_EXT_PAT=your_personal_access_token_here" >> .env
+          echo "" >> .env
+          echo "# Optional: GitHub token for testing GitHub resources in pipelines" >> .env
+          echo "GITHUB_TOKEN=your_github_token_here" >> .env
+          echo "" >> .env
+          echo "# Organization URL - update with your Azure DevOps organization" >> .env
+          echo "ADO_ORGANIZATION_URL={{.ADO_ORGANIZATION_URL}}" >> .env
+          echo "ADO_PROJECT_NAME={{.ADO_PROJECT_NAME}}" >> .env
+          echo ""
+          echo "📝 Created .env template file"
+          echo "🔑 Please update .env with your actual Azure DevOps Personal Access Token"
+          echo "💡 Get a PAT from: https://dev.azure.com/[YourOrg]/_usersSettings/tokens"
+          echo "⚠️  The token needs 'Full access' or at least 'Build', 'Project and Team', 'Work Items' permissions"
+        else
+          echo "✅ .env file already exists"
+        fi
+
+  build:
+    desc: Build the package for distribution
+    cmds:
+      - rm -rf dist/
+      - uv build
+    generates:
+      - dist/*.whl
+      - dist/*.tar.gz
+
+  publish:
+    desc: Publish package to PyPI
+    deps:
+      - task: build
+    cmds:
+      - |
+        echo "Publishing ado-mcp-raboley version $(uv run python -c 'import ado; print(ado.__version__)')"
+        uv publish --token $PYPI_TOKEN
+
+  publish-test:
+    desc: Publish package to Test PyPI
+    deps:
+      - task: build
+    cmds:
+      - |
+        echo "Publishing ado-mcp-raboley version $(uv run python -c 'import ado; print(ado.__version__)') to Test PyPI"
+        uv publish --publish-url https://test.pypi.org/legacy/ --token $PYPI_TOKEN
+
+  version:
+    desc: Calculate and update to the next patch version based on PyPI
+    cmds:
+      - |
+        echo "Calculating next version for {{.PACKAGE_NAME}} ({{.VERSION_MAJOR}}.{{.VERSION_MINOR}}.x)..."
+        NEXT_VERSION=$(python3 scripts/version_manager.py {{.PACKAGE_NAME}} {{.VERSION_MAJOR}} {{.VERSION_MINOR}})
+        echo "Next version: $NEXT_VERSION"
+        
+        echo "Updating pyproject.toml..."
+        sed -i.bak "s/^version = .*/version = \"$NEXT_VERSION\"/" pyproject.toml
+        
+        echo "Updating ado/__init__.py..."
+        sed -i.bak "s/^__version__ = .*/__version__ = \"$NEXT_VERSION\"/" ado/__init__.py
+        
+        echo "Cleaning up backup files..."
+        rm -f pyproject.toml.bak ado/__init__.py.bak
+        
+        echo "✅ Version updated to $NEXT_VERSION"
+        echo ""
+        echo "Files updated:"
+        echo "  - pyproject.toml"
+        echo "  - ado/__init__.py"
+        echo ""
+        echo "Next steps:"
+        echo "  1. Review the changes: git diff"
+        echo "  2. Test the build: task build"
+        echo "  3. Commit the version: git add -A && git commit -m \"bump version to $NEXT_VERSION\""
+        echo "  4. Publish: task publish"
+
+  terraform-lock:
+    desc: "Initialize Terraform with remote state locking for team environments"
+    deps:
+      - task: install-terraform
+    cmds:
+      - |
+        echo "🔐 Initializing Terraform with state locking..."
+        cd terraform
+        
+        # Use username-based state file for isolation
+        terraform init -backend-config="key=ado-mcp-test-${USER}.tfstate"
+        echo "✅ Terraform initialized with locked state: ado-mcp-test-${USER}.tfstate"
+
+  ado-up:
+    desc: "Provision Azure DevOps test environment using Terraform"
+    deps:
+      - task: install-terraform
+    cmds:
+      - |
+        echo "🚀 Provisioning Azure DevOps test environment..."
+        echo "Organization: {{.ADO_ORGANIZATION_URL}}"
+        
+        # Check if .env file exists and contains the required tokens
+        if [ ! -f .env ] || ! grep -q "AZDO_PERSONAL_ACCESS_TOKEN=" .env; then
+          echo "❌ Error: .env file missing or AZDO_PERSONAL_ACCESS_TOKEN not set"
+          echo "💡 Run 'task setup-env' and update the .env file with your Azure DevOps Personal Access Token"
+          echo "📝 Get a PAT from: https://dev.azure.com/[YourOrg]/_usersSettings/tokens"
+          exit 1
+        fi
+        
+        if [ ! -f .env ] || ! grep -q "GITHUB_TOKEN=" .env; then
+          echo "❌ Error: .env file missing or GITHUB_TOKEN not set"
+          echo "💡 Update the .env file with your GitHub Personal Access Token"
+          echo "📝 Get a GitHub PAT from: https://github.com/settings/tokens"
+          echo "🔒 Required scopes: repo (for private repositories)"
+          exit 1
+        fi
+        
+        # Export the required environment variables for Terraform
+        export AZDO_ORG_SERVICE_URL="{{.ADO_ORGANIZATION_URL}}"
+        export AZDO_PERSONAL_ACCESS_TOKEN="$(grep AZDO_PERSONAL_ACCESS_TOKEN .env | cut -d'=' -f2 | tr -d '\"')"
+        export TF_VAR_github_token="$(grep GITHUB_TOKEN .env | cut -d'=' -f2 | tr -d '\"')"
+        
+        cd terraform
+        
+        # Check if we need to initialize with state locking
+        if [ ! -f .terraform/terraform.tfstate ] && [ -n "${CI:-}" ]; then
+          echo "🔐 CI environment detected, using state locking..."
+          terraform init -backend-config="key=ado-mcp-test-${USER:-ci}.tfstate"
+        else
+          terraform init
+        fi
+        
+        terraform plan
+        terraform apply -auto-approve
+        echo "✅ Test environment provisioned successfully!"
+      - task: disable-notifications
+      - |
+        echo ""
+        echo "📁 Generated files:"
+        echo "   - tests/terraform_config.json (test configuration with real pipeline IDs)"
+        echo "   - All pipelines created and configured automatically"
+        echo ""
+        echo "🧪 Ready to test:"
+        echo "   task test"
+
+  ado-down:
+    desc: "Tear down Azure DevOps test environment using Terraform"
+    cmds:
+      - |
+        echo "🔥 Tearing down Azure DevOps test environment..."
+        
+        # Check if .env file exists and contains the required tokens
+        if [ ! -f .env ] || ! grep -q "AZDO_PERSONAL_ACCESS_TOKEN=" .env; then
+          echo "❌ Error: .env file missing or AZDO_PERSONAL_ACCESS_TOKEN not set"
+          echo "💡 Run 'task setup-env' and update the .env file with your Azure DevOps Personal Access Token"
+          exit 1
+        fi
+        
+        # Export the required environment variables for Terraform
+        export AZDO_ORG_SERVICE_URL="{{.ADO_ORGANIZATION_URL}}"
+        export AZDO_PERSONAL_ACCESS_TOKEN="$(grep AZDO_PERSONAL_ACCESS_TOKEN .env | cut -d'=' -f2 | tr -d '\"')"
+        export TF_VAR_github_token="$(grep GITHUB_TOKEN .env | cut -d'=' -f2 | tr -d '\"' 2>/dev/null || echo '')"
+        
+        cd terraform
+        terraform destroy -auto-approve
+        echo "✅ Test environment destroyed successfully!"
+        echo "🧹 Cleaned up:"
+        echo "  - Azure DevOps project: ado-mcp2 (and all pipelines, work items, etc.)"
+        echo "  - Local Terraform state files"
+        echo "  - Generated configuration: tests/terraform_config.json"
+        echo "  - Generated configuration files"
+
+  disable-notifications:
+    desc: "Disable Azure DevOps pipeline email notifications"
+    cmds:
+      - ./scripts/disable-notifications.sh $(echo "{{.ADO_ORGANIZATION_URL}}" | sed 's|.*dev.azure.com/||' | sed 's|/.*||') "{{.ADO_PROJECT_NAME}}"
+
+  install-terraform:
+    desc: "Install Terraform if not present"
+    cmds:
+      - |
+        if ! command -v terraform &> /dev/null; then
+          echo "Installing Terraform..."
+          brew install terraform
+        else
+          echo "Terraform already installed: $(terraform version)"
+        fi
+    status:
+      - command -v terraform
