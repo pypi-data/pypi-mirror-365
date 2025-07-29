@@ -1,0 +1,126 @@
+Metadata-Version: 2.3
+Name: openapi-to-mcp
+Version: 0.1.1
+Summary: A Python library to automatically convert any OpenAPI v2/v3 specification into a Model Context Protocol (MCP) server, with integrations for popular frameworks like FastAPI.
+License: MPL-2.0
+Keywords: openapi,mcp,fastapi,api,converter,generator
+Author: Sriram Krishna
+Requires-Python: >=3.8,<4.0
+Classifier: License :: OSI Approved
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: fastapi (>=0.109.2,<0.110.0)
+Requires-Dist: jsonpath-ng (>=1.5.3,<2.0.0)
+Requires-Dist: jsonpointer (>=2.4,<3.0)
+Requires-Dist: pyyaml (>=6.0,<7.0)
+Requires-Dist: uvicorn (>=0.27.1,<0.28.0)
+Project-URL: Homepage, https://github.com/itssri5/openapi-to-mcp
+Project-URL: Repository, https://github.com/itssri5/openapi-to-mcp
+Description-Content-Type: text/markdown
+
+# OpenAPI to MCP Converter (Python)
+
+A Python library to automatically generate MCP (Model-View-Controller Protocol) servers from OpenAPI specifications.
+
+This library allows you to expose any API with an OpenAPI v3 specification as an MCP-compliant server, making it easy to integrate with AI agents and other MCP-enabled tools.
+
+## Features
+
+- **Dynamic Conversion**: Generate MCP servers from any public OpenAPI v3 specification URL.
+- **Path Filtering**: Selectively expose a subset of API endpoints.
+- **Dynamic Upstream URL**: Forward requests to a different base URL than the one in the OpenAPI spec.
+- **Authentication Forwarding**: Pass authentication headers to the upstream API.
+- **`$ref` Resolution**: Automatically resolves JSON references (`$ref`) in the OpenAPI spec for complete schema definitions.
+- **Security**: Built-in SSRF protection with a configurable domain whitelist.
+- **Framework Integration**: Plug-and-play integration with FastAPI.
+
+## Installation
+
+```bash
+pip install openapi-to-mcp
+```
+
+## Quick Start - FastAPI Integration
+
+Here's how to add an MCP server to your existing FastAPI application. This example sets a static OpenAPI spec URL and enables security.
+
+```python
+from fastapi import FastAPI
+from openapi_to_mcp.fastapi import add_mcp_route
+
+app = FastAPI()
+
+# Add the MCP route
+# This will expose an MCP server at /mcp
+add_mcp_route(
+    app,
+    openapi_url="https://petstore.swagger.io/v2/swagger.json",
+    allowed_domains=["petstore.swagger.io"]  # SSRF Protection
+)
+
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+```
+
+## Advanced Configuration
+
+You can configure the MCP server statically when you initialize it or dynamically using query parameters.
+
+### Static Configuration
+
+Pass a configuration object to `add_mcp_route`:
+
+- `route_prefix` (optional, default: `/mcp`): The base path for the MCP server.
+- `openapi_url` (optional): A default OpenAPI specification URL.
+- `allowed_domains` (optional, default: `[]`): A list of allowed domains for the OpenAPI spec URL and the upstream server to prevent SSRF attacks.
+
+### Dynamic Configuration (Query Parameters)
+
+The MCP endpoint accepts query parameters to override the static configuration. This is useful for AI agents that need to configure the MCP gateway on the fly.
+
+- `s`: The URL of the OpenAPI specification (e.g., `?s=https://example.com/api/swagger.json`).
+- `u`: The upstream server URL to which requests will be forwarded. Overrides the server URL in the OpenAPI spec.
+- `f`: A comma-separated list of path prefixes to filter. Only paths starting with these prefixes will be exposed (e.g., `?f=/users,/products`).
+- `h`: The name of an HTTP header to forward for authentication (e.g., `?h=Authorization`). The MCP server will look for a header with this name in the incoming request and forward it to the upstream API.
+
+**Example URL:**
+`http://localhost:8000/mcp?s=https://petstore.swagger.io/v2/swagger.json&f=/pet&h=api_key`
+
+This URL configures the MCP server to:
+
+1. Fetch the OpenAPI spec from `petstore.swagger.io`.
+2. Expose only the endpoints under the `/pet` path.
+3. Look for a header named `api_key` and forward it in requests to the Petstore API.
+
+## Security: SSRF Protection
+
+To prevent Server-Side Request Forgery (SSRF) attacks, the library uses a domain whitelist. The `add_mcp_route` function takes an `allowed_domains` option, which is a list of strings.
+
+If `allowed_domains` is configured, the library will only allow requests to OpenAPI spec URLs and upstream server URLs that match a domain in the list.
+
+```python
+add_mcp_route(
+    app,
+    allowed_domains=["api.example.com", "petstore.swagger.io"]
+)
+```
+
+## How it Works
+
+The library fetches the OpenAPI specification, parses it, resolves all `$ref` references, and dynamically creates the necessary endpoints to conform to the MCP standard. It handles the mapping of paths, parameters, and authentication methods.
+
+## Running Tests
+
+The library uses pytest for testing. To run the tests:
+
+```bash
+pip install -r requirements.txt
+pytest
+```
+
