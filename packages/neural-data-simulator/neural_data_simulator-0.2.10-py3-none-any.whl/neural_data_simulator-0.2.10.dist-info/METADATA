@@ -1,0 +1,86 @@
+Metadata-Version: 2.3
+Name: neural-data-simulator
+Version: 0.2.10
+Summary: Electrophysiology simulator data for developing Brain-Computer Interfaces
+License: Apache-2.0
+Author: AE Studio
+Author-email: bci@ae.studio
+Maintainer: Chadwick Boulay
+Maintainer-email: chadwick.boulay@gmail.com
+Requires-Python: >=3.9,<3.12
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Provides-Extra: extras
+Requires-Dist: colorednoise (>=2.2.0,<3.0.0)
+Requires-Dist: joblib (>=1.2.0,<2.0.0) ; extra == "extras"
+Requires-Dist: matplotlib (>=3.7.1,<4.0.0) ; extra == "extras"
+Requires-Dist: neo (>=0.12.0,<0.13.0)
+Requires-Dist: numpy (>=1.22.4,<2.0.0)
+Requires-Dist: omegaconf (>=2.3,<3.0)
+Requires-Dist: pooch (>=1.7.0,<2.0.0)
+Requires-Dist: pydantic (>=1.9.1,<2.0.0)
+Requires-Dist: pydantic-yaml (>=0.9.0,<0.10.0)
+Requires-Dist: pygame (==2.2.0.dev2) ; extra == "extras"
+Requires-Dist: pylsl (>=1.16.2,<2.0.0)
+Requires-Dist: pyobjc-framework-Quartz ; (sys_platform == "darwin") and (extra == "extras")
+Requires-Dist: rich (>=10.0.0)
+Requires-Dist: scikit-learn (==1.2.1) ; extra == "extras"
+Requires-Dist: scipy (>=1.10.0,<2.0.0)
+Requires-Dist: screeninfo (==0.8.1) ; extra == "extras"
+Project-URL: Bug Tracker, https://github.com/agencyenterprise/neural-data-simulator/issues
+Project-URL: Documentation, https://agencyenterprise.github.io/neural-data-simulator/
+Project-URL: Homepage, https://github.com/agencyenterprise/neural-data-simulator
+Description-Content-Type: text/markdown
+
+# Neural Data Simulator
+
+[![Linting](https://github.com/agencyenterprise/neural-data-simulator/actions/workflows/lint.yml/badge.svg)](https://github.com/agencyenterprise/neural-data-simulator/actions/workflows/lint.yml)
+[![Tests](https://github.com/agencyenterprise/neural-data-simulator/actions/workflows/test.yml/badge.svg)](https://github.com/agencyenterprise/neural-data-simulator/actions/workflows/test.yml)
+
+The Neural Data Simulator is a real-time system for generating electrophysiology data from behavioral data (e.g. cursor movement, arm kinematics, etc) in real-time. The NDS system can be used to test and validate closed-loop brain-computer interface systems without the need for a human in the loop, generate synthetic data for algorithm optimization, and provide a platform on which to develop BCI decoders.
+
+## Documentation
+
+See the [documentation](https://agencyenterprise.github.io/neural-data-simulator/) for a complete system overview, installation instructions, and API details.
+
+<img width="1546" alt="Architecture" src="https://user-images.githubusercontent.com/748691/235443635-a41fcc3e-b156-4be3-9820-3bcb21329556.png">
+
+## Installation
+
+Ensure that Python `>=3.9` and `<3.12` is installed. Then, proceed to install LSL:
+
+```
+# on Linux/WSL
+conda install -c conda-forge liblsl
+
+# on macOS
+brew install labstreaminglayer/tap/lsl
+
+# on Windows
+# should be installed automatically by pip when installing NDS
+```
+
+Install the NDS package with the included examples and utilities via pip:
+
+```
+pip install "neural-data-simulator[extras]"
+```
+
+## Quick start
+
+Run the following scripts:
+
+```
+nds_post_install_config
+run_closed_loop
+```
+![quick-start](https://raw.githubusercontent.com/agencyenterprise/neural-data-simulator/main/docs/source/images/quick-start.gif)
+
+> **_NOTE:_** You might need to give permissions like network access when running the scripts.
+
