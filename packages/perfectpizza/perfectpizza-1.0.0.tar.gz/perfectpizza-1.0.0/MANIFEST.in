@@ -1,0 +1,51 @@
+# MANIFEST.in
+
+# Include the README and license
+include README.md
+include LICENSE
+include CHANGELOG.md
+
+# Include configuration files
+include pyproject.toml
+include setup.py
+include MANIFEST.in
+
+# Include the package marker for typing
+include perfectpizza/py.typed
+
+# Include test files for development installations
+recursive-include test *.py
+
+# Include examples
+include example.py
+
+# Exclude unnecessary files
+exclude .gitignore
+exclude .github
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+recursive-exclude * *.pyo
+recursive-exclude * *.pyd
+recursive-exclude * .DS_Store
+recursive-exclude * .coverage
+recursive-exclude * .pytest_cache
+recursive-exclude * .mypy_cache
+
+# Documentation
+recursive-include docs *.md *.rst *.txt
+
+# Exclude development and build artifacts
+exclude tox.ini
+exclude .tox
+prune .tox
+exclude .coverage
+exclude htmlcov
+prune htmlcov
+exclude .pytest_cache
+prune .pytest_cache
+exclude build
+prune build
+exclude dist
+prune dist
+exclude *.egg-info
+prune *.egg-info
