@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>PREDICT documentation &#8212; PREDICT 3.2.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=b08954a9" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=4f6ddb47"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="predict-documentation">
+<h1>PREDICT documentation<a class="headerlink" href="#predict-documentation" title="Link to this heading">¶</a></h1>
+<p>Add your content using <code class="docutils literal notranslate"><span class="pre">reStructuredText</span></code> syntax. See the
+<a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">reStructuredText</a>
+documentation for details.</p>
+<p>PREDICT v3.1.17</p>
+<hr class="docutils" />
+<p>PREDICT: a Radiomics Extensive Digital Interchangable Classification Toolkit</p>
+<hr class="docutils" />
+<p>This is an open-source python package supporting radiomics image feature</p>
+<p>extraction.</p>
+<p>Documentation</p>
+<hr class="docutils" />
+<p>For more information, see the sphinx generated documentation available</p>
+<p>in the docs folder. PREDICT is mostly used through <a href="#id1"><span class="problematic" id="id2">`</span></a>the WORC</p>
+<p>toolbox &lt;<a class="reference external" href="https://github.com/MStarmans91/WORC">https://github.com/MStarmans91/WORC</a>&gt;`__, in which further</p>
+<p>documentation on the features computed is also available, see</p>
+<p><a class="reference external" href="https://worc.readthedocs.io/en/latest/static/features.html">https://worc.readthedocs.io/en/latest/static/features.html</a>.</p>
+<p>Alternatively, you can generate the documentation by checking out the</p>
+<p>master branch and running from the root directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">build_sphinx</span>
+</pre></div>
+</div>
+<p>The documentation can then be viewed in a browser by opening</p>
+<p><code class="docutils literal notranslate"><span class="pre">PACKAGE_ROOT\build\sphinx\html\index.html</span></code>.</p>
+<p>Installation</p>
+<hr class="docutils" />
+<p>PREDICT has currently been tested on Ubuntu 16.04 and 18.04, and Windows</p>
+<p>10 using Python 3.6.6 and higher.</p>
+<p>The package can be installed through pip :</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">PREDICT</span>
+</pre></div>
+</div>
+<p>Alternatively, you can use the provided setup.py file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+</pre></div>
+</div>
+<p>Make sure you first install the required packages:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">r</span> <span class="n">requirements</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p>Configuration and usage</p>
+<hr class="docutils" />
+<p>We recommend using PREDICT through <a href="#id3"><span class="problematic" id="id4">`</span></a>the WORC</p>
+<p>toolbox &lt;<a class="reference external" href="https://github.com/MStarmans91/WORC">https://github.com/MStarmans91/WORC</a>&gt;`__, as WORC provides easy</p>
+<p>execution, good default configurations, and additional functionality</p>
+<p>such as preprocessing. If you want to use PREDICT as standalone package,</p>
+<p>we have included the default config for PREDICT from WORC in the</p>
+<p><code class="docutils literal notranslate"><span class="pre">tests</span></code> folder. The main function of PREDICT is the</p>
+<p><code class="docutils literal notranslate"><span class="pre">PREDICT.CalcFeatures.CalcFeatures</span></code> function, see tests.py in the test</p>
+<p>folder on the usage.</p>
+<p>3rd-party packages used in PREDICT:</p>
+<hr class="docutils" />
+<p>We mainly rely on the following packages:</p>
+<ul class="simple">
+<li><p>SimpleITK (Image loading and preprocessing)</p></li>
+<li><p>numpy (Feature computation)</p></li>
+<li><p>scikit-image</p></li>
+<li><p>pandas (Storage)</p></li>
+<li><p>PyRadiomics</p></li>
+<li><p>pydicom</p></li>
+</ul>
+<p>See also the <a class="reference external" href="requirements.txt">requirements file</a>.</p>
+<p>License</p>
+<hr class="docutils" />
+<p>This package is covered by the open source <a href="#id5"><span class="problematic" id="id6">`</span></a>APACHE 2.0</p>
+<p>License &lt;APACHE-LICENSE-2.0&gt;`__. When using PREDICT, please cite the</p>
+<p>following DOI: <a href="#id7"><span class="problematic" id="id8">|DOI|</span></a>.</p>
+<p>Contact</p>
+<hr class="docutils" />
+<p>We are happy to help you with any questions: please send us a message or</p>
+<p>create an issue on Github.</p>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">PREDICT</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Martijn P. A. Starmans, Sebastian R. van der Voort.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.2.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
