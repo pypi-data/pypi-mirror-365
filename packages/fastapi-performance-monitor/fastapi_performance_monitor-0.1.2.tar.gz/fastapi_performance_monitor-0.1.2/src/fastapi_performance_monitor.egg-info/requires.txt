@@ -1,0 +1,11 @@
+fastapi
+
+[dev]
+uvicorn
+
+[test]
+pytest>=7.0.0
+pytest-cov>=4.0.0
+pytest-asyncio>=0.18.0
+httpx>=0.23.0
+numpy>=1.20.0
