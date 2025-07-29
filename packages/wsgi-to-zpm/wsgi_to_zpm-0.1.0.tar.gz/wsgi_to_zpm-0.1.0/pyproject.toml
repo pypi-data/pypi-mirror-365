@@ -1,0 +1,17 @@
+[build-system]
+requires = ["flit_core >=3.11,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "wsgi_to_zpm"
+authors = [{name = "jamerfort", email = "jamerfort+pypi@gmail.com"}]
+license = "MIT"
+license-files = ["LICENSE"]
+readme = "README.md"
+dynamic = ["version", "description"]
+dependencies = [
+  "lxml",
+]
+
+[project.scripts]
+wsgi-to-zpm = "wsgi_to_zpm.__main__:main"
