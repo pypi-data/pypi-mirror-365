@@ -1,0 +1,57 @@
+Metadata-Version: 2.4
+Name: easekit
+Version: 1.0.0
+Summary: A metric to evaluate empathy in dialogue systems
+Home-page: https://github.com/srishtigupta253/easekit
+Author: Srishti Gupta
+Author-email: srishtig253@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: torch
+Requires-Dist: transformers
+Requires-Dist: scikit-learn
+Requires-Dist: nltk
+Requires-Dist: vaderSentiment
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# EASE Metric
+
+`easekit` is a composite metric to evaluate empathy in dialogue systems. It incorporates:
+
+- **Semantic Relevance**
+- **Sentiment Alignment**
+- **Contextual Word Overlap**
+
+## Installation
+
+```bash
+pip install easekit
+```
+
+To use the metric:
+```bash
+from transformers import AutoTokenizer, AutoModel
+from easekit import compute_empathy_score
+
+context = "I am very upset"
+response = "Why? Is everything alright?"
+reference = "Why? What happened?"
+
+model_name = "sentence-transformers/paraphrase-MiniLM-L6-v2"
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModel.from_pretrained(model_name)
+
+result = compute_empathy_score(context, response, reference, model, tokenizer)
+print(result)
