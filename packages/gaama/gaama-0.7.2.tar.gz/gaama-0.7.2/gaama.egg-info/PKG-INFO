@@ -1,0 +1,41 @@
+Metadata-Version: 2.4
+Name: gaama
+Version: 0.7.2
+Summary: GitHub-as-Artifactory for Model Artifacts
+Home-page: https://github.com/prabhuomkar/bitbeast
+Author: Omkar Prabhu
+Author-email: prabhuomkar@pm.me
+License: Apache-2.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary
+
+# gaama
+GaAMA: GitHub-as-Artifactory for Model Artifacts
+
+![Workflow](https://github.com/prabhuomkar/bitbeast/raw/master/gaama/examples/workflow.png)
+
+## Usage
+- Read this [blog post](http://omkar.xyz/gaama/) for the idea behind GaAMA!
+- Install `gaama` using:
+```
+pip install gaama
+```
+- See [example notebook](https://github.com/prabhuomkar/bitbeast/blob/master/gaama/examples/example.ipynb) with PyTorch model
+
+## License
+This project is licensed under [Apache License 2.0](LICENSE).
