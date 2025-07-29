@@ -1,0 +1,45 @@
+{
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "https://w3id.org/software-iodata",
+    "https://raw.githubusercontent.com/jantman/repostatus.org/master/badges/latest/ontology.jsonld",
+    "https://schema.org",
+    "https://w3id.org/software-types"
+  ],
+  "@type": "SoftwareSourceCode",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Mustafa",
+      "familyName": "Soylu",
+      "email": "m.soylu@fz-juelich.de",
+      "@id": "https://orcid.org/0000-0003-2637-0432",
+      "identifier": "https://orcid.org/0000-0003-2637-0432"
+    }
+  ],
+  "name": "hkg-cli",
+  "description": "CLI app to set up micro services of Helmholtz Knowledge Graph locally",
+  "version": "0.1.0",
+  "keywords": [
+    "typer",
+    "hkg",
+    "cli"
+  ],
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Mustafa",
+      "familyName": "Soylu",
+      "email": "m.soylu@fz-juelich.de",
+      "@id": "https://orcid.org/0000-0003-2637-0432",
+      "identifier": "https://orcid.org/0000-0003-2637-0432"
+    }
+  ],
+  "license": [
+    "https://spdx.org/licenses/MIT"
+  ],
+  "softwareHelp": "https://hmc.pages.hzdr.de/hmc-public/unhide/development/hkg-cli",
+  "codeRepository": "https://codebase.helmholtz.cloud/hmc/hmc-public/unhide/development/hkg-cli.git",
+  "buildInstructions": "https://hmc.pages.hzdr.de/hmc-public/unhide/development/hkg-cli",
+  "url": "https://hmc.pages.hzdr.de/hmc-public/unhide/development/hkg-cli"
+}

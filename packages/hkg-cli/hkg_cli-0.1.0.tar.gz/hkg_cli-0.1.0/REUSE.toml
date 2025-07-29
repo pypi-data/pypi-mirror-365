@@ -1,0 +1,16 @@
+version = 1
+SPDX-PackageName = "hkg-cli"
+SPDX-PackageSupplier = "Mustafa Soylu <m.soylu@fz-juelich.de>"
+SPDX-PackageDownloadLocation = "https://codebase.helmholtz.cloud/hmc/hmc-public/unhide/development/hkg-cli.git"
+
+[[annotations]]
+path = [".gitignore", "pyproject.toml", "poetry.lock", ".pre-commit-config.yaml", "codemeta.json", "CITATION.cff", "README.md", "RELEASE_NOTES.md", "CHANGELOG.md", "CODE_OF_CONDUCT.md", "AUTHORS.md", "CONTRIBUTING.md", ".gitlab-ci.yml", ".gitlab/**", ".github/**", "mkdocs.yml", "docs/**"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "Copyright © 2024 Stefan Sandfeld (s.sandfeld@fz-juelich.de)"
+SPDX-License-Identifier = "CC0-1.0"
+
+[[annotations]]
+path = ["src/hkg_cli/**", "tests/**"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "Copyright © 2024 Stefan Sandfeld (s.sandfeld@fz-juelich.de)"
+SPDX-License-Identifier = "MIT"
