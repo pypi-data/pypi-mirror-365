@@ -1,0 +1,40 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Tests",
+            "type": "python",
+            "request": "test",
+            "console": "integratedTerminal",
+            "justMyCode": false,
+            "env": {"PYTEST_ADDOPTS": "--no-cov"}
+        },
+        {
+            "name": "Python: AIO",
+            "type": "python",
+            "request": "launch",
+            "program": "run_aio.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}//tests"
+        },
+        {
+            "name": "Python: Thread",
+            "type": "python",
+            "request": "launch",
+            "program": "run.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}//tests"
+        },
+        {
+            "name": "Python: Client AIO",
+            "type": "python",
+            "request": "launch",
+            "program": "test_client_aio.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}//tests"
+        }
+    ]
+}

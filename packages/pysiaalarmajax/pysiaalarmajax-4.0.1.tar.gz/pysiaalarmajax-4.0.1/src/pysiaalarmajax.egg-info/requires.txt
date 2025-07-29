@@ -1,0 +1,19 @@
+pycryptodome
+pytz
+
+[:python_version < "3.8"]
+importlib-metadata
+
+[testing]
+pytest
+pytest-cov
+pytest-asyncio
+pytest-cases
+tox
+pydocstyle
+pylint
+
+[typing]
+mypy
+types-setuptools
+types-pytz
