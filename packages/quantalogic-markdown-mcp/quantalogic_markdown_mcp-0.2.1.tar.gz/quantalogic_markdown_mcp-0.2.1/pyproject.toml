@@ -1,0 +1,94 @@
+
+[project]
+name = "quantalogic-markdown-mcp"
+version = "0.2.1"
+description = "A flexible and extensible Markdown parser with AST support"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "MIT"}
+authors = [
+    {name = "Raphael Mansuy", email = "raphael.mansuy@gmail.com"},
+]
+keywords = ["markdown", "parser", "ast", "commonmark"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Text Processing :: Markup",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+dependencies = [
+    "markdown-it-py>=3.0.0",
+    "mdit-py-plugins>=0.4.0",
+    "mcp[cli]>=1.12.0",
+    "fastmcp>=0.9.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+]
+latex = [
+    "Pygments>=2.0.0",
+]
+test = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/raphaelmansuy/quantalogic-markdown-edit-mcp"
+Repository = "https://github.com/raphaelmansuy/quantalogic-markdown-edit-mcp"
+Documentation = "https://github.com/raphaelmansuy/quantalogic-markdown-edit-mcp/docs"
+Issues = "https://github.com/raphaelmansuy/quantalogic-markdown-edit-mcp/issues"
+
+[project.scripts]
+quantalogic-markdown-mcp = "quantalogic_markdown_mcp.cli:main"
+
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/quantalogic_markdown_mcp"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.11"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "black>=23.0.0",
+    "build>=1.2.2.post1",
+    "mypy>=1.0.0",
+    "pygments>=2.0.0",
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "ruff>=0.1.0",
+    "twine>=6.1.0",
+]

@@ -1,0 +1,254 @@
+# Test Document for MCP
+
+This is a sample document for testing the SafeMarkdownEditor MCP server.
+
+## Introduction
+
+This document serves as a hands-on playground for exploring the SafeMarkdownEditor MCP server. Here, you can try out all the core and advanced features in a safe environment.
+
+**How to use this document:**
+- Follow the examples and checklists to test each feature
+- Add, edit, or remove sections to see live updates
+- Use the code and table samples to verify formatting and content handling
+- Refer to the troubleshooting tips if you encounter issues
+
+Feel free to experiment and make changes—this document is designed for learning and validation. Each section highlights a different capability of the MCP server, making it easy to test and understand the available tools.
+
+## Features to Test
+
+### Basic Operations
+
+- Document loading
+- Section listing
+- Content retrieval
+
+### Advanced Operations
+
+- Section insertion
+- Section deletion
+- Section moving
+- Content updating
+
+## Sample Content
+
+### Code Examples
+
+Here's a simple Python function:
+
+```python
+def hello_world():
+    print("Hello from MCP!")
+    return "success"
+```
+
+## Deep Nesting Test
+
+#### Level 4 Heading
+
+Content at level 4 with indentation:
+    - Indented content under level 4
+    - More indented content
+
+##### Level 5 Heading  
+
+Even deeper content:
+        - Deeply indented
+        - Content here
+
+###### Level 6 Heading (Maximum)
+
+Maximum depth content:
+            - Very deep indentation
+            - Testing extreme nesting
+
+### Lists and Tables
+
+**Task List:**
+
+- [x] Set up MCP server
+- [x] Test basic operations
+- [x] Test advanced operations  
+- [x] Test edge cases
+- [x] Fix all identified issues
+- [x] Document findings
+
+**Feature Comparison - Final Results:**
+
+| Feature | Status | Notes |
+|---------|--------|-------|
+| Load Document | ✅ | Working perfectly |
+| Save Document | ✅ | Working perfectly |
+| List Sections | ✅ | Working perfectly |
+| Insert Section | ✅ | Working perfectly |
+| Update Section | ✅ | Working perfectly |
+| Delete Section | ✅ | **FIXED** - Now working |
+| Move Section | ✅ | **FIXED** - Now working |
+| Get Section | ✅ | Working perfectly |
+| Analyze Document | ✅ | Working perfectly |
+| Error Handling | ✅ | **IMPROVED** - Proper messages |
+
+**Edge Cases Tested:**
+- ✅ Empty content insertion
+- ✅ Special characters in headings
+- ✅ Very long content blocks
+- ✅ Nested heading levels (up to level 6)
+- ✅ Invalid position handling
+- ✅ Non-existent section operations
+- ✅ Section movement functionality
+### Indentation Test Section
+## Extreme Indentation Tests
+
+**Extreme Indentation Tests:**
+
+Spaces (2, 4, 8, 16, 32):
+  2 spaces
+    4 spaces  
+        8 spaces
+                16 spaces
+                                32 spaces
+
+Mixed tabs and spaces:
+	Tab + 2 spaces
+		Tab + Tab + 4 spaces
+			Tab + Tab + Tab + 8 spaces
+
+**Zero-width and special characters:**
+‎‌‍ Unicode spaces (zero-width)
+   Regular spaces (3)
+	Tab character
+     5 spaces
+       7 spaces
+         9 spaces
+           11 spaces
+
+**Indented code blocks:**
+    ```python
+    # This code block itself is indented 4 spaces
+    def indented_function():
+        return "indented code in indented block"
+    ```
+
+**Nested blockquotes with spacing:**
+    > This blockquote is indented 4 spaces
+    > 
+    >     > This nested quote is indented 4 + 4 spaces
+    >     > 
+    >     >         > Triple nested with extreme indentation
+
+**Definition list with extreme indentation:**
+                        Term with 24 space indent
+                        :   Definition with same indent level
+                            
+                            Additional paragraph
+                            
+                                - Bullet with even more indent
+                                    - Sub-bullet extreme indent
+
+### Indentation Test Section - Updated
+
+Testing indentation preservation during updates:
+
+**Different Indentation Styles:**
+
+• Single space indented item
+  • Double space indented
+    • Four space indented
+      • Six space indented
+
+Tab-indented items:
+	- Tab 1
+		- Tab 2
+			- Tab 3
+
+Mixed spacing:
+   1. Three spaces
+      - Six spaces
+         * Nine spaces
+            + Twelve spaces
+
+**Code with varying indentation:**
+```javascript
+// Different indentation styles
+function testIndent() {
+  if (condition) {
+    console.log("2 spaces");
+      console.log("6 spaces");
+        console.log("8 spaces");
+  }
+}
+```
+
+**HTML-style indentation:**
+```html
+<div>
+  <ul>
+    <li>
+      <span>Nested content</span>
+        <small>Extra indented</small>
+    </li>
+  </ul>
+</div>
+```
+### Indentation Across Elements
+
+**Testing indentation across different markdown elements:**
+
+1. **Table with indented cells:**
+   | Column 1 | Column 2 | Column 3 |
+   |----------|----------|----------|
+   |     Indented | Normal | `  code  ` |
+   | - Bullet     | 1. Number | **bold** |
+   |   - Sub      |   2. Sub  |   *italic* |
+
+2. **Math expressions (if supported):**
+   ```
+   ∫₀¹ x² dx = 1/3
+       ∑ᵢ₌₁ⁿ i = n(n+1)/2
+           lim(x→∞) 1/x = 0
+   ```
+
+3. **Indented horizontal rules:**
+   Normal rule:
+   ---
+   
+       Indented rule (4 spaces):
+       ---
+       
+           Deeply indented rule (8 spaces):
+           ---
+
+4. **Indented links and images:**
+   - [Normal link](http://example.com)
+     - [Indented link](http://example.com)
+       - [Deeply indented link](http://example.com)
+         - [Very deep link](http://example.com)
+
+5. **Indented emphasis:**
+   - **Bold text**
+     - **Indented bold**
+       - ***Indented bold italic***
+         - ~~Indented strikethrough~~
+
+6. **Footnote-style with indentation:**
+   Main text[1]
+   
+       [1]: This footnote is indented
+            with multiple lines
+            all properly aligned
+
+## Conclusion
+
+This document provides a good foundation for testing MCP functionality. Feel free to modify, add, or remove sections to test the various tools available.
+
+---
+
+## Appendix
+
+### Troubleshooting
+
+If you encounter issues, check the MCP server logs in VSCode.
+
+### Additional Resources
+
+- MCP Documentation
+- VSCode Extension Documentation
