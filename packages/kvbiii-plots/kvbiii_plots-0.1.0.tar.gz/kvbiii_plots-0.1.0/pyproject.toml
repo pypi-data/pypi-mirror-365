@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=65.5.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["kvbiii_plots", "kvbiii_plots.eda"]
+
+[project]
+name = "kvbiii_plots"
+version = "0.1.0"
+description = "A collection of plotting functions for data visualization in Python."
+readme = "README.md"
+authors = [
+    { name = "Jakub Kościan", email = "kuba.koscian001@gmail.com" },
+]
+maintainers = [
+    { name = "Jakub Kościan", email = "kuba.koscian001@gmail.com" },
+]
+keywords = ["data visualization", "plotting", "matplotlib", "seaborn"]
+dynamic = ["dependencies"]
+requires-python = ">=3.10"
+classifiers = [
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
+
+[project.urls]
+homepage = "https://github.com/kvbiii/kvbiii-plots"
+repository = "https://github.com/kvbiii/kvbiii-plots"
