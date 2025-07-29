@@ -1,0 +1,14 @@
+[console_scripts]
+sl-check-window = sl_experiment.cli:check_window
+sl-crc = sl_experiment.cli:calculate_crc
+sl-create-experiment = sl_experiment.cli:generate_experiment_configuration_file
+sl-create-project = sl_experiment.cli:generate_project_data_structure
+sl-create-system-config = sl_experiment.cli:generate_system_configuration_file
+sl-delete-session-data = sl_experiment.cli:delete_session
+sl-devices = sl_experiment.cli:list_devices
+sl-experiment = sl_experiment.cli:run_experiment
+sl-lick-train = sl_experiment.cli:lick_training
+sl-maintain = sl_experiment.cli:maintain_acquisition_system
+sl-preprocess = sl_experiment.cli:preprocess_session
+sl-purge = sl_experiment.cli:purge_data
+sl-run-train = sl_experiment.cli:run_training
