@@ -1,0 +1,37 @@
+# XModules haqida
+
+Bu modul yordamida Telegram’dagi XModules userbotining barcha buyruqlarini ko‘rishingiz mumkin.
+Kutubxonani kengaytirishda davom etamiz, yangi buyruqlar qo‘shib boriladi.
+
+**Foydalanish tartibi:**
+
+Chatda oddiy xabar sifatida quyidagisini yozing:
+
+```bash
+.help
+```
+
+**Shundan so‘ng userbot sizga quyidagilarni taqdim etadi:**
+
+✅ Barcha mavjud buyruqlar ro‘yxati.  
+✅ Har bir buyruqning qisqacha vazifasi va ishlatish usuli.
+
+**Shu tarzda, XModules’dagi imkoniyatlardan xabardor bo‘lib turishingiz va yangi qo‘shilgan funksiyalarni ham oson topishingiz mumkin.**
+
+## O‘rnatish
+```bash
+pip install xmodules
+```
+
+## Foydalanish misoli
+
+`main.py` faylida quyidagicha yozing:
+
+```python
+from xmodules import run
+
+API_ID = 123456 # my.telegram.org'dan olingan API_ID
+API_HASH = "your_api_hash" # my.telegram.org'dan olingan API_HASH
+ADMIN_ID = 987654321 # Telegram ID raqamingiz
+
+run(API_ID, API_HASH, ADMIN_ID)
