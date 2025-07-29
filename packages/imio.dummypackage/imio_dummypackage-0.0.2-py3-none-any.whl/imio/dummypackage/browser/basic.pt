@@ -1,0 +1,14 @@
+<metal:macro use-macro="here/main_template/macros/master">
+  <metal:slot fill-slot="style_slot">
+    <style>
+      h1 {
+        color: red;
+      }
+    </style>
+  </metal:slot>
+
+  <metal:slot fill-slot="main">
+    <h1>Welcome to imio.dummypackage</h1>
+    <p>This is a basic page rendered using a Zope Page Template.</p>
+  </metal:slot>
+</metal:macro>
