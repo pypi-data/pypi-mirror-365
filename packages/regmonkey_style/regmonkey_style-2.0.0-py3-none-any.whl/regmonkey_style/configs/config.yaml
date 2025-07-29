@@ -1,0 +1,104 @@
+templates:
+  - "regmonkey_scatter"
+  - "regmonkey_line"
+  - "regmonkey_twoline"
+  - "regmonkey_boxplot"
+
+font_style:
+  default_font: "IPAexGothic"
+  available_list:
+    - "MPLUS1p"
+    - "IPAexGothic"
+
+color_style:
+  qualitative_scatter_color:
+    - "#4477AA"
+    - "#EE6677"
+    - "#228833"
+    - "#CCBB44"
+    - "#66CCEE"
+    - "#AA3377"
+    - "#BBBBBB"
+  qualitative_line_color:
+    - "#4477AA"
+    - "#66CCEE"
+    - "#CCBB44"
+    - "#AA3377"
+    - "#228833"
+    - "#EE6677"
+    - "#BBBBBB"
+  discrete_color_sequence:
+    - "#141F52"
+    - "#1F2E7A"
+    - "#2E45B8"
+    - "#475ED1"
+    - "#D6DBF5"
+    - "#EBEDFA"
+  two_line_color:
+    - "#3182BD"
+    - "#757C88"
+    - "#BDBDBD"
+    - "#757C88"
+    - "#BDBDBD"
+    - "#757C88"
+    - "#BDBDBD"
+  background_color: "#EFF5F5"
+  paper_bgcolor: "#EFF5F5"
+  text_color: "#3F5661"
+  legend_background_color: "rgba(255, 255, 255, 0)" #0 represents the alpha (opacity) component, making the color fully transparent
+  grid_color: "#BBBBBB"
+  zeroline_color: "#B7C6CF"
+
+common:
+  fontsize:
+    title_fontsize: 24
+    xlabel_fontsize: 16
+    ylabel_fontsize: 16
+    legend_fontsize: 12
+    tick_fontsize: 12
+    text_fontsize: 12
+    standoff: 10
+  margin:
+    plotly: { "l": 70, "r": 30, "t": 60, "b": 60 }
+  gridline:
+    gridwidth: 0.1
+    griddash:
+      plotly: "dot"
+      matplotlib: "-"
+  line_width: 2
+  
+
+scatter:
+  opacity: 0.7
+  markersize:
+    matplotlib: 3
+    plotly: 5
+
+line:
+  opacity: 0.9
+
+boxplot:
+  opacity: 1.0
+  outliercolor: "#141F52"
+  line_color: "black"
+  fillcolor: "white"
+  jitter: 0
+  markersize:
+    matplotlib: 5
+    plotly: 5
+  fontsize:
+    title_fontsize: 24
+    xlabel_fontsize: 18
+    ylabel_fontsize: 16
+    legend_fontsize: 12
+    tick_fontsize: 12
+    text_fontsize: 12
+    standoff: 10
+  linewdith: 1.3
+  gridline:
+    gridwidth: 0.1
+    griddash:
+      matplotlib: "--"
+      plotly: "dash"
+  margin:
+    plotly: { "l": 70, "r": 15, "t": 60, "b": 60 }
