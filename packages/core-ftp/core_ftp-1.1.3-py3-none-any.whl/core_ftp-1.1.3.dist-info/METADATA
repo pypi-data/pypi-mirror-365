@@ -1,0 +1,121 @@
+Metadata-Version: 2.4
+Name: core-ftp
+Version: 1.1.3
+Summary: This project/library contains common elements related to FTP connections...
+Author-email: Alejandro Cora González <alek.cora.glez@gmail.com>
+Maintainer: Alejandro Cora González
+License: MIT
+Project-URL: Homepage, https://gitlab.com/bytecode-solutions/core/core-ftp
+Project-URL: Repository, https://gitlab.com/bytecode-solutions/core/core-ftp
+Project-URL: Documentation, https://core-ftp.readthedocs.io/en/latest/
+Project-URL: Issues, https://gitlab.com/bytecode-solutions/core/core-ftp/-/issues
+Project-URL: Changelog, https://gitlab.com/bytecode-solutions/core/core-ftp/-/blob/master/CHANGELOG.md
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Intended Audience :: Developers
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: core-etl>=1.1.3
+Requires-Dist: core-tests>=1.1.0
+Requires-Dist: paramiko>=3.5.0
+Provides-Extra: docs
+Requires-Dist: pydata-sphinx-theme==0.16.1; extra == "docs"
+Requires-Dist: Sphinx==8.2.3; extra == "docs"
+Dynamic: license-file
+
+# core-ftp
+_______________________________________________________________________________
+
+This project/library provides a comprehensive set of common components and 
+interfaces designed to facilitate and streamline FTP connections, 
+ensuring efficient communication and data transfer...
+
+
+## Execution Environment
+
+### Install libraries
+```shell
+pip install --upgrade pip 
+pip install virtualenv
+```
+
+### Create the Python Virtual Environment.
+```shell
+virtualenv --python={{python-version}} .venv
+virtualenv --python=python3.11 .venv
+```
+
+### Activate the Virtual Environment.
+```shell
+source .venv/bin/activate
+```
+
+### Install required libraries.
+```shell
+pip install .
+```
+
+### Check tests and coverage...
+```shell
+python manager.py run-tests
+python manager.py run-tests --test-type functional --pattern "*.py"
+python manager.py run-coverage
+```
+
+## How to Use
+
+### Installation...
+```shell
+pip install core-ftp
+```
+
+### Examples...
+```python
+from core_ftp.clients.sftp import SftpClient
+
+with SftpClient("test.rebex.net", 22, "demo", "password") as client:
+    for x in client.list_files("/"):
+        print(x)
+```
+
+```python
+from core_ftp.clients.sftp import SftpClient
+
+with SftpClient(
+        host="localhost", port=23,
+        user="foo", private_key_path="key_path") as client:
+
+    for x in client.list_files("/"):
+        print(x)
+```
+
+## Docker
+You can use docker to create an SFTP server to test the client using the functional 
+tests via command `python manager.py run-tests --test-type functional --pattern "*.py"` and the following docker
+image: <atmoz/sftp> (https://hub.docker.com/r/atmoz/sftp/).
+
+### Authentication via user & password...
+```shell
+docker run \
+  -v ./tests/resources/upload:/home/foo/upload:rw \
+  -p 22:22 -d atmoz/sftp foo:pass:::upload
+```
+
+### Authentication via SSH key... 
+```shell
+docker run \
+  -v ./tests/resources/ssh_keys/id_rsa.pub:/home/foo/.ssh/keys/id_rsa.pub:ro \
+  -v ./tests/resources/upload:/home/foo/upload:rw \
+  -p 23:22 -d atmoz/sftp foo::1001
+```
