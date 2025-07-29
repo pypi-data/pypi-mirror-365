@@ -1,0 +1,23 @@
+[project]
+name = "belton-api"
+version = "0.1.1"
+description = "CLI for open source framework."
+authors = [
+    {name = "Belton",email = "pip@belton.dev"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+]
+
+[project.urls]
+repository = "https://github.com/belton-dev/belton-pip"
+homepage = "https://belton.dev/pip"
+documentation = "https://belton.dev/pip/docs"
+
+[tool.poetry]
+packages = [{include = "belton", from = "src"}]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
