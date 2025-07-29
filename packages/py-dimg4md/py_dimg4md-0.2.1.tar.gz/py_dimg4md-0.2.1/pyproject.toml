@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "py-dimg4md"
+version = "0.1.2"
+description = "A Python package for parsing images url from Markdown file and download them to local folder."
+authors = ["Hsiang-Jen Li <hsiangjenli@gmail.com>"]
+readme = "README.md"
+packages = [{include = "dimg4md"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+requests = "^2.28.2"
+click = "^8.0.0"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
