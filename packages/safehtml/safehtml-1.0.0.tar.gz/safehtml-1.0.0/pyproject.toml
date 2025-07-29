@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "safehtml"
+version = "1.0.0"
+description = "Escape HTML with style using T-Strings!"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = []
+
+[tool.setuptools.packages.find]
+include = ["safehtml"]
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+select = ["I", "TID"]
+
+[tool.ruff.format]
+quote-style = "single"
