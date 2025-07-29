@@ -1,0 +1,292 @@
+(venv) PS D:\AIBoot\ai-bootstrap> pip install -e .
+Obtaining file:///D:/AIBoot/ai-bootstrap
+  Installing build dependencies ... done
+  Checking if build backend supports build_editable ... done
+  Getting requirements to build editable ... done
+  Installing backend dependencies ... done
+  Preparing editable metadata (pyproject.toml) ... done
+Requirement already satisfied: anthropic in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from ai-bootstrap==2.1.1) (0.59.0)
+Requirement already satisfied: asyncio in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from ai-bootstrap==2.1.1) (3.4.3)
+Requirement already satisfied: copier in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from ai-bootstrap==2.1.1) (9.8.0)
+Requirement already satisfied: jinja2 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from ai-bootstrap==2.1.1) (3.1.6)
+Requirement already satisfied: langchain-anthropic in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from ai-bootstrap==2.1.1) (0.3.17)
+Requirement already satisfied: langchain-community in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from ai-bootstrap==2.1.1) (0.3.27)
+Requirement already satisfied: langchain-core in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from ai-bootstrap==2.1.1) (0.3.72)
+Requirement already satisfied: langchain-mistralai in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from ai-bootstrap==2.1.1) (0.2.11)
+Requirement already satisfied: langchain-openai in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from ai-bootstrap==2.1.1) (0.3.28)
+Requirement already satisfied: nest-asyncio in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from ai-bootstrap==2.1.1) (1.6.0)
+Requirement already satisfied: openai in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from ai-bootstrap==2.1.1) (1.97.1)
+Requirement already satisfied: pydantic in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from ai-bootstrap==2.1.1) (2.11.7)
+Requirement already satisfied: pydantic-settings in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from ai-bootstrap==2.1.1) (2.10.1)
+Requirement already satisfied: python-dotenv in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from ai-bootstrap==2.1.1) (1.1.1)
+Requirement already satisfied: pyyaml in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from ai-bootstrap==2.1.1) (6.0.2)
+Requirement already satisfied: rich in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from ai-bootstrap==2.1.1) (14.0.0)
+Requirement already satisfied: typer[all] in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from ai-bootstrap==2.1.1) (0.16.0)
+Requirement already satisfied: anyio<5,>=3.5.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from anthropic->ai-bootstrap==2.1.1) (4.9.0)
+Requirement already satisfied: distro<2,>=1.7.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from anthropic->ai-bootstrap==2.1.1) (1.9.0)
+Requirement already satisfied: httpx<1,>=0.25.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from anthropic->ai-bootstrap==2.1.1) (0.28.1)
+Requirement already satisfied: jiter<1,>=0.4.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from anthropic->ai-bootstrap==2.1.1) (0.10.0)
+Requirement already satisfied: sniffio in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from anthropic->ai-bootstrap==2.1.1) (1.3.1)
+Requirement already satisfied: typing-extensions<5,>=4.10 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from anthropic->ai-bootstrap==2.1.1) (4.14.1)
+Requirement already satisfied: annotated-types>=0.6.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from pydantic->ai-bootstrap==2.1.1) (0.7.0)
+Requirement already satisfied: pydantic-core==2.33.2 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from pydantic->ai-bootstrap==2.1.1) (2.33.2)
+Requirement already satisfied: typing-inspection>=0.4.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from pydantic->ai-bootstrap==2.1.1) (0.4.1)
+Requirement already satisfied: colorama>=0.4.6 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from copier->ai-bootstrap==2.1.1) (0.4.6)
+Requirement already satisfied: dunamai>=1.7.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from copier->ai-bootstrap==2.1.1) (1.25.0)
+Requirement already satisfied: funcy>=1.17 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from copier->ai-bootstrap==2.1.1) (2.0)
+Requirement already satisfied: jinja2-ansible-filters>=1.3.1 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from copier->ai-bootstrap==2.1.1) (1.3.2)
+Requirement already satisfied: packaging>=23.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from copier->ai-bootstrap==2.1.1) (25.0)
+Requirement already satisfied: pathspec>=0.9.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from copier->ai-bootstrap==2.1.1) (0.12.1)
+Requirement already satisfied: platformdirs>=4.3.6 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from copier->ai-bootstrap==2.1.1) (4.3.8)
+Requirement already satisfied: plumbum>=1.6.9 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from copier->ai-bootstrap==2.1.1) (1.9.0)
+Requirement already satisfied: pygments>=2.7.1 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from copier->ai-bootstrap==2.1.1) (2.19.2)
+Requirement already satisfied: questionary>=1.8.1 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from copier->ai-bootstrap==2.1.1) (2.1.0)
+Requirement already satisfied: MarkupSafe>=2.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from jinja2->ai-bootstrap==2.1.1) (3.0.2)
+Requirement already satisfied: langsmith>=0.3.45 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from langchain-core->ai-bootstrap==2.1.1) (0.4.8)
+Requirement already satisfied: tenacity!=8.4.0,<10.0.0,>=8.1.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from langchain-core->ai-bootstrap==2.1.1) (9.1.2)
+Requirement already satisfied: jsonpatch<2.0,>=1.33 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from langchain-core->ai-bootstrap==2.1.1) (1.33)
+Requirement already satisfied: langchain<1.0.0,>=0.3.26 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from langchain-community->ai-bootstrap==2.1.1) (0.3.27)
+Requirement already satisfied: SQLAlchemy<3,>=1.4 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from langchain-community->ai-bootstrap==2.1.1) (2.0.41)
+Requirement already satisfied: requests<3,>=2 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from langchain-community->ai-bootstrap==2.1.1) (2.32.4)
+Requirement already satisfied: aiohttp<4.0.0,>=3.8.3 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from langchain-community->ai-bootstrap==2.1.1) (3.12.14)
+Requirement already satisfied: dataclasses-json<0.7,>=0.5.7 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from langchain-community->ai-bootstrap==2.1.1) (0.6.7)
+Requirement already satisfied: httpx-sse<1.0.0,>=0.4.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from langchain-community->ai-bootstrap==2.1.1) (0.4.1)
+Requirement already satisfied: numpy>=1.26.2 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from langchain-community->ai-bootstrap==2.1.1) (2.3.2)
+Requirement already satisfied: tokenizers<1,>=0.15.1 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from langchain-mistralai->ai-bootstrap==2.1.1) (0.21.2)
+Requirement already satisfied: tiktoken<1,>=0.7 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from langchain-openai->ai-bootstrap==2.1.1) (0.9.0)
+Requirement already satisfied: tqdm>4 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from openai->ai-bootstrap==2.1.1) (4.67.1)
+Requirement already satisfied: markdown-it-py>=2.2.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from rich->ai-bootstrap==2.1.1) (3.0.0)
+WARNING: typer 0.16.0 does not provide the extra 'all'
+Requirement already satisfied: click>=8.0.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from typer[all]->ai-bootstrap==2.1.1) (8.2.1)
+Requirement already satisfied: shellingham>=1.3.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from typer[all]->ai-bootstrap==2.1.1) (1.5.4)
+Requirement already satisfied: aiohappyeyeballs>=2.5.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from aiohttp<4.0.0,>=3.8.3->langchain-community->ai-bootstrap==2.1.1) (2.6.1)
+Requirement already satisfied: aiosignal>=1.4.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from aiohttp<4.0.0,>=3.8.3->langchain-community->ai-bootstrap==2.1.1) (1.4.0)
+Requirement already satisfied: attrs>=17.3.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from aiohttp<4.0.0,>=3.8.3->langchain-community->ai-bootstrap==2.1.1) (25.3.0)
+Requirement already satisfied: frozenlist>=1.1.1 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from aiohttp<4.0.0,>=3.8.3->langchain-community->ai-bootstrap==2.1.1) (1.7.0)
+Requirement already satisfied: multidict<7.0,>=4.5 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from aiohttp<4.0.0,>=3.8.3->langchain-community->ai-bootstrap==2.1.1) (6.6.3)
+Requirement already satisfied: propcache>=0.2.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from aiohttp<4.0.0,>=3.8.3->langchain-community->ai-bootstrap==2.1.1) (0.3.2)
+Requirement already satisfied: yarl<2.0,>=1.17.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from aiohttp<4.0.0,>=3.8.3->langchain-community->ai-bootstrap==2.1.1) (1.20.1)
+Requirement already satisfied: idna>=2.8 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from anyio<5,>=3.5.0->anthropic->ai-bootstrap==2.1.1) (3.10)
+Requirement already satisfied: marshmallow<4.0.0,>=3.18.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from dataclasses-json<0.7,>=0.5.7->langchain-community->ai-bootstrap==2.1.1) (3.26.1)
+Requirement already satisfied: typing-inspect<1,>=0.4.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from dataclasses-json<0.7,>=0.5.7->langchain-community->ai-bootstrap==2.1.1) (0.9.0)
+Requirement already satisfied: certifi in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from httpx<1,>=0.25.0->anthropic->ai-bootstrap==2.1.1) (2025.7.14)
+Requirement already satisfied: httpcore==1.* in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from httpx<1,>=0.25.0->anthropic->ai-bootstrap==2.1.1) (1.0.9)
+Requirement already satisfied: h11>=0.16 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from httpcore==1.*->httpx<1,>=0.25.0->anthropic->ai-bootstrap==2.1.1) (0.16.0)
+Requirement already satisfied: jsonpointer>=1.9 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from jsonpatch<2.0,>=1.33->langchain-core->ai-bootstrap==2.1.1) (3.0.0)
+Requirement already satisfied: langchain-text-splitters<1.0.0,>=0.3.9 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from langchain<1.0.0,>=0.3.26->langchain-community->ai-bootstrap==2.1.1) (0.3.9)
+Requirement already satisfied: orjson<4.0.0,>=3.9.14 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from langsmith>=0.3.45->langchain-core->ai-bootstrap==2.1.1) (3.11.0)
+Requirement already satisfied: requests-toolbelt<2.0.0,>=1.0.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from langsmith>=0.3.45->langchain-core->ai-bootstrap==2.1.1) (1.0.0)
+Requirement already satisfied: zstandard<0.24.0,>=0.23.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from langsmith>=0.3.45->langchain-core->ai-bootstrap==2.1.1) (0.23.0)
+Requirement already satisfied: mdurl~=0.1 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from markdown-it-py>=2.2.0->rich->ai-bootstrap==2.1.1) (0.1.2)
+Requirement already satisfied: pywin32 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from plumbum>=1.6.9->copier->ai-bootstrap==2.1.1) (311)
+Requirement already satisfied: prompt_toolkit<4.0,>=2.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from questionary>=1.8.1->copier->ai-bootstrap==2.1.1) (3.0.51)
+Requirement already satisfied: charset_normalizer<4,>=2 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from requests<3,>=2->langchain-community->ai-bootstrap==2.1.1) (3.4.2)
+Requirement already satisfied: urllib3<3,>=1.21.1 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from requests<3,>=2->langchain-community->ai-bootstrap==2.1.1) (2.5.0)
+Requirement already satisfied: greenlet>=1 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from SQLAlchemy<3,>=1.4->langchain-community->ai-bootstrap==2.1.1) (3.2.3)
+Requirement already satisfied: regex>=2022.1.18 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from tiktoken<1,>=0.7->langchain-openai->ai-bootstrap==2.1.1) (2024.11.6)
+Requirement already satisfied: huggingface-hub<1.0,>=0.16.4 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from tokenizers<1,>=0.15.1->langchain-mistralai->ai-bootstrap==2.1.1) (0.33.5)
+Requirement already satisfied: filelock in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from huggingface-hub<1.0,>=0.16.4->tokenizers<1,>=0.15.1->langchain-mistralai->ai-bootstrap==2.1.1) (3.18.0)
+Requirement already satisfied: fsspec>=2023.5.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from huggingface-hub<1.0,>=0.16.4->tokenizers<1,>=0.15.1->langchain-mistralai->ai-bootstrap==2.1.1) (2025.7.0)  
+Requirement already satisfied: wcwidth in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from prompt_toolkit<4.0,>=2.0->questionary>=1.8.1->copier->ai-bootstrap==2.1.1) (0.2.13)
+Requirement already satisfied: mypy-extensions>=0.3.0 in d:\aiboot\ai-bootstrap\venv\lib\site-packages (from typing-inspect<1,>=0.4.0->dataclasses-json<0.7,>=0.5.7->langchain-community->ai-bootstrap==2.1.1) (1.1.0)
+Building wheels for collected packages: ai-bootstrap
+  Building editable for ai-bootstrap (pyproject.toml) ... done
+  Created wheel for ai-bootstrap: filename=ai_bootstrap-2.1.1-py3-none-any.whl size=116908 sha256=29bed3c7dc2822f9173eea4e4df3f438954c5582212f4ae7a5a5222800a53d4a
+  Stored in directory: C:\Users\soham\AppData\Local\Temp\pip-ephem-wheel-cache-8l74zknu\wheels\bf\5f\60\cec9ff17c295f083f014bab1c9d9235f6f8c0642324531a0db
+Successfully built ai-bootstrap
+Installing collected packages: ai-bootstrap
+  Attempting uninstall: ai-bootstrap
+    Found existing installation: ai-bootstrap 2.0.0
+    Uninstalling ai-bootstrap-2.0.0:
+      Successfully uninstalled ai-bootstrap-2.0.0
+Successfully installed ai-bootstrap-2.1.1
+
+[notice] A new release of pip available: 22.3 -> 25.1.1
+[notice] To update, run: python.exe -m pip install --upgrade pip
+(venv) PS D:\AIBoot\ai-bootstrap> python -m build
+* Creating isolated environment: venv+pip...
+* Installing packages in isolated environment:
+  - hatchling
+* Getting build dependencies for sdist...
+* Building sdist...
+* Building wheel from sdist
+* Creating isolated environment: venv+pip...
+* Installing packages in isolated environment:
+  - hatchling
+* Getting build dependencies for wheel...
+* Building wheel...
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/core_langchain/.env.example'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/core_langchain/.gitignore'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/core_langchain/README.md.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/core_langchain/app.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/core_langchain/copier.yml'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/core_langchain/requirements.txt.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/core_langchain/.devcontainer/devcontainer.json.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/core_langchain/notebooks/example_usage.ipynb.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/core_langchain/src/__init__.py'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/core_langchain/src/config.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/core_langchain/src/main.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/core_langchain/src/chains/__init__.py'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/core_langchain/src/chains/custom_chains.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/core_langchain/src/llms/__init__.py'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/core_langchain/src/llms/providers.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/core_langchain/src/prompts/__init__.py'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/core_langchain/src/prompts/templates.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/core_langchain/src/tools/__init__.py'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/core_langchain/src/tools/custom_tools.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/core_langchain/tests/__init__.py'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/core_langchain/tests/test_chains.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multi_agent_system/.env.example'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multi_agent_system/.gitignore'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multi_agent_system/README.md.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multi_agent_system/app.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multi_agent_system/copier.yml'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multi_agent_system/requirements.txt.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multi_agent_system/.devcontainer/devcontainer.json.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multi_agent_system/notebooks/example_usage.ipynb.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multi_agent_system/src/__init__.py'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multi_agent_system/src/config.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multi_agent_system/src/graph.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multi_agent_system/src/state.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multi_agent_system/src/agents/__init__.py'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multi_agent_system/src/agents/code_agent.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multi_agent_system/src/agents/research_agent.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multi_agent_system/src/agents/supervisor.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multi_agent_system/src/tools/__init__.py'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multi_agent_system/src/tools/file_io.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multi_agent_system/src/tools/web_search.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multi_agent_system/tests/__init__.py'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multi_agent_system/tests/test_agents.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multimodal_chatbot/.env.example'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multimodal_chatbot/.gitignore'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multimodal_chatbot/README.md.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multimodal_chatbot/app.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multimodal_chatbot/copier.yml'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multimodal_chatbot/requirements.txt.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multimodal_chatbot/.devcontainer/devcontainer.json.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multimodal_chatbot/data/.gitkeep'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multimodal_chatbot/notebooks/example_usage.ipynb.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multimodal_chatbot/src/__init__.py'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multimodal_chatbot/src/config.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multimodal_chatbot/src/chatbot/__init__.py'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multimodal_chatbot/src/chatbot/dialog_manager.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multimodal_chatbot/src/chatbot/engine.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multimodal_chatbot/src/chatbot/memory.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multimodal_chatbot/src/processors/__init__.py'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multimodal_chatbot/src/processors/audio_processor.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multimodal_chatbot/src/processors/image_processor.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multimodal_chatbot/tests/__init__.py'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/multimodal_chatbot/tests/test_processors.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/rag_system/.env.example'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/rag_system/.gitignore'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/rag_system/README.md.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/rag_system/app.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/rag_system/copier.yml'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/rag_system/requirements.txt.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/rag_system/.devcontainer/devcontainer.json.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/rag_system/data/.gitkeep'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/rag_system/notebooks/example_usage.ipynb.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/rag_system/src/__init__.py'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/rag_system/src/config.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/rag_system/src/core/__init__.py'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/rag_system/src/core/generation.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/rag_system/src/core/ingestion.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/rag_system/src/core/pipeline.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/rag_system/src/core/retrieval.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/rag_system/tests/__init__.py'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/rag_system/tests/test_ingestion.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/rag_system/tests/test_retrieval.py.jinja'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+C:\Program Files\Python311\Lib\zipfile.py:1547: UserWarning: Duplicate name: 'ai_bootstrap/templates/rag_system/vector_store/.gitkeep'
+  return self._open_to_write(zinfo, force_zip64=force_zip64)
+Successfully built ai_bootstrap-2.1.1.tar.gz and ai_bootstrap-2.1.1-py3-none-any.whl
+(venv) PS D:\AIBoot\ai-bootstrap> python -m twine upload dist/*
+Uploading distributions to https://upload.pypi.org/legacy/
+Enter your API token: 
+Uploading ai_bootstrap-2.1.1-py3-none-any.whl
+100% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 263.6/263.6 kB • 00:01 • 203.0 kB/s
+Uploading ai_bootstrap-2.1.1.tar.gz
+100% ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 107.1/107.1 kB • 00:00 • ?
+
+View at:
+https://pypi.org/project/ai-bootstrap/2.1.1/
