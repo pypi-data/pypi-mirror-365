@@ -1,0 +1,22 @@
+Metadata-Version: 2.4
+Name: MrdStudioLogger
+Version: 0.1.5
+Summary: Rich-powered dual-column logging middleware for FastAPI
+Author-email: szdunek <zdunek.sylwiusz@gmail.com>
+License: MIT
+Project-URL: Homepage, https://mrd-studio.pl
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi
+Requires-Dist: rich
+
+# mrd-studio-logger
+
+🌈 Rich-powered two-column logging middleware for FastAPI.
+- Left column: API access logs (colored by HTTP code)
+- Right column: Custom logs from OCR or any other context
+
+## Install
+
+```bash
+pip install mrd-studio-logger
