@@ -1,0 +1,184 @@
+Metadata-Version: 2.4
+Name: rs_audio_stats
+Version: 1.1.7
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Rust
+Classifier: Topic :: Multimedia :: Sound/Audio :: Analysis
+Summary: Professional-grade audio analysis tool with EBU R128 loudness measurement
+Keywords: audio,loudness,ebu-r128,analysis,normalization
+Author: Hiroshi Tamura
+License: MIT
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+Project-URL: Homepage, https://github.com/hiroshi-tamura/rs_audio_stats
+Project-URL: Repository, https://github.com/hiroshi-tamura/rs_audio_stats
+
+# rs_audio_stats
+
+Professional-grade audio analysis tool with EBU R128 loudness measurement for Python.
+
+## Overview
+
+rs_audio_stats provides comprehensive audio analysis capabilities including loudness measurement according to EBU R128 standard (ITU-R BS.1770-4), true peak detection, RMS calculations, and audio normalization functions.
+
+## Installation
+
+```bash
+pip install rs_audio_stats
+```
+
+## Quick Start
+
+```python
+import rs_audio_stats as ras
+
+# Analyze audio file
+info, results = ras.analyze_audio("audio.wav", True, False, False, False, True, False, False)
+print(f"Integrated Loudness: {results.integrated_loudness:.1f} LUFS")
+print(f"True Peak: {results.true_peak:.1f} dBFS")
+
+# Batch analyze directory
+results = ras.batch_analyze_directory("audio_folder/", True, False, False, False, True, False, False)
+for file_path, (info, analysis) in results.items():
+    print(f"{file_path}: {analysis.integrated_loudness:.1f} LUFS")
+```
+
+## Core Features
+
+### 📊 Audio Information
+- ✅ Sample rate, channels, bit depth (-sr, -ch, -bt)
+- ✅ Duration in seconds and formatted time (-du, -tm)
+- ✅ Total samples and format detection (-f, -fe, -fea)
+
+### 🎚️ Loudness Analysis (EBU R128)
+- ✅ Integrated loudness measurement (-i)
+- ✅ Short-term loudness (-s)
+- ✅ Momentary loudness (-m)
+- ✅ Loudness range (LRA) (-l)
+- ✅ True peak detection (-tp)
+- ✅ RMS maximum and average (-rm, -ra)
+
+### 🎛️ Audio Normalization
+- ✅ True peak normalization (-norm-tp)
+- ✅ Integrated loudness normalization (-norm-i)
+- ✅ Short-term loudness normalization (-norm-s)
+- ✅ Momentary loudness normalization (-norm-m)
+- ✅ RMS maximum normalization (-norm-rm)
+- ✅ RMS average normalization (-norm-ra)
+
+### 📁 Export Formats
+- ✅ CSV export (-csv)
+- ✅ TSV export (-tsv)
+- ✅ XML export (-xml)
+- ✅ JSON export (-json)
+
+### 🔄 Batch Processing
+- ✅ Single file analysis
+- ✅ Directory batch processing
+- ✅ Recursive file discovery
+- ✅ Multiple format support
+
+## API Reference
+
+### analyze_audio()
+```python
+info, results = analyze_audio(
+    file_path: str,
+    integrated_loudness: bool = False,
+    short_term_loudness: bool = False,
+    momentary_loudness: bool = False,
+    loudness_range: bool = False,
+    true_peak: bool = False,
+    rms_max: bool = False,
+    rms_average: bool = False
+)
+```
+
+### batch_analyze_directory()
+```python
+results = batch_analyze_directory(
+    directory_path: str,
+    integrated_loudness: bool = False,
+    short_term_loudness: bool = False,
+    momentary_loudness: bool = False,
+    loudness_range: bool = False,
+    true_peak: bool = False,
+    rms_max: bool = False,
+    rms_average: bool = False
+)
+```
+
+### Normalization Functions
+```python
+# True peak normalization
+normalize_true_peak(input_path: str, target_dbfs: float, output_path: str)
+
+# Integrated loudness normalization
+normalize_integrated_loudness(input_path: str, target_lufs: float, output_path: str)
+
+# Short-term loudness normalization
+normalize_short_term_loudness(input_path: str, target_lufs: float, output_path: str)
+
+# Momentary loudness normalization
+normalize_momentary_loudness(input_path: str, target_lufs: float, output_path: str)
+```
+
+### Export Functions
+```python
+# Export analysis results
+export_to_csv(results, output_path: str)
+export_to_tsv(results, output_path: str)
+export_to_xml(results, output_path: str)
+export_to_json(results, output_path: str)
+```
+
+## Use Cases
+
+### Broadcasting
+```python
+# Check compliance with broadcast standards
+info, results = ras.analyze_audio("broadcast.wav", True, False, False, True, True, False, False)
+if results.integrated_loudness < -23.0:
+    print("Meets EBU R128 broadcast standard")
+```
+
+### Music Production
+```python
+# Analyze dynamics and prepare for mastering
+info, results = ras.analyze_audio("song.wav", True, True, True, True, True, True, True)
+print(f"Dynamic Range: {results.loudness_range:.1f} LU")
+```
+
+### Podcast Processing
+```python
+# Batch normalize podcast episodes
+episodes = ras.batch_analyze_directory("episodes/", True, False, False, False, True, False, False)
+for file_path, (info, analysis) in episodes.items():
+    if analysis.integrated_loudness < -16.0:
+        output_path = file_path.replace(".wav", "_normalized.wav")
+        ras.normalize_integrated_loudness(file_path, -16.0, output_path)
+```
+
+## Supported Formats
+
+- WAV (all PCM variants)
+- FLAC
+- MP3
+- AAC/M4A
+- OGG/Vorbis
+- And many more via Symphonia decoder
+
+## Requirements
+
+- Python 3.10+
+- Windows, macOS, or Linux
+
+## License
+
+MIT License
