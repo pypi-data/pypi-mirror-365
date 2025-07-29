@@ -1,0 +1,38 @@
+Metadata-Version: 2.4
+Name: llmunchies
+Version: 0.2.0
+Summary: A lightweight, model-agnostic context engine for LLMs. Feed your model tasty context.
+Author: LLMunchies Team
+Project-URL: Homepage, https://github.com/kabiru-js/llmunchies.git
+Project-URL: Issues, https://github.com/your-username/llmunchies/issues
+Keywords: llm,context,memory,prompt,gpt,claude,ai,middleware
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: tiktoken>=0.5.0
+
+# 🧠 LLMunchies
+*Feeding your model tasty context.*
+
+LLMunchies is a lightweight, model-agnostic context engine for developers. It lets you store conversation history, format it for different models like GPT and Claude, and swap models on the fly without rewriting your prompt logic.
+
+It is **NOT** a chatbot framework or a full AI agent platform. It's the simple, pluggable memory layer that sits between your app and the model API.
+
+## Mission
+Let developers format, swap, and manage LLM context without prompt PTSD.
+
+## Installation
+Currently, LLMunchies is not on PyPI. To use it, simply place the `llmunchies` folder into your project and import the `MemoryManager`. You will also need `tiktoken` for V2 functionality.
+
+```bash
+pip install tiktoken
