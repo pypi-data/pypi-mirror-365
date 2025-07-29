@@ -1,0 +1,16 @@
+[project]
+name = "lsiwh37249_discordbot"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "kim", email = "lsiwh37249@gmail.com"},
+]
+dependencies = ["requests>=2.32.4", "discord>=2.3.2", "pandas>=2.3.1", "uvicorn>=0.35.0", "fastapi>=0.116.1"]
+requires-python = "==3.11.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = true
+package-dir = "src"
