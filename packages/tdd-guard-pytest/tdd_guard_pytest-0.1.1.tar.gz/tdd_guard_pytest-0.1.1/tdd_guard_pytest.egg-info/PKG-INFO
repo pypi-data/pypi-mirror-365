@@ -1,0 +1,104 @@
+Metadata-Version: 2.4
+Name: tdd-guard-pytest
+Version: 0.1.1
+Summary: Pytest plugin for TDD Guard - enforces Test-Driven Development principles
+Author: Nizar Selander, Durafen
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/nizos/tdd-guard
+Project-URL: Repository, https://github.com/nizos/tdd-guard
+Project-URL: Bug Tracker, https://github.com/nizos/tdd-guard/issues
+Project-URL: Documentation, https://github.com/nizos/tdd-guard/tree/main/reporters/pytest
+Keywords: tdd,test-driven-development,testing,pytest,claude
+Classifier: Development Status :: 4 - Beta
+Classifier: Framework :: Pytest
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Software Development :: Testing
+Classifier: Topic :: Software Development :: Quality Assurance
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: pytest>=6.0
+
+# TDD Guard Pytest Reporter
+
+Pytest plugin that captures test results for TDD Guard validation.
+
+## Requirements
+
+- Python 3.8+
+- pytest 6.0+
+- [TDD Guard](https://github.com/nizos/tdd-guard) installed globally
+
+## Installation
+
+```bash
+pip install tdd-guard-pytest
+```
+
+The plugin activates automatically when installed.
+
+## Configuration
+
+TDD Guard needs consistent test result locations. Two configurations ensure this:
+
+1. **Environment variable** - Keeps Claude Code in the project root
+2. **Pytest setting** - Tells the reporter where to save results
+
+### Environment Setup
+
+Set Claude Code to maintain the project root:
+
+```bash
+# In ~/.zshrc or ~/.bashrc
+export CLAUDE_BASH_MAINTAIN_PROJECT_WORKING_DIR=1
+```
+
+This returns Claude Code to the project root after each command. See [environment variables documentation](https://docs.anthropic.com/en/docs/claude-code/settings#environment-variables) for details.
+
+Restart your terminal or run `source ~/.zshrc` after adding.
+
+### Project Root Configuration
+
+Set `tdd_guard_project_root` to your project root using any ONE of these methods:
+
+**Option 1: pyproject.toml**
+
+```toml
+[tool.pytest.ini_options]
+tdd_guard_project_root = "/absolute/path/to/project/root"
+```
+
+**Option 2: pytest.ini**
+
+```ini
+[pytest]
+tdd_guard_project_root = /absolute/path/to/project/root
+```
+
+**Option 3: setup.cfg**
+
+```ini
+[tool:pytest]
+tdd_guard_project_root = /absolute/path/to/project/root
+```
+
+### Configuration Rules
+
+- Path must be absolute
+- Current directory must be within the configured project root
+- Falls back to current directory if configuration is invalid
+
+## More Information
+
+- Test results are saved to `.claude/tdd-guard/data/test.json`
+- See [TDD Guard documentation](https://github.com/nizos/tdd-guard) for complete setup
+
+## License
+
+MIT
