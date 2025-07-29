@@ -1,0 +1,20 @@
+[package]
+name = "fastpsl"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+name = "fastpsl"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = "0.25.0"
+publicsuffix = "2.3.0"
+dirs = "5.0"
+reqwest = { version = "0.12.12", features = [
+    "blocking",
+    "rustls-tls",
+], default-features = false }
+thiserror = "2.0.12"
+psl = "2.1.127"
+regex = "1.11.1"
