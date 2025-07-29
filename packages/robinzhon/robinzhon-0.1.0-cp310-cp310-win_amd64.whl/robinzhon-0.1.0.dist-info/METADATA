@@ -1,0 +1,132 @@
+Metadata-Version: 2.4
+Name: robinzhon
+Version: 0.1.0
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Rust
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Internet :: File Transfer Protocol (FTP)
+Classifier: Topic :: System :: Archiving
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Utilities
+License-File: LICENSE
+Summary: A high-performance Python library for fast, concurrent S3 object downloads
+Keywords: s3,aws,download,performance,concurrent,async,rust,fast,boto3,cloud,storage
+Home-Page: https://github.com/rohaquinlop/robinzhon
+Author: Robin Quintero <rohaquinlop301@gmail.com>
+Author-email: Robin Quintero <rohaquinlop301@gmail.com>
+License: MIT
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+Project-URL: Source Code, https://github.com/rohaquinlop/robinzhon
+
+# robinzhon
+
+A high-performance Python library for fast, concurrent S3 object downloads.
+
+## Features
+
+- **Fast downloads**: Concurrent downloads using async I/O
+- **Resilient**: Continues downloading even if some files fail
+- **Simple API**: Easy-to-use methods for single and batch downloads
+- **Detailed results**: Get success/failure information for batch operations
+
+## Requirements
+
+- Python >= 3.8
+
+## Installation
+
+```bash
+pip install robinzhon   # if you uses pip
+uv add robinzhon        # if you uses uv
+```
+
+## Example
+
+```python
+from robinzhon import S3Downloader
+
+# Initialize downloader
+client = S3Downloader("us-east-1")
+
+# Download a single file
+download_path = client.download_file(
+    "test-bucket", "test-object-key", "./test-object-key"
+)
+# download_path will be the file path where the object was downloaded
+
+# Download multiple files to the same directory
+files_to_download = [
+    "data/file1.csv",
+    "data/file2.json",
+    "logs/app.log"
+]
+result = client.download_multiple_files(
+    "test-bucket", files_to_download, "./downloads"
+)
+
+# Check results
+print(f"Downloaded {len(result.successful)} files successfully")
+print(f"Downloaded files: {result.successful}")
+if result.has_failures():
+    print(f"Failed to download: {result.failed}")
+
+# Download files with custom paths
+downloads = [
+    ("data/input.csv", "./processed/input_data.csv"),
+    ("config/settings.json", "./config/app_settings.json"),
+]
+result = client.download_multiple_files_with_paths("test-bucket", downloads)
+
+print(f"Success rate: {result.success_rate():.1%}")
+```
+
+## Configuration
+
+You can configure the maximum number of concurrent downloads:
+
+```python
+# Allow up to 10 concurrent downloads (default is 5)
+client = S3Downloader("us-east-1", max_concurrent_downloads=10)
+```
+
+## Performance Test Results
+
+```text
+============================================================
+Performance Test: 1000 files
+============================================================
+
+Testing Python S3Transfer implementation...
+Completed in 40.05s
+
+Testing robinzhon implementation...
+Completed in 9.68s
+
+Performance Results (1000 files)
+────────────────────────────────────────────────────────────
+Metric                    robinzhon       Python          Winner
+────────────────────────────────────────────────────────────
+Duration (seconds)        9.68            40.05           robinzhon (4.1x)
+Throughput (files/sec)    103.3           25.0            robinzhon
+Success Rate (%)          100.0           100.0           robinzhon
+Strict Success Rate (%)   100.0           100.0           robinzhon
+Files Downloaded          1000            1000
+Actual Files on Disk      1000            1000
+────────────────────────────────────────────────────────────
+robinzhon is 75.8% faster than Python implementation
+```
+
