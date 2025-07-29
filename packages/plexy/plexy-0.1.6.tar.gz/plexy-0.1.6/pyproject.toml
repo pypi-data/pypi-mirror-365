@@ -1,0 +1,71 @@
+[tool.poetry]
+name = "plexy"
+version = "0.1.6"
+description = "Your Plex, your way"
+authors = [
+    "Rato"
+]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/ratoaq2/plexy"
+keywords = [
+    "video",
+    "plex",
+    "audio",
+    "subtitles",
+    "preferences",
+    "dubbed",
+    "subbed",
+    "original",
+    "language",
+    "foreign",
+    "movie",
+    "episode",
+    "tv",
+    "track",
+    "shows",
+    "series",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Multimedia :: Video",
+]
+include = [
+    { path = "scripts/**", format = "sdist" },
+    { path = "tests/**", format = "sdist" },
+    { path = "setup.cfg", format = "sdist" },
+]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<4.0"
+PlexAPI = "^4.17.0"
+click = "^8.2.1"
+babelfish = "^0.6.1"
+trakit = "^0.2.3"
+appdirs = "^1.4.4"
+pyyaml = {version = "^6.0", optional = true}
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^7.3.0"
+flake8-import-order = "^0.19.2"
+mypy = "^1.17.0"
+types-appdirs = "^1.4.3.5"
+types-pyyaml = "^6.0.12.20250516"
+pytest = "^8.4.1"
+mockito = "^1.4.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
