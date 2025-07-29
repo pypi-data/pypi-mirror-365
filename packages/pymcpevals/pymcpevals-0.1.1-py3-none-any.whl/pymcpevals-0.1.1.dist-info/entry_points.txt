@@ -1,0 +1,5 @@
+[console_scripts]
+pymcpevals = pymcpevals.cli:main
+
+[pytest11]
+pymcpevals = pymcpevals.pytest_plugin
