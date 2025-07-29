@@ -1,0 +1,60 @@
+Metadata-Version: 2.4
+Name: triz_ai_patent_assistant
+Version: 0.1.1
+Summary: AI + TRIZ system for patent formula generation and analysis
+Home-page: https://github.com/voroninsergei/triz-ai-patent-assistant
+Author: Sergei Voronin
+Author-email: Sergei Voronin <your@email.com>
+License: MIT
+Project-URL: Homepage, https://github.com/voroninsergei/triz-ai-patent-assistant
+Project-URL: Source, https://github.com/voroninsergei/triz-ai-patent-assistant
+Project-URL: Documentation, https://github.com/voroninsergei/triz-ai-patent-assistant#readme
+Project-URL: Tracker, https://github.com/voroninsergei/triz-ai-patent-assistant/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: streamlit
+Requires-Dist: openai
+Requires-Dist: pymystem3
+Requires-Dist: pytest
+Dynamic: author
+Dynamic: home-page
+Dynamic: requires-python
+
+# TRIZ-AI Patent Assistant
+
+> 🧠 AI + TRIZ system for generating and validating patent claims
+
+![CI](https://github.com/voroninsergei/triz-ai-patent-assistant/actions/workflows/ci.yml/badge.svg)
+![Python](https://img.shields.io/badge/python-3.10%2B-blue)
+![License](https://img.shields.io/github/license/voroninsergei/triz-ai-patent-assistant)
+
+## Features
+
+- Generate patent formulas from natural language ideas
+- Assess novelty and inventive step (non-obviousness)
+- Extract TRIZ contradictions and IPC classes
+- Export structured Word reports
+- Use LLMs to improve claims (OpenAI, Azure, Anthropic)
+
+## Quickstart
+
+```bash
+pip install -r requirements.txt
+streamlit run streamlit_app.py
+```
+
+## Run tests
+
+```bash
+pytest tests/
+```
+
+## License
+
+MIT License — use freely with attribution.
