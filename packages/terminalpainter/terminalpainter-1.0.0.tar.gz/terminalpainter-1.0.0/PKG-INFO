@@ -1,0 +1,126 @@
+Metadata-Version: 2.1
+Name: terminalpainter
+Version: 1.0.0
+Summary: Terminal painter
+Home-page: https://github.com/professionalincpp/your_project
+Author: professionalincpp
+Author-email: griguchaev@yandex.ru
+License: MIT
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: Pillow>=10.0.0
+
+# TerminalPainter
+
+A Python library for drawing on the terminal.
+
+## Installation
+To install the library, run the following command:
+
+```bash
+pip install terminalpainter
+```
+
+## Usage
+
+## Main Functions
+ - Painter: The main class for drawing on the terminal.
+ - Canvas: A class for creating and managing a canvas.
+ - Colors: A class for working with colors.
+
+## Examples
+### Drawing Text
+
+```python
+from terminalpainter import Painter
+
+canvas = Canvas((10, 10))
+painter = Painter()
+painter.paint_text("Hello, World!")
+canvas.paint()
+```
+### Drawing Shapes
+```python
+from terminalpainter import Canvas, Colors
+
+canvas = Canvas((10, 10))
+canvas.draw_rectangle((1, 1), (8, 8), Colors.RED)
+canvas.draw_circle((5, 5), 3, Colors.BLUE)
+canvas.paint()
+```
+
+### Working with Colors
+
+```python
+from terminalpainter import Painter, Canvas, Colors, ColorBlendMode
+import os
+
+color_red = Colors.to_rgba(Colors.RED, 128)
+color_green = Colors.to_rgba(Colors.GREEN, 128)
+color_blue = Colors.to_rgba(Colors.BLUE, 128)
+
+os.system('cls' if os.name == 'nt' else 'clear')
+
+canvas = Canvas((36, 36))
+canvas.blend_mode = ColorBlendMode.ADD
+
+painter = Painter()
+
+painter.paint_circle(canvas, 17, 10, 10, color_red)
+painter.paint_circle(canvas, 10, 24, 10, color_green)
+painter.paint_circle(canvas, 24, 24, 10, color_blue)
+
+canvas.paint()
+```
+
+## Documentation
+
+`Painter`:
+ - `paint_rectangle`: Draws a rectangle on the canvas.
+ - `paint_circle`: Draws a circle on the canvas.
+ - `paint_text`: Draws text on the canvas.
+ - `paint_image`: Draws an image on the canvas.
+ - `paint_line`: Draws a line on the canvas.
+ - `paint_pieslice`: Draws a pie slice on the canvas.
+ - `fill`: Fills the canvas with a color.
+
+`Canvas`:
+ - `blend_mode`: The blend mode to use when blending colors.
+ - `resize`: Resizes the canvas.
+ - `paint`: Paints the canvas to the terminal.
+ - `clear`: Clears the canvas.
+ - `set_pixel`: Sets a pixel on the canvas.
+ - `set_char`: Sets a character on the canvas.
+ - `get_pixel`: Gets a pixel from the canvas.
+  
+`Colors`:
+ - `to_rgb`: Converts a color to RGB format.
+ - `to_rgba`: Converts a color to RGBA format.
+ - `blend`: Blends two colors together.
+
+`ColorBlendMode`:
+ - `ADD`: Adds two colors together.
+ - `MIX`: Mixes two colors together.
+ - `SUB`: Subtracts two colors.
+ - `MAX`: Takes the maximum of two colors.
+ - `MIN`: Takes the minimum of two colors.
+
+# Authors
+professionsalincpp
+
+# License
+The library is distributed under the MIT License.
+
+
+
+
+
+
+
