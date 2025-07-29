@@ -1,0 +1,37 @@
+Metadata-Version: 2.4
+Name: chaosinjector
+Version: 0.2.0
+Summary: ChaosInjector: Probabilistic proxy library for injecting randomness and faults into Python objects. Supports chaos engineering, fault injection, stochastic simulations, A/B testing, and data privacy masking with type preservation.
+Project-URL: Homepage, https://github.com/vproyaev/chaosinjector
+Project-URL: Issues, https://github.com/vproyaev/chaosinjector/issues
+Project-URL: Documentation, https://chaosinjector.readthedocs.io
+Author-email: Vladislav Proyaev <farmfilok@gmail.com>
+License: MIT License
+        
+        Copyright (c) 2025 Vladislav Proyaev
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+License-File: LICENSE
+Keywords: A/B testing python,chaos engineering,data anonymization,fault injection,monte carlo python,performance sampling,probabilistic proxy,python testing library,randomness injection,stochastic simulation
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.8
+Provides-Extra: dev
+Requires-Dist: pytest; extra == 'dev'
