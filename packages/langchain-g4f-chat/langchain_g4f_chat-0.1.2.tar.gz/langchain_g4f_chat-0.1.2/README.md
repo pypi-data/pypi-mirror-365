@@ -1,0 +1,316 @@
+# LangChain G4F Integration
+
+A LangChain integration for GPT4Free (g4f) that allows you to use any g4f provider with LangChain's chat model interface.
+
+## Features
+
+- 🤖 **Full LangChain Compatibility**: Drop-in replacement for OpenAI chat models
+- 🔄 **Multiple Providers**: Support for all g4f providers including your custom OpenRouterCustom
+- 🌊 **Streaming Support**: Both sync and async streaming responses
+- 🔐 **Authentication**: API key support for providers that require it
+- ⚡ **Async Support**: Full async/await support for modern applications
+- 🎛️ **Parameter Control**: Temperature, max_tokens, and other model parameters
+
+## Installation
+
+```bash
+# Install the package
+pip install langchain-g4f-chat
+
+# Or install in development mode
+git clone https://github.com/MeetSolanki530/langchain-g4f-chat
+cd langchain_g4f
+pip install -e .
+```
+
+## Quick Start
+
+```python
+from langchain_g4f import ChatG4F
+import g4f
+
+# Create a ChatG4F instance with correct model name
+chat = ChatG4F(
+    model="openai/gpt-3.5-turbo",  # ✅ Correct OpenRouter format
+    provider=g4f.Provider.OpenRouter,
+    api_key="your-openrouter-api-key",
+    temperature=0.7,
+)
+
+# Use with LangChain (when langchain-core is installed)
+from langchain_core.messages import HumanMessage, SystemMessage
+
+messages = [
+    SystemMessage(content="You are a helpful assistant."),
+    HumanMessage(content="What is the capital of France?")
+]
+
+response = chat.invoke(messages)
+print(response.content)
+```
+
+## Basic Usage (Without LangChain Core)
+
+```python
+from langchain_g4f import ChatG4F
+import g4f
+
+# Create ChatG4F instance
+chat = ChatG4F(
+    model="gpt-3.5-turbo",
+    provider=g4f.Provider.OpenRouterCustom,
+    api_key="your-api-key",
+    temperature=0.7,
+)
+
+# Use g4f directly with ChatG4F parameters
+messages = [
+    {"role": "system", "content": "You are helpful."},
+    {"role": "user", "content": "Hello!"}
+]
+
+response = g4f.ChatCompletion.create(
+    model=chat.model_name,
+    messages=messages,
+    provider=chat.provider,
+    api_key=chat.api_key.get_secret_value() if chat.api_key else None,
+    temperature=chat.temperature,
+)
+
+print(response)
+```
+
+## Advanced Usage
+
+### Multiple Providers
+
+```python
+# Try different providers with fallback
+providers = [
+    g4f.Provider.OpenRouterCustom,
+    g4f.Provider.OpenAI,
+    None,  # Auto-select
+]
+
+for provider in providers:
+    try:
+        chat = ChatG4F(
+            model="gpt-3.5-turbo",
+            provider=provider,
+            api_key="your-key" if provider else None
+        )
+        # Use the chat model
+        break
+    except Exception as e:
+        print(f"Provider {provider} failed: {e}")
+        continue
+```
+
+### Streaming Responses
+
+```python
+# Enable streaming
+chat = ChatG4F(
+    model="gpt-3.5-turbo",
+    provider=g4f.Provider.OpenRouterCustom,
+    api_key="your-key",
+    stream=True
+)
+
+# Stream with g4f directly
+response = g4f.ChatCompletion.create(
+    model="gpt-3.5-turbo",
+    messages=[{"role": "user", "content": "Tell me a story"}],
+    provider=g4f.Provider.OpenRouterCustom,
+    api_key="your-key",
+    stream=True
+)
+
+for chunk in response:
+    print(chunk, end='', flush=True)
+```
+
+### Async Usage
+
+```python
+import asyncio
+
+async def chat_async():
+    chat = ChatG4F(
+        model="gpt-3.5-turbo",
+        provider=g4f.Provider.OpenRouterCustom,
+        api_key="your-key"
+    )
+    
+    # Use with LangChain async methods (when available)
+    # response = await chat.ainvoke(messages)
+    
+    # Or use g4f async directly
+    response = await g4f.ChatCompletion.create_async(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": "Hello!"}],
+        provider=g4f.Provider.OpenRouterCustom,
+        api_key="your-key"
+    )
+    
+    return response
+
+# Run async
+result = asyncio.run(chat_async())
+```
+
+## Configuration Options
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `model` | str | "gpt-3.5-turbo" | Model name to use |
+| `provider` | Any | None | G4F provider (auto-select if None) |
+| `api_key` | str | None | API key for authenticated providers |
+| `temperature` | float | 0.7 | Sampling temperature |
+| `max_tokens` | int | None | Maximum tokens to generate |
+| `stream` | bool | False | Enable streaming responses |
+| `model_kwargs` | dict | {} | Additional parameters for g4f |
+
+## Supported Providers
+
+- **OpenRouterCustom**: Your custom OpenRouter provider ✅
+- **OpenAI**: Official OpenAI API
+- **Bing**: Microsoft Bing Chat
+- **Claude**: Anthropic Claude models
+- **Auto**: Let g4f choose the best available provider
+
+## Integration with LangChain
+
+Once you have `langchain-core` installed, you can use ChatG4F with:
+
+- **LangChain Chains**: Use in sequential chains
+- **LangChain Agents**: As the LLM for AI agents
+- **Memory**: With conversation memory
+- **Callbacks**: Full callback support
+- **Async**: Async chains and operations
+
+```python
+# Example with LangChain chain (requires langchain-core)
+from langchain.chains import LLMChain
+from langchain.prompts import PromptTemplate
+
+prompt = PromptTemplate(
+    input_variables=["question"],
+    template="Answer this question: {question}"
+)
+
+chain = LLMChain(llm=chat, prompt=prompt)
+result = chain.run("What is AI?")
+```
+
+## Error Handling
+
+```python
+try:
+    chat = ChatG4F(
+        model="gpt-4",
+        provider=g4f.Provider.OpenRouterCustom,
+        api_key="your-key"
+    )
+    
+    response = g4f.ChatCompletion.create(
+        model="gpt-4",
+        messages=[{"role": "user", "content": "Hello"}],
+        provider=g4f.Provider.OpenRouterCustom,
+        api_key="your-key"
+    )
+    
+except Exception as e:
+    print(f"Error: {e}")
+    # Fallback to different provider or model
+```
+
+## Troubleshooting
+
+### Import Error: No module named 'langchain_g4f'
+
+If you get this error even after installing the package:
+
+1. **Check installation**:
+   ```bash
+   pip list | grep langchain-g4f-chat
+   ```
+
+2. **Reinstall the package**:
+   ```bash
+   pip uninstall langchain-g4f-chat -y
+   pip install langchain-g4f-chat
+   ```
+
+3. **For development mode**:
+   ```bash
+   cd langchain_g4f
+   pip install -e .
+   ```
+
+4. **Verify import**:
+   ```python
+   from langchain_g4f import ChatG4F
+   print("Import successful!")
+   ```
+
+### Common Issues
+
+- **Model not found**: Use providers that support your model or let g4f auto-select
+- **API key errors**: Ensure you're using the correct API key for authenticated providers
+- **Rate limits**: Some providers have rate limits; try different providers if one fails
+
+## Module Structure
+
+```
+langchain_g4f/
+├── __init__.py           # Main exports
+├── requirements.txt      # Dependencies
+├── setup.py             # Package setup
+└── chat_models/
+    ├── __init__.py      # Chat model exports
+    └── base.py          # ChatG4F implementation
+```
+
+## Development
+
+To install in development mode:
+
+```bash
+cd langchain_g4f
+pip install -e .
+```
+
+## Testing
+
+Run the test scripts to verify functionality:
+
+```bash
+python test_langchain_g4f_practical.py
+python test_complete_integration.py
+```
+
+## License
+
+MIT License - Feel free to use and modify as needed.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests
+5. Submit a pull request
+
+## Changelog
+
+### v0.1.2
+- Initial release
+- ChatG4F class with LangChain interface
+- Support for all g4f providers
+- Streaming and async support
+- Your OpenRouterCustom provider integration
+
+---
+
+**Made with ❤️ for the LangChain and GPT4Free communities**
