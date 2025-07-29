@@ -1,0 +1,406 @@
+Metadata-Version: 2.4
+Name: rs-audio-playrec
+Version: 0.1.1
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Rust
+Classifier: Topic :: Multimedia :: Sound/Audio
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Summary: High-performance audio playback and recording library
+Author-email: hiroshi-tamura <your-email@example.com>
+License: MIT
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+Project-URL: Homepage, https://github.com/hiroshi-tamura/rs_audio_playrec
+Project-URL: Repository, https://github.com/hiroshi-tamura/rs_audio_playrec
+Project-URL: Issues, https://github.com/hiroshi-tamura/rs_audio_playrec/issues
+
+# rs_audio_playrec
+
+High-performance audio playback and recording library for Python, powered by Rust.
+
+[![PyPI version](https://badge.fury.io/py/rs-audio-playrec.svg)](https://badge.fury.io/py/rs-audio-playrec)
+[![Python](https://img.shields.io/pypi/pyversions/rs-audio-playrec.svg)](https://pypi.org/project/rs-audio-playrec/)
+
+## Features
+
+- **High Performance**: Rust-powered core with zero-copy design
+- **Multi-format Support**: WAV, AIF, MP3
+- **Cross-platform**: Windows, macOS, Linux
+- **Loopback Recording**: Record system audio output
+- **Real-time Audio Processing**: Low-latency audio with SIMD optimizations
+
+## Installation
+
+```bash
+pip install rs-audio-playrec
+```
+
+## Quick Start
+
+```python
+import rs_audio_playrec as audio
+
+# Play audio file
+player = audio.Player()
+player.load("music.wav")
+player.play()
+
+# Record audio
+recorder = audio.Recorder()
+recorder.start()
+# ... record for some time ...
+recorder.stop()
+recorder.save("recording.wav")
+```
+
+## API Reference
+
+### Player Class
+
+#### Constructor
+```python
+player = audio.Player(device=None)
+```
+
+#### Methods
+
+**load(file_path)**
+```python
+player.load("audio.wav")
+```
+
+**load_data(samples, channels, sample_rate, bit_depth=None)**
+```python
+player.load_data(samples, channels=2, sample_rate=44100)
+```
+
+**play()**
+```python
+player.play()
+```
+
+**pause()**
+```python
+player.pause()
+```
+
+**stop()**
+```python
+player.stop()
+```
+
+**seek(position_seconds)**
+```python
+player.seek(30.0)  # Seek to 30 seconds
+```
+
+**set_volume(volume)**
+```python
+player.set_volume(0.8)  # 0.0 to 2.0
+```
+
+**get_volume()**
+```python
+volume = player.get_volume()
+```
+
+**set_loop(enabled)**
+```python
+player.set_loop(True)
+```
+
+**is_loop_enabled()**
+```python
+is_loop = player.is_loop_enabled()
+```
+
+**get_position()**
+```python
+position = player.get_position()  # Returns seconds
+```
+
+**get_duration()**
+```python
+duration = player.get_duration()  # Returns seconds
+```
+
+**get_state()**
+```python
+state = player.get_state()  # "playing", "paused", "stopped"
+```
+
+**is_playing() / is_paused() / is_stopped()**
+```python
+if player.is_playing():
+    print("Audio is playing")
+```
+
+### Recorder Class
+
+#### Constructor
+```python
+recorder = audio.Recorder(device=None, sample_rate=None, channels=None)
+```
+
+#### Methods
+
+**start()**
+```python
+recorder.start()
+```
+
+**pause()**
+```python
+recorder.pause()
+```
+
+**stop()**
+```python
+recorder.stop()
+```
+
+**clear()**
+```python
+recorder.clear()  # Clear recorded data
+```
+
+**save(file_path)**
+```python
+recorder.save("recording.wav")
+```
+
+**get_data()**
+```python
+samples, channels, sample_rate, bit_depth = recorder.get_data()
+```
+
+**get_duration()**
+```python
+duration = recorder.get_duration()
+```
+
+**get_state()**
+```python
+state = recorder.get_state()  # "recording", "paused", "stopped"
+```
+
+**is_recording() / is_paused() / is_stopped()**
+```python
+if recorder.is_recording():
+    print("Recording in progress")
+```
+
+**get_sample_rate() / get_channels()**
+```python
+sr = recorder.get_sample_rate()
+ch = recorder.get_channels()
+```
+
+**get_peak_level() / get_rms_level()**
+```python
+peak = recorder.get_peak_level()  # 0.0 to 1.0
+rms = recorder.get_rms_level()    # 0.0 to 1.0
+```
+
+**set_format(sample_rate, channels)**
+```python
+recorder.set_format(48000, 2)
+```
+
+#### Static Methods
+
+**Recorder.with_device(device_name)**
+```python
+recorder = audio.Recorder.with_device("Microphone")
+```
+
+**Recorder.new_loopback()**
+```python
+recorder = audio.Recorder.new_loopback()  # Record system audio
+```
+
+**Recorder.list_input_devices()**
+```python
+devices = audio.Recorder.list_input_devices()
+```
+
+**Recorder.list_loopback_devices()**
+```python
+devices = audio.Recorder.list_loopback_devices()
+```
+
+### File Operations
+
+**load_audio_file(file_path)**
+```python
+samples, channels, sample_rate, bit_depth = audio.load_audio_file("audio.wav")
+```
+
+**save_audio_file(file_path, samples, channels, sample_rate, bit_depth=None)**
+```python
+audio.save_audio_file("output.wav", samples, channels, sample_rate, 16)
+```
+
+**get_audio_info(file_path)**
+```python
+sample_rate, channels, bit_depth, duration = audio.get_audio_info("audio.wav")
+```
+
+**convert_audio(input_path, output_path, sample_rate=None, channels=None, bit_depth=None)**
+```python
+audio.convert_audio("input.mp3", "output.wav", sample_rate=48000)
+```
+
+### Device Management
+
+**list_output_devices()**
+```python
+devices = audio.list_output_devices()
+for device in devices:
+    print(f"Output device: {device}")
+```
+
+**list_input_devices()**
+```python
+devices = audio.list_input_devices()
+for device in devices:
+    print(f"Input device: {device}")
+```
+
+## Usage Examples
+
+### Basic Playback
+```python
+import rs_audio_playrec as audio
+
+# Simple playback
+player = audio.Player()
+player.load("music.wav")
+player.set_volume(0.8)
+player.play()
+
+# Control playback
+player.pause()
+player.seek(30.0)  # Seek to 30 seconds
+player.play()
+player.stop()
+```
+
+### Recording Audio
+```python
+import rs_audio_playrec as audio
+import time
+
+# Record from microphone
+recorder = audio.Recorder(sample_rate=48000, channels=2)
+recorder.start()
+time.sleep(5)  # Record for 5 seconds
+recorder.stop()
+recorder.save("recording.wav")
+
+# Monitor recording levels
+while recorder.is_recording():
+    peak = recorder.get_peak_level()
+    rms = recorder.get_rms_level()
+    print(f"Peak: {peak:.3f}, RMS: {rms:.3f}")
+    time.sleep(0.1)
+```
+
+### Loopback Recording (System Audio)
+```python
+import rs_audio_playrec as audio
+
+# Record system audio output
+recorder = audio.Recorder.new_loopback()
+recorder.start()
+# ... system audio will be recorded ...
+recorder.stop()
+recorder.save("system_audio.wav")
+```
+
+### Audio File Processing
+```python
+import rs_audio_playrec as audio
+
+# Load and process audio
+samples, channels, sample_rate, bit_depth = audio.load_audio_file("input.wav")
+
+# Apply processing (example: volume adjustment)
+processed_samples = [sample * 0.5 for sample in samples]
+
+# Save processed audio
+audio.save_audio_file("output.wav", processed_samples, channels, sample_rate)
+```
+
+### Real-time Audio Processing
+```python
+import rs_audio_playrec as audio
+import numpy as np
+
+# Generate sine wave
+duration = 1.0
+sample_rate = 44100
+t = np.linspace(0, duration, int(duration * sample_rate))
+frequency = 440.0  # A4 note
+samples = np.sin(2 * np.pi * frequency * t) * 0.5
+
+# Convert to stereo
+stereo_samples = []
+for sample in samples:
+    stereo_samples.extend([sample, sample])  # L, R
+
+# Play generated audio
+player = audio.Player()
+player.load_data(stereo_samples, channels=2, sample_rate=sample_rate)
+player.play()
+```
+
+### Device Selection
+```python
+import rs_audio_playrec as audio
+
+# List available devices
+print("Output devices:")
+for device in audio.list_output_devices():
+    print(f"  {device}")
+
+print("Input devices:")
+for device in audio.list_input_devices():
+    print(f"  {device}")
+
+# Use specific device
+player = audio.Player.with_device("Speakers")
+recorder = audio.Recorder.with_device("Microphone")
+```
+
+## Supported Formats
+
+- **File formats**: WAV, AIF, MP3
+- **Sample rates**: 22.05kHz to 192kHz
+- **Bit depths**: 8, 16, 24, 32-bit float, 64-bit float
+- **Channels**: 1 to 64 channels
+
+## Audio APIs
+
+- **Windows**: WASAPI, DirectSound, WaveOut, ASIO
+- **macOS**: CoreAudio, ASIO
+- **Linux**: ALSA, PulseAudio, ASIO
+
+## Requirements
+
+- Python 3.10+
+- Windows, macOS, or Linux
+
+## License
+
+MIT License
+
+## Contributing
+
+Issues and pull requests are welcome on GitHub.
