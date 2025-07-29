@@ -1,0 +1,34 @@
+[project]
+name = "json-parser-cli"  
+version = "0.1.2"
+description = "A JSON parser CLI tool"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    {name = "Anand Vashishtha", email = "anandcollege07@gmail.com"}
+]
+license = {text = "MIT"}
+keywords = ["json", "parser", "lexer", "compiler", "cli"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+]
+
+dependencies = []
+
+
+[project.scripts]
+json-parser = "json_parser.json_parser:main"
+
+[project.urls]
+Repository = "https://github.com/Anand-0037/json-parser"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/json_parser"]
