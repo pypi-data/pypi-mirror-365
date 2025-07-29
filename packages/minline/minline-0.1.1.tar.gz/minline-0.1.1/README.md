@@ -1,0 +1,68 @@
+# Minline
+
+[![PyPI version](https://badge.fury.io/py/minline.svg)](https://pypi.org/project/minline/)
+[![License: CUSTOM](https://img.shields.io/badge/License-Custom-green.svg)](./LICENSE)
+[![Build](https://github.com/bakirullit/minline/actions/workflows/workflow.yml/badge.svg)](https://github.com/bakirullit/minline/actions)
+
+**Minline** is a lightweight framework for building Telegram bots with **Aiogram 3.x**, offering a modular routing system, smart navigation, and extensible UI components.
+
+---
+
+## ✨ Features
+
+- 🧭 Declarative `@app.menu("path")` navigation system
+- 🔙 Automatic **back button** with `#route://` (trims the last segment)
+- 🌐 Link buttons and WebApp buttons via `Button(text, url=...)`
+- 🧩 Easy-to-extend components: `Menu`, `Button`, etc.
+- 🧠 SQLite-based session manager
+- ⚙️ Dynamic UI updates and custom action handling
+- 🪶 Minimal external dependencies
+
+---
+
+## 🚀 Installation
+
+```bash
+pip install minline
+```
+
+---
+
+## ⚡ Quick Example
+
+```python
+from minline import MinlineApp, Menu, Button
+
+app = MinlineApp("YOUR_BOT_TOKEN")
+
+@app.menu("main")
+def main_menu():
+    return Menu(
+        menu_id="main",
+        controls=[
+            [Button("Settings", "#route:/settings")],
+            [Button("Open Web", url="https://example.com")]
+        ]
+    )
+
+@app.menu("main/settings")
+def settings_menu():
+    return Menu(
+        menu_id="settings",
+        controls=[
+            [Button("Notifications", "toggle_notifications")]
+        ]
+    )
+
+app.run()
+```
+
+---
+
+## 📚 Documentation
+
+Planned at: [https://bakirullit.github.io/minline](https://bakirullit.github.io/minline)
+
+Until then, browse the `examples/` directory or open an issue.
+
+---
