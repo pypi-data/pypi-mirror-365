@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "inventory-explorer"
+description = "A tool for efficiently exploring the hosts, groups and variables in an Ansible inventory"
+readme = "README.md"
+license = {file= "LICENSE"}
+dependencies = [
+    "pyyaml",
+    "fzy",
+]
+dynamic = ["version"]
+
+[tool.setuptools.dynamic]
+version = {attr = "inventory_explorer.__version__"}
+
+[project.scripts]
+inventory-explorer = "inventory_explorer:main"
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    # Filter out spurious urwid deprecation warnings
+    'ignore:urwid\..*is moved to urwid\.',
+]
