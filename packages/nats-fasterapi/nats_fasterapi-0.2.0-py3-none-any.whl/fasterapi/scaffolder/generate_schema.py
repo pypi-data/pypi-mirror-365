@@ -1,0 +1,52 @@
+from pathlib import Path
+from datetime import datetime
+
+def create_schema_file(name: str):
+    schema_dir = Path.cwd() / "schemas"
+    schema_path = schema_dir / f"{name}.py"
+    schema_dir.mkdir(exist_ok=True)
+
+    if schema_path.exists():
+        print(f"⚠️  Schema already exists: schemas/{name}.py")
+        return
+
+    # Convert snake_case to PascalCase
+    class_name = "".join(part.capitalize() for part in name.split("_"))
+
+    schema_code = f'''
+from schemas.imports import *
+from pydantic import Field
+import time
+
+class {class_name}Base(BaseModel):
+    # Add other fields here 
+    pass
+
+class {class_name}Create({class_name}Base):
+    # Add other fields here 
+    date_created: int = Field(default_factory=lambda: int(time.time()))
+    last_updated: int = Field(default_factory=lambda: int(time.time()))
+
+class {class_name}Update(BaseModel):
+    # Add other fields here 
+    last_updated: int = Field(default_factory=lambda: int(time.time()))
+
+class {class_name}Out({class_name}Base):
+    # Add other fields here 
+    id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
+    date_created: Optional[int] = None
+    last_updated: Optional[int] = None
+
+    class Config:
+        orm_mode = True
+        populate_by_name = True
+        arbitrary_types_allowed = True
+        json_encoders = {{
+            ObjectId: str
+        }}
+'''.strip()
+
+    with open(schema_path, "w") as f:
+        f.write(schema_code)
+
+    print(f"✅ Schema file created: schemas/{name}.py")
