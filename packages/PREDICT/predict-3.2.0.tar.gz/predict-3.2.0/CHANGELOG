@@ -1,0 +1,454 @@
+Changelog
+=========
+
+All notable changes to this project will be documented in this file.
+
+The format is based on `Keep a Changelog <http://keepachangelog.com/>`_
+and this project adheres to `Semantic Versioning <http://semver.org/>`_
+
+3.2.0 - 2025-07-28
+------------------
+Major updates to be compatible with Python 3.11, dropped <=3.7 support.
+
+Changed
+~~~~~~~
+- Several dependencies have been updated, most noticably to the most
+    recent scikit-image version.
+
+3.1.17 - 2023-08-14
+-------------------
+
+Fixed
+~~~~~~~
+- Extraction mode was not properly taken into account in the shape features.
+
+Removed
+~~~~~~~
+- Coliage features, as they were deprecated, not used in years.
+
+
+3.1.16 - 2022-07-13
+-------------------
+
+Fixed
+~~~~~~~
+- Bug in shape features when voxel volume could not be computed from metadata.
+- Included assertionerror in shape feature computation.
+
+Changed
+~~~~~~~
+- In shape feature computation, previously features had value np.NaN if for
+  a single slice the feature was not defined in 2D / 2.5D feature extraction.
+  Switched to ignoring NaNs.
+
+3.1.15 - 2022-04-05
+-------------------
+
+Fixed
+~~~~~~~
+- Raise error when contour consists of a single pixel. Previously, we
+  still computed features, but the majority was NaN, so it did not make sense.
+
+Added
+~~~~~~~
+- Various other image types can now also be given to PREDICT to compute
+  features.
+
+3.1.14 - 2022-01-14
+------------------
+
+Fixed
+~~~~~~~
+- 2D volume was computed on labeled mask, not binary mask.
+- Related to above, 3D shape features were not computed on all connected
+  components
+- Bug in separation between 2D, 2.5D, and 3D computation of features
+
+3.1.13 - 2020-10-06
+------------------
+
+Added
+~~~~~~~
+- Manufacturer routine to DICOM features
+
+3.1.12 - 2020-09-23
+------------------
+
+Added
+~~~~~~~
+- In DICOM features, routines for several tags to convert the value
+  to a float. Also support for extracting any tag required, as long
+  as it contains a float.
+
+Changed
+~~~~~~~
+- Patient features are now called dicom features. More accurate, as they
+  are extracted from the DICOM tags.
+
+3.1.11 - 2020-08-20
+------------------
+
+Fixed
+~~~~~
+- Bug in histogram entropy feature extraction.
+
+3.1.10 - 2020-08-19
+------------------
+
+Fixed
+~~~~~
+- Bug in histogram feature extraction.
+- Bug in shape roughness feature.
+
+3.1.9 - 2020-07-31
+------------------
+
+Fixed
+~~~~~
+- Bug in GLCMMS computation.
+
+3.1.8 - 2020-07-28
+------------------
+
+Fixed
+~~~~~
+- Bug in dependencies
+
+3.1.7 - 2020-07-27
+------------------
+
+Changed
+~~~~~~~
+- Upgraded to new PyWavelets and scikit-learn dependencies.
+
+Fixed
+~~~~~
+- Made GLCM computations compatible with new requirements.
+
+3.1.6 - 2020-07-27
+------------------
+
+Fixed
+~~~~~
+- Bug in voxel volume computation when voxel spacing was not in metadata
+- Upgraded to pyradiomics 3.0 in GLRLM, GLSZM, and NGTDM computation.
+
+3.1.5 - 2020-07-02
+------------------
+
+Fixed
+~~~~~
+- Catch type error in semantic file computation.
+- Several printing statements improved.
+- Bug when computing 1D shape features: one feature value was missed,
+  so number of labels and values did not match.
+
+Changed
+~~~~~~~
+- Histogram features min, max, range and IQR are the only ones computed
+  on raw data. Others are computed on histogram to be more robust to outliers.
+- LBP features now extracted using the histogram features, in accordance
+  to other filter features.
+- Gabor features now extracted using the histogram features, in accordance
+  to other filter features.
+
+3.1.4 - 2020-05-20
+------------------
+
+Fixed
+~~~~~
+- Explicitly mentioned PyWavelets version requirement to solve bug.
+
+3.1.3 - 2020-05-20
+------------------
+
+Fixed
+~~~~~
+- Bug in shape features when using mask with multiple blobs.
+- Printing commands in texture features now properly outlined.
+
+
+3.1.2 - 2020-01-24
+------------------
+Added
+~~~~~
+- Error when config file cannot be found.
+- Support for 1D images.
+
+Fixed
+~~~~~
+- Catch error when image slice is too small for GLCM, give warning
+  and skip respective slice.
+- For large images, GLSZM gave an error. Increased bin width until error
+  resolves.
+
+
+3.1.1 - 2019-10-15
+------------------
+
+Fixed
+~~~~~
+- Compatibility issue with PyRadiomics => 2.2.0: edited requirements.
+
+3.1.0 - 2019-10-15
+------------------
+
+Fixed
+~~~~~
+- Check in patient features to assign value "unknown" when DICOM tag is not
+  present.
+- Bug in GLCM and GLCMMS texture features: label name did not include the
+  angle, but the distance twice.
+- CalcFeatures used to look at the shape parameter in the
+  config['ImageFeatures']: fixed to look at histogram instead.
+- Major bug in image helper that took omitted the last slice of the mask for
+  the shape feature computation.
+- Proper python gitignore
+- Updated travis.yml.
+
+3.0.0 - 2019-05-08
+------------------
+
+Added
+~~~~~~~
+- Move towards Python3 (Python2 not supported anymore!)
+- Compatibility for Windows. Some small changes in functions, as some packages
+  behaviour differently under Windows. Also, adjusted sink and source paths
+  to use OS file separator.
+- There is now for each feature group a parameter to determine whether the
+  features are extracted or not.
+
+Changed
+~~~~~~~
+- Major: moved everything except the feature extraction to WORC!
+- Scikit-image version, as older version was not compatible with numpy > 1.16
+- Merge to Python3: Reduce function removed, imported from functools.
+- Merge to Python3: repeat names of package when importing from same folder.
+- Merge to numpy16: change in contour functions due to behavior of np.vstack
+- Gabor features computed as last in texture features, as these take the longest.
+- Use pydicom instead of dicom due to python3 merge.
+- csv reader works different and impractical in python3. Use pandas instead
+  to read csv.
+- Require PyRadiomics 2.1.2, as 2.2.0 seems to have a bug.
+
+Fixed
+~~~~~
+- Bug in shape features or rather contour functions that specifically occured
+  on Windows.
+- Except memory error for orientation features: make segmentation smaller.
+
+
+2.1.3 - 2019-04-08
+------------------
+
+Fixed
+~~~~~
+- Bug in SearchCVJoblib: estimator input removed.
+- Bug in SearchCV: error when weights summed to zero in taking weighted average
+  and weighted std for the test scores.
+
+
+2.1.2 - 2019-04-02
+------------------
+
+Added
+~~~~~~~
+- If you have objects with missing features, put in NaN values.
+- Several classifiers: LDA, QDA, GaussianNB and ComplementNB.
+- CASH now also includes multiple machine learning model selection.
+- Discrete uniform sampling
+- average_precision_weighted scorer.
+
+Changed
+~~~~~~~
+- Upgraded imputer to work with newest sklearn versions.
+- Oversampling and SMOTE can now also be used in CASH optimization.
+- Moved max_iter of all iterative classifiers and regressors to general config.
+- Moved classifier construction to fitandscore to enable CASH.
+- Surrogate for sklearn's check_scoring used to enable use of alternative
+  metrics.
+
+Fixed
+~~~~~
+- Replaced several print statements to be Python3 compatible.
+- SMOTE and Oversampling now only apply to the training set. Was previously
+  training plus validation.
+- Scipy randint distribution was not compatible with the sklearn
+  ParameterSampler, so replaced them by a new discrete uniform distribution.
+- Error catch when param_grid in CASH contains invalid values.
+
+2.1.1 - 2019-02-15
+------------------
+
+Added
+~~~~~~~
+- Relief feature selection.
+- RankedSVM for multilabel classification.
+- Multilabel workflow. All binary classifiers can now also be used
+  for multilabel classification true a sklearn OneVsRestClassifier
+  object.
+- Multilabel performance metrics. Automatically used in plot_SVM
+  when using multilabel workflow.
+- Full oversampling of underrepresented classes.
+- log_uniform and exp_uniform distributions
+- Volume now also computed when only providing a Nifti
+- Single class Relief feature selection.
+- MultiSVR ensembling.
+- Start on F1_average metric.
+
+
+Changed
+~~~~~~~
+- Reduced memory usage by not passing fitted objects, but just the
+ (hyper)parameters.
+- All metrics used in evaluation are now combined in a metrics
+  script in the classification folder.
+- Cleaned crossval function for readability.
+- SVM hyperparameters are adjusted.
+- GroupSel now has a separate Hyperparameter for all texture groups.
+- Plot_barchart also compatible with above hyperparameter change.
+- Ranked images are now named with their rank, making it easier to read the
+  output.
+
+Fixed
+~~~~~
+- Catch error when validation set is too small.
+- Logging of cross validation now works properly by removing previous
+  log filehandles.
+- Ordering of methods in the SearchCV preprocess function now
+  corresponds with fitandscore.
+- Bugs for multiclass predict in SearchCV and in plot_SVM
+- Backend used in matplotlib is now agg, hence usage on platforms
+  not supporting tkinter is now supported.
+- Raise an error when multiple label matches for a single feature file are found.
+- Plot_SVM: Y_score needs to be computed with predict_proba, not the decision_function.
+- SearchCV, Ensemble, Predict: Average was taken over binary scores. The
+  average is now taken over the posteriors.
+- Plotting posteriors in ranked_images now correctly prints the posterior. Was
+  previously converted to integer.
+- Samples get a unique ID in the crossvalidation, so we always now which sample was used.
+- Bug in usage of PCA that caused it to never be used, plus a attribute name error.
+
+
+2.1.0 - 2018-08-09
+------------------
+
+
+Added
+~~~~~
+
+- PREDICT Exceptions in general.
+- A PREDICT ValueError catch when fitting the classifiers has failed and thus
+  output is missing.
+- Feature imputation added in fitandscore. Made additions in scripts parsing
+  these fields
+  towards fitandscore.
+- Logistic regression classifier.
+- Ensemble performance computing in plot_SVM.
+- Feature selection based on variance taking the mean of the features into
+  account.
+- Added PCA as feature selection method.
+- Added plot_feature_groups function. Note that it's not used yet by default in
+  the trainclassifier analysis
+- Some more docstrings and cleaned some functions.
+- Save the cv_iter object in the SearchCV so you can re-use the
+  training/validation splits.
+- Ensembling based on Caruana et al. 2004 in the SearchCV object.
+- plot_SVM function also outputs percentage of crossval iterations in which
+  patient got classified correctly.
+- Temporary save setting for crossval function is now in general config.
+- Fastr execution plugin type is now also an argument for the SearchCV object.
+
+
+Changed
+~~~~~~~
+
+- LoG features are now computed per 2-D slice, as is done with most other
+  features as well.
+- SVM parameters slack is now dependent on features.
+- Removed normalization in calcfeatures: now in separate node in WORC.
+- Moved load_data function from trainclassifier to file_io for broader use.
+- Removed preprocessing. It is now part of the WORC Python package and thus a
+  step separated from the feature calculation.
+- Updated ttest tool to comply with new way of inputting feature files.
+- SVM Polynomial kernel now spans [1, 5] instead of [2, 5]
+- Cross validation splitting is now based on patient IDs, hence all samples
+  from all patients are either in the training or the testing set.
+- Removed the general config.ini file and parser. These were used to determine
+  the settings for the Joblib Parallel function. These are now in the general
+  config. These had to be passed to both SMOTE and the Gabor feature computation.
+
+
+Fixed
+~~~~~
+
+- The load_data function in trainclassifier didn't work properly for multiple
+  modalities.
+- LoG filter needs a minimum of 4 voxels in each direction. These are therefore
+  now extracted on the full image instead of o nly the ROI slices. Plus there
+  is a catch if the full image also does not meet these criteria.
+- SMOTE was not working properly in the nocrossval function in the classification/crossval.py script.
+- Added ravel of labels to nocrossval function, as it was missing.
+- Conversion to numpy uint8 for vessel features, as skimage cannot filter certain float images.
+- construct_classifier gives an error for SVM's if a kernel type is not recognized.
+- Param grids in construct_crossval were using loc and scale incorrectly.
+- NaN in phase images are replaced by zeros to prevent errors.
+- In vessel features, when segmentation is small, there is not inner or outer edge.
+  PREDICT gave an error, now those features are just zeros.
+- In shape_features, first check if (0x18, 0x50) is present in metadata before
+  computing volume.
+- No more unnecessary use of lists in CalcFeatures and get_features for the image data.
+- Convert all integer inputs in compute_CI to floats, as divisions were
+  previously uncorrectly rounded when providing integers.
+- plot_ROC function now works properly.
+- Everything in the confidence interval function is now cast to floats,
+  as divisions with integers and floats are rounded to integers which gave
+  wrong values for the CI.
+- Confidence interval now has a catch when only a single iteration is provided.
+- Lot of error catches now have PREDICT errors.
+
+
+2.0.0 - 2018-02-13
+------------------
+
+Added
+~~~~~
+
+- Vessel, Laplacian of Gaussian (LoG), phase, GLCM multislice and NGTDM
+  features.
+- Groupwise feature selection for these features.
+- Function to perform statistical tests among features from classes.
+- Selectfrommodel feature selection.
+- SGDR, RFR, ElasticNet, and LASSO estimators.
+- Option to supply fixed splits to cross validation.
+- Option to perform no cross validation, but just a fixed train and test split.
+- SMOTE?
+- After each cross validation, a temporary save of the results of that
+  iteration can optionally be made.
+- A lot of explanations/helps to functions.
+- Plotting function for regression functions.
+- Function to apply student t-test to features.
+
+Changed
+~~~~~~~
+
+- Parameters of all features computations are now parsed from the configuration
+  ini file instead of solely being in the functions.
+- Joblib and Fastr SearchCV objects now in single file. Created a general
+  SearchCV object.
+
+
+Fixed
+~~~~~
+
+- SVM kernel degree can now also become linear.
+- Feature group selection was not working.
+- Regression now uses a non-stratified split for cross validation, a stratified
+  split is not possible and thus gave errors.
+- There was a bug that the coliage features where always computed, which
+  is now fixed.
+
+1.0.0 - 2017-07-27
+------------------
+
+Release
