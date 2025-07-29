@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jaganathanj"
+version = "1.0.10"
+description = "Personal portfolio and CLI identity package for Jaganathan J, instead of countless resumes"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [ { name = "Jaganathan J", email = "jaganathanjjds@gmail.com" } ]
+requires-python = ">=3.6"
+keywords = ["resume", "portfolio", "personal-brand", "cv", "developer", "student"]
+
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+[project.urls]
+Homepage = "https://jaganathan-j-portfolio.vercel.app/"
+Repository = "https://github.com/J-Jaganathan/jaganathanj-package"
+Issues = "https://github.com/J-Jaganathan/jaganathanj-package/issues"
+LinkedIn = "https://linkedin.com/in/jaganathan-j-a5466a257"
+YouTube = "https://youtube.com/@Tech_CrafterX"
+
+[project.scripts]
+jaganathanj = "jaganathanj.cli:main"
