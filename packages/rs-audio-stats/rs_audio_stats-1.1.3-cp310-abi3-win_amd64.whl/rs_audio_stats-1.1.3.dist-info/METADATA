@@ -1,0 +1,161 @@
+Metadata-Version: 2.4
+Name: rs_audio_stats
+Version: 1.1.3
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Rust
+Classifier: Topic :: Multimedia :: Sound/Audio :: Analysis
+License-File: LICENSE
+Summary: Professional-grade audio analysis tool with EBU R128 loudness measurement
+Keywords: audio,loudness,ebu-r128,analysis,normalization
+Author: Hiroshi Tamura
+License: MIT
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+Project-URL: Homepage, https://github.com/hiroshi-tamura/rs_audio_stats
+Project-URL: Repository, https://github.com/hiroshi-tamura/rs_audio_stats
+
+# rs_audio_stats
+
+🎵 Professional-grade audio analysis and normalization library for Python with EBU R128 loudness measurement.
+
+[![PyPI version](https://badge.fury.io/py/rs-audio-stats.svg)](https://pypi.org/project/rs-audio-stats/)
+[![Python versions](https://img.shields.io/pypi/pyversions/rs-audio-stats.svg)](https://pypi.org/project/rs-audio-stats/)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
+## ✨ Features
+
+- **📊 EBU R128 Loudness Analysis**: Industry-standard loudness measurement (±0.05 LUFS accuracy)
+- **🎛️ Audio Normalization**: Normalize to broadcast standards (-23 LUFS, streaming platforms)
+- **⚡ High Performance**: SIMD-optimized, multi-threaded batch processing
+- **🔄 Batch Processing**: Analyze entire directories with progress tracking
+- **📁 Multiple Formats**: WAV, FLAC, MP3, AAC, OGG, ALAC, MP4/M4A support
+- **📤 Export Options**: CSV, JSON, XML, TSV output formats
+- **🌍 Cross-Platform**: Windows, macOS (Intel/Apple Silicon), Linux - **No compilation required!**
+
+## 🚀 Quick Start
+
+### Installation
+
+```bash
+pip install rs-audio-stats
+```
+
+That's it! No additional dependencies or compilation required.
+
+### Basic Usage
+
+```python
+import rs_audio_stats
+
+# Analyze audio file
+info, results = rs_audio_stats.analyze_audio_all("audio.wav")
+print(f"Loudness: {results.integrated_loudness:.1f} LUFS")
+print(f"Peak: {results.true_peak:.1f} dBFS")
+print(f"Dynamic Range: {results.loudness_range:.1f} LU")
+
+# Normalize to streaming standard (-14 LUFS)
+rs_audio_stats.normalize_to_lufs("input.wav", -14.0, "output.wav")
+
+# Batch process directory
+results = rs_audio_stats.batch_analyze("/path/to/audio/files/")
+rs_audio_stats.export_to_csv(results, "analysis_results.csv")
+```
+
+## 🎯 Use Cases
+
+- **Broadcasting**: Ensure EBU R128 / ATSC A/85 compliance
+- **Music Production**: Master to streaming platform standards
+- **Podcasting**: Normalize episodes to consistent levels
+- **Quality Control**: Automated audio file validation
+- **Post-Production**: Film/TV audio delivery standards
+
+## 📊 Supported Measurements
+
+- **Integrated Loudness** (LUFS) - Overall program loudness
+- **Short-term Loudness** (LUFS) - 3-second maximum
+- **Momentary Loudness** (LUFS) - 400ms maximum  
+- **Loudness Range** (LU) - Dynamic range measurement
+- **True Peak** (dBFS) - Maximum sample peak with oversampling
+- **RMS Levels** (dB) - Average and maximum RMS power
+
+## 🎵 Supported Audio Formats
+
+**Input**: WAV, FLAC, MP3, AAC, OGG Vorbis, ALAC, MP4/M4A  
+**Output**: WAV (32-bit float PCM)
+
+## 🔧 Core Functions
+
+```python
+# Analysis
+analyze_audio()          # Selective measurements
+analyze_audio_all()      # All measurements
+get_audio_info_py()      # File info only
+batch_analyze()          # Directory processing
+
+# Normalization
+normalize_integrated_loudness()  # Target LUFS
+normalize_true_peak()           # Target dBFS peak
+normalize_to_lufs()             # Convenience wrapper
+
+# Export
+export_to_csv()         # Spreadsheet format
+export_to_json()        # Programming format
+find_audio_files()      # File discovery
+```
+
+## 📈 Performance
+
+- **Ultra-fast**: WAV files analyzed in milliseconds
+- **Memory efficient**: Streaming processing for large files  
+- **Parallel processing**: Multi-threaded batch operations
+- **SIMD optimized**: Uses CPU vector instructions
+
+## 🎬 Example Applications
+
+### Podcast Production
+```python
+# Normalize entire season to -16 LUFS
+episodes = rs_audio_stats.find_audio_files("./season1/")
+for episode in episodes:
+    output = episode.replace("raw", "normalized")
+    rs_audio_stats.normalize_to_lufs(episode, -16.0, output)
+```
+
+### Music Mastering
+```python
+# Check album consistency
+results = rs_audio_stats.batch_analyze("./album/")
+loudness_values = [r[2].integrated_loudness for r in results]
+consistency = max(loudness_values) - min(loudness_values)
+print(f"Album loudness range: {consistency:.1f} LU")
+```
+
+### Broadcast Compliance
+```python
+# Check EBU R128 compliance
+info, results = rs_audio_stats.analyze_audio_all("program.wav")
+if -23.5 <= results.integrated_loudness <= -22.5:
+    print("✅ EBU R128 compliant")
+else:
+    print("❌ Needs normalization")
+```
+
+## 📖 Documentation
+
+- **[Complete API Guide](COMPLETE_PYTHON_GUIDE.md)** - Comprehensive documentation with real-world examples
+- **[API Reference](API_REFERENCE.md)** - Detailed function reference
+- **[GitHub Repository](https://github.com/hiroshi-tamura/rs_audio_stats)** - Source code and issues
+
+## 📄 License
+
+MIT License - See [LICENSE](LICENSE) file for details.
+
+## 🏷️ Version
+
+Current version: 1.1.3
