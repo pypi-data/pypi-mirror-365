@@ -1,0 +1,40 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    background-color: #f5f7fa;
+    color: #333;
+    padding: 30px;
+}
+
+h1 {
+    font-size: 2em;
+    color: #4b0082; /* Deep purple tone for feminine + elegant vibe */
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #00bcd4; /* Calm cyan */
+    border: none;
+    color: white;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0097a7;
+}
+
+#output {
+    margin-top: 30px;
+    padding: 15px;
+    border: 2px dashed #aaa;
+    min-height: 120px;
+    font-size: 18px;
+    color: #6a1b9a;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.1);
+}
