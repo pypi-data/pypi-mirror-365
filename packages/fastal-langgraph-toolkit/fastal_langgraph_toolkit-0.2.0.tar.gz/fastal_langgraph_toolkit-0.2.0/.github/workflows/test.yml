@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  syntax-check:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Check Python syntax
+      run: |
+        python -m py_compile src/fastal/langgraph/toolkit/__init__.py
+        python -m py_compile src/fastal/langgraph/toolkit/models/factory.py
+        echo "✅ Syntax check passed"
