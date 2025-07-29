@@ -1,0 +1,134 @@
+# 🎨 EzQt_Widgets
+
+Une collection de widgets Qt personnalisés et réutilisables pour PySide6.
+
+## 📦 **Installation**
+
+```bash
+pip install ezqt_widgets
+```
+
+## 🚀 **Utilisation Rapide**
+
+```python
+from PySide6.QtWidgets import QApplication
+from ezqt_widgets.button import IconButton, DateButton, LoaderButton
+from ezqt_widgets.label import ClickableTagLabel, FramedLabel, HoverLabel, IndicatorLabel
+from ezqt_widgets.input import AutoCompleteInput, SearchInput, PasswordInput
+from ezqt_widgets.misc import CircularTimer, OptionSelector, ToggleIcon, ToggleSwitch
+
+app = QApplication([])
+
+# Widgets bouton
+icon_btn = IconButton(icon="path/to/icon.png", text="Mon Bouton")
+date_btn = DateButton(date="2024-01-01")
+loader_btn = LoaderButton(text="Charger...")
+
+# Widgets label
+tag_label = ClickableTagLabel(name="Tag Cliquable")
+framed_label = FramedLabel(text="Label Encadré")
+hover_label = HoverLabel(text="Label avec Hover")
+indicator_label = IndicatorLabel(status="online")
+
+# Widgets input
+search_input = SearchInput(placeholder="Rechercher...")
+password_input = PasswordInput(placeholder="Mot de passe")
+
+# Widgets misc
+timer = CircularTimer(duration=60)
+toggle_switch = ToggleSwitch(checked=True)
+
+app.exec()
+```
+
+## 📚 **Documentation**
+
+- **Documentation complète** : [docs/](docs/)
+- **Guide de style** : [docs/STYLE_GUIDE.md](docs/STYLE_GUIDE.md)
+- **Changelog** : [docs/CHANGELOG.md](docs/CHANGELOG.md)
+
+## 🧪 **Tests**
+
+### **Exécution des Tests**
+```bash
+# Tous les tests
+python tests/run_tests.py --type unit
+
+# Tests spécifiques
+python -m pytest tests/unit/test_button/ -v
+python -m pytest tests/unit/test_label/ -v
+```
+
+### **Documentation des Tests**
+- **Guide rapide** : [docs/QUICK_START_TESTS.md](docs/QUICK_START_TESTS.md)
+- **Documentation complète** : [docs/tests/](docs/tests/)
+
+## 📊 **Statistiques des Tests**
+
+- **Widgets Bouton** : 59 tests (56 passent, 3 skipped)
+- **Widgets Label** : 70 tests (67 passent, 3 skipped)
+- **Widgets Input** : 112 tests (111 passent, 1 skipped)
+- **Widgets Misc** : 41 tests ✅
+- **Tests de Base** : 3 tests ✅
+- **Total** : 262 tests (254 passent, 8 skipped)
+
+## 🎯 **Widgets Disponibles**
+
+### **Boutons**
+- `IconButton` - Bouton avec icône personnalisable
+- `DateButton` - Sélecteur de date avec calendrier
+- `LoaderButton` - Bouton avec états de chargement
+
+### **Labels**
+- `ClickableTagLabel` - Tag cliquable avec toggle
+- `FramedLabel` - Label avec cadre personnalisable
+- `HoverLabel` - Label avec effets au survol
+- `IndicatorLabel` - Indicateur de statut avec LED
+
+### **Inputs**
+- `AutoCompleteInput` - Champ de saisie avec autocomplétion
+- `SearchInput` - Champ de recherche avec historique
+- `TabReplaceTextEdit` - Éditeur de texte avec remplacement de tabulations
+- `PasswordInput` - Champ de mot de passe avec barre de force
+
+### **Misc**
+- `CircularTimer` - Timer circulaire avec animation
+- `OptionSelector` - Sélecteur d'options avec interface moderne
+- `ToggleIcon` - Icône basculante avec états multiples
+- `ToggleSwitch` - Interrupteur moderne avec animation
+
+## 🔧 **Développement**
+
+### **Structure du Projet**
+```
+ezqt_widgets/
+├── README.md              # Ce fichier
+├── docs/                  # Documentation
+│   ├── README.md         # Index de documentation
+│   ├── STYLE_GUIDE.md    # Guide de style
+│   ├── CHANGELOG.md      # Historique des versions
+│   ├── QUICK_START_TESTS.md # Guide rapide des tests
+│   └── tests/            # Documentation des tests
+├── tests/                # Tests
+│   ├── run_tests.py      # Script d'exécution des tests
+│   ├── conftest.py       # Configuration pytest
+│   └── unit/             # Tests unitaires
+├── ezqt_widgets/         # Code source
+└── pyproject.toml        # Configuration du projet
+```
+
+### **Installation pour Développement**
+```bash
+git clone <repository>
+cd ezqt_widgets
+pip install -e .
+pip install -e ".[dev]"
+```
+
+## 📄 **Licence**
+
+Ce projet est sous licence MIT. Voir [LICENSE](LICENSE) pour plus de détails.
+
+---
+
+**État des tests :** 🟢 **OPÉRATIONNEL** (254/262 tests passent, 8 skipped)

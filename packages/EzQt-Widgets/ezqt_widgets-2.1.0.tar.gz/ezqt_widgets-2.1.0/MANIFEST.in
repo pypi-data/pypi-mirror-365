@@ -1,0 +1,39 @@
+# Documentation principale
+include README.md
+include LICENSE
+include MANIFEST.in
+
+# Documentation dans docs/
+include docs/README.md
+include docs/CHANGELOG.md
+include docs/STYLE_GUIDE.md
+include docs/QUICK_START_TESTS.md
+
+# Documentation des tests
+include docs/tests/README.md
+include docs/tests/unit_README.md
+include docs/tests/test_button_README.md
+include docs/tests/test_input_README.md
+include docs/tests/test_label_README.md
+include docs/tests/test_misc_README.md
+
+# Fichiers de test
+include tests/run_tests.py
+include tests/conftest.py
+include tests/test_simple.py
+
+# Exclure les fichiers inutiles
+exclude build_upload.bat
+exclude .coverage
+exclude coverage.xml
+exclude htmlcov/
+exclude .pytest_cache/
+exclude .benchmarks/
+exclude _temp/
+prune build
+prune dist
+prune EzQt_Widgets.egg-info
+prune __pycache__
+prune .venv
+prune .vscode
+prune .idea
