@@ -1,0 +1,29 @@
+{% extends "base.j2" -%}
+
+{% block content -%}
+
+<section class="one-column">
+  <section class="well">
+
+    <h3>Edit Comment</h3>
+
+    <form method="post" action="/comments/{{ comment.id }}/edit">
+
+      <label for="comment_data">Comment:</label>
+      <textarea name="data" id="comment_data" rows="6" cols="60" required>{{ comment.data }}</textarea>
+
+      <br />
+      <br />
+
+      <input type="submit" name="submit" class="mps-submit" value="Update Comment" />
+      <a href="{{ product.absolute_url(request) }}" class="mps-button">Cancel</a>
+
+      <br />
+      <br />
+
+    </form>
+
+  </section>
+</section>
+
+{%- endblock -%}
