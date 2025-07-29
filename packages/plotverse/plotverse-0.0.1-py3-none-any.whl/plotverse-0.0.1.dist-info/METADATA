@@ -1,0 +1,111 @@
+Metadata-Version: 2.2
+Name: plotverse
+Version: 0.0.1
+Summary: Powerful data visualization and analysis library combining Pandas, Matplotlib, and Seaborn.
+Home-page: https://github.com/sk-sanju/plotverse
+Author: Sanju
+Author-email: sanjayskpy1@gmail.com
+License: MIT
+Project-URL: Source, https://github.com/sk-sanju/plotverse
+Project-URL: Tracker, https://github.com/sk-sanju/plotverse/issues
+Keywords: pandas matplotlib seaborn data visualization analysis
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: pandas>=1.0.0
+Requires-Dist: matplotlib>=3.0.0
+Requires-Dist: seaborn>=0.11.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: project-url
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Plotverse
+strategy:
+  matrix:
+    python-version: [3.11, 3.12, 3.13]
+    
+**Plotverse** is a unified Python library that combines:
+
+- All functionality from `pandas`
+- All `matplotlib.pyplot` functions (prefixed as `plt_`)
+- All `seaborn` functions (prefixed as `sns_`)
+
+## 📦 Installation
+
+```bash
+pip install .
+
+## 🧠 Usage
+
+import plotverse as pv
+
+df = pv.DataFrame({'x': [1, 2, 3], 'y': [4, 5, 6]})
+pv.plt_plot(df['x'], df['y'])
+pv.sns_heatmap(df.corr())
+
+## 🎨 Themes
+
+from plotverse.theme import dark_mode, light_mode
+
+dark_mode()
+# or
+light_mode()
+
+---
+
+### 📦 `setup.py`
+```python
+from setuptools import setup, find_packages
+
+setup(
+    name="plotverse",
+    version="0.0.1",
+    packages=find_packages(),
+    install_requires=[
+        "pandas",
+        "matplotlib",
+        "seaborn"
+    ],
+    author="Sanju",
+    description="A combined wrapper for Pandas, Matplotlib, and Seaborn.",
+    url="https://github.com/sk-sanju/plotverse",
+    license="MIT",
+)
+
+📄 LICENSE (MIT)
+
+MIT License
+
+Copyright (c) 2025 sk-sanju
+
+💡 Folder Structure
+
+plotverse/
+├── plotverse/
+│   ├── __init__.py
+│   └── theme/
+│       └── __init__.py
+├── tests/
+│   └── test_imports.py
+├── README.md
+├── setup.py
+└── LICENSE
+
