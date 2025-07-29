@@ -1,0 +1,113 @@
+Metadata-Version: 2.4
+Name: noiv
+Version: 0.2.7
+Summary: 🚀AI-Powered API Testing CLI - Generate tests from natural language, interactive builder, performance benchmarking, Postman import
+Author-email: NOIV Team <hello@noiv.dev>
+License: MIT
+Project-URL: Homepage, https://github.com/crs7617/noiv
+Project-URL: Repository, https://github.com/crs7617/noiv
+Project-URL: Documentation, https://noiv-steel.vercel.app
+Project-URL: Issues, https://github.com/crs7617/noiv/issues
+Project-URL: Changelog, https://github.com/crs7617/noiv/releases
+Project-URL: Bug Reports, https://github.com/crs7617/noiv/issues
+Project-URL: Feature Requests, https://github.com/crs7617/noiv/issues/new?template=feature_request.md
+Project-URL: Source Code, https://github.com/crs7617/noiv
+Keywords: api,testing,cli,http,developers,ai,automation,postman,rest,benchmark,performance,devtools,qa
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Software Development :: Testing
+Classifier: Topic :: Internet :: WWW/HTTP
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: typer<1.0.0,>=0.9.0
+Requires-Dist: rich<15.0.0,>=13.0.0
+Requires-Dist: httpx<1.0.0,>=0.24.0
+Requires-Dist: pydantic<3.0.0,>=2.5.0
+Requires-Dist: pyyaml<7.0.0,>=6.0
+Requires-Dist: google-generativeai<1.0.0,>=0.8.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Requires-Dist: black>=23.0.0; extra == "dev"
+Requires-Dist: ruff>=0.1.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Requires-Dist: types-PyYAML>=6.0.0; extra == "dev"
+Dynamic: license-file
+
+# NOIV - AI-Powered API Testing CLI
+
+Modern CLI tool for API testing with AI generation, interactive features, and performance benchmarking.
+
+## Quick Install
+
+```bash
+pip install noiv
+```
+
+## Quick Start
+
+```bash
+# Test any API instantly
+noiv quick https://api.github.com/users/octocat
+
+# Generate tests with AI
+noiv generate natural "test user authentication and profile API"
+
+# Interactive test builder
+noiv build
+
+# Performance benchmark
+noiv benchmark https://httpbin.org/get -n 100 -c 10
+```
+
+## Core Features
+
+- **AI Test Generation** - Natural language to comprehensive test suites
+- **Interactive Builder** - Step-by-step guided test creation
+- **Performance Testing** - Built-in load testing and benchmarking
+- **Postman Import** - Convert existing collections to NOIV format
+- **Professional Reports** - Beautiful HTML reports with metrics
+- **Zero Configuration** - Works immediately after installation
+
+## Essential Commands
+
+| Command | Purpose |
+|---------|---------|
+| `noiv quick <url>` | Instant API testing |
+| `noiv generate natural "<description>"` | AI-powered test creation |
+| `noiv build` | Interactive test wizard |
+| `noiv benchmark <url>` | Performance testing |
+| `noiv import postman <file>` | Import Postman collections |
+| `noiv test run <file>` | Execute test suites |
+
+## Roadmap
+
+- [ ] Batch test execution (`noiv test run *.yaml` or `--directory tests/`)
+- [ ] GraphQL and WebSocket testing support
+- [ ] Plugin system with marketplace
+- [ ] IDE integrations (VS Code, JetBrains) 
+- [ ] Enhanced authentication (OAuth2, JWT)
+- [ ] Security testing (XSS, injection detection)
+- [ ] CI/CD integrations (GitHub Actions, Jenkins)
+- [ ] Team collaboration platform (NOIV Cloud)
+- [ ] Advanced analytics and performance trending
+- [ ] Enterprise integrations (Jira, Slack, DataDog)
+
+## Documentation
+
+📚 **[Complete Documentation](https://noiv-steel.vercel.app)**
+
+📁 **[Examples Directory](examples/)** - Sample test files and tutorials
+
+## License
+
+MIT License
+
+MIT License
