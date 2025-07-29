@@ -1,0 +1,22 @@
+[project]
+name = "GanAI"
+version = "0.1.2"
+description = "Gan AI API wrapper"
+authors = [{ name = "sachin", email = "sachin@gan.studio" }]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "requests",
+    "typer",
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+get-credit-info = "GanAI.endpoints.users:get_credit_info"
+get-account-details = "GanAI.endpoints.users:get_account_details"
+generate-sfx = "GanAI.endpoints.sfx:generate_sound_effect"
+generate-tts = "GanAI.endpoints.tts:generate_tts"

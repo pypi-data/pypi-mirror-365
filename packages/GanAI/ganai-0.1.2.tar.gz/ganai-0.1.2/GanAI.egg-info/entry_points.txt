@@ -1,0 +1,5 @@
+[console_scripts]
+generate-sfx = GanAI.endpoints.sfx:generate_sound_effect
+generate-tts = GanAI.endpoints.tts:generate_tts
+get-account-details = GanAI.endpoints.users:get_account_details
+get-credit-info = GanAI.endpoints.users:get_credit_info
