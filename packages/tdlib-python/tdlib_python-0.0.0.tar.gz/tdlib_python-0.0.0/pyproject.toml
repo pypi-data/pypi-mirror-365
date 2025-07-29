@@ -1,0 +1,30 @@
+[project]
+name = "tdlib-python"
+version = "0.0.0"
+description = "tdlib_python ZerounIntezarAgler"
+authors = [{ name="zerounintezaragler" }]
+license-files = ["LICENSE"]
+readme = "README.md"
+
+
+[project.urls]
+homepage = "https://github.com/zerounintezaragler/tdlib_python"
+repository = "https://github.com/zerounintezaragler/tdlib_python"
+documentation = "https://github.com/zerounintezaragler/tdlib_python"
+
+
+[tool.setuptools]
+package-dir = {"" = "lib"}
+
+[tool.setuptools.packages.find]
+where = ["lib"]
+
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+# publish
+# python -m build
+# twine upload dist/*
+
