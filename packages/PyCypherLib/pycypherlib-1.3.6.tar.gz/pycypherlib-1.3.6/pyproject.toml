@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools-scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "PyCypherLib"
+dynamic = ["version"]
+description = "Secure file encryption and decryption library with fluent API"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "eaannist", email = "eaannist@gmail.com"}]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Security :: Cryptography",
+]
+requires-python = ">=3.7"
+dependencies = [
+    "cryptography>=3.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/eaannist/PyCypher"
+Repository = "https://github.com/eaannist/PyCypher"
+Issues = "https://github.com/eaannist/PyCypher/issues"
+
+[tool.setuptools.dynamic]
+version = {attr = "PyCypher.__version__"}
