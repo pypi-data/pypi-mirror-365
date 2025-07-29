@@ -1,0 +1,5 @@
+[console_scripts]
+ingestar = ingestar.cli:client.main
+ingestar-api = ingestar.cli.fast_api:main
+ingestar-models-download = ingestar.cli.models_download:download_models
+ingestar-sglang-server = ingestar.cli.vlm_sglang_server:main
