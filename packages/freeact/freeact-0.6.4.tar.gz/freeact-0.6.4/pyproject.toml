@@ -1,0 +1,99 @@
+[project]
+name = "freeact"
+dynamic = ["version"]
+description = "A lightweight library for code-action based agents"
+readme = "README.md"
+license = "Apache-2.0"
+authors = [
+    { name = "Martin Krasser", email = "martin@gradion.ai" },
+    { name = "Christoph Stumpf", email = "chris@gradion.ai" },
+]
+requires-python = ">=3.11,<3.14"
+homepage = "https://github.com/gradion-ai/freeact"
+dependencies = [
+    "aioconsole>=0.8.1,<0.9",
+    "aiofiles>=24.1,<25",
+    "google-genai>=1.2,<2",
+    "ipybox>=0.5.1,<0.6",
+    "litellm>=1.74.8,<1.75",
+    "prefixed>=0.9.0,<0.10",
+    "prompt-toolkit>=3.0,<4",
+    "python-dotenv>=1.0,<2",
+    "rich>=13.9,<14",
+    "typer>=0.12.5,<0.13",
+    "langfuse>=2.60.3,<3",
+]
+
+[project.scripts]
+freeact = "freeact.__main__:main"
+
+[dependency-groups]
+docs = [
+    "mkdocs>=1.6.1,<2",
+    "mkdocs-material>=9.5.48,<10",
+    "mkdocstrings-python>=1.12.2,<2",
+]
+eval = [
+    "openai>=1.59.0,<2",
+    "datasets>=3.2.0,<4",
+    "pandas>=2.2.3,<3",
+    "matplotlib>=3.10.0,<4",
+    "seaborn>=0.13.2,<0.14",
+]
+dev = [
+    "pre-commit>=4.0,<5",
+    "invoke>=2.2,<3",
+    "pytest>=8.3,<9",
+    "pytest-asyncio>=0.25.3,<0.26",
+]
+
+[tool.uv]
+default-groups = [
+    "docs",
+    "eval",
+    "dev",
+]
+
+[build-system]
+requires = ["hatchling", "uv-dynamic-versioning"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
+
+[tool.uv-dynamic-versioning]
+vcs = "git"
+pattern = "default-unprefixed"
+style = "pep440"
+
+[tool.hatch.build.targets.sdist]
+include = ["freeact"]
+
+[tool.hatch.build.targets.wheel]
+include = ["freeact"]
+
+[tool.pytest.ini_options]
+asyncio_default_fixture_loop_scope = "package"
+
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint.per-file-ignores]
+"**/__init__.py" = ["F401"]
+
+[tool.mypy]
+python_version = 3.11
+check_untyped_defs = true
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = [
+    "aiofiles",
+    "aiofiles.os",
+    "dateutil.relativedelta",
+    "dateutil.parser",
+    "requests",
+    "requests.exceptions",
+    "yaml"
+]
+ignore_missing_imports = true
