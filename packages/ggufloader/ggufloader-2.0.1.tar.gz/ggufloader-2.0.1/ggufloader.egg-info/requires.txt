@@ -1,0 +1,44 @@
+PySide6>=6.0.0
+llama-cpp-python>=0.2.0
+pyautogui>=0.9.50
+pyperclip>=1.8.0
+
+[:sys_platform == "win32"]
+pywin32>=227
+
+[all]
+psutil>=5.8.0
+
+[all:sys_platform == "darwin"]
+pyobjc-framework-Cocoa>=8.0
+pyobjc-framework-Quartz>=8.0
+
+[all:sys_platform == "linux"]
+python-xlib>=0.29
+
+[all:sys_platform == "win32"]
+pywin32>=227
+
+[dev]
+build
+twine
+pytest
+black
+flake8
+
+[linux]
+
+[linux:sys_platform == "linux"]
+python-xlib>=0.29
+
+[macos]
+
+[macos:sys_platform == "darwin"]
+pyobjc-framework-Cocoa>=8.0
+pyobjc-framework-Quartz>=8.0
+
+[performance]
+psutil>=5.8.0
+
+[windows]
+pywin32>=227

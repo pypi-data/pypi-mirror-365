@@ -1,0 +1,113 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ggufloader"
+version = "2.0.1"
+description = "Advanced GGUF Model Loader with Smart Floating Assistant"
+readme = "README.md"
+license = "MIT"
+authors = [
+    {name = "Hussain Nazary", email = "hussainnazary475@gmail.com"}
+]
+maintainers = [
+    {name = "Hussain Nazary", email = "hussainnazary475@gmail.com"}
+]
+keywords = ["gguf", "llama", "ai", "model-loader", "gui", "pyside6"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+
+    "Operating System :: Microsoft :: Windows :: Windows 10",
+    "Operating System :: Microsoft :: Windows :: Windows 11",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Environment :: X11 Applications :: Qt",
+    "Environment :: Win32 (MS Windows)",
+    "Environment :: MacOS X",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "PySide6>=6.0.0",
+    "llama-cpp-python>=0.2.0",
+    "pyautogui>=0.9.50",
+    "pyperclip>=1.8.0",
+    "pywin32>=227; sys_platform == 'win32'",
+]
+
+[project.optional-dependencies]
+dev = [
+    "build",
+    "twine",
+    "pytest",
+    "black",
+    "flake8",
+]
+performance = [
+    "psutil>=5.8.0",
+]
+# Platform-specific enhancements
+windows = [
+    "pywin32>=227",
+]
+linux = [
+    "python-xlib>=0.29; sys_platform == 'linux'",
+]
+macos = [
+    "pyobjc-framework-Cocoa>=8.0; sys_platform == 'darwin'",
+    "pyobjc-framework-Quartz>=8.0; sys_platform == 'darwin'",
+]
+all = [
+    "psutil>=5.8.0",
+    "pywin32>=227; sys_platform == 'win32'",
+    "python-xlib>=0.29; sys_platform == 'linux'",
+    "pyobjc-framework-Cocoa>=8.0; sys_platform == 'darwin'",
+    "pyobjc-framework-Quartz>=8.0; sys_platform == 'darwin'",
+]
+
+[project.urls]
+Homepage = "https://ggufloader.github.io"
+Repository = "https://github.com/GGUFloader/gguf-loader"
+Documentation = "https://ggufloader.github.io"
+"Bug Tracker" = "https://github.com/GGUFloader/gguf-loader/issues"
+
+[project.scripts]
+ggufloader = "ggufloader.gguf_loader_main:main"
+
+[tool.setuptools.packages.find]
+include = ["ggufloader*"]
+
+[tool.setuptools.package-data]
+ggufloader = [
+    "icon.ico",
+    "addons/**/*",
+    "docs/**/*",
+    "mixins/**/*",
+    "models/**/*",
+    "ui/**/*",
+    "widgets/**/*",
+    "*.py",
+    "*.md",
+    "*.txt",
+    "*.ico",
+    "*.png",
+    "*.jpg",
+    "*.json",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.setuptools]
+include-package-data = true
