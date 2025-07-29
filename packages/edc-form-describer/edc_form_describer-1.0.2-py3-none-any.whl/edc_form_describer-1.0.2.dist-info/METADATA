@@ -1,0 +1,50 @@
+Metadata-Version: 2.4
+Name: edc-form-describer
+Version: 1.0.2
+Summary: Describe clinicedc/edc forms in markdown
+Author-email: Erik van Widenfelt <ew2789@gmail.com>, Jonathan Willitts <j.willitts@ucl.ac.uk>
+License-Expression: GPL-3.0-or-later
+Keywords: django,edc,clinicedc,markdown,clinical trials
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 5.2
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Python: >=3.12
+Description-Content-Type: text/x-rst
+License-File: LICENSE
+Requires-Dist: django>=5.2
+Requires-Dist: edc-fieldsets>=1.0.1
+Requires-Dist: edc-model>=1.0.0
+Requires-Dist: edc-visit-schedule>=4.1.1
+Dynamic: license-file
+
+|pypi| |actions| |coverage|
+
+edc-form-describer
+------------------
+
+Describe edc forms in markdown.
+
+Generate a document describing the forms in an EDC module annotated with field names, table
+names, choices, etc.
+
+For example::
+
+    python manage.py make_forms_reference \
+        --app_label effect_subject \
+        --admin_site effect_subject_admin \
+        --visit_schedule visit_schedule
+
+
+.. |pypi| image:: https://img.shields.io/pypi/v/edc-form-describer.svg
+    :target: https://pypi.python.org/pypi/edc-form-describer
+
+.. |actions| image:: https://github.com/clinicedc/edc-form-describer/actions/workflows/build.yml/badge.svg
+  :target: https://github.com/clinicedc/edc-form-describer/actions/workflows/build.yml
+
+.. |coverage| image:: https://coveralls.io/repos/github/clinicedc/edc-form-describer/badge.svg?branch=develop
+    :target: https://coveralls.io/github/clinicedc/edc-form-describer?branch=develop
