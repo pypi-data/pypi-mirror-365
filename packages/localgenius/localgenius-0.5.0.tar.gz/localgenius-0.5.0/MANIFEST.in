@@ -1,0 +1,23 @@
+include README.md
+include LICENSE
+recursive-include localgenius *.py
+global-exclude *.pyc
+global-exclude __pycache__
+global-exclude .DS_Store
+global-exclude *.pycache
+exclude requirements.txt
+exclude run-mcp-server.sh
+exclude CLAUDE.md
+exclude .env
+exclude test_*.py
+prune mcp-admin-interface/.next
+prune mcp-admin-interface/node_modules
+prune mcp-admin-interface/.turbo
+prune mcp-admin-interface/out
+prune mcp-admin-interface/dist
+prune mcp-admin-interface/build
+prune .git
+prune __pycache__
+prune *.egg-info
+prune .pytest_cache
+prune .coverage
