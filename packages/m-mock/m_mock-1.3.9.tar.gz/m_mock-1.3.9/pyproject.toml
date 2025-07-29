@@ -1,0 +1,34 @@
+[project]
+name = "m-mock"
+version = "1.3.9"
+description = "This is a tool for producing random data."
+license = {text = "MIT"}
+readme = "README.md"
+authors = [
+    {name = "Franciz", email = "franciz467@163.com"}
+]
+requires-python = ">=3.7"
+dependencies = [
+    "python-dateutil>=2.9.0",
+]
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[[tool.uv.index]]
+name = "aliyun"
+url = "https://mirrors.aliyun.com/pypi/simple/"
+default = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["m_mock"]
+
+[tool.uv]
+dev-dependencies = []
