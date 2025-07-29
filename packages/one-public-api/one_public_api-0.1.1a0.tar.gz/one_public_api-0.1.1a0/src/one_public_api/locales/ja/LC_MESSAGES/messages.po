@@ -1,0 +1,379 @@
+# Japanese translations for One Public API.
+# Copyright (C) 2025 Roba
+# This file is distributed under the same license as the One Public API
+# project.
+# Roba <roba@one-coder.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: One Public API 0.1.0-alpha\n"
+"Report-Msgid-Bugs-To: roba@one-coder.com\n"
+"POT-Creation-Date: 2025-07-05 22:07+0900\n"
+"PO-Revision-Date: 2025-05-25 16:37+0900\n"
+"Last-Translator: Roba <roba@one-coder.com>\n"
+"Language: ja\n"
+"Language-Team: ja <roba@one-coder.com>\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.17.0\n"
+
+#: src/one_public_api/main.py:10
+msgid "API TITLE"
+msgstr ""
+
+#: src/one_public_api/common/query_param.py:36
+msgid "Offset from where to start"
+msgstr ""
+
+#: src/one_public_api/common/query_param.py:42
+msgid "Limit"
+msgstr ""
+
+#: src/one_public_api/common/query_param.py:44
+msgid "Order by"
+msgstr ""
+
+#: src/one_public_api/common/query_param.py:45
+msgid "Keywords"
+msgstr ""
+
+#: src/one_public_api/core/exceptions.py:32
+msgid "API_ERROR_OCCURRED"
+msgstr "【%s】%s： %s"
+
+#: src/one_public_api/core/extensions.py:43
+msgid "D0010001"
+msgstr "【D0010001】設定読み込み： %(settings)s"
+
+#: src/one_public_api/core/extensions.py:90
+msgid "D0010002"
+msgstr "【D0010002】 テーブル一覧（%(number)d）： %(tables)s"
+
+#: src/one_public_api/models/mixins/id_mixin.py:22
+msgid "The ID of data."
+msgstr ""
+
+#: src/one_public_api/models/mixins/maintenance_mixin.py:14
+msgid "The ID of the user who created the record."
+msgstr ""
+
+#: src/one_public_api/models/mixins/maintenance_mixin.py:20
+msgid "The ID of the user who last updated the record."
+msgstr ""
+
+#: src/one_public_api/models/mixins/password_mixin.py:10
+msgid "The hashed password of the user."
+msgstr ""
+
+#: src/one_public_api/models/mixins/timestamp_mixin.py:11
+msgid "Timestamp indicating when the record was created."
+msgstr ""
+
+#: src/one_public_api/models/mixins/timestamp_mixin.py:16
+msgid "Timestamp indicating when the record was last updated."
+msgstr ""
+
+#: src/one_public_api/models/system/configuration_model.py:43
+msgid "The name of the configuration."
+msgstr ""
+
+#: src/one_public_api/models/system/configuration_model.py:49
+#: src/one_public_api/models/system/configuration_model.py:78
+msgid "The unique key representing this configuration."
+msgstr ""
+
+#: src/one_public_api/models/system/configuration_model.py:54
+msgid "The value associated with the configuration."
+msgstr ""
+
+#: src/one_public_api/models/system/configuration_model.py:61
+msgid "The type of configuration, represented as an enum."
+msgstr ""
+
+#: src/one_public_api/models/system/configuration_model.py:66
+#: src/one_public_api/models/system/feature_model.py:21
+msgid "Additional details or explanation about the configuration."
+msgstr ""
+
+#: src/one_public_api/models/system/configuration_model.py:85
+msgid ""
+"A JSON-encoded field to store additional configuration options as key-"
+"value pairs."
+msgstr ""
+
+#: src/one_public_api/models/system/configuration_model.py:92
+msgid "The owner of this configuration item."
+msgstr ""
+
+#: src/one_public_api/models/system/feature_model.py:16
+#: src/one_public_api/models/system/feature_model.py:42
+msgid "The name of the feature."
+msgstr ""
+
+#: src/one_public_api/models/system/feature_model.py:25
+#: src/one_public_api/models/system/feature_model.py:46
+msgid "A Boolean flag indicating whether the feature is enabled."
+msgstr ""
+
+#: src/one_public_api/models/system/feature_model.py:30
+#: src/one_public_api/models/system/feature_model.py:51
+msgid "A Boolean flag indicating whether the feature requires authentication."
+msgstr ""
+
+#: src/one_public_api/models/system/user_model.py:17
+#: src/one_public_api/models/system/user_model.py:64
+#: src/one_public_api/schemas/authenticate_schema.py:22
+msgid "The name of the user."
+msgstr ""
+
+#: src/one_public_api/models/system/user_model.py:22
+#: src/one_public_api/models/system/user_model.py:69
+msgid "The email address of the user."
+msgstr ""
+
+#: src/one_public_api/models/system/user_model.py:27
+msgid "The first name of the user."
+msgstr ""
+
+#: src/one_public_api/models/system/user_model.py:32
+msgid "The last name of the user."
+msgstr ""
+
+#: src/one_public_api/models/system/user_model.py:37
+msgid "The nickname of the user."
+msgstr ""
+
+#: src/one_public_api/models/system/user_model.py:41
+#: src/one_public_api/models/system/user_model.py:73
+msgid "A Boolean flag indicating whether the user is disabled."
+msgstr ""
+
+#: src/one_public_api/models/system/user_model.py:45
+#: src/one_public_api/models/system/user_model.py:77
+msgid "A Boolean flag indicating whether the user is locked."
+msgstr ""
+
+#: src/one_public_api/models/system/user_model.py:50
+#: src/one_public_api/models/system/user_model.py:82
+msgid "Tracks the number of consecutive failed login attempts for the user."
+msgstr ""
+
+#: src/one_public_api/routers/authenticate_router.py:31
+msgid "Authentications"
+msgstr ""
+
+#: src/one_public_api/routers/authenticate_router.py:37
+msgid "Sign Up"
+msgstr ""
+
+#: src/one_public_api/routers/authenticate_router.py:52
+msgid "Login"
+msgstr ""
+
+#: src/one_public_api/routers/authenticate_router.py:66
+msgid "Refresh Token"
+msgstr ""
+
+#: src/one_public_api/routers/authenticate_router.py:79
+msgid "Get Profile"
+msgstr ""
+
+#: src/one_public_api/routers/authenticate_router.py:94
+msgid "Logout"
+msgstr ""
+
+#: src/one_public_api/routers/authenticate_router.py:109
+msgid "Login Form"
+msgstr "ログインフォーム"
+
+#: src/one_public_api/routers/base_route.py:34
+msgid "PROCESSING_STARTED"
+msgstr "【%s】処理開始"
+
+#: src/one_public_api/routers/base_route.py:43
+msgid "PROCESSING_COMPLETED"
+msgstr "【%s】処理完了（%.3f 秒）"
+
+#: src/one_public_api/routers/base_route.py:54
+msgid "Feature is disabled"
+msgstr "機能が無効になっています。"
+
+#: src/one_public_api/routers/base_route.py:59
+msgid "Feature not found."
+msgstr "機能が見つかりません。"
+
+#: src/one_public_api/routers/configuration_router.py:28
+msgid "Configurations"
+msgstr "設定"
+
+#: src/one_public_api/routers/configuration_router.py:36
+msgid "List Public Configurations"
+msgstr "公開設定一覧"
+
+#: src/one_public_api/routers/configuration_router.py:76
+msgid "List Configurations"
+msgstr "設定一覧"
+
+#: src/one_public_api/routers/configuration_router.py:91
+msgid "Create Configuration"
+msgstr "設定作成"
+
+#: src/one_public_api/routers/configuration_router.py:108
+msgid "Get Configuration"
+msgstr "設定確認"
+
+#: src/one_public_api/routers/configuration_router.py:114
+msgid "The ID of the configuration item to be retrieved"
+msgstr ""
+
+#: src/one_public_api/routers/configuration_router.py:125
+msgid "Update Configuration"
+msgstr "設定変更"
+
+#: src/one_public_api/routers/configuration_router.py:132
+msgid "The ID of the configuration item to be updated"
+msgstr ""
+
+#: src/one_public_api/routers/configuration_router.py:145
+msgid "Delete Configuration"
+msgstr "設定削除"
+
+#: src/one_public_api/routers/configuration_router.py:151
+#: src/one_public_api/routers/user_router.py:121
+msgid "The ID of the configuration item to be deleted"
+msgstr ""
+
+#: src/one_public_api/routers/feature_router.py:28
+msgid "Features"
+msgstr "機能"
+
+#: src/one_public_api/routers/feature_router.py:54
+msgid "List Features"
+msgstr "機能一覧"
+
+#: src/one_public_api/routers/feature_router.py:67
+msgid "Create Feature"
+msgstr "機能作成"
+
+#: src/one_public_api/routers/feature_router.py:82
+msgid "Get Feature"
+msgstr "機能確認"
+
+#: src/one_public_api/routers/feature_router.py:87
+msgid "The ID of the feature item to be retrieved"
+msgstr ""
+
+#: src/one_public_api/routers/feature_router.py:97
+msgid "Update Feature"
+msgstr "機能変更"
+
+#: src/one_public_api/routers/feature_router.py:103
+msgid "The ID of the feature item to be updated"
+msgstr ""
+
+#: src/one_public_api/routers/feature_router.py:115
+msgid "Delete Feature"
+msgstr "機能削除"
+
+#: src/one_public_api/routers/feature_router.py:120
+msgid "The ID of the feature item to be deleted"
+msgstr ""
+
+#: src/one_public_api/routers/user_router.py:28
+msgid "Users"
+msgstr "ユーザー"
+
+#: src/one_public_api/routers/user_router.py:36
+msgid "List Public Users"
+msgstr "公開ユーザー一覧"
+
+#: src/one_public_api/routers/user_router.py:54
+msgid "List Users"
+msgstr "ユーザー一覧"
+
+#: src/one_public_api/routers/user_router.py:67
+msgid "Create User"
+msgstr "ユーザー作成"
+
+#: src/one_public_api/routers/user_router.py:82
+msgid "Get User"
+msgstr "ユーザー確認"
+
+#: src/one_public_api/routers/user_router.py:87
+msgid "The ID of the user to be retrieved"
+msgstr ""
+
+#: src/one_public_api/routers/user_router.py:97
+msgid "Update User"
+msgstr "ユーザー変更"
+
+#: src/one_public_api/routers/user_router.py:103
+msgid "The ID of the user to be updated"
+msgstr ""
+
+#: src/one_public_api/routers/user_router.py:115
+msgid "Delete User"
+msgstr "ユーザー削除"
+
+#: src/one_public_api/schemas/authenticate_schema.py:27
+msgid "A Boolean flag indicating whether the user should be remembered."
+msgstr ""
+
+#: src/one_public_api/schemas/authenticate_schema.py:46
+msgid "The access token."
+msgstr ""
+
+#: src/one_public_api/schemas/authenticate_schema.py:47
+msgid "The type of the token."
+msgstr ""
+
+#: src/one_public_api/schemas/response_schema.py:26
+msgid "Message Code"
+msgstr "メッセージコード"
+
+#: src/one_public_api/schemas/response_schema.py:27
+msgid "Message of the response"
+msgstr ""
+
+#: src/one_public_api/schemas/response_schema.py:28
+msgid "Detail of the response"
+msgstr ""
+
+#: src/one_public_api/schemas/response_schema.py:33
+msgid "Results of the request"
+msgstr ""
+
+#: src/one_public_api/schemas/response_schema.py:35
+msgid "Count of the results"
+msgstr ""
+
+#: src/one_public_api/schemas/response_schema.py:37
+msgid "Messages of the request"
+msgstr ""
+
+#: src/one_public_api/services/authenticate_service.py:51
+msgid "user not verified"
+msgstr "ユーザーが確認されていません。"
+
+#: src/one_public_api/services/authenticate_service.py:86
+msgid "user not found"
+msgstr "ユーザーが見つかりません。"
+
+#: src/one_public_api/services/authenticate_service.py:119
+msgid "user disabled"
+msgstr "ユーザーが無効になっています。"
+
+#: src/one_public_api/services/authenticate_service.py:121
+msgid "user locked"
+msgstr "ユーザーがロックされています。"
+
+#: src/one_public_api/services/base_service.py:77
+#: src/one_public_api/services/user_service.py:31
+msgid "Data already exists."
+msgstr "データは既に存在します。"
+
+#: src/one_public_api/services/base_service.py:107
+msgid "This record might be referenced by other data."
+msgstr "このデータが参照されているため、削除できません。"
