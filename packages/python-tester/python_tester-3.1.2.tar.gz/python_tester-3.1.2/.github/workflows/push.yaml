@@ -1,0 +1,50 @@
+# name: Push changes to repos
+
+# on:
+#   push:
+#     # branches: [ "master" ] # uncomment if want to run on every push
+#     tags:
+#       - 'v[0-9]+.[0-9]+.[0-9]+'
+
+# jobs:
+#   build:
+#     uses: ./.github/workflows/build.yaml
+
+#   push:
+#     name: push
+#     needs: [build]
+#     runs-on: ubuntu-latest
+#     strategy:
+#       matrix:
+#         repo: ["python", "oopython"]
+
+#     steps:
+#       - name: Download build files
+#         uses:  actions/download-artifact@v3
+#         with:
+#           name: build
+#           path: examiner
+
+#       - name: Download commit message
+#         uses:  actions/download-artifact@v3
+#         with:
+#           name: commit_msg
+#           path: ~/commit
+
+#       - name: Set commit msg as env
+#         run: |
+#           cat ~/commit/commit.env >> "$GITHUB_ENV"
+
+#       - name: Deploy to external repository
+#         uses: cpina/github-action-push-to-another-repository@main
+#         env:
+#           # @see https://cpina.github.io/push-to-another-repository-docs/setup-using-ssh-deploy-keys.html#setup-ssh-deploy-keys
+#           SSH_DEPLOY_KEY: ${{ secrets[format('{0}_deploy_key', matrix.repo)] }}
+#         with:
+#           source-directory: examiner
+#           destination-github-username: dbwebb-se
+#           destination-repository-name: ${{ matrix.repo }}
+#           user-name: python-examination-actions
+#           target-directory: .dbwebb/test/examiner
+#           target-branch: "master"
+#           commit-message: ${{ github.event.head_commit.message }}
