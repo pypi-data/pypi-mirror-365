@@ -1,0 +1,344 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2. Usage &mdash; Nested Dictionary Tools 0.0.5 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=282f96c0"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="4. Package reference" href="api.html" />
+    <link rel="prev" title="1. Installation" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Nested Dictionary Tools
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Content</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="install.html">1. Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Usage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#principle">2.1. Principle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#initializing-and-using-nested-dictionaries">2.2. Initializing and Using Nested Dictionaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#understanding-paths-in-nested-dictionaries">2.3. Understanding Paths in Nested Dictionaries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#justification-for-using-lists-to-describe-paths">2.4. Justification for Using Lists to Describe Paths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#introducing-dictpaths">2.5. Introducing DictPaths</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#behavior">2.6. Behavior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">2.7. Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#for-developers">3. For Developers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">4. Package reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Nested Dictionary Tools</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">2. </span>Usage</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/usage.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usage">
+<h1><span class="section-number">2. </span>Usage<a class="headerlink" href="#usage" title="Link to this heading"></a></h1>
+<section id="principle">
+<h2><span class="section-number">2.1. </span>Principle<a class="headerlink" href="#principle" title="Link to this heading"></a></h2>
+<p>The core concept is straightforward: just as a dictionary can contain another dictionary as a value, a
+<code class="docutils literal notranslate"><span class="pre">NestedDictionary</span></code> naturally extends this idea. In a <code class="docutils literal notranslate"><span class="pre">NestedDictionary</span></code>, each value that is itself a dictionary
+must also be a <code class="docutils literal notranslate"><span class="pre">NestedDictionary</span></code>. This recursive structure allows for seamless nesting of dictionaries within
+dictionaries.</p>
+<p>Unlike conventional dictionaries, nested keys in a <code class="docutils literal notranslate"><span class="pre">NestedDictionary</span></code> are exposed as tuples. This representation
+allows for easy access and manipulation of hierarchical data while maintaining compatibility with standard dictionary
+operations.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nv">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>NestedDictionary<span class="o">({</span><span class="s1">&#39;first&#39;</span>:<span class="w"> </span><span class="m">1</span>,
+<span class="go">                        &#39;second&#39;: {&#39;1&#39;: &quot;2:1&quot;, &#39;2&#39;: &quot;2:2&quot;, &#39;3&#39;: &quot;3:2&quot;},</span>
+<span class="go">                        &#39;third&#39;: 3,</span>
+<span class="go">                        &#39;fourth&#39;: 4})</span>
+
+<span class="go">a&#39;s keys are:</span>
+<span class="go">[(&#39;first&#39;,), (&#39;second&#39;, &#39;1&#39;), (&#39;second&#39;, &#39;2&#39;), (&#39;second&#39;, &#39;3&#39;), (&#39;third&#39;,), (&#39;fourth&#39;,)]</span>
+
+<span class="gp">$ </span>a<span class="o">[</span><span class="s1">&#39;second&#39;</span><span class="o">][</span><span class="s1">&#39;1&#39;</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;2:1&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="initializing-and-using-nested-dictionaries">
+<h2><span class="section-number">2.2. </span>Initializing and Using Nested Dictionaries<a class="headerlink" href="#initializing-and-using-nested-dictionaries" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">NestedDictionary</span></code> provides an intuitive interface for working with nested dictionaries, simplifying access and
+manipulation of keys at various depth levels. Although <code class="docutils literal notranslate"><span class="pre">NestedDictionary</span></code> is the public class, the core of the library
+lies in the <code class="docutils literal notranslate"><span class="pre">_StackedDict</span></code> class. This central class is responsible for internal data and attribute management, enabling
+<code class="docutils literal notranslate"><span class="pre">NestedDictionary</span></code> to operate seamlessly.</p>
+<p>To initialize a <code class="docutils literal notranslate"><span class="pre">NestedDictionary</span></code>, you can use syntax similar to that of a classical dictionary.
+Here is a basic example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>from<span class="w"> </span>ndict<span class="w"> </span>import<span class="w"> </span>NestedDictionary
+
+<span class="gp">$ </span><span class="nv">nd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>NestedDictionary<span class="o">(</span>
+<span class="go">    [(&#39;first&#39;, 1), (&#39;third&#39;, 3)],</span>
+<span class="go">    second={&#39;first&#39;: 1, &#39;second&#39;: 2},</span>
+<span class="go">    indent=2,   # Sets the indentation level to 2 spaces for displaying nested structures</span>
+<span class="go">    strict=True # Enables strict mode for data validation, ensuring compliance with expected rules</span>
+<span class="go">  )</span>
+
+<span class="gp">$</span>
+</pre></div>
+</div>
+<p>In this example, we create a <code class="docutils literal notranslate"><span class="pre">NestedDictionary</span></code> with key-value pairs at the top level and a nested dictionary under
+the key ‘second’. The indent parameter defines the number of spaces used for indentation at each level of nesting,
+making the output more readable. The strict parameter, when set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, enforces stricter rules for data insertion,
+helping to maintain data integrity. When strict is set to <code class="docutils literal notranslate"><span class="pre">False</span></code>, the <code class="docutils literal notranslate"><span class="pre">NestedDictionary</span></code> operates in a more lenient
+mode, allowing for greater flexibility in data insertion but potentially at the cost of reduced validation and error
+checking.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Introduced in version 0.8.0, <code class="docutils literal notranslate"><span class="pre">_StackedDict</span></code> manages specific attributes. This evolution generalizes the handling
+of attributes specific to nested dictionary classes, providing greater flexibility and advanced features for users.</p>
+<p><code class="docutils literal notranslate"><span class="pre">_StackedDict</span></code> handles the genericity of attributes to propagate in the <code class="docutils literal notranslate"><span class="pre">default_setup</span></code> attribute. It manages two
+of its own attributes, <code class="docutils literal notranslate"><span class="pre">indent</span></code> and <code class="docutils literal notranslate"><span class="pre">default_factory</span></code>, but any subclass can define as many as needed
+(see below the section for developers).</p>
+</div>
+</section>
+<section id="understanding-paths-in-nested-dictionaries">
+<h2><span class="section-number">2.3. </span>Understanding Paths in Nested Dictionaries<a class="headerlink" href="#understanding-paths-in-nested-dictionaries" title="Link to this heading"></a></h2>
+<p>In the context of nested dictionaries, a <strong>path</strong> is a sequence of keys that navigates through the hierarchical
+structure to access a specific value or sub-dictionary. Think of it as a trail of keys that leads you from the
+outermost dictionary to a particular point within the nested structure.</p>
+<p>For example, consider the following nested dictionary:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="p">},</span>
+        <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="mi">2</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="mi">3</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this dictionary:</p>
+<ul class="simple">
+<li><p>The path <code class="docutils literal notranslate"><span class="pre">['a',</span> <span class="pre">'b',</span> <span class="pre">'c']</span></code> leads to the value <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+<li><p>The path <code class="docutils literal notranslate"><span class="pre">['a',</span> <span class="pre">'b']</span></code> leads to the dictionary <code class="docutils literal notranslate"><span class="pre">{'c':</span> <span class="pre">1}</span></code>.</p></li>
+<li><p>The path <code class="docutils literal notranslate"><span class="pre">['a',</span> <span class="pre">'d']</span></code> leads to the value <code class="docutils literal notranslate"><span class="pre">2</span></code>.</p></li>
+<li><p>The path <code class="docutils literal notranslate"><span class="pre">['e']</span></code> leads to the value <code class="docutils literal notranslate"><span class="pre">3</span></code>.</p></li>
+</ul>
+<p>By representing these paths as lists, we can easily describe and manipulate the hierarchical relationships within
+the dictionary. This concept is particularly useful when working with complex nested structures, as it provides a clear
+and concise way to reference specific elements.</p>
+</section>
+<section id="justification-for-using-lists-to-describe-paths">
+<h2><span class="section-number">2.4. </span>Justification for Using Lists to Describe Paths<a class="headerlink" href="#justification-for-using-lists-to-describe-paths" title="Link to this heading"></a></h2>
+<p>While standard dictionaries in Python use immutable types such as strings, numbers, or tuples as keys, representing
+hierarchical paths with lists offers several advantages in the context of nested dictionaries:</p>
+<ol class="arabic simple">
+<li><p><strong>Sequential Representation</strong>: Lists naturally represent sequences, making them ideal for capturing the order
+of keys that lead to a specific value in a nested structure. This sequential nature aligns well with the concept
+of navigating through layers of dictionaries.</p></li>
+<li><p><strong>Flexibility</strong>: Lists are mutable, allowing for dynamic manipulation of paths. This flexibility is beneficial when
+working with complex or evolving data structures, where paths may need to be extended, modified, or truncated.</p></li>
+<li><p><strong>Readability</strong>: Using lists to represent paths enhances code readability. It provides a clear and intuitive way to
+understand the hierarchical relationships within the data, making the code easier to maintain and debug.</p></li>
+<li><p><strong>Compatibility with Recursive Operations</strong>: Lists are well-suited for recursive operations, which are common when
+traversing nested dictionaries. They can be easily passed to and modified within recursive functions, simplifying
+the implementation of algorithms that operate on hierarchical data.</p></li>
+<li><p><strong>Consistency with Existing Tools</strong>: Many existing tools and libraries that deal with hierarchical data structures,
+such as JSON or XML parsers, use lists or similar structures to represent paths. By adopting this convention,
+we maintain consistency with established practices.</p></li>
+</ol>
+</section>
+<section id="introducing-dictpaths">
+<h2><span class="section-number">2.5. </span>Introducing DictPaths<a class="headerlink" href="#introducing-dictpaths" title="Link to this heading"></a></h2>
+<p>To manage and access these paths efficiently, we provide the <code class="docutils literal notranslate"><span class="pre">DictPaths</span></code> class. This class offers a view object that
+provides a dictionary-like interface for accessing hierarchical keys as lists. Similar to <code class="docutils literal notranslate"><span class="pre">dict_keys</span></code>, but tailored
+for hierarchical paths in a <code class="docutils literal notranslate"><span class="pre">_StackedDict</span></code>, <code class="docutils literal notranslate"><span class="pre">DictPaths</span></code> allows you to:</p>
+<ul class="simple">
+<li><p><strong>Iterate</strong> over all hierarchical paths in the <code class="docutils literal notranslate"><span class="pre">_StackedDict</span></code> as lists.</p></li>
+<li><p><strong>Check</strong> if a specific hierarchical path exists within the <code class="docutils literal notranslate"><span class="pre">_StackedDict</span></code>.</p></li>
+<li><p><strong>Retrieve</strong> the number of hierarchical paths present in the <code class="docutils literal notranslate"><span class="pre">_StackedDict</span></code>.</p></li>
+</ul>
+<p>By using <code class="docutils literal notranslate"><span class="pre">DictPaths</span></code>, you can easily navigate and manipulate complex nested dictionary structures, making your code
+more readable and maintainable.</p>
+</section>
+<section id="behavior">
+<h2><span class="section-number">2.6. </span>Behavior<a class="headerlink" href="#behavior" title="Link to this heading"></a></h2>
+<p>Nested dictionaries inherit from <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.defaultdict">defaultdict</a>. The default_factory attribute characterizes the behavior of this class:</p>
+<p>If the nested dictionary is to behave strictly like a dictionary, then the default_factory attribute is set to None.
+If you request the value of a key that doesn’t exist, you’ll get a KeyError. The configuration parameter is
+<code class="docutils literal notranslate"><span class="pre">strict=True</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">ndict_tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">NestedDictionary</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nd</span> <span class="o">=</span> <span class="n">NestedDictionary</span><span class="p">({</span><span class="s1">&#39;first&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="go">                           &#39;second&#39;: {&#39;1&#39;: &quot;2:1&quot;, &#39;2&#39;: &quot;2:2&quot;, &#39;3&#39;: &quot;3:2&quot;},</span>
+<span class="go">                           &#39;third&#39;: 3,</span>
+<span class="go">                           &#39;fourth&#39;: 4},</span>
+<span class="go">                           strict=True)</span>
+<span class="go">nd.default_factory</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nd</span><span class="p">[</span><span class="s1">&#39;fifth&#39;</span><span class="p">]</span>
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">&quot;/snap/pycharm-professional/401/plugins/python/helpers/pydev/pydevconsole.py&quot;</span>, line <span class="m">364</span>, in <span class="n">runcode</span>
+<span class="w">    </span><span class="n">coro</span> <span class="o">=</span> <span class="n">func</span><span class="p">()</span>
+  File <span class="nb">&quot;&lt;input&gt;&quot;</span>, line <span class="m">1</span>, in <span class="n">&lt;module&gt;</span>
+<span class="gr">KeyError</span>: <span class="n">&#39;fifth&#39;</span>
+</pre></div>
+</div>
+<p>If the nested dictionary is to have flexible behavior, then the default_factory attribute is set to NestedDictionary.
+If you request a key that doesn’t exist, a NestedDictionary instance will be created accordingly and returned. The
+configuration parameter is <code class="docutils literal notranslate"><span class="pre">strict=False</span></code> or <strong>no parameter</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">ndict_tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">NestedDictionary</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nd</span> <span class="o">=</span> <span class="n">NestedDictionary</span><span class="p">({</span><span class="s1">&#39;first&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="go">                           &#39;second&#39;: {&#39;1&#39;: &quot;2:1&quot;, &#39;2&#39;: &quot;2:2&quot;, &#39;3&#39;: &quot;3:2&quot;},</span>
+<span class="go">                           &#39;third&#39;: 3,</span>
+<span class="go">                           &#39;fourth&#39;: 4},</span>
+<span class="go">                           strict=False)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nd</span><span class="o">.</span><span class="n">default_factory</span>
+<span class="go">&lt;class &#39;ndict_tools.core.NestedDictionary&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nd</span><span class="p">[</span><span class="s1">&#39;fifth&#39;</span><span class="p">]</span>
+<span class="go">NestedDictionary(&lt;class &#39;ndict_tools.core.NestedDictionary&#39;&gt;, {})</span>
+</pre></div>
+</div>
+<p>And with <strong>no parameter</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">ndict_tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">NestedDictionary</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nd</span> <span class="o">=</span> <span class="n">NestedDictionary</span><span class="p">({</span><span class="s1">&#39;first&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+<span class="go">                           &#39;second&#39;: {&#39;1&#39;: &quot;2:1&quot;, &#39;2&#39;: &quot;2:2&quot;, &#39;3&#39;: &quot;3:2&quot;},</span>
+<span class="go">                           &#39;third&#39;: 3,</span>
+<span class="go">                           &#39;fourth&#39;: 4})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nd</span><span class="o">.</span><span class="n">default_factory</span>
+<span class="go">&lt;class &#39;ndict_tools.core.NestedDictionary&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nd</span><span class="p">[</span><span class="s1">&#39;fifth&#39;</span><span class="p">]</span>
+<span class="go">NestedDictionary(&lt;class &#39;ndict_tools.core.NestedDictionary&#39;&gt;, {})</span>
+</pre></div>
+</div>
+</section>
+<section id="examples">
+<h2><span class="section-number">2.7. </span>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nv">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>NestedDictionary<span class="o">({</span><span class="s1">&#39;first&#39;</span>:<span class="w"> </span><span class="m">1</span>,
+<span class="go">                        &#39;second&#39;: {&#39;1&#39;: &quot;2:1&quot;, &#39;2&#39;: &quot;2:2&quot;, &#39;3&#39;: &quot;3:2&quot;},</span>
+<span class="go">                        &#39;third&#39;: 3,</span>
+<span class="go">                        &#39;fourth&#39;: 4})</span>
+<span class="gp">$ </span><span class="nv">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>NestedDictionary<span class="o">(</span>zip<span class="o">([</span><span class="s1">&#39;first&#39;</span>,<span class="w"> </span><span class="s1">&#39;second&#39;</span>,<span class="w"> </span><span class="s1">&#39;third&#39;</span>,<span class="w"> </span><span class="s1">&#39;fourth&#39;</span><span class="o">]</span>,
+<span class="go">                           [1, {&#39;1&#39;: &quot;2:1&quot;, &#39;2&#39;: &quot;2:2&quot;, &#39;3&#39;: &quot;3:2&quot;}, 3, 4]))</span>
+<span class="gp">$ </span><span class="nv">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>NestedDictionary<span class="o">([(</span><span class="s1">&#39;first&#39;</span>,<span class="w"> </span><span class="m">1</span><span class="o">)</span>,
+<span class="go">                        (&#39;second&#39;, {&#39;1&#39;: &quot;2:1&quot;, &#39;2&#39;: &quot;2:2&quot;, &#39;3&#39;: &quot;3:2&quot;}),</span>
+<span class="go">                        (&#39;third&#39;, 3),</span>
+<span class="go">                        (&#39;fourth&#39;, 4)])</span>
+<span class="gp">$ </span><span class="nv">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>NestedDictionary<span class="o">([(</span><span class="s1">&#39;third&#39;</span>,<span class="w"> </span><span class="m">3</span><span class="o">)</span>,
+<span class="go">                        (&#39;first&#39;, 1),</span>
+<span class="go">                        (&#39;second&#39;, {&#39;1&#39;: &quot;2:1&quot;, &#39;2&#39;: &quot;2:2&quot;, &#39;3&#39;: &quot;3:2&quot;}),</span>
+<span class="go">                        (&#39;fourth&#39;, 4)])</span>
+<span class="gp">$ </span><span class="nv">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>NestedDictionary<span class="o">([(</span><span class="s1">&#39;first&#39;</span>,<span class="w"> </span><span class="m">1</span><span class="o">)</span>,<span class="w"> </span><span class="o">(</span><span class="s1">&#39;fourth&#39;</span>,<span class="w"> </span><span class="m">4</span><span class="o">)]</span>,
+<span class="go">                       third = 3,</span>
+<span class="go">                       second = {&#39;1&#39;: &quot;2:1&quot;, &#39;2&#39;: &quot;2:2&quot;, &#39;3&#39;: &quot;3:2&quot;})</span>
+
+<span class="go">a == b == c == d == e</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="for-developers">
+<h1><span class="section-number">3. </span>For Developers<a class="headerlink" href="#for-developers" title="Link to this heading"></a></h1>
+<p>The core class of the <code class="docutils literal notranslate"><span class="pre">ndict_tools</span></code> package is the internal class <code class="docutils literal notranslate"><span class="pre">_StackedDict</span></code> within the module. This class
+orchestrates all tasks related to the nesting of dictionaries.</p>
+<p>This class can be extended for other uses by adhering to the following rules:</p>
+<blockquote>
+<div><p><strong>R1</strong>: Instance attributes must be initialized in the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> function of the new class.</p>
+<p><strong>R2</strong>: Instance attributes to be propagated should be characterized in the <code class="docutils literal notranslate"><span class="pre">default_setup</span></code> parameter.</p>
+<p><strong>R3</strong>: The management of class attribute parameterization must be performed before calling the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> function of the parent class.</p>
+</div></blockquote>
+<p>Here is an example from test evaluations :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">ndict_tools.tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">_StackedDict</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">BDict</span><span class="p">(</span><span class="n">_StackedDict</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="c1"># initialize proper attributes</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">balanced</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1"># manage default_setup settings parameters</span>
+        <span class="n">settings</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&quot;default_setup&quot;</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="n">settings</span><span class="p">[</span><span class="s2">&quot;indent&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
+        <span class="n">settings</span><span class="p">[</span><span class="s2">&quot;default_factory&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">settings</span><span class="p">[</span><span class="s2">&quot;balanced&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="c1"># call __init__</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="n">default_setup</span><span class="o">=</span><span class="n">settings</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="install.html" class="btn btn-neutral float-left" title="1. Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api.html" class="btn btn-neutral float-right" title="4. Package reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, biface.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
