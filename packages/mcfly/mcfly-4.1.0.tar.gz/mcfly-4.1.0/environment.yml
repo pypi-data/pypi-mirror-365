@@ -1,0 +1,7 @@
+name: mcfly
+channels:
+- conda-forge
+- defaults
+dependencies:
+  - pip:
+    - -e ..[dev]
