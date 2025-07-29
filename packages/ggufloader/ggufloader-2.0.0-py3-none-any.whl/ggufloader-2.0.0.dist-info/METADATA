@@ -1,0 +1,216 @@
+Metadata-Version: 2.4
+Name: ggufloader
+Version: 2.0.0
+Summary: Enhanced GGUF Model Loader with Advanced Resource Management - Local AI Chat Application
+Author-email: Hussain Nazary <hussainnazary475@gmail.com>
+Maintainer-email: Hussain Nazary <hussainnazary475@gmail.com>
+License: MIT
+Project-URL: Homepage, https://ggufloader.github.io
+Project-URL: Documentation, https://ggufloader.github.io
+Project-URL: Repository, https://github.com/GGUFloader/gguf-loader
+Project-URL: Bug Tracker, https://github.com/GGUFloader/gguf-loader/issues
+Project-URL: Changelog, https://github.com/GGUFloader/gguf-loader/releases
+Project-URL: Website, https://ggufloader.github.io
+Keywords: llama,gguf,ai,chat,local,assistant,resource-management,gpu-acceleration,llama-cpp,machine-learning,nlp,enhanced-ui
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: MacOS
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Desktop Environment
+Classifier: Topic :: Text Processing
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: llama-cpp-python>=0.2.72
+Requires-Dist: PySide6>=6.6.1
+Requires-Dist: psutil>=5.9.0
+Requires-Dist: pywin32>=306; sys_platform == "win32"
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-qt>=4.0.0; extra == "dev"
+Requires-Dist: black>=22.0.0; extra == "dev"
+Requires-Dist: flake8>=4.0.0; extra == "dev"
+Requires-Dist: mypy>=0.950; extra == "dev"
+Dynamic: license-file
+
+# GGUF Loader
+
+**Advanced GGUF Model Loader with Enhanced Resource Management**
+
+A powerful, user-friendly desktop application for loading and chatting with GGUF (GPT-Generated Unified Format) models locally. Features advanced hardware detection, resource optimization, and enhanced UI for the best local AI experience.
+
+## 🚀 Key Features
+
+### Enhanced Resource Management
+- **Automatic Hardware Detection**: Detects GPU (RTX 4060, etc.), CPU cores, and RAM
+- **Intelligent Resource Optimization**: Automatically configures optimal settings
+- **GPU Acceleration Support**: Full CUDA support with memory management
+- **Hardware-Aware Processing**: Shows detailed hardware info in processing mode
+
+### Advanced UI Features
+- **Enhanced Processing Display**: Shows hardware details like "GPU Accelerated (NVIDIA GeForce RTX 4060 - 8GB)"
+- **Smart Progress Messages**: Detailed optimization information during model loading
+- **Advanced Settings**: Persistent configuration with hardware validation
+- **Clean, Professional Interface**: Optimized for productivity
+
+### Core Functionality
+- **Local AI Chat**: Complete privacy - no data sent to external servers
+- **GGUF Model Support**: Load any GGUF format model locally
+- **Streaming Responses**: Real-time AI responses with typing indicators
+- **Conversation History**: Persistent chat history with export options
+- **Cross-Platform**: Windows, macOS, and Linux support
+
+## 📦 Installation
+
+### New Installation
+```bash
+pip install ggufloader
+```
+
+### Upgrading from Previous Version
+```bash
+pip install --upgrade ggufloader
+```
+
+### Launch the Application
+```bash
+ggufloader
+```
+
+> **Note**: Version 2.0.0 includes major enhancements while maintaining full backward compatibility. Existing users can upgrade seamlessly to get all the new features.
+
+## 🔧 Requirements
+
+### System Requirements
+- **Python**: 3.8 or higher
+- **RAM**: 8GB minimum, 16GB+ recommended
+- **GPU**: Optional but recommended (NVIDIA with CUDA support)
+- **Storage**: 2GB+ free space for models
+
+### Dependencies
+- `llama-cpp-python>=0.2.72` - Core GGUF model loading
+- `PySide6>=6.6.1` - Modern Qt-based UI
+- `psutil>=5.9.0` - System resource monitoring
+- `pywin32>=306` - Windows-specific features (Windows only)
+
+## 🎯 Quick Start
+
+1. **Install the package**:
+   ```bash
+   pip install ggufloader
+   ```
+
+2. **Launch the application**:
+   ```bash
+   ggufloader
+   ```
+
+3. **Load a GGUF model**:
+   - Click "Browse" to select your GGUF model file
+   - The app will automatically detect your hardware and optimize settings
+   - Choose between CPU or GPU processing (if available)
+
+4. **Start chatting**:
+   - Type your message in the input field
+   - Press Enter or click Send
+   - Enjoy real-time AI responses!
+
+## 🖥️ Hardware Optimization
+
+### Automatic Configuration
+The application automatically detects and configures:
+- **GPU Memory**: Uses 80% of available VRAM for optimal performance
+- **CPU Threads**: Uses 75% of available threads for efficient processing
+- **Memory Management**: Intelligent memory allocation and cleanup
+
+### Supported Hardware
+- **NVIDIA GPUs**: RTX 4060, RTX 3080, RTX 4090, and more
+- **AMD GPUs**: Basic support (CPU fallback recommended)
+- **Intel CPUs**: Full optimization for all modern Intel processors
+- **AMD CPUs**: Full optimization for Ryzen and other AMD processors
+
+## ⚙️ Advanced Features
+
+### Enhanced Processing Modes
+- **GPU Accelerated**: Full GPU utilization with VRAM management
+- **CPU Optimized**: Multi-threaded CPU processing with smart thread allocation
+- **Hybrid Mode**: Automatic switching between GPU and CPU based on model size
+
+### Settings Management
+- **Hardware-Based Defaults**: Automatically configured for your system
+- **Persistent Configuration**: Settings saved across application restarts
+- **Advanced Tuning**: Fine-tune GPU memory, thread count, and more
+- **Profile Management**: Save and load different configuration profiles
+
+## 🛠️ Development
+
+### For Developers
+```bash
+# Clone the repository
+git clone https://github.com/GGUFloader/gguf-loader.git
+cd gguf-loader
+
+# Install in development mode
+pip install -e .
+
+# Install development dependencies
+pip install -e .[dev]
+
+# Run tests
+pytest
+```
+
+## 📋 Changelog
+
+### Version 2.0.0 - Major Enhanced Release
+- ✅ **Enhanced Resource Management**: Automatic hardware detection with RTX 4060 optimization
+- ✅ **Smart Floating Assistant**: AI-powered text processing addon
+- ✅ **Advanced UI Features**: Resource monitoring with real-time system info
+- ✅ **GPU Acceleration Support**: Full CUDA support with intelligent memory management
+- ✅ **Advanced Settings**: Persistent configuration with hardware validation
+- ✅ **Performance Optimizations**: Optimized resource utilization and memory management
+- ✅ **Enhanced Processing Display**: Shows detailed hardware info during model loading
+- ✅ **Comprehensive Error Handling**: Robust error recovery and user guidance
+
+### Previous Versions
+- ✅ Complete UI redesign with modern Qt interface
+- ✅ GGUF model support with streaming responses
+- ✅ Cross-platform compatibility
+- ✅ Conversation history and export features
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+- **Website**: [https://ggufloader.github.io](https://ggufloader.github.io)
+- **Issues**: [GitHub Issues](https://github.com/GGUFloader/gguf-loader/issues)
+- **Documentation**: [Wiki](https://github.com/GGUFloader/gguf-loader/wiki)
+- **Developer**: Hussain Nazary
+- **Email**: hussainnazary475@gmail.com
+
+## 🙏 Acknowledgments
+
+- Built on top of [llama.cpp](https://github.com/ggerganov/llama.cpp)
+- Uses [llama-cpp-python](https://github.com/abetlen/llama-cpp-python) for Python bindings
+- UI powered by [PySide6](https://doc.qt.io/qtforpython/)
+
+---
+
+**Experience the future of local AI with GGUF Loader Enhanced!** 🚀
