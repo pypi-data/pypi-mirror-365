@@ -1,0 +1,74 @@
+Metadata-Version: 2.4
+Name: pyjigsaw
+Version: 0.1.1
+Summary: Package defined to create jigsaw puzzle cut templates, and digital puzzle sets.
+Author-email: Tom DeAbreu <tomdeabreu@proton.me>
+Project-URL: Homepage, https://github.com/tomdeabreucodes/PyJig
+Project-URL: Issues, https://github.com/tomdeabreucodes/PyJig/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: POSIX :: Linux
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: defusedxml>=0.7.1
+Requires-Dist: opencv_contrib_python>=4.7.0.72
+Requires-Dist: Pillow>=10.1.0
+Requires-Dist: svgpathtools>=1.6.0
+Dynamic: license-file
+
+This Python package provides functionality to generate jigsaw puzzle cut templates and digital puzzle sets. It includes functions for creating jigsaw templates, applying cuts, and generating SVG representations.
+## Pre-requisites
+
+* Python >= 3.8
+
+## Installation
+
+You can install the package using pip:
+
+```shell
+pip install pyjigsaw
+```
+
+## Usage
+
+```python
+from pyjigsaw import jigsawfactory
+
+# Create a jigsaw cut template
+mycut = jigsawfactory.Cut(5, 4, image="./Zugpsitze_mountain.jpg", use_image=True)
+
+# Generate a jigsaw set from the cut template
+myjig = jigsawfactory.Jigsaw(mycut, "Zugpsitze_mountain.jpg")
+myjig.generate_svg_jigsaw("./Pieces")
+```
+## Features
+### Cut Class
+
+The Cut class is responsible for creating jigsaw cut templates. It takes parameters such as the number of pieces in height and width, absolute height and width, an optional image for deriving dimensions, and stroke/fill color specifications.
+
+```python
+from pyjigsaw import jigsawfactory
+
+
+# Create a jigsaw cut template
+mycut = jigsawfactory.Cut(5, 4, image="./Zugpsitze_mountain.jpg", use_image=True)
+```
+
+### Jigsaw Class
+
+The Jigsaw class uses a Cut template to generate a set of jigsaw pieces in SVG format. It takes a Cut object and an image file path. The generated SVG files are saved in the specified output directory.
+```python
+from pyjigsaw import jigsawfactory
+
+# Create a jigsaw set from the cut template
+myjig = jigsawfactory.Jigsaw(mycut, "Zugpsitze_mountain.jpg")
+myjig.generate_svg_jigsaw("./Pieces")
+```
+
+## Contributing
+
+Feel free to contribute to the project by opening issues or submitting pull requests on GitHub.
+License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
