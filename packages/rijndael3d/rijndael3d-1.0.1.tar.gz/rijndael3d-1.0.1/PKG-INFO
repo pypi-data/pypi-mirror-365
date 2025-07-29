@@ -1,0 +1,29 @@
+Metadata-Version: 2.3
+Name: rijndael3d
+Version: 1.0.1
+Summary: An enhanced version of Rijndael encryption
+License: MIT
+Author: Jebbex
+Author-email: 107323805+Jebbex1@users.noreply.github.com
+Requires-Python: >=3.13
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: numba (>=0.61.2,<0.62.0)
+Description-Content-Type: text/markdown
+
+# R3D Cipher
+R3D (short for Rijndael 3D, pronounced as the color Red) is my work-in-progress extension of the Rijndael cipher that works in 512-bit 4x4x4 blocks of bytes. This module uses new layer-based permutation algorithms together with modified versions of regular Rijndael components to utilize the 3 dimensional structure of blocks.
+This module is programmed in pure Python, it implements finite-field arithmetic in GF(2<sup>8</sup>) and is boosted by the [`numba`](https://numba.pydata.org/) module where possible.
+
+## Cipher Specifications
+- Key: 512-bit
+- Block size: 512 bits
+- Number of rounds per-block: 16
+
+## Installation
+This module is available only on PyPI, installation via pip:
+```
+pip install r3d-cipher
+```
+
