@@ -1,0 +1,146 @@
+name: Continuous Integration (CI)
+run-name: |
+  ${{ 
+    github.event_name == 'push' && format('{0} (Run ID: {1})', github.event.head_commit.message, github.run_id) || 
+    github.event_name == 'pull_request' && format('PR-{0}: {1} ({2})', github.event.pull_request.number, github.event.pull_request.title, github.run_id) || 
+    github.event_name == 'release' && format('Release: {0} ({1})', github.event.release.tag_name, github.run_id) ||
+    github.event_name == 'workflow_dispatch' && format('Manual Run by @{0} ({1})', github.actor, github.run_id) ||
+    format('Workflow Run ID: {0}', github.run_id)
+  }}
+
+on:
+    push:
+        branches: 
+            - "main"
+        tags:
+            - 'v*' # Triggers on tags starting with 'v', e.g., v1.0.0, v2.1
+            - 'release-*' # Triggers on tags starting with 'release-', e.g., release-20250726
+            - '**' # Triggers on any tag push
+    pull_request:
+        branches:
+            - "main"
+    workflow_dispatch:
+        inputs:
+            version_override:
+                description: 'Version override'
+                required: false
+                type: string
+
+jobs:
+    build:
+        name: Build Package
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                shell: pwsh
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                persist-credentials: false
+
+            - name: Set up Python 3.10
+              uses: actions/setup-python@v5
+              with:
+                python-version: "3.10"
+            
+            - name: Install build tools
+              run: >-
+                python3 -m pip install build --user
+
+            - name: Versioning
+              run: |
+                Write-Host "Version override    : ${{ github.event.inputs.version_override }}"
+                Write-Host "GitHub run id       : ${{ github.run_id }}"
+                Write-Host "GitHub run attempt  : ${{ github.run_attempt }}"
+                Write-Host "GitHub run number   : ${{ github.run_number }}"
+                $versionConfig = (Get-Content .\version-config.json | ConvertFrom-Json)
+                Write-Host "Version (Major)     : $versionConfig.major"
+                Write-Host "Version (Minor)     : $versionConfig.minor"
+                Write-Host "Version (Patch)     : $versionConfig.patch"
+                $latestVersionNumber = "$($versionConfig.major).$($versionConfig.minor).$($versionConfig.patch + ${{ github.run_number }})"
+                Write-Host "latestVersionNumber : $latestVersionNumber"
+                Add-Content -Path $env:GITHUB_ENV -Value "APP_VERSION=$latestVersionNumber"
+                Write-Host "APP_VERSION environment variable set."
+                Add-Content -Path $env:GITHUB_ENV -Value "RELEASE_VERSION=$latestVersionNumber"
+
+            - name: Use the extracted version in a different step (PowerShell)
+              run: |
+                Write-Host "Building application version: $($env:APP_VERSION)"
+                Write-Host "Simulating a build process for version $($env:APP_VERSION)..."
+                Get-ChildItem # Just to show another command running (PowerShell equivalent of ls -la)
+
+
+            - name: Build a binary wheel and a source tarball
+              # env:
+              #   RELEASE_VERSION: "${{ github.run_number }}"
+              run: python3 -m build
+
+            - name: Store the distribution packages
+              uses: actions/upload-artifact@v4
+              with:
+                name: python-package-distributions
+                path: dist/
+
+            - name: Run a one-line script
+              run: ls -R
+            
+
+    publish-to-testpypi:
+        name: 02 Publish to TestPyPI
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                shell: pwsh
+        needs:
+            - build
+        permissions:
+            id-token: write
+        environment:
+            name: testpypi
+            url: https://test.pypi.org/project/example-package-ong-zhixian
+        steps:
+            - name: Preamble (testing)
+              run: |
+                  Write-Host "This job publish to TestPyPI."
+            - name: Download package from build job
+              uses: actions/download-artifact@v4
+              with:
+                name: python-package-distributions
+                path: dist/
+            - name: List downloaded files (for debugging)
+              run: ls -R dist/
+
+            - name: Publish package to PyPI
+              uses: pypa/gh-action-pypi-publish@release/v1
+              with:
+                repository-url: https://test.pypi.org/legacy/
+                username: __token__
+                password: ${{ secrets.TESTPYPI_API_TOKEN }}
+
+
+    publish-to-pypi:
+        name: 01 Publish to PyPI
+        runs-on: ubuntu-latest
+        defaults:
+            run:
+                shell: pwsh
+        needs:
+            - build
+        permissions:
+            id-token: write
+        environment:
+            name: pypi
+        steps:
+            - name: Download package from build job
+              uses: actions/download-artifact@v4
+              with:
+                name: python-package-distributions
+                path: dist/
+            - name: List downloaded files (for debugging)
+              run: ls -R dist/
+            - name: Publish package to PyPI
+              uses: pypa/gh-action-pypi-publish@release/v1
+              with:
+                username: __token__
+                password: ${{ secrets.PYPI_API_TOKEN }}
