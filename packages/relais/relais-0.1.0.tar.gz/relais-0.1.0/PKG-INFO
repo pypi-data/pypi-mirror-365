@@ -1,0 +1,20 @@
+Metadata-Version: 2.4
+Name: relais
+Version: 0.1.0
+Summary: A practical tool for managing async pipelines.
+Author-email: Matteo <me@mattbit.com>
+Requires-Python: >=3.12.3
+Description-Content-Type: text/markdown
+
+# relais
+
+A practical tool for managing async pipelines.
+
+# usage
+
+```py
+import relais as r
+
+pipeline = range(10) | r.Map(lambda x: x * 2) | r.Filter(lambda x: x % 2 == 0) | list
+await pipeline.run()
+```
