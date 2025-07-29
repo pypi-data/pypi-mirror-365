@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "SFDL_DB"
+version = "0.1.0"
+description = "Same Features, Different Label Skew Generator"
+readme = "README.md"
+requires-python = ">=3.6"
+license = {text = "MIT"}  # ✅ Good
+authors = [
+    {name = "Your Name", email = "your.email@example.com"}
+]
+dependencies = [
+    "pandas",
+    "matplotlib",
+    "scikit-learn"
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/SFDL_DB"
