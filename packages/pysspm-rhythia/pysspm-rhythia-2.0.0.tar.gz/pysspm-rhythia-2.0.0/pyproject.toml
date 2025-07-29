@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools >= 68.2.0", "wheel", "numpy",] # 77.0.3
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pysspm-rhythia"
+version = "2.0.0"
+authors = [
+  { name="David Jedlovsky", email="Dev.DavidJed@gmail.com" },
+]
+description = "A Python library dedicated to reading, writing, and modifying the Rhythia SSPM (.sspm) file format"
+readme = { file = "README.md", content-type = "text/markdown" }
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = { text = "LGPL-3.0" } # "LGPLv3"
+#license_file = "LICENSE"
+keywords = ["Rhythia", "Sound space", "SSPM", "Rhythm game", "pysspm-rhythia", "pysspm", "nova", "phoenyx", "SS+M", 'sspm']
+
+
+[project.urls]
+Homepage = "https://github.com/David-Jed/pysspm"
+Issues = "https://github.com/David-Jed/pysspm/issues"
