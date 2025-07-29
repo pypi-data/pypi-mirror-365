@@ -1,0 +1,46 @@
+Metadata-Version: 2.4
+Name: flowline
+Version: 0.1.1
+Summary: Extract flowlines from a velocity field.
+Home-page: https://github.com/mjfield2/flowline_extraction
+Author: Michael Field
+Author-email: mjfield2@outlook.com
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Requires-Python: >=3
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+Requires-Dist: numpy>=1.14.5
+Requires-Dist: scipy>=1.1.1
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# flowline_extraction
+
+Extract points along a flow line in a velocity field for analysis and visualization purposes. This is demonstrated using glacier velocity near Thwaites Glacier in Antarctica.
+
+## Usage
+
+* Use the *flowline* function
+* You must choose a starting point with coordinates *x0*, *y0*
+* choose a direction - forwards or backwards - to advect the points
+* choose a mode - time or distance - to control how the points are spaced. In the case of time, the stride is how much time to multiply the velocity components by. For example, the glacier velocity is given in *meters per year* so a stride of 3 would move the point by 3 years in terms of velocity. In the case of distance, the stride is how equally spaced you want the points to be and the function solves for how much to much along each velocity component to get that distance in the hypotenuse. For example, if the stride if 2000 meters, the points will be approximately spaced by 2000 meters.
+* Using a combination of forward and backwards you can choose a point of interest and ensure that it is in the flowline, i.e., concatenate to forwards and backwards flowlines.
+
+<img src="https://github.com/mjfield2/flowline_extraction/raw/main/figures/multiple_flowlines.png" width="600"/>
+
+<img src="https://github.com/mjfield2/flowline_extraction/raw/main/figures/flowline_sampling.png" width="600"/>
+
+<img src="https://github.com/mjfield2/flowline_extraction/raw/main/figures/cross_section.png" width="800"/>
