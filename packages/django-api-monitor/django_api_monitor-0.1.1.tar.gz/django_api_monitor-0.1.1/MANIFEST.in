@@ -1,0 +1,8 @@
+include README.md
+include LICENSE
+recursive-include api_monitor/static *
+recursive-include api_monitor/templates *
+exclude .gitignore
+exclude .pypirc
+recursive-exclude venv *
+recursive-exclude tests *
