@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AEmail Server</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 15px 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            background: white;
+            border-bottom: 3px solid #667eea;
+            color: #667eea;
+        }
+
+        .tab:hover {
+            background: #e9ecef;
+        }
+
+        .tab-content {
+            padding: 30px;
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .search-form {
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e9ecef;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .btn {
+            background: #667eea;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #5a6fd8;
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            margin-left: 10px;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+        }
+
+        .results {
+            margin-top: 30px;
+        }
+
+        .email-item {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: transform 0.2s ease;
+        }
+
+        .email-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .email-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .email-from {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .email-to {
+            color: #6c757d;
+            margin-left: 10px;
+        }
+
+        .email-time {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .email-subject {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .email-content {
+            color: #666;
+            max-height: 300px;
+            overflow-y: auto;
+            background: white;
+            padding: 15px;
+            border-radius: 3px;
+            border: 1px solid #e9ecef;
+        }
+
+        .email-content.text-content {
+            white-space: pre-wrap;
+        }
+
+        .email-content.html-content {
+            /* Allow HTML rendering but constrain styles */
+        }
+
+        .email-content.html-content * {
+            max-width: 100% !important;
+        }
+
+        .content-toggle {
+            margin-bottom: 10px;
+        }
+
+        .content-toggle button {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 5px 10px;
+            margin-right: 5px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .content-toggle button.active {
+            background: #667eea;
+            color: white;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            gap: 10px;
+        }
+
+        .pagination button {
+            padding: 8px 16px;
+            border: 1px solid #dee2e6;
+            background: white;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .pagination button:hover:not(:disabled) {
+            background: #667eea;
+            color: white;
+        }
+
+        .pagination button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .pagination .page-info {
+            margin: 0 15px;
+            color: #6c757d;
+        }
+
+        .load-more {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .endpoint {
+            background: #e7f3ff;
+            border: 1px solid #b8daff;
+            border-radius: 5px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .endpoint-method {
+            font-weight: 600;
+            color: #0056b3;
+        }
+
+        .endpoint-url {
+            font-family: 'Courier New', monospace;
+            background: #f8f9fa;
+            padding: 5px 8px;
+            border-radius: 3px;
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab-content {
+                padding: 20px;
+            }
+
+            .email-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .email-time {
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 AEmail Server</h1>
+            <p>A simple SMTP server for receiving emails with REST API access</p>
+        </div>
+
+        <div class="main-content">
+            <div class="tabs">
+                <button class="tab active" onclick="showTab('search')">📧 Search Emails</button>
+                <button class="tab" onclick="showTab('all')">📋 All Emails</button>
+                <button class="tab" onclick="showTab('api')">🔧 API Documentation</button>
+            </div>
+
+            <div id="search-tab" class="tab-content active">
+                <h2>Search Emails</h2>
+                <div class="search-form">
+                    <div class="form-group">
+                        <label for="search-type">Search Type:</label>
+                        <select id="search-type">
+                            <option value="to">To (Recipient)</option>
+                            <option value="from">From (Sender)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="email-address">Email Address:</label>
+                        <input type="email" id="email-address" placeholder="Enter email address..." />
+                    </div>
+                    <button class="btn" onclick="searchEmails()">🔍 Search</button>
+                    <button class="btn btn-secondary" onclick="clearResults()">🗑️ Clear</button>
+                </div>
+                <div id="search-results" class="results"></div>
+            </div>
+
+            <div id="all-tab" class="tab-content">
+                <h2>All Emails</h2>
+                <p>Load emails with pagination for better performance:</p>
+                <button class="btn" onclick="loadAllEmails(true)">📥 Load Emails</button>
+                <div id="all-pagination" class="pagination" style="display: none;">
+                    <button id="prev-btn" onclick="loadPreviousPage()">⬅️ Previous</button>
+                    <span id="page-info" class="page-info"></span>
+                    <button id="next-btn" onclick="loadNextPage()">Next ➡️</button>
+                </div>
+                <div id="all-results" class="results"></div>
+            </div>
+
+            <div id="api-tab" class="tab-content">
+                <h2>API Documentation</h2>
+                <p>The following REST API endpoints are available:</p>
+
+                <div class="endpoint">
+                    <div class="endpoint-method">GET /all</div>
+                    <div class="endpoint-url">/all?limit=20&offset=0</div>
+                    <p>Get all stored messages with pagination support</p>
+                    <p><strong>Parameters:</strong> limit (max 100), offset</p>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-method">GET /from/&lt;email&gt;</div>
+                    <div class="endpoint-url">/from/test@example.com?limit=20&offset=0</div>
+                    <p>Get messages from a specific sender with pagination</p>
+                    <p><strong>Parameters:</strong> limit (max 100), offset</p>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-method">GET /to/&lt;email&gt;</div>
+                    <div class="endpoint-url">/to/user@example.com?limit=20&offset=0</div>
+                    <p>Get messages to a specific recipient with pagination</p>
+                    <p><strong>Parameters:</strong> limit (max 100), offset</p>
+                </div>
+
+                <div class="endpoint">
+                    <div class="endpoint-method">GET /health</div>
+                    <div class="endpoint-url">/health</div>
+                    <p>Health check endpoint</p>
+                </div>
+
+                <h3>Usage Example</h3>
+                <p>Send an email to any address ending with your domain, then query:</p>
+                <div class="endpoint-url">curl http://localhost:14000/to/test@yourdomain.com</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Global state for pagination
+        let currentPage = 0;
+        let pageSize = 20;
+        let totalMessages = 0;
+        let currentSearchType = null;
+        let currentSearchEmail = null;
+
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => content.classList.remove('active'));
+
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // Show selected tab content
+            document.getElementById(tabName + '-tab').classList.add('active');
+
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        function searchEmails() {
+            const searchType = document.getElementById('search-type').value;
+            const emailAddress = document.getElementById('email-address').value.trim();
+
+            if (!emailAddress) {
+                alert('Please enter an email address');
+                return;
+            }
+
+            // Reset pagination for search
+            currentPage = 0;
+            currentSearchType = searchType;
+            currentSearchEmail = emailAddress;
+
+            const resultsDiv = document.getElementById('search-results');
+            resultsDiv.innerHTML = '<div class="loading">🔄 Searching...</div>';
+
+            const url = `/${searchType}/${encodeURIComponent(emailAddress)}?limit=${pageSize}&offset=${currentPage * pageSize}`;
+
+            fetchWithTimeout(url, 10000)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.messages) {
+                        displayResults(data.messages, resultsDiv);
+                        updatePaginationInfo(data.pagination);
+                    } else {
+                        // Fallback for old API format
+                        displayResults(data, resultsDiv);
+                    }
+                })
+                .catch(error => {
+                    resultsDiv.innerHTML = `<div class="error">❌ Error: ${error.message}</div>`;
+                });
+        }
+
+        function loadAllEmails(reset = false) {
+            if (reset) {
+                currentPage = 0;
+                currentSearchType = null;
+                currentSearchEmail = null;
+            }
+
+            const resultsDiv = document.getElementById('all-results');
+            const paginationDiv = document.getElementById('all-pagination');
+
+            resultsDiv.innerHTML = '<div class="loading">🔄 Loading...</div>';
+
+            const url = `/all?limit=${pageSize}&offset=${currentPage * pageSize}`;
+
+            fetchWithTimeout(url, 10000)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.messages) {
+                        displayResults(data.messages, resultsDiv);
+                        updatePaginationInfo(data.pagination);
+                        paginationDiv.style.display = 'flex';
+                    } else {
+                        // Fallback for old API format
+                        displayResults(data, resultsDiv);
+                    }
+                })
+                .catch(error => {
+                    resultsDiv.innerHTML = `<div class="error">❌ Error: ${error.message}</div>`;
+                });
+        }
+
+        function fetchWithTimeout(url, timeout = 10000) {
+            return Promise.race([
+                fetch(url),
+                new Promise((_, reject) =>
+                    setTimeout(() => reject(new Error('Request timeout')), timeout)
+                )
+            ]);
+        }
+
+        function displayResults(emails, container) {
+            if (!emails || emails.length === 0) {
+                container.innerHTML = '<div class="loading">📭 No emails found</div>';
+                return;
+            }
+
+            const emailsHtml = emails.map((email, index) => {
+                const emailId = `email-${Date.now()}-${index}`;
+                const content = email.content || 'No content';
+                const isHtml = detectHtmlContent(content);
+
+                // Clean HTML content marker if present
+                const cleanContent = content.replace('<!-- HTML_CONTENT -->\n', '');
+
+                return `
+                    <div class="email-item" data-original-content="${escapeHtml(cleanContent)}" data-raw-content="${cleanContent.replace(/"/g, '&quot;')}">
+                        <div class="email-header">
+                            <div>
+                                <span class="email-from">📤 From: ${escapeHtml(email.from || 'Unknown')}</span>
+                                <span class="email-to">📥 To: ${escapeHtml((email.to || []).join(', '))}</span>
+                            </div>
+                            <span class="email-time">🕒 ${formatDate(email.time)}</span>
+                        </div>
+                        <div class="email-subject">📋 ${escapeHtml(email.subject || 'No Subject')}</div>
+                        ${isHtml ? `
+                            <div class="content-toggle">
+                                <button class="toggle-btn active" onclick="showTextContent('${emailId}')">📝 Text</button>
+                                <button class="toggle-btn" onclick="showHtmlContent('${emailId}')">🌐 HTML</button>
+                            </div>
+                        ` : ''}
+                        <div class="email-content ${isHtml ? 'text-content' : ''}" id="${emailId}">
+                            ${escapeHtml(cleanContent)}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+
+            container.innerHTML = emailsHtml;
+        }
+
+        function detectHtmlContent(content) {
+            // Check for HTML content marker added by backend
+            if (content.includes('<!-- HTML_CONTENT -->')) {
+                return true;
+            }
+
+            // Simple HTML detection - look for common HTML tags
+            const htmlTags = /<\s*(html|body|div|p|span|a|img|table|tr|td|th|ul|ol|li|h[1-6]|br|hr|strong|em|b|i)\s*[^>]*>/i;
+            return htmlTags.test(content);
+        }
+
+        function showTextContent(emailId) {
+            const contentDiv = document.getElementById(emailId);
+            const buttons = contentDiv.parentElement.querySelectorAll('.toggle-btn');
+            const emailItem = contentDiv.closest('.email-item');
+
+            // Update button states
+            buttons[0].classList.add('active');
+            buttons[1].classList.remove('active');
+
+            // Show raw text content (unescaped)
+            const rawContent = emailItem.getAttribute('data-raw-content');
+            contentDiv.className = 'email-content text-content';
+            contentDiv.textContent = unescapeHtml(rawContent);
+        }
+
+        function showHtmlContent(emailId) {
+            const contentDiv = document.getElementById(emailId);
+            const buttons = contentDiv.parentElement.querySelectorAll('.toggle-btn');
+            const emailItem = contentDiv.closest('.email-item');
+
+            // Update button states
+            buttons[0].classList.remove('active');
+            buttons[1].classList.add('active');
+
+            // Get the raw content and render as HTML
+            const rawContent = emailItem.getAttribute('data-raw-content');
+            contentDiv.className = 'email-content html-content';
+            contentDiv.innerHTML = sanitizeHtml(unescapeHtml(rawContent));
+        }
+
+        function sanitizeHtml(html) {
+            // Basic HTML sanitization - remove dangerous elements and attributes
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
+
+            // Remove script tags and event handlers
+            const scripts = tempDiv.querySelectorAll('script');
+            scripts.forEach(script => script.remove());
+
+            // Remove dangerous attributes
+            const allElements = tempDiv.querySelectorAll('*');
+            allElements.forEach(element => {
+                // Remove event handler attributes
+                Array.from(element.attributes).forEach(attr => {
+                    if (attr.name.startsWith('on') || attr.name === 'javascript:') {
+                        element.removeAttribute(attr.name);
+                    }
+                });
+
+                // Remove dangerous elements
+                if (['script', 'object', 'embed', 'iframe'].includes(element.tagName.toLowerCase())) {
+                    element.remove();
+                }
+            });
+
+            return tempDiv.innerHTML;
+        }
+
+        function updatePaginationInfo(pagination) {
+            if (!pagination) return;
+
+            totalMessages = pagination.total;
+            const pageInfo = document.getElementById('page-info');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            if (pageInfo) {
+                const start = pagination.offset + 1;
+                const end = Math.min(pagination.offset + pagination.limit, pagination.total);
+                pageInfo.textContent = `${start}-${end} of ${pagination.total}`;
+            }
+
+            if (prevBtn) {
+                prevBtn.disabled = pagination.offset === 0;
+            }
+
+            if (nextBtn) {
+                nextBtn.disabled = !pagination.has_more;
+            }
+        }
+
+        function loadPreviousPage() {
+            if (currentPage > 0) {
+                currentPage--;
+                if (currentSearchType && currentSearchEmail) {
+                    searchEmails();
+                } else {
+                    loadAllEmails();
+                }
+            }
+        }
+
+        function loadNextPage() {
+            currentPage++;
+            if (currentSearchType && currentSearchEmail) {
+                searchEmails();
+            } else {
+                loadAllEmails();
+            }
+        }
+
+        function clearResults() {
+            document.getElementById('search-results').innerHTML = '';
+            document.getElementById('email-address').value = '';
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function unescapeHtml(text) {
+            const div = document.createElement('div');
+            div.innerHTML = text;
+            return div.textContent || div.innerText || '';
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return 'Unknown';
+            const date = new Date(dateString);
+            return date.toLocaleString();
+        }
+
+        // Allow Enter key to trigger search
+        document.getElementById('email-address').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchEmails();
+            }
+        });
+    </script>
+</body>
+</html>
