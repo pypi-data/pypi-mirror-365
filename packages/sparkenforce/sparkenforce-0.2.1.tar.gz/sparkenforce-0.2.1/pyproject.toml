@@ -1,0 +1,98 @@
+[project]
+name = "sparkenforce"
+version = "v0.2.1"
+description = "Type annotation system that allows you to specify and validate the schema of PySpark DataFrames using Python type hints for both function arguments and return values."
+authors = [{ name = "Agustín Recoba", email = "agustin.recoba@outlook.com" }]
+readme = "README.md"
+license = {file = "LICENSE"}
+keywords = ["python"]
+requires-python = ">=3.10,<4"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Typing :: Typed",
+]
+
+dependencies = [
+    "pyspark>=3.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "ipykernel",
+    "ty>=0.0.1a11",
+    "pytest>=8.4.1",
+    "pytest-cov",
+    "coverage>=7.8.2",
+    "ruff>=0.12.0",
+    "taskipy>=1.14.1",
+    "pre-commit>=4.2.0",
+    "pytest-xdist>=3.8.0",
+    "pytest-sugar>=1.0.0",
+]
+
+[project.urls]
+homepage = "https://github.com/agustin-recoba/sparkenforce"
+repository = "https://github.com/agustin-recoba/sparkenforce.git"
+documentation = "https://github.com/agustin-recoba/sparkenforce"
+issues = "https://github.com/agustin-recoba/sparkenforce/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/sparkenforce"]
+
+[tool.taskipy.tasks]
+format = { cmd = "ruff format ./src/", help = "Format code using ruff" }
+lint = { cmd = "ruff check --fix ./src/", help = "Lint code using ruff" }
+type = { cmd = "ty check", help = "Typecheck code using ty" }
+tests = { cmd = "pytest --verbose --color=yes tests", help = "Run all tests using pytest" }
+coverage = { cmd = "coverage html && coverage report -m", help = "Generate coverage report" }
+run = { cmd = "uv run ./src/sparkenforce/sparkenforce.py", help = "Run main application" }
+
+[tool.ruff]
+line-length = 120
+indent-width = 4
+format.indent-style = "space"
+target-version = "py310"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+pydocstyle.convention = "google"
+
+
+[tool.ty]
+src.root = "./src"
+environment.python = "./.venv"
+terminal.output-format = "concise"
+
+[tool.pytest.ini_options]
+addopts = "--color=yes --cov=sparkenforce --cov-report=xml --cov-append -n auto"
+
+[tool.coverage.paths]
+source = ["src"]
+tests = ["tests","*/tests"]
+
+[tool.coverage.report]
+skip_empty = true
+show_missing = true
+fail_under = 90
+
+[tool.coverage.run]
+branch = true
+source = ["src", "tests"]
+
+[tool.portray.mkdocs]
+site_name = "sparkenforce"
+
+[tool.portray.mkdocs.theme]
+name = "material"
+custom_dir = "docs"
+palette = {scheme= "slate", primary="deep purple", accent="purple"}
