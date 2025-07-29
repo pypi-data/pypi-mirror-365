@@ -1,0 +1,914 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-07-26 13:51+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/ebird/dataset/data/admin.py:18
+msgid "Observation"
+msgstr ""
+
+#: src/ebird/dataset/data/admin.py:23
+msgid "Common name"
+msgstr ""
+
+#: src/ebird/dataset/data/admin.py:27
+#: src/ebird/dataset/data/models/species.py:63
+msgid "Scientific name"
+msgstr ""
+
+#: src/ebird/dataset/data/apps.py:8
+msgid "eBird Dataset Data"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:7
+#: src/ebird/dataset/data/models/checklist.py:17
+msgid "Incidental"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:8
+#: src/ebird/dataset/data/models/checklist.py:18
+msgid "Stationary"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:9
+#: src/ebird/dataset/data/models/checklist.py:19
+msgid "Traveling"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:10
+#: src/ebird/dataset/data/models/checklist.py:20
+msgid "Area"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:11
+#: src/ebird/dataset/data/models/checklist.py:21
+msgid "Banding"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:12
+#: src/ebird/dataset/data/models/checklist.py:22
+msgid "Nocturnal Flight Call Count"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:13
+#: src/ebird/dataset/data/models/checklist.py:23
+msgid "eBird Pelagic Protocol"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:14
+#: src/ebird/dataset/data/models/checklist.py:24
+msgid "Historical"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:25
+msgid "Stationary (2-band, 25m)"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:26
+msgid "Stationary (2-band, 30m)"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:27
+msgid "Stationary (2-band, 50m)"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:28
+msgid "Stationary (2-band, 75m)"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:29
+msgid "Stationary (2-band, 100m)"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:30
+msgid "Stationary (3-band, 30m+100m)"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:31
+msgid "Traveling (2-band, 25m)"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:32
+msgid "Stationary (directional)"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:35
+#: src/ebird/dataset/data/models/observation.py:68
+msgid "checklist"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:36
+msgid "checklists"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:41
+#: src/ebird/dataset/data/models/location.py:21
+#: src/ebird/dataset/data/models/observation.py:55
+#: src/ebird/dataset/data/models/observer.py:13
+msgid "identifier"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:42
+msgid "The unique identifier for the checklist."
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:48
+msgid "The date and time the eBird checklist was last edited."
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:49
+#: src/ebird/dataset/data/models/observation.py:61
+msgid "edited"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:56
+#: src/ebird/dataset/data/models/country.py:7
+#: src/ebird/dataset/data/models/location.py:42
+#: src/ebird/dataset/data/models/observation.py:92
+msgid "country"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:57
+msgid "The country where the checklist was made."
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:64
+#: src/ebird/dataset/data/models/location.py:50
+#: src/ebird/dataset/data/models/observation.py:100
+#: src/ebird/dataset/data/models/state.py:7
+msgid "state"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:65
+msgid "The state where the checklist was made."
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:74
+#: src/ebird/dataset/data/models/county.py:7
+#: src/ebird/dataset/data/models/location.py:60
+#: src/ebird/dataset/data/models/observation.py:110
+msgid "county"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:75
+msgid "The county where the checklist was made."
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:82
+#: src/ebird/dataset/data/models/location.py:15
+#: src/ebird/dataset/data/models/observation.py:118
+msgid "location"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:83
+msgid "The location where checklist was made."
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:90
+#: src/ebird/dataset/data/models/observation.py:84
+#: src/ebird/dataset/data/models/observer.py:7
+msgid "observer"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:91
+msgid "The person who submitted the checklist."
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:96
+msgid "group"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:97
+msgid "The identifier for a group of observers."
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:102
+msgid "observer count"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:103
+msgid "The total number of observers."
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:108
+msgid "species count"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:109
+msgid "The number of species reported."
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:114
+#: src/ebird/dataset/data/models/observation.py:124
+msgid "date"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:115
+#: src/ebird/dataset/data/models/observation.py:125
+msgid "The date the observations were made."
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:121
+#: src/ebird/dataset/data/models/observation.py:131
+msgid "time"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:122
+#: src/ebird/dataset/data/models/observation.py:132
+msgid "The time the observations were made."
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:129
+#: src/ebird/dataset/data/models/observation.py:139
+msgid "date & time"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:130
+#: src/ebird/dataset/data/models/observation.py:140
+msgid "The date and time the observations were made."
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:134
+msgid "observation type"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:135
+msgid "The type of protocol followed."
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:139
+msgid "protocol name"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:140
+msgid "The name of protocol followed."
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:146
+msgid "protocol code"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:147
+msgid "The code used to identify the protocol."
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:152
+msgid "project names"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:153
+msgid "The names used to identify the project (portal)."
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:158
+msgid "project identifiers"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:159
+msgid "The identifiers used for the project (portal)."
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:165
+msgid "duration"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:166
+msgid "The number of minutes spent counting."
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:174
+msgid "distance"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:175
+msgid "The distance, in metres, covered while travelling."
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:183
+msgid "area"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:184
+msgid "The area covered, in hectares."
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:189
+msgid "complete"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:190
+msgid "All species seen are reported."
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:195
+#: src/ebird/dataset/data/models/observation.py:204
+msgid "comments"
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:196
+msgid "Any comments about the checklist."
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:201
+#: src/ebird/dataset/data/models/country.py:26
+#: src/ebird/dataset/data/models/county.py:26
+#: src/ebird/dataset/data/models/location.py:109
+#: src/ebird/dataset/data/models/observation.py:215
+#: src/ebird/dataset/data/models/observer.py:30
+#: src/ebird/dataset/data/models/species.py:77
+#: src/ebird/dataset/data/models/state.py:26
+msgid "When was the record created."
+msgstr ""
+
+#: src/ebird/dataset/data/models/checklist.py:206
+msgid "When was the record modified."
+msgstr ""
+
+#: src/ebird/dataset/data/models/country.py:8
+msgid "countries"
+msgstr ""
+
+#: src/ebird/dataset/data/models/country.py:13
+#: src/ebird/dataset/data/models/county.py:13
+#: src/ebird/dataset/data/models/state.py:13
+msgid "code"
+msgstr ""
+
+#: src/ebird/dataset/data/models/country.py:14
+msgid "The code used to identify the country."
+msgstr ""
+
+#: src/ebird/dataset/data/models/country.py:18
+#: src/ebird/dataset/data/models/county.py:18
+#: src/ebird/dataset/data/models/location.py:34
+#: src/ebird/dataset/data/models/observer.py:25
+#: src/ebird/dataset/data/models/state.py:18
+msgid "name"
+msgstr ""
+
+#: src/ebird/dataset/data/models/country.py:18
+msgid "The name of the country."
+msgstr ""
+
+#: src/ebird/dataset/data/models/country.py:22
+#: src/ebird/dataset/data/models/county.py:22
+#: src/ebird/dataset/data/models/state.py:22
+msgid "place"
+msgstr ""
+
+#: src/ebird/dataset/data/models/country.py:22
+msgid "The hierarchical name of the country."
+msgstr ""
+
+#: src/ebird/dataset/data/models/country.py:30
+#: src/ebird/dataset/data/models/county.py:30
+#: src/ebird/dataset/data/models/location.py:113
+#: src/ebird/dataset/data/models/observation.py:219
+#: src/ebird/dataset/data/models/observer.py:34
+#: src/ebird/dataset/data/models/species.py:81
+#: src/ebird/dataset/data/models/state.py:30
+msgid "When was the record updated."
+msgstr ""
+
+#: src/ebird/dataset/data/models/county.py:8
+msgid "counties"
+msgstr ""
+
+#: src/ebird/dataset/data/models/county.py:14
+msgid "The code used to identify the county."
+msgstr ""
+
+#: src/ebird/dataset/data/models/county.py:18
+msgid "The name of the county."
+msgstr ""
+
+#: src/ebird/dataset/data/models/county.py:22
+msgid "The hierarchical name of the county."
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:7
+msgid "County"
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:8
+msgid "Hotspot"
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:9
+msgid "Personal"
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:10
+msgid "Postal/Zip Code"
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:11
+msgid "State"
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:12
+msgid "Town"
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:16
+msgid "locations"
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:22
+msgid "The unique identifier for the location."
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:29
+msgid "type"
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:30
+msgid "The location type, e.g. personal, hotspot, town, etc."
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:35
+msgid "The name of the location."
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:43
+msgid "The country for the location."
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:51
+msgid "The state for the location."
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:61
+msgid "The county for the location."
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:66
+msgid "IBA code"
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:67
+msgid "The code used to identify an Important Bird Area."
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:72
+msgid "BCR code"
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:73
+msgid "The code used to identify a Bird Conservation Region."
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:78
+msgid "USFWS code"
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:79
+msgid "The code used to identify a US Fish & Wildlife Service region."
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:84
+msgid "atlas block"
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:85
+msgid "The code used to identify an area for an atlas."
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:93
+msgid "latitude"
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:94
+msgid "The decimal latitude of the location, relative to the equator."
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:102
+msgid "longitude"
+msgstr ""
+
+#: src/ebird/dataset/data/models/location.py:104
+msgid "The decimal longitude of the location, relative to the prime meridian."
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:8
+msgid "Nest with young"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:9
+msgid "Nest containing eggs"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:10
+msgid "Adult carrying a faecal sac"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:11
+msgid "Adult feeding young"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:12
+msgid "Adult carrying food"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:13
+msgid "Recently fledged young"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:14
+msgid "Occupied nest"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:15
+msgid "Used nest"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:16
+msgid "Distraction display"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:17
+msgid "Nest-building"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:18
+msgid "Carrying nest material"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:19
+msgid "Brood patch"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:20
+msgid "Woodpecker or Wren nest-building"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:21
+msgid "Agitated behaviour"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:22
+msgid "Nest-site visited"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:23
+msgid "Courtship, display, or copulation"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:24
+msgid "Territorial defense"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:25
+msgid "Pair in suitable habitat"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:26
+msgid "Multiple singing males"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:27
+msgid "Male singing for multiple days"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:28
+msgid "Singing male"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:29
+msgid "Adult in suitable habitat"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:30
+msgid "Fly-over"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:33
+msgid "Bird observed"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:34
+msgid "Breeding possible"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:35
+msgid "Breeding probable"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:36
+msgid "Breeding confirmed"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:39
+msgid "Adult"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:40
+msgid "Immature"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:41
+msgid "Juvenile"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:44
+msgid "Female"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:45
+msgid "Male"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:46
+msgid "Sex unknown"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:49
+msgid "observation"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:50
+msgid "observations"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:56
+msgid "The identifier for the observation."
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:60
+msgid "The date and time the observation was last edited"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:69
+msgid "The checklist this observation belongs to."
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:76
+#: src/ebird/dataset/data/models/species.py:22
+#: src/ebird/dataset/data/models/species.py:23
+msgid "species"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:77
+msgid "The identified species."
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:85
+msgid "The person who made the observation."
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:93
+msgid "The country where the observation was made."
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:101
+msgid "The state where the observation was made."
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:111
+msgid "The county where the observation was made."
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:119
+msgid "The location where the observation was made."
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:145
+msgid "count"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:146
+msgid "The number of birds seen."
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:153
+msgid "breeding code"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:154
+msgid "eBird code identifying the breeding status."
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:161
+msgid "breeding category"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:162
+msgid "eBird code identifying the breeding category."
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:169
+msgid "behaviour code"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:170
+msgid "eBird code identifying the behaviour."
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:175
+msgid "Age & Sex"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:176
+msgid "The number of birds seen in each combination of age and sex."
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:180
+msgid "has media"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:181
+msgid "Has audio, photo or video uploaded to the Macaulay library."
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:185
+msgid "Approved"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:186
+msgid "Has the observation been accepted by eBird's review process."
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:190
+msgid "Reviewed"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:191
+msgid "Was the observation reviewed because it failed automatic checks."
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:196
+msgid "Reason"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:198
+msgid "The reason given for the observation to be marked as not confirmed."
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:205
+msgid "Any comments about the observation."
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:210
+msgid "URN"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observation.py:211
+msgid "The globally unique identifier for the observation."
+msgstr ""
+
+#: src/ebird/dataset/data/models/observer.py:8
+msgid "observers"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observer.py:14
+msgid "The identifier for the person submitted the checklist."
+msgstr ""
+
+#: src/ebird/dataset/data/models/observer.py:19
+msgid "ORCID Identifier"
+msgstr ""
+
+#: src/ebird/dataset/data/models/observer.py:20
+msgid "The observer's ORCID Identifier, see https://orcid.org/."
+msgstr ""
+
+#: src/ebird/dataset/data/models/observer.py:26
+msgid "The observer's name."
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:7
+msgid "Species"
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:8
+msgid "Species pairs"
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:9
+msgid "Subspecies"
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:10
+msgid "Domestic species"
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:11
+msgid "Hybrids"
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:12
+msgid "Species forms"
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:13
+msgid "Unidentified species"
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:14
+msgid "Intergrades"
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:17
+msgid "Naturalized"
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:18
+msgid "Provisional"
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:19
+msgid "Escapee"
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:27
+msgid "taxonomic order"
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:28
+msgid "The position in the eBird/Clements taxonomic order."
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:34
+msgid "category"
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:35
+msgid "The category from the eBird/Clements taxonomy."
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:39
+msgid "Taxonomic Concept Identifier"
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:40
+msgid "The Avibase identifier for the species."
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:44
+msgid "common name"
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:45
+msgid "The species common name in the eBird/Clements taxonomy."
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:49
+msgid "scientific name"
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:50
+msgid "The species scientific name in the eBird/Clements taxonomy."
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:55
+msgid "subspecies common name"
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:57
+msgid ""
+"The subspecies, group or form common name in the eBird/Clements taxonomy."
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:65
+msgid ""
+"The subspecies, group or form scientific name in the eBird/Clements taxonomy."
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:72
+msgid "exotic code"
+msgstr ""
+
+#: src/ebird/dataset/data/models/species.py:73
+msgid "The code used if the species is non-native."
+msgstr ""
+
+#: src/ebird/dataset/data/models/state.py:8
+msgid "states"
+msgstr ""
+
+#: src/ebird/dataset/data/models/state.py:14
+msgid "The code used to identify the state."
+msgstr ""
+
+#: src/ebird/dataset/data/models/state.py:18
+msgid "The name of the state."
+msgstr ""
+
+#: src/ebird/dataset/data/models/state.py:22
+msgid "The hierarchical name of the state."
+msgstr ""
