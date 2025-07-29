@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "falat-prompter"
+version = "0.1.0"
+description = "Extensible LLM provider system"
+authors = [{ name="falatform" }]
+readme = "README.md"
+requires-python = ">=3.7"
+license = {text = "MIT"}
+dependencies = [
+    # Add your runtime dependencies here, e.g.:
+    # "requests"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/falatform/prompter"
+"Repository" = "https://github.com/falatform/prompter"
