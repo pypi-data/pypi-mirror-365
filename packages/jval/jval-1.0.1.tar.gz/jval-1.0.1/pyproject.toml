@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "jval"
+version = "1.0.1"
+description = "Structural and type validation of JSON objects"
+authors = ["Julio Cabria <juliocabria@tutanota.com>"]
+license = "GPL-2.0-only"
+readme = "README.md"
+homepage = "https://github.com/Julynx/jval"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.scripts]
+jval = "jval.__main__:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
