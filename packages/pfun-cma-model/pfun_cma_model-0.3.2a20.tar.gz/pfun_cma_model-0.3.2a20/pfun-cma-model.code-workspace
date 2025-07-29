@@ -1,0 +1,29 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../pfun-app"
+		},
+		{
+			"path": "../pfun_path_helper"
+		}
+	],
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+		]
+	},
+	"settings": {
+		"python.analysis.extraPaths": [
+			".",
+		],
+		"github.copilot.chat.byok.ollamaEndpoint": "https://ollama.local.pfun.run",
+		"github.copilot.chat.agent.thinkingTool": true,
+		"github-actions.workflows.pinned.workflows": [
+			"pfun_path_helper/.github/workflows/main.yml"
+		],
+
+	}
+}
