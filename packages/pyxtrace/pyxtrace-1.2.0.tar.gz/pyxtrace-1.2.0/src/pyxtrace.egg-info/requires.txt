@@ -1,0 +1,12 @@
+rich>=13.0
+typer>=0.9
+streamlit>=1.25
+plotly>=5.22
+
+[dev]
+black
+ruff
+mypy
+pytest>=7
+pre-commit
+types-psutil
