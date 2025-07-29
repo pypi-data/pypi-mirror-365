@@ -1,0 +1,54 @@
+Metadata-Version: 2.4
+Name: metorial-core
+Version: 1.0.0rc2
+Summary: Core SDK components for Metorial
+Project-URL: Homepage, https://metorial.com
+Project-URL: Documentation, https://metorial.com/docs
+Project-URL: Repository, https://github.com/metorial/metorial-enterprise
+Author-email: Metorial Team <support@metorial.com>
+License: MIT
+License-File: LICENSE
+Keywords: core,metorial,sdk
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.9
+Requires-Dist: aiohttp>=3.8.0
+Requires-Dist: metorial-generated>=1.0.0-rc.2
+Requires-Dist: metorial-util-endpoint>=1.0.0-rc.2
+Requires-Dist: typing-extensions>=4.0.0
+Description-Content-Type: text/markdown
+
+# metorial-core
+
+Core package for Metorial. Provides essential functionalities shared across different providers.
+
+## Installation
+
+```bash
+pip install metorial-core
+# or
+uv add metorial-core
+# or
+poetry add metorial-core
+```
+
+## Features
+
+- 🔧 **Core Functions**: Provides common interfaces and utilities for Metorial
+- 🔨 **Shared Components**: Base for provider-specific packages
+- ⚡ **Async Support**: Full async/await support throughout
+
+## Usage
+
+This package is typically used internally by other Metorial packages and not directly by end users.
+
+## License
+
+MIT License - see [LICENSE](../../LICENSE) file for details.
