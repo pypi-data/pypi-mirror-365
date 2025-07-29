@@ -1,0 +1,70 @@
+Metadata-Version: 2.4
+Name: startapp-plus
+Version: 2.6
+Summary: Un générateur de structure d'app Django améliorée
+Author-email: prince01 <axelvianney49@gmail.com>
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: Django
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: django>=4.2
+Dynamic: license-file
+
+````markdown
+# startapp_plus
+
+**startapp_plus** est un générateur de structure améliorée pour les applications Django.  
+Il permet de créer une arborescence propre et complète avec modèles, vues, templates, statiques, etc.
+
+---
+
+## Installation
+
+```bash
+pip install startapp-plus
+````
+
+---
+
+## Utilisation
+
+```bash
+startapp_plus mon_super_app
+```
+
+Cela génère une structure de base comme :
+
+```
+mon_super_app/
+├── admin.py
+├── apps.py
+├── models/
+├── views/
+├── urls.py
+├── templates/
+├── static/
+├── migrations/
+├── tests.py
+└── __init__.py
+```
+
+---
+
+## Fonctionnalités
+
+* Structure améliorée pour une meilleure organisation
+* Génération automatique des fichiers courants : `urls.py`, `apps.py`, `admin.py`, `tests.py`, etc.
+* Prise en charge des templates et fichiers statiques
+* Prise en charge des noms en CamelCase et snake\_case
+
+---
+
+## Auteur
+
+Développé avec ❤️ par **Prince Axel**
+📧 [axelvianney49@gmail.com](mailto:axelvianney49@gmail.com)
+
+---
+
+
