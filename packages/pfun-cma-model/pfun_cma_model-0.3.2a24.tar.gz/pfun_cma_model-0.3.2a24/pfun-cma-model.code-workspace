@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"tasks": {
+		"version": "2.0.0",
+		"tasks": [
+		]
+	},
+	"settings": {
+		"terminal.integrated.suggest.cdPath": "relative",
+		"python.analysis.extraPaths": [
+			".",
+			"./.venv/liv/python3.12/site-packages"
+		],
+		"github.copilot.chat.byok.ollamaEndpoint": "https://ollama.local.pfun.run",
+		"github.copilot.chat.agent.thinkingTool": true,
+		"github-actions.workflows.pinned.workflows": [
+			"pfun_path_helper/.github/workflows/main.yml"
+		],
+
+	}
+}
