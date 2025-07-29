@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: pdf_translator_package
+Version: 0.1.1
+Summary: Application Django pour traduire des fichiers PDF
+Author: Lou Christelle
+Requires-Dist: django>=3.2
+Requires-Dist: PyPDF2
+Requires-Dist: fpdf
+Requires-Dist: googletrans==4.0.0-rc1
+Dynamic: author
+Dynamic: requires-dist
+Dynamic: summary
