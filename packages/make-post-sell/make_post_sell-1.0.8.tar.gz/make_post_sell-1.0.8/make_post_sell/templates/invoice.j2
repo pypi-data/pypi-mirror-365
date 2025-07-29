@@ -1,0 +1,57 @@
+{% extends "base.j2" %}
+
+{% block content %}
+  <h1>Invoice Identifier<br>{{ invoice.id }}</h1>
+  <p><strong>Customer Name:</strong> {{ invoice.user.name }}</p>
+  <p><strong>Date:</strong> {{ invoice.human_created_timestamp }}</p>
+  
+  <!-- Pricing Breakdown -->
+  <div style="background-color: #f8f9fa; padding: 15px; border: 1px solid #dee2e6; border-radius: 5px; margin: 15px 0;">
+    <h3>Total Breakdown</h3>
+    <p><strong>Subtotal:</strong> ${{ '%0.2f' % (invoice.subtotal_in_cents / 100) }}</p>
+    
+    {% if invoice.coupon_redemptions %}
+      <h4>Discounts Applied</h4>
+      {% for redemption in invoice.coupon_redemptions %}
+        <p style="color: #28a745;">
+          <strong>{{ redemption.coupon.code }}:</strong> {{ redemption.coupon.description }}
+        </p>
+      {% endfor %}
+      <p><strong>Total Discounts:</strong> <span style="color: #28a745;">-${{ '%0.2f' % (invoice.discount_amount_in_cents / 100) }}</span></p>
+    {% endif %}
+    
+    {% if invoice.handling_cost_in_cents %}
+      <p><strong>Handling Cost:</strong> ${{ '%0.2f' % (invoice.handling_cost_in_cents / 100) }}</p>
+    {% endif %}
+    
+    <hr style="margin: 10px 0;">
+    <p style="font-size: 1.2em;"><strong>Total:</strong> ${{ '%0.2f' % invoice.total }}</p>
+  </div>
+  
+  <p><strong>Shipping/Pickup:</strong> {{ invoice.handling_option }}</p>
+  {% if invoice.delivery_address %}
+    <p><strong>Delivery Address:</strong> {{ invoice.delivery_address }}</p>
+  {% endif %}
+
+  <h2>Line Items</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in invoice.line_items %}
+        <tr>
+          <td><a href="/p/{{ item.product.id }}">{{ item.product.title }}</a></td>
+          <td>{{ item.quantity }}</td>
+          <td>${{ '%0.2f' % (item.price.price_in_cents / 100) }}</td>
+          <td>${{ '%0.2f' % ((item.price.price_in_cents * item.quantity) / 100) }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
