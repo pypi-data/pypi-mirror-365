@@ -1,0 +1,16 @@
+/* global widget styles */
+Screen {
+    padding: 1;
+}
+
+Input {
+    padding: 0 1;
+    margin: 0;
+    background: transparent;
+    border: solid $secondary-muted;
+}
+
+/* utility classes */
+.hidden {
+    display: none;
+}
