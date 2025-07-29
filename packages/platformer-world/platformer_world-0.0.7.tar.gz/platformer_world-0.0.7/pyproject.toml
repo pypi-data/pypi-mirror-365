@@ -1,0 +1,21 @@
+[project]
+name = "platformer-world"
+version = "0.0.7"
+description = "2D Platformer written in pygame"
+authors = [{ name = "Dekoder-py", email = "dekod3r.py@gmail.com" }]
+readme = "README.md"
+license = "MIT"
+keywords = ["game", "adventure", "pygame", "platformer", "interactive"]
+requires-python = ">=3.7"
+dependencies = ["pygame-ce", "pytmx"]
+
+[project.urls]
+Repository = "https://github.com/Dekoder-py/PygamePlatformer"
+
+[project.scripts]
+platformer-world = "platformer_world.main:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
