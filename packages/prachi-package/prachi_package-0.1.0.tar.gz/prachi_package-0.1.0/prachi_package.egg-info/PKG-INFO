@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: prachi-package
+Version: 0.1.0
+Summary: This Package is for printing patterns
+Home-page: https://github.com/prachikabra121/Pattern
+Author: Prachi Kabra
+Author-email: codebakery8889@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# Prachi_Pattern 
+This is a simple Package to print a patterns
+
+
+## Installaytion 
+
+Install it using pip:
+
+pip install Prachi_Pattern
+
+
+from Pattern import (pyramid,right_angle,left_angle)
+
+
+# right_angle
+
+pyramid(5)
+
+# output
+
+*
+**
+***
+****
+*****
+
+
+
