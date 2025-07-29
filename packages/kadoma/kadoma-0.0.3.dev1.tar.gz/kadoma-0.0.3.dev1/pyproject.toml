@@ -1,0 +1,76 @@
+[project]
+name = "kadoma"
+authors = [
+    {name = "L. López", email = "luis@cuarentaydos.com"}
+]
+maintainers = [
+    {name = "L. López", email = "luis@cuarentaydos.com"}
+]
+description = "Control Daikin BRC1H units over BLE (forked from pymadoka)"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "bleak>=0.22.3",
+]
+keywords = [
+    "automation",
+    "ble",
+    "bluetooth",
+    "home-assistant",
+    "homeautomation",
+    "mqtt",
+    "thermostat",
+]
+# Keep original license for now
+# license = "GPL-3.0-or-later"
+license = "MIT"
+# dynamic = ["version"]
+version = "0.0.3-dev1"
+
+[project.urls]
+Homepage = "https://github.com/ldotlopez/kadoma"
+Repository = "https://github.com/ldotlopez/kadoma"
+Issues = "https://github.com/ldotlopez/kadoma/issues"
+
+[project.scripts]
+kadoma-cli = "kadoma.cli:cli"
+kadoma-mqtt = "kadoma.mqtt:main"
+
+[tool.uv]
+package = true
+
+[dependency-groups]
+cli = [
+    "click>=8.2.1",
+]
+dev = [
+    "black>=25.1.0",
+    "ipdb>=0.13.13",
+    "isort>=6.0.1",
+    "mypy>=1.15.0",
+    "pre-commit>=4.2.0",
+    "pyupgrade>=3.20.0",
+]
+mqtt = [
+    "aiomqtt>=2.4.0",
+    "pydantic>=2.11.5",
+    "pyyaml>=6.0.2",
+]
+
+# [tool.setuptools.dynamic]
+# version = {attr = "kadoma.__version__"}
+
+[tool.setuptools.packages.find]
+include = ["kadoma"]
+
+[tool.black]
+target-version = ['py313']
+
+[tool.isort]
+profile = "black"
+
+[tool.mypy]
+files = ["kadoma"]
+
+[tool.pyupgrade]
+addopts = "--py313-plus"
