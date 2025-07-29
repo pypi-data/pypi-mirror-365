@@ -1,0 +1,11 @@
+[importlinter]
+root_packages =
+    pinsight
+
+[importlinter:contract:0]
+name = pinsight
+type = layers
+layers = 
+containers =
+    pinsight
+exhaustive = True

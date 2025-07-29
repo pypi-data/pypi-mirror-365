@@ -1,0 +1,84 @@
+[build-system]
+build-backend = "hatchling.build"
+
+requires = [ "hatchling" ]
+
+[project]
+name = "pinsight"
+version = "0.1.0"
+description = "A CLI for summarizing a pins board using the Posit pins framework."
+readme = "README.md"
+authors = [
+  { name = "Nathan McDougall", email = "nathan.j.mcdougall@gmail.com" },
+]
+requires-python = ">=3.10"
+classifiers = [
+  "Development Status :: 1 - Planning",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+]
+
+dependencies = [  ]
+
+[dependency-groups]
+dev = [
+  "deptry>=0.23.0",
+  "import-linter>=2.3",
+  "pre-commit>=4.2.0",
+  "ruff>=0.12.5",
+  "usethis>=0.15.2",
+]
+test = [
+  "coverage[toml]>=7.10.1",
+  "pytest>=8.4.1",
+  "pytest-cov>=6.2.1",
+  "pytest-emoji>=0.2.0",
+  "pytest-md>=0.2.0",
+]
+doc = [
+  "mkdocs>=1.6.1",
+]
+
+[tool.ruff]
+line-length = 88
+format.docstring-code-format = true
+
+lint.select = [ "A", "C4", "E4", "E7", "E9", "F", "FLY", "FURB", "I", "INP", "PLE", "PLR", "PT", "RUF", "SIM", "UP" ]
+lint.ignore = [ "PLR2004", "SIM108" ]
+lint.per-file-ignores."tests/**" = [ "INP" ]
+
+[tool.codespell]
+ignore-regex = [ "[A-Za-z0-9+/]{100,}" ]
+ignore-words-list = [ "..." ]
+
+[tool.pyproject-fmt]
+keep_full_version = true
+
+[tool.pytest.ini_options]
+testpaths = [ "tests" ]
+addopts = [ "--import-mode=importlib", "-ra", "--strict-markers", "--strict-config" ]
+filterwarnings = [ "error" ]
+xfail_strict = true
+log_cli_level = "INFO"
+minversion = "7"
+
+[tool.coverage]
+report.exclude_also = [
+  "if TYPE_CHECKING:",
+  "raise AssertionError",
+  "raise NotImplementedError",
+  "assert_never(.*)",
+  "class .*\\bProtocol\\):",
+  "@(abc\\.)?abstractmethod",
+]
+report.omit = [ "*/pytest-of-*/*" ]
+
+[tool.coverage.run]
+source = [ "src" ]
+
+[tool.uv]
+link-mode = "symlink"
+default-groups = [ "doc", "dev", "test" ]
