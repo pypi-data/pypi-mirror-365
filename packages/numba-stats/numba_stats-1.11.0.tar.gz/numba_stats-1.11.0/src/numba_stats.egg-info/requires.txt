@@ -1,0 +1,11 @@
+numba>=0.53
+numpy>=1.20
+scipy>=1.5
+
+[test]
+pytest>=6
+pytest-cov>=5
+pytest-benchmark>=4
+pydocstyle>=6
+coverage>=6
+nox
