@@ -1,0 +1,48 @@
+Metadata-Version: 2.3
+Name: pyconfigue
+Version: 0.0.1a0
+Summary: A library that let's you manage your python app configuration easily
+Author: Alexi Desvignes Nouvel
+Requires-Python: >=3.12,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: pydantic (>=2.11.4,<3.0.0)
+Requires-Dist: pytest (>=8.4.1,<9.0.0)
+Description-Content-Type: text/markdown
+
+# PyConFigue
+
+
+
+## Features
+
+This library provides you an easy way to properly manage your python application configuration easily.
+
+The key features are:
+
+- Multiple configuration sources support using configuration providers
+- Sources priority managment using a layer based model
+- Typed configuration
+- Autocomplete from IDEs
+- Support of objects configurations using [Pydantic](https://docs.pydantic.dev/latest/)
+
+## Installation
+
+```
+pip install ConFigue
+```
+
+## Usage
+
+TO COMPLE
+
+## Requirements
+
+The dependancies of the project are listed in the [pyproject.toml file](pyproject.toml)
+
+
+## Project Status
+
+> [!NOTE]
+> The project is currently in development phase. If you have any remark or question feel free to open an Issue
