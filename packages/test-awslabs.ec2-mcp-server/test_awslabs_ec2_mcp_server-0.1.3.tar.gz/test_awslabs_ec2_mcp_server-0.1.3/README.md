@@ -1,0 +1,225 @@
+# AWS EC2 MCP Server
+
+A Model Context Protocol (MCP) server for managing AWS EC2 instances, AMIs, security groups, volumes, and related infrastructure.
+
+## Features
+
+This MCP server acts as a **bridge** between MCP clients and AWS EC2, allowing generative AI models to create, configure, and manage EC2 resources. The server provides a secure way to interact with AWS EC2 resources while maintaining proper access controls and resource validation.
+
+### Core Capabilities
+- **EC2 Instances**: Launch, terminate, start, stop, and reboot instances
+- **Security Groups**: Create, modify, and delete security groups and rules  
+- **Key Pairs**: Create and manage SSH key pairs with secure storage
+- **EBS Volumes**: Create, attach, detach, and delete volumes
+- **EBS Snapshots**: Create and manage volume snapshots
+- **AMIs**: Create custom AMIs from instances and manage their lifecycle
+- **VPC Management**: List and manage VPCs, subnets, and networking components
+
+### Security Features
+- Input validation for all AWS resource IDs
+- Permission-based access control with environment variable controls
+- Response sanitization to prevent sensitive data leakage
+- Secure private key storage in AWS services (Parameter Store, S3, Secrets Manager)
+- Configurable write operation protection
+
+## Prerequisites
+
+1. AWS account with permissions to manage EC2 resources
+2. AWS credentials configured (AWS CLI, environment variables, or IAM roles)
+
+## Installation
+
+| Cursor | VS Code |
+|:------:|:-------:|
+| [![Install MCP Server](https://cursor.com/deeplink/mcp-install-light.svg)](https://cursor.com/install-mcp?name=awslabs.ec2-mcp-server&config=ewogICJjb21tYW5kIjogInV2eCIsCiAgImFyZ3MiOiBbImF3c2xhYnMuZWMyLW1jcC1zZXJ2ZXJAbGF0ZXN0Il0sCiAgImVudiI6IHsKICAgICJBV1NfUFJPRklMRSI6ICJkZWZhdWx0IiwKICAgICJBV1NfUkVHSU9OIjogInVzLXdlc3QtMiIsCiAgICAiRkFTVE1DUF9MT0dfTEVWRUwiOiAiSU5GTyIsCiAgICAiQUxMT1dfV1JJVEUiOiAidHJ1ZSIsCiAgICAiQUxMT1dfU0VOU0lUSVZFX0RBVEEiOiAiZmFsc2UiCiAgfQp9) | [![Install on VS Code](https://img.shields.io/badge/Install_on-VS_Code-FF9900?style=flat-square&logo=visualstudiocode&logoColor=white)](https://insiders.vscode.dev/redirect/mcp/install?name=AWS%20EC2%20MCP%20Server&config=%7B%22command%22%3A%22uvx%22%2C%22args%22%3A%5B%22awslabs.ec2-mcp-server%40latest%22%5D%2C%22env%22%3A%7B%22AWS_PROFILE%22%3A%22default%22%2C%22AWS_REGION%22%3A%22us-west-2%22%2C%22FASTMCP_LOG_LEVEL%22%3A%22INFO%22%2C%22ALLOW_WRITE%22%3A%22true%22%2C%22ALLOW_SENSITIVE_DATA%22%3A%22false%22%7D%7D) |
+
+### Using uvx (Recommended)
+
+Configure the MCP server in your MCP client configuration (e.g., for Claude Desktop, edit the configuration file):
+
+```json
+{
+  "mcpServers": {
+    "awslabs.ec2-mcp-server": {
+      "command": "uvx",
+      "args": ["awslabs.ec2-mcp-server@latest"],
+      "env": {
+        "AWS_PROFILE": "default",
+        "AWS_REGION": "us-west-2",
+        "FASTMCP_LOG_LEVEL": "INFO",
+        "ALLOW_WRITE": "true",
+        "ALLOW_SENSITIVE_DATA": "false"
+      },
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}
+```
+
+### Using Docker
+
+First, build the Docker image:
+
+```bash
+docker build -t awslabs/ec2-mcp-server .
+```
+
+Then configure with Docker in your MCP client:
+
+```json
+{
+  "mcpServers": {
+    "awslabs.ec2-mcp-server": {
+      "command": "docker",
+      "args": [
+        "run",
+        "--rm",
+        "--interactive",
+        "--env", "AWS_PROFILE=default",
+        "--env", "AWS_REGION=us-west-2",
+        "--env", "FASTMCP_LOG_LEVEL=INFO",
+        "--env", "ALLOW_WRITE=true",
+        "--env", "ALLOW_SENSITIVE_DATA=false",
+        "--volume", "~/.aws:/root/.aws:ro",
+        "awslabs/ec2-mcp-server:latest"
+      ],
+      "env": {},
+      "disabled": false,
+      "autoApprove": []
+    }
+  }
+}
+```
+
+**Note**: The Docker configuration includes a read-only mount of your AWS credentials directory (`~/.aws`) to provide AWS authentication to the container.
+
+## Configuration Options
+
+### Environment Variables
+
+- **`AWS_PROFILE`**: AWS profile name (default: "default")
+- **`AWS_REGION`**: AWS region (default: "us-east-1") 
+- **`ALLOW_WRITE`**: Enable write operations like create/modify/delete (default: "false")
+- **`ALLOW_SENSITIVE_DATA`**: Enable access to sensitive resource data (default: "false")
+- **`FASTMCP_LOG_LEVEL`**: Logging level - DEBUG, INFO, WARNING, ERROR (default: "INFO")
+- **`FASTMCP_LOG_FILE`**: Optional log file path
+
+### Security Settings
+
+**Important**: Write operations are disabled by default for security. Set `ALLOW_WRITE=true` to enable resource creation/modification/deletion.
+
+### Key Pair Storage Configuration
+
+When creating key pairs, you must specify a storage method. Configure these environment variables for S3 encrypted storage:
+
+**Required for S3 Encrypted Storage:**
+- **`ENCRYPTION_SALT`**: Secure salt for key derivation (⚠️ Required for production)
+- **`S3_KEYPAIR_BUCKET`**: S3 bucket name for storing encrypted private keys
+- **`S3_KEYPAIR_PREFIX`**: S3 key prefix for organizing stored keys (default: "private-keys")
+
+## Available Tools
+
+### EC2 Instances (9 tools)
+- `list_instances` - List EC2 instances with filtering options
+- `get_instance_details` - Get detailed information about a specific instance
+- `launch_instance` - Launch new EC2 instances with full configuration
+- `terminate_instance` - Terminate EC2 instances permanently
+- `start_instance` - Start stopped instances
+- `stop_instance` - Stop running instances (with optional force flag)
+- `reboot_instance` - Reboot running instances
+- `get_subnet_info` - Get subnet information for networking
+- `list_subnets` - List available subnets for instance placement
+
+### Security Groups (5 tools)
+- `list_security_groups` - List security groups with filtering
+- `get_security_group_details` - Get detailed security group configuration
+- `create_security_group` - Create new security groups with descriptions
+- `delete_security_group` - Delete security groups
+- `modify_security_group_rules` - Add/remove inbound and outbound rules
+
+### Key Pairs (3 tools) - ⚠️ Storage Method Required
+- `list_key_pairs` - List available EC2 key pairs
+- `create_key_pair` - **Requires storage_method parameter (no default)**
+  - Must specify one of: "secrets_manager", "s3_encrypted", or "parameter_store"
+  - Cannot create key pair without explicitly specifying where to store the private key
+  - For S3 encryption: Configure ENCRYPTION_SALT, S3_KEYPAIR_BUCKET environment variables
+- `delete_key_pair` - Delete key pairs and associated stored private keys
+
+### EBS Volumes (5 tools)
+- `list_volumes` - List EBS volumes with status and attachment info
+- `create_volume` - Create new EBS volumes with specified size and type
+- `delete_volume` - Delete EBS volumes (must be unattached)
+- `attach_volume` - Attach volumes to EC2 instances
+- `detach_volume` - Detach volumes from instances
+
+### EBS Snapshots (2 tools)
+- `list_snapshots` - List EBS snapshots with filtering
+- `create_snapshot` - Create snapshots from EBS volumes
+
+### AMIs - Amazon Machine Images (4 tools)
+- `list_amis` - List AMIs with ownership and filtering options
+- `get_popular_amis` - Get popular public AMIs (Amazon Linux, Ubuntu, Windows, RHEL)
+- `create_image` - Create custom AMIs from running instances
+- `deregister_image` - Deregister/delete AMIs
+
+### VPC & Networking (5 tools)
+- `list_vpcs` - List Virtual Private Clouds
+- `get_default_vpc` - Get the default VPC for the region
+- `find_suitable_subnet` - Find appropriate subnets for instance placement
+- `delete_vpc` - Delete VPCs (advanced operation)
+- `list_subnets` - List subnets with VPC filtering
+
+## Common Workflows
+
+### Launch a Web Server
+1. `get_popular_amis` - Find latest Amazon Linux AMI
+2. `create_key_pair` - YOU MUST CHOOSE: storage_method="secrets_manager" OR "s3_encrypted" OR "parameter_store"
+3. `create_security_group` for HTTP/SSH access
+4. `launch_instance` with the AMI, key pair, and security group
+
+### Create Custom AMI
+1. `list_instances` - Find your configured instance
+2. `stop_instance` - Stop for consistent snapshot
+3. `create_image` - Create AMI from instance
+4. `start_instance` - Restart original instance
+
+### Volume Management
+1. `create_volume` - Create additional storage
+2. `attach_volume` - Attach to running instance
+3. `create_snapshot` - Backup volume data
+
+## Required AWS Permissions
+
+The server requires the following IAM permissions:
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:*",
+                "ssm:GetParameter",
+                "ssm:PutParameter",
+                "ssm:DeleteParameter",
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:DeleteObject",
+                "secretsmanager:GetSecretValue",
+                "secretsmanager:CreateSecret",
+                "secretsmanager:DeleteSecret",
+                "sts:GetCallerIdentity"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
+
+For production use, consider implementing more restrictive permissions based on your specific needs.
+
+## License
+
+This project is licensed under the Apache License, Version 2.0.
