@@ -1,0 +1,23 @@
+packaging>=20.0
+
+[docs]
+myst-parser>=2
+sphinx-autodoc-typehints>=2
+
+[docs:python_version < "3.11"]
+sphinx<8.2,>=7.2
+
+[docs:python_version >= "3.11"]
+sphinx>=8.2
+
+[pyqt5]
+PyQt5>=5.15
+
+[pyqt6]
+PyQt6>=6.0
+
+[pyside2]
+PySide2>=5.15
+
+[pyside6]
+PySide6>=6.0
