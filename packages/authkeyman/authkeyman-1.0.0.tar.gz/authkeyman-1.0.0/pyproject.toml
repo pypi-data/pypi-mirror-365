@@ -1,0 +1,25 @@
+[project]
+name = "authkeyman"
+version = "1.0.0"
+description = "Quickly manage your authorized public SSH keys"
+authors = [
+    {name = "Tactical Laptop Bag",email = "tacticallaptopbag@protonmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "pathlib (>=1.0.0,<2.0.0)",
+    "argparse (>=1.0.0,<2.0.0)"
+]
+
+[project.scripts]
+authkeyman = "authkeyman.authkeyman:main"
+
+
+[tool.poetry]
+packages = [{include = "authkeyman", from = "src"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
