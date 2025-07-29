@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "high-taste": {
+      "command": "uv",
+      "args": ["run", "python", "-m", "high_taste.server"],
+      "cwd": "/path/to/taste",
+      "env": {
+        "PYTHONPATH": "src"
+      }
+    }
+  }
+}
