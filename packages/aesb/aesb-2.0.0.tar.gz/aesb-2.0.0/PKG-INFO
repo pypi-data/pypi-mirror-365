@@ -1,0 +1,113 @@
+Metadata-Version: 2.1
+Name: aesb
+Version: 2.0.0
+Summary: A Python package for battery cell data analysis and visualization.
+License: Copyright (c) 2023, [Your Name]
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: Homepage, https://github.com/pypa/sampleproject
+Project-URL: Bug Tracker, https://github.com/pypa/sampleproject/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: matplotlib
+Requires-Dist: scikit-learn
+Requires-Dist: requests
+Requires-Dist: sqlalchemy
+Requires-Dist: pymysql
+Requires-Dist: tqdm
+
+# AESB: Advanced Energy Storage Analytics
+
+`aesb` is a Python package for fetching, processing, analyzing, and visualizing battery cell data from various manufacturing databases. It is designed to help engineers and data scientists monitor battery quality, identify anomalies, and understand cell behavior.
+
+## Key Features
+
+- **Data Fetching:**
+    - Connects to multiple database systems (MySQL, Doris) to retrieve battery cell data.
+    - Fetches data based on cell IDs, date ranges, or specific manufacturing processes (CP).
+    - Retrieves detailed FTP curve data for in-depth analysis.
+    - Handles data from different manufacturing bases (e.g., 'jy', 'sy', 'ordos').
+- **Data Processing:**
+    - Removes rework data to ensure analysis is based on first-pass results.
+    - Enriches data with defect information.
+    - Calculates dQ/dV, a key metric for battery health analysis.
+- **Data Visualization:**
+    - Generates various plots to visualize cell characteristics and compare them with their peers.
+    - Analyzes and plots feature distributions to identify outliers.
+    - Visualizes FTP curves to understand charging and discharging behavior.
+- **Data Management:**
+    - Provides a unified `BatteryDataManager` class to streamline data operations.
+    - Allows uploading processed data back to a database.
+    - Enables marking cells with defect codes directly through an API.
+
+## Installation
+
+To install the project, you can use pip:
+
+```bash
+pip install .
+```
+
+## Usage
+
+To use the project, you can import the package and use the `BatteryDataManager` class:
+
+```python
+from aesb import BatteryDataManager
+
+# Initialize the data manager for a specific manufacturing base and line
+dm = BatteryDataManager(base='jy', wip_line='JYP1')
+
+# Get data for a list of cell IDs
+cell_data = dm.get_data_by_cell_ids(['cell_id_1', 'cell_id_2'], cp_names=['CAP', 'FOR'])
+
+# Get FTP curve data for a cell
+curve_data = dm.get_curves_by_cell_ids(['cell_id_1'], proc='CAP')
+
+# Analyze a cell and visualize its characteristics
+dm.analyze_cell_cp('cell_id_1')
+```
+
+## Development
+
+To set up the development environment, first create a virtual environment:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+Then, install the dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+To run the tests:
+
+```bash
+python3 -m pytest
+```
