@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: DobotEDU
+Version: 2.2.2
+Summary: Dobotlink communication module
+Author: songlijun
+Author-email: songlijun@dobot.cc
+License: Apache Licence
+Keywords: DobotEDU,Dobotlink
+Platform: any
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: opencv-python ==4.5.1.48
+Requires-Dist: sounddevice ==0.4.1
+Requires-Dist: soundfile ==0.10.3.post1
+Requires-Dist: DobotRPC ==4.8.5
+Requires-Dist: requests ==2.25.1
+Requires-Dist: playsound ==1.2.2
+Requires-Dist: scipy ==1.6.0
+Requires-Dist: openpyxl ==3.0.6
+
+***This version is relevant for Dobotlink 5.0.0***
+
+* [接口文档地址](http://192.168.0.11:20080/education-produce-group/front-end/dobotlab/dobotlab/-/wikis/DobotEDU%E6%A8%A1%E5%9D%97%E6%8E%A5%E5%8F%A3)
+
+## 分支说明
+
+* feat/py35:DobotEDU基于py38环境使用，兼容非主流系统，打包了py35的版本，去掉f-string的语法
+
+* master:本地pyimage服务，最新版本是2.1.8
+
+## 文件说明
+
+* DobotEDU/__init__.py:暴露接口，提供对象给前端
+* DobotEDU/dobotedu.py:封装DobotEDU类，实例化对象
+* DobotEDU/device:机器指令
+* DobotEDU/pause:暂停业务
+* DobotEDU/function.py：AI相关接口
+* DobotEDU/pyimageom.py：连接pyimage服务
+
+## 注意事项
+
+* 如果线上pyimage推到生产，pyimage的ip需要更改(dobotedu.py)
