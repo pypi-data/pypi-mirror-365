@@ -1,0 +1,136 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "himosoft-payment-logging-client"
+version = "1.0.0"
+description = "A Python client library for integrating with the Himosoft Payment Logging API"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Himosoft", email = "support@himosoft.com"}
+]
+maintainers = [
+    {name = "Himosoft", email = "support@himosoft.com"}
+]
+keywords = ["payment", "logging", "api", "client", "himosoft"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Office/Business :: Financial",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "requests>=2.25.0",
+    "python-decouple>=3.6",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "pytest-cov>=2.10",
+    "black>=21.0",
+    "flake8>=3.8",
+    "responses>=0.13.0",
+    "build>=1.0.0",
+    "twine>=4.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/Swe-HimelRana/himosoft-payment-logging-client"
+Documentation = "https://github.com/Swe-HimelRana/himosoft-payment-logging-client#readme"
+Repository = "https://github.com/Swe-HimelRana/himosoft-payment-logging-client"
+"Bug Tracker" = "https://github.com/Swe-HimelRana/himosoft-payment-logging-client/issues"
+"Source Code" = "https://github.com/Swe-HimelRana/himosoft-payment-logging-client"
+
+[project.scripts]
+himosoft-payment-logging-client = "himosoft_payment_logging_client.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["himosoft_payment_logging_client*"]
+
+[tool.setuptools.package-data]
+"himosoft_payment_logging_client" = ["*.txt", "*.md"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--verbose",
+    "--tb=short",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+]
+
+[tool.coverage.run]
+source = ["himosoft_payment_client"]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "*/__pycache__/*",
+    "*/venv/*",
+    "*/venv/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503"]
+exclude = [
+    ".git",
+    "__pycache__",
+    "build",
+    "dist",
+    "*.egg-info",
+    "venv",
+    ".venv",
+    ".pytest_cache",
+] 
