@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["djsms", "djsms.*"]
+
+[project]
+name = "djsms"
+version = "0.0.6"
+dependencies = [
+    "django>=5.0.0",
+    "requests>=2.32.3",
+    "jdatetime >= 5.2.0"
+]
+authors = [
+  { name="Kaveh Mehrbanian", email="mehrbaniankaveh@gmail.com" },
+]
+description = "A reusable Django app for sending sms"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/kavehkm/DJSMS"
+Documentation = "https://github.com/kavehkm/DJSMS"
+Issues = "https://github.com/kavehkm/DJSMS/issues"

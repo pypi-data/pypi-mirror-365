@@ -1,0 +1,21 @@
+Metadata-Version: 2.4
+Name: djsms
+Version: 0.0.6
+Summary: A reusable Django app for sending sms
+Author-email: Kaveh Mehrbanian <mehrbaniankaveh@gmail.com>
+Project-URL: Homepage, https://github.com/kavehkm/DJSMS
+Project-URL: Documentation, https://github.com/kavehkm/DJSMS
+Project-URL: Issues, https://github.com/kavehkm/DJSMS/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: django>=5.0.0
+Requires-Dist: requests>=2.32.3
+Requires-Dist: jdatetime>=5.2.0
+Dynamic: license-file
+
+# DJSMS
+A reusable Django app for sending sms
