@@ -1,0 +1,58 @@
+Metadata-Version: 2.4
+Name: mosaic-mind
+Version: 0.0.1a1
+Summary: Add your description here
+Author-email: Tarek Sanger <tarek.sanger@me.com>
+License: MIT
+Requires-Python: >=3.9
+Requires-Dist: deepmerge>=2.0
+Requires-Dist: google-genai>=1.20.0
+Requires-Dist: httpx>=0.28.1
+Requires-Dist: numpy>=2.0.2
+Requires-Dist: openai>=1.97.1
+Requires-Dist: pydantic>=2.11.7
+Requires-Dist: tenacity>=9.1.2
+Provides-Extra: all
+Requires-Dist: sentence-transformers>=2.2.0; extra == 'all'
+Provides-Extra: sentence-transformers
+Requires-Dist: sentence-transformers>=2.2.0; extra == 'sentence-transformers'
+Description-Content-Type: text/markdown
+
+
+
+## Development Setup
+
+This project uses [pre-commit](https://pre-commit.com/) to ensure code quality checks are automatically run before each commit.
+
+### One-time setup
+
+Install the development dependencies and activate pre-commit hooks:
+
+```bash
+uv pip install --dev
+pre-commit install
+```
+
+After this setup, all future commits will automatically run formatting and lint checks.
+
+## Releasing a New Version
+
+To release a new version to PyPI:
+
+1. Bump the version number in `pyproject.toml`:
+   ```toml
+   version = "0.x.y"
+   ```
+
+2. Commit the change:
+   ```bash
+   git commit -am "Bump version to 0.x.y"
+   ```
+
+3. Tag the release and push:
+   ```bash
+   git tag v0.x.y
+   git push origin v0.x.y
+   ```
+
+This will trigger the GitHub Actions workflow to build and publish the package to PyPI using `uv publish`.
