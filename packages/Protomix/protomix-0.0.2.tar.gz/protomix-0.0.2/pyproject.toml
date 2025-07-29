@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Protomix"
+version = "0.0.2"
+description = "A Python package for NMR preprocessing"
+readme = "README.md"
+requires-python = ">=3.7"
+license = { text = "MIT" }
+
+authors = [
+  { name = "Mohammed Zniber", email = "zniber1995@gmail.com" }
+]
+
+keywords = ["NMR", "Preprocessing", "metabolomics", "serum", "urine"]
+
+dependencies = [
+  "numpy",
+  "pandas",
+  "scipy",
+  "plotly"
+]
+
+[project.urls]
+Homepage = "https://github.com/mzniber/protomix"
