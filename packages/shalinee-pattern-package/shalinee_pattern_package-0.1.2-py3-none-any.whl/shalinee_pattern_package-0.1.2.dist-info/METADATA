@@ -1,0 +1,66 @@
+Metadata-Version: 2.4
+Name: shalinee_pattern_package
+Version: 0.1.2
+Summary: This package is for printing patterns
+Home-page: https://github.com/Shalinee-Priya/pattern
+Author: Shalinee
+Author-email: shalinee.priya31@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary
+
+# Pattern
+
+This is a simple package to print the patterns
+
+# shalinee_pattern_package
+
+A custom Python package for pattern generation, created by Shalinee.
+
+# Installation
+
+Install it using pip
+
+pip install shalinee_pattern_package
+
+from shalinee_pattern_package import (pyramid,right_angle,left_angle)
+
+# pyramid
+pyramid(5)
+
+# output
+
+    *
+   * *
+  * * *
+ * * * *
+* * * * *
+
+# right_angle
+right_angle(5)
+
+*
+**
+***
+****
+*****
+
+# left_angle
+left_angle(5)
+    *
+   **
+  ***
+ ****
+*****
