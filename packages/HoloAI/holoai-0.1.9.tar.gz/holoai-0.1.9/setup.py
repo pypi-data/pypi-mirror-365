@@ -1,0 +1,27 @@
+# -*- coding: utf-8 -*-
+from setuptools import setup, find_packages
+
+setup(
+    name="HoloAI",
+    version="0.1.9",
+    packages=find_packages(),
+    include_package_data=True,
+    install_requires=[
+        "openai",
+        "groq",
+        "python-dotenv",
+        "google-genai",
+        "SyncLink",
+        "SynMem",
+        "SynLrn",
+        "BitSig",
+        "requests",
+        "opencv-python",
+        "Pillow",
+        "gguf-parser",
+        "numpy",
+    ],
+    author="Tristan McBride Sr.",
+    author_email="TristanMcBrideSr@users.noreply.github.com",
+    description="A modern AI Client",
+)
