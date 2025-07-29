@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sec-pass-manager"
+version = "1.3.0"
+description = "A secure password manager that creates random passwords and saves them as encrypted files"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "santipvz", email = "santivzqzz@gmail.com"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: End Users/Desktop",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Security",
+    "Topic :: Utilities",
+]
+keywords = ["password", "manager", "security", "generator", "cli"]
+requires-python = ">=3.7"
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/santipvz/SecurePasswordManager"
+Repository = "https://github.com/santipvz/SecurePasswordManager"
+Issues = "https://github.com/santipvz/SecurePasswordManager/issues"
+
+[project.scripts]
+cpass = "spm.console_interface:main"
