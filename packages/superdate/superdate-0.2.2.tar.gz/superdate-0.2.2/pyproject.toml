@@ -1,0 +1,24 @@
+[build-system]
+requires = ['setuptools', 'wheel']
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = 'superdate'
+authors = [
+    {name = 'Raven', email = 'raven@rubicon.aleeas.com'},
+]
+
+description = 'A super flexible and performant date parser.'
+readme = 'README.rst'
+requires-python = '>=3, <4'
+
+dependencies = [
+    'parsedatetime<3',
+]
+
+license = 'GPL-2.0'
+
+version = '0.2.2'
+
+[project.urls]
+Homepage = 'https://github.com/digital-raven/superdate'
