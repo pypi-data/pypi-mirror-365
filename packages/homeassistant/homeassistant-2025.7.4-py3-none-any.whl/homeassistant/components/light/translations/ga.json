@@ -1,0 +1,59 @@
+{
+    "common": {
+        "field_color_temp_kelvin_description": "Teocht datha i Kelvin.",
+        "field_color_temp_kelvin_name": "Teocht datha",
+        "field_white_name": "B\u00e1n",
+        "field_xy_color_description": "Dath\u00faigh i bhform\u00e1id XY. Liosta de dh\u00e1 uimhir dheach\u00falacha idir 0 agus 1.",
+        "field_xy_color_name": "Dath XY",
+        "section_advanced_fields_name": "Roghanna ardleibh\u00e9il"
+    },
+    "device_automation": {
+        "extra_fields": {
+            "brightness_pct": "Gile",
+            "flash": "Splanc"
+        }
+    },
+    "selector": {
+        "flash": {
+            "options": {
+                "long": "Fada",
+                "short": "Gearr"
+            }
+        }
+    },
+    "services": {
+        "toggle": {
+            "fields": {
+                "color_temp_kelvin": {
+                    "description": "Teocht datha i Kelvin.",
+                    "name": "Teocht datha"
+                }
+            },
+            "sections": {
+                "advanced_fields": {
+                    "name": "Roghanna ardleibh\u00e9il"
+                }
+            }
+        },
+        "turn_off": {
+            "sections": {
+                "advanced_fields": {
+                    "name": "Roghanna ardleibh\u00e9il"
+                }
+            }
+        },
+        "turn_on": {
+            "fields": {
+                "color_temp_kelvin": {
+                    "description": "Teocht datha i Kelvin.",
+                    "name": "Teocht datha"
+                }
+            },
+            "sections": {
+                "advanced_fields": {
+                    "name": "Roghanna ardleibh\u00e9il"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,42 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "data_description": {
+                    "port": "Beidh an comhth\u00e1th\u00fa r\u00e9amhshocraithe go 8050, mura bhfuil s\u00e9 socraithe, rud a bheadh oiri\u00fanach do fhormh\u00f3r na suite\u00e1lacha."
+                }
+            }
+        }
+    },
+    "entity": {
+        "binary_sensor": {
+            "dc_1_short_circuit_error_status": {
+                "name": "St\u00e1das earr\u00e1ide gearrchiorcaid DC 1"
+            },
+            "dc_2_short_circuit_error_status": {
+                "name": "St\u00e1das earr\u00e1ide gearrchiorcaid DC 2"
+            },
+            "off_grid_status": {
+                "name": "St\u00e1das lasmuigh den ghreille"
+            },
+            "output_fault_status": {
+                "name": "St\u00e1das locht aschuir"
+            }
+        },
+        "number": {
+            "max_output": {
+                "name": "Aschur uasta"
+            }
+        },
+        "switch": {
+            "inverter_status": {
+                "name": "St\u00e1das an inbh\u00e9art\u00f3ra"
+            }
+        }
+    },
+    "exceptions": {
+        "inverter_error": {
+            "message": "Thug an t-inbh\u00e9art\u00f3ir earr\u00e1id ar ais"
+        }
+    }
+}

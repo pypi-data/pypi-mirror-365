@@ -1,0 +1,39 @@
+{
+    "config": {
+        "step": {
+            "user": {
+                "data": {
+                    "port": "Port do IPV4 cuardaigh",
+                    "port_ipv6": "Port do IPV6 cuardaigh"
+                }
+            }
+        }
+    },
+    "entity": {
+        "sensor": {
+            "dnsip": {
+                "state_attributes": {
+                    "ip_addresses": {
+                        "name": "Seolta\u00ed IP"
+                    },
+                    "querytype": {
+                        "name": "Cine\u00e1l fiosr\u00fach\u00e1in"
+                    },
+                    "resolver": {
+                        "name": "R\u00e9iteach"
+                    }
+                }
+            }
+        }
+    },
+    "options": {
+        "step": {
+            "init": {
+                "data": {
+                    "port": "Port do IPV4 cuardaigh",
+                    "port_ipv6": "Port do IPV6 cuardaigh"
+                }
+            }
+        }
+    }
+}

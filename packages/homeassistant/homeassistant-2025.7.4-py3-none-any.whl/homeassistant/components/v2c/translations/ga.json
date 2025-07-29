@@ -1,0 +1,49 @@
+{
+    "entity": {
+        "number": {
+            "max_intensity": {
+                "name": "D\u00e9ine uasta"
+            },
+            "min_intensity": {
+                "name": "D\u00e9ine \u00edosta"
+            }
+        },
+        "sensor": {
+            "battery_power": {
+                "name": "Cumhacht ceallra\u00ed"
+            },
+            "ip_address": {
+                "name": "Seoladh IP"
+            },
+            "meter_error": {
+                "state": {
+                    "meter": "M\u00e9adar",
+                    "meter_not_found": "N\u00edor aims\u00edodh an m\u00e9adar",
+                    "parameter_count_error": "Earr\u00e1id chomhaireamh paraim\u00e9adair",
+                    "parameter_limit_error": "Earr\u00e1id teorainn paraim\u00e9adair",
+                    "reading": "L\u00e9itheoireacht",
+                    "request_queue_full": "Scuaine iarratais l\u00e1n",
+                    "server_device_busy": "Gl\u00e9as freastala\u00ed gn\u00f3thach",
+                    "server_device_failure": "Teip gl\u00e9as freastala\u00ed",
+                    "server_id_mismatch": "Neamhoiri\u00fanacht aitheantais freastala\u00ed",
+                    "server_rtu_inactive244_timeout": "Freastala\u00ed RTU neamhghn\u00edomhach/am cr\u00edochnaithe",
+                    "tcp_head_mismatch": "m\u00ed-oiri\u00fanacht ceann TCP",
+                    "undefined_error": "Earr\u00e1id neamhshainithe",
+                    "waiting_communication": "Cumars\u00e1id feithimh",
+                    "waiting_wifi": "Ag fanacht le Wi-Fi",
+                    "wrong_ip": "IP M\u00edcheart",
+                    "wrong_meter": "M\u00e9adar m\u00edcheart"
+                }
+            },
+            "signal_status": {
+                "name": "St\u00e1das comhartha"
+            },
+            "ssid": {
+                "name": "SSID"
+            },
+            "voltage_installation": {
+                "name": "Voltas suite\u00e1la"
+            }
+        }
+    }
+}
