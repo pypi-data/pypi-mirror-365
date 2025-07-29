@@ -1,0 +1,38 @@
+Metadata-Version: 2.4
+Name: zfnet
+Version: 0.0.1
+Summary: Zebrafish functional connectivity toolkit
+Author-email: Pierce Mullen <pnm1@st-andrews.ac.uk>
+Maintainer-email: Pierce Mullen <pnm1@st-andrews.ac.uk>
+License: BSD-3-Clause
+Project-URL: bugs, https://github.com/pnm4sfix/zfnet/issues
+Project-URL: changelog, https://github.com/pnm4sfix/zfnet/blob/master/changelog.md
+Project-URL: homepage, https://github.com/pnm4sfix/zfnet
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: typer
+Provides-Extra: test
+Requires-Dist: coverage; extra == "test"
+Requires-Dist: pytest; extra == "test"
+Requires-Dist: ruff; extra == "test"
+Requires-Dist: ty; extra == "test"
+Dynamic: license-file
+
+# zfnet
+
+![PyPI version](https://img.shields.io/pypi/v/zfnet.svg)
+[![Documentation Status](https://readthedocs.org/projects/zfnet/badge/?version=latest)](https://zfnet.readthedocs.io/en/latest/?version=latest)
+
+Zebrafish functional connectivity toolkit
+
+* Free software: MIT License
+* Documentation: https://zfnet.readthedocs.io.
+
+## Features
+
+* TODO
+
+## Credits
+
+This package was created with [Cookiecutter](https://github.com/audreyfeldroy/cookiecutter) and the [audreyfeldroy/cookiecutter-pypackage](https://github.com/audreyfeldroy/cookiecutter-pypackage) project template.
