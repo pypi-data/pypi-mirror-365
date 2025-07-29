@@ -1,0 +1,148 @@
+# fixcmd – GPT-Powered Terminal Assistant
+
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/fixcmd)
+![PyPI - License](https://img.shields.io/pypi/l/fixcmd)
+![PyPI](https://img.shields.io/pypi/v/fixcmd)
+
+`fixcmd` is a command-line tool that helps you correct mistyped or uncertain shell commands, explains terminal errors, and provides usage examples — all using OpenAI's GPT models.
+
+## Features
+
+* ✅ Auto-correct mistyped terminal commands
+* 🧠 Suggest correct commands for vague or unsure inputs
+* ❌ Explain terminal errors and how to fix them
+* 🔹 Show usage and real-world examples for shell commands
+* 🔐 Secure OpenAI API key configuration
+
+---
+
+## Installation
+
+### Requirements
+
+* Python 3.7+
+* An OpenAI API key (starts with `sk-...`)
+
+### Install from PyPI
+
+```bash
+pip install fixcmd
+```
+
+### Initial Setup (Configure API key)
+
+```bash
+fixcmd -setup
+```
+
+This will prompt you to enter your OpenAI API key and save it securely in `~/.fixcmd.env`.
+
+---
+
+## Usage
+
+### Auto-fix a mistyped command
+
+```bash
+fixcmd gti status
+```
+
+Output:
+
+```
+Invalid command:
+  gti status
+
+Suggested:
+  git status
+```
+
+### Fix a vague or unsure command
+
+```bash
+fixcmd -fix "remove all jpgs"
+```
+
+Output:
+
+```
+Corrected Command:
+  rm *.jpg
+
+Usage & Example:
+Removes all JPG files in the current directory.
+Example: $ rm *.jpg
+```
+
+### Ask a command usage question
+
+```bash
+fixcmd -ask "rm -rf"
+```
+
+Output:
+
+```
+Suggested Command:
+  rm -rf
+
+Usage & Example:
+Recursively and forcefully deletes files and directories.
+Example: $ rm -rf myfolder/
+```
+
+### Explain a terminal error message
+
+```bash
+fixcmd -explain "fatal: not a git repository"
+```
+
+Output:
+
+```
+Explanation:
+You're trying to run a Git command in a directory that is not a Git repository.
+Fix:
+$ git init  # to initialize a new repo
+Or navigate to a valid repo directory
+```
+
+### Check version
+
+```bash
+fixcmd -version
+```
+
+### Display help
+
+```bash
+fixcmd -help
+```
+
+---
+
+## Environment Variable
+
+The OpenAI API key is stored in this file:
+
+```
+~/.fixcmd.env
+```
+
+with this content:
+
+```
+OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxx
+```
+
+---
+
+## Contributing
+
+Feel free to fork, improve, and submit PRs. Suggestions and issues welcome!
+
+---
+
+## Author
+
+Developed by Parishith Ragumar
