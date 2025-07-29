@@ -1,0 +1,5 @@
+[console_scripts]
+xpmir = xpmir.__main__:main
+
+[datamaestro.repositories]
+ir = xpmir:Repository

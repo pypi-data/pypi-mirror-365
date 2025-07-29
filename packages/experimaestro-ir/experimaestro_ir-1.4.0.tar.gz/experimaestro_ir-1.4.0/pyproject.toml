@@ -1,0 +1,78 @@
+[project]
+name = "experimaestro-ir"
+requires-python = ">=3.10"
+keywords = ["neural information retrieval", "information retrieval", "experiments"]
+description = "Experimaestro common module for IR experiments"
+dynamic = ["version", "readme", "dependencies"]
+license = {text = "GPL-3"}
+authors = [
+    { name = "Benjamin Piwowarski",  email = "benjamin@piwowarski.fr" }
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[tool.setuptools.dynamic]
+readme = {file = ["README.md"], content-type = "text/markdown"}
+dependencies = {file = ["requirements.txt"]}
+
+[project.optional-dependencies]
+
+anserini = [
+    "pyserini >= 0.20.0"
+]
+
+neural = [
+    "torch>=1.12",
+    "tensorboard",
+    "transformers",
+    "sentence_transformers"
+]
+
+[dependency-groups]
+
+documentation = [
+    "Sphinx>6",
+    "myst-parser",
+    "mock",
+    "sphinx-toolbox",
+    "sphinx-rtd-theme>=3",
+    "sphobjinv"
+]
+test = [
+    { include-group = "documentation" },
+    "pytest",
+    "faiss-cpu"
+]
+dev = [
+    "docutils>=0.21.2",
+    "pytest>=8.4.1",
+]
+
+
+[project.urls]
+homepage = "https://github.com/bpiwowar/experimaestro-ir"
+documentation = "https://experimaestro-ir.readthedocs.io/en/latest/"
+repository = "https://github.com/bpiwowar/experimaestro-ir"
+
+[project.scripts]
+xpmir = "xpmir.__main__:main"
+
+[project.entry-points."datamaestro.repositories"]
+ir = "xpmir:Repository"
+
+[tool.setuptools_scm]
+write_to = "src/xpmir/_version.py"
+fallback_version = "0.0.0-dev"
+
+[build-system]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2", "wheel"]
+
+[tool.pyright]
+include = ["xpmir"]

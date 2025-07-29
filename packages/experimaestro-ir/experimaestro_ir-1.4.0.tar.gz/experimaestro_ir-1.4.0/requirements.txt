@@ -1,0 +1,19 @@
+# Experimaestro
+
+experimaestro>=1.7.1
+datamaestro>=1.0.1
+datamaestro_text>=2024.2.29
+ir_datasets
+docstring_parser
+impact-index == 0.27.*
+omegaconf>=2.2
+attrs
+
+# --- SKIP_DOCBUILD ---
+
+# Information retrieval libraries
+ir-measures>=0.3.3
+
+# Torch addons
+toma
+pytorch-lightning
