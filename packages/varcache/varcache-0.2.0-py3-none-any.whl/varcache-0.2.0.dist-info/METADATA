@@ -1,0 +1,61 @@
+Metadata-Version: 2.4
+Name: varcache
+Version: 0.2.0
+Summary: Simple file-based cache for Python objects.
+Home-page: https://github.com/fomalhaut88/varcache
+Author: Alexander Khlebushchev
+License: MIT
+Project-URL: Homepage, https://pypi.org/project/varcache/
+Project-URL: Documentation, https://fomalhaut88.github.io/varcache/
+Project-URL: Source, https://github.com/fomalhaut88/varcache
+Project-URL: Issues, https://github.com/fomalhaut88/varcache/issues
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: project-url
+Dynamic: requires-python
+Dynamic: summary
+
+# varcache
+
+A simple library that provides a way to store and synchronize Python objects on a disk. It can be a good alternative towards SQLite or other solutions that seem to be too complicated in your project. Inside `varcache` uses `pickle`.
+
+## Installation
+
+```
+pip install varcache
+```
+
+## Basic example
+
+```python
+from varcache import Varcache
+
+# Configure the drectory to save
+vcache = Varcache(dirpath='./storage')
+
+# Load and save example
+obj1 = vcache.load(name='obj1', default=dict)
+obj1['x'] = 25
+vcache.save(obj1)
+
+# Binding example
+obj2 = []
+vcache.bind(obj2, name='obj2')
+obj2.append(36)
+vcache.save(obj2)
+
+# Plain save
+obj3 = {2, 3, 5, 7}
+vcache.save(obj3, name='obj3')
+```
