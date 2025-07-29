@@ -1,0 +1,68 @@
+@charset "utf-8";
+
+@import "components/variables";
+// Bootstrap5 (parts)
+@import "import_bootstrap";
+// our components
+@import "components/icons";
+@import "components/button-group";
+@import "components/grid-layout";
+@import "components/preview-generator";
+@import "components/forms";
+@import "components/tooltip";
+@import "components/title";
+@import "components/icon-picker";
+
+.sr-only {
+    @include visually-hidden;
+}
+
+#content-main ul.nav {
+    margin-bottom: 1em;
+
+    & > li.nav-item {
+        list-style-type: none;
+        padding: inherit;
+
+        a.nav-link {
+            text-decoration: none;
+        }
+    }
+}
+
+@import "components/tabs";
+
+input[type="number"].auto-field + span {
+    display: none;
+    position: absolute;
+    inset-block-end: 0;
+    inset-inline-end: 0;
+    text-align: end;
+    margin-inline-end: 31px;
+    margin-block-end: 23px;
+    cursor: pointer;
+}
+
+/* Pixel pushing for standard django admin */
+body:not(.djangocms-admin-style) input[type="number"].auto-field + span {
+    margin-bottom: 23px;
+}
+
+@media (max-width: 1024px) {
+    body:not(.djangocms-admin-style) input[type="number"].auto-field + span {
+        margin-bottom: 24px;
+    }
+}
+
+input[type="number"].auto-field + span:after {
+    content: "auto";
+}
+
+input[type="number"].auto-field.auto {
+    color: var(--dca-white, var(--body-bg, white));
+    caret-color: var(--dca-black, var(--body-fg, black));
+
+    & + span {
+        display: block;
+    }
+}
