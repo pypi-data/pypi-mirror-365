@@ -1,0 +1,11 @@
+# Include the README and LICENSE files
+include README.md
+include LICENSE
+
+# Include package data
+recursive-include rajnish_dc_crystal/*.json
+
+# Exclude development and test files
+global-exclude *.py[cod]
+prune tests/
+prune scripts/
