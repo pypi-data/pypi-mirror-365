@@ -1,0 +1,27 @@
+[project]
+name = "imfind"
+version = "0.0.10"
+authors = [
+    { name="Ramya Kottapalli", email="rskottap@gmail.com" },
+]
+description = "Local AI image finder."
+dependencies = [
+    "pytest",
+    "twine",
+    "requests",
+    "torch",
+    "transformers",
+    "easyocr",
+    "Pillow",
+    "pillow-heif",
+    "assure",
+    "mmry",
+    "embd",
+]
+
+[project.urls]
+source = "https://github.com/rskottap/imfind"
+download = "https://pypi.org/project/imfind/#files"
+
+[project.scripts]
+imfind = "imfind.bin.imfind:main"
