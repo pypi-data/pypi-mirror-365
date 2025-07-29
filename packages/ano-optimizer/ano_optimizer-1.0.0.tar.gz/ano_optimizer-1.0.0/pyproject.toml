@@ -1,0 +1,23 @@
+[project]
+name = "ano-optimizer"
+version = "1.0.0"
+description = "Ano optimizer official implementation"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+  {name = "Adrien Kegreisz", email = "adrien.kegreisz@gmail.com"}
+]
+dependencies = [
+  "torch>=2.0"
+]
+
+[project.optional-dependencies]
+tensorflow = ["tensorflow>=2.14"]
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["ano_optimizer"]
