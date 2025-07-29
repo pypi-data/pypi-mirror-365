@@ -1,0 +1,1 @@
+"""Tests for jupyter-dark-detect package."""
