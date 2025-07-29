@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "API-to-MCP-Generator"
+version = "0.1.4"
+description = "A Python library to automatically convert any OpenAPI v2/v3 specification into a Model Context Protocol (MCP) server, with integrations for popular frameworks like FastAPI."
+authors = ["Sriram Krishna"]
+license = "MPL-2.0"
+readme = "README.md"
+homepage = "https://github.com/itssri5/openapi-to-mcp"
+repository = "https://github.com/itssri5/openapi-to-mcp"
+keywords = ["openapi", "mcp", "fastapi", "api", "converter", "generator"]
+packages = [{include = "api_to_mcp_generator"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fastapi = "^0.109.2"
+uvicorn = "^0.27.1"
+pyyaml = "^6.0"
+jsonpath-ng = "^1.5.3"
+jsonpointer = "^2.4"
+requests = "^2.31.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.4"
+black = "^24.2.0"
+httpx = "^0.25.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

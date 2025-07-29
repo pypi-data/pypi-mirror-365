@@ -1,0 +1,433 @@
+# API-to-MCP Generator
+
+A Python library to automatically generate MCP (Model Context Protocol) servers from any OpenAPI v2/v3 specification.
+
+This library allows you to expose any API with an OpenAPI spec as an MCP-compliant server, making it easy to integrate with AI agents and other MCP-enabled tools.
+
+## Table of Contents
+- [Features](#features)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Configuration Options](#configuration-options)
+- [Usage Examples](#usage-examples)
+  - [Option 1: Standalone MCP Gateway](#option-1-standalone-mcp-gateway)
+  - [Option 2: Integration with Existing FastAPI App](#option-2-integration-with-existing-fastapi-app)
+- [Dynamic Configuration (Query Parameters)](#dynamic-configuration-query-parameters)
+- [Security: SSRF Protection](#security-ssrf-protection)
+- [Advanced Examples](#advanced-examples)
+- [Development and Testing](#development-and-testing)
+- [Troubleshooting](#troubleshooting)
+
+## Features
+
+- **Dynamic Conversion**: Generate MCP servers from any public OpenAPI v2/v3 specification URL or local file
+- **Path Filtering**: Selectively expose a subset of API endpoints using path prefixes
+- **Dynamic Upstream URL**: Forward requests to a different base URL than the one specified in the OpenAPI spec
+- **Authentication Forwarding**: Pass authentication headers from MCP requests to the upstream API
+- **`$ref` Resolution**: Automatically resolves JSON references (`$ref`) in OpenAPI specs for complete schema definitions
+- **Local File Support**: Load OpenAPI specifications from local file paths in addition to URLs
+- **Security**: Built-in SSRF protection with configurable domain whitelisting
+- **Framework Integration**: Plug-and-play integration with FastAPI
+- **Multiple Formats**: Supports both JSON and YAML OpenAPI specifications
+
+## Installation
+
+```bash
+pip install API-to-MCP-Generator
+```
+
+## Quick Start
+
+Here's the fastest way to get started with a dynamic MCP gateway:
+
+```python
+from fastapi import FastAPI
+from api_to_mcp_generator.integrations.fastapi import add_mcp_route
+import uvicorn
+
+app = FastAPI(title="MCP Gateway")
+
+# Add the MCP route with minimal configuration
+add_mcp_route(
+    app,
+    allowed_domains=["petstore.swagger.io", "api.example.com"]
+)
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+```
+
+**Test it:**
+```bash
+# Run the server
+uvicorn main:app --reload
+
+# Test with Petstore API
+curl "http://localhost:8000/mcp?s=https://petstore.swagger.io/v2/swagger.json"
+```
+
+## Configuration Options
+
+The `add_mcp_route()` function accepts the following parameters:
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `app` | `FastAPI` | Required | The FastAPI application instance |
+| `prefix` | `str` | `"/mcp"` | The URL prefix for the MCP endpoint |
+| `openapi_url` | `str` | `None` | Default OpenAPI spec URL (can be overridden by `s` parameter) |
+| `openapi_file` | `str` | `None` | Path to a default local OpenAPI spec file |
+| `allowed_domains` | `List[str]` | Required | List of allowed domains for SSRF protection |
+
+**Important Notes:**
+- You must provide either `openapi_url` OR `openapi_file`, or neither (for dynamic-only usage)
+- You cannot provide both `openapi_url` and `openapi_file` simultaneously
+- `allowed_domains` is mandatory for security (use empty list `[]` only for local files)
+
+## Usage Examples
+
+### Option 1: Standalone MCP Gateway
+
+Create a dedicated server that can convert any OpenAPI spec to MCP on demand.
+
+#### 1.1 Dynamic Gateway (Recommended)
+
+```python
+from fastapi import FastAPI
+from api_to_mcp_generator.integrations.fastapi import add_mcp_route
+
+app = FastAPI(
+    title="Universal MCP Gateway",
+    description="Convert any OpenAPI spec to MCP on the fly"
+)
+
+add_mcp_route(
+    app,
+    prefix="/mcp",
+    allowed_domains=[
+        "petstore.swagger.io",
+        "petstore3.swagger.io", 
+        "api.github.com",
+        "api.stripe.com"
+    ]
+)
+
+# Run with: uvicorn server:app --reload
+```
+
+**Usage:**
+```bash
+# GitHub API
+curl "http://localhost:8000/mcp?s=https://api.github.com/openapi.json"
+
+# Petstore with filtering
+curl "http://localhost:8000/mcp?s=https://petstore.swagger.io/v2/swagger.json&f=/pet"
+```
+
+#### 1.2 Gateway with Default Spec
+
+```python
+add_mcp_route(
+    app,
+    openapi_url="https://petstore.swagger.io/v2/swagger.json",  # Default spec
+    allowed_domains=["petstore.swagger.io", "api.example.com"]
+)
+
+# This works without query parameters:
+# curl "http://localhost:8000/mcp"
+
+# And can be overridden:
+# curl "http://localhost:8000/mcp?s=https://api.example.com/openapi.json"
+```
+
+#### 1.3 Gateway with Local File
+
+```python
+add_mcp_route(
+    app,
+    openapi_file="./specs/my-api.json",  # Local file
+    allowed_domains=[]  # Empty for local files
+)
+```
+
+### Option 2: Integration with Existing FastAPI App
+
+Add MCP capabilities to your existing application.
+
+```python
+from fastapi import FastAPI
+from api_to_mcp_generator.integrations.fastapi import add_mcp_route
+
+# Your existing app
+app = FastAPI(title="My Existing API")
+
+# Your existing routes
+@app.get("/health")
+def health_check():
+    return {"status": "healthy"}
+
+@app.get("/users/{user_id}")
+def get_user(user_id: int):
+    return {"user_id": user_id, "name": f"User {user_id}"}
+
+# Add MCP gateway functionality
+add_mcp_route(
+    app,
+    prefix="/mcp",  # MCP available at /mcp endpoint
+    allowed_domains=["api.third-party.com"]
+)
+
+# Now your app serves both:
+# - Your API: /health, /users/{user_id}
+# - MCP Gateway: /mcp?s=https://api.third-party.com/openapi.json
+```
+
+## Dynamic Configuration (Query Parameters)
+
+The MCP endpoint supports dynamic configuration through URL query parameters. This allows a single deployed gateway to serve multiple APIs.
+
+| Parameter | Required | Description | Example Value |
+|-----------|----------|-------------|---------------|
+| `s` | Conditional* | OpenAPI specification URL | `https://petstore.swagger.io/v2/swagger.json` |
+| `u` | No | Upstream API base URL (overrides spec) | `https://api.production.example.com` |
+| `f` | No | Comma-separated path filters | `/users,/products,/orders` |
+| `h` | No | Authentication header name to forward | `Authorization` or `X-API-Key` |
+
+**\* Required if no default `openapi_url` or `openapi_file` is configured.**
+
+### Complete Examples
+
+```bash
+# Basic usage
+http://localhost:8000/mcp?s=https://petstore.swagger.io/v2/swagger.json
+
+# With upstream override (useful for dev/staging/prod environments)
+http://localhost:8000/mcp?s=https://petstore.swagger.io/v2/swagger.json&u=https://staging.petstore.com
+
+# With path filtering (only expose pet-related endpoints)
+http://localhost:8000/mcp?s=https://petstore.swagger.io/v2/swagger.json&f=/pet
+
+# With authentication forwarding
+http://localhost:8000/mcp?s=https://api.example.com/openapi.json&h=Authorization
+
+# Combined - all parameters
+http://localhost:8000/mcp?s=https://petstore.swagger.io/v2/swagger.json&u=https://prod.petstore.com&f=/pet,/store&h=X-API-Key
+```
+
+### Path Filtering Details
+
+The `f` parameter accepts comma-separated path prefixes:
+
+```bash
+# Single prefix
+?f=/users
+
+# Multiple prefixes  
+?f=/users,/products,/orders
+
+# Nested paths
+?f=/api/v1/users,/api/v1/products
+```
+
+**Example:** If your OpenAPI spec has these paths:
+- `/users` ✅ (matches `/users`)
+- `/users/{id}` ✅ (matches `/users`)  
+- `/products` ✅ (matches `/products`)
+- `/orders` ❌ (not in filter)
+- `/health` ❌ (not in filter)
+
+Only the ✅ paths will be exposed in the MCP server.
+
+## Security: SSRF Protection
+
+**Server-Side Request Forgery (SSRF) protection is mandatory and built-in.**
+
+### Domain Whitelist
+
+The `allowed_domains` parameter prevents malicious requests:
+
+```python
+add_mcp_route(
+    app,
+    allowed_domains=[
+        "api.trusteddomain.com",
+        "petstore.swagger.io",
+        "api.github.com"
+    ]
+)
+```
+
+**✅ Allowed:**
+- `?s=https://api.trusteddomain.com/openapi.json`  
+- `?s=https://petstore.swagger.io/v2/swagger.json`
+
+**❌ Blocked:**
+- `?s=https://malicious.com/steal-secrets`
+- `?s=http://localhost:22/ssh-config`
+- `?s=https://internal.company.com/secrets`
+
+### Best Practices
+
+```python
+# ✅ GOOD: Specific domains
+allowed_domains=["api.partner.com", "docs.vendor.io"]
+
+# ❌ DANGEROUS: Empty list with URLs (allows all domains)  
+allowed_domains=[]  # Only use for local files!
+
+# ✅ GOOD: Empty list for local files only
+add_mcp_route(app, openapi_file="local.json", allowed_domains=[])
+```
+
+## Advanced Examples
+
+### Multi-Environment Setup
+
+```python
+import os
+from fastapi import FastAPI
+from api_to_mcp_generator.integrations.fastapi import add_mcp_route
+
+app = FastAPI()
+
+# Environment-specific configuration
+ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
+
+if ENVIRONMENT == "production":
+    allowed_domains = ["api.prod.example.com"]
+    default_url = "https://api.prod.example.com/openapi.json"
+elif ENVIRONMENT == "staging":
+    allowed_domains = ["api.staging.example.com", "api.prod.example.com"]  
+    default_url = "https://api.staging.example.com/openapi.json"
+else:
+    allowed_domains = ["localhost:3000", "api.dev.example.com"]
+    default_url = None
+
+add_mcp_route(
+    app,
+    openapi_url=default_url,
+    allowed_domains=allowed_domains
+)
+```
+
+### Multiple MCP Endpoints
+
+```python
+# Serve different APIs on different endpoints
+add_mcp_route(
+    app, 
+    prefix="/mcp/github",
+    openapi_url="https://api.github.com/openapi.json",
+    allowed_domains=["api.github.com"]
+)
+
+add_mcp_route(
+    app,
+    prefix="/mcp/stripe", 
+    openapi_url="https://api.stripe.com/openapi.json",
+    allowed_domains=["api.stripe.com"]
+)
+
+# Usage:
+# curl "http://localhost:8000/mcp/github"
+# curl "http://localhost:8000/mcp/stripe"
+```
+
+## Development and Testing
+
+### 1. Install Dependencies
+
+```bash
+# Install the package and development dependencies
+poetry install
+
+# Or with pip
+pip install -e .
+pip install pytest black
+```
+
+### 2. Running Tests
+
+```bash
+# Run all tests
+poetry run pytest
+
+# Run with coverage
+poetry run pytest --cov=api_to_mcp_generator
+
+# Run specific test file
+poetry run pytest tests/test_security.py -v
+```
+
+### 3. Code Formatting
+
+```bash
+# Format code
+poetry run black .
+
+# Check formatting
+poetry run black --check .
+```
+
+## Troubleshooting
+
+### Common Issues
+
+**1. `ModuleNotFoundError: No module named 'api_to_mcp_generator'`**
+```bash
+# Make sure you installed the package
+pip install API-to-MCP-Generator
+
+# Or install in development mode
+pip install -e .
+```
+
+**2. `HTTP 404 Not Found` when accessing `/mcp`**
+```python
+# Check your endpoint prefix
+add_mcp_route(app, prefix="/mcp")  # Accessible at /mcp
+add_mcp_route(app, prefix="/api/mcp")  # Accessible at /api/mcp
+```
+
+**3. `HTTP 400: Missing OpenAPI spec`**
+```bash
+# Provide spec URL via 's' parameter
+curl "http://localhost:8000/mcp?s=https://petstore.swagger.io/v2/swagger.json"
+
+# Or configure a default
+add_mcp_route(app, openapi_url="https://default.com/spec.json", ...)
+```
+
+**4. `ConnectionError: URL domain 'example.com' is not an allowed domain`**
+```python
+# Add the domain to allowed_domains
+add_mcp_route(app, allowed_domains=["example.com"])
+```
+
+**5. `HTTP 500: Failed to parse OpenAPI spec`**
+- Verify the OpenAPI spec URL returns valid JSON/YAML
+- Check if the spec follows OpenAPI 2.0/3.x standards
+- Test the URL directly in your browser
+
+### Debug Mode
+
+```python
+import logging
+logging.basicConfig(level=logging.DEBUG)
+
+# This will show detailed error messages and request logs
+```
+
+### Testing Your Setup
+
+```python
+# test_example.py
+from fastapi.testclient import TestClient
+from your_app import app
+
+client = TestClient(app)
+
+def test_mcp_endpoint():
+    response = client.get("/mcp?s=https://petstore.swagger.io/v2/swagger.json")
+    assert response.status_code == 200
+    assert "paths" in response.json()
+```
