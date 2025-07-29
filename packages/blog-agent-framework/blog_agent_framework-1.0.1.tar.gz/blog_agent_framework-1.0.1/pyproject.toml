@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+# --- Basic Package Information ---
+name = "blog-agent-framework"
+version = "1.0.1"
+authors = [
+  { name="Edilma Riano", email="edilmadev@gmail.com" }, 
+]
+description = "An AI-powered library that orchestrates a team of agents to generate SEO-optimized, easy-to-read, story-based blog posts"
+readme = "README.md"
+license = { file="LICENSE" }
+requires-python = ">=3.11"
+
+# --- Keywords and Classifiers for PyPI ---
+# Helps users find your package on pypi.org
+keywords = [
+    "ai",
+    "autogen",
+    "llm",
+    "agent",
+    "orchestrator",
+    "content-generation",
+    "seo",
+    "blog",
+    "marketing",
+    "automation",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Text Processing :: General",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Utilities",
+    "Topic :: Text Processing :: General",
+]
+
+# --- Dependencies ---
+dependencies = [
+    "autogen-agentchat>=0.2.17",
+    "autogen-ext[openai]>=0.6.4",
+    "openai"
+]
+
+[project.urls]
+Homepage = "https://github.com/edilma/AI-Agent-Orchestrator"
+Documentation = "https://github.com/edilma/AI-Agent-Orchestrator#readme"
+"Bug Tracker" = "https://github.com/edilma/AI-Agent-Orchestrator/issues"
+Source = "https://github.com/edilma/AI-Agent-Orchestrator"
+
+
+# --- Optional Dependencies ---
+# For running examples or tests. Install with: pip install -e .[dev]
+[project.optional-dependencies]
+dev = [
+    "python-dotenv>=1.0.0",
+]
+
+
+# --- Package Discovery ---
+[tool.setuptools.packages.find]
+where = ["."]  # search in the root directory
+include = ["blog_agent_framework*"]
+
