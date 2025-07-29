@@ -1,0 +1,15 @@
+[project]
+name = "GanAI"
+version = "0.1.0"
+description = "Gan AI API wrapper"
+authors = [{ name = "sachin", email = "sachin@gan.studio" }]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "requests"
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
