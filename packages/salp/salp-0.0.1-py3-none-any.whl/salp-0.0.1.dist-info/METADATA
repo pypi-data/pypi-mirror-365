@@ -1,0 +1,37 @@
+Metadata-Version: 2.4
+Name: salp
+Version: 0.0.1
+Summary: Tools for data in Python
+Author-email: Bernardo Dionisi <bernardo.dionisi@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/bernardodionisi/salp
+Project-URL: Source, https://github.com/bernardodionisi/salp
+Project-URL: Issues, https://github.com/bernardodionisi/salp/issues
+Project-URL: Documentation, https://bernardodionisi.github.io/salp/latest/
+Keywords: tools for data
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: polars<0.20.0,>=0.19.0
+Requires-Dist: typing_extensions>=4.0.0
+Provides-Extra: dev
+Requires-Dist: ruff==0.1.4; extra == "dev"
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-cov[toml]; extra == "dev"
+Requires-Dist: pytest-xdist; extra == "dev"
+Requires-Dist: pytest-benchmark>=4.0.0; extra == "dev"
+Requires-Dist: requests; extra == "dev"
+Requires-Dist: pdfminer.six; extra == "dev"
+Dynamic: license-file
+
+# Transparent data pipelines with SALP
