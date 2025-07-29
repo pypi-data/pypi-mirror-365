@@ -1,0 +1,42 @@
+[project]
+name = "vimeodlpy"
+version = "0.1.0"
+description = "A lightweight Python library and CLI to download Vimeo videos using FFmpeg."
+authors = [
+    { name = "moijesuis2enmoi", email = "arm.ag.31415@gmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0" }
+keywords = ["vimeo", "downloader", "ffmpeg", "cli", "video", "stream"]
+
+dependencies = [
+    "beautifulsoup4>=4.12.0,<5.0.0",
+    "cloudscraper>=1.2.71,<2.0.0",
+    "typer>=0.16.0,<0.17.0",
+    "ffmpeg-python>=0.2.0,<0.3.0",
+    "tqdm>=4.67.1,<5.0.0"
+]
+
+[project.scripts]
+vimeodlpy = "vimeodlpy.cli:app"
+
+[tool.poetry]
+name = "vimeodlpy"
+version = "0.1.0"
+description = "A lightweight Python library and CLI to download Vimeo videos using FFmpeg."
+authors = ["moijesuis2enmoi <arm.ag.31415@gmail.com>"]
+readme = "README.md"
+packages = [
+    { include = "vimeodlpy", from = "src" }
+]
+
+[tool.poetry.urls]
+Homepage = "https://github.com/moijesuis2enmoi/vimeodlpy"
+"Issue Tracker" = "https://github.com/moijesuis2enmoi/vimeodlpy/issues"
+Repository = "https://github.com/moijesuis2enmoi/vimeodlpy"
+Documentation = "https://github.com/moijesuis2enmoi/vimeodlpy#readme"
+
+[build-system]
+requires = ["poetry-core>=1.7.0"]
+build-backend = "poetry.core.masonry.api"
