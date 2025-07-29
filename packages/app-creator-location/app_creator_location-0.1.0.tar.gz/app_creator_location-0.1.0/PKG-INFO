@@ -1,0 +1,38 @@
+Metadata-Version: 2.4
+Name: app-creator-location
+Version: 0.1.0
+Summary: Un petit outil Django/CLI pour récupérer l'emplacement IP
+Home-page: https://github.com/tonprofil/app-creator-location
+Author: Traoré
+Author-email: trasouleymane980@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: Django
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Requires-Dist: django
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# App Creator Location 🌍
+
+Une application Django + CLI pour récupérer la géolocalisation de l'utilisateur via son adresse IP (`https://ipinfo.io`).
+
+## 📦 Installation
+
+```bash
+pip install app-creator-location
+Utilisation CLI
+get-location
+Utilisation Django
+'app_creator',
+
