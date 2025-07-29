@@ -1,0 +1,89 @@
+Metadata-Version: 2.4
+Name: monkey-coder-sdk
+Version: 1.0.0
+Summary: Python SDK for Monkey Coder API - AI-powered code generation and analysis
+Home-page: https://github.com/monkey-coder/sdk
+Author: Monkey Coder
+Author-email: support@monkeycoder.dev
+Project-URL: Bug Reports, https://github.com/monkey-coder/sdk/issues
+Project-URL: Source, https://github.com/monkey-coder/sdk
+Project-URL: Documentation, https://docs.monkeycoder.dev/sdk/python
+Keywords: ai,code generation,api,sdk,monkey coder,automation
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Code Generators
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: requests>=2.28.0
+Requires-Dist: urllib3>=1.26.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Requires-Dist: black>=22.0.0; extra == "dev"
+Requires-Dist: flake8>=5.0.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Requires-Dist: isort>=5.10.0; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: sphinx>=5.0.0; extra == "docs"
+Requires-Dist: sphinx-rtd-theme>=1.0.0; extra == "docs"
+Requires-Dist: myst-parser>=0.18.0; extra == "docs"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: project-url
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Monkey Coder SDK
+
+Python SDK for interacting with the Monkey Coder API.
+
+## Installation
+
+```bash
+pip install monkey-coder-sdk
+```
+
+## Usage
+
+```python
+from monkey_coder_sdk import MonkeyCoderClient
+
+client = MonkeyCoderClient(api_key="your-api-key")
+
+# Execute a coding task
+result = client.execute(
+    task_type="code_generation",
+    prompt="Create a function to calculate fibonacci numbers",
+    files=[]
+)
+
+print(result)
+```
+
+## Features
+
+- Easy API integration
+- Type hints and validation
+- Async support
+- Error handling
+
+## License
+
+MIT License
