@@ -1,0 +1,19 @@
+Metadata-Version: 2.3
+Name: edi-cli
+Version: 0.2.1
+Summary: A modern, open-source EDI toolkit.
+License: MIT
+Author: Your Name
+Author-email: you@example.com
+Requires-Python: >=3.11,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: fastapi (>=0.104.1,<0.105.0)
+Requires-Dist: lark (>=1.1.8,<2.0.0)
+Requires-Dist: pydantic (>=2.5.2,<3.0.0)
+Requires-Dist: rich (>=13.7.0,<14.0.0)
+Requires-Dist: typer (>=0.9.0,<0.10.0)
+Requires-Dist: uvicorn[standard] (>=0.24.0.post1,<0.25.0)
