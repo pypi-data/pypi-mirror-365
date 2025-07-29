@@ -1,0 +1,88 @@
+Metadata-Version: 2.4
+Name: datagenix
+Version: 0.1.2
+Summary: A robust and simple library for generating synthetic datasets for ML/DL projects.
+Author-email: Your Name <your.email@example.com>
+License: MIT
+Project-URL: Homepage, https://github.com/yourusername/datagenix
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: pandas>=1.3.0
+Requires-Dist: numpy>=1.20.0
+Requires-Dist: Faker>=8.0.0
+
+# DataGenix
+
+An advanced and robust library for generating synthetic datasets for machine learning and deep learning projects. Go from idea to prototype in seconds without data acquisition bottlenecks.
+
+## Installation
+
+Install from PyPI (once published):
+```bash
+pip install datagenix
+```
+
+Or install directly from the repository:
+```bash
+git clone [https://github.com/yourusername/datagenix.git](https://github.com/yourusername/datagenix.git)
+cd datagenix
+pip install .
+```
+
+## Ultimate Usage Example
+
+Generate a complex, realistic dataset for a binary classification task with a single, intuitive command:
+
+```python
+from datagenix import DataGenerator
+
+generator = DataGenerator(seed=42)
+
+df = generator.generate(
+    num_rows=1000,
+    numerical_whole=3,
+    decimal=2,
+    categorical=2,
+    boolean=1,
+    text=1,
+    uuid=1,
+    object_types=['name', 'email'],
+    target_type='binary',
+    missing_numerical=0.05,
+    missing_categorical=0.1,
+    correlation_strength=0.7,
+    group_by='customer_id',
+    num_groups=50,
+    time_series=True,
+    numerical_whole_range=(100, 999),
+    add_outliers=True,
+    outlier_fraction=0.02,
+    text_style='review'
+)
+
+print(df.head())
+print(df.info())
+```
+
+## Advanced Features
+
+- **Target Generation**: Automatically create a `target` column for `binary`, `multi-class`, or `regression` tasks that is logically correlated with the features.
+- **Missing Data**: Inject missing values (`NaN`) into any feature type with precise fractional control (e.g., `missing_numerical=0.1`).
+- **Feature Correlation**: Create linear dependencies between numerical features with adjustable `correlation_strength`.
+- **Grouped Data**: Simulate real-world scenarios like customer data by grouping rows with a common ID using `group_by` and `num_groups`.
+- **Time Series**: Generate a chronologically sorted `timestamp` column for time-dependent modeling.
+- **Outlier Injection**: Introduce extreme values into numerical columns to test model robustness using `add_outliers` and `outlier_fraction`.
+- **Custom Ranges**: Define exact `(min, max)` ranges for numerical columns.
+- **Text Styles**: Generate varied text content like `review`, `tweet`, or standard `sentence`.
