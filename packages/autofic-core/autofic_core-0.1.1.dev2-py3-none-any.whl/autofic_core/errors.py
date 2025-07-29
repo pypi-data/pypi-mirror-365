@@ -1,0 +1,100 @@
+class AutoficError(Exception):
+    """Base class for all custom errors"""
+    pass
+
+# github_handler.py 
+
+class GitHubTokenMissingError(AutoficError):
+    def __init__(self):
+        super().__init__("GITHUB_TOKEN is not set in the environment.")
+
+class RepoURLFormatError(AutoficError):
+    def __init__(self, repo_url):
+        super().__init__(f"Invalid GitHub repository URL format: {repo_url}")
+
+class RepoAccessError(AutoficError):
+    def __init__(self, message: str):
+        super().__init__(message)
+
+class ForkFailedError(RepoAccessError):
+    def __init__(self, status_code, message):
+        super().__init__(f"Failed to fork repository (HTTP {status_code}) - {message}")
+
+# downloader.py
+
+class FileDownloadError(AutoficError):
+    def __init__(self, path, original_error):
+        message = f"{path} Failed to download file: {original_error}"
+        super().__init__(message)
+        self.path = path
+        self.original_error = original_error
+
+# semgrep_runner.py
+
+class SemgrepExecutionError(AutoficError):
+    def __init__(self, returncode, stdout=None, stderr=None):
+        self.returncode = returncode
+        self.stdout = stdout
+        self.stderr = stderr
+        message = f"Semgrep execution failed (return code:{returncode})"
+        super().__init__(message)
+
+# prompt_generator.py
+
+class PromptGeneratorErrorCodes:
+    EMPTY_SNIPPET = "EMPTY_SNIPPET"
+    TEMPLATE_RENDER_ERROR = "TEMPLATE_RENDER_ERROR"
+    INVALID_SNIPPET_LIST = "INVALID_SNIPPET_LIST"
+
+class PromptGeneratorErrorMessages:
+    EMPTY_SNIPPET = "The provided code snippet is empty."
+    TEMPLATE_RENDER_ERROR = "An error occurred while rendering the prompt template."
+    INVALID_SNIPPET_LIST = "The input must be a list of SemgrepSnippet objects."
+
+class PromptGenerationException(AutoficError):
+    def __init__(self, code: str, message: str):
+        super().__init__(message)
+        self.code = code
+
+class LLMExecutionError(Exception):
+    def __init__(self, message: str):
+        self.message = message
+        super().__init__(f"LLM execution error: {message}")
+
+
+class CodeQLExecutionError(Exception):
+    """Raised when CodeQL execution fails."""
+    def __init__(self):
+        super().__init__("[ERROR] CodeQL execution failed. Please check the log file for details.")
+        
+
+# diff_generator.py
+
+class DiffWarningMessages:
+    ORIGINAL_FILE_NOT_FOUND = "[ WARN ] Original file not found: {}"
+
+class DiffGenerationError(AutoficError):
+    def __init__(self, filename: str, reason: str):
+        message = f"[ ERROR ] Failed to generate diff: {filename} - {reason}"
+        super().__init__(message)
+        self.filename = filename
+        self.reason = reason
+        
+
+# apply_patch.py
+
+class PatchWarningMessages:
+    NO_DIFF_FILES = "[ WARN ] No .diff files found in {}"
+    PARSED_FILE_NOT_FOUND = "[ WARN ] Could not find matching file in parsed directory: {}"
+    RELATIVE_PATH_EXTRACTION_FAILED = "[ WARN ] Failed to extract relative path: {}"
+    ORIGINAL_FILE_MISSING = "[ WARN ] Original file does not exist: {}"
+    OVERWRITE_FILE_MISSING = "[ WARN ] Original file does not exist in repo: {}"
+
+class PatchErrorMessages:
+    PATCH_EXCEPTION = "[ ERROR ] Exception while applying {}: {}"
+    FALLBACK_DIFF_FAILED = "[ ERROR ] Failed to generate fallback diff: {}"
+    OVERWRITE_FAILED = "[ ERROR ] Failed to overwrite repo file: {}"
+
+class PatchFailMessages:
+    PATCH_FAILED = "[ FAIL ] Patch failed: {}"
+    FALLBACK_APPLY_FAILED = "[ FAIL ] Fallback diff failed: {}"
