@@ -1,0 +1,53 @@
+//////////////
+// HEADINGS //
+//////////////
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.card-title {
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+/////////////
+// HELPERS //
+/////////////
+
+[v-cloak] {
+  display: none;
+}
+
+.v-card--reveal {
+  bottom: 0;
+  opacity: 1 !important;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.fullsize {
+  width: 100%;
+  height: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.v-calendar-daily_head-day {
+  display: flex;
+  flex-direction: column;
+}
+
+.focusable:focus,
+.focusable:focus-visible,
+.focusable:focus-within {
+  outline: 2px solid var(--v-primary-base);
+  outline-offset: 4px;
+}
