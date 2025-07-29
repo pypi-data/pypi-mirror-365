@@ -1,0 +1,39 @@
+Metadata-Version: 2.4
+Name: Protomix
+Version: 0.0.2
+Summary: A Python package for NMR preprocessing
+Author-email: Mohammed Zniber <zniber1995@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/mzniber/protomix
+Keywords: NMR,Preprocessing,metabolomics,serum,urine
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENCE
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: scipy
+Requires-Dist: plotly
+Dynamic: license-file
+
+# Protomix
+
+Protomix is a comprehensive Python package designed for preprocessing Nuclear Magnetic Resonance (NMR) data. Whether you're an academic researcher, a student, or an industry professional, Protomix provides the tools you need to get your NMR data ready for analysis.
+
+Features:
+
+- Group Delay Removal
+- Solvent Residuals Removal
+- Apodization
+- Zero Filling
+- Fourier Transform
+- Phase Correction
+- Internal Referencing
+- Baseline correction
+- Negative Values Zeroing
+- Region Removal
+- Window Selection
+- Peak Alignment
+- Binning
+- Normalization
+
+## Installation
