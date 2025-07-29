@@ -1,0 +1,167 @@
+# panCNSgene pipeline
+[![PyPI version](https://badge.fury.io/py/panCG.svg)](https://badge.fury.io/py/panCG)
+
+<img src="/figures/panCNSGene.png">
+
+## Dependencies
+
+1. `halLiftover` in [cactus](https://github.com/ComparativeGenomicsToolkit/cactus/blob/v2.9.3/BIN-INSTALL.md)
+
+2. [phast](https://github.com/CshlSiepelLab/phast)
+
+3. [JCVI](https://github.com/tanghaibao/jcvi)
+
+4. [UCSC](https://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/): `mafFilter`, `mafSplit`, `wigToBigWig`
+
+   ``````
+   wget https://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/mafFilter
+   wget https://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/mafSplit
+   wget https://hgdownload.cse.ucsc.edu/admin/exe/linux.x86_64/wigToBigWig
+   ``````
+
+5. [orthofinder](https://github.com/davidemms/OrthoFinder)
+
+6. [blast](https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/)
+
+7. [diamond](https://github.com/bbuchfink/diamond)
+
+## install
+
+Make sure the above dependencies are installed and added to PATH.
+
+```shell
+pip install panCG
+```
+
+## Input file format requirements
+
+1. The chromosome ID of the genome cannot contain special characters such as `":", "-", ","`, etc., and no other characters except numbers, letters and "_".
+
+2. In the gff annotation file, it is best to only have `gene, mRNA, exon, cds, and utr` information. And gene must contain the `ID` field, and others must contain the `Parent` field.
+
+3. The bed file of gene must be a standard 6-column bed file. `<chrID> <start> <end> <geneID> <score/0> <chain>`.
+
+4. output
+
+## Output
+
+### cns calling
+
+| Directory                          | File suffix        | Describe                            |
+| ---------------------------------- | ------------------ | ----------------------------------- |
+| {Workdir}/03-phastCons/Wig/        | {species}.all.bw   | PhastCons Conservative Scoring File |
+| {Workdir}/03-phastCons/Wig/CEsDir/ | {species}.CNSs.bed | CNS file of {species}               |
+
+### panCNS
+
+| Directory                          | File suffix                                | Describe                                                     |
+| ---------------------------------- | ------------------------------------------ | ------------------------------------------------------------ |
+| halLiftoverDir                     | {que}.{ref}.bed                            | que’s CNS position on the ref map <ref_map_chrID> <ref_map_start> <ref_map_end> <que_cnsID> |
+| halLiftoverDir                     | {que}.{ref}.merge.bed                      | The position of que’s CNS in the ref map (merge if the distance is less than the threshold) <ref_map_chrID> <ref_map_start> <ref_map_end> <que_cnsID> |
+| halLiftoverDir                     | {que}.{ref}.halLiftover.anchors            | The correspondence between que's CNS in the hal multiple sequence alignment file and ref's CNS <que_cnsID> <ref_cnsID> |
+| halLiftoverDir                     | {que}.{ref}.merge.bw.bed                   | `{que}.{ref}.merge.bed` add averageBwScore and effecve_len   |
+| blastnDir                          | .blastn.fmt6.txt                           | Original blastn alignment file                               |
+| blastnDir                          | .blastn.halLiftoverFilter.anchors          | blastn anchors after halLiftover filtering                   |
+| blastnDir                          | .blastn.halLiftoverFilter.anchors.fmt6.txt | fmt6 format of `.blastn.halLiftoverFilter.anchors` file      |
+| JCVIDir                            | .lifted.anchors                            | Recruits additional anchors file output by JCVI              |
+| JCVIDir                            | .anchors                                   | High quality anchors file output by JCVI                     |
+| JCVIDir                            | .halLiftoverFilter.lifted.anchors          | JCVI recruits additional anchors after halLiftover filtering |
+| JCVIDir                            | .halLiftoverFilter.anchors                 | JCVI high quality anchors after halLiftover filtering        |
+| JCVIDir                            | .halLiftoverFilter.lifted.anchors.fmt6.txt | fmt6 format of `.halLiftoverFilter.lifted.anchors` file      |
+| JCVIDir                            | .halLiftoverFilter.anchors.fmt6.txt        | fmt6 format of `.halLiftoverFilter.anchors` file             |
+| {Workdir}/Index/                   | cnsCluster.csv                             | Clustering information of CNS of all species                 |
+| {Workdir}/Index/{species}/         | {species}.csv                              | Clustering information of all {species} CNS before           |
+| {Workdir}/CEsDir/                  | {species}.recall_cds.bed                   | recall_cds coordinates for each species                      |
+| {Workdir}/Ref\_{species}_IndexDir/ | .cnsIndexAssign.csv                        | Results of cnsIndexAssign                                    |
+| {Workdir}/Ref\_{species}_IndexDir/ | .cnsIndexMerge.csv                         | Results of cnsIndexMerge                                     |
+| {Workdir}/Ref\_{species}_IndexDir/ | .recallCEs.csv                             | The results of recallCEs, which records the results of CE obtained by recall |
+| {Workdir}/Ref\_{species}_IndexDir/ | .ReCnsIndexMerge.csv                       | The result after merging `.recallCEs.csv`                    |
+| {Workdir}/Ref\_{species}_IndexDir/ | .TripleCnsIndexMerge.csv                   | Classify the CE in `.ReCnsIndexMerge.csv` (cns, cds) and then merge the results |
+| {Workdir}/Ref\_{species}_IndexDir/ | .recall.csv                                | The result of merging `.TripleCnsIndexMerge.csv` with cell   |
+| {Workdir}/Ref\_{species}_IndexDir/ | .sort.csv                                  | The result of sort `.recall.csv`                             |
+
+
+### panGene
+
+| Directory                    | File suffix     | Describe             |
+| ---------------------------- | --------------- | -------------------- |
+| {Workdir}/Cluster/           | All.Cluster.csv | Gene clustering file |
+| {Workdir}Ref\_{ref}_IndexDir | .panGene.csv    | The result panGene   |
+
+
+
+The Group column is the homology group identified by orthofinder.
+
+Index column
+
+OGXXXXXXX.1    Indicates the gene index subdivided in the homology group
+
+OGXXXXXXX.1.Un  The .Un suffix indicates a set of genes that still exist independently in a single species after CPM.
+
+OGXXXXXXX.1.tree_1  Indicates the gene index subdivided by gene evolution relationship based on the gene index
+
+OGXXXXXXX.1.tree_Un The gene set ending with .tree_Un is a gene set that is not classified using evolutionary relationships.
+
+UnMapOGXXXXXXX.1    UnMap prefix is the gene that orthofinder has no clustering
+
+
+
+## quick start
+
+### call CNS
+
+5 min
+
+```shell
+for i in C_sinensis C_limon ponkan C_australasica C_glauca F_hindsii A_buxifolia; do echo "nohup /usr/bin/time -v panCG callCns -c /home/ltan/Tmp/01-PanCNSGene_test_data/PanCNSgene-main/CNScalling.config.yaml -w /home/ltan/Tmp/01-PanCNSGene_test_data/03-callCNS/${i} -r ${i} > ${i}.log 2>&1 &" | bash; done
+```
+
+### panGene
+
+2 min 15s
+
+```shell
+nohup /usr/bin/time -v panCG GeneIndex \
+   --config /home/ltan/Tmp/01-PanCNSGene_test_data/panCG-main/geneIndex.config.yaml \
+   --workDir /home/ltan/Tmp/01-PanCNSGene_test_data/04-GeneIndex \
+   --reference C_sinensis  > C_sinensis.geneIndex.log 2>&1 &
+```
+
+### panCNS
+
+4min 30 s
+
+```shell
+nohup /usr/bin/time -v python /home/ltan/Tmp/01-PanCNSGene_test_data/panCG-main/panCG.py CnsIndex \
+   --config /home/ltan/Tmp/01-PanCNSGene_test_data/panCG-main/cnsIndex.config.yaml \
+   --workDir /home/ltan/Tmp/01-PanCNSGene_test_data/05-cnsIndex \
+   --reference C_sinensis \
+   --geneConfig /home/ltan/Tmp/01-PanCNSGene_test_data/panCG-main/geneIndex.config.yaml \
+   --geneWorkDir /home/ltan/Tmp/01-PanCNSGene_test_data/04-GeneIndex \
+   --blastn_threads 7 > CnsIndex.log 2>&1 & 
+```
+
+
+
+## Strategy
+
+### panCNS
+1. **cnsMapMerge**: Run halLiftover, blastn and jcvi on the CNS sets of two species, filter the blastn results with low similarity, and then use halLiftover to filter blastn and jcvi (lifted.anchors), that is, satisfy halLiftover and blastn or halLiftover and jcvi (lifted.anchors).
+2. Merge the map relationships of filter_blastn and filter_jcvi to obtain the CNS map relationship between the two species.
+3. **cnsClustering**: Use the pairwise map relationships between species obtained above to cluster CNS into different groups.
+4. **cnsIndexAssign**: Use the given species order as references and use jcvi (lifted.anchors) to subdivide the Group into indices.
+5. **cnsIndexMerge**: Merge indices that are too similar in the same group to get the final index.
+6. **cnsRecall**: Check the missing CNS in each index, map the reference CNS to the missing species, and recall if the threshold is met.
+7. **cnsIndexSort**: Sort each index according to its position in the genome.
+
+### panGene
+
+1. **geneMapMerge**: First, perform diamond analysis between species, and then use the diamond results to perform jcvi analysis.
+2. **GeneClustering**: All species are analyzed by OrthoFinder to obtain groups. Genes assigned to groups are written into separate files.
+3. **geneIndexAssign**: First, use the results of jcvi to perform a preliminary index on the group.
+4. **geneIndexMerge**: For an index with only one species, find the best match for all genes and put it into the index. If it is not in the group, put it into Un. For an index with more than one species, traverse the other indexes in the group to see if there is a similar index. If there is, merge it. If not, form a separate index. The Group column is in the form of OG0019373.Un. The group is the gene set in the original OG0019373 group that has no collinearity and the best hit is no longer in the group.
+
+
+
+
+Synteny.gene.overlap.graph.pkl: 整合了JCVI的anchors和lifted.anchors，得到的新的共线性gene对。
