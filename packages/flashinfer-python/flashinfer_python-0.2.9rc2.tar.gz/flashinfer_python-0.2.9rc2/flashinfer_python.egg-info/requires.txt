@@ -1,0 +1,12 @@
+numpy
+torch
+ninja
+requests
+cuda-python
+pynvml
+einops
+nvidia-nvshmem-cu12
+nvidia-cudnn-cu12
+
+[:platform_machine == "x86_64" or platform_machine == "AMD64"]
+nvidia-cudnn-frontend
