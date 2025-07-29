@@ -1,0 +1,56 @@
+[tool.poetry]
+name = "API-to-MCP-Generator"
+version = "0.2.0"
+description = "A Python library to automatically convert any OpenAPI v2/v3 specification into a Model Context Protocol (MCP) server, with integrations for popular frameworks like FastAPI."
+authors = ["Sriram Krishna"]
+license = "MPL-2.0"
+readme = "README.md"
+homepage = "https://github.com/itssri5/openapi-to-mcp"
+repository = "https://github.com/itssri5/openapi-to-mcp"
+keywords = ["openapi", "mcp", "fastapi", "api", "converter", "generator"]
+packages = [{include = "api_to_mcp_generator"}]
+
+# Include only essential files in the package
+include = [
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+]
+
+# Exclude development and documentation files
+exclude = [
+    "docs/",
+    "tests/",
+    "examples/", 
+    "README_NEW.md",
+    "ARCHITECTURE_EXPLANATION.md",
+    "COMPLETE_FLOW_EXPLANATION.md",
+    "validate_release.py",
+    ".pytest_cache/",
+    "__pycache__/",
+    "*.pyc",
+    ".git/",
+    ".gitignore",
+    "dist/",
+    "*.egg-info/"
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fastapi = "^0.109.2"
+uvicorn = "^0.27.1"
+pyyaml = "^6.0"
+jsonpath-ng = "^1.5.3"
+jsonpointer = "^2.4"
+requests = "^2.31.0"
+pydantic = "^2.0.0"
+structlog = "^23.2.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.4"
+black = "^24.2.0"
+httpx = "^0.25.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
