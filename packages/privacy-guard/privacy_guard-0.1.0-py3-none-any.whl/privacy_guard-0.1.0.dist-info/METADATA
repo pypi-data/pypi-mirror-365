@@ -1,0 +1,49 @@
+Metadata-Version: 2.4
+Name: privacy-guard
+Version: 0.1.0
+Summary: 智能数据脱敏工具
+Author: chulingera2025
+License-Expression: MIT
+Requires-Python: >=3.8
+Requires-Dist: click>=8.0.0
+Requires-Dist: cryptography>=3.4.0
+Requires-Dist: faker>=18.0.0
+Requires-Dist: numpy>=1.21.0
+Requires-Dist: pandas>=1.5.0
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: pyyaml>=6.0
+Provides-Extra: dev
+Requires-Dist: black>=22.0.0; extra == 'dev'
+Requires-Dist: flake8>=5.0.0; extra == 'dev'
+Requires-Dist: mypy>=1.0.0; extra == 'dev'
+Requires-Dist: pytest-cov>=4.0.0; extra == 'dev'
+Requires-Dist: pytest>=7.0.0; extra == 'dev'
+Description-Content-Type: text/markdown
+
+# Privacy Guard
+
+隐私保护数据脱敏工具 - 智能识别敏感数据并提供多种脱敏策略
+
+## 功能特性
+
+- 智能敏感数据识别
+- 多种脱敏策略支持
+- 可配置规则引擎
+- 支持多种数据源
+- CLI工具界面
+
+## 安装
+
+```bash
+pip install privacy-guard
+```
+
+## 使用
+
+```bash
+privacy-guard --input data.csv --output masked_data.csv --config config.yaml
+```
+
+## 许可证
+
+MIT License
