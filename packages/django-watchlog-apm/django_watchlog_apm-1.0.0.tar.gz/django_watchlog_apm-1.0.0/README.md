@@ -1,0 +1,110 @@
+# django_watchlog_apm
+
+🔗 **Website**: https://watchlog.io
+
+**django_watchlog_apm** is a lightweight APM integration for Django, built on OpenTelemetry. It provides:
+
+- **Auto-instrumentation** for Django views, middleware, and underlying HTTP calls  
+- **Manual custom spans** via the OpenTelemetry API  
+- **JSON-over-HTTP exporter** (OTLP) compatible with Watchlog Agent  
+- **Environment detection** (local vs in-cluster Kubernetes)  
+- **Configurable sampling**, error-only and slow-only span export  
+
+---
+
+## Installation
+
+Install from PyPI:
+
+```bash
+pip install django_watchlog_apm
+```
+
+Or directly from GitHub:
+
+```bash
+pip install git+https://github.com/Watchlog-monitoring/django_watchlog_apm.git
+```
+
+---
+
+## Quick Start
+
+Initialize the APM **before** Django loads its settings:
+
+```python
+# wsgi.py or asgi.py
+
+import os
+from django.core.wsgi import get_wsgi_application  # or get_asgi_application
+
+# 1) Call instrumentation before Django setup
+from django_watchlog_apm.instrument import instrument_django
+
+instrument_django(
+    service_name="my-django-app",       # your service name
+    sample_rate=0.5,                    # random sample rate (0.0–1.0, capped at 0.3)
+    send_error_spans=True,              # always export error spans
+    error_tps=5,                        # max 5 error spans per second
+    slow_threshold_ms=200,              # always export spans >200ms
+    export_timeout=10.0                 # HTTP timeout for exporter
+)
+
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "myproject.settings")
+application = get_wsgi_application()  # or get_asgi_application()
+```
+
+---
+
+## Configuration Options
+
+| Parameter            | Type    | Default                     | Description                                                      |
+| -------------------- | ------- | --------------------------- | ---------------------------------------------------------------- |
+| `service_name`       | `str`   | **required**                | Name of your Django service                                       |
+| `otlp_endpoint`      | `str`   | `http://localhost:3774/apm` | Base OTLP URL (appends `/<service>/v1/traces`)                    |
+| `headers`            | `dict`  | `{}`                        | Additional HTTP headers for OTLP requests                         |
+| `batch_max_size`     | `int`   | `200`                       | Maximum spans per batch                                           |
+| `batch_delay_ms`     | `int`   | `5000`                      | Delay (ms) between batch exports                                  |
+| `sample_rate`        | `float` | `1.0`                       | Random sampling rate (0.0–1.0, internal cap at 0.3)              |
+| `send_error_spans`   | `bool`  | `False`                     | If `True`, always export spans with non-OK status                 |
+| `error_tps`          | `int`   | `None`                      | Max error spans to export per second (`None` = unlimited)         |
+| `slow_threshold_ms`  | `int`   | `0`                         | If >0, always export spans slower than this threshold (ms)        |
+| `export_timeout`     | `float` | `10.0`                      | HTTP request timeout (seconds) for exporter POSTs                 |
+
+---
+
+## Manual Custom Spans
+
+Use the OpenTelemetry API to create custom spans:
+
+```python
+from opentelemetry import trace
+
+tracer = trace.get_tracer(__name__)
+
+def view(request):
+    with tracer.start_as_current_span("db.query", attributes={"db.system": "postgresql"}):
+        # your DB logic here
+        return HttpResponse("DB query done")
+```
+
+---
+
+## Environment Detection
+
+- **Local (non-K8s)**: sends to `http://127.0.0.1:3774/apm`  
+- **Kubernetes (in-cluster)**: sends to `http://watchlog-python-agent.monitoring.svc.cluster.local:3774/apm`
+
+Detection checks in order:
+
+1. Existence of `/var/run/secrets/kubernetes.io/serviceaccount/token`  
+2. Presence of `kubepods` in `/proc/1/cgroup`  
+3. DNS lookup of `kubernetes.default.svc.cluster.local`  
+
+---
+
+## License
+
+MIT © Mohammadreza
+
+Built for [Watchlog.io](https://watchlog.io)
