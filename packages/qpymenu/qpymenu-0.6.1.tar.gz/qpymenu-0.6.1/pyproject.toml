@@ -1,0 +1,36 @@
+[project]
+name = "qpymenu"
+version = "0.6.1"
+description = "A terminal-based ANSI-formatted menu system with nested menus, threading, logging, and user prompts."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [
+    { name = "David J. Cartwright", email = "davidcartwright@hotmail.com" }
+]
+keywords = ["cli", "menu", "terminal", "ansi", "threading", "interactive", "pymenu"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3",
+    "Environment :: Console",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Utilities",
+    "Topic :: Software Development :: User Interfaces"
+]
+dependencies = [
+    # No third-party deps assumed; if you use colorama, add it here:
+    # "colorama>=0.4.6"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/cartwrightdj/qpymenu"
+"Documentation" = "https://qpymenu.readthedocs.io/en/latest/index.html"
+"Issues" = "https://github.com/cartwrightdj/qpymenu/issues"
+
+[tool.setuptools]
+packages = ["qpymenu"]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
