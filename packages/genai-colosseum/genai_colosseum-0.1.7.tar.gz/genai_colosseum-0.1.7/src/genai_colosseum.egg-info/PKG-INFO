@@ -1,0 +1,25 @@
+Metadata-Version: 2.4
+Name: genai-colosseum
+Version: 0.1.7
+Summary: Generate and install GenAI project templates
+Author-email: Your Name <your.email@example.com>
+License: MIT
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: click
+Dynamic: license-file
+
+# GenAI Colosseum
+
+A CLI to list and generate starter GenAI projects like chatbots, summarizers, etc.
+
+## Usage
+
+```bash
+# List available templates
+genai-colosseum list
+
+# Install a template
+genai-colosseum install chatbot
+```

@@ -1,0 +1,25 @@
+[project]
+name = "genai-colosseum"
+version = "0.1.7"
+description = "Generate and install GenAI project templates"
+authors = [
+    { name="Your Name", email="your.email@example.com" }
+]
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.7"
+dependencies = [
+    "click"
+]
+
+[project.scripts]
+genai-colosseum = "genai_colosseum.main:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+genai_colosseum = ["templates/**/*"]
