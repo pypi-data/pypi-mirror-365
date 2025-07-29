@@ -1,0 +1,137 @@
+Metadata-Version: 2.4
+Name: pyflyde
+Version: 0.1.0
+Summary: Python SDK and runtime for Flyde - a visual flow-based programming language and IDE.
+Author: Vladimir Sibirov
+License-Expression: Apache-2.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Software Development :: Libraries :: Application Frameworks
+Classifier: Typing :: Typed
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pyyaml
+Provides-Extra: dev
+Requires-Dist: setuptools; extra == "dev"
+Requires-Dist: build; extra == "dev"
+Requires-Dist: coverage; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+Requires-Dist: twine; extra == "dev"
+Requires-Dist: mkdocs; extra == "dev"
+Requires-Dist: icecream; extra == "dev"
+Dynamic: license-file
+
+# PyFlyde
+
+![Build](https://github.com/trustmaster/pyflyde/actions/workflows/python-package.yml/badge.svg)
+[<img src="https://readthedocs.org/projects/pyflyde/badge/">](https://pyflyde.readthedocs.io/en/latest/)
+
+Python runtime for [Flyde](https://github.com/flydelabs/flyde) with Data Engineering emphasis.
+
+![Example graph running K-means clustering with Pandas and Scikit-learn](https://github.com/trustmaster/pyflyde/blob/main/clustering_example.webp?raw=true)
+
+Links:
+
+- [Flyde homepage](https://flyde.dev)
+- [Documentation](https://pyflyde.readthedocs.io/en/latest/)
+
+## Getting started
+
+You need Python 3.9+ installed on your machine to run PyFlyde.
+
+Then you can install PyFlyde to your environment using pip:
+
+```bash
+pip install pyflyde
+```
+
+On some systems Python3 requires `pip3` command instead:
+
+```bash
+pip3 install pyflyde
+```
+
+### Running the examples
+
+You can copy `examples` folder from this repository to your local project to give it a try. Then you can run the example flow with:
+
+```bash
+pyflyde examples/HelloWorld.flyde
+```
+
+Or you can install this package locally after cloning this repository and run the examples directly:
+
+```bash
+pip install .
+./pyflyde examples/HelloWorld.flyde
+```
+
+To run other examples you would need to install their dependencies:
+
+```bash
+pip install examples/
+```
+
+Then you can run e.g.
+
+```bash
+./pyflyde examples/Clustering.flyde
+```
+
+### Using the visual editor
+
+Install Flyde VSCode extension from the [marketplace](https://marketplace.visualstudio.com/items?itemName=flyde.flyde-vscode). It will open existing `.flyde` files in the visual editor. You can call `Flyde: New Visual Flow` command in VSCode to create a new flow file.
+
+You can browse the component library in the panel on the right. To see your local components click the "View all" button. They will appear under the "Current project". Note that PyFlyde doesn't implement all of the Flyde's stdlib components, only a few essential ones.
+
+Whenever you change your component library classes or their interfaces, use `pyflyde gen` command to generate `flyde-nodes.json` definitions, e.g.:
+
+```bash
+pyflyde gen examples/
+```
+
+This will recursively scan all Python files in the directory and its subdirectories to find PyFlyde components and generate a `flyde-nodes.json` file with relative paths. Flyde editor needs `flyde-nodes.json` files in order to "see" your components.
+
+### Running a Machine Learning example and creating your first project
+
+For further details please check [Quickstart](https://pyflyde.readthedocs.io/en/latest/quickstart/) guide.
+
+## Contributing
+
+### Install dev dependencies
+
+```bash
+pip install .\[dev\]
+```
+
+### Run tests, linters and coverage reports
+
+To run tests only:
+
+```bash
+make test
+```
+
+To run tests with coverage and see report:
+
+```bash
+make cover report
+```
+
+To run linters:
+
+```bash
+make lint
+```
