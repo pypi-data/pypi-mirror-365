@@ -1,0 +1,96 @@
+Metadata-Version: 2.4
+Name: parse-slice
+Version: 0.1.0a1
+Summary: A Python function that normalizes and validates slice objects, ensuring correct bounds based on the step direction.
+Author-email: Jifeng Wu <jifengwu2k@gmail.com>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/jifengwu2k/parse-slice
+Project-URL: Bug Tracker, https://github.com/jifengwu2k/parse-slice/issues
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=2
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# `parse-slice`
+
+A Python function that normalizes and validates slice objects, ensuring correct bounds based on the step direction.
+
+## Installation
+
+```bash
+pip install parse-slice
+```
+
+## Usage
+
+```python
+def parse_slice(slice_object: slice) -> tuple[int | None, int | None, int]: ...
+```
+
+### Behavior
+
+- **Extracts `step` (`int`)**:
+  - If `slice_object.step is None`, `step` is set to 1.
+  - Otherwise, `step` is set to `slice_object.step`.
+  - Raises `ValueError` if `step` is 0 or not an integer.
+  - **Guarantees `step > 0` or `step < 0`.**
+- **Extracts `start` and `stop` (both either `int` or `None`)**:
+  - If `step > 0`
+    - `start=None` stands for `start=-inf`, `stop=None` stands for `stop=+inf`
+    - **Guarantees `start <= stop` via clamping.**
+  - If `step < 0`
+    - `start=None` stands for `start=+inf`, `stop=None` stands for `stop=-inf`
+    - **Guarantees `start >= stop` via clamping.**
+  - Raises `ValueError` if `start`/`stop` are neither integers nor `None`s
+
+## Examples
+
+```python
+# Basic usage
+from parse_slice import parse_slice
+
+# Start only
+assert parse_slice(slice(0, None, None)) == (0, None, 1)
+
+# Stop only
+assert parse_slice(slice(None, 0, None)) == (None, 0, 1)
+
+# Step only
+assert parse_slice(slice(None, None, 1)) == (None, None, 1)
+assert parse_slice(slice(None, None, -1)) == (None, None, -1)
+
+# Start + stop
+assert parse_slice(slice(0, 10, None)) == (0, 10, 1)
+assert parse_slice(slice(10, 0, None)) == (10, 10, 1)  # Clamped
+
+# Start + step
+assert parse_slice(slice(0, None, 1)) == (0, None, 1)
+assert parse_slice(slice(0, None, -1)) == (0, None, -1)
+
+# Stop + step
+assert parse_slice(slice(None, 10, 1)) == (None, 10, 1)
+assert parse_slice(slice(None, 10, -1)) == (None, 10, -1)
+
+# Start + stop + step
+assert parse_slice(slice(0, 10, 1)) == (0, 10, 1)
+assert parse_slice(slice(10, 0, -1)) == (10, 0, -1)
+assert parse_slice(slice(10, 0, 1)) == (10, 10, 1)  # Clamped
+assert parse_slice(slice(0, 10, -1)) == (0, 0, -1)  # Clamped
+```
+
+## Use Cases
+
+- Implementing custom sequence types.
+- Normalizing slices for mathematical operations (e.g., array indexing).
+- Debugging or logging slice behavior.
+
+## Contributing
+
+Contributions are welcome! Please submit pull requests or open issues on the GitHub repository.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
