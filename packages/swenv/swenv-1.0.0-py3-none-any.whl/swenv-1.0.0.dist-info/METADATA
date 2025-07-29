@@ -1,0 +1,59 @@
+Metadata-Version: 2.4
+Name: swenv
+Version: 1.0.0
+Summary: Switch system and application settings based on the detected network environment.
+Author-email: Sébastien Hocquet <seb@ipamo.net>
+Project-URL: Homepage, https://gitlab.com/ipamo/swenv
+Project-URL: Bug Tracker, https://gitlab.com/ipamo/swenv
+Keywords: environment,env,linux,workstation,station,switch
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.9.2
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+Dynamic: license-file
+
+swenv
+======
+
+Switch system and application settings based on the detected network environment.
+
+
+## Quick start
+
+Prerequisites: Python (version >= 3.9.2)
+- [Download for Windows](https://www.python.org/downloads/)
+- Install on Linux Debian / Ubuntu: `sudo apt install python3-venv`
+
+To install using the [published PyPI package](https://pypi.org/project/swenv/), run:
+
+    pip install swenv
+    swenv configure
+
+To install from the [source repositority](https://gitlab.com/ipamo/swenv.git), run:
+
+    git clone https://gitlab.com/ipamo/swenv.git
+    cd swenv
+    python -m swenv configure
+
+The application can then be executed directly. Example:
+
+    swenv
+
+To view available options, run:
+
+    swenv --help
+
+
+## Contributing
+
+Pull requests are welcome.
+
+See [contributing guidelines](https://gitlab.com/ipamo/swenv/-/blob/main/CONTRIBUTING.md).
+
+
+## Legal
+
+This project is licensed under the terms of the [MIT license](https://gitlab.com/ipamo/swenv/-/blob/main/LICENSE.txt).
+
+Logo designed by [Freepik - Flaticon](https://www.flaticon.com/free-icon/global-network_4207232) (free with required attribution).
