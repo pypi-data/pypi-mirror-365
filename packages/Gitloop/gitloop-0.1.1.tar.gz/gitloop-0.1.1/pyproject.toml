@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools >= 77.0.3", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project.scripts]
+gitloop = "clitool.github:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[project]
+name = "Gitloop"
+version = "0.1.1"
+authors = [
+  { name="Rohit Darekar", email="rohitdarekar816@gmail.com" },
+]
+description = "A cli tool that will keep you in loop with your Github"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[project.urls]
+Homepage = "https://github.com/RohitDarekar816/gitloop"
+Issues = "https://github.com/RohitDarekar816/gitloop/issues"
