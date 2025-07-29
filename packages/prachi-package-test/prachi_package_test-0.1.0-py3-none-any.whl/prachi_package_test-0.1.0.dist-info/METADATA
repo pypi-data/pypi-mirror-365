@@ -1,0 +1,38 @@
+Metadata-Version: 2.1
+Name: prachi-package-test
+Version: 0.1.0
+Summary: Sample Test Package
+Home-page: https://github.com/prachikabra121/prachi_package_test
+Author: Prachi Kabra
+Author-email: codebakery8889@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+This file provides an overview of the package and usage examples. 
+# Package 
+`Package` is a simple Python package for Test. 
+## Installation 
+Install the package with pip: 
+pip install Pacakge
+
+
+from Package import ( 
+add,sub,say_hello,mult
+) 
+# add 
+print(add(5, 3))         
+# Output: 8
+print(sub(5, 3))    
+# Output: 2
+# say_hello 
+print(say_hello("Amit"))   
+# Output: Hello, Amit 
+        
+# mul 
+print(mul(3,2))               
+# Output: 6
+ 
