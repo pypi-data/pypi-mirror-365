@@ -1,0 +1,214 @@
+Metadata-Version: 2.4
+Name: lessllm
+Version: 0.2.0
+Summary: A lightweight LLM API proxy framework with network connectivity and usage analysis
+Project-URL: Homepage, https://github.com/simpx/lessllm
+Project-URL: Repository, https://github.com/simpx/lessllm
+Project-URL: Issues, https://github.com/simpx/lessllm/issues
+Project-URL: Documentation, https://github.com/simpx/lessllm/docs
+Author-email: simpx <simpxx@gmail.com>
+Maintainer-email: simpx <simpxx@gmail.com>
+License: MIT
+License-File: LICENSE
+Keywords: analysis,anthropic,api,cache,claude,llm,openai,performance,proxy
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Internet :: Proxy Servers
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.10
+Requires-Dist: duckdb>=0.9.0
+Requires-Dist: fastapi>=0.104.0
+Requires-Dist: httpx>=0.25.0
+Requires-Dist: pandas>=2.0.0
+Requires-Dist: plotly>=5.15.0
+Requires-Dist: pydantic-settings>=2.0.0
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: python-multipart>=0.0.6
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: streamlit-aggrid==1.1.7
+Requires-Dist: streamlit>=1.24.0
+Requires-Dist: uvicorn[standard]>=0.24.0
+Provides-Extra: dev
+Requires-Dist: black>=23.0.0; extra == 'dev'
+Requires-Dist: flake8>=6.0.0; extra == 'dev'
+Requires-Dist: isort>=5.12.0; extra == 'dev'
+Requires-Dist: mypy>=1.0.0; extra == 'dev'
+Requires-Dist: pytest-asyncio>=0.21.0; extra == 'dev'
+Requires-Dist: pytest-cov>=4.0.0; extra == 'dev'
+Requires-Dist: pytest-mock>=3.10.0; extra == 'dev'
+Requires-Dist: pytest>=7.0.0; extra == 'dev'
+Requires-Dist: ruff>=0.1.0; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: mkdocs-material>=9.0.0; extra == 'docs'
+Requires-Dist: mkdocs>=1.5.0; extra == 'docs'
+Requires-Dist: mkdocstrings[python]>=0.22.0; extra == 'docs'
+Provides-Extra: test
+Requires-Dist: pytest-asyncio>=0.21.0; extra == 'test'
+Requires-Dist: pytest-cov>=4.0.0; extra == 'test'
+Requires-Dist: pytest-mock>=3.10.0; extra == 'test'
+Requires-Dist: pytest>=7.0.0; extra == 'test'
+Requires-Dist: respx>=0.20.0; extra == 'test'
+Description-Content-Type: text/markdown
+
+# LessLLM v0.2.0
+
+> 🚀 A lightweight, enterprise-grade LLM API proxy framework with comprehensive analytics and intelligent routing
+
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Version](https://img.shields.io/badge/version-0.2.0-green.svg)](https://github.com/simpx/lessllm)
+
+**Do more with less code/gpu/mem**
+
+## ✨ Key Features
+
+### 🎯 Intelligent API Routing
+- **Smart Format Conversion**: Seamlessly switch between Claude Messages API and OpenAI Chat Completions API
+- **Provider Transparency**: Use any API format with any provider (Claude ↔ OpenAI)
+- **Automatic Routing**: Based on model names and endpoint types
+- **Streaming Support**: Real-time format conversion for streaming requests
+
+### 📊 Enterprise Analytics
+- **100% Data Capture**: Complete HTTP request/response logging to DuckDB
+- **Performance Monitoring**: TTFT, TPOT, throughput analysis
+- **Cost Tracking**: Token usage and cost estimation per request
+- **Cache Analytics**: Cache hit rates and savings calculation
+- **Interactive Dashboard**: Web-based analytics with real-time data
+
+### 🔧 Multi-Provider Support
+- **Claude (Anthropic)**: Direct Messages API support + Aliyun proxy compatibility
+- **OpenAI**: Chat Completions API with full feature parity
+- **Extensible**: Easy to add new providers
+- **Load Balancing**: Intelligent provider selection
+
+### 🌐 Web Interface
+- **Real-time Monitoring**: Live request tracking and analysis
+- **Interactive Tables**: Click-to-view detailed request information
+- **Data Visualization**: Charts and graphs for usage patterns
+- **SQL Query Interface**: Custom analytics with pre-built templates
+
+## Quick Start
+
+### Installation
+
+```bash
+pip install -e .
+```
+
+### Initialize Configuration
+
+```bash
+lessllm init --output lessllm.yaml
+```
+
+### Start the Proxy Server
+
+```bash
+# Set your API keys
+export OPENAI_API_KEY="your-openai-key"
+export ANTHROPIC_API_KEY="your-claude-key"
+
+# Start server
+lessllm server --config lessllm.yaml --port 8000
+```
+
+### Start the Analytics Dashboard GUI
+
+```bash
+# Start GUI (requires optional GUI dependencies)
+pip install -e .[gui]
+lessllm gui --port 8501 --host localhost
+```
+
+### Use with OpenAI Client
+
+```python
+import openai
+
+# Point OpenAI client to LessLLM proxy
+client = openai.OpenAI(
+    base_url="http://localhost:8000/v1",
+    api_key="dummy"  # LessLLM uses configured keys
+)
+
+response = client.chat.completions.create(
+    model="gpt-4",
+    messages=[{"role": "user", "content": "Hello!"}]
+)
+```
+
+## Configuration
+
+Create a `lessllm.yaml` configuration file:
+
+```yaml
+proxy:
+  socks_proxy: "socks5://127.0.0.1:1080"  # Optional
+  timeout: 30
+
+providers:
+  openai:
+    api_key: "${OPENAI_API_KEY}"
+  claude:
+    api_key: "${ANTHROPIC_API_KEY}"
+
+logging:
+  enabled: true
+  storage:
+    type: "duckdb"
+    db_path: "./lessllm_logs.db"
+
+analysis:
+  enable_cache_estimation: true
+  enable_performance_tracking: true
+```
+
+## Project Status
+
+**Current Implementation Status:**
+
+✅ Core Framework
+- ✅ Configuration management system
+- ✅ FastAPI proxy server
+- ✅ Network proxy support (HTTP/SOCKS)
+- ✅ Provider abstraction layer
+
+✅ API Support
+- ✅ OpenAI provider implementation
+- ✅ Claude provider implementation
+- ✅ Streaming and non-streaming support
+
+✅ Logging & Analysis
+- ✅ DuckDB storage system
+- ✅ Performance tracking (TTFT/TPOT)
+- ✅ Cache estimation algorithms
+- ✅ Cost calculation utilities
+
+✅ Developer Tools
+- ✅ CLI interface
+- ✅ Example configurations
+- ✅ Test client scripts
+- ✅ Analytics dashboard GUI
+
+## Next Steps
+
+🔄 **In Progress:**
+- Unit tests and integration tests
+- Documentation improvements
+- Performance optimizations
+
+📋 **Planned:**
+- More LLM provider integrations
+- Advanced caching strategies
+- Batch request optimization
+
+## License
+
+MIT License
