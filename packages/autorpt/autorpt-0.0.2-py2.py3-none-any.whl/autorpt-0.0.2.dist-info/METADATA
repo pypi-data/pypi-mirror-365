@@ -1,0 +1,54 @@
+Metadata-Version: 2.4
+Name: autorpt
+Version: 0.0.2
+Summary: python package to create a grant management report
+Home-page: https://github.com/VRConservation/autorpt
+Author: Vance Russell
+Author-email: vance@3point.xyz
+License: MIT license
+Keywords: autorpt
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary
+
+# autorpt
+
+
+[![image](https://img.shields.io/pypi/v/autorpt.svg)](https://pypi.python.org/pypi/autorpt)
+[![image](https://img.shields.io/conda/vn/conda-forge/autorpt.svg)](https://anaconda.org/conda-forge/autorpt)
+[![image](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
+**python package to create a grant management report**
+
+
+- Free software: MIT license
+- Documentation: 3point.xyz/autorpt
+    
+
+## Features
+
+- Upload budget in excel
+- Update the reporting figures in content.md
+- Run python rpt.py in the terminal
+- A new report in MS Word is generated in the reports folder
+- Automated conversion to pdf will be added soon
