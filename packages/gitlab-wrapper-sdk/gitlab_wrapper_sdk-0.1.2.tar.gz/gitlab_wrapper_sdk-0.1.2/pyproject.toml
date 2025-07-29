@@ -1,0 +1,55 @@
+[project]
+name = "gitlab-wrapper-sdk"
+version = "0.1.2"
+description = "A Python SDK for interacting with code.swecha.org using GitLab API v4."
+authors = [
+  
+]
+readme = "README.md"
+license = { text = "GNU General Public License v3.0" }
+requires-python = ">=3.11"
+dependencies = [
+  "httpx>=0.26.0",
+  "requests>=2.31.0"
+]
+
+[project.optional-dependencies]
+dev = [
+  "ruff",
+  "pytest",
+  "respx",
+  "requests-mock",
+  "pre-commit",
+  "python-dotenv"
+]
+
+[tool.hatch.build]
+packages = ["gitlab_wrapper"]
+include = [
+  "README.md",
+  "LICENSE",
+  "CHANGELOG.md",
+  "CONTRIBUTING.md",
+  "CODE_OF_CONDUCT.md"
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "C", "B"]
+exclude = ["tests/*"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q"
+testpaths = ["tests"]
+
+[project.urls]
+"Homepage" = "https://code.swecha.org/ranjithraj/gitlab-wrapper/"
+"Issue Tracker" = "https://code.swecha.org/ranjithraj/gitlab-wrapper/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
