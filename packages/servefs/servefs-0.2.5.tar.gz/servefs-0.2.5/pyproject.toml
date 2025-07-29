@@ -1,0 +1,51 @@
+[tool.poetry]
+name = "servefs"
+version = "0.2.5"  # 将由 poetry-dynamic-versioning 自动管理
+description = "A modern HTTP file server with web UI"
+authors = ["Your Name <your.email@example.com>"]
+readme = "README.md"
+packages = [{include = "servefs"}]
+include = ["servefs/static/**/*"]
+homepage = "https://github.com/codeskyblue/servefs"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Web Environment",
+    "Framework :: FastAPI",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
+]
+
+[tool.poetry.scripts]
+servefs = "servefs.cli:app"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fastapi = "^0.104.0"
+uvicorn = "^0.24.0"
+python-multipart = "^0.0.6"
+typer = "^0.9.0"
+rich = "^13.7.0"
+aiofiles = "^24.1.0"
+pydantic-settings = "^2.8.0"
+aiohttp = "^3.9.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.3"
+black = "^23.10.1"
+isort = "^5.12.0"
+poetry-dynamic-versioning = "^1.7.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0", "poetry-dynamic-versioning>=1.0.0"]
+build-backend = "poetry_dynamic_versioning.backend"
+
+[tool.poetry-dynamic-versioning]
+enable = false
+pattern = "^v?(?P<base>\\d+\\.\\d+\\.\\d+)$"
