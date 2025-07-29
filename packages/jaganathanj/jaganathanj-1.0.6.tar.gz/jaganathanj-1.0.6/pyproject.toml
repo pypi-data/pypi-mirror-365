@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jaganathanj"
+version = "1.0.6"
+description = "A unique personal brand package - because why have a boring resume when you can pip install a person?"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Jaganathan J", email = "jaganathanjjds@gmail.com"}
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+requires-python = ">=3.6"
+keywords = ["resume", "portfolio", "personal-brand", "cv", "developer", "student"]
+
+[project.urls]
+Homepage = "https://github.com/J-Jaganathan/jaganathanj"
+Repository = "https://github.com/J-Jaganathan/jaganathanj"
+Portfolio = "https://jaganathan-j-portfolio.vercel.app/"
+LinkedIn = "https://linkedin.com/in/jaganathan-j-a5466a257"
+YouTube = "https://youtube.com/@Tech_CrafterX"
+Issues = "https://github.com/J-Jaganathan/jaganathanj/issues"
+
+[project.scripts]
+jaganathanj = "jaganathanj:_welcome_message"
