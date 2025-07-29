@@ -1,0 +1,379 @@
+Metadata-Version: 2.4
+Name: service-cat-creator-app
+Version: 0.1.0
+Summary: This tool allows you to create a service catalog by simple prompts, then generate json file of specified format then it checks whether the record of this type is already present in servicenow instance or not if not it creates a new record in the instance.
+Author: Divya Shah
+Maintainer-email: Divya Shah <shah.divya.2206@gmail.com>
+License: Apache-2.0 with Additional Restrictions
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE.md
+Requires-Dist: click>=8.1.3
+Requires-Dist: flask>=2.2.2
+Requires-Dist: httpx>=0.23.0
+Requires-Dist: python-dotenv>=0.21.0
+Requires-Dist: google-generativeai>=0.3.0
+Dynamic: license-file
+
+# Service Catalog Creator App 🚀
+
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![ServiceNow](https://img.shields.io/badge/ServiceNow-Integration-green?style=for-the-badge&logo=servicenow&logoColor=white)](https://servicenow.com)
+[![MCP](https://img.shields.io/badge/MCP-Server-purple?style=for-the-badge&logo=protocol&logoColor=white)](https://modelcontextprotocol.io)
+[![License](https://img.shields.io/badge/License-Apache%202.0%20%2B%20Restrictions-red?style=for-the-badge&logo=apache&logoColor=white)](LICENSE)
+[![Agentic](https://img.shields.io/badge/Agentic%20AI-orange?style=for-the-badge&logo=openai&logoColor=white)](https://openai.com)
+[![JSON](https://img.shields.io/badge/Format-JSON-yellow?style=for-the-badge&logo=json&logoColor=white)](https://json.org)
+
+<div align="center">
+  <h3>🤖 AI-Powered ServiceNow Service Catalog Automation</h3>
+  <p>Transform natural language prompts into production-ready ServiceNow catalog items</p>
+</div>
+
+---
+
+## 📋 Overview
+
+The **Service Catalog Creator App** revolutionizes ServiceNow service catalog management by leveraging AI to transform simple natural language descriptions into fully-configured catalog items. This intelligent tool bridges the gap between business requirements and technical implementation.
+
+### 🎯 What It Does
+
+- **🧠 AI-Powered Generation**: Convert natural language prompts into structured service catalog entries
+- **🔍 Smart Duplicate Detection**: Automatically checks for existing records before creation
+- **🔗 ServiceNow Integration**: Direct, seamless integration with your ServiceNow instance
+- **📡 MCP Server Support**: Built-in Model Context Protocol integration for enhanced AI capabilities
+- **📄 JSON Export**: Generate standardized, ServiceNow-compatible JSON files
+- **⚡ Batch Processing**: Handle multiple catalog entries efficiently
+
+---
+
+## ✨ Key Features
+
+<table>
+<tr>
+<td width="50%">
+
+### 🤖 **AI-Powered Creation**
+- Natural language to service catalog conversion
+- Intelligent field mapping and validation
+- Context-aware variable generation
+- Smart categorization
+
+</td>
+<td width="50%">
+
+### 🔍 **Smart Validation**
+- Duplicate detection algorithms
+- ServiceNow schema compliance
+- Data integrity checks
+- Error prevention mechanisms
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 🔗 **Enterprise Integration**
+- Direct ServiceNow API integration
+- OAuth and basic authentication support
+- Real-time synchronization
+- Bulk operations support
+
+</td>
+<td width="50%">
+
+### 📊 **Advanced Export**
+- Multiple format support (JSON, XML, CSV)
+- Template-based generation
+- Custom field mapping
+- Batch export capabilities
+
+</td>
+</tr>
+</table>
+
+---
+
+## 🛠️ Technology Stack
+
+<div align="center">
+
+| Technology | Purpose | Version |
+|------------|---------|---------|
+| ![Python](https://img.shields.io/badge/Python-FFD43B?style=flat&logo=python&logoColor=blue) | Core Language | 3.10+ |
+| ![HTTPX](https://img.shields.io/badge/HTTPX-009639?style=flat&logo=python&logoColor=white) | HTTP Client | 0.28.1+ |
+| ![MCP](https://img.shields.io/badge/MCP-6B46C1?style=flat&logo=protocol&logoColor=white) | Protocol Server | 1.12.2+ |
+| ![ServiceNow](https://img.shields.io/badge/ServiceNow-62D84E?style=flat&logo=servicenow&logoColor=white) | Target Platform | Latest |
+| ![JSON](https://img.shields.io/badge/JSON-000000?style=flat&logo=json&logoColor=white) | Data Format | Standard |
+
+</div>
+
+---
+
+## 🚀 Quick Start Guide
+
+### 📋 Prerequisites
+
+<details>
+<summary>Click to expand prerequisites</summary>
+
+- **Python**: Version 3.10 or higher
+- **ServiceNow Instance**: Active instance with API access
+- **Credentials**: Valid ServiceNow user credentials with catalog management permissions
+- **Network**: Internet connectivity for API calls
+
+</details>
+
+### ⚡ Installation
+
+```bash
+# Clone the repository (requires permission)
+git clone <repository-url>
+cd service-cat-creator-app
+
+# Install dependencies
+pip install -e .
+
+# Verify installation
+python -c "import service_cat_creator; print('✅ Installation successful!')"
+```
+
+### 🔧 Environment Setup
+
+Create a `.env` file in the project root:
+
+```env
+# ServiceNow Configuration
+SERVICENOW_INSTANCE=your-instance.service-now.com
+SERVICENOW_USERNAME=your-username
+SERVICENOW_PASSWORD=your-password
+
+# Optional: Advanced Settings
+SERVICENOW_API_VERSION=v1
+TIMEOUT_SECONDS=30
+MAX_RETRIES=3
+```
+
+### 🎯 Basic Usage
+
+```python
+from service_cat_creator import ServiceCatalogCreator
+
+# Initialize the creator
+creator = ServiceCatalogCreator()
+
+# Create from natural language
+prompt = """
+Create a laptop request service for employees that includes:
+- Choice of laptop type (Standard, Premium, Developer)
+- Memory options (8GB, 16GB, 32GB)
+- Storage options (256GB SSD, 512GB SSD, 1TB SSD)
+- Justification field for business need
+"""
+
+# Generate and create in ServiceNow
+result = creator.create_from_prompt(prompt)
+print(f"✅ Created service: {result['name']}")
+```
+
+---
+
+## 🔧 MCP Server Integration
+
+<div align="center">
+  <img src="https://img.shields.io/badge/Model_Context_Protocol-Enabled-6B46C1?style=for-the-badge&logo=protocol&logoColor=white" alt="MCP Enabled">
+</div>
+
+This application provides comprehensive MCP (Model Context Protocol) server integration for enhanced AI capabilities.
+
+### 📡 MCP Client Configuration
+
+```json
+{
+  "mcpServers": {
+    "service-catalog-creator": {
+      "command": "python",
+      "args": ["-m", "service_cat_creator.mcp_server"],
+      "env": {
+        "SERVICENOW_INSTANCE": "your-instance.service-now.com",
+        "SERVICENOW_USERNAME": "${SERVICENOW_USERNAME}",
+        "SERVICENOW_PASSWORD": "${SERVICENOW_PASSWORD}"
+      }
+    }
+  }
+}
+```
+
+### 🛠️ Available MCP Tools
+
+| Tool | Description | Input Parameters |
+|------|-------------|------------------|
+| `create_service_catalog_item` | Create new service catalog entries | `prompt`, `category` |
+| `check_existing_service` | Verify if a service already exists | `service_name` |
+| `generate_service_json` | Generate JSON format for services | `prompt`, `format_type` |
+| `list_service_categories` | Get available service categories | None |
+| `validate_service_structure` | Validate service catalog JSON | `json_data` |
+
+---
+
+## 📊 JSON Format & Schema
+
+### 🏗️ ServiceNow-Compatible Structure
+
+```json
+{
+  "name": "Laptop Request",
+  "short_description": "Request a new laptop for work",
+  "description": "Submit a request for a new laptop with specific requirements",
+  "category": "Hardware",
+  "subcategory": "Computer Equipment",
+  "state": "Published",
+  "active": true,
+  "variables": [
+    {
+      "name": "laptop_type",
+      "question": "Select laptop type",
+      "type": "choice",
+      "choices": ["Standard", "Premium", "Developer"],
+      "mandatory": true,
+      "order": 1
+    },
+    {
+      "name": "memory_size",
+      "question": "Select memory configuration",
+      "type": "choice",
+      "choices": ["8GB", "16GB", "32GB"],
+      "mandatory": true,
+      "order": 2
+    }
+  ],
+  "variables_set": "Hardware Request Variables",
+  "app_scope": "global",
+  "owner": "admin",
+  "workflow": "Hardware Approval Process"
+}
+```
+
+### 📋 Schema Validation
+
+The application automatically validates generated JSON against ServiceNow schema requirements:
+- ✅ Required field validation
+- ✅ Data type checking
+- ✅ Choice list validation
+- ✅ Workflow compatibility
+- ✅ Permission verification
+
+---
+
+## 🎯 Use Cases & Examples
+
+<details>
+<summary><strong>🖥️ IT Service Management</strong></summary>
+
+```python
+# Hardware requests
+creator.create_from_prompt("Create a desktop computer request with OS options")
+
+# Software requests  
+creator.create_from_prompt("Create software license request for Adobe Creative Suite")
+
+# Access requests
+creator.create_from_prompt("Create VPN access request with approval workflow")
+```
+
+</details>
+
+<details>
+<summary><strong>👥 HR Services</strong></summary>
+
+```python
+# Onboarding
+creator.create_from_prompt("Create new employee onboarding checklist service")
+
+# Benefits
+creator.create_from_prompt("Create health insurance enrollment service")
+
+# Time off
+creator.create_from_prompt("Create vacation request service with manager approval")
+```
+
+</details>
+
+<details>
+<summary><strong>🏢 Facilities Management</strong></summary>
+
+```python
+# Space requests
+creator.create_from_prompt("Create conference room booking service")
+
+# Maintenance
+creator.create_from_prompt("Create facility maintenance request service")
+
+# Security
+creator.create_from_prompt("Create building access card request service")
+```
+
+</details>
+
+---
+
+## 📖 Advanced API Reference
+
+### 🔧 ServiceCatalogCreator Class
+
+<details>
+<summary><strong>Core Methods</strong></summary>
+
+#### `create_from_prompt(prompt: str, **kwargs) -> dict`
+Creates a complete service catalog item from natural language.
+
+**Parameters:**
+- `prompt` (str): Natural language description
+- `category` (str, optional): Force specific category
+- `auto_publish` (bool, optional): Auto-publish after creation
+
+**Returns:** Dictionary with created service details
+
+#### `generate_json_only(prompt: str, format_type: str = "servicenow") -> str`
+Generates JSON without creating in ServiceNow.
+
+#### `check_duplicate(service_name: str) -> bool`
+Checks if service already exists in ServiceNow.
+
+#### `batch_create(prompts: List[str]) -> List[dict]`
+Creates multiple services from a list of prompts.
+
+</details>
+
+---
+
+## 🤝 Contributing & Development
+
+<div align="center">
+  <strong>⚠️ This is a proprietary repository showcasing technical innovation</strong>
+</div>
+
+### 🔒 Access Requirements
+
+To contribute or access the source code:
+1. **Request Permission**: Contact shah.divya.2206@gmail.com
+2. **Provide Justification**: Explain your intended use case
+3. **Agree to Terms**: Accept additional licensing terms
+4. **Wait for Approval**: Receive written authorization
+
+### 🛠️ Development Setup
+
+```bash
+# After receiving permission
+git clone <repository-url>
+cd service-cat-creator-app
+
+# Install development dependencies
+pip install -e ".[dev]"
