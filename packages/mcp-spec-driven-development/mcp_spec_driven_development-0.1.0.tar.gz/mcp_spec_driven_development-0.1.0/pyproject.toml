@@ -1,0 +1,19 @@
+[project]
+name = "mcp-spec-driven-development"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "lhy", email = "873904524@qq.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "mcp[cli]>=1.12.2",
+]
+
+[project.scripts]
+mcp-spec-driven-development = "mcp_spec_driven_development:main"
+
+[build-system]
+requires = ["uv_build>=0.8.3,<0.9.0"]
+build-backend = "uv_build"
