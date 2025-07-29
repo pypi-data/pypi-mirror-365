@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+packages = ["abstr"]
+
+[project]
+name = "abstr"
+version = "0.0.1"
+description = "The Abstractu Universe Project"
+readme = {file = "README.rst", content-type = "text/markdown"}
+requires-python = ">=3.8"
+license = {file = "LICENSE.rst", content-type = "text/markdown"}
+keywords = ["home", "automation", "abstr"]
+authors = [
+  {name = "J Meskanen", email = "juha@meskanen.com" }
+]
+maintainers = [
+  {name = "J. Meskanen", email = "juha@meskanen.com" }
+]
+
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development",
+  "License :: Public Domain",
+  "Programming Language :: Python :: 3.8",
+]
+
+dependencies = [
+  "masterpiece >= 0.1.45",
+  "requests >= 2.31",
+  "pytz >= 2024.1",
+  "importlib-metadata"
+]
+
+
+[project.optional-dependencies]
+dev = [
+  "check-manifest",
+  "types-pyz"
+]
+
+[project.entry-points."abstr.plugins"]
+
+
+[project.urls]
+"Homepage" = "https://gitlab.com/juham/abstr"
+"Bug Reports" = "https://gitlab.com/juham/abstr"
+"Funding" = "https://meskanen.com"
+"Say Thanks!" = "http://meskanen.com"
+"Source" = "https://gitlab.com/juham/abstr"
+
+
+[tool.mypy]
+files = ["abstr/*.py", "examples/*.py"]
+ignore_missing_imports = false
+
+
+[tool.setuptools.package-data]
+"abstr" = ["py.typed"]
+
