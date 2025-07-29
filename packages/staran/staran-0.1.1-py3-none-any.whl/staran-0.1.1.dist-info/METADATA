@@ -1,0 +1,225 @@
+Metadata-Version: 2.4
+Name: staran
+Version: 0.1.1
+Summary: staran - 高性能Python工具库
+Home-page: https://github.com/starlxa/staran
+Author: StarAn
+Author-email: starlxa@icloud.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy>=1.20
+Requires-Dist: pandas
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Staran - 简化的Python日期工具库
+
+## 📅 简洁高效的日期处理
+
+Staran是一个基于Python标准库的简洁日期工具库，提供直观易用的API，无需复杂依赖。
+
+## 🚀 快速开始
+
+### 安装
+```bash
+pip install staran
+```
+
+### 基本使用
+
+```python
+from staran import Date, today, from_string
+
+# 创建日期
+today_date = today()                    # 今日
+birthday = Date(1990, 5, 15)           # 指定日期
+event = from_string('20240615')        # 从字符串
+
+print(f"今天是: {today_date}")
+print(f"生日: {birthday}")
+print(f"活动日期: {event}")
+```
+
+## 📖 功能特性
+
+### 1. 多种创建方式
+```python
+from tools.date import Date
+
+# 方式1: 无参数 - 今日
+today = Date()
+
+# 方式2: 指定年月日
+birthday = Date(1990, 5, 15)
+
+# 方式3: 从字符串
+event1 = Date('20240615')      # YYYYMMDD
+event2 = Date('2024-06-15')    # 带分隔符
+monthly = Date('202406')       # YYYYMM (日期默认为1号)
+
+# 方式4: 关键字参数
+deadline = Date(year=2024, month=12, day=31)
+```
+
+### 2. 日期运算
+```python
+date = Date(2024, 6, 15)
+
+# 加减天数
+tomorrow = date.add_days(1)
+last_week = date.add_days(-7)
+
+# 加减月份
+next_month = date.add_months(1)
+last_year = date.add_months(-12)
+
+# 计算日期差
+diff_days = date.difference(Date(2024, 6, 1))  # 14天
+```
+
+### 3. 格式化和转换
+```python
+date = Date(2024, 6, 15)
+
+# 格式化
+print(date.format('%Y-%m-%d'))      # 2024-06-15
+print(date.format('%Y年%m月%d日'))   # 2024年06月15日
+
+# 转换
+timestamp = date.to_timestamp()     # 时间戳
+dt_date = date.to_date()           # datetime.date对象
+dt_datetime = date.to_datetime()    # datetime.datetime对象
+```
+
+### 4. 日期信息
+```python
+date = Date(2024, 6, 15)
+
+# 基本信息
+print(f"是否闰年: {date.is_leap_year()}")      # False
+print(f"星期几: {date.weekday()}")              # 5 (Saturday)
+print(f"当月天数: {date.days_in_month()}")      # 30
+print(f"当年天数: {date.days_in_year()}")       # 365
+```
+
+### 5. 日期比较
+```python
+date1 = Date(2024, 6, 15)
+date2 = Date(2024, 6, 16)
+
+print(date1 < date2)   # True
+print(date1 == Date(2024, 6, 15))  # True
+print(date1 >= date2)  # False
+```
+
+## 🎯 设计理念
+
+### 简洁性
+- 基于Python标准库，无额外依赖
+- 直观的API设计
+- 清晰的错误消息
+
+### 可靠性
+- 完整的日期验证
+- 处理边界情况（如闰年、月末）
+- 标准的Python对象行为
+
+### 实用性
+- 支持常见的日期操作
+- 灵活的创建方式
+- 便捷的格式化选项
+
+## 📁 项目结构
+
+```
+staran/
+├── __init__.py                # 主包入口
+├── setup.py                  # 安装配置
+├── LICENSE                   # MIT许可证
+├── README.md                 # 本文档
+├── test_simple.py            # 功能测试
+└── tools/                    # 核心模块
+    ├── __init__.py           # 工具模块入口
+    └── date/                 # 日期功能
+        ├── __init__.py       # 日期模块入口
+        └── date.py           # Date类实现
+```
+
+## 🧪 测试
+
+```bash
+# 运行测试
+python test_simple.py
+```
+
+预期输出：
+```
+📅 简化Date类测试
+==============================
+1. 基本创建:
+   今日: 2025-07-28
+   指定日期: 2024-06-15
+   从字符串: 2024-06-15
+
+2. 日期操作:
+   明天: 2025-07-29
+   下月: 2025-08-28
+
+3. 时间戳转换:
+   2024-06-15 时间戳: 1718380800.0
+
+4. 格式化:
+   格式化: 2024年06月15日
+
+5. 日期比较:
+   2024-06-15 < 2024-06-16: True
+   2024-06-15 == Date(2024, 6, 15): True
+
+✅ 所有测试通过!
+```
+
+## 📋 API参考
+
+### Date类
+
+#### 构造方法
+- `Date()` - 创建今日日期
+- `Date(year, month, day)` - 指定年月日
+- `Date(date_string)` - 从字符串创建
+- `Date(year=y, month=m, day=d)` - 关键字参数
+
+#### 核心方法
+- `add_days(days)` - 增加/减少天数
+- `add_months(months)` - 增加/减少月数
+- `difference(other)` - 计算日期差
+- `format(fmt)` - 格式化字符串
+- `to_timestamp()` - 转换为时间戳
+- `is_leap_year()` - 判断闰年
+
+#### 便捷函数
+- `today()` - 获取今日
+- `from_string(s)` - 从字符串创建
+- `from_timestamp(ts)` - 从时间戳创建
+
+## 📄 许可证
+
+MIT License - 详见 [LICENSE](LICENSE) 文件
+
+## 🤝 贡献
+
+欢迎提交Issue和Pull Request！
+
+---
+
+**Staran** - 让日期处理变得简单 🌟
