@@ -1,0 +1,111 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "openvino2onnx"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "Wenyi Tang", email = "wenyitang@outlook.com" },
+]
+license-files = ["LICENSE"]
+classifiers = [
+    "License :: OSI Approved :: Apache Software License",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development",
+]
+dynamic = ["version", "description"]
+dependencies = [
+    "onnx>=1.17.0",
+    "networkx",
+    "numpy<2.2.0",
+    "tabulate",
+    "colorlog>=6.9.0",
+    "termcolor>=3.1.0",
+]
+
+[project.urls]
+Home = "https://github.com/LoSealL/openvino2onnx"
+Docs = "https://loseall.github.io/openvino2onnx"
+
+[project.optional-dependencies]
+test = [
+    "onnxoptimizer",
+    "onnxruntime",
+    "onnxsim",
+    "openvino>=2025.0.0",
+    "pre-commit",
+    "pytest",
+    "pytest-cov",
+    "pooch",
+]
+
+[project.scripts]
+openvino2onnx = "openvino2onnx.__main__:main"
+
+[tool.setuptools]
+# Compatible with setuptools, when change build-system to setuptools.
+packages = ["openvino2onnx"]
+
+[tool.pyright]
+include = ["openvino2onnx"]
+exclude = ["openvino2onnx/domain/pytorch", "tests", "tests_omz_fuzzy"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = ["-q", "-s"]
+
+[tool.flake8]
+ignore = ["E203", "E231", "E241"]
+per-file-ignores = ["__init__.py:F401"]
+exclude = []
+max-line-length = 88
+max-complexity = 20
+count = true
+
+[tool.isort]
+profile = "black"
+skip_glob = []
+
+[tool.pylint."MAIN"]
+ignore-paths = []
+
+[tool.pylint."MESSAGES CONTROL"]
+disable = [
+    "logging-fstring-interpolation",
+    "import-outside-toplevel",
+    "missing-module-docstring",
+    "no-member",
+    "no-name-in-module",
+    "fixme",
+    "R",
+    "I",
+]
+
+[tool.mypy]
+disable_error_code = ["assignment", "import-untyped", "return-value", "return"]
+exclude = [
+    '^openvino2onnx/domain/pytorch/.*\.py$',
+    '^tests.*\.py$',
+]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.16.0",
+    "onnxscript>=0.3.0",
+    "pyright>=1.1.401",
+    "torch>=2.7.1",
+    "torchaudio>=2.7.1",
+    "torchvision>=0.22.1",
+]
+
+[tool.uv.sources]
+torch = { index = "pytorch" }
+torchaudio = { index = "pytorch" }
+torchvision = { index = "pytorch" }
+
+[[tool.uv.index]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cu126"
+explicit = true
