@@ -1,0 +1,53 @@
+Metadata-Version: 2.4
+Name: vkb-lib
+Version: 0.1.0
+Summary: Resource-aware architecture library for building cognitive computing systems
+Home-page: https://github.com/Jobsbka/VKB_Lib
+Author: VKB Architector
+Project-URL: Documentation, https://github.com/Jobsbka/VKB_Lib/docs
+Project-URL: Source, https://github.com/Jobsbka/VKB_Lib/vkb_lib
+Keywords: ai architecture resource-oriented cognitive computing
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Software Development :: Libraries
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: License.txt
+Provides-Extra: test
+Requires-Dist: pytest>=6.0; extra == "test"
+Requires-Dist: pytest-cov; extra == "test"
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license-file
+Dynamic: project-url
+Dynamic: provides-extra
+Dynamic: requires-python
+Dynamic: summary
+
+# VKB Library
+
+[![PyPI version](https://badge.fury.io/py/vkb-lib.svg)](https://badge.fury.io/py/vkb-lib)
+[![Tests](https://github.com/yourusername/vkb-lib/actions/workflows/tests.yml/badge.svg)](https://github.com/yourusername/vkb-lib/actions/workflows/tests.yml)
+
+VKB (Вычислительные Когнитивные Блоки) - это библиотека для построения ресурсно-ориентированных вычислительных систем.
+
+## Особенности
+
+- **Ресурсная осознанность**: Каждая операция имеет явную стоимость
+- **Энергетическая честность**: Ресурсы - валюта вычислительной экосистемы
+- **Экосистемный симбиоз**: Блоки образуют вычислительные пищевые цепочки
+- **Постепенное усложнение**: От простых правил к сложным алгоритмам
+
+## Установка
+
+```bash
+pip install vkb-lib
