@@ -1,0 +1,74 @@
+Metadata-Version: 2.4
+Name: formulaire_app
+Version: 0.2.3
+Summary: A reusable Django app with a dynamic formulaire
+Home-page: https://github.com/tonpseudo/formulaire_app
+Author: soro F M 
+Author-email: soferelaha@gmail.com
+License: MIT
+Classifier: Framework :: Django
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: Django>=3.2
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: summary
+
+# formulaire_app
+
+Une application Django prête à l'emploi pour créer, afficher et gérer des formulaires personnalisés.
+
+============
+# formulaire_app
+============
+
+`formulaire_app` est une application Django réutilisable permettant d'ajouter rapidement des formulaires dynamiques à n'importe quel projet Django.
+
+## Fonctionnalités
+
+- 📄 Création de formulaires personnalisés
+- 🖼️ Templates prêts à l'emploi pour affichage rapide
+- 🗃️ Sauvegarde des réponses utilisateur
+- 🧩 Intégration simple via `INSTALLED_APPS`
+- 🎨 Fichiers `static/` et `templates/` inclus pour personnalisation facile
+
+## Installation
+
+```bash
+pip install formulaire-app
+
+Quick start
+-----------
+
+1. Add "formulaire_app" to your INSTALLED_APPS setting like this::
+
+    INSTALLED_APPS = [
+        ...,
+        'formulaire_app',
+    ]
+
+
+2. Include the formulaire_app URLconf in your project urls.py like this::
+
+    from django.urls import path, include
+
+    urlpatterns = [
+            ...,
+            path('', include('formulaire_app.urls')),
+]
+
+
+3. Run ``python manage.py migrate`` to create the models.
+
+
+4. Start the development server and visit the formular
+    python manage.py runserver
