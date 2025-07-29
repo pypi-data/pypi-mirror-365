@@ -1,0 +1,36 @@
+Metadata-Version: 2.4
+Name: SFDL_DB
+Version: 0.1.0
+Summary: Same Features, Different Label Skew Generator
+Home-page: https://github.com/yourusername/SFDL_DB
+Author: Your Name
+Author-email: Your Name <your.email@example.com>
+License: MIT
+Project-URL: Homepage, https://github.com/yourusername/SFDL_DB
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: pandas
+Requires-Dist: matplotlib
+Requires-Dist: scikit-learn
+Dynamic: author
+Dynamic: home-page
+
+# SFDL_DB
+
+A Python package for generating Same Features, Different Label Skew datasets using KMeans clustering and Davies-Bouldin Score for optimal `k`.
+
+## Installation
+
+```bash
+pip install .
+```
+
+## Usage
+
+```python
+from SFDL_DB import same_features_different_label_skew
+import pandas as pd
+
+df = pd.read_csv("your_dataset.csv")
+same_features_different_label_skew(df, label_col="Attack", k_optimal=4)
+```
