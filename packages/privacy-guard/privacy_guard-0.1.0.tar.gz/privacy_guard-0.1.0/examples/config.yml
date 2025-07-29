@@ -1,0 +1,35 @@
+version: "1.0"
+global_config:
+  auto_detect: true
+  default_strategy: "MaskStrategy"
+  preserve_null: true
+  batch_size: 1000
+
+field_rules:
+  - field_name: "name"
+    data_type: "name"
+    strategy: "RandomizeStrategy"
+    params:
+      data_type: "name"
+    enabled: true
+    
+  - field_name: "phone"
+    data_type: "phone"
+    strategy: "MaskStrategy"
+    params:
+      keep_start: 3
+      keep_end: 4
+    enabled: true
+    
+  - field_name: "email"
+    data_type: "email"
+    strategy: "MaskStrategy"
+    params: {}
+    enabled: true
+    
+  - field_name: "address"
+    data_type: "address"
+    strategy: "RandomizeStrategy"
+    params:
+      data_type: "address"
+    enabled: true
