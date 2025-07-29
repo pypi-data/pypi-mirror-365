@@ -1,0 +1,70 @@
+Metadata-Version: 2.4
+Name: uvy
+Version: 0.2.0
+Summary: A toolkit for uv monorepos
+Requires-Python: <3.14,>=3.8
+Requires-Dist: hatchling
+Requires-Dist: packaging
+Requires-Dist: rustworkx
+Requires-Dist: tomli
+Description-Content-Type: text/markdown
+
+# Uvy
+
+Uvy is a toolkit for Python monorepos that use [uv](https://github.com/astral-sh/uv). It aims to provide a set of utilities to enhance the development experience, streamline workflows, and make managing large monorepos easier. In the future, Uvy will offer a variety of commands and features tailored for uv-based monorepos.
+
+---
+
+## The `list` Command
+
+The `list` command lists and filters packages in the current uv monorepo. It helps you quickly view, organize, and analyze package information, making it easier to manage your project's structure.
+
+**Usage:**
+
+```sh
+uvy list [OPTIONS]
+```
+
+**Main options:**
+
+- `-c, --columns <columns>`: Comma-separated list of columns to display (e.g., name, path, version, tags). Can be specified multiple times. Defaults to `name,path,version,tags`.
+- `-f, --format <format>`: Output format. Choices: ascii, json, markdown, text, unicode. Defaults to `unicode`.
+- `-t, --tags <tags>`: Filter packages by tags. Supports regex patterns. Can be specified multiple times or as a comma-separated list.
+- `--with-dependents`: Include packages that the listed packages depend on.
+- `--with-dependees`: Include packages that depend on the listed packages.
+
+---
+
+## The `check` Command
+
+The `check` command helps you analyze and validate your uv monorepo for potential issues. It provides various subcommands to check different aspects of your project's health.
+
+**Usage:**
+
+```sh
+uvy check [-h] {cycles} ...
+```
+
+**Description:**
+
+Check the uv monorepo for issues.
+
+**Subcommands:**
+
+### `cycles`
+
+Check for cycles in the package dependencies.
+
+**Usage:**
+
+```sh
+uvy check cycles [-h]
+```
+
+**Description:**
+
+Analyzes the dependency graph of packages in your monorepo to detect circular dependencies, which can cause issues during installation and resolution.
+
+---
+
+More commands and features are coming soon!
