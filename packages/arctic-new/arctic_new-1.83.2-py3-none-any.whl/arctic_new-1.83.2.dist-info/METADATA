@@ -1,0 +1,52 @@
+Metadata-Version: 2.4
+Name: arctic_new
+Version: 1.83.2
+Summary: AHL Research Versioned TimeSeries and Tick store
+Author-email: Man AHL Technology <arctic@man.com>, YQ Tsui <qianyun210603@hotmail.com>
+License-Expression: LGPL-2.1-or-later
+Project-URL: Homepage, https://github.com/qianyun210603/arctic
+Keywords: keyvalue,tickstore,chunkstore,mongo,timeseries
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Operating System :: POSIX
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Topic :: Database
+Classifier: Topic :: Database :: Front-Ends
+Classifier: Topic :: Software Development :: Libraries
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: decorator
+Requires-Dist: enum-compat
+Requires-Dist: mock
+Requires-Dist: mockextras
+Requires-Dist: pandas>=2.0.0
+Requires-Dist: numpy
+Requires-Dist: pymongo>=4.0.0
+Requires-Dist: pytz
+Requires-Dist: tzlocal
+Requires-Dist: lz4
+Provides-Extra: tests
+Requires-Dist: mock<=2.0.0; extra == "tests"
+Requires-Dist: mockextras; extra == "tests"
+Requires-Dist: pytest; extra == "tests"
+Requires-Dist: pytest-cov; extra == "tests"
+Requires-Dist: pytest-server-fixtures; extra == "tests"
+Requires-Dist: pytest-timeout; extra == "tests"
+Requires-Dist: pytest-xdist<=1.26.1; extra == "tests"
+Requires-Dist: tomli; extra == "tests"
+Requires-Dist: lz4; extra == "tests"
+Requires-Dist: tzlocal; extra == "tests"
+Dynamic: license-file
+
+# Development moved to ArcticDB GitHub Repository
+
+This repository and project are now in maintenance mode. Development has migrated to [ArcticDB](https://github.com/man-group/ArcticDB).
+
+---
+
+Information on how to set up, install and use Arctic has been moved to [README-arctic.md](README-arctic.md). 
