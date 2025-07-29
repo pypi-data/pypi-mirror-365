@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AnimeFlix - Stream & Download Anime</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#1E293B',
+                        accent: '#F43F5E',
+                        dark: '#0F172A',
+                        light: '#F8FAFC',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0F172A;
+            color: #F8FAFC;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.8) 100%);
+        }
+        
+        .anime-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .anime-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .episode-list::-webkit-scrollbar {
+            height: 6px;
+        }
+        
+        .episode-list::-webkit-scrollbar-track {
+            background: #1E293B;
+        }
+        
+        .episode-list::-webkit-scrollbar-thumb {
+            background: #3B82F6;
+            border-radius: 3px;
+        }
+        
+        .quality-badge {
+            font-size: 0.75rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 9999px;
+        }
+        
+        .loading-spinner {
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-secondary/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <a href="/" class="flex items-center">
+                            <i class="fas fa-play-circle text-accent text-2xl mr-2"></i>
+                            <span class="text-xl font-bold text-white">AnimeFlix</span>
+                        </a>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="/" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-primary">Home</a>
+                            <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Popular</a>
+                            <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Genres</a>
+                            <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Seasonal</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-4 flex items-center md:ml-6">
+                        <div class="relative">
+                            <input type="text" placeholder="Search anime..." class="bg-dark text-white px-4 py-2 rounded-full w-64 focus:outline-none focus:ring-2 focus:ring-primary">
+                            <button class="absolute right-3 top-2 text-gray-400 hover:text-white">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero-gradient">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24">
+            <div class="md:flex md:items-center md:justify-between">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-4">Stream & Download <span class="text-primary">Anime</span> in HD</h1>
+                    <p class="text-lg text-gray-300 mb-6">Watch your favorite anime shows and movies in high quality with no ads. Download episodes to watch offline anytime.</p>
+                    <div class="flex space-x-4">
+                        <a href="#trending" class="bg-primary hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition duration-300">Browse Anime</a>
+                        <a href="#" class="bg-secondary hover:bg-gray-700 text-white px-6 py-3 rounded-lg font-medium border border-gray-600 transition duration-300">Popular Now</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 relative">
+                    <div class="video-container rounded-xl overflow-hidden shadow-2xl">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&mute=1&controls=0&modestbranding=1&rel=0" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <div class="absolute -bottom-4 -left-4 bg-dark p-3 rounded-lg shadow-lg">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center mr-3">
+                                <i class="fas fa-play text-white"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-medium">Now Playing</p>
+                                <p class="text-xs text-gray-400">Jujutsu Kaisen S2</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Trending Anime Section -->
+        <section id="trending" class="mb-12">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold">Trending This Week</h2>
+                <a href="#" class="text-primary hover:underline flex items-center">
+                    View All <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                </a>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                <!-- Anime Card 1 -->
+                <div class="anime-card bg-secondary rounded-lg overflow-hidden shadow-md">
+                    <a href="/anime/abc123">
+                        <div class="relative">
+                            <img src="https://via.placeholder.com/300x450" alt="Anime Poster" class="w-full h-48 object-cover">
+                            <div class="absolute bottom-2 left-2 bg-primary text-white text-xs px-2 py-1 rounded">EP 24</div>
+                            <div class="absolute top-2 right-2 bg-accent text-white text-xs px-2 py-1 rounded">NEW</div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-medium text-white truncate">Jujutsu Kaisen Season 2</h3>
+                            <div class="flex items-center mt-1">
+                                <i class="fas fa-star text-yellow-400 text-xs mr-1"></i>
+                                <span class="text-xs text-gray-300">8.9</span>
+                                <span class="text-xs text-gray-500 mx-2">|</span>
+                                <span class="text-xs text-gray-300">TV</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Anime Card 2 -->
+                <div class="anime-card bg-secondary rounded-lg overflow-hidden shadow-md">
+                    <a href="/anime/abc123">
+                        <div class="relative">
+                            <img src="https://via.placeholder.com/300x450" alt="Anime Poster" class="w-full h-48 object-cover">
+                            <div class="absolute bottom-2 left-2 bg-primary text-white text-xs px-2 py-1 rounded">EP 12</div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-medium text-white truncate">Chainsaw Man</h3>
+                            <div class="flex items-center mt-1">
+                                <i class="fas fa-star text-yellow-400 text-xs mr-1"></i>
+                                <span class="text-xs text-gray-300">9.1</span>
+                                <span class="text-xs text-gray-500 mx-2">|</span>
+                                <span class="text-xs text-gray-300">TV</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Anime Card 3 -->
+                <div class="anime-card bg-secondary rounded-lg overflow-hidden shadow-md">
+                    <a href="/anime/abc123">
+                        <div class="relative">
+                            <img src="https://via.placeholder.com/300x450" alt="Anime Poster" class="w-full h-48 object-cover">
+                            <div class="absolute bottom-2 left-2 bg-primary text-white text-xs px-2 py-1 rounded">MOVIE</div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-medium text-white truncate">Suzume no Tojimari</h3>
+                            <div class="flex items-center mt-1">
+                                <i class="fas fa-star text-yellow-400 text-xs mr-1"></i>
+                                <span class="text-xs text-gray-300">8.5</span>
+                                <span class="text-xs text-gray-500 mx-2">|</span>
+                                <span class="text-xs text-gray-300">Movie</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Anime Card 4 -->
+                <div class="anime-card bg-secondary rounded-lg overflow-hidden shadow-md">
+                    <a href="/anime/abc123">
+                        <div class="relative">
+                            <img src="https://via.placeholder.com/300x450" alt="Anime Poster" class="w-full h-48 object-cover">
+                            <div class="absolute bottom-2 left-2 bg-primary text-white text-xs px-2 py-1 rounded">EP 36</div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-medium text-white truncate">Demon Slayer: Kimetsu no Yaiba</h3>
+                            <div class="flex items-center mt-1">
+                                <i class="fas fa-star text-yellow-400 text-xs mr-1"></i>
+                                <span class="text-xs text-gray-300">9.0</span>
+                                <span class="text-xs text-gray-500 mx-2">|</span>
+                                <span class="text-xs text-gray-300">TV</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Anime Card 5 -->
+                <div class="anime-card bg-secondary rounded-lg overflow-hidden shadow-md">
+                    <a href="/anime/abc123">
+                        <div class="relative">
+                            <img src="https://via.placeholder.com/300x450" alt="Anime Poster" class="w-full h-48 object-cover">
+                            <div class="absolute bottom-2 left-2 bg-primary text-white text-xs px-2 py-1 rounded">EP 8</div>
+                            <div class="absolute top-2 right-2 bg-accent text-white text-xs px-2 py-1 rounded">NEW</div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-medium text-white truncate">Hell's Paradise</h3>
+                            <div class="flex items-center mt-1">
+                                <i class="fas fa-star text-yellow-400 text-xs mr-1"></i>
+                                <span class="text-xs text-gray-300">8.7</span>
+                                <span class="text-xs text-gray-500 mx-2">|</span>
+                                <span class="text-xs text-gray-300">TV</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Latest Episodes Section -->
+        <section class="mb-12">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold">Latest Episodes</h2>
+                <a href="#" class="text-primary hover:underline flex items-center">
+                    View All <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- Episode Card 1 -->
+                <div class="anime-card bg-secondary rounded-lg overflow-hidden shadow-md">
+                    <a href="/anime/abc123/xyz456">
+                        <div class="relative">
+                            <img src="https://via.placeholder.com/500x300" alt="Episode Thumbnail" class="w-full h-40 object-cover">
+                            <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 hover:opacity-100 transition duration-300">
+                                <div class="w-12 h-12 rounded-full bg-primary/90 flex items-center justify-center">
+                                    <i class="fas fa-play text-white text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-2 left-2 bg-primary text-white text-xs px-2 py-1 rounded">EP 24</div>
+                            <div class="absolute top-2 right-2 bg-accent text-white text-xs px-2 py-1 rounded">NEW</div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-medium text-white">Jujutsu Kaisen S2 - Episode 24</h3>
+                            <div class="flex items-center justify-between mt-2">
+                                <span class="text-xs text-gray-400">Subbed</span>
+                                <span class="text-xs text-gray-400">23m ago</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Episode Card 2 -->
+                <div class="anime-card bg-secondary rounded-lg overflow-hidden shadow-md">
+                    <a href="/anime/abc123/xyz456">
+                        <div class="relative">
+                            <img src="https://via.placeholder.com/500x300" alt="Episode Thumbnail" class="w-full h-40 object-cover">
+                            <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 hover:opacity-100 transition duration-300">
+                                <div class="w-12 h-12 rounded-full bg-primary/90 flex items-center justify-center">
+                                    <i class="fas fa-play text-white text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-2 left-2 bg-primary text-white text-xs px-2 py-1 rounded">EP 12</div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-medium text-white">Chainsaw Man - Episode 12</h3>
+                            <div class="flex items-center justify-between mt-2">
+                                <span class="text-xs text-gray-400">Subbed</span>
+                                <span class="text-xs text-gray-400">1h ago</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- Episode Card 3 -->
+                <div class="anime-card bg-secondary rounded-lg overflow-hidden shadow-md">
+                    <a href="/anime/abc123/xyz456">
+                        <div class="relative">
+                            <img src="https://via.placeholder.com/500x300" alt="Episode Thumbnail" class="w-full h-40 object-cover">
+                            <div class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 hover:opacity-100 transition duration-300">
+                                <div class="w-12 h-12 rounded-full bg-primary/90 flex items-center justify-center">
+                                    <i class="fas fa-play text-white text-xl"></i>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-2 left-2 bg-primary text-white text-xs px-2 py-1 rounded">EP 36</div>
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-medium text-white">Demon Slayer - Episode 36</h3>
+                            <div class="flex items-center justify-between mt-2">
+                                <span class="text-xs text-gray-400">Dubbed</span>
+                                <span class="text-xs text-gray-400">2h ago</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Anime Details Page (Example) -->
+        <section id="anime-details" class="mb-12 hidden">
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- Anime Poster and Basic Info -->
+                <div class="md:w-1/3 lg:w-1/4">
+                    <div class="bg-secondary rounded-lg overflow-hidden shadow-lg mb-4">
+                        <img src="https://via.placeholder.com/300x450" alt="Anime Poster" class="w-full">
+                    </div>
+                    <div class="bg-secondary rounded-lg p-4 shadow-lg">
+                        <h2 class="text-xl font-bold mb-4">Jujutsu Kaisen Season 2</h2>
+                        <div class="space-y-3">
+                            <div>
+                                <span class="text-gray-400 text-sm">Type:</span>
+                                <span class="text-white ml-2">TV Series</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-400 text-sm">Episodes:</span>
+                                <span class="text-white ml-2">24</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-400 text-sm">Status:</span>
+                                <span class="text-white ml-2">Currently Airing</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-400 text-sm">Aired:</span>
+                                <span class="text-white ml-2">Jul 6, 2023 to ?</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-400 text-sm">Duration:</span>
+                                <span class="text-white ml-2">23 min/ep</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-400 text-sm">Rating:</span>
+                                <span class="text-white ml-2">R - 17+</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-400 text-sm">Score:</span>
+                                <span class="text-white ml-2 flex items-center">
+                                    <i class="fas fa-star text-yellow-400 mr-1"></i> 8.89 (by 250,000 users)
+                                </span>
+                            </div>
+                        </div>
+                        <div class="mt-4 pt-4 border-t border-gray-700">
+                            <h3 class="text-gray-400 text-sm mb-2">Genres:</h3>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="bg-dark text-white px-2 py-1 text-xs rounded">Action</span>
+                                <span class="bg-dark text-white px-2 py-1 text-xs rounded">Supernatural</span>
+                                <span class="bg-dark text-white px-2 py-1 text-xs rounded">Fantasy</span>
+                                <span class="bg-dark text-white px-2 py-1 text-xs rounded">School</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Anime Description and Episodes -->
+                <div class="md:w-2/3 lg:w-3/4">
+                    <div class="bg-secondary rounded-lg p-6 shadow-lg mb-6">
+                        <h3 class="text-lg font-semibold mb-3">Synopsis</h3>
+                        <p class="text-gray-300">
+                            The second season of Jujutsu Kaisen. Hidden Inventory/Premature Death arc: This arc focuses on Satoru Gojo's past as a high school student at Jujutsu High alongside his classmate Suguru Geto as they embark on a mission to escort the Star Plasma Vessel to Master Tengen. 
+                            <br><br>
+                            Shibuya Incident arc: Suguru Geto, an unregistered curse user, appears in Shibuya on October 31st. Satoru Gojo is sealed away, and the Jujutsu Sorcerers must work together to prevent the chaos from spreading.
+                        </p>
+                    </div>
+                    
+                    <!-- Episode List -->
+                    <div class="bg-secondary rounded-lg p-6 shadow-lg">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold">Episodes</h3>
+                            <div class="flex items-center space-x-2">
+                                <button class="bg-dark hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">Subbed</button>
+                                <button class="bg-dark hover:bg-gray-700 text-white px-3 py-1 rounded text-sm">Dubbed</button>
+                                <div class="relative">
+                                    <select class="bg-dark text-white px-3 py-1 rounded text-sm appearance-none pr-8">
+                                        <option>Sort: Newest</option>
+                                        <option>Sort: Oldest</option>
+                                    </select>
+                                    <div class="absolute right-2 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                                        <i class="fas fa-chevron-down text-xs"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="overflow-x-auto episode-list">
+                            <table class="min-w-full divide-y divide-gray-700">
+                                <thead>
+                                    <tr>
+                                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Episode</th>
+                                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Title</th>
+                                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Duration</th>
+                                        <th class="px-4 py-2 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Aired</th>
+                                        <th class="px-4 py-2 text-right text-xs font-medium text-gray-400 uppercase tracking-wider">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-700">
+                                    <!-- Episode 1 -->
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap text-sm font-medium text-white">24</td>
+                                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-300">Hidden Inventory, Part 5</td>
+                                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-300">23m</td>
+                                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-300">2 days ago</td>
+                                        <td class="px-4 py-3 whitespace-nowrap text-right text-sm font-medium">
+                                            <a href="/anime/abc123/xyz456" class="text-primary hover:text-blue-400 mr-3">Watch</a>
+                                            <a href="#" class="text-gray-400 hover:text-white">Download</a>
+                                        </td>
+                                    </tr>
+                                    <!-- Episode 2 -->
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap text-sm font-medium text-white">23</td>
+                                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-300">Hidden Inventory, Part 4</td>
+                                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-300">23m</td>
+                                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-300">1 week ago</td>
+                                        <td class="px-4 py-3 whitespace-nowrap text-right text-sm font-medium">
+                                            <a href="/anime/abc123/xyz456" class="text-primary hover:text-blue-400 mr-3">Watch</a>
+                                            <a href="#" class="text-gray-400 hover:text-white">Download</a>
+                                        </td>
+                                    </tr>
+                                    <!-- Episode 3 -->
+                                    <tr>
+                                        <td class="px-4 py-3 whitespace-nowrap text-sm font-medium text-white">22</td>
+                                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-300">Hidden Inventory, Part 3</td>
+                                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-300">23m</td>
+                                        <td class="px-4 py-3 whitespace-nowrap text-sm text-gray-300">2 weeks ago</td>
+                                        <td class="px-4 py-3 whitespace-nowrap text-right text-sm font-medium">
+                                            <a href="/anime/abc123/xyz456" class="text-primary hover:text-blue-400 mr-3">Watch</a>
+                                            <a href="#" class="text-gray-400 hover:text-white">Download</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <!-- Pagination -->
+                        <div class="flex items-center justify-between mt-4">
+                            <div class="text-sm text-gray-400">
+                                Showing <span class="font-medium">1</span> to <span class="font-medium">10</span> of <span class="font-medium">24</span> episodes
+                            </div>
+                            <div class="flex space-x-1">
+                                <button class="px-3 py-1 rounded bg-dark text-gray-300 hover:bg-gray-700 disabled:opacity-50" disabled>
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="px-3 py-1 rounded bg-primary text-white">1</button>
+                                <button class="px-3 py-1 rounded bg-dark text-gray-300 hover:bg-gray-700">2</button>
+                                <button class="px-3 py-1 rounded bg-dark text-gray-300 hover:bg-gray-700">3</button>
+                                <button class="px-3 py-1 rounded bg-dark text-gray-300 hover:bg-gray-700">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Episode Download Page (Example) -->
+        <section id="episode-download" class="mb-12 hidden">
+            <div class="bg-secondary rounded-lg shadow-lg overflow-hidden">
+                <div class="p-6 border-b border-gray-700">
+                    <h2 class="text-xl font-bold">Jujutsu Kaisen Season 2 - Episode 24</h2>
+                    <p class="text-gray-400 mt-1">Hidden Inventory, Part 5</p>
+                </div>
+                
+                <div class="p-6">
+                    <div class="video-container mb-6 rounded-lg overflow-hidden">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=0&mute=1&controls=1&modestbranding=1&rel=0" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    
+                    <h3 class="text-lg font-semibold mb-4">Download Links</h3>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-700">
+                            <thead>
+                                <tr>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Provider</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Quality</th>
+                                    <th class="px-4 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">Size</th>
+                                    <th class="px-4 py-3 text-right text-xs font-medium text-gray-400 uppercase tracking-wider">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-700">
+                                <tr>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-white">Erai-raws</td>
+                                    <td class="px-4 py-4 whitespace-nowrap">
+                                        <span class="quality-badge bg-green-500 text-white">1080p</span>
+                                    </td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-300">1.2 GB</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="#" class="text-primary hover:text-blue-400">Download</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-white">Erai-raws</td>
+                                    <td class="px-4 py-4 whitespace-nowrap">
+                                        <span class="quality-badge bg-blue-500 text-white">720p</span>
+                                    </td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-300">650 MB</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="#" class="text-primary hover:text-blue-400">Download</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-white">SubsPlease</td>
+                                    <td class="px-4 py-4 whitespace-nowrap">
+                                        <span class="quality-badge bg-green-500 text-white">1080p</span>
+                                    </td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-300">1.1 GB</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="#" class="text-primary hover:text-blue-400">Download</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm font-medium text-white">SubsPlease</td>
+                                    <td class="px-4 py-4 whitespace-nowrap">
+                                        <span class="quality-badge bg-blue-500 text-white">720p</span>
+                                    </td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-sm text-gray-300">580 MB</td>
+                                    <td class="px-4 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        <a href="#" class="text-primary hover:text-blue-400">Download</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="mt-6 p-4 bg-dark rounded-lg">
+                        <h4 class="text-sm font-medium text-gray-300 mb-2">Download Instructions</h4>
+                        <ol class="list-decimal list-inside text-sm text-gray-400 space-y-1">
+                            <li>Click on the desired quality link</li>
+                            <li>Wait for the download page to load (may take a few seconds)</li>
+                            <li>Click the "Download" button on the next page</li>
+                            <li>Enjoy your anime offline!</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-secondary border-t border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">AnimeFlix</h3>
+                    <p class="text-gray-400 text-sm">
+                        The best place to stream and download your favorite anime shows and movies in high quality with no ads.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">Popular Anime</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">Latest Episodes</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">Request Anime</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Information</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">About Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">DMCA</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">Contact</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white text-sm">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold text-white mb-4">Connect With Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-discord text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-telegram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                    </div>
+                    <div class="mt-4">
+                        <h4 class="text-sm font-medium text-gray-300 mb-2">Subscribe to Newsletter</h4>
+                        <div class="flex">
+                            <input type="email" placeholder="Your email" class="bg-dark text-white px-3 py-2 rounded-l text-sm focus:outline-none w-full">
+                            <button class="bg-primary text-white px-3 py-2 rounded-r text-sm">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-500 text-sm">
+                <p>© 2023 AnimeFlix. All rights reserved. All anime are property of their respective owners.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript for interactivity -->
+    <script>
+        // Toggle mobile menu
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('[aria-controls="mobile-menu"]');
+            const mobileMenu = document.createElement('div');
+            mobileMenu.id = 'mobile-menu';
+            mobileMenu.className = 'md:hidden bg-secondary absolute w-full z-50 shadow-lg';
+            mobileMenu.innerHTML = `
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <a href="/" class="block px-3 py-2 rounded-md text-base font-medium text-white bg-primary">Home</a>
+                    <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Popular</a>
+                    <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Genres</a>
+                    <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-gray-700">Seasonal</a>
+                </div>
+                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                    <input type="text" placeholder="Search anime..." class="bg-dark text-white px-4 py-2 rounded-full w-full focus:outline-none focus:ring-2 focus:ring-primary">
+                </div>
+            `;
+            mobileMenu.style.display = 'none';
+            document.body.appendChild(mobileMenu);
+            
+            mobileMenuButton.addEventListener('click', function() {
+                if (mobileMenu.style.display === 'none') {
+                    mobileMenu.style.display = 'block';
+                } else {
+                    mobileMenu.style.display = 'none';
+                }
+            });
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!mobileMenu.contains(event.target) && event.target !== mobileMenuButton) {
+                    mobileMenu.style.display = 'none';
+                }
+            });
+            
+            // Simulate loading anime data from API
+            async function loadAnimeData() {
+                // This would be replaced with actual API calls to your Python backend
+                console.log('Loading anime data...');
+                
+                // Example: Show loading state
+                const trendingSection = document.querySelector('#trending .grid');
+                if (trendingSection) {
+                    trendingSection.innerHTML = `
+                        <div class="col-span-full flex justify-center items-center py-12">
+                            <div class="w-12 h-12 border-4 border-primary border-t-transparent rounded-full loading-spinner"></div>
+                        </div>
+                    `;
+                    
+                    // Simulate API delay
+                    setTimeout(() => {
+                        // This would be populated with real data from your API
+                        trendingSection.innerHTML = `
+                            <div class="anime-card bg-secondary rounded-lg overflow-hidden shadow-md">
+                                <a href="/anime/abc123">
+                                    <div class="relative">
+                                        <img src="https://via.placeholder.com/300x450" alt="Anime Poster" class="w-full h-48 object-cover">
+                                        <div class="absolute bottom-2 left-2 bg-primary text-white text-xs px-2 py-1 rounded">EP 24</div>
+                                        <div class="absolute top-2 right-2 bg-accent text-white text-xs px-2 py-1 rounded">NEW</div>
+                                    </div>
+                                    <div class="p-3">
+                                        <h3 class="font-medium text-white truncate">Jujutsu Kaisen Season 2</h3>
+                                        <div class="flex items-center mt-1">
+                                            <i class="fas fa-star text-yellow-400 text-xs mr-1"></i>
+                                            <span class="text-xs text-gray-300">8.9</span>
+                                            <span class="text-xs text-gray-500 mx-2">|</span>
+                                            <span class="text-xs text-gray-300">TV</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- More anime cards would be added here -->
+                        `;
+                    }, 1500);
+                }
+            }
+            
+            // Check if we're on an anime details page
+            if (window.location.pathname.startsWith('/anime/') && !window.location.pathname.includes('/play/')) {
+                document.querySelector('#anime-details').classList.remove('hidden');
+                document.querySelector('#trending').classList.add('hidden');
+                
+                // This would fetch anime details from your backend and MAL API
+                fetchAnimeDetails();
+            }
+            
+            // Check if we're on an episode page
+            if (window.location.pathname.includes('/play/')) {
+                document.querySelector('#episode-download').classList.remove('hidden');
+                document.querySelector('#trending').classList.add('hidden');
+                
+                // This would fetch download links from your backend
+                fetchDownloadLinks();
+            }
+            
+            // Initial data load
+            loadAnimeData();
+        });
+        
+        // Function to fetch anime details (would be implemented with your backend)
+        async function fetchAnimeDetails() {
+            // Get anime ID from URL
+            const animeId = window.location.pathname.split('/')[2];
+            
+            try {
+                // Fetch from your backend
+                const response = await fetch(`/api/anime/${animeId}`);
+                const data = await response.json();
+                
+                // Then fetch additional details from MAL API
+                const malResponse = await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(data.anime_title)}`);
+                const malData = await malResponse.json();
+                
+                // Combine and display data
+                console.log('Anime data:', data);
+                console.log('MAL data:', malData);
+                
+                // Update UI with the combined data
+                // ...
+                
+            } catch (error) {
+                console.error('Error fetching anime details:', error);
+            }
+        }
+        
+        // Function to fetch download links (would be implemented with your backend)
+        async function fetchDownloadLinks() {
+            // Get anime and episode IDs from URL
+            const pathParts = window.location.pathname.split('/');
+            const animeId = pathParts[2];
+            const episodeId = pathParts[3];
+            
+            try {
+                const response = await fetch(`/api/anime/${animeId}/${episodeId}/links`);
+                const links = await response.json();
+                
+                // Update UI with download links
+                console.log('Download links:', links);
+                
+                // Generate direct streaming link
+                if (links.length > 0) {
+                    const streamResponse = await fetch(`/api/stream?url=${encodeURIComponent(links[0].href)}`);
+                    const directLink = await streamResponse.text();
+                    
+                    // Update video player with direct link
+                    const videoContainer = document.querySelector('.video-container');
+                    if (videoContainer) {
+                        videoContainer.innerHTML = `
+                            <video controls class="w-full h-full">
+                                <source src="${directLink}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        `;
+                    }
+                }
+                
+            } catch (error) {
+                console.error('Error fetching download links:', error);
+            }
+        }
+    </script>
+</body>
+</html>
