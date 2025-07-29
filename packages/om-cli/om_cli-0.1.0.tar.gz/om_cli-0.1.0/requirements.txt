@@ -1,0 +1,19 @@
+# om Mental Health CLI Platform - Dependencies
+# Core dependencies for production use
+
+# CLI and Terminal Interface
+rich>=13.0.0              # Rich text and beautiful formatting
+textual>=0.40.0            # Modern TUI framework (optional)
+click>=8.0.0               # Command line interface creation
+colorama>=0.4.6            # Cross-platform colored terminal text
+
+# HTTP and Web (for API features)
+requests>=2.28.0           # HTTP library for external integrations
+flask>=2.3.0               # Web framework for API server (optional)
+
+# Audio Processing (for sleep sounds)
+pygame>=2.1.0              # Audio playback (optional)
+
+# Development and Testing (optional)
+pytest>=7.0.0              # Testing framework
+sphinx>=5.0.0              # Documentation generation

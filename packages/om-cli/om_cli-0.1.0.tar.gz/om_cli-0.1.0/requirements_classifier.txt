@@ -1,0 +1,12 @@
+# Requirements for Mental Health Text Classification Module
+# Install with: pip install -r requirements_classifier.txt
+
+# Core AI/ML libraries
+torch>=2.0.0
+transformers>=4.30.0
+
+# Optional: For better performance
+accelerate>=0.20.0
+
+# Already included in main requirements
+rich>=13.0.0

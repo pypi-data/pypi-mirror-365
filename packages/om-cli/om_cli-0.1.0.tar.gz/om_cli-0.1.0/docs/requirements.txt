@@ -1,0 +1,33 @@
+# Om Mental Health Platform - Documentation Requirements
+# Enhanced Sphinx documentation with modern theme and features
+
+# Core Sphinx
+sphinx>=7.1.0
+sphinx-rtd-theme>=2.0.0
+
+# Enhanced features
+sphinx-copybutton>=0.5.2
+sphinx-tabs>=3.4.1
+myst-parser>=2.0.0
+
+# Documentation utilities
+sphinx-autobuild>=2021.3.14
+sphinx-external-toc>=0.3.1
+
+# Theme and styling
+furo>=2023.9.10
+
+# Code highlighting
+pygments>=2.16.0
+
+# Markdown support
+markdown>=3.5.0
+recommonmark>=0.7.1
+
+# Additional extensions
+sphinx-design>=0.5.0
+sphinx-togglebutton>=0.3.2
+
+# Development tools
+doc8>=1.1.1
+rstcheck>=6.2.0
