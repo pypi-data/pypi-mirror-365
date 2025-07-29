@@ -1,0 +1,72 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+
+#
+.DS_Store
+
+
+_pyb2d.cpython*
+__pycache__/
+
+# bld directory
+bld/
+
+
+# some testfonts
+Minecraft.ttf
+
+.pixi/
+pixi.lock
+build/
+dist/
+
+dependencies/
+sandbox/
+
+
+# jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+
+# .vscode directory
+.vscode/
+
+
+# ignore benchmark directory
+# (contains benchmark results and scripts)
+benchmark/
+
+# ignore custom scripts
+run.sh
+init.sh
