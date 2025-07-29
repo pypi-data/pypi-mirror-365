@@ -1,0 +1,163 @@
+# decisioncanvas
+
+A Python library for visualizing machine learning classifier decision boundaries with automatic dimensionality reduction and standardization.
+
+## Overview
+
+decisioncanvas provides a simple, reliable way to create publication-quality visualizations of how classification models separate data. The library automatically handles high-dimensional data through PCA dimensionality reduction and ensures consistent scaling through built-in standardization.
+
+## Key Features
+
+- **Simple API**: Single function call for complete visualization
+- **High-dimensional support**: Automatic PCA with explained variance reporting  
+- **Scikit-learn compatibility**: Works with any scikit-learn classifier
+- **Multi-class support**: Handles binary and multi-class classification
+- **Built-in preprocessing**: Automatic feature standardization
+- **Customizable visualization**: Configurable grid resolution, colors, and styling
+- **Educational focus**: Ideal for learning and teaching machine learning concepts
+
+## Installation
+
+```bash
+pip install decisioncanvas
+```
+
+## Quick Start
+
+```python
+from decisioncanvas import plot_decision_boundary
+from sklearn.datasets import load_iris
+from sklearn.linear_model import LogisticRegression
+
+# Load data and create model
+X, y = load_iris(return_X_y=True)
+model = LogisticRegression(max_iter=300)
+
+# Visualize decision boundary
+plot_decision_boundary(model, X, y)
+```
+
+## Usage Examples
+
+### Basic Classification
+
+```python
+from decisioncanvas import plot_decision_boundary
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+
+# Prepare data
+data = load_iris()
+X_train, X_test, y_train, y_test = train_test_split(
+    data.data, data.target, test_size=0.3, random_state=42
+)
+
+# Train model
+model = LogisticRegression(max_iter=200)
+model.fit(X_train, y_train)
+
+# Visualize with custom labels
+plot_decision_boundary(
+    model,
+    X_train,
+    y_train,
+    class_names=data.target_names,
+    title='Iris Classification Decision Boundary'
+)
+```
+
+### Advanced Customization
+
+```python
+plot_decision_boundary(
+    model,
+    X,
+    y,
+    grid_resolution=400,
+    alpha=0.4,
+    padding=1.5,
+    title='Custom Decision Boundary Visualization',
+    figsize=(10, 8)
+)
+```
+
+## API Reference
+
+### plot_decision_boundary
+
+```python
+plot_decision_boundary(
+    model, X, y,
+    class_names=None,
+    standardize=True,
+    pca_components=2,
+    grid_resolution=300,
+    padding=1.0,
+    cmap_light=None,
+    cmap_bold=None,
+    alpha=0.3,
+    title="Decision Boundary",
+    fit_model=True,
+    figsize=(8, 6),
+    random_state=None
+)
+```
+
+#### Parameters
+
+| Parameter | Type | Description | Default |
+|-----------|------|-------------|---------|
+| `model` | estimator | Scikit-learn compatible classifier | Required |
+| `X` | array-like | Feature matrix (n_samples, n_features) | Required |
+| `y` | array-like | Target labels (n_samples,) | Required |
+| `class_names` | list or dict | Custom class labels for legend | None |
+| `standardize` | bool | Apply feature standardization | True |
+| `pca_components` | int | Number of PCA components for dimensionality reduction | 2 |
+| `grid_resolution` | int | Resolution of decision boundary grid | 300 |
+| `padding` | float | Padding around data points in plot | 1.0 |
+| `cmap_light` | colormap | Colormap for decision regions | None (auto) |
+| `cmap_bold` | list | Colors for data points | None (auto) |
+| `alpha` | float | Transparency of decision regions | 0.3 |
+| `title` | str | Plot title | "Decision Boundary" |
+| `fit_model` | bool | Whether to fit the model on provided data | True |
+| `figsize` | tuple | Figure size (width, height) | (8, 6) |
+| `random_state` | int | Random state for PCA reproducibility | None |
+
+## Use Cases
+
+- **Model evaluation**: Visualize how different classifiers separate your data
+- **Educational purposes**: Demonstrate classification concepts in tutorials
+- **Research presentations**: Create publication-ready decision boundary plots
+- **Debugging**: Identify potential overfitting or data separation issues
+
+## Requirements
+
+- Python >= 3.7
+- numpy >= 1.18.0
+- scikit-learn >= 0.24.0
+- matplotlib >= 3.2.0
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit issues, feature requests, or pull requests.
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Authors
+
+- **Krunal Wankhade** - krunal.wankahde1810@gmail.com
+- **Parimal Kalpande** - kalpandeparimal60@gmail.com
+
+## Links
+
+- **PyPI**: https://pypi.org/project/decisioncanvas/
+- **GitHub**: https://github.com/KrunalWankhade9021/Decesion-Canvas
