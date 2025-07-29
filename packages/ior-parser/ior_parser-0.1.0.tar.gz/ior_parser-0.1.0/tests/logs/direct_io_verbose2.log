@@ -1,0 +1,47 @@
+IOR-4.0.0: MPI Coordinated Test of Parallel I/O
+Began               : Sun Jul 27 10:08:22 2025
+Command line        : bin/ior -a POSIX -s 128 -b 4M -t 1M -O useO_DIRECT=1 -F -o /tmp/data/testfile -v -v
+Machine             : Linux corona211 4.18.0-553.56.1.1toss.t4.x86_64 #1 SMP Tue Jun 10 15:43:19 PDT 2025 x86_64
+TestID              : 0
+StartTime           : Sun Jul 27 10:08:22 2025
+Path                : /tmp/data/testfile.00000000
+FS                  : 14.2 TiB   Used FS: 0.4%   Inodes: 190.7 Mi   Used Inodes: 0.4%
+Participating tasks : 1
+
+Options: 
+api                 : POSIX
+apiVersion          : 
+test filename       : /tmp/data/testfile
+access              : file-per-process
+type                : independent
+segments            : 128
+ordering in a file  : sequential
+ordering inter file : no tasks offsets
+nodes               : 1
+tasks               : 1
+clients per node    : 1
+repetitions         : 1
+xfersize            : 1 MiB
+blocksize           : 4 MiB
+aggregate filesize  : 512 MiB
+verbose             : 2
+
+Results: 
+Using Time Stamp 1753636102 (0x68865d06) for Data Signature
+
+access    bw(MiB/s)  IOPS       Latency(s)  block(KiB) xfer(KiB)  open(s)    wr/rd(s)   close(s)   total(s)   iter
+------    ---------  ----       ----------  ---------- ---------  --------   --------   --------   --------   ----
+Commencing write performance test: Sun Jul 27 10:08:22 2025
+write     277.90     278.47     0.459647    4096       1024.00    0.003226   1.84       0.000589   1.84       0   
+Commencing read performance test: Sun Jul 27 10:08:24 2025
+
+read      429.29     430.04     0.297648    4096       1024.00    0.001323   1.19       0.000613   1.19       0   
+remove    -          -          -           -          -          -          -          -          0.002869   0   
+Max Write: 277.90 MiB/sec (291.40 MB/sec)
+Max Read:  429.29 MiB/sec (450.14 MB/sec)
+
+Summary of all tests:
+Operation   Max(MiB)   Min(MiB)  Mean(MiB)     StdDev   Max(OPs)   Min(OPs)  Mean(OPs)     StdDev    Mean(s) Stonewall(s) Stonewall(MiB) Test# #Tasks tPN reps fPP reord reordoff reordrand seed segcnt   blksiz    xsize aggs(MiB)   API RefNum
+write         277.90     277.90     277.90       0.00     277.90     277.90     277.90       0.00    1.84241         NA            NA     0      1   1    1   1     0        1         0    0    128  4194304  1048576     512.0 POSIX      0
+read          429.29     429.29     429.29       0.00     429.29     429.29     429.29       0.00    1.19267         NA            NA     0      1   1    1   1     0        1         0    0    128  4194304  1048576     512.0 POSIX      0
+Finished            : Sun Jul 27 10:08:25 2025

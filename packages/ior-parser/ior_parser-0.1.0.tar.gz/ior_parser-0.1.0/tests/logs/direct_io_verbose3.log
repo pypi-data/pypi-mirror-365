@@ -1,0 +1,151 @@
+IOR-4.0.0: MPI Coordinated Test of Parallel I/O
+Began               : Sun Jul 27 10:08:54 2025
+Command line        : bin/ior -a POSIX -s 128 -b 4M -t 1M -O useO_DIRECT=1 -F -o /tmp/data/testfile -v -v -v
+Machine             : Linux corona211 4.18.0-553.56.1.1toss.t4.x86_64 #1 SMP Tue Jun 10 15:43:19 PDT 2025 x86_64
+STARTING ENVIRON LOOP
+REQUESTS_CA_BUNDLE=/etc/pki/tls/cert.pem
+FLUX_F58_FORCE_ASCII=t
+ZPOOL_SCRIPTS_AS_ROOT=1
+LMOD_IGNORE_CACHE=1
+LMOD_FAMILY_MPI_VERSION=2.3.7
+LANG=en_US.UTF-8
+HISTCONTROL=ignoredups
+GUESTFISH_RESTORE=\e[0m
+HISTTIMEFORMAT=%Y-%m-%dT%H:%M:%S 
+LMOD_FAMILY_COMPILER_VERSION=2021.6.0-magic
+LMOD_SYSTEM_DEFAULT_MODULES=StdEnv
+EDITOR=/bin/vi
+ENVIRONMENT=INTERACTIVE
+COLORTERM=truecolor
+GUESTFISH_INIT=\e[1;34m
+KDEDIRS=/usr
+MV2_USE_RDMA_CM=0
+S_COLORS=auto
+XDG_SESSION_ID=2004
+USER=izzet
+HOST_GRP=linux
+PYDEVD_DISABLE_FILE_VALIDATION=1
+INPUTRC=/etc/inputrc
+GLOGIN=1
+TMP=/var/tmp/izzet
+LMOD_COLORIZE=yes
+TERM_PROGRAM=vscode
+SSH_CLIENT=205.178.54.10 57428 22
+TERM_PROGRAM_VERSION=1.102.2
+LMOD_VERSION=8.7.55
+ZFS_COLOR=1
+LMOD_SETTARG_CMD=:
+KRB5CCNAME=FILE:/tmp/krb5cc_61499_jMGiyy
+TMPDIR=/var/tmp/izzet
+LMOD_arch=x86_64
+SHELL=/bin/bash
+TERM=xterm-256color
+_ModuleTable_Sz_=7
+LMOD_FAMILY_COMPILER=intel-classic
+SHLVL=6
+MV2_CPU_BINDING_POLICY=hybrid
+MV2_HYBRID_BINDING_POLICY=numa
+ENDING ENVIRON LOOP
+TestID              : 0
+StartTime           : Sun Jul 27 10:08:54 2025
+Path                : /tmp/data/testfile.00000000
+FS                  : 14.2 TiB   Used FS: 0.4%   Inodes: 190.7 Mi   Used Inodes: 0.4%
+
+Parameters: 
+testID              : 0
+refnum              : 0
+api                 : POSIX
+platform            : corona(Linux)
+testFileName        : /tmp/data/testfile
+deadlineForStonewall: 0
+stoneWallingWearOut : 0
+maxTimeDuration     : 0
+outlierThreshold    : 0
+options             : (null)
+dryRun              : 0
+nodes               : 1
+memoryPerTask       : 0
+memoryPerNode       : 0
+tasksPerNode        : 1
+repetitions         : 1
+multiFile           : 0
+interTestDelay      : 0
+fsync               : 0
+fsyncperwrite       : 0
+useExistingTestFile : 0
+uniqueDir           : 0
+singleXferAttempt   : 0
+readFile            : 1
+writeFile           : 1
+filePerProc         : 1
+reorderTasks        : 0
+reorderTasksRandom  : 0
+reorderTasksRandomSeed: 0
+randomOffset        : 0
+checkWrite          : 0
+checkRead           : 0
+dataPacketType      : 0
+keepFile            : 0
+keepFileWithError   : 0
+warningAsErrors     : 0
+verbose             : 3
+data packet type    : g
+setTimeStampSignature/incompressibleSeed: 0
+collective          : 0
+segmentCount        : 128
+transferSize        : 1048576
+blockSize           : 4194304
+Participating tasks : 1
+
+Options: 
+api                 : POSIX
+apiVersion          : 
+test filename       : /tmp/data/testfile
+access              : file-per-process
+type                : independent
+segments            : 128
+ordering in a file  : sequential
+ordering inter file : no tasks offsets
+nodes               : 1
+tasks               : 1
+clients per node    : 1
+repetitions         : 1
+xfersize            : 1 MiB
+blocksize           : 4 MiB
+aggregate filesize  : 512 MiB
+verbose             : 3
+
+Results: 
+Using Time Stamp 1753636134 (0x68865d26) for Data Signature
+
+access    bw(MiB/s)  IOPS       Latency(s)  block(KiB) xfer(KiB)  open(s)    wr/rd(s)   close(s)   total(s)   iter
+------    ---------  ----       ----------  ---------- ---------  --------   --------   --------   --------   ----
+task 0 writing /tmp/data/testfile.00000000
+Commencing write performance test: Sun Jul 27 10:08:54 2025
+Test 0: Iter=0, Task=0, Time=1753636134.602064, write open start
+Test 0: Iter=0, Task=0, Time=1753636134.604366, write open stop
+Test 0: Iter=0, Task=0, Time=1753636134.604372, write start
+Test 0: Iter=0, Task=0, Time=1753636136.777438, write stop
+Test 0: Iter=0, Task=0, Time=1753636136.777438, write close start
+Test 0: Iter=0, Task=0, Time=1753636136.777542, write close stop
+write     235.35     235.61     0.543266    4096       1024.00    0.002302   2.17       0.000104   2.18       0   
+task 0 reading /tmp/data/testfile.00000000
+Commencing read performance test: Sun Jul 27 10:08:56 2025
+
+Test 0: Iter=0, Task=0, Time=1753636136.778458, read open start
+Test 0: Iter=0, Task=0, Time=1753636136.779469, read open stop
+Test 0: Iter=0, Task=0, Time=1753636136.779475, read start
+Test 0: Iter=0, Task=0, Time=1753636137.943644, read stop
+Test 0: Iter=0, Task=0, Time=1753636137.943644, read close start
+Test 0: Iter=0, Task=0, Time=1753636137.944150, read close stop
+read      439.22     439.80     0.291042    4096       1024.00    0.001011   1.16       0.000506   1.17       0   
+task 0 removing /tmp/data/testfile.00000000
+remove    -          -          -           -          -          -          -          -          0.002787   0   
+Max Write: 235.35 MiB/sec (246.78 MB/sec)
+Max Read:  439.22 MiB/sec (460.56 MB/sec)
+
+Summary of all tests:
+Operation   Max(MiB)   Min(MiB)  Mean(MiB)     StdDev   Max(OPs)   Min(OPs)  Mean(OPs)     StdDev    Mean(s) Stonewall(s) Stonewall(MiB) Test# #Tasks tPN reps fPP reord reordoff reordrand seed segcnt   blksiz    xsize aggs(MiB)   API RefNum
+write         235.35     235.35     235.35       0.00     235.35     235.35     235.35       0.00    2.17548         NA            NA     0      1   1    1   1     0        1         0    0    128  4194304  1048576     512.0 POSIX      0
+read          439.22     439.22     439.22       0.00     439.22     439.22     439.22       0.00    1.16569         NA            NA     0      1   1    1   1     0        1         0    0    128  4194304  1048576     512.0 POSIX      0
+Finished            : Sun Jul 27 10:08:57 2025
