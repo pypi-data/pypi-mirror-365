@@ -1,0 +1,61 @@
+
+[project]
+name = "tensorrt-stubs"
+version = "10.13.0.35.1"
+description = "Type stubs for NVIDIA TensorRT"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [
+    { name = "minamik", email = "mia@sync.dev" }
+]
+requires-python = ">=3.10"
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Typing :: Stubs Only",
+]
+dependencies = [
+    "numpy",
+    "tensorrt==10.13.0.35",
+    "tensorrt-cu12-bindings==10.13.0.35",
+]
+
+[project.optional-dependencies]
+dev = [
+    "black>=23.7.0",
+    "flake8>=6.1.0",
+    "pybind11-stubgen>=2.5.4",
+    "pytest>=8.3.5",
+    "twine>=6.1.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/sync-dev-org/tensorrt-stubs"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+include = [
+    "src/**/*.py",
+    "src/**/*.pyi",
+    "src/**/py.typed",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = [
+    "src/tensorrt",
+    "src/tensorrt_bindings",
+    "src/tensorrt_stubs",
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true
