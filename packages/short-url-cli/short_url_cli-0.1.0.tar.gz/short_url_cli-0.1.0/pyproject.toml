@@ -1,0 +1,44 @@
+[project]
+name = "short-url-cli"
+version = "0.1.0"
+description = "A fun and easy command-line tool for shortening URLs using TinyURL."
+authors = [
+    {name = "Wayne Fagan", email = "hello@waynefagan.dev"},
+]
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Utilities",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+]
+keywords = ["url", "shortener", "cli", "tinyurl", "typer", "rich"]
+dependencies = [
+    "typer>=0.12.3",
+    "rich>=13.7.1",
+    "pyshorteners>=1.0.1"
+]
+
+[project.urls]
+"Homepage" = "https://gitlab.com/Wayne-F/short-url-cli"
+"Repository" = "https://gitlab.com/Wayne-F/short-url-cli"
+
+[project.scripts]
+short-url-cli = "main:app"
+
+[dependency-groups]
+dev = [
+    "flake8>=7.1.2",
+    "isort>=6.0.1",
+    "pytest>=8.3.5",
+    "pytest-cov>=6.0.0",
+    "ruff>=0.11.2",
+    "black>=25.1.0",
+]
