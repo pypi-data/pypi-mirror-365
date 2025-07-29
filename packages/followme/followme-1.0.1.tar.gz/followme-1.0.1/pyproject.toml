@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["followme*"]
+exclude = ["build_env*", "venv*", "pypi_env*"]
+
+[project]
+name = "followme"
+version = "1.0.1"
+description = "A command-line tool to track and report URL redirects"
+readme = "README.md"
+license = "MIT"
+authors = [
+    {name = "Rapid Rabbit Software", email = "python@rapidrabbit.software"}
+]
+maintainers = [
+    {name = "Chris McMichael", email = "python@apprabb.it"}
+]
+keywords = ["url", "redirect", "tracking", "command-line", "tool"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+requires-python = ">=3.7"
+dependencies = [
+    "requests>=2.25.0",
+]
+
+[project.optional-dependencies]
+windows = ["colorama>=0.4.0"]
+
+[project.urls]
+Homepage = "https://github.com/rapidrabbitsoft/followme"
+Repository = "https://github.com/rapidrabbitsoft/followme"
+Issues = "https://github.com/rapidrabbitsoft/followme/issues"
+
+[project.scripts]
+followme = "followme.cli:main" 
