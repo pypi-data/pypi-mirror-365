@@ -1,0 +1,102 @@
+# Confluence Tools Documentation
+
+This document describes the available Confluence tools and how to use them for retrieving and querying page content.
+
+## Available Tools
+
+### 1. `get-confluence-page`
+Retrieve a specific Confluence page with optional metadata.
+
+**Parameters:**
+- `page_id` (string): The ID of the Confluence page
+- `title` (string): The title of the page (requires `space_key`)
+- `space_key` (string): The space key (when using title)
+- `include_comments` (boolean, default: false): Include page comments
+- `include_history` (boolean, default: false): Include version history
+
+**Example Usage:**
+```json
+{
+  "page_id": "123456789",
+  "include_comments": true,
+  "include_history": false
+}
+```
+
+### 2. `search-confluence`
+Search for Confluence pages using CQL (Confluence Query Language).
+
+**Parameters:**
+- `query` (string, required): CQL query string
+- `space_key` (string, optional): Limit search to specific space
+- `max_results` (integer, default: 10): Maximum number of results
+
+**Example Usage:**
+```json
+{
+  "query": "title ~ \"API Documentation\"",
+  "space_key": "DEV",
+  "max_results": 5
+}
+```
+
+### 3. `ask-confluence-page`
+Ask a question about specific Confluence page content.
+
+**Parameters:**
+- `page_id` (string): The ID of the Confluence page
+- `title` (string): The title of the page (requires `space_key`)
+- `space_key` (string): The space key (when using title)
+- `question` (string, required): The question about the page content
+- `context_type` (string, default: "summary"): Context depth (summary/details/specific)
+
+**Example Usage:**
+```json
+{
+  "page_id": "123456789",
+  "question": "What are the main features described in this page?",
+  "context_type": "details"
+}
+```
+
+## Available Prompts
+
+### 1. `summarize-confluence-page`
+Creates a summary of a Confluence page.
+
+### 2. `create-confluence-content`
+Creates well-structured content for a new Confluence page.
+
+### 3. `answer-confluence-question`
+Answer questions about Confluence page content using AI assistance.
+
+## CQL Query Examples
+
+Here are some useful CQL query examples for `search-confluence`:
+
+1. **Search by title**: `title ~ "API Documentation"`
+2. **Search in specific space**: `space.key = "DEV"`
+3. **Recently modified pages**: `lastmodified >= now("-7d")`
+4. **Pages by specific author**: `creator = "john.doe"`
+5. **Combine conditions**: `title ~ "API" AND space.key = "DEV" AND lastmodified >= now("-30d")`
+
+## Context Types for Question Answering
+
+- **summary**: Uses first 1000-1500 characters for quick answers
+- **details**: Uses full page content for comprehensive answers
+- **specific**: Full content with note about specific filtering (future enhancement)
+
+## Error Handling
+
+All tools include proper error handling for:
+- Missing required parameters
+- Page not found scenarios
+- API connection issues
+- Invalid CQL queries
+
+## Performance Notes
+
+- Pages are fetched fresh from the API each time (no local caching)
+- Large pages may take longer to process in "details" context mode
+- Search results are limited by the `max_results` parameter
+- Content is converted from Confluence markup to Markdown for better readability
