@@ -1,0 +1,142 @@
+Metadata-Version: 2.4
+Name: plugllm
+Version: 0.1.1
+Summary: Unified LLM API interface for OpenAI, Gemini, Mistral, Groq etc.
+Home-page: https://github.com/firoziya/plugllm
+Author: Yash Kumar Firoziya
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+
+# 🔌 plugllm
+
+**plugllm** is a unified and provider-agnostic Python package that lets you interact with multiple LLM APIs (like OpenAI, Gemini, Mistral, Groq, etc.) using a single, consistent interface — without needing to learn each provider’s SDK.
+
+> Created by **Yash Kumar Firoziya**
+
+---
+
+## 🌟 Features
+
+- 🔌 **Unified API** — One interface for all providers  
+- 📡 **Supports multiple providers** — OpenAI, Gemini, Mistral, Groq (more coming)  
+- 🧠 **Same request structure** — Compatible message format across providers  
+- 🔐 **Secure & simple config** — Use environment variables or inline setup  
+- 🚫 **No SDKs required** — Only uses Python `requests` library  
+- 📜 **Role-based prompt support** — For both single and multi-turn chat  
+- 🔄 **Extensible** — Add custom providers easily
+
+---
+
+## 📦 Installation
+
+```bash
+pip install plugllm
+```
+
+---
+
+## ⚙️ Configuration
+
+You can configure directly in your code:
+
+```python
+from plugllm import config
+
+config(
+    provider="openai",       # "gemini", "mistral", "groq" also supported
+    api_key="your-api-key",
+    model="gpt-4",           # model name based on provider
+    base_url=None            # optional: custom or local API endpoint
+)
+```
+
+Or use environment variables for better security:
+
+```bash
+export LLM_PROVIDER=openai
+export LLM_API_KEY=your-api-key
+export LLM_MODEL=gpt-4
+```
+
+---
+
+## 💬 Basic Usage
+
+```python
+from plugllm import generate
+
+response = generate("What is quantum entanglement?")
+print(response)
+```
+
+### 🧵 Multi-turn Chat
+
+```python
+generate([
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "What are black holes?"}
+])
+```
+
+---
+
+## 📡 Supported Providers
+
+* OpenAI (ChatGPT, GPT-4, GPT-3.5)
+* Google Gemini
+* Mistral AI
+* GroqCloud (Mixtral)
+* **Coming soon:** Cohere, Anthropic Claude, Ollama, LM Studio
+
+---
+
+## 🗂️ Project Structure
+
+```
+plugllm/
+├── __init__.py
+├── core.py
+├── config.py
+├── prompts.py
+└── providers/
+    ├── base.py
+    ├── openai.py
+    ├── gemini.py
+    ├── mistral.py
+    └── groq.py
+```
+
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome! If you want to add support for a new provider, just create a new module in `providers/` based on `base.py`.
+
+---
+
+## 🪪 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+## ✨ Author
+
+**Yash Kumar Firoziya**
+
+---
+
