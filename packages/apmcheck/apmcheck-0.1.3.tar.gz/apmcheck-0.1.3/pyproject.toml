@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "apmcheck"
+version = "0.1.3"
+description = "CLI tool to detect APM coverage (Datadog, OpenTelemetry)"
+authors = [{name = "Matias Salinas", email = "support@fenden.com"}]
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.7"
+dependencies = [
+  "click>=8.0.0",
+]
+
+[project.scripts]
+apmcheck = "apmcheck.cli:main"
