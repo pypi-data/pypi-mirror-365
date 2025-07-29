@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyappbundler"
+authors = [
+    { name="inerject", email="kumbalup@gmail.com" },
+]
+description = "automate bundle a Python application into a single package"
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+dynamic = ["version"]
+dependencies = [
+    "pyinstaller >=6.14, <7.0",
+    "Jinja2 >=3.1, <4.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/inerject/pyappbundler"
+
+[tool.setuptools.dynamic]
+version = {attr = "pyappbundler._version.__version__"}
+
+[tool.setuptools.package-data]
+"pyappbundler.templates" = ["*.tmpl"]
