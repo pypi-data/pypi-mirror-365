@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: eo4eu_meta_utils
+Version: 0.8.0
+Summary: Testing and deployment utilities for EO4EU
+Author-email: Apollon Grigoras <apollon@uoa.gr>
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: pyYAML>=6.0.2
+Requires-Dist: requests>=2.32.3
+Requires-Dist: eo4eu-base-utils>=0.4.6
+
+# Testing and deployment utilities for EO4EU
+
+This module is intended to be used for configuring automated test and deployments of components. It is very much work-in-progress at the moment.

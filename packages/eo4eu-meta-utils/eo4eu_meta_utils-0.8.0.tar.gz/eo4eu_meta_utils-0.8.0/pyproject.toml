@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = [
+    "eo4eu_meta_utils",
+    "eo4eu_meta_utils.test",
+]
+
+[project.scripts]
+eo-test = "eo4eu_meta_utils.test.app:run"
+
+[project]
+name = "eo4eu_meta_utils"
+version = "0.8.0"
+authors = [
+    {name = "Apollon Grigoras", email = "apollon@uoa.gr"},
+]
+description = "Testing and deployment utilities for EO4EU"
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "pyYAML           >= 6.0.2",
+    "requests         >= 2.32.3",
+    "eo4eu-base-utils >= 0.4.6",
+]
