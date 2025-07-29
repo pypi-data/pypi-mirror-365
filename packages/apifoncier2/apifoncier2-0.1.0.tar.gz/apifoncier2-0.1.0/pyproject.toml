@@ -1,0 +1,21 @@
+[project]
+name = "apifoncier2"
+version = "0.1.0"
+description = "Utiliser l'API Données foncières du Cerema en python"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+authors = [{ name = "aherman59"}]
+license = "MIT AND (Apache-2.0 OR BSD-2-Clause)"
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["api", "datafoncier", "foncier"]
+
+[project.urls]
+Homepage = "https://github.com/aherman59/apifoncier"
+
+[build-system]
+requires      = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
