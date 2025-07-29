@@ -1,0 +1,181 @@
+Metadata-Version: 2.1
+Name: autodevops-cli
+Version: 8.0
+Summary: AI-powered CLI tool for automating DevOps workflows like setup, Git, CI/CD, Docker, and documentation.
+Home-page: https://github.com/kannanb2745/Automated-DevOps
+Author: Kannan
+Author-email: kannan@example.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: click
+Requires-Dist: loguru
+Requires-Dist: openai
+Requires-Dist: python-dotenv
+Requires-Dist: rich
+Requires-Dist: sh
+
+---
+
+````markdown
+# 🚀 AutoDevOps CLI — AI-Powered DevOps Automation Tool
+
+A simple but powerful **AI-integrated CLI tool** that automates your complete DevOps pipeline — from setup to CI/CD, Docker, and deployment — using **OpenAI**.
+
+📦 **Install Now:**
+```bash
+pip install autodevops-cli==7.1
+````
+
+🔗 **GitHub Repo**: [https://github.com/kannanb2745/Automated-DevOps](https://github.com/kannanb2745/Automated-DevOps)
+
+---
+
+## 🧠 Why AutoDevOps CLI?
+
+Setting up a DevOps pipeline takes **hours of manual effort** — from writing Dockerfiles and CI/CD scripts to managing Git pushes and debugging builds. **AutoDevOps CLI** simplifies all of this into **just two commands** — powered by AI.
+
+---
+
+## ⚙️ Architecture: Two-Step Process
+
+### 🔧 Step 1: `setup <path>` — Environment Bootstrapping
+
+Automatically sets up your project directory and generates everything you need:
+
+1. 📁 Extracts the **folder structure**
+2. 📦 Detects the **tech stack** and generates documentation (via **OpenAI**)
+3. 📂 Analyzes **folder structure quality** and documents findings
+4. 📝 Creates a clean **README.md** file
+5. 🐳 Generates a functional **Dockerfile**
+6. 🚀 Generates **CI/CD YAML files** (GitHub Actions, etc.)
+7. ✅ Auto-generates **unit testing files** based on the codebase
+
+🔮 All this is generated using the **OpenAI API** with GPT intelligence!
+
+---
+
+### 🚀 Step 2: Git-Aware CI/CD + Deployment Automation
+
+When the developer runs the `git` subcommand, here's what happens:
+
+1. 🧾 Modified files are automatically **staged and committed**
+2. 📤 Changes are **pushed to Git**
+3. ⚙️ Triggers the **CI/CD pipeline**
+4. 📄 Fetches and prints **CI/CD logs**
+5. 🐳 Builds the **Docker image** and pushes to **Docker Hub**
+6. 🔍 **AI summarizes** logs and metadata:
+
+   * Who committed
+   * What changed
+   * Pipeline run ID and status
+7. 🖥️ You can **pull and run the Docker image** locally or deploy it to production
+
+---
+
+## 🧪 Conflict Detection via MongoDB
+
+To avoid costly merge bugs and debug cycles:
+
+* Every commit’s metadata is stored in **MongoDB**
+* The tool compares modified files across branches
+* Detects potential **merge conflicts before they happen**
+
+⏱️ This saves time, improves code quality, and avoids CI/CD failures.
+
+---
+
+## 📦 Installation
+
+Install the CLI globally using pip:
+
+```bash
+pip install autodevops-cli==7.1
+```
+
+---
+
+## 🏁 How to Use
+
+### 🔧 1. Setup Project Environment
+
+```bash
+autodevops setup /path/to/your/project
+```
+
+### 🚀 2. Automate Git + CI/CD + Docker + Log Analysis
+
+```bash
+autodevops push "Your commit message"
+```
+
+---
+
+## 📁 .env Configuration (Required)
+
+Create a `.env` file in the root of your project with:
+
+```dotenv
+OPENAI_API_KEY=your_openai_key
+DOCKER_USERNAME=your_dockerhub_username
+DOCKER_PASSWORD=your_dockerhub_password
+MONGO_URL=your_mongodb_connection_string
+```
+
+---
+
+## 🧩 Dependencies
+
+* Python 3.6+
+* OpenAI API
+* Docker Hub Account
+* MongoDB (Cloud or Local)
+* GitHub Actions or CI/CD integration
+
+---
+
+## 🧑‍💻 Author
+
+**Kannan B**
+💼 GitHub: [@kannanb2745](https://github.com/kannanb2745)
+
+---
+
+## 📄 License
+
+MIT License — Open for contribution and customization.
+
+---
+
+## 🙌 Contributions Welcome
+
+Have ideas, suggestions, or improvements?
+Open an issue or submit a PR on GitHub:
+[https://github.com/kannanb2745/Automated-DevOps](https://github.com/kannanb2745/Automated-DevOps)
+
+---
+
+> Save hours of setup, debugging, and scripting.
+> Let **AutoDevOps CLI** handle it all while you focus on shipping great code. 🚀
+
+
+## ✅ What's Next?
+
+Now that you have `README.md` and an updated `setup.py`:
+### 🔄 Final Steps to Push to PyPI:
+
+```bash
+# Optional: clean previous builds
+rm -rf dist/ build/ *.egg-info
+
+# Step 1: Build the package
+python setup.py sdist bdist_wheel
+
+# Step 2: Upload to PyPI
+twine upload dist/*
+```
