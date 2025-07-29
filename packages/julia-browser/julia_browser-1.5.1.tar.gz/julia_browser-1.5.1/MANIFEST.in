@@ -1,0 +1,9 @@
+include README.md
+include LICENSE
+include julia_browser_requirements.txt
+include CHANGELOG.md
+recursive-include julia_browser *.py
+recursive-include julia_browser/data *.json
+recursive-include julia_browser/templates *.html
+global-exclude __pycache__
+global-exclude *.py[co]
