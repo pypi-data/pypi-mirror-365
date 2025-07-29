@@ -1,0 +1,90 @@
+[project]
+name = "melobot"
+version = "3.2.2"
+description = "A bot framework with much high level features."
+authors = [{ name = "aicorein", email = "aicorein@meloland.org" }]
+maintainers = [{ name = "aicorein", email = "aicorein@meloland.org" }]
+dependencies = [
+    "better-exceptions==0.3.3",
+    "rich>=13.7.1,<14",
+    "typing-extensions>=4.10.0",
+    "colorlog>=6.8.2,<7",
+    "beartype>=0.18.5",
+]
+requires-python = ">=3.10"
+readme = "README.md"
+license = "BSD-3-Clause"
+license-files = ["LICENSE-BSD", "LICENSE-CC", "THIRD-PARTY-NOTICES.md"]
+keywords = ["melobot", "bot framework", "asyncio", "coroutine", "concurrency"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Typing :: Typed",
+]
+
+
+[project.urls]
+Homepage = "https://github.com/Meloland/melobot"
+Documentation = "https://docs.melobot.org"
+Repository = "https://github.com/Meloland/melobot.git"
+Issues = "https://github.com/Meloland/melobot/issues"
+
+[project.optional-dependencies]
+onebot = ["pydantic>=2.9.2,<3", "websockets>=14.1,<15", "aiohttp>=3.10.10,<4"]
+cli = ["watchdog>=6.0.0,<7"]
+
+
+[dependency-groups]
+measure = ["viztracer>=0.16.3", "pydeps>=1.12.20", "ipython"]
+test = ["pytest>=8.1.1", "pytest-asyncio>=0.24.0"]
+docs = [
+    "sphinx>=7.3.7",
+    "furo>=2024.1.29",
+    "myst-parser>=2.0.0",
+    "sphinx-copybutton>=0.5.2",
+]
+lint = ["black>=24.2.0", "isort>=5.13.2", "flake8>=7.0.0", "mypy>=1.11.1"]
+manage = ["toml>=0.10.2", "pre-commit>=4.0.1", "ipython>=8.32.0", "poethepoet>=0.33.1"]
+
+[tool.poe.tasks]
+isort = "isort --profile black src/melobot tests docs"
+format = "black src/melobot tests docs"
+check = "flake8 src/melobot"
+analyse = "mypy src/melobot"
+test = "pytest -c pytest.ini"
+deps = "pydeps src/melobot -o pydeps.png -T png --only melobot --rankdir BT --max-module-depth 2 --start-color 160"
+docs.script = "docs.make:main()"
+all_lint = ["isort", "format", "check", "analyse"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.mypy]
+follow_imports = "normal"
+ignore_missing_imports = true
+show_column_numbers = true
+check_untyped_defs = true
+disallow_untyped_defs = true
+warn_return_any = true
+warn_redundant_casts = true
+disallow_untyped_calls = true
+strict_equality = true
+
+[tool.black]
+line-length = 100
+
+[tool.isort]
+profile = "black"
+line_length = 100

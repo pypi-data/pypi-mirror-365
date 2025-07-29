@@ -1,0 +1,33 @@
+name: Pre-commit checks
+
+on:
+    push:
+      branches:
+        main
+  
+    pull_request:
+      branches:
+        main
+
+jobs:
+  pre-commit:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11', '3.12', '3.13']  # 添加你想要测试的 Python 版本
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Install uv and Setup Python
+      uses: astral-sh/setup-uv@v5
+      with:
+        version: "0.6.9"
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install and Run pre-commit
+      run: |
+        uv sync --frozen --all-groups --all-extras
+        uv run pre-commit install
+        uv run -- pre-commit run --all-files
