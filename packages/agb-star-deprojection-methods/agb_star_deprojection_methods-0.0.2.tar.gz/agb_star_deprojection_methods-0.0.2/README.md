@@ -1,0 +1,381 @@
+# AGB Star Deprojection
+
+A package for visualising radially expanding circumstellar envelopes of AGB stars.
+
+---
+
+## Quick Start
+
+### Installation
+
+```bash
+python3 -m pip install agb_star_deprojection_methods
+```
+
+### Import
+
+```python
+from agb_star_deprojection_methods.classes import CondensedData, StarData
+```
+
+### Initialise a StarData object
+
+```python
+fits_file = "example_fits_file.fits"  # relative path to fits file
+distance_to_star = 8.04e8             # distance to star in AU
+rest_frequency = 2.3e11               # rest frequency in Hz
+
+star = StarData(fits_file, distance_to_star, rest_frequency)
+```
+
+### Plot channel maps (opens in matplotlib window)
+
+```python
+star.plot_channel_maps()  # many optional arguments
+```
+
+### Plot 3D deprojection using plotly
+
+```python
+star.plot_3D()  # many optional arguments
+```
+
+### Export to a CondensedData object
+
+```python
+data = star.export()
+```
+
+### Tweak parameters and create a new StarData object
+
+```python
+data.v_exp = 20
+new_star = StarData(data)
+```
+
+### Expand envelope over time
+
+```python
+years = 1000
+info = new_star(years)  # CondensedData object representing the envelope in 1000 years
+expanded_star = StarData(info)
+```
+
+---
+
+## Creating a Mask
+
+To create a mask manually, use the following script:
+
+```python
+from agb_star_deprojection_methods.classes import StarData
+
+fits_file = "example_fits_file.fits"
+distance_to_star = 8.04e8
+rest_frequency = 2.3e11
+
+star = StarData(fits_file, distance_to_star, rest_frequency)
+
+stds = 3  # number of standard deviations to initially filter by
+savefile = "trial_mask.npy"  # .npy file to save mask to
+
+# open mask selector
+star.create_mask(filter_stds=stds, savefile=savefile)
+```
+
+Running this will open a matplotlib window with a subplot for each velocity channel.  
+- **Double click** inside a subplot, then **drag to lasso points**.  
+- When you finish dragging, press:
+  - **A** to keep only these points in the mask,
+  - **R** to remove these points from the mask,
+  - **Enter** to do neither.
+- Once you have completed the mask, close the matplotlib application.  
+- The mask will be saved to the location specified by `savefile`.
+
+To load the star data with the mask:
+
+```python
+from agb_star_deprojection_methods.classes import StarData
+
+fits_file = "example_fits_file.fits"
+distance_to_star = 8.04e8
+rest_frequency = 2.3e11
+
+maskfile = "trial_mask.npy"  # .npy file to load mask from
+
+star = StarData(fits_file, distance_to_star, rest_frequency, maskfile)
+
+# any other operations you want done
+# ...
+```
+
+---
+
+## CondensedData dataclass
+
+Help on class `CondensedData` in module `classes`:
+
+**CondensedData**
+
+Container for storing a condensed version of the data cube and its associated metadata.
+
+### Attributes
+
+| Name              | Type           | Description                                      |
+|-------------------|----------------|--------------------------------------------------|
+| x_offsets         | DataArray1D    | 1D array of x-coordinates (offsets) in AU        |
+| y_offsets         | DataArray1D    | 1D array of y-coordinates (offsets) in AU        |
+| v_offsets         | DataArray1D    | 1D array of velocity offsets in km/s             |
+| data              | DataArray3D    | 3D data array (velocity, y, x) of intensity      |
+| star_name         | str            | Name of the star or object                       |
+| distance_to_star  | float          | Distance to the star in AU                       |
+| v_exp             | float          | Expansion velocity in km/s                       |
+| v_sys             | float          | Systemic velocity in km/s                        |
+| beta              | float          | Beta parameter of the velocity law               |
+| r_dust            | float          | Dust formation radius in AU                      |
+| beam_maj          | float          | Major axis of the beam in degrees                |
+| beam_min          | float          | Minor axis of the beam in degrees                |
+| beam_angle        | float          | Beam position angle in degrees                   |
+| header            | Header         | FITS header containing metadata                  |
+| mean              | float or None  | Mean intensity of the data (default is None)     |
+| std               | float or None  | Standard deviation of the data (default is None) |
+
+---
+
+## StarData Class
+
+Class for manipulating and analyzing astronomical data cubes of radially expanding circumstellar envelopes.
+
+The StarData class provides a comprehensive interface for loading, processing, analyzing, and visualizing 3D data cubes (typically from FITS files) representing the emission from expanding circumstellar shells.  
+It supports both direct loading from FITS files and from preprocessed CondensedData objects, and manages all relevant metadata and derived quantities.
+
+### Key Features
+
+- **Data Loading:** Supports initialization from FITS files or CondensedData objects.
+- **Metadata Management:** Stores and exposes all relevant observational and physical parameters, including beam properties, systemic and expansion velocities, beta velocity law parameters, and FITS header information.
+- **Noise Estimation:** Automatically computes mean and standard deviation of background noise for filtering.
+- **Filtering:** Provides methods to filter data by significance (standard deviations) and to remove small clumps of points that fit within the beam (beam filtering).
+- **Coordinate Transformations:** Handles conversion between velocity space and spatial (cartesian) coordinates, supporting both constant velocity models and general velocity laws.
+- **Time Evolution:** Can compute the expansion of the envelope over time, transforming the data cube accordingly.
+- **Visualization:** Includes a variety of plotting methods:
+    - Channel maps (2D slices through velocity channels)
+    - 3D volume rendering (with Plotly)
+    - Diagnostic plots for velocity/intensity and radius/velocity relationships
+- **Interactive Masking:** Supports interactive creation of masks for manual data cleaning.
+
+### Attribute table
+
+| Name                  | Type           | Description                                      |
+|-----------------------|----------------|--------------------------------------------------|
+| data                  | DataArray3D    | The main data cube (v, y, x) containing intensity values. |
+| X                     | DataArray1D    | 1D array of x-coordinates (offsets) in AU        |
+| Y                     | DataArray1D    | 1D array of y-coordinates (offsets) in AU        |
+| V                     | DataArray1D    | 1D array of velocity offsets in km/s             |
+| distance_to_star      | float          | Distance to the star in AU                       |
+| beam_maj              | float          | Major axis of the beam in degrees                |
+| beam_min              | float          | Minor axis of the beam in degrees                |
+| beam_angle            | float          | Beam position angle in degrees                   |
+| mean                  | float          | Mean intensity of the background noise.         |
+| std                   | float          | Standard deviation of the background noise.     |
+| v_sys                 | float          | Systemic velocity in km/s                        |
+| v_exp                 | float          | Expansion velocity in km/s                       |
+| beta                  | float          | Beta parameter of the velocity law               |
+| r_dust                | float          | Dust formation radius in AU                      |
+| radius                | float          | Characteristic radius (e.g., maximum intensity change) in AU. |
+| beta_velocity_law     | VelocityModel  | Callable implementing the beta velocity law with the current object's parameters. |
+| star_name             | str            | Name of the star or object                       |
+
+### Methods table
+
+| Method                        | Description                                      |
+|-------------------------------|--------------------------------------------------|
+| export()                      | Export all defining attributes to a CondensedData object. |
+| get_filtered_data(stds=5)    | Return a copy of the data, with values below the specified number of standard deviations set to np.nan. |
+| beam_filter(filtered_data)   | Remove clumps of points that fit inside the beam, setting these values to np.nan. |
+| get_expansion(years, v_func, ...) | Compute the expanded data cube after a given time interval. |
+| plot_channel_maps(...)        | Plot the data cube as a set of 2D channel maps. |
+| plot_3D(...)                 | Plot a 3D volume rendering of the data cube using Plotly. |
+| plot_velocity_vs_intensity(...) | Plot velocity vs. intensity at the center of the xy plane. |
+| plot_radius_vs_intensity()   | Plot radius vs. intensity at the center of the xy plane. |
+| plot_radius_vs_velocity(...)  | Plot radius vs. velocity at the center of the xy plane. |
+| create_mask(...)              | Launch an interactive mask creator for the data cube. |
+
+---
+
+### beam_filter()
+
+Remove clumps of points that fit inside the beam, setting these values to np.nan.
+
+#### Parameters
+
+- **filtered_data** : DataArray3D  
+  3-D array with the same dimensions as the data array.
+
+#### Returns
+
+- **beam_filtered_data** : DataArray3D  
+  3-D array with small clumps of points removed.
+
+---
+
+### create_mask()
+
+Launch an interactive mask creator for the data cube.
+
+#### Parameters
+
+- **filter_stds** : float or int or None, optional  
+  Number of standard deviations to initially filter by (default is None).
+- **savefile** : str or None, optional  
+  Filename to save the selected mask (default is None). Should end in .npy.
+- **initial_crop** : tuple or None, optional  
+  Initial crop region as (v_lo, v_hi, y_lo, y_hi, x_lo, x_hi), using channel indices (default is None).
+
+---
+
+### export()
+
+Export all defining attributes to a CondensedData object.
+
+---
+
+### get_expansion()
+
+Compute the expanded data cube after a given time interval.
+
+#### Parameters
+
+- **years** : float or int  
+  Time interval in years.
+- **v_func** : VelocityModel or None  
+  Velocity law function or None (default is None, which uses constant expansion velocity).
+- **remove_centre** : float or int or None, optional  
+  If not None, remove all points within this many beam widths of the centre (default is 2).
+- **new_shape** : tuple, optional  
+  Shape of the output grid (default is (50, 250, 250)).
+- **verbose** : If True, print progress (default is False).
+
+#### Returns
+
+- **info** : CondensedData  
+  CondensedData object containing the expanded data and metadata.
+
+---
+
+### get_filtered_data()
+
+Return a copy of the data, with values below the specified number of standard deviations set to np.nan.
+
+#### Parameters
+
+- **stds** : float or int, optional  
+  Number of standard deviations to filter by (default is 5).
+
+#### Returns
+
+- **filtered_data** : DataArray3D  
+  Filtered data array.
+
+---
+
+### plot_3D()
+
+Plot a 3D volume rendering of the data cube using Plotly.
+
+#### Parameters
+
+- **filter_stds** : float or int or None, optional  
+  Number of standard deviations to filter by (default is None).
+- **filter_beam** : bool, optional  
+  If True, apply beam filtering (default is False).
+- **z_cutoff** : float or None, optional  
+  Cutoff for extreme z values as a proportion of the largest x, y values (default is None).
+- **num_points** : int, optional  
+  Number of points in each dimension for the grid (default is 50).
+- **num_surfaces** : int, optional  
+  Number of surfaces to draw when rendering the plot (default is 50).
+- **opacity** : float or int, optional  
+  Opacity of the volume rendering (default is 0.5).
+- **opacityscale** : list of list of float, optional  
+  Opacity scale, see https://plotly.com/python-api-reference/generated/plotly.graph_objects.Volume.html (default is [[0, 0], [1, 1]]).
+- **colorscale** : str, optional  
+  Colormap for the plot, see https://plotly.com/python/builtin-colorscales/ (default is "Reds").
+- **v_func** : VelocityModel or None, optional  
+  Velocity law function (default is None, which uses constant expansion velocity).
+- **verbose** : bool, optional  
+  If True, print progress (default is False).
+- **title** : str or None, optional  
+  Plot title (default is None, which uses the star name).
+- **folder** : str or None, optional  
+  If provided, generates successive frames and saves as png files to this folder (default is None).
+- **num_angles** : int, optional  
+  Number of angles for saving images (default is 24). Greater values give smoother animation.
+- **camera_dist** : float or int, optional  
+  Camera radius to use if generating frames (default is 2).
+
+---
+
+### plot_channel_maps()
+
+Plot the data cube as a set of 2D channel maps.
+
+#### Parameters
+
+- **filter_stds** : float or int or None, optional  
+  Number of standard deviations to filter by (default is None).
+- **filter_beam** : bool, optional  
+  If True, apply beam filtering (default is False).
+- **dimensions** : tuple of int or None, optional  
+  Grid dimensions (nrows, ncols) for subplots (default is None).
+- **start** : int, optional  
+  Starting velocity channel index (default is 0).
+- **end** : int or None, optional  
+  Ending velocity channel index (default is None).
+- **include_beam** : bool, optional  
+  If True, plot the beam ellipse (default is True).
+- **text_pos** : tuple of float or None, optional  
+  Position for velocity text annotation (default is None).
+- **beam_pos** : tuple of float or None, optional  
+  Position for beam ellipse (default is None).
+- **title** : str or None, optional  
+  Plot title (default is None, which uses the name of the star).
+- **cmap** : str, optional  
+  Colormap for the plot (default is "viridis").
+
+---
+
+### plot_radius_vs_intensity()
+
+Plot radius vs. intensity at the center of the xy plane.
+
+---
+
+### plot_radius_vs_velocity()
+
+Plot radius vs. velocity at the center of the xy plane.
+
+#### Parameters
+
+- **fit_beta_law** : bool, optional  
+  If True, fit and plot the beta law (default is True).
+
+#### Notes
+
+The well-fittedness of the beta law curve can help you visually determine  
+the accuracy of the calculated beta law parameters.
+
+---
+
+### plot_velocity_vs_intensity()
+
+Plot velocity vs. intensity at the center of the xy plane.
+
+#### Parameters
+
+- **fit_parabola** : bool, optional  
+  If True, fit and plot a parabola (default is True).
+
+#### Notes
+
+The well-fittedness of the parabola can help you visually determine  
+the accuracy of the calculated systemic and expansion velocity.
