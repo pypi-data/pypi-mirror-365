@@ -1,0 +1,64 @@
+Metadata-Version: 2.4
+Name: fileez
+Version: 0.1.0
+Summary: A simple and friendly Python library to handle files and folders
+Home-page: https://github.com/Rasa8877/fileez
+Author: Rasa Dariush
+Author-email: letperhut@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary
+
+# fileez
+
+[![Python package](https://img.shields.io/pypi/v/fileez.svg)](https://pypi.org/project/fileez/)
+[![Build Status](https://github.com/Rasa8877/fileez/actions/workflows/python-package.yml/badge.svg)](https://github.com/Rasa8877/fileez/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+**fileez** is a beginner-friendly Python library that makes file and folder handling easier with a clean and simple API.
+
+## Features
+
+- Read/write files (text, JSON, CSV)
+- List directories
+- Copy, move, or delete files and folders
+- UTF-8 encoding by default
+
+## Installation
+
+```bash
+pip install fileez
+```
+
+## Example
+
+```python
+import fileez as fz
+
+fz.write("hello.txt", "Hello, World!")
+print(fz.read("hello.txt"))
+
+data = {"name": "fileez", "version": 1}
+fz.write_json("data.json", data)
+print(fz.read_json("data.json"))
+
+rows = [["name", "age"], ["Alice", "30"], ["Bob", "25"]]
+fz.write_csv("data.csv", rows)
+print(fz.read_csv("data.csv"))
+```
+
+## License
+
+MIT
