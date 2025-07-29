@@ -1,0 +1,97 @@
+Metadata-Version: 2.4
+Name: siri-transit-api-client
+Version: 0.2.1
+Summary: API client to query transit data using SIRI (Service Interface for Real Time Information) framework. Verifierd to work on San Francisco Bay Area 511.org API
+Author-email: Robert Hennessy <robertghennessy@gmail.com>
+License: GNU GENERAL PUBLIC LICENSE
+                              Version 3, 29 June 2007
+        
+            API client for transit data using SIRI framework.
+            Copyright (C) 2022  Robert G Hennessy
+        
+            This program is free software: you can redistribute it and/or modify
+            it under the terms of the GNU General Public License as published by
+            the Free Software Foundation, either version 3 of the License, or
+            (at your option) any later version.
+        
+            This program is distributed in the hope that it will be useful,
+            but WITHOUT ANY WARRANTY; without even the implied warranty of
+            MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+            GNU General Public License for more details.
+        
+            You should have received a copy of the GNU General Public License
+            along with this program.  If not, see <http://www.gnu.org/licenses/>.
+        
+        Also add information on how to contact you by electronic and paper mail.
+        
+          You should also get your employer (if you work as a programmer) or school,
+        if any, to sign a "copyright disclaimer" for the program, if necessary.
+        For more information on this, and how to apply and follow the GNU GPL, see
+        <http://www.gnu.org/licenses/>.
+        
+          The GNU General Public License does not permit incorporating your program
+        into proprietary programs.  If your program is a subroutine library, you
+        may consider it more useful to permit linking proprietary applications with
+        the library.  If this is what you want to do, use the GNU Lesser General
+        Public License instead of this License.  But first, please read
+        <http://www.gnu.org/philosophy/why-not-lgpl.html>.
+        
+        
+Project-URL: homepage, https://github.com/robertghennessy/siri_transit_api_client
+Project-URL: documentation, https://github.com/robertghennessy/siri_transit_api_client
+Project-URL: repository, https://github.com/robertghennessy/siri_transit_api_client
+Keywords: 511.org,Transit,Open 511 APIs,Standard Interface for Real-time Information,SIRI
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering
+Requires-Python: >=3.11
+Description-Content-Type: text/x-rst
+License-File: LICENSE
+License-File: AUTHORS.rst
+Requires-Dist: requests>=2.27.1
+Requires-Dist: responses>=0.20.0
+Provides-Extra: test
+Requires-Dist: pytest>=6.2.4; extra == "test"
+Dynamic: license-file
+
+=======================
+SIRI Transit API Client
+=======================
+
+
+.. image:: https://img.shields.io/pypi/v/siri_transit_api_client.svg
+        :target: https://pypi.python.org/pypi/siri_transit_api_client
+
+.. image:: https://readthedocs.org/projects/siri-transit-api-client/badge/?version=latest
+        :target: https://siri-transit-api-client.readthedocs.io/en/latest/?version=latest
+        :alt: Documentation Status
+
+
+
+Description
+-----------
+API client for transit data using SIRI (Standard Interface for Real-time Information) framework. The specific
+implementation is located at https://511.org/open-data/transit.
+
+* Free software: GNU General Public License v3
+* Documentation: https://siri-transit-api-client.readthedocs.io.
+
+API Key
+-------
+API key is required to connect with the server. San Francisco Bay Area 511.org API key can be requested
+at https://511.org/open-data/token
+
+Credits
+-------
+
+This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
+
+.. _Cookiecutter: https://github.com/audreyr/cookiecutter
+.. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
