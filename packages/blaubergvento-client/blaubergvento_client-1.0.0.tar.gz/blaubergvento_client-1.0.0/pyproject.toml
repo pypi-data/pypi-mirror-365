@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "blaubergvento_client"
+version = "1.0.0"
+description = "A client for communicating with Blauberg vento (and derived) ventilators."
+readme = "README.md"
+authors = [{ name = "Michael Krog", email = "info@apaq.dk" }]
+license = { file = "LICENSE" }
+classifiers = []
+keywords = ["blauberg", "duka", "ventilator"]
+dependencies = []
+requires-python = ">=3.9"
+
+[project.optional-dependencies]
+dev = ["black", "bumpver", "isort", "pip-tools", "pytest"]
+
+[project.urls]
+Homepage = "https://github.com/michaelkrog/blaubergvento-python"
