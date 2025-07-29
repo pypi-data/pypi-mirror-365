@@ -1,0 +1,19 @@
+[console_scripts]
+deps-rocker = deps_rocker.dep_rocker_cli:gen_dockerfile
+
+[rocker.extensions]
+curl = deps_rocker.curl:Curl
+cwd = deps_rocker.cwd:CWD
+cwd_name = deps_rocker.cwd:CWDName
+fzf = deps_rocker.fzf:Fzf
+git_clone = deps_rocker.git_clone:GitClone
+isaac_sim = deps_rocker.isaac_sim:IsaacSim
+locales = deps_rocker.locales:Locales
+neovim = deps_rocker.neovim:NeoVim
+odeps_dependencies = deps_rocker.dependencies:Dependencies
+ros_humble = deps_rocker.ros_humble:RosHumble
+ssh_client = deps_rocker.ssh_client:ssh_client
+tzdata = deps_rocker.tzdata:TzData
+urdf_viz = deps_rocker.urdf_viz:UrdfViz
+uv = deps_rocker.uv:UV
+vcstool = deps_rocker.vcstool:VcsTool
