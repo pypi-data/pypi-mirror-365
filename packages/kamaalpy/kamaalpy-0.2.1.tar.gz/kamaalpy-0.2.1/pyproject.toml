@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kamaalpy"
+version = "0.2.1"
+authors = [{ name = "Kamaal Farah", email = "kamaal.f1@gmail.com" }]
+description = "A package with everything Python"
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+license = { file = "LICENSE" }
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/Kamaalio/KamaalPy"
+"Bug Tracker" = "https://github.com/Kamaalio/KamaalPy/issues"
