@@ -1,0 +1,156 @@
+[build-system]
+build-backend = 'setuptools.build_meta'
+requires = ["setuptools >= 77.0", "setuptools_scm>=8"]
+
+[project]
+name = "pyCANape"
+description = 'Pythonic wrapper around the VECTOR CANape API'
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+keywords = [
+    "CANape",
+    "Measurement",
+    "Calibration",
+    "automotive"
+]
+authors = [
+  { name = "Artur Drogunow", email = "artur.drogunow@zf.com" },
+]
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+dependencies = [
+    "psutil",
+    "numpy>=1.21",
+    "packaging",
+    "typing-extensions;python_version<'3.10'",
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",  # for tests
+    "pytest-cov",  # for tests
+    "python-can==4.*",  # for tests
+    "ruff==0.12.5",
+    "mypy==1.17.*",
+]
+doc = [
+    "furo",
+    "sphinx==8.*",
+    "sphinx-copybutton",
+]
+
+[project.urls]
+Documentation = "https://pycanape.readthedocs.io"
+Issues = "https://github.com/zariiii9003/pycanape/issues"
+Source = "https://github.com/zariiii9003/pycanape"
+Homepage = "https://github.com/zariiii9003/pycanape"
+
+[tool.setuptools.package-data]
+"pycanape" = [
+  "py.typed",
+]
+
+[tool.setuptools_scm]
+# can be empty if no extra settings are needed, presence enables setuptools_scm
+
+[tool.mypy]
+show_error_codes = true
+ignore_missing_imports = false
+disallow_untyped_defs = false
+disallow_incomplete_defs = true
+check_untyped_defs = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+disallow_any_generics = true
+disallow_subclassing_any = true
+exclude = [
+    "^docs/.*",
+    "^.*venv/.*",
+    "^script/.*",
+    "^tests/.*",
+]
+
+
+[[tool.mypy.overrides]]
+module = [
+    "psutil",
+]
+ignore_missing_imports = true
+
+[tool.ruff.lint]
+extend-select = [
+    "B",  # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "E",  # pycodestyle
+    "EM",  # flake8-errmsg
+    "F",  # pyflakes
+    "G",  # flake8-logging-format
+    "I",  # isort
+    "ISC",  # flake8-implicit-str-concat
+    "N",  # pep8-naming
+    "PIE",  # flake8-pie
+    "PL",  # pylint
+    "RSE",  # flake8-raise
+    "RUF",  # Ruff-specific rules
+    "S",  # flake8-bandit
+    "SIM",  # flake8-simplify
+    "TCH",  # flake8-type-checking
+    "UP",  # pyupgrade
+    "W",  # pycodestyle
+]
+ignore = [
+    "E501",  # line too long
+    "ISC001",  # single-line-implicit-string-concatenation
+    "PLR0904",  # too-many-public-methods
+    "PLR0913",  # too-many-arguments
+    "RUF012",  # mutable-class-default
+]
+
+[tool.ruff.lint.per-file-ignores]
+"src/pycanape/cnp_api/**/*.py" = [
+    "N",  # names are mostly equal to CANapAPI.h
+]
+"tests/**/*.py" = [
+    "S", # irrelevant for tests
+    "ARG", # Unused function args -> fixtures nevertheless are functionally relevant
+    "PLR2004", # Magic value used in comparison
+    "PLR0915", # Too many statements
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["pycanape"]
+
+[tool.pytest.ini_options]
+addopts = "-v --assert=plain"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+
+[tool.coverage.report]
+# Regexes for lines to exclude from consideration
+exclude_also = [
+    # Don't complain about missing debug-only code:
+    "def __repr__",
+    "if self\\.debug",
+
+    # Don't complain if tests don't hit defensive assertion code:
+    "raise AssertionError",
+    "raise NotImplementedError",
+
+    # Don't complain if non-runnable code isn't run:
+    "if 0:",
+    "if __name__ == .__main__.:",
+
+    # Don't complain about abstract methods, they aren't run:
+    "@(abc\\.)?abstractmethod",
+    ]
+
+ignore_errors = true
+
+[tool.coverage.html]
+directory = "coverage_html_report"
