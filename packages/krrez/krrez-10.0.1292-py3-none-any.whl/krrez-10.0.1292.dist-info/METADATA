@@ -1,0 +1,59 @@
+Metadata-Version: 2.4
+Name: krrez
+Version: 10.0.1292
+Summary: Infrastructure-as-code framework for personal computers
+Home-page: https://pseudopolis.eu/pino/krrez
+Author: Josef Hahn
+Author-email: krrez@pseudopolis.eu
+License: AGPL 3
+Keywords: iac infrastructure as code devops provisioning
+Description-Content-Type: text/plain
+Requires-Dist: libvirt-python>=9.0.0
+Requires-Dist: pygraphviz~=1.10
+Requires-Dist: fabric~=3.0
+Requires-Dist: paramiko~=3.1
+Requires-Dist: hallyd~=0.90
+Requires-Dist: klovve~=1.1
+Requires-Dist: watchdog~=4.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: summary
+
+
+        Krrez provides a foundation for putting the installation and configuration of computer systems into code.
+        This allows to install those systems in an automatic, repeatable and testable way.
+
+        There are some jargon terms around, like 'Infrastructure-as-code', 'Configuration management' and even 'DevOps'.
+        Krrez addresses all those topics to some extent, but in a much different, lighter way than prevailing tools, as it does not really target the same use cases.
+        In particular, it is designed with personal computer systems in mind instead of cloud systems.
+
+        Automation code is just plain Python code that eventually gets executed on a target system, and does things like package installations, modifications of configuration files, execution of command lines, and more.
+        This code must be provided by you, at least for everything beyond some basic stuff that is included in Krrez.
+
+        The usual process for a Krrez-based system installation begins with transferring the Krrez installer to an external medium like a USB stick.
+        This sounds harder than it is; in fact it is a guided and very simple step.
+        Next to core operating system installation routines, this image also carries all your automation code.
+        The next step is to boot the target machine from that medium.
+        This will install an operating system (Debian Linux is the one that Krrez supports out of the box) and execute the automation code.
+
+        Everything after booting the target machine can be completely automatic, or can ask the user for some additional configuration infos on-the-fly, depending on how the installation image was set up.
+
+        Once that installation is finished, you will typically not use Krrez on that system for the rest of its lifetime.
+        If you want to run an updated version of your automation code, with some modifications, or some added or removed behavior, Krrez' philosophy is to just reinstall the affected system(s).
+        This makes it much easier to write automation code on the hand, as you do not have to deal with bulky properties like idempotency or reversibility, but on the other hand makes it a bad choice for some kinds of use cases.
+
+        (At least it is possible with some extra work to enable an installed system to reinstall itself without a new installation medium or any other reason to physically get in touch with that machine.)
+
+        Automation code is structured in modules.
+        It is possible to create installation media for different kinds of systems, each with an own subset of automation code modules, e.g. for your primary workstation, your notebook, network storage, home automation server, and so on.
+
+        Krrez also comes with a mechanism for testing.
+        It runs the entire installation process on some internal Virtual Machines, then lets your test code make its checks on them.
+        This can be as complex as the interaction between more than one machine (maybe based on different profiles).
+    

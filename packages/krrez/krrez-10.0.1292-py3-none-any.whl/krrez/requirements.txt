@@ -1,0 +1,13 @@
+# SPDX-FileCopyrightText: © 2022 Josef Hahn
+# SPDX-License-Identifier: AGPL-3.0-only
+
+# MAINTAIN
+
+-r runtime-requirements.txt
+
+libvirt-python >= 9.0.0
+pygraphviz ~= 1.10
+
+# used by hallyd
+fabric ~= 3.0
+paramiko ~= 3.1

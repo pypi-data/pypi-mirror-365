@@ -1,0 +1,36 @@
+# SPDX-FileCopyrightText: © 2022 Josef Hahn
+# SPDX-License-Identifier: AGPL-3.0-only
+
+[MASTER]
+ignore=fooo.py,
+       baar.py
+
+[MESSAGES CONTROL]
+enable=all
+disable=fixme,
+        locally-disabled,
+        suppressed-message,
+        too-few-public-methods,
+        too-many-locals,
+        too-many-nested-blocks,
+        too-many-arguments,
+        too-many-public-methods,
+        no-self-use,
+        unused-argument,
+        no-member,
+        protected-access,
+        import-outside-toplevel,
+        too-many-branches,
+        broad-except,
+
+[STRING]
+check-quote-consistency=yes
+
+[FORMAT]
+expected-line-ending-format=LF
+indent-after-paren=4
+indent-string='    '
+max-line-length=120
+
+[BASIC]
+good-names=f, i, j, k, ex, _, do
