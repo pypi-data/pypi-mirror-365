@@ -1,0 +1,3 @@
+__version__ = "0.0.1"
+
+print("A PLACEHOLDER FOR AN UPCOMING SURVEY ANALYSIS PACKAGE!!!")

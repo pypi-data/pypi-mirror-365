@@ -1,0 +1,182 @@
+[project]
+name = "svy"
+version = "0.0.1"
+description = "Design and analysis of complex sample data"
+readme = "README.md"
+authors = [{ name = "Mamadou S Diallo", email = "me@msdiallo.io" }]
+keywords = ["sampling", "sample", "weighting", "estimation", "survey"]
+classifiers = [
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Development Status :: 4 - Beta",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering",
+]
+
+
+requires-python = ">=3.11"
+dependencies = [
+    "msgspec>=0.19.0",
+    "numpy>=2.1",
+    "polars>=1.25.0",
+    "pyarrow>=19.0",
+    "scipy>=1.16.0",
+    "statsmodels >=0.14",
+]
+
+[dependency-groups]
+dev = [
+    "codecov",
+    "httpx",
+    "jupyterlab",
+    "pytest",
+    "pytest-cov",
+    "tqdm",
+    "ty>=0.0.1a7",
+]
+
+# [project.scripts]
+# svy = "svy:main"
+
+
+[tool.black]
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+# line-length = 99
+# target-version = ["py312", "py313"]
+
+[tool.pytest.ini_options]
+addopts = "--ignore=tests/apis --ignore=tests/sae --ignore=tests/types"
+
+# testpaths = ["tests"]
+
+
+[tool.ruff]
+line-length = 99
+target-version = "py313"
+src = ["src", "tests"]
+exclude = [".venv", "build", "dist"]
+
+[tool.ruff.lint]
+select = ["D", "E", "F", "W", "I001"]
+ignore = ["D", "E501"]                # for development we can ignore the docs
+
+# Exclude a variety of commonly ignored directories.
+exclude = [".venv", "tests"]
+
+
+[tool.ruff.lint.pycodestyle]
+ignore-overlong-task-comments = true
+[tool.ruff.lint.mccabe]
+# Unlike Flake8, default to a complexity level of 10.
+max-complexity = 10
+
+[tool.ruff.lint.isort]
+known-first-party = ["svy"]
+known-third-party = [
+    "matplotlib",
+    "numpy",
+    "pandas",
+    "polars",
+    "pydantic",
+    "scipy",
+    "statsmodels",
+]
+lines-after-imports = 2
+lines-between-types = 1
+
+[tool.ty.src]
+root = "./src"
+
+[tool.ty.rules]
+unused-ignore-comment = "ignore"
+
+[tool.ty.environment]
+python = "./.venv"
+
+[tool.mypy]
+ignore_missing_imports = true
+follow_imports = "silent"
+strict_optional = true
+allow_redefinition = true
+show_error_context = false
+show_column_numbers = true
+# Ensure full coverage
+disallow_untyped_calls = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_untyped_decorators = true
+# Restrict dynamic typing
+disallow_any_generics = false
+warn_no_return = true
+warn_return_any = true
+no_implicit_optional = true
+# Know what you are doing
+warn_unreachable = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_unused_configs = true
+exclude = [".venv", "tests"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.sdist]
+sources = ["src"]
+exclude = [
+    "tests",
+    "tests/*",
+    "svy-rust",
+    "svy-mojo",
+    "src/svy/core/*",
+    "src/svy/modules/*",
+    "src/svy/utils/*",
+]
+
+[tool.hatch.build.targets.wheel]
+sources = ["src"]
+exclude = [
+    "tests",
+    "tests/*",
+    "svy-rust",
+    "svy-mojo",
+    "src/svy/core/*",
+    "src/svy/modules/*",
+    "src/svy/utils/*",
+]
+
+# Pixi section for Mojo, hoepefully will be able to remove it one day
+# [tool.pixi.workspace]
+# channels = [
+# "https://conda.modular.com/max",
+# "https://repo.prefix.dev/modular-community",
+# "conda-forge",
+# ]
+# platforms = ["osx-arm64"]
+
+# [tool.pixi.pypi-dependencies]
+# svy = { path = ".", editable = true }
+
+# [tool.pixi.environments]
+# default = { solve-group = "default" }
+# dev = { features = ["dev"], solve-group = "default" }
+
+# [tool.pixi.tasks]
+
+# [tool.pixi.dependencies]
+# max = ">=25.4"
