@@ -1,0 +1,53 @@
+Metadata-Version: 2.4
+Name: mickelonius
+Version: 0.1.0
+Summary: ML toolkit for end-to-end pipelines
+Author-email: Mike Lee <you@example.com>
+Description-Content-Type: text/markdown
+Requires-Dist: numpy<2.0,>=1.26
+Requires-Dist: scikit-learn<2.0,>=1.3
+Requires-Dist: pandas<3.0,>=2.1
+Requires-Dist: arch<8.0.0
+Requires-Dist: matplotlib<4.0.0
+Requires-Dist: dask[complete]
+Requires-Dist: pyspark==3.5.4
+Requires-Dist: polars<2.0.0
+Requires-Dist: xgboost<3.0.0
+Requires-Dist: statsmodels<1.0.0
+Provides-Extra: local
+Requires-Dist: ipykernel<7.0.0; extra == "local"
+Requires-Dist: ipython<9.0.0; extra == "local"
+Requires-Dist: jupyter; extra == "local"
+Requires-Dist: jupyter-client; extra == "local"
+Requires-Dist: jupyter-console; extra == "local"
+Requires-Dist: jupyter-core; extra == "local"
+Requires-Dist: jupyterlab-pygments; extra == "local"
+Requires-Dist: jupyterlab-widgets; extra == "local"
+Requires-Dist: pandas_profiling; extra == "local"
+Provides-Extra: rein
+Requires-Dist: gymnasium[all]; extra == "rein"
+Requires-Dist: tabulate; extra == "rein"
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: sphinx; extra == "docs"
+Requires-Dist: sphinx-autodoc-typehints; extra == "docs"
+Provides-Extra: all
+Requires-Dist: ipykernel<7.0.0; extra == "all"
+Requires-Dist: ipython<9.0.0; extra == "all"
+Requires-Dist: jupyter; extra == "all"
+Requires-Dist: jupyter-client; extra == "all"
+Requires-Dist: jupyter-console; extra == "all"
+Requires-Dist: jupyter-core; extra == "all"
+Requires-Dist: jupyterlab-pygments; extra == "all"
+Requires-Dist: jupyterlab-widgets; extra == "all"
+Requires-Dist: pandas_profiling; extra == "all"
+Requires-Dist: gymnasium[all]; extra == "all"
+Requires-Dist: tabulate; extra == "all"
+Requires-Dist: pytest; extra == "all"
+Requires-Dist: black; extra == "all"
+Requires-Dist: ruff; extra == "all"
+Requires-Dist: sphinx; extra == "all"
+Requires-Dist: sphinx-autodoc-typehints; extra == "all"
