@@ -1,0 +1,188 @@
+# BTD (Binary To Data) — Ferramentas de Arquivo Binário
+
+**BTD** é uma biblioteca leve em Python para salvar e carregar dados (texto ou dicionários) usando um formato binário personalizado com extensão `.btd`.  
+Utiliza criptografia XOR simples para proteger os dados e oferece funções auxiliares para manipulação binária.
+
+---
+
+## 📦 Instalação
+
+```bash
+pip install btd
+
+
+---
+
+⚙️ Funcionalidades Principais
+
+save(data, path): Salva dados (str ou dict) no arquivo .btd.
+
+load(path): Carrega dados do arquivo .btd, retornando str ou dict.
+
+is_btd(path): Verifica se arquivo tem formato .btd válido.
+
+split_chunks(data, size=1024): Divide bytes em pedaços menores de tamanho size.
+
+get_size(data): Retorna o tamanho do dado criptografado.
+
+to_bin(text): Converte texto em string binária (ex: '01101001 01101111').
+
+from_bin(binary): Converte string binária de volta para texto.
+
+
+
+---
+
+🚀 Exemplo de Uso
+
+from btd import BTD
+
+btd = BTD(key=b"minhachave")  # Pode usar chave personalizada para XOR
+
+# Salvar texto e dicionário
+btd.save("Olá, mundo!", "mensagem.btd")
+btd.save({"nome": "Gabriel", "idade": "17"}, "dados.btd")
+
+# Carregar arquivos
+texto = btd.load("mensagem.btd")           # retorna str
+dados = btd.load("dados.btd")               # retorna dict
+
+print(texto)  # Olá, mundo!
+print(dados)  # {'nome': 'Gabriel', 'idade': '17'}
+
+# Verificar arquivo .btd válido
+print(btd.is_btd("mensagem.btd"))          # True
+
+# Trabalhar com bytes
+dados_bytes = texto.encode('utf-8')
+partes = btd.split_chunks(dados_bytes, size=5)
+print(partes)  # [b'Ol\xc3\xa1,', b' mund', b'o!']
+
+# Tamanho criptografado
+print(btd.get_size("Exemplo"))
+
+# Conversão texto-binário
+binario = btd.to_bin("oi")
+print(binario)  # 01101111 01101001
+
+texto2 = btd.from_bin(binario)
+print(texto2)  # oi
+
+
+---
+
+🔐 Sobre a Criptografia XOR
+
+Os dados são criptografados com XOR usando uma chave que pode ser personalizada na criação do objeto BTD.
+A chave padrão é b"mysecretkey".
+
+
+---
+
+📋 Requisitos
+
+Python 3.7 ou superior
+
+
+
+---
+
+📝 Licença
+
+MIT License — use, modifique e distribua livremente.
+
+
+---
+
+BTD (Binary To Data) — Binary File Tools
+
+BTD is a lightweight Python library to save and load data (strings or dictionaries) using a custom binary format with .btd extension.
+It uses simple XOR encryption to protect data and provides auxiliary functions for binary manipulation.
+
+
+---
+
+📦 Installation
+
+pip install btd
+
+
+---
+
+⚙️ Main Features
+
+save(data, path): Saves data (str or dict) into .btd file.
+
+load(path): Loads data from .btd file, returns str or dict.
+
+is_btd(path): Checks if a file is a valid .btd format.
+
+split_chunks(data, size=1024): Splits bytes into smaller chunks of size.
+
+get_size(data): Returns the size of encrypted data.
+
+to_bin(text): Converts text to binary string (e.g. '01101001 01101111').
+
+from_bin(binary): Converts binary string back to text.
+
+
+
+---
+
+🚀 Usage Example
+
+from btd import BTD
+
+btd = BTD(key=b"minhachave")  # You can use a custom key for XOR
+
+# Save string and dictionary
+btd.save("Hello, world!", "message.btd")
+btd.save({"name": "Gabriel", "age": "17"}, "data.btd")
+
+# Load files
+text = btd.load("message.btd")           # returns str
+data = btd.load("data.btd")               # returns dict
+
+print(text)  # Hello, world!
+print(data)  # {'name': 'Gabriel', 'age': '17'}
+
+# Check valid .btd file
+print(btd.is_btd("message.btd"))          # True
+
+# Work with bytes
+data_bytes = text.encode('utf-8')
+parts = btd.split_chunks(data_bytes, size=5)
+print(parts)  # [b'Hello', b', wor', b'ld!']
+
+# Encrypted size
+print(btd.get_size("Example"))
+
+# Text-binary conversion
+binary = btd.to_bin("hi")
+print(binary)  # 01101000 01101001
+
+text2 = btd.from_bin(binary)
+print(text2)  # hi
+
+
+---
+
+🔐 About XOR Encryption
+
+Data is encrypted with XOR using a key that can be customized when creating the BTD object.
+The default key is b"mysecretkey".
+
+
+---
+
+📋 Requirements
+
+Python 3.7 or higher
+
+
+
+---
+
+📝 License
+
+MIT License — use, modify and distribute freely.
