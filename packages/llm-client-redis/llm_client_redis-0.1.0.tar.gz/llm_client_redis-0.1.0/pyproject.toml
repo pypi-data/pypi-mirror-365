@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llm_client_redis"
+version = "0.1.0"
+authors = [
+    { name="Fang JiaWei", email="fjw12998@hotmail.com" },
+]
+description = "LLM redis中介的客户端程序"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "langchain_core>=0.3.72,<0.4.0",
+    "pytest==8.4.1,<9.0.0",
+    "redis==5.3.0,<6.0.0",
+    "Requests==2.32.4,<3.0.0",
+    "llm_tokenizers>=0.1.2"
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent"
+]
+license = "GPL-3.0-or-later"
+
+[tool.setuptools.package-data]
+"src.config" = ["*.ini", "*.json"]
+
+[project.scripts]
+chat-session = "chat_session_main:main"
+
+[project.urls]
+## Homepage = "https://github.com/yourusername/llm_tools"
+## Documentation = "https://github.com/yourusername/llm_tools/docs"
