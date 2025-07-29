@@ -1,0 +1,408 @@
+# HS EPS Gateway
+
+A comprehensive Python package for integrating with the EPS (Easy Payment System) Gateway in Bangladesh. This package provides a complete solution for payment processing, status verification, and transaction management.
+
+## 🚀 Features
+
+- **Complete EPS Integration**: Full support for EPS Gateway API
+- **Payment Processing**: Create, verify, and manage payments
+- **Status Verification**: Real-time payment status checking
+- **Error Handling**: Comprehensive error handling and logging
+- **Django Integration**: Ready-to-use Django app included
+- **Type Safety**: Built with Pydantic for data validation
+- **Environment Configuration**: Flexible configuration management
+- **Sandbox Support**: Test with EPS sandbox environment
+
+## 📦 Installation
+
+### From PyPI (Recommended)
+```bash
+pip install hs-eps-gateway
+```
+
+### From Source
+```bash
+git clone https://github.com/your-repo/hs-esp-gateway.git
+cd hs-esp-gateway
+pip install -e .
+```
+
+## 🔧 Quick Start
+
+### Basic Usage
+
+```python
+import os
+from hs_eps_gateway.client import EPSClient
+from hs_eps_gateway.eps_types import PaymentPayload, ProductItem, EPS_TransactionType
+
+# Set up environment variables
+os.environ["IS_SANDBOX"] = "true"
+os.environ["EPS_MERCHANT_ID"] = "your-merchant-id"
+os.environ["EPS_STORE_ID"] = "your-store-id"
+os.environ["EPS_USERNAME"] = "your-username"
+os.environ["EPS_PASSWORD"] = "your-password"
+os.environ["EPS_HASH_KEY"] = "your-hash-key"
+
+# Create EPS client
+client = EPSClient()
+
+# Create payment payload
+payload = PaymentPayload(
+    merchantId="",  # Will be filled from environment
+    storeId="",     # Will be filled from environment
+    CustomerOrderId="ORDER123",
+    merchantTransactionId="TXN123",
+    transactionTypeId=EPS_TransactionType.WEB,
+    totalAmount=100.00,
+    successUrl="https://your-site.com/success",
+    failUrl="https://your-site.com/failed",
+    cancelUrl="https://your-site.com/cancelled",
+    customerName="John Doe",
+    customerEmail="john@example.com",
+    customerAddress="123 Main St",
+    customerCity="Dhaka",
+    customerState="Dhaka",
+    customerPostcode="1230",
+    customerCountry="BD",
+    customerPhone="+8801234567890",
+    productName="Test Product",
+    productProfile="general",
+    productCategory="general",
+    ipAddress="127.0.0.1",
+    version="1",
+    description="Payment for order ORDER123"
+)
+
+# Create product items
+products = [
+    ProductItem(
+        productName="Product 1",
+        productCategory="Electronics",
+        quantity=1,
+        unitPrice=50.00
+    ),
+    ProductItem(
+        productName="Product 2", 
+        productCategory="Books",
+        quantity=2,
+        unitPrice=25.00
+    )
+]
+
+# Initialize payment
+response = client.init_payment(payload, products)
+
+if response.ErrorMessage:
+    print(f"Payment failed: {response.ErrorMessage}")
+else:
+    print(f"Payment URL: {response.RedirectURL}")
+    print(f"Transaction ID: {response.TransactionId}")
+```
+
+### Check Payment Status
+
+```python
+# Get transaction status
+status_response = client.get_transaction_status("TXN123")
+
+if status_response.is_success():
+    print(f"Payment successful! Amount: {status_response.paid_amount}")
+    print(f"Payment method: {status_response.payment_method}")
+else:
+    print(f"Payment failed: {status_response.get_message()}")
+```
+
+## 🏗️ Architecture
+
+### Core Components
+
+1. **EPSClient**: Main client for EPS Gateway API interactions
+2. **PaymentPayload**: Pydantic model for payment data
+3. **ProductItem**: Pydantic model for product information
+4. **TransactionStatus**: Pydantic model for status responses
+5. **Configuration**: Environment-based configuration management
+
+### Data Flow
+
+```
+1. Create PaymentPayload with payment details
+2. Initialize payment with EPSClient.init_payment()
+3. Redirect user to EPS payment gateway
+4. User completes payment on EPS
+5. EPS redirects to success/failed/cancelled URL
+6. Verify payment status with get_transaction_status()
+7. Update local database with final status
+```
+
+## 🔐 Configuration
+
+### Environment Variables
+
+| Variable | Description | Required | Default |
+|----------|-------------|----------|---------|
+| `IS_SANDBOX` | Use sandbox environment | Yes | `true` |
+| `EPS_MERCHANT_ID` | EPS Merchant ID | Yes | - |
+| `EPS_STORE_ID` | EPS Store ID | Yes | - |
+| `EPS_USERNAME` | EPS Username | Yes | - |
+| `EPS_PASSWORD` | EPS Password | Yes | - |
+| `EPS_HASH_KEY` | EPS Hash Key | Yes | - |
+
+### Configuration Example
+
+```python
+# .env file
+IS_SANDBOX=true
+EPS_MERCHANT_ID=your-merchant-id
+EPS_STORE_ID=your-store-id
+EPS_USERNAME=yourUsername
+EPS_PASSWORD=YourPassword
+EPS_HASH_KEY=yourEpshash
+```
+
+## 🎯 Django Integration
+
+### Installation
+
+```bash
+pip install hs-eps-gateway
+```
+
+### Quick Setup
+
+1. Add to `INSTALLED_APPS`:
+```python
+INSTALLED_APPS = [
+    # ...
+    'eps_payment',
+]
+```
+
+2. Configure settings:
+```python
+EPS_GATEWAY_CONFIG = {
+    'IS_SANDBOX': True,
+    'MERCHANT_ID': 'your-merchant-id',
+    'STORE_ID': 'your-store-id',
+    'USERNAME': 'your-username',
+    'PASSWORD': 'your-password',
+    'HASH_KEY': 'your-hash-key',
+}
+```
+
+3. Include URLs:
+```python
+urlpatterns = [
+    # ...
+    path('payment/', include('eps_payment.urls')),
+]
+```
+
+### Django Features
+
+- **Payment Models**: `EPSPayment` and `EPSProduct` models
+- **Admin Interface**: Full admin integration
+- **Payment Views**: Create, list, detail, and status views
+- **Callback Handling**: Success, failed, and cancelled callbacks
+- **Status Verification**: Real-time status checking
+- **Templates**: Ready-to-use HTML templates
+
+## 📚 API Reference
+
+### EPSClient
+
+#### `init_payment(payload: PaymentPayload, products: List[ProductItem]) -> InitPaymentResponse`
+
+Initialize a new payment with EPS Gateway.
+
+**Parameters:**
+- `payload`: PaymentPayload object with payment details
+- `products`: List of ProductItem objects
+
+**Returns:**
+- `InitPaymentResponse` with redirect URL and transaction ID
+
+#### `get_transaction_status(transaction_id: str) -> TransactionStatus`
+
+Get the current status of a transaction.
+
+**Parameters:**
+- `transaction_id`: Merchant transaction ID
+
+**Returns:**
+- `TransactionStatus` object with payment details
+
+#### `get_token() -> str`
+
+Get authentication token from EPS Gateway.
+
+**Returns:**
+- Authentication token string
+
+### PaymentPayload
+
+Pydantic model for payment data:
+
+```python
+class PaymentPayload(BaseModel):
+    merchantId: str
+    storeId: str
+    CustomerOrderId: str
+    merchantTransactionId: str
+    transactionTypeId: EPS_TransactionType
+    totalAmount: float
+    successUrl: str
+    failUrl: str
+    cancelUrl: str
+    customerName: str
+    customerEmail: str
+    customerAddress: str
+    customerCity: str
+    customerState: str
+    customerPostcode: str
+    customerCountry: str
+    customerPhone: str
+    productName: str
+    productProfile: str
+    productCategory: str
+    ipAddress: str
+    version: str
+    description: str
+```
+
+### ProductItem
+
+Pydantic model for product information:
+
+```python
+class ProductItem(BaseModel):
+    productName: str
+    productCategory: str
+    quantity: int
+    unitPrice: float
+```
+
+## 🧪 Testing
+
+### Sandbox Environment
+
+The package supports EPS sandbox environment for testing:
+
+```python
+os.environ["IS_SANDBOX"] = "true"
+```
+
+### Test Credentials
+
+Use EPS sandbox credentials for testing:
+- Merchant ID: `29e86e70-0ac6-45eb-ba04-9fcb0aaed12a`
+- Store ID: `d44e705f-9e3a-41de-98b1-1674631637da`
+- Username: `Epsdemo@gmail.com`
+- Password: `Epsdemo258@`
+- Hash Key: `FHZxyzeps56789gfhg678ygu876o=`
+
+### Running Tests
+
+```bash
+# Run all tests
+python -m pytest
+
+# Run with coverage
+python -m pytest --cov=hs_eps_gateway
+
+# Run specific test
+python -m pytest tests/test_client.py::test_init_payment
+```
+
+## 🔍 Error Handling
+
+### Common Errors
+
+1. **Authentication Errors**: Invalid credentials
+2. **Validation Errors**: Invalid payment data
+3. **Network Errors**: Connection issues
+4. **API Errors**: EPS Gateway errors
+
+### Error Response Format
+
+```python
+{
+    "status": "failed",
+    "message": "Error description",
+    "exception": "Technical details (optional)"
+}
+```
+
+### Error Handling Example
+
+```python
+try:
+    response = client.init_payment(payload, products)
+    if response.ErrorMessage:
+        print(f"Payment failed: {response.ErrorMessage}")
+    else:
+        print(f"Payment URL: {response.RedirectURL}")
+except Exception as e:
+    print(f"Error: {str(e)}")
+```
+
+## 🚀 Deployment
+
+### Production Checklist
+
+- [ ] Set `IS_SANDBOX=false`
+- [ ] Use production EPS credentials
+- [ ] Configure proper callback URLs
+- [ ] Set up error monitoring
+- [ ] Test payment flow end-to-end
+- [ ] Configure SSL certificates
+- [ ] Set up database backups
+
+### Environment Variables
+
+```bash
+# Production
+IS_SANDBOX=false
+EPS_MERCHANT_ID=your-production-merchant-id
+EPS_STORE_ID=your-production-store-id
+EPS_USERNAME=your-production-username
+EPS_PASSWORD=your-production-password
+EPS_HASH_KEY=your-production-hash-key
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests
+5. Submit a pull request
+
+### Development Setup
+
+```bash
+git clone https://github.com/your-repo/hs-esp-gateway.git
+cd hs-esp-gateway
+pip install -e ".[dev]"
+pre-commit install
+```
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🆘 Support
+
+- **Documentation**: [Full Documentation](docs/)
+- **Issues**: [GitHub Issues](https://github.com/your-repo/hs-esp-gateway/issues)
+- **Email**: support@example.com
+
+## 🔗 Links
+
+- [EPS Gateway Documentation](https://eps.com.bd/)
+- [Django Documentation](https://docs.djangoproject.com/)
+- [Pydantic Documentation](https://pydantic-docs.helpmanual.io/)
+
+---
+
+**Made with ❤️ for the Bangladesh payment ecosystem**
