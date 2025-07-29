@@ -1,0 +1,84 @@
+{
+    "config": {
+        "error": {
+            "missing_keep_last_sample": "Caithfidh cumra\u00edocht an braiteora 'Aois uasta' a shol\u00e1thar m\u00e1 t\u00e1 'Coinnigh an sampla deireanach' f\u00edor",
+            "missing_max_age_or_sampling_size": "N\u00ed m\u00f3r don chumra\u00edocht braiteora 'Aois uasta' agus/n\u00f3 'M\u00e9id sampl\u00e1la' a shol\u00e1thar."
+        },
+        "step": {
+            "options": {
+                "data": {
+                    "keep_last_sample": "Coinnigh an sampla deireanach",
+                    "max_age": "Aois uasta",
+                    "percentile": "Peircint\u00edl",
+                    "precision": "Beachtas",
+                    "sampling_size": "M\u00e9id sampl\u00e1la"
+                },
+                "data_description": {
+                    "keep_last_sample": "Sainmh\u00edn\u00edonn s\u00e9 seo an gcaithfear an luach sampl\u00e1ilte is d\u00e9ana\u00ed a chaomhn\u00fa beag beann ar an socr\u00fa 'Aois uasta'."
+                }
+            },
+            "user": {
+                "data_description": {
+                    "name": "Ainm don eintiteas cruthaithe."
+                },
+                "description": "Cruthaigh braiteoir staitistic\u00ed"
+            }
+        }
+    },
+    "options": {
+        "error": {
+            "missing_keep_last_sample": "Caithfidh cumra\u00edocht an braiteora 'Aois uasta' a shol\u00e1thar m\u00e1 t\u00e1 'Coinnigh an sampla deireanach' f\u00edor",
+            "missing_max_age_or_sampling_size": "N\u00ed m\u00f3r don chumra\u00edocht braiteora 'Aois uasta' agus/n\u00f3 'M\u00e9id sampl\u00e1la' a shol\u00e1thar."
+        },
+        "step": {
+            "init": {
+                "data": {
+                    "keep_last_sample": "Coinnigh an sampla deireanach",
+                    "max_age": "Aois uasta",
+                    "percentile": "Peircint\u00edl",
+                    "precision": "Beachtas",
+                    "sampling_size": "M\u00e9id sampl\u00e1la"
+                },
+                "data_description": {
+                    "keep_last_sample": "Sainmh\u00edn\u00edonn s\u00e9 seo an gcaithfear an luach sampl\u00e1ilte is d\u00e9ana\u00ed a chaomhn\u00fa beag beann ar an socr\u00fa 'Aois uasta'."
+                }
+            }
+        }
+    },
+    "selector": {
+        "state_characteristic": {
+            "options": {
+                "average_linear": "Me\u00e1nl\u00edneach",
+                "average_step": "Me\u00e1nch\u00e9im",
+                "average_timeless": "Me\u00e1n-am gan teorainn",
+                "change": "Athraigh",
+                "change_sample": "Athraigh an sampla",
+                "change_second": "Athraigh an dara",
+                "count": "L\u00edon",
+                "count_off": "Comhaireamh as",
+                "count_on": "B\u00ed ag brath ar",
+                "datetime_newest": "D\u00e1ta-am is d\u00e9ana\u00ed",
+                "datetime_oldest": "D\u00e1ta-am is sine",
+                "datetime_value_max": "Uasmh\u00e9id d\u00e1ta-ama",
+                "datetime_value_min": "D\u00e1ta-am luach \u00edosta",
+                "distance_95_percent_of_values": "Fad 95% de na luachanna",
+                "distance_99_percent_of_values": "Fad 99% de na luachanna",
+                "distance_absolute": "Fad absal\u00f3ideach",
+                "mean": "Me\u00e1n",
+                "mean_circular": "Me\u00e1nchiorclach",
+                "median": "Me\u00e1n",
+                "noisiness": "Torann",
+                "percentile": "Peircint\u00edl",
+                "standard_deviation": "Diall caighde\u00e1nach",
+                "sum": "Suim",
+                "sum_differences": "Suim na ndifr\u00edochta\u00ed",
+                "sum_differences_nonnegative": "Suim na ndifr\u00edochta\u00ed neamh-dhi\u00faltach",
+                "total": "Ioml\u00e1n",
+                "value_max": "Uasluach",
+                "value_min": "\u00cdosluach",
+                "variance": "Difr\u00edocht"
+            }
+        }
+    },
+    "title": "Staitistic\u00ed"
+}
