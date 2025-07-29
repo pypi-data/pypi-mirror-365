@@ -1,0 +1,34 @@
+Metadata-Version: 2.4
+Name: lang_voter
+Version: 0.1.0
+Summary: Voting-based sentence-level language classifier for Indian languages
+Home-page: https://github.com/yashingle-ai/lang_voter
+Author: Yash Ingle
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: scikit-learn
+Requires-Dist: requests
+Requires-Dist: numpy
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# LANG_VOTER
+
+Voting-based Indian language identification using SVM, RF, SGD, etc.  
+Each model uses its own pre-trained TF-IDF vectorizer.
+
+## Installation
+
+```bash
+pip install lang-voter
