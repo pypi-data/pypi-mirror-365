@@ -1,0 +1,25 @@
+[project]
+name = "datacsv"
+version = "0.1.0"
+description = "A lightweight CSV database for Python."
+readme = "README.md"
+requires-python = ">=3.7"
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+authors = [
+    {name = "Mahesh", email = "maheshvish777@gmail.com"}
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/mvish77/datacsv"
+Issues = "https://github.com/mvish77/datacsv/issue"
+
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+
+
+
