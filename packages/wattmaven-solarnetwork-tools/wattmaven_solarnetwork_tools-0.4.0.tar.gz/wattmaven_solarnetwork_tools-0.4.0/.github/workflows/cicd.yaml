@@ -1,0 +1,46 @@
+name: cicd
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+concurrency:
+  group: cicd-group-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  ci-smoke-test:
+    runs-on: ubuntu-latest
+    env:
+      SOLARNETWORK_HOST: ${{ secrets.SOLARNETWORK_HOST }}
+      SOLARNETWORK_SOLARQUERY_PROXY: ${{ secrets.SOLARNETWORK_SOLARQUERY_PROXY }}
+      SOLARNETWORK_TOKEN: ${{ secrets.SOLARNETWORK_TOKEN }}
+      SOLARNETWORK_SECRET: ${{ secrets.SOLARNETWORK_SECRET }}
+      SOLARNETWORK_TEST_NODE_ID: ${{ secrets.SOLARNETWORK_TEST_NODE_ID }}
+
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: astral-sh/setup-uv@7edac99f961f18b581bbd960d59d049f04c0002f # v6
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
+        with:
+          python-version-file: "pyproject.toml"
+
+      - name: install dependencies
+        run: uv sync --all-extras --dev
+
+      - name: smoke test
+        run: make ci-smoke-test
+
+      - name: upload coverage reports to Codecov
+        uses: codecov/codecov-action@5c47607acb93fed5485fdbf7232e8a31425f672a # v5.0.2
+        with:
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
+          slug: wattmaven/wattmaven-solarnetwork-tools

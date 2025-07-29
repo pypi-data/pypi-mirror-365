@@ -1,0 +1,15 @@
+name: pr-title-lint
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+jobs:
+  pr-title-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ytanikin/pr-conventional-commits@8267db1bacc237419f9ed0228bb9d94e94271a1d # 1.4.1
+        with:
+          # See https://github.com/conventional-changelog/commitlint/tree/master/%40commitlint/config-conventional
+          task_types: '["build","chore","ci","docs","feat","fix","perf","refactor","revert", "style", "test"]'
+          add_label: "false"
