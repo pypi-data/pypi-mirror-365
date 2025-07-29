@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mpmathbyyhu"
+version = "0.1.0"
+authors = [
+    {name = "yhu", email = "246441142@qq.com"},
+]
+description = "A comprehensive mathematics utility library"
+readme = "README.md"
+requires-python = ">=3.6.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/yhu2025"
+Repository = "https://github.com/yhu2025"
