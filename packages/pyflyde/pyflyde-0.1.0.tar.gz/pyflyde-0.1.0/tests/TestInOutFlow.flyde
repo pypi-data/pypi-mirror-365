@@ -1,0 +1,128 @@
+imports: {}
+node:
+  instances:
+    - pos:
+        x: 244.08
+        y: -87.5
+      id: Echo-h3049mb
+      inputConfig: {}
+      nodeId: Echo
+      config:
+        inp:
+          type: dynamic
+          value: "{{inp}}"
+      type: code
+      source:
+        type: custom
+        data: custom://components.py/Echo
+    - pos:
+        x: -17.077154541015602
+        y: -87.20937501999856
+      id: ppsa1z6ja2w6yyo0sig7hvww
+      inputConfig: {}
+      nodeId: Conditional
+      config:
+        leftOperand:
+          type: dynamic
+          value: "{{value}}"
+        rightOperand:
+          value: ""
+          type: string
+        condition:
+          type: EXISTS
+      type: code
+      source:
+        type: package
+        data: "@flyde/nodes"
+    - pos:
+        x: 241.42891601562496
+        y: 13.463867167501462
+      id: Format-ve0397r
+      inputConfig: {}
+      nodeId: Format
+      config:
+        inp:
+          type: dynamic
+          value: "{{inp}}"
+        format:
+          type: dynamic
+          value: "{{format}}"
+      type: code
+      source:
+        type: custom
+        data: custom://components.py/Format
+    - pos:
+        x: -32.78351928710936
+        y: 33.626827372579555
+      id: apqbu37rhnui31o8qaud8ek8
+      inputConfig: {}
+      nodeId: InlineValue
+      config:
+        type:
+          type: string
+          value: string
+        value:
+          type: string
+          value: "ERR: msg is empty"
+        label:
+          type: string
+          value: '"ERR: msg is empty"'
+      type: code
+      source:
+        type: package
+        data: "@flyde/nodes"
+  connections:
+    - from:
+        insId: Echo-h3049mb
+        pinId: out
+      to:
+        insId: __this
+        pinId: outMsg
+    - from:
+        insId: __this
+        pinId: inMsg
+      to:
+        insId: ppsa1z6ja2w6yyo0sig7hvww
+        pinId: leftOperand
+    - from:
+        insId: ppsa1z6ja2w6yyo0sig7hvww
+        pinId: "true"
+      to:
+        insId: Echo-h3049mb
+        pinId: inp
+    - from:
+        insId: ppsa1z6ja2w6yyo0sig7hvww
+        pinId: "false"
+      to:
+        insId: Format-ve0397r
+        pinId: inp
+    - from:
+        insId: Format-ve0397r
+        pinId: out
+      to:
+        insId: __this
+        pinId: outMsg
+    - from:
+        insId: apqbu37rhnui31o8qaud8ek8
+        pinId: value
+      to:
+        insId: Format-ve0397r
+        pinId: format
+  id: TestInOutFlow
+  inputs:
+    inMsg:
+      mode: required
+  outputs:
+    outMsg:
+      delayed: false
+  inputsPosition:
+    inMsg:
+      x: -184.74850463867188
+      y: -75.84883300781252
+  outputsPosition:
+    result:
+      x: -23.264428942324532
+      y: 237.25953921502617
+    outMsg:
+      x: 631.1080761718749
+      y: -93.36835205078125

@@ -1,0 +1,126 @@
+imports: {}
+node:
+  instances:
+    - pos:
+        x: -295.88691528320317
+        y: 102.49996948242188
+      id: Format-4s04bag
+      inputConfig: {}
+      nodeId: Format
+      config:
+        inp:
+          type: dynamic
+          value: "{{inp}}"
+        format:
+          type: dynamic
+          value: "{{format}}"
+      type: code
+      source:
+        type: custom
+        data: custom://components.py/Format
+    - pos:
+        x: -276.1663818359375
+        y: -58.34027099609375
+      id: Capitalize-ch04buf
+      inputConfig: {}
+      nodeId: Capitalize
+      config:
+        inp:
+          type: dynamic
+          value: "{{inp}}"
+      type: code
+      source:
+        type: custom
+        data: custom://components.py/Capitalize
+    - pos:
+        x: -5.659755859374968
+        y: 54.9669189453125
+      id: Echo-eb14b06
+      inputConfig: {}
+      nodeId: Echo
+      config:
+        inp:
+          type: dynamic
+          value: "{{inp}}"
+      type: code
+      source:
+        type: custom
+        data: custom://components.py/Echo
+    - pos:
+        x: -594.1567211914063
+        y: 120.8353289794922
+      id: xzi4aah4ewf1iw7q4a3jz9oj
+      inputConfig: {}
+      nodeId: InlineValue
+      config:
+        type:
+          type: string
+          value: string
+        value:
+          type: string
+          value: Hello, {inp}!
+      type: code
+      source:
+        type: package
+        data: "@flyde/nodes"
+  connections:
+    - from:
+        insId: Format-4s04bag
+        pinId: out
+      to:
+        insId: Echo-eb14b06
+        pinId: inp
+    - from:
+        insId: Capitalize-ch04buf
+        pinId: out
+      to:
+        insId: Echo-eb14b06
+        pinId: inp
+    - from:
+        insId: __this
+        pinId: str
+      to:
+        insId: Format-4s04bag
+        pinId: inp
+    - from:
+        insId: __this
+        pinId: str
+      to:
+        insId: Capitalize-ch04buf
+        pinId: inp
+    - from:
+        insId: __this
+        pinId: str
+      to:
+        insId: Echo-eb14b06
+        pinId: inp
+    - from:
+        insId: xzi4aah4ewf1iw7q4a3jz9oj
+        pinId: value
+      to:
+        insId: Format-4s04bag
+        pinId: format
+    - from:
+        insId: Echo-eb14b06
+        pinId: out
+      to:
+        insId: __this
+        pinId: out
+  id: TestFanIn
+  inputs:
+    str:
+      mode: required
+  outputs:
+    out:
+      delayed: false
+  inputsPosition:
+    str:
+      x: -606.9987487792969
+      y: -29.463594360351564
+  outputsPosition:
+    result:
+      x: -23.264428942324532
+      y: 237.25953921502617
+    out:
+      x: 223.20466796875
+      y: 54.66667175292969

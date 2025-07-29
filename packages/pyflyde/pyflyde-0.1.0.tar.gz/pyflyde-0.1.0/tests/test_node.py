@@ -1,0 +1,422 @@
+import threading
+import unittest
+from queue import Queue
+from threading import Thread
+
+from flyde.io import EOF, Input, InputConfig, InputMode, InputType, Output
+from flyde.node import Component, InstanceArgs
+from tests.components import RepeatWordNTimes
+
+
+class TestComponentWithStickyInput(unittest.TestCase):
+    def setUp(self):
+        self.node = RepeatWordNTimes(id="repeat", display_name="Repeat")
+
+    def test_init(self):
+        node = self.node
+        self.assertEqual(node._id, "repeat")
+        self.assertEqual(node._display_name, "Repeat")
+        self.assertEqual(node._node_type, "RepeatWordNTimes")
+        self.assertEqual(len(node.inputs), 2)
+        self.assertEqual(len(node.outputs), 1)
+        self.assertEqual(node.inputs["word"].description, "The input")
+        self.assertEqual(node.inputs["word"].type, str)
+        self.assertEqual(node.inputs["word"]._input_mode, InputMode.QUEUE)
+        self.assertEqual(node.inputs["times"]._input_mode, InputMode.STICKY)
+
+    def test_run(self):
+        test_cases = [
+            {
+                "name": "queue input arrives first",
+                "sticky_first": False,
+                "words": ["meow!", "woof!", "quack!"],
+                "times": [3, 2],
+                "expected": ["meow!meow!meow!", "woof!woof!", "quack!quack!"],
+                "stops": False,
+                "remaining": 0,
+            },
+            {
+                "name": "sticky input arrives first",
+                "sticky_first": True,
+                "words": ["meow!", "woof!", "quack!"],
+                "times": [3],
+                "expected": [
+                    "meow!meow!meow!",
+                    "woof!woof!woof!",
+                    "quack!quack!quack!",
+                ],
+                "stops": False,
+                "remaining": 0,
+            },
+            {
+                "name": "queue input gets closed",
+                "sticky_first": True,
+                "words": ["meow!", EOF, "quack!"],
+                "times": [3],
+                "expected": ["meow!meow!meow!", EOF],
+                "stops": True,
+                "remaining": 1,
+            },
+        ]
+
+        node = self.node
+        in_q = node.inputs["word"].queue
+        times_q = node.inputs["times"].queue
+
+        out_q = Queue()
+        node.outputs["out"].connect(out_q)
+
+        node.run()
+
+        for test_case in test_cases:
+            with self.subTest(test_case["name"]):
+                for i in range(len(test_case["words"])):
+                    if test_case["sticky_first"]:
+                        if i < len(test_case["times"]):
+                            times_q.put(test_case["times"][i])
+                        in_q.put(test_case["words"][i])
+                    else:
+                        in_q.put(test_case["words"][i])
+                        if i < len(test_case["times"]):
+                            times_q.put(test_case["times"][i])
+
+                    if i < len(test_case["expected"]):
+                        self.assertEqual(out_q.get(), test_case["expected"][i])
+
+                if test_case["stops"]:
+                    node.stopped.wait()
+
+                self.assertEqual(in_q.qsize(), test_case["remaining"])
+
+    def test_static_input(self):
+        node = RepeatWordNTimes(
+            id="repeat",
+            display_name="Repeat",
+            inputs={
+                "word": Input(description="The input", type=str),
+                "times": Input(
+                    description="The number of times to repeat the input",
+                    type=int,
+                    mode=InputMode.STATIC,
+                    value=3,
+                ),
+            },
+            outputs={"out": Output(description="The output", type=str)},
+        )
+
+        in_q = node.inputs["word"].queue
+        out_q = Queue()
+        node.outputs["out"].connect(out_q)
+        node.run()
+
+        in_q.put("meow!")
+        in_q.put("woof!")
+        in_q.put(EOF)
+        self.assertEqual(out_q.get(), "meow!meow!meow!")
+        self.assertEqual(out_q.get(), "woof!woof!woof!")
+        self.assertEqual(out_q.get(), EOF)
+        self.assertEqual(in_q.qsize(), 0)
+
+    def test_from_yaml(self):
+        yaml = {
+            "id": "repeat",
+            "nodeId": "RepeatWordNTimes",
+            "config": {},
+            "displayName": "Repeat",
+        }
+
+        def factory(class_name: str, args: InstanceArgs):
+            return RepeatWordNTimes(**args.to_dict())
+
+        node = Component.from_yaml(factory, yaml)
+        self.assertEqual(node._id, "repeat")
+        self.assertEqual(node._display_name, "Repeat")
+        self.assertEqual(node._node_type, "RepeatWordNTimes")
+        self.assertEqual(len(node.inputs), 2)
+
+    def test_from_yaml_with_macrodata(self):
+        yaml = {
+            "id": "repeat",
+            "nodeId": "RepeatWordNTimes",
+            "displayName": "Repeat",
+            "config": {"value": 100, "key": "foo"},
+        }
+
+        def factory(class_name: str, args: InstanceArgs):
+            self.assertIsNotNone(args.config)
+            if args.config is None:
+                raise ValueError("macro_data is None")
+            self.assertEqual(args.config["value"], yaml["config"]["value"])
+            self.assertEqual(args.config["key"], yaml["config"]["key"])
+            return RepeatWordNTimes(**args.to_dict())
+
+        node = Component.from_yaml(factory, yaml)
+        self.assertEqual(node._id, "repeat")
+        self.assertEqual(node._display_name, "Repeat")
+        self.assertEqual(node._node_type, "RepeatWordNTimes")
+        self.assertEqual(len(node.inputs), 2)
+
+    def test_to_dict(self):
+        node = self.node
+        expected = {
+            "id": "repeat",
+            "nodeId": "RepeatWordNTimes",
+            "config": {},
+            "displayName": "Repeat",
+        }
+        self.assertEqual(node.to_dict(), expected)
+
+    def test_parse_config_with_type_only(self):
+        config = {
+            "times": {"type": "number"},
+            "word": {"type": "string", "value": "default"},
+        }
+
+        node = RepeatWordNTimes(id="repeat", display_name="Repeat", config=config)
+
+        self.assertIn("times", node._config)
+        self.assertIsInstance(node._config["times"], InputConfig)
+        self.assertEqual(node._config["times"].type, InputType.NUMBER)
+        self.assertIsNone(node._config["times"].value)
+
+        self.assertIn("word", node._config)
+        self.assertIsInstance(node._config["word"], InputConfig)
+        self.assertEqual(node._config["word"].type, InputType.STRING)
+        self.assertEqual(node._config["word"].value, "default")
+
+    def test_parse_config_with_editor_default(self):
+        config = {"foo": {"type": "string", "value": "{{foo}}"}}
+        node = RepeatWordNTimes(id="repeat", display_name="Repeat", config=config)
+        self.assertIn("foo", node._config)
+        self.assertIsInstance(node._config["foo"], InputConfig)
+        self.assertEqual(node._config["foo"].type, InputType.STRING)
+        self.assertIsNone(node._config["foo"].value)
+
+
+class AllStickyInputsComponent(Component):
+    """A component with only sticky inputs to test single execution."""
+
+    inputs = {
+        "a": Input(description="First sticky input", type=int, mode=InputMode.STICKY, value=5),
+        "b": Input(description="Second sticky input", type=int, mode=InputMode.STICKY, value=10),
+    }
+
+    outputs = {"result": Output(description="Result of operation", type=int)}
+
+    def process(self, a: int, b: int) -> dict[str, int]:
+        return {"result": a + b}
+
+
+class TestAllStickyInputsComponent(unittest.TestCase):
+    def test_all_sticky_inputs_run_once(self):
+        """Test that a component with all sticky inputs runs only once."""
+        node = AllStickyInputsComponent(id="sticky_test", display_name="Sticky Test")
+
+        # Connect an output queue to capture results
+        out_q = Queue()
+        node.outputs["result"].connect(out_q)
+
+        # Run the component
+        node.run()
+
+        # Check that it produced a single result and then EOF
+        self.assertEqual(out_q.get(), 15)  # 5 + 10
+        self.assertEqual(out_q.get(), EOF)
+
+        # Verify that the component has stopped
+        node.stopped.wait(timeout=1)
+        self.assertTrue(node.stopped.is_set(), "Component should have stopped after one execution")
+
+    def test_all_sticky_inputs_with_config(self):
+        """Test that a component with all sticky inputs initializes from config and runs once."""
+        from flyde.io import InputConfig, InputType
+
+        # Create node with config values
+        node = AllStickyInputsComponent(
+            id="sticky_test",
+            display_name="Sticky Test",
+            config={
+                "a": InputConfig(type=InputType.NUMBER, value=20),
+                "b": InputConfig(type=InputType.NUMBER, value=30),
+            },
+        )
+
+        # Connect an output queue to capture results
+        out_q = Queue()
+        node.outputs["result"].connect(out_q)
+
+        # Run the component
+        node.run()
+
+        # Check that it produced a single result with the configured values and then EOF
+        self.assertEqual(out_q.get(), 50)  # 20 + 30
+        self.assertEqual(out_q.get(), EOF)
+
+        # Verify that the component has stopped
+        node.stopped.wait(timeout=1)
+        self.assertTrue(node.stopped.is_set(), "Component should have stopped after one execution")
+
+
+class SourceComponent(Component):
+    """A component that only has outputs."""
+
+    outputs = {"out": Output(description="The output", type=str)}
+
+    def process(self) -> dict[str, str]:
+        self.stop()
+        return {"out": "Hello, world!"}
+
+
+class TestSourceComponent(unittest.TestCase):
+    def setUp(self):
+        self.node = SourceComponent(id="source", display_name="Source")
+
+    def test_init(self):
+        node = self.node
+        self.assertEqual(node._id, "source")
+        self.assertEqual(node._display_name, "Source")
+        self.assertEqual(node._node_type, "SourceComponent")
+
+    def test_run(self):
+        node = self.node
+        q = Queue()
+        node.outputs["out"].connect(q)
+        node.run()
+        self.assertEqual(q.get(), "Hello, world!")
+        self.assertEqual(q.get(), EOF)
+        node.stopped.wait()
+
+
+class SinkComponent(Component):
+    """A component that only has inputs."""
+
+    inputs = {
+        "word": Input(description="The input", type=str),
+        "output": Input(description="Object to store result in", type=Queue),
+    }
+
+    def process(self, word: str, output: Queue):
+        output.put(word)
+
+
+class TestSinkComponent(unittest.TestCase):
+    def setUp(self):
+        self.node = SinkComponent(id="sink", display_name="Sink")
+
+    def test_init(self):
+        node = self.node
+        self.assertEqual(node._id, "sink")
+        self.assertEqual(node._display_name, "Sink")
+        self.assertEqual(node._node_type, "SinkComponent")
+
+    def test_run(self):
+        node = self.node
+        q = node.inputs["word"].queue
+        o = node.inputs["output"].queue
+        res = Queue()
+
+        node.run()
+        q.put("Hello, world!")
+        q.put(EOF)  # Stop the node
+        o.put(res)
+        o.put(EOF)
+        # Wait for the node to stop
+        node.stopped.wait()
+        msg = res.get()
+        self.assertEqual(msg, "Hello, world!")
+
+
+class CustomRunComponent(Component):
+    """A component that has a custom run and shutdown handlers."""
+
+    inputs = {
+        "s": Input(description="Individual strings", type=str),
+    }
+
+    outputs = {"l": Output(description="List of strings", type=list)}
+
+    def run(self):
+        self.strings = []
+
+        def run_loop(self):
+            while not self._stop.is_set():
+                try:
+                    string = self.receive("s")
+                except Exception as e:
+                    if e == EOF:
+                        self.stop()
+                    break
+                self.strings.append(string)
+            self.send("l", self.strings)
+
+        thread = Thread(target=run_loop, args=(self,))
+        thread.start()
+        thread.join()
+        self.finish()
+
+
+class TestCustomRunComponent(unittest.TestCase):
+    def test_run(self):
+        test_cases = [
+            {
+                "name": "normal run",
+                "inputs": ["a", "b", "c"],
+                "expected": ["a", "b", "c"],
+            },
+        ]
+
+        for test_case in test_cases:
+            with self.subTest(test_case["name"]):
+                node = CustomRunComponent(id="custom_run", display_name="Custom Run")
+                in_q = node.inputs["s"].queue
+                out_q = Queue()
+                node.outputs["l"].connect(out_q)
+
+                for i in range(len(test_case["inputs"])):
+                    in_q.put(test_case["inputs"][i])
+                in_q.put(EOF)
+
+                node.run()
+
+                self.assertEqual(out_q.get(), test_case["expected"])
+                self.assertEqual(out_q.get(), EOF)
+
+                node.stopped.wait()
+
+
+class NoProcessComponent(Component):
+    """A component to test no inputs, outputs, and no process method."""
+
+
+class TestNoProcessComponent(unittest.TestCase):
+    def test_no_process(self):
+        node = NoProcessComponent(id="invalid", display_name="Invalid")
+        with self.assertRaises(NotImplementedError):
+            node.run()
+
+
+class InvalidSendProcess(Component):
+    """A component that tries to send a message without a corresponding output."""
+
+    inputs = {
+        "s": Input(description="Individual strings", type=str),
+    }
+
+    def process(self, s: str) -> dict[str, str]:
+        return {"out": s}
+
+
+class TestInvalidSendProcess(unittest.TestCase):
+    def test_invalid_send(self):
+        node = InvalidSendProcess(id="invalid", display_name="Invalid")
+        in_q = node.inputs["s"].queue
+
+        def handle_exception(exc):
+            self.assertIsInstance(exc.exc_value, ValueError)
+
+        threading.excepthook = handle_exception
+        node.run()
+
+        in_q.put("a")
+        in_q.put(EOF)
+        node.stopped.wait()

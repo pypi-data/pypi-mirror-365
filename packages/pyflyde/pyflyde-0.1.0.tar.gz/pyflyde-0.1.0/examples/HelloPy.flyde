@@ -1,0 +1,38 @@
+imports: {}
+node:
+  instances:
+    - pos:
+        x: -156.29365234375
+        y: -256.58668701171877
+      id: Print-g7039qo
+      inputConfig:
+        __trigger:
+          mode: queue
+        msg:
+          mode: sticky
+      visibleInputs: []
+      nodeId: Print
+      config:
+        msg:
+          type: string
+          value: Hello, Flyde!
+      type: code
+      source:
+        type: custom
+        data: custom://mylib/components.py/Print
+  connections: []
+  id: Example
+  inputs: {}
+  outputs: {}
+  inputsPosition:
+    In:
+      x: -124.6319580078125
+      y: -224.17413330078125
+  outputsPosition:
+    result:
+      x: -23.264428942324532
+      y: 237.25953921502617
+    Out:
+      x: -121.0498046875
+      y: 52.40669067382812
+  completionOutputs: []

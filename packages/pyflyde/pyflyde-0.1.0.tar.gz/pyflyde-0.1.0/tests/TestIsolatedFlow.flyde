@@ -1,0 +1,46 @@
+imports: {}
+node:
+  instances:
+    - pos:
+        x: -336.34318359375004
+        y: 59.81263549804686
+      id: qxavnllf1foh9ivxvtz2hkad
+      inputConfig: {}
+      nodeId: InlineValue
+      config:
+        value:
+          type: string
+          value: Hello
+      type: code
+      source:
+        type: package
+        data: "@flyde/nodes"
+    - pos:
+        x: -83.18318359374999
+        y: 60.36263549804687
+      id: Echo-x8049tw
+      inputConfig: {}
+      nodeId: Echo
+      config:
+        inp:
+          type: dynamic
+          value: "{{inp}}"
+      type: code
+      source:
+        type: custom
+        data: custom://components.py/Echo
+  connections:
+    - from:
+        insId: qxavnllf1foh9ivxvtz2hkad
+        pinId: value
+      to:
+        insId: Echo-x8049tw
+        pinId: inp
+  id: TestIsolatedFlow
+  inputs: {}
+  outputs: {}
+  inputsPosition: {}
+  outputsPosition:
+    result:
+      x: -23.264428942324532
+      y: 237.25953921502617
