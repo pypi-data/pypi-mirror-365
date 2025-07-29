@@ -1,0 +1,22 @@
+[project]
+name = "desu"
+version = "0.1.0"
+description = "Data Essential Utils: Essetial tools for data science and data analysis projects."
+authors = [
+    {name = "Misael García", email = "misagtor@gmail.com"},
+]
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+dependencies = [
+    "pandas >=1.0.0",
+    "seaborn",
+    "matplotlib"
+]
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+exclude = ["tests*"]
