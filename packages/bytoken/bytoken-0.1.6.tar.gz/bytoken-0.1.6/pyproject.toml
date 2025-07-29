@@ -1,0 +1,23 @@
+# pyproject.toml
+
+[project]
+name = "bytoken"
+version = "0.1.6"
+description = "A fast C++ BPE tokenizer with Python bindings"
+authors = [{ name = "Vaibhav Sharma"}]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.8"
+
+[build-system]
+requires = ["scikit-build-core", "pybind11"]
+build-backend = "scikit_build_core.build"
+
+# Configure scikit-build-core
+[tool.scikit-build]
+cmake.source-dir = "."
+wheel.packages = ["bytoken"]
+
+# Configure cibuildwheel
+[tool.cibuildwheel]
+skip = ["*musllinux*", "pp*", "*-win32"]
