@@ -1,0 +1,1 @@
+import{u as r,Q as s,d as u}from"./useBaseQuery-3PekvnL0.js";import{j as a,a as n}from"./index-B17U-SAQ.js";function d(e,o){return r({...e,enabled:!0,suspense:!0,throwOnError:u,placeholderData:void 0},s)}function p(){return a.jsx(n,{children:"Loading..."})}export{p as L,d as u};
