@@ -1,0 +1,88 @@
+Metadata-Version: 2.4
+Name: bitstillery_pyi18next
+Version: 0.0.6
+Summary: A Python implementation of i18next.
+Author: Gongziting Tech Ltd., Bitstillery
+License: MIT
+License-File: LICENSE
+Keywords: i18n,i18next,internationalization,localization,translation
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Text Processing :: Linguistic
+Requires-Python: >=3.7
+Requires-Dist: babel>=2.14.0
+Provides-Extra: dev
+Requires-Dist: black>=23.0.0; extra == 'dev'
+Requires-Dist: build>=1.0.0; extra == 'dev'
+Requires-Dist: mypy>=1.0.0; extra == 'dev'
+Requires-Dist: pytest-cov>=4.0.0; extra == 'dev'
+Requires-Dist: pytest>=7.0.0; extra == 'dev'
+Requires-Dist: ruff>=0.1.0; extra == 'dev'
+Requires-Dist: twine>=4.0.0; extra == 'dev'
+Description-Content-Type: text/markdown
+
+# bitstillery_pyi18next
+
+This is a fork of pyi18next, that fixes pluralisation count.
+
+[![Documentation Status](https://readthedocs.org/projects/pyi18next/badge/?version=latest)](https://pyi18next.readthedocs.io/en/latest/?badge=latest)
+
+A Python implementation of [i18next](https://github.com/i18next/i18next). Documentation is available at [pyi18next.readthedocs.io](https://pyi18next.readthedocs.io).
+
+## Quick Start
+
+### Install
+
+```
+python -m pip install -U bitstillery_pyi18next
+```
+
+### Init
+
+We can define a `I18next` object with translations loaded as follow:
+
+```python
+import bitstillery_pyi18next as pyi18next
+
+i18n = pyi18next.i18next.I18next(
+     resources={
+        'en': {
+            'translation': {
+                'key': 'value',
+                'interpolation': 'Hello, {{name}}!',
+                'nested': '$t(key)',
+            }
+        }
+    },
+    default_lng='en',
+    default_ns='translation'
+)
+```
+
+### Translate
+
+We can use the `i18n` object we defined to translate:
+
+```python
+print(f'{i18n.t("key")=}')
+print(f'{i18n.t("interpolation", name="world")=}')
+print(f'{i18n.t("nested")=}')
+``` 
+
+The results are:
+
+```
+i18n.t("key")='value'
+i18n.t("interpolation", name="world")='Hello, world!'
+i18n.t("nested")='value'
+``` 

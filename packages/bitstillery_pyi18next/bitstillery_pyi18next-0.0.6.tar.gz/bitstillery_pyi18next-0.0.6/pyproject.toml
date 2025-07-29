@@ -1,0 +1,50 @@
+[project]
+name = "bitstillery_pyi18next"
+version = "0.0.6"
+description = "A Python implementation of i18next."
+readme = "README.md"
+authors = [
+    {name = "Gongziting Tech Ltd."},
+    {name = "Bitstillery"}
+]
+license = {text = "MIT"}
+homepage = "https://github.com/bitstillery/pyi18next"
+repository = "https://github.com/bitstillery/pyi18next"
+keywords = ["i18n", "internationalization", "localization", "translation", "i18next"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Text Processing :: Linguistic",
+]
+requires-python = ">=3.7"
+dependencies = [
+    "babel>=2.14.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+    "twine>=4.0.0",
+    "build>=1.0.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["bitstillery_pyi18next"]
