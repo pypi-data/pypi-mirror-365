@@ -1,0 +1,42 @@
+Metadata-Version: 2.4
+Name: smartfaker
+Version: 2.16.1
+Summary: A powerful Python library for generating fake addresses, supporting bots, MTProto API frameworks, and scripts
+Project-URL: Homepage, https://github.com/abirxdhack/Fake-Address-Gen
+Project-URL: Documentation, https://abirxdhack.github.io/SmartFakerDocs
+Author-email: abirxdhack <abrixdhackz.info.me@gmail.com>
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries
+Requires-Python: <3.13,>=3.8
+Requires-Dist: pycountry
+Description-Content-Type: text/markdown
+
+## Installation
+pip install git+https://github.com/abirxdhack/Fake-Address-Gen.git
+
+## Usage
+```python
+from smartfaker import Faker
+
+fake = Faker()
+
+# Get a single address for Bangladesh
+address = fake.address("BD")
+print(address)
+
+# Get multiple addresses with specific fields
+addresses = fake.address("BD", count=2, fields=["street_address", "city"])
+print(addresses)
+
+# Get available countries
+countries = fake.countries()
+print(countries)
+
+# Synchronous version (if preferred)
+address_sync = fake.address_sync("US")
+print(address_sync)
