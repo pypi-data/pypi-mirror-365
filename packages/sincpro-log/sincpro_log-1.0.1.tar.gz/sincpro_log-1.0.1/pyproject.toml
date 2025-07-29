@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "sincpro-log"
+version = "1.0.1"
+description = "A logging module for sincpro applications"
+authors = ["Andres Gutierrez <andru1236@gmail.com>"]
+readme = "README.md"
+license = "LICENSE.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+structlog = "^25.4.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.1"
+black = "^25.1.0"
+jupyterlab = "^4.4.0"
+pyright = "^1.1.403"
+autoflake = "^2.3.1"
+isort = "^6.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+line-length = 100
+target-version = ["py312"]
