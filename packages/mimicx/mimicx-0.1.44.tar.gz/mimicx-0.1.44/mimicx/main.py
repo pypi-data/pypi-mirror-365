@@ -1,0 +1,639 @@
+import os
+import platform
+import re
+import base64
+from pathlib import Path
+from typing import Union, Any
+import numpy as np
+import importlib
+from pathlib import Path
+import urllib.request
+import urllib.error
+import asyncio
+import sys
+
+# Detect if running in Pyodide environment
+IS_PYODIDE = "pyodide" in sys.modules or hasattr(sys, "_getframe") and "pyodide" in str(sys._getframe())
+
+# Import pyodide-specific modules only if in Pyodide environment
+if IS_PYODIDE:
+    try:
+        import js
+        import pyodide
+        from pyodide.http import pyfetch
+        print("Running in Pyodide environment - WASM support enabled")
+    except ImportError:
+        print("Pyodide detected but imports failed")
+        IS_PYODIDE = False
+
+class Model:
+
+    def __init__(self, domainAlgorithm):
+        self.modelFolderUrl = 'https://speedpresta.s3.us-east-1.amazonaws.com/mimicx'
+        self.modelNameBase = 'mimicx_'
+        
+        parts = domainAlgorithm.split('/')
+        if len(parts) == 2:
+            self.module, self.algorithm = parts
+        else:
+            # Handle the error gracefully
+            raise ValueError(f"Invalid format for domainAlgorithm: '{domainAlgorithm}'. Expected format 'module/algorithm'.")
+
+        self.module, self.algorithm = (domainAlgorithm.split('/'))
+        self.module_dir = os.path.dirname(__file__)
+        self.algorithms_directory = self.module_dir
+        self.model = None
+        self.dataType = None
+        self.model_loaded = False
+        self.wasm_module = None
+        self._initialization_task = None
+        
+        # Try to load the model during initialization
+        # In Pyodide, prefer async loading for WASM files
+        if IS_PYODIDE:
+            # Schedule async loading but don't block initialization
+            print("Pyodide detected - WASM loading will be handled asynchronously")
+            # Store the async task for later awaiting if needed
+            try:
+                # Check if we're in an async context
+                loop = asyncio.get_running_loop()
+                # Create a task for async initialization
+                self._initialization_task = loop.create_task(self._async_init())
+            except RuntimeError:
+                # No event loop running, initialization will be deferred
+                print("No event loop detected - async initialization will be deferred")
+        else:
+            try:
+                self.load_model_file_sync(self.algorithm)
+                if self.model is not None:
+                    self.model_loaded = True
+            except Exception as e:
+                print(f"Warning: Could not load model during initialization: {e}")
+
+    async def _async_init(self):
+        """Internal async initialization method"""
+        try:
+            # Load the model asynchronously (this handles WASM loading properly)
+            result = await self.load_async(self.algorithm)
+            if result and self.model is not None:
+                self.model_loaded = True
+                print(f"Model '{self.algorithm}' loaded successfully during async initialization")
+            else:
+                print(f"Warning: Could not load model '{self.algorithm}' during async initialization")
+        except Exception as e:
+            print(f"Error during async initialization: {e}")
+
+    async def wait_for_initialization(self):
+        """Wait for async initialization to complete if it was started"""
+        if self._initialization_task:
+            await self._initialization_task
+            self._initialization_task = None
+
+    @classmethod
+    async def create_async(cls, domainAlgorithm):
+        """Alternative constructor that properly handles async initialization"""
+        instance = cls.__new__(cls)  # Create instance without calling __init__
+        
+        # Initialize basic attributes
+        instance.modelFolderUrl = 'https://speedpresta.s3.us-east-1.amazonaws.com/mimicx'
+        instance.modelNameBase = 'mimicx_'
+        
+        parts = domainAlgorithm.split('/')
+        if len(parts) == 2:
+            instance.module, instance.algorithm = parts
+        else:
+            raise ValueError(f"Invalid format for domainAlgorithm: '{domainAlgorithm}'. Expected format 'module/algorithm'.")
+
+        instance.module, instance.algorithm = (domainAlgorithm.split('/'))
+        instance.module_dir = os.path.dirname(__file__)
+        instance.algorithms_directory = instance.module_dir
+        instance.model = None
+        instance.dataType = None
+        instance.model_loaded = False
+        instance.wasm_module = None
+        instance._initialization_task = None
+        
+        # Load the model asynchronously (this handles WASM loading properly)
+        result = await instance.load_async(instance.algorithm)
+        if result and instance.model is not None:
+            instance.model_loaded = True
+            print(f"Model '{instance.algorithm}' loaded successfully during async creation")
+        
+        return instance
+
+    def get_model(self):
+        return self.model
+
+    def set_model(self, algorithm):
+        if algorithm:
+            module_name = f"mimicx_{algorithm}"
+            class_name = f"Mimicx{algorithm.replace('_', ' ').title().replace(' ', '')}"
+
+            try:
+                # Try relative import first
+                module = importlib.import_module(f".{module_name}", package=__package__)
+            except ImportError:
+                try:
+                    # Try absolute import
+                    module = importlib.import_module(module_name)
+                except ImportError as e:
+                    print(f"Failed to import module '{module_name}': {e}")
+                    return False
+
+            try:
+                self.model = getattr(module, class_name)()
+                print(f"Successfully loaded model: {class_name}")
+                return True
+            except AttributeError as e:
+                print(f"Class '{class_name}' not found in module '{module_name}': {e}")
+                return False
+            except Exception as e:
+                print(f"Error instantiating class '{class_name}': {e}")
+                return False
+        return False
+
+    def __getattr__(self, attr):
+        # Check if model is loaded, if not try to load it
+        if self.model is None and not self.model_loaded:
+            print(f"Model not loaded, attempting to load algorithm: {self.algorithm}")
+            print(f"Current working directory: {os.getcwd()}")
+            print(f"Algorithms directory: {self.algorithms_directory}")
+            print(f"Module: {self.module}")
+            print(f"Model name base: {self.modelNameBase}")
+            
+            try:
+                success = self.load_model_file_sync(self.algorithm)
+                print(f"load_model_file_sync returned: {success}")
+                print(f"self.model is now: {self.model}")
+                print(f"self.model_loaded is now: {self.model_loaded}")
+                
+                if success and self.model is not None:
+                    self.model_loaded = True
+                    print(f"Model '{self.algorithm}' loaded successfully")
+                else:
+                    # Before raising error, let's try direct model setting
+                    print("Trying direct model setting as last resort...")
+                    direct_success = self.set_model(self.algorithm)
+                    print(f"Direct set_model returned: {direct_success}")
+                    
+                    if direct_success and self.model is not None:
+                        self.model_loaded = True
+                        print(f"Model '{self.algorithm}' loaded via direct setting")
+                    else:
+                        raise AttributeError(f"Failed to load model '{self.algorithm}' for attribute '{attr}'. "
+                                           f"Model loading returned {success}, direct setting returned {direct_success}, "
+                                           f"model is {self.model}")
+                                       
+            except AttributeError:
+                # Re-raise AttributeError as-is to avoid nesting
+                raise
+            except Exception as load_error:
+                print(f"Loading failed with error: {load_error}")
+                raise AttributeError(f"Could not load model '{self.algorithm}' for attribute '{attr}'. "
+                                   f"Error: {str(load_error)}")
+        
+        # If model is still None after loading attempt, raise clear error
+        if self.model is None:
+            raise AttributeError(f"Model '{self.algorithm}' not loaded. Cannot access attribute '{attr}'.")
+        
+        # Check if the attribute exists on the model
+        if hasattr(self.model, attr):
+            return getattr(self.model, attr)
+        else:
+            raise AttributeError(f"Model '{type(self.model).__name__}' has no attribute '{attr}'")
+
+    def _force_python_sync_load(self, model):
+        """Force synchronous loading with Python files only - robust fallback for Pyodide"""
+        
+        print(f"_force_python_sync_load called for model: {model}")
+        
+        # Ensure algorithms directory exists
+        if not os.path.exists(self.algorithms_directory):
+            try:
+                os.makedirs(self.algorithms_directory)
+                print(f"Created algorithms directory: {self.algorithms_directory}")
+            except Exception as e:
+                print(f"Failed to create algorithms directory: {e}")
+                raise Exception(f"Cannot create algorithms directory: {e}")
+
+        # Only try .py extension for maximum compatibility
+        extension = '.py'
+        file_path = os.path.join(self.algorithms_directory, self.modelNameBase + model + extension)
+        
+        print(f"Looking for Python model at: {file_path}")
+        
+        # Check if file already exists
+        if os.path.exists(file_path):
+            print(f"Found existing Python model file: {file_path}")
+            try:
+                # Check file size to ensure it's not empty/corrupted
+                file_size = os.path.getsize(file_path)
+                print(f"File size: {file_size} bytes")
+                
+                if file_size < 50:  # Probably too small to be a valid Python module
+                    print(f"File seems too small ({file_size} bytes), attempting to re-download")
+                    os.remove(file_path)
+                else:
+                    success = self.set_model(model)
+                    if success:
+                        print(f"Successfully loaded existing model: {model}")
+                        return True
+                    else:
+                        print(f"Failed to instantiate model from existing file: {file_path}")
+                        print("Attempting to re-download...")
+                        os.remove(file_path)  # Remove corrupted file
+            except Exception as e:
+                print(f"Error loading existing model file: {e}")
+                # Try to remove corrupted file and re-download
+                try:
+                    os.remove(file_path)
+                    print("Removed corrupted file, will attempt re-download")
+                except:
+                    pass
+        
+        # File doesn't exist or was corrupted, try to download it
+        url = f"{self.modelFolderUrl}/{self.module}/{model}/{self.modelNameBase}{model}{extension}"
+        print(f"Downloading Python model from: {url}")
+        
+        # Use different download methods based on environment
+        if IS_PYODIDE:
+            print("Using Pyodide-compatible download method")
+            success = self._download_file_pyodide_sync(url, file_path)
+        else:
+            print("Using standard urllib download method")
+            success = self._download_file_urllib(url, file_path)
+        
+        if not success:
+            raise Exception(f"Failed to download model from {url}")
+        
+        # Verify download was successful
+        if os.path.exists(file_path):
+            file_size = os.path.getsize(file_path)
+            print(f"Successfully downloaded model to: {file_path} ({file_size} bytes)")
+            
+            if file_size < 50:  # Check if download was successful
+                raise Exception(f"Downloaded file is too small ({file_size} bytes), likely an error page")
+            
+            # Try to load the downloaded model
+            success = self.set_model(model)
+            if success:
+                print(f"Successfully loaded downloaded model: {model}")
+                return True
+            else:
+                error_msg = f"Failed to instantiate downloaded model: {model}"
+                print(error_msg)
+                # Don't remove the file, might be useful for debugging
+                raise Exception(error_msg)
+        else:
+            raise Exception("Download completed but file not found")
+
+    def _download_file_urllib(self, url, file_path):
+        """Download file using standard urllib (for non-Pyodide environments)"""
+        try:
+            urllib.request.urlretrieve(url, file_path)
+            return True
+        except urllib.error.HTTPError as e:
+            print(f"HTTP error downloading model: {e.code} - {e.reason}")
+            if os.path.exists(file_path):
+                try:
+                    os.remove(file_path)
+                except:
+                    pass
+            return False
+        except urllib.error.URLError as e:
+            print(f"URL error downloading model: {e.reason}")
+            return False
+        except Exception as e:
+            print(f"Unexpected error downloading model: {e}")
+            if os.path.exists(file_path):
+                try:
+                    os.remove(file_path)
+                except:
+                    pass
+            return False
+
+    def _download_file_pyodide_sync(self, url, file_path):
+        """Download file in Pyodide environment using synchronous methods"""
+        try:
+            # Use standard urllib.request in Pyodide - it should work for most cases
+            print("Attempting download with urllib.request in Pyodide...")
+            urllib.request.urlretrieve(url, file_path)
+            return True
+            
+        except Exception as urllib_error:
+            print(f"urllib.request failed in Pyodide: {urllib_error}")
+            
+            try:
+                # Fallback: Try using XMLHttpRequest for synchronous download
+                import js
+                from js import XMLHttpRequest
+                
+                print("Trying XMLHttpRequest for synchronous download...")
+                
+                xhr = XMLHttpRequest.new()
+                xhr.open("GET", url, False)  # False = synchronous
+                xhr.send(None)
+                
+                if xhr.status == 200:
+                    # Write the response to file
+                    content = xhr.responseText
+                    with open(file_path, 'w', encoding='utf-8') as f:
+                        f.write(content)
+                    print(f"Successfully downloaded via XMLHttpRequest: {len(content)} characters")
+                    return True
+                else:
+                    print(f"XMLHttpRequest failed with status: {xhr.status}")
+                    return False
+                    
+            except Exception as xhr_error:
+                print(f"XMLHttpRequest also failed: {xhr_error}")
+                return False
+    
+    async def load_wasm_module(self, wasm_url, file_path):
+        """Load WASM module in Pyodide environment"""
+        if not IS_PYODIDE:
+            print("WASM loading only supported in Pyodide environment")
+            return None
+            
+        try:
+            print(f"Fetching WASM module from: {wasm_url}")
+            # Fetch the WASM file
+            response = await pyfetch(wasm_url)
+            if response.status == 200:
+                # Get the WASM bytes
+                wasm_bytes = await response.bytes()
+                
+                # Write to file system for caching
+                with open(file_path, 'wb') as f:
+                    f.write(wasm_bytes.to_py())
+                print(f"WASM file cached to: {file_path}")
+                
+                # Load the WASM module using Pyodide's WebAssembly support
+                wasm_module = await js.WebAssembly.instantiate(wasm_bytes)
+                print("WASM module instantiated successfully")
+                return wasm_module
+                
+            else:
+                print(f"Failed to fetch WASM file: {response.status}")
+                return None
+                
+        except Exception as e:
+            print(f"Error loading WASM module: {e}")
+            return None
+
+    async def load_existing_wasm(self, file_path):
+        """Load existing WASM file in Pyodide environment"""
+        if not IS_PYODIDE:
+            return None
+            
+        try:
+            with open(file_path, 'rb') as f:
+                wasm_bytes = f.read()
+            
+            # Convert to JavaScript ArrayBuffer for WebAssembly
+            js_array_buffer = js.ArrayBuffer.new(len(wasm_bytes))
+            js_uint8_array = js.Uint8Array.new(js_array_buffer)
+            
+            # Copy bytes to JavaScript array
+            for i, byte in enumerate(wasm_bytes):
+                js_uint8_array[i] = byte
+            
+            wasm_module = await js.WebAssembly.instantiate(js_array_buffer)
+            print("Existing WASM module instantiated successfully")
+            return wasm_module
+            
+        except Exception as e:
+            print(f"Error loading existing WASM: {e}")
+            return None
+
+    def get_platform_extensions(self):
+        """Get appropriate file extensions based on the current platform"""
+        if IS_PYODIDE:
+            # In Pyodide, Python files work perfectly - no need for WASM priority
+            return ['.py']
+        elif platform.system() == "Windows":
+            return ['windows.pyd', '.py']
+        elif platform.system() == "Darwin":
+            return ['.cpython-39-darwin.so', '.py']
+        else:
+            return ['.cpython-311-x86_64-linux-gnu.so', '.py']
+
+    async def load_model_file(self, model):
+        """Async version that properly handles WASM in Pyodide"""
+        
+        # Check and Create Algorithms Directory
+        if not os.path.exists(self.algorithms_directory):
+            os.makedirs(self.algorithms_directory)
+
+        extensions = self.get_platform_extensions()
+        print(f"Platform detected: {'Pyodide' if IS_PYODIDE else platform.system()}")
+        print(f"Trying extensions: {extensions}")
+        
+        for extension in extensions:
+            file_path = os.path.join(self.algorithms_directory, self.modelNameBase + model + extension)
+            
+            if os.path.exists(file_path):
+                print(f"Found existing model file: {file_path}")
+
+                if extension == '.wasm' and IS_PYODIDE:
+                    # Load existing WASM file asynchronously
+                    wasm_module = await self.load_existing_wasm(file_path)
+                    if wasm_module:
+                        self.wasm_module = wasm_module
+                        # After loading WASM, try to set up the Python interface
+                        success = self.set_model(model)
+                        if success:
+                            return True
+                    else:
+                        # If WASM loading failed, continue to try other extensions
+                        continue
+                else:
+                    success = self.set_model(model)
+                    if success:
+                        return True
+            else:
+                try:
+                    url = self.modelFolderUrl + '/' + self.module + '/' + model + '/' + self.modelNameBase + model + extension
+                    print(f"Attempting to download model from: {url}")
+
+                    if extension == '.wasm' and IS_PYODIDE:
+                        wasm_module = await self.load_wasm_module(url, file_path)
+                        if wasm_module:
+                            self.wasm_module = wasm_module
+                            success = self.set_model(model)
+                            if success:
+                                return True
+                    else:
+                        # Use urllib for non-WASM files or non-Pyodide environments
+                        urllib.request.urlretrieve(url, file_path)
+                        print(f"Successfully downloaded model to: {file_path}")
+                        success = self.set_model(model)
+                        if success:
+                            return True
+                except Exception as e:
+                    print(f"Failed to download {extension} version: {e}")
+                    if os.path.exists(file_path):
+                        os.remove(file_path)  # Clean up partial download
+                    continue
+        
+        return False
+
+    def load_model_file_sync(self, model):
+        """Synchronous version - simplified for better debugging"""
+        
+        print(f"=== load_model_file_sync called for model: {model} ===")
+        
+        # Check and Create Algorithms Directory
+        if not os.path.exists(self.algorithms_directory):
+            try:
+                os.makedirs(self.algorithms_directory)
+                print(f"Created algorithms directory: {self.algorithms_directory}")
+            except Exception as e:
+                print(f"Failed to create algorithms directory: {e}")
+                return False
+
+        extensions = self.get_platform_extensions()
+        print(f"Platform detected: {'Pyodide' if IS_PYODIDE else platform.system()}")
+        print(f"Trying extensions: {extensions}")
+        
+        for extension in extensions:
+            file_path = os.path.join(self.algorithms_directory, self.modelNameBase + model + extension)
+            print(f"Checking for file: {file_path}")
+            
+            if os.path.exists(file_path):
+                print(f"Found existing model file: {file_path}")
+                file_size = os.path.getsize(file_path)
+                print(f"File size: {file_size} bytes")
+                
+                if file_size < 50:
+                    print("File too small, removing and will re-download")
+                    os.remove(file_path)
+                else:
+                    print("Attempting to load existing file...")
+                    success = self.set_model(model)
+                    if success:
+                        print(f"Successfully loaded existing model: {model}")
+                        return True
+                    else:
+                        print("Failed to load existing file, will try to re-download")
+                        os.remove(file_path)
+            
+            # File doesn't exist or failed to load, try to download
+            try:
+                url = f"{self.modelFolderUrl}/{self.module}/{model}/{self.modelNameBase}{model}{extension}"
+                print(f"Downloading from: {url}")
+                
+                if IS_PYODIDE:
+                    success = self._download_file_pyodide_sync(url, file_path)
+                else:
+                    success = self._download_file_urllib(url, file_path)
+                
+                if success and os.path.exists(file_path):
+                    file_size = os.path.getsize(file_path)
+                    print(f"Download successful, file size: {file_size} bytes")
+                    
+                    if file_size < 50:
+                        print("Downloaded file too small, likely an error")
+                        os.remove(file_path)
+                        continue
+                    
+                    print("Attempting to load downloaded file...")
+                    success = self.set_model(model)
+                    if success:
+                        print(f"Successfully loaded downloaded model: {model}")
+                        return True
+                    else:
+                        print("Failed to load downloaded file")
+                        continue
+                else:
+                    print(f"Download failed for {extension}")
+                    continue
+                    
+            except Exception as e:
+                print(f"Error downloading {extension}: {e}")
+                if os.path.exists(file_path):
+                    try:
+                        os.remove(file_path)
+                    except:
+                        pass
+                continue
+        
+        print(f"Failed to load model '{model}' with any extension: {extensions}")
+        return False
+
+    async def ensure_loaded(self):
+        """Ensure the model is loaded, using async loading if needed"""
+        if not self.model_loaded:
+            if IS_PYODIDE:
+                success = await self.load_model_file(self.algorithm)
+                if success and self.model is not None:
+                    self.model_loaded = True
+                    return True
+                else:
+                    raise Exception(f"Failed to load model '{self.algorithm}' asynchronously")
+            else:
+                success = self.load_model_file_sync(self.algorithm)
+                if success and self.model is not None:
+                    self.model_loaded = True
+                    return True
+                else:
+                    raise Exception(f"Failed to load model '{self.algorithm}' synchronously")
+        return True
+
+    def load(self, algorithm):
+        """Load model - warns about WASM limitations in Pyodide"""
+        try:
+            if IS_PYODIDE:
+                print("Warning: Synchronous loading in Pyodide has limited WASM support.")
+                print("For full WASM support, use 'await model.load_async(algorithm)' instead.")
+            
+            self.load_model_file_sync(algorithm)
+        except Exception as e:
+           return f'The model could not be loaded correctly. Error: {str(e)}'
+        
+        return self.model
+    
+    async def load_async(self, algorithm):
+        """Async version of load method with full WASM support"""
+        try:
+            success = await self.load_model_file(algorithm)
+            if success and self.model is not None:
+                self.model_loaded = True
+                return self.model
+            else:
+                return 'The model could not be loaded correctly. Please ensure it is named properly and check that it exists.'
+        except Exception as e:
+           return f'The model could not be loaded correctly. Error: {str(e)}'
+
+    def load_sync(self, algorithm):
+        """Synchronous wrapper for load method"""
+        try:
+            success = self.load_model_file_sync(algorithm)
+            if success and self.model is not None:
+                self.model_loaded = True
+                return self.model
+            else:
+                return f'The model could not be loaded correctly. Please ensure it is named properly and check that it exists.'
+        except Exception as e:
+            return f'The model could not be loaded correctly. Error: {str(e)}'
+
+    def call_wasm_function(self, function_name, *args):
+        """Call a function from the loaded WASM module"""
+        if not IS_PYODIDE:
+            raise RuntimeError("WASM functionality only available in Pyodide environment")
+            
+        if hasattr(self, 'wasm_module') and self.wasm_module:
+            try:
+                # Access the WASM instance
+                instance = self.wasm_module.instance
+                exports = instance.exports
+                
+                if hasattr(exports, function_name):
+                    func = getattr(exports, function_name)
+                    return func(*args)
+                else:
+                    raise AttributeError(f"Function '{function_name}' not found in WASM module")
+            except Exception as e:
+                raise RuntimeError(f"Error calling WASM function: {e}")
+        else:
+            raise RuntimeError("No WASM module loaded. Use 'await model.load_async()' first.")
