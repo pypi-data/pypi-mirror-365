@@ -1,0 +1,82 @@
+Metadata-Version: 2.4
+Name: tuzi-mcp-tools
+Version: 0.3.0
+Summary: Tuzi - CLI and MCP tool interfaces for Tu-zi.com API
+Project-URL: Homepage, https://github.com/example/tuzi-mcp-tools
+Project-URL: Repository, https://github.com/example/tuzi-mcp-tools
+Project-URL: Documentation, https://github.com/example/tuzi-mcp-tools/blob/main/README.md
+Project-URL: Issues, https://github.com/example/tuzi-mcp-tools/issues
+Author-email: Tuzi Tools <psycharch@github.com>
+License: MIT
+License-File: LICENSE
+Keywords: ai,cli,image-generation,mcp,tuzi
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.11
+Requires-Dist: aiohttp>=3.8.0
+Requires-Dist: mcp>=1.11.0
+Requires-Dist: pathlib
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: requests>=2.31.0
+Requires-Dist: rich>=13.0.0
+Requires-Dist: typer>=0.12.0
+Description-Content-Type: text/markdown
+
+# Tuzi MCP Tools
+
+[![PyPI version](https://badge.fury.io/py/tuzi-mcp-tools.svg)](https://badge.fury.io/py/tuzi-mcp-tools)
+
+English | [简体中文](README_zh.md)
+
+A Python package providing both **CLI** and **MCP server** interfaces for generating images and conducting surveys using the Tu-zi.com API.
+
+## Features
+
+- **Dual Interface**: CLI and MCP server with clean architecture
+- **Async Task Management**: Submit/barrier pattern for efficient parallel processing
+- **GPT Image Generation**: GPT text to image with conversation continuity
+- **FLUX Image Generation**: FLUX text to image with conversation tracking
+- **Conversation Management**: Continue image editing across multiple tasks
+
+## MCP Server Usage
+
+```json
+{
+  "mcpServers": {
+    "tuzi": {
+      "command": "uvx",
+      "args": ["tuzi-mcp-tools"],
+      "env": {
+        "TUZI_API_KEY": "your_api_key_here"
+      }
+    }
+  }
+}
+```
+
+### Available MCP Tools
+
+The MCP server provides **async task management** with submit/barrier pattern for efficient image generation.
+
+#### `submit_gpt_image`
+Submit a GPT image generation task for async processing. Returns task ID immediately.
+
+#### `submit_flux_image` 
+Submit a FLUX image generation task for async processing. Returns task ID immediately.
+
+#### `task_barrier`
+Wait for all submitted image generation tasks to complete and download their results. Reports conversation IDs for task tracking.
+
+## CLI Usage
+
+```
+uvx --from tuzi-mcp-tools tuzi --help
+```
