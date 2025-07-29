@@ -1,0 +1,59 @@
+# Documentation principale
+include README.md
+include CHANGELOG.md
+include LICENSE
+include MANIFEST.in
+
+# Documentation dans docs/
+include docs/README.md
+
+# Documentation de l'API
+include docs/api/README.md
+include docs/api/WIDGETS_DOCUMENTATION.md
+include docs/api/STYLE_GUIDE.md
+
+# Documentation des exemples
+include docs/examples/README.md
+
+# Documentation des tests
+include docs/tests/README.md
+include docs/tests/TESTS_DOCUMENTATION.md
+include docs/tests/QUICK_START_TESTS.md
+
+# Documentation CLI
+include docs/cli/README.md
+
+# Fichiers d'exemples
+include examples/*.py
+include examples/SUMMARY.md
+recursive-include examples/bin *
+recursive-include examples/icons *
+
+# Fichiers de test
+include tests/run_tests.py
+include tests/conftest.py
+recursive-include tests/unit *
+
+# Fichiers CLI
+include ezqt_widgets/cli/__init__.py
+include ezqt_widgets/cli/main.py
+include ezqt_widgets/cli/runner.py
+
+# Exclure les fichiers inutiles
+exclude build_upload.bat
+exclude .coverage
+exclude coverage.xml
+exclude htmlcov/
+exclude .pytest_cache/
+exclude .benchmarks/
+exclude _temp/
+exclude *.tmp
+exclude *.temp
+prune build
+prune dist
+prune EzQt_Widgets.egg-info
+prune __pycache__
+prune .venv
+prune .vscode
+prune .idea
+prune .git
