@@ -1,0 +1,25 @@
+
+[:python_version < "3.10"]
+typing-extensions>=4.0.0
+
+[all]
+click>=8.0.0
+werkzeug>=2.0.0
+redis>=4.0.0
+structlog>=22.0.0
+orjson>=3.8.0
+
+[cli]
+click>=8.0.0
+
+[dev]
+werkzeug>=2.0.0
+
+[fast-json]
+orjson>=3.8.0
+
+[logging]
+structlog>=22.0.0
+
+[redis]
+redis>=4.0.0
