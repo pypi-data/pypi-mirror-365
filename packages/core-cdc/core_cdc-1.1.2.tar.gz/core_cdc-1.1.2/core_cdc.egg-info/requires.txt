@@ -1,0 +1,26 @@
+core-mixins>=2.0.1
+core-tests>=1.1.0
+
+[:python_version >= "3.7" and python_version < "3.8"]
+typing-extensions>=4.2.0
+
+[:python_version >= "3.8" and python_version < "3.11"]
+typing-extensions>=4.8.0
+
+[all]
+core-db[all]>=2.2.0
+mysql-replication>=1.0.0
+
+[docs]
+pydata-sphinx-theme==0.16.1
+Sphinx==8.2.3
+
+[mongo]
+core-db[mongo]>=2.2.0
+
+[mysql]
+core-db[mysql]>=2.2.0
+mysql-replication>=1.0.0
+
+[snowflake]
+core-db[snowflake]>=2.2.0
