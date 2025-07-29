@@ -1,0 +1,49 @@
+Metadata-Version: 2.4
+Name: mimasv2configtool
+Version: 2025.0.4
+Summary: SPI Flash configuration tool for Numato Lab Mimas V2 FPGA board
+Home-page: https://github.com/khaalidi/mimasv2configtool
+Author: Habib Ullah
+Author-email: khaalidi@icloud.com
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Description-Content-Type: text/markdown
+Requires-Dist: pyserial
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: summary
+
+# Mimas V2 Configuration Tool
+
+Python tool to configure Numato Lab Mimas V2 FPGA board via SPI Flash over USB CDC serial.
+
+## Installing
+
+```
+pip install mimasv2configtool
+```
+
+or
+
+```
+pip install 'git+https://github.com/Khaalidi/mimasv2configtool' 
+```
+
+or 
+```
+git clone https://github.com/Khaalidi/mimasv2configtool
+cd mimasv2configtool
+pip install .
+```
+## Usage
+```
+mimasv2configtool -p <PORT> -b <Binary File>
+
+PORT - The serial port corresponds to Mimas V2 (Eg: COM1 on Windows )
+Binary File - Binary file to be downloaded genereated from bitstream on Xilinx ISE.
+```
