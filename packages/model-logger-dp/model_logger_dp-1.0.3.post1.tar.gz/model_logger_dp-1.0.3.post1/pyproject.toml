@@ -1,0 +1,32 @@
+[build-system]
+requires = [
+    "pdm-backend",
+]
+build-backend = "pdm.backend"
+
+[project]
+name = "model_logger_dp"
+authors = [
+    { name = "Ian Zhu", email = "IanZhu@m.ldu.edu.cn" },
+]
+description = "Model Logger for Pytorch"
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = [
+    "python",
+    "logger",
+    "model",
+]
+dynamic = []
+version = "1.0.3.post1"
+
+[project.license]
+text = "MIT"
+
+[project.urls]
+homepage = "https://github.com/huggingface/pytorch-image-models"
+repository = "https://github.com/huggingface/pytorch-image-models"
+
+[tool.pdm.version]
+source = "file"
+path = "model_logger_dp/version.py"
