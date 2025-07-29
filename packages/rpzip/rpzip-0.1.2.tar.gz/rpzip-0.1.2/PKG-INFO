@@ -1,0 +1,45 @@
+Metadata-Version: 2.4
+Name: rpzip
+Version: 0.1.2
+Summary: A lightweight command-line program for creating reproducible/deterministic ZIP archives.
+Project-URL: Documentation, https://github.com/drivendataorg/repro-zipfile#readme
+Project-URL: Issues, https://github.com/drivendataorg/repro-zipfile/issues
+Project-URL: Source, https://github.com/drivendataorg/repro-zipfile/tree/main/cli
+Author-email: DrivenData <info@drivendata.org>
+License: MIT License
+License-File: LICENSE
+Keywords: cli,deterministic,reproducible,zip,zipfile
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: System :: Archiving
+Classifier: Topic :: System :: Archiving :: Compression
+Classifier: Topic :: System :: Archiving :: Packaging
+Requires-Python: >=3.8
+Requires-Dist: repro-zipfile
+Requires-Dist: typer>=0.9.0
+Requires-Dist: typing-extensions>=3.9; python_version < '3.9'
+Description-Content-Type: text/markdown
+
+# rpzip — a CLI backed by repro-zipfile
+
+[![PyPI](https://img.shields.io/pypi/v/rpzip.svg)](https://pypi.org/project/rpzip/)
+[![Supported Python versions](https://img.shields.io/pypi/pyversions/rpzip)](https://pypi.org/project/rpzip/)
+[![tests](https://github.com/drivendataorg/repro-zipfile/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/drivendataorg/repro-zipfile/actions/workflows/tests.yml?query=branch%3Amain)
+[![codecov](https://codecov.io/gh/drivendataorg/repro-zipfile/branch/main/graph/badge.svg)](https://codecov.io/gh/drivendataorg/repro-zipfile)
+
+**A lightweight command-line program for creating reproducible/deterministic ZIP archives.**
+
+"Reproducible" or "deterministic" in this context means that the binary content of the ZIP archive is identical if you add files with identical binary content in the same order. It means you can reliably check equality of the contents of two ZIP archives by simply comparing checksums of the archive using a hash function like MD5 or SHA-256.
+
+This package provides a command-line program named **rpzip**. It is designed as a partial drop-in replacement for the ubiquitous [zip](https://linux.die.net/man/1/zip) program and implements a commonly used subset of zip's inferface.
+
+For further documentation, see the ["rpzip command line program"](https://github.com/drivendataorg/repro-zipfile#rpzip-command-line-program) section of the repro-zipfile README.
