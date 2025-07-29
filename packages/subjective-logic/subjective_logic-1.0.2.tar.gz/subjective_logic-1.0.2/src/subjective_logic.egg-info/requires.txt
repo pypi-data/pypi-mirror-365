@@ -1,0 +1,13 @@
+numpy>=1.24.0
+
+[dev]
+tox
+black
+
+[doc]
+sphinx
+sphinx-rtd-theme
+
+[test]
+pytest>=6.0
+pytest-cov
