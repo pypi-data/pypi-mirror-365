@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cryptie"
+description = "Simple file encryption using PGP cards (e.g. Yubikeys)"
+readme = "README.md"
+dynamic = ["version"]
+license-files = ["LICENSE"]
+dependencies = []
+
+[tool.setuptools.dynamic]
+version = {attr = "cryptie.__version__"}
+
+[project.scripts]
+cryptie = "cryptie:main"
