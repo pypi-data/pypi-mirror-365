@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: loglense
+Version: 0.1.0
+Summary: An AI-powered log summarizer for the command line.
+License-File: LICENSE
+Requires-Dist: typer[all]
+Requires-Dist: google-generativeai
+Requires-Dist: openai
+Requires-Dist: anthropic
+Requires-Dist: litellm
+Requires-Dist: rich
+Dynamic: license-file
