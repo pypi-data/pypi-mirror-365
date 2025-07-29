@@ -1,0 +1,37 @@
+Metadata-Version: 2.4
+Name: chuk-mcp-function-server
+Version: 0.1.0
+Summary: Generic configurable MCP server infrastructure
+Author-email: chrishayuk <chrishayuk@somejunkmailbox.com>
+Project-URL: Homepage, https://github.com/chuk-mcp/chuk-mcp-function-server
+Project-URL: Documentation, https://github.com/chuk-mcp/chuk-mcp-function-server/blob/main/README.md
+Project-URL: Repository, https://github.com/chuk-mcp/chuk-mcp-function-server.git
+Project-URL: Issues, https://github.com/chuk-mcp/chuk-mcp-function-server/issues
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Internet :: WWW/HTTP :: HTTP Servers
+Classifier: Topic :: Communications
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: chuk-mcp>=0.5
+Requires-Dist: pyyaml>=6.0.2
+Provides-Extra: http
+Requires-Dist: fastapi>=0.116.1; extra == "http"
+Requires-Dist: uvicorn>=0.35.0; extra == "http"
+Requires-Dist: httpx>=0.28.1; extra == "http"
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.21.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Requires-Dist: black>=23.0.0; extra == "dev"
+Requires-Dist: isort>=5.12.0; extra == "dev"
+Requires-Dist: flake8>=6.0.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Requires-Dist: pre-commit>=3.0.0; extra == "dev"
+Provides-Extra: full
+Requires-Dist: chuk-mcp-function-server[dev,http]; extra == "full"
