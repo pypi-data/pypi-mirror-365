@@ -1,0 +1,7 @@
+include README.md
+include LICENSE
+
+include *.json
+include *.csv
+
+recursive-include src/canadatestgen/schemas *.json
