@@ -1,0 +1,20 @@
+Metadata-Version: 2.4
+Name: smthit_core
+Version: 0.1.0
+Summary: python bootstrap
+Author-email: Bean <bitlong@126.com>
+Project-URL: Homepage, https://github.com/bitlong/smthit-core
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: requests>=2.25.0
+Requires-Dist: build>1.2.2
+Provides-Extra: test
+Requires-Dist: pytest>=7.0; extra == "test"
+Provides-Extra: dev
+Requires-Dist: black; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+Requires-Dist: build; extra == "dev"
+Requires-Dist: twine; extra == "dev"
+Requires-Dist: colorlog; extra == "dev"
+
+python3开发相关脚手架

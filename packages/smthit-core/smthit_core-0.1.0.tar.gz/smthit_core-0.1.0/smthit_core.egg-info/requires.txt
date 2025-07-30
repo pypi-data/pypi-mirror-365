@@ -1,0 +1,12 @@
+requests>=2.25.0
+build>1.2.2
+
+[dev]
+black
+mypy
+build
+twine
+colorlog
+
+[test]
+pytest>=7.0
