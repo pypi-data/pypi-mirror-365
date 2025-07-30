@@ -1,0 +1,31 @@
+[project]
+name = "panta-rhei"
+version = "0.7.0"
+requires-python = ">=3.10"
+description = "Miscellaneous fenics/dolfin utilities that are used in various projects."
+authors = [{ name = "Jørgen Riseth", email = "jnriseth@gmail.com" }]
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+classifiers = ["Programming Language :: Python :: 3"]
+dependencies = ["loguru", "sympy", "matplotlib", "meshio[all]", "numpy", "gmsh"]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[tool.pixi.workspace]
+channels = ["conda-forge/label/fenics-dev", "conda-forge", "jorgenriseth"]
+platforms = ["linux-64"]
+channel-priority = "disabled"
+
+
+[tool.pixi.pypi-dependencies]
+panta_rhei = { path = ".", editable = true }
+
+[tool.pixi.tasks]
+
+[tool.pixi.dependencies]
+fenics = ">=2019.1.0,<2020"
+svmtk = "<2"
+setuptools = "<80"
