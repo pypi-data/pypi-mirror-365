@@ -1,0 +1,28 @@
+.cell-output-ipywidget-background {
+    background-color: transparent !important;
+}
+.svetlanna-structure-container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding-bottom: 0.5rem;
+    font-family: monospace;
+}
+.svetlanna-specs-container {
+    display: block;
+}
+.svetlanna-specs-element-block {
+    padding-left: 2rem;
+    max-height: 20rem;
+    overflow: scroll;
+}
+.svetlanna-specs-container > details {
+    border: 1px solid gray;
+    font-family: monospace;
+}
+.svetlanna-specs-container > details > summary {
+    background-color: #cff1f0;
+    padding: 0.5rem;
+    color: black;
+}
