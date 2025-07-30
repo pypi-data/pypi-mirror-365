@@ -1,0 +1,17 @@
+selenium>=4.5.0
+webdriver-manager>=4.0.0
+undetected-chromedriver>=3.1.5
+beautifulsoup4>=4.13.0
+lxml>=5.0.0
+pandas>=2.3.0
+
+[build]
+build
+twine
+
+[dev]
+black
+bumpver
+isort
+mypy
+pytest
