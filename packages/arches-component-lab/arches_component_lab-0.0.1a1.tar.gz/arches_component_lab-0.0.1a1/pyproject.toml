@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=77", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "arches-component-lab"
+readme = "README.md"
+authors = [
+    {"name" = "Arches Project"}
+]
+license = "AGPL-3.0-or-later"
+license-files = ["LICENSE"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Framework :: Django",
+    "Framework :: Django :: 4.2",
+    "Framework :: Django :: 5.2",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Information Technology",
+]
+requires-python = ">=3.10"
+dependencies = [
+    "arches>=7.6.9",
+    "arches_querysets >= 1.0.0b2",
+]
+version = "0.0.1a1"
+
+[project.optional-dependencies]
+dev = [
+    "livereload",
+    "sst",
+    "coverage",
+    "django-silk==5.1.0",
+    "pre-commit==3.8.0",
+    "black==24.4.2",
+]
+
+[project.urls]
+Homepage = "https://archesproject.org/"
+Documentation = "https://arches.readthedocs.io"
+Repository = "https://github.com/archesproject/arches-component-lab.git"
+Issues = "https://github.com/archesproject/arches-component-lab/issues"
+
+[tool.setuptools]
+packages = ["arches_component_lab"]
