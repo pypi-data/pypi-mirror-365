@@ -1,0 +1,116 @@
+# 🗺️ autotestmap
+
+**Instantly discover the connections between your source code and your tests.**
+
+`autotestmap` is a fast, zero-dependency developer utility that scans your Python project and builds a map of which test files are exercising your source code. It helps you quickly find relevant tests, identify potentially untested code, and understand your project's test coverage structure at a glance.
+
+
+---
+
+## ❓ Why use autotestmap?
+
+In any growing Python project, it can be challenging to answer questions like:
+
+- “If I change this file, which tests do I need to run?”
+- “Where are the tests for this specific module?”
+- “Does this source file even have any tests?”
+
+`autotestmap` answers these questions by analyzing your codebase and providing a clear, intuitive map of the relationships.
+
+---
+
+## ✨ Key Features
+
+- ✅ **Automatic Directory Detection**: Intelligently finds common `src` and `tests` directories when run with no arguments.
+- 🧠 **Smart Mapping**: Uses two powerful strategies:
+  - **Direct Naming Conventions** (e.g., `user.py` → `test_user.py`)
+  - **Static Import Analysis** (detects tests that import the source module)
+- 🚀 **Flexible Usage Modes**: Run it against your whole project or focus on a single file.
+- ✨ **Clean CLI**: Beautiful emoji-coded output.
+- 🤖 **JSON Output**: Use `--json` for machine-readable results, ideal for CI/CD.
+- 🕊️ **Zero-Dependency**: No external libraries needed.
+
+---
+
+## 📦 Installation
+
+Install directly from PyPI:
+
+```
+pip install autotestmap
+```
+## 🚀 How to Use
+Autotestmap can be run in three different modes depending on your needs.
+---
+
+### 🔹 Mode 1: Automatic Discovery (No Arguments), Scans for common source (e.g., src, app) and test (tests) folders in your current directory.
+
+
+🔍 Mode: Auto-discovery
+```
+✅ auth.py
+  🔗 Direct → test_auth.py
+✅ models.py
+  🔎 Indirect → test_user_logic.py
+⚠️ payment.py → No tests found
+```
+### 🔹 Mode 2: Specific File Mapping (One Argument), Find all tests related to a single source file:
+```
+🔍 Mode: Single file mapping
+✅ models.py
+  🔎 Indirect → test_user_logic.py
+
+```
+
+### 🔹 Mode 3: Directory Specification (Two Arguments), Use this if your project has custom directory names:
+
+```
+autotestmap my_app/ specifications/
+```
+
+```
+🧾 Output Legend
+✅ [file] – A source file that has at least one associated test.
+
+🔗 Direct – Test file matches by naming convention (strong link).
+
+🔎 Indirect – Test file imports the source file (weaker link).
+
+⚠️ [file] – No matching test found (requires -v flag in directory mode).
+```
+
+### 🔧 Advanced Usage
+#### 🧪 JSON Output
+```
+Use the --json flag to get machine-readable output (works in all modes):
+```
+```
+{
+  "auth.py": {
+    "direct": ["test_auth.py"],
+    "indirect": []
+  },
+  "models.py": {
+    "direct": [],
+    "indirect": ["test_user_logic.py"]
+  },
+  "payment.py": {
+    "direct": [],
+    "indirect": []
+  }
+}
+```
+
+### 📣 Verbose Mode
+To include all source files, even if no tests were found:
+```
+autotestmap -v
+```
+### 🤝 Contributing
+Contributions are welcome! Whether it's a bug report, feature request, or a pull request — all contributions help make autotestmap better.
+
+Please feel free to open an issue or submit a PR on GitHub.
+
+📄 License
+This project is licensed under the MIT License.
+See the [LICENSE](LICENSE) file for details.
