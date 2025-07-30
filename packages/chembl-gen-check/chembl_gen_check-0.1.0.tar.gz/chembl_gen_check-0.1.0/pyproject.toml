@@ -1,0 +1,29 @@
+[project]
+name = "chembl_gen_check"
+version = "0.1.0"
+description = "Simple package that performs basic molecular structural sanity checks"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "molbloom>=2.2.1", 
+    "rdkit>=2022.3.3"
+]
+
+[project.optional-dependencies]
+create = [
+    "chembl-downloader",
+    "tqdm"
+]
+
+[project.scripts]
+create-mol-filters = "chembl_gen_check.create_mol_filters:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+include = ["src/chembl_gen_check/data/*.bloom", "src/chembl_gen_check/data/chembl_lacan.pkl", "src/chembl_gen_check/*.py"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/chembl_gen_check"]
