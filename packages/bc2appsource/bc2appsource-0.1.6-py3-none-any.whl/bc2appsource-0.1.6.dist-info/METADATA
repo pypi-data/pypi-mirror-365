@@ -1,0 +1,129 @@
+Metadata-Version: 2.4
+Name: bc2appsource
+Version: 0.1.6
+Summary: A tool to publish Business Central apps to Microsoft AppSource
+Author-email: Attie Retief <attie@example.com>
+License: MIT
+Project-URL: Homepage, https://github.com/attieretief/bc2appsource
+Project-URL: Bug Tracker, https://github.com/attieretief/bc2appsource/issues
+Project-URL: Source Code, https://github.com/attieretief/bc2appsource
+Project-URL: Documentation, https://github.com/attieretief/bc2appsource#readme
+Keywords: business-central,appsource,microsoft,dynamics365,business-central-apps,publishing,automation
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: Topic :: System :: Software Distribution
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests>=2.31.0
+Requires-Dist: click>=8.0.0
+Dynamic: license-file
+
+# BC2AppSource
+
+A Python package for publishing Business Central apps to Microsoft AppSource.
+
+## Installation
+
+```bash
+pip install bc2appsource
+```
+
+## Usage
+
+### Command Line Interface
+
+```bash
+# Publish an app to AppSource
+bc2appsource publish \
+  --app-file path/to/your/app.app \
+  --tenant-id your-tenant-id \
+  --client-id your-client-id \
+  --client-secret your-client-secret \
+  --product-name "Your Product Name"
+
+# With library app file
+bc2appsource publish \
+  --app-file path/to/your/app.app \
+  --library-app-file path/to/library.app \
+  --tenant-id your-tenant-id \
+  --client-id your-client-id \
+  --client-secret your-client-secret \
+  --product-name "Your Product Name"
+```
+
+### Python API
+
+```python
+from bc2appsource import AppSourcePublisher
+
+publisher = AppSourcePublisher(
+    tenant_id="your-tenant-id",
+    client_id="your-client-id",
+    client_secret="your-client-secret"
+)
+
+# Publish app
+result = publisher.publish(
+    app_file="path/to/your/app.app",
+    product_name="Your Product Name",
+    library_app_file="path/to/library.app",  # Optional
+    auto_promote=True
+)
+
+if result.success:
+    print(f"Submission ID: {result.submission_id}")
+else:
+    print(f"Error: {result.error}")
+```
+
+## Authentication
+
+You need to register an Azure AD application with the following permissions:
+- Microsoft Partner Center API access
+- Application permissions for submitting to AppSource
+
+## Environment Variables
+
+You can also use environment variables instead of passing credentials:
+
+```bash
+export AZURE_TENANT_ID=your-tenant-id
+export AZURE_CLIENT_ID=your-client-id
+export AZURE_CLIENT_SECRET=your-client-secret
+```
+
+## GitHub Actions
+
+This package can be used in GitHub Actions workflows:
+
+```yaml
+- name: Install bc2appsource
+  run: pip install bc2appsource
+
+- name: Publish to AppSource
+  run: |
+    bc2appsource publish \
+      --app-file artifacts/*.app \
+      --product-name "${{ github.event.repository.name }}"
+  env:
+    AZURE_TENANT_ID: ${{ secrets.APPSOURCE_TENANT_ID }}
+    AZURE_CLIENT_ID: ${{ secrets.APPSOURCE_CLIENT_ID }}
+    AZURE_CLIENT_SECRET: ${{ secrets.APPSOURCE_CLIENT_SECRET }}
+```
+
+## License
+
+MIT License - see LICENSE file for details.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
