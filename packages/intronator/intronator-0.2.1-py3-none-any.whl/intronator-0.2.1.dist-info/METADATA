@@ -1,0 +1,108 @@
+Metadata-Version: 2.4
+Name: intronator
+Version: 0.2.1
+Summary: A Python package for comprehensive splice site analysis and simulation
+Home-page: https://github.com/intronator/intronator
+Author: Intronator Team
+Author-email: Intronator Team <contact@intronator.org>
+Maintainer-email: Intronator Team <contact@intronator.org>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/intronator/intronator
+Project-URL: Documentation, https://intronator.readthedocs.io
+Project-URL: Repository, https://github.com/intronator/intronator
+Project-URL: Bug Tracker, https://github.com/intronator/intronator/issues
+Keywords: bioinformatics,splicing,genomics,splice-sites,RNA,mutations
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: seqmat
+Requires-Dist: numpy>=1.21.0
+Requires-Dist: pandas>=1.3.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+Requires-Dist: pytest-cov; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: isort; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+Provides-Extra: ml
+Requires-Dist: torch>=1.10.0; extra == "ml"
+Requires-Dist: tensorflow>=2.8.0; extra == "ml"
+Requires-Dist: keras>=2.8.0; extra == "ml"
+Requires-Dist: absl-py; extra == "ml"
+Provides-Extra: external
+Requires-Dist: spliceai; extra == "external"
+Dynamic: author
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+
+# Intronator
+
+A Python package for intron analysis with splice site prediction capabilities.
+
+## Features
+
+- SpliceAI integration for splice site prediction
+- Pangolin model support for enhanced predictions
+- seqmat compatibility for sequence analysis
+- Python 3.10+ support
+
+## Installation
+
+### Basic Installation
+```bash
+pip install intronator
+```
+
+### External Dependencies
+The package requires SpliceAI and Pangolin models which must be installed separately:
+
+#### SpliceAI
+```bash
+pip install spliceai
+```
+
+#### Pangolin
+```bash
+pip install git+https://github.com/tkzeng/Pangolin.git
+```
+
+#### Complete Installation (with external dependencies)
+```bash
+pip install intronator[external]
+```
+
+## Quick Start
+
+```python
+import intronator
+
+# Check package status
+print(intronator.hello_intronator())
+print(intronator.check_seqmat_compatibility())
+print(intronator.get_model_status())
+```
+
+## Requirements
+
+- Python >= 3.10
+- seqmat
+- torch >= 1.10.0
+- tensorflow >= 2.8.0
+- SpliceAI (install separately)
+- Pangolin (install separately)
+
+## Notes
+
+- SpliceAI and Pangolin models will be automatically loaded when the package is imported
+- Model loading may take some time on first import
+- GPU acceleration is automatically detected and used when available
