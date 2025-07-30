@@ -1,0 +1,33 @@
+Metadata-Version: 2.4
+Name: odoo_addon_energy_communities_cooperator
+Version: 16.0.0.3.2
+Summary: Energy communities cooperative membership management
+Home-page: https://git.coopdevs.org/coopdevs/comunitats-energetiques/odoo-ce
+Author: Som Comunitats SCCL
+License: AGPL-3
+Classifier: Programming Language :: Python
+Classifier: Framework :: Odoo
+Classifier: Framework :: Odoo :: 16.0
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Requires-Python: >=3.10
+Requires-Dist: odoo-addon-account_multicompany_easy_creation<16.1dev,>=16.0dev
+Requires-Dist: odoo-addon-contract_variable_quantity<16.1dev,>=16.0dev
+Requires-Dist: odoo-addon-cooperator<16.1dev,>=16.0dev
+Requires-Dist: odoo-addon-cooperator_account_banking_mandate<16.1dev,>=16.0dev
+Requires-Dist: odoo-addon-cooperator_account_payment<16.1dev,>=16.0dev
+Requires-Dist: odoo-addon-energy_communities<16.1dev,>=16.0dev
+Requires-Dist: odoo-addon-energy_communities_crm<16.1dev,>=16.0dev
+Requires-Dist: odoo-addon-l10n_es_cooperator<16.1dev,>=16.0dev
+Requires-Dist: odoo<16.1dev,>=16.0a
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: home-page
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+
+        Energy communities cooperative membership management
+    
