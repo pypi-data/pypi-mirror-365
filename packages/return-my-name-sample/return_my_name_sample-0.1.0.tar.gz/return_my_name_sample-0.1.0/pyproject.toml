@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "return-my-name-sample"
+version = "0.1.0"
+authors = [{name = "Shiva", email = "shivasaketh02@gmail.com"}]
+description = "A short description of your package"
+readme = "README.md"
+requires-python = ">=3.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    # List your dependencies here
+]
+
+[project.urls]
+"Homepage" = "https://github.com/yourusername/your-package-name"
