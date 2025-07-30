@@ -1,0 +1,52 @@
+Brazilian Pix payment method
+============================
+
+This is a plugin for `pretix`_. to allow the use of Brazilian Pix payment method 
+with manual processing.
+
+Development setup
+-----------------
+
+1. Make sure that you have a working `pretix development setup`_.
+
+2. Clone this repository.
+
+3. Activate the virtual environment you use for pretix development.
+
+4. Execute ``python setup.py develop`` within this directory to register this application with pretix's plugin registry.
+
+5. Execute ``make`` within this directory to compile translations.
+
+6. Restart your local pretix server. You can now use the plugin from this repository for your events by enabling it in the 'plugins' tab in the settings.
+
+Linter and formatters
+---------------------
+
+This plugin has a pre-commit hook configuration that checks and enforces some
+code style rules. To install it locally, you need to install `pre-commit` 
+package and install the hooks::
+
+    pip install pre-commit
+    pre-commit install
+
+To check manually for rule violations, run::
+
+    pre-commit run -a
+
+When you have these hooks installed, you will not be allowed to commit code that
+doesn't follow the rules.
+
+These rules are also enforced in CI.
+
+License
+-------
+
+
+Copyright 2025 Renne Rocha
+
+Released under the terms of the AGPL
+
+
+
+.. _pretix: https://github.com/pretix/pretix
+.. _pretix development setup: https://docs.pretix.eu/en/latest/development/setup.html
