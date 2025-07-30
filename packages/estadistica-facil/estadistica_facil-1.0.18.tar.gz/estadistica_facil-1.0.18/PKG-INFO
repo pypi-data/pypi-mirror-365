@@ -1,0 +1,63 @@
+Metadata-Version: 2.4
+Name: estadistica_facil
+Version: 1.0.18
+Summary: _Permite realizar operaciones estadisticas de manera sencilla_
+Author-email: Benjamín Peralta <benjaminp158@gmail.com>
+Description-Content-Type: text/markdown
+Classifier: License :: OSI Approved :: MIT License
+License-File: LICENSE
+Requires-Dist: numpy>=1.26.4
+Project-URL: Home, https://github.com/PeraBaja/excel-python
+
+# Excel en Python
+
+_Una libreria para hacer mediciones estadísticas basicas de datos_
+
+## Instalación
+_Instalar la librería en tu proyecto_
+```
+pip install estadistica-facil
+```
+
+## Comenzando 🚀
+
+_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
+
+Mira **Deployment** para conocer como desplegar el proyecto.
+
+
+### Pre-requisitos 📋
+
+_clona el proyecto_
+
+```
+git clone https://github.com/PeraBaja/excel-python.git
+```
+_instala numpy_
+
+```
+pip install numpy
+```
+
+## Ejemplos
+```python
+import estadistica_facil as e
+
+datos = (2, 2, 3, 4, 5, 6, 7)
+agrupación = e.Agrupacion(datos, cantidadDeIntervalos=4, redondearAbajo=False)
+frecuencias = e.Frecuencias(agrupación, datos)
+mediciones_agrupación = e.MedicionesAgrupacion(agrupación, frecuencias, datos)
+media = mediciones_agrupación.media()
+mediana = mediciones_agrupación.mediana()
+moda = mediciones_agrupación.moda()
+
+print(media, mediana, moda)  # Ouput: 4.71, 4.5, 3
+
+muestra = e.Muestra(datos)
+moda = muestra.media()
+mediana = muestra.mediana()
+moda = muestra.moda()
+
+print(media, mediana, moda)  # Ouput: 4.71 5 2
+```
+
