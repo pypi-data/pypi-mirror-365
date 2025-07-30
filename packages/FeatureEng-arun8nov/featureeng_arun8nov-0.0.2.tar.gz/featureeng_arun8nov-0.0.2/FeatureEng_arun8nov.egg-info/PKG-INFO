@@ -1,0 +1,190 @@
+Metadata-Version: 2.4
+Name: FeatureEng_arun8nov
+Version: 0.0.2
+Summary: A collection of feature engineering methods for preprocessing datasets.
+Home-page: https://github.com/arun8nov/FeatureEng
+Author: Arunprakash
+Author-email: arunbabuprakash@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pandas
+Requires-Dist: numpy
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+
+# 📦 FeatureEngineering
+
+**FeatureEngineering** is a Python package that provides multiple encoding and scaling techniques for preprocessing categorical and numerical data. It’s lightweight, dependency-free (except for `pandas` and `numpy`), and ideal for rapid feature engineering during model development.
+
+---
+
+## 📌 Key Features
+
+✅ One-Hot Encoding  
+✅ Label Encoding  
+✅ Ordinal Encoding  
+✅ Target Encoding  
+✅ Frequency Encoding  
+✅ Binary Encoding  
+✅ Standard Scaling (Z-Score)  
+✅ Normalization Scaling (Min-Max)
+
+---
+
+## 📥 Installation
+
+Install the package using pip:
+
+```bash
+pip install FeatureEng_arun8nov
+```
+
+> Ensure you have `pandas` and `numpy` installed.
+
+---
+
+## 🔧 How to Use
+
+### Step 1: Import the Class
+
+```python
+from Preprocess import FeatureEngineering
+import pandas as pd
+```
+
+### Step 2: Create Sample Data
+
+```python
+df = pd.DataFrame({
+    'Color': ['Red', 'Blue', 'Green', 'Red'],
+    'Size': ['S', 'M', 'L', 'S']
+})
+```
+
+### Step 3: Initialize the Class
+
+```python
+fe = FeatureEngineering()
+```
+
+---
+
+## 🧠 Encoding Methods
+
+### 1. One-Hot Encoding
+
+```python
+ohe_df = fe.OneHot_En(df[['Color']])
+```
+
+### 2. Label Encoding
+
+```python
+label_df = fe.Lable_En(df[['Color']].copy())
+```
+
+### 3. Ordinal Encoding
+
+```python
+order_list = [['S', 'M', 'L']]
+ord_df = fe.Order_En(order_list, df[['Size']].copy())
+```
+
+### 4. Target Encoding
+
+```python
+target = pd.DataFrame({'Price': [100, 200, 300, 150]})
+target_encoded_df = fe.Target_En(df[['Color']], target)
+```
+
+### 5. Frequency Encoding
+
+```python
+freq_df = fe.Freq_En(df[['Color']].copy())
+```
+
+### 6. Binary Encoding
+
+```python
+bin_df = fe.Bin_En(df[['Color']].copy())
+```
+
+---
+
+## 📏 Scaling Methods
+
+For numerical columns:
+
+```python
+num_df = pd.DataFrame({'Age': [20, 25, 30], 'Salary': [30000, 50000, 70000]})
+```
+
+### 7. Standard Scaling (Z-Score)
+
+```python
+std_df = fe.Stannd_Scale(num_df)
+```
+
+### 8. Normalization (Min-Max)
+
+```python
+norm_df = fe.Normm_Scale(num_df)
+```
+
+---
+
+## 🧾 Function Summary
+
+| Method              | Purpose                                  | Input Type     |
+|---------------------|-------------------------------------------|----------------|
+| `OneHot_En`         | One-Hot Encode categorical data           | DataFrame      |
+| `Lable_En`          | Label Encode categorical data             | DataFrame      |
+| `Order_En`          | Ordinal Encode based on user order        | DataFrame + list |
+| `Target_En`         | Encode using target mean per category     | DataFrame + target column as DataFrame |
+| `Freq_En`           | Encode based on frequency count           | DataFrame      |
+| `Bin_En`            | Encode as binary numbers                  | DataFrame      |
+| `Stannd_Scale`      | Apply Z-score scaling                     | Numerical DataFrame |
+| `Normm_Scale`       | Apply Min-Max scaling                     | Numerical DataFrame |
+
+---
+
+## 🔐 License
+
+This package is licensed under the [MIT License](./LICENSE).
+
+---
+
+## 👨‍💻 Author
+
+**Arunprakash B**  
+GitHub: [arun8nov]  
+LinkedIn: [https://www.linkedin.com/in/arun8nov/]
+
+---
+
+## 📢 Note
+
+This package is ideal for:
+
+- ML beginners looking to understand encodings manually  
+- Rapid prototyping pipelines  
+- Educational and academic projects  
+
+---
+
+## 🙋 Need Help?
+
+If you encounter any bugs or have suggestions, please open an issue on [GitHub](https://github.com/arun8nov/FeatureEng).
