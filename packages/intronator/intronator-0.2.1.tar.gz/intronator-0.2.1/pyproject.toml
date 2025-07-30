@@ -1,0 +1,74 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "intronator"
+version = "0.2.1"
+description = "A Python package for comprehensive splice site analysis and simulation"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    {name = "Intronator Team", email = "contact@intronator.org"}
+]
+maintainers = [
+    {name = "Intronator Team", email = "contact@intronator.org"}
+]
+license = "MIT"
+keywords = ["bioinformatics", "splicing", "genomics", "splice-sites", "RNA", "mutations"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research", 
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "seqmat",
+    "numpy>=1.21.0",
+    "pandas>=1.3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov",
+    "black",
+    "isort",
+    "flake8",
+]
+ml = [
+    "torch>=1.10.0",
+    "tensorflow>=2.8.0",
+    "keras>=2.8.0",
+    "absl-py",
+]
+external = [
+    "spliceai",
+]
+
+[project.urls]
+Homepage = "https://github.com/intronator/intronator"
+Documentation = "https://intronator.readthedocs.io"
+Repository = "https://github.com/intronator/intronator"
+"Bug Tracker" = "https://github.com/intronator/intronator/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["intronator*"]
+exclude = ["tests*"]
+
+[tool.setuptools.package-data]
+intronator = ["*.md", "*.txt", "*.yml"]
+
+[tool.black]
+line-length = 88
+target-version = ['py310']
+
+[tool.isort]
+profile = "black"
+line_length = 88
