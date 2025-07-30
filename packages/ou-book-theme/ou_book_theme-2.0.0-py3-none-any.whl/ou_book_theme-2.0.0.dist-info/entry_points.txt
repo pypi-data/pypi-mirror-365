@@ -1,0 +1,6 @@
+[console_scripts]
+obt = ou_book_theme.__main__:app
+ou-book-theme = ou_book_theme.__main__:app
+
+[jb.cmdline]
+obt = ou_book_theme.cli:main

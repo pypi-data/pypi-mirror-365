@@ -1,0 +1,266 @@
+// layout and appearance
+.boxSizing(@sizing: border-box) {
+  -moz-box-sizing: @sizing;
+  -webkit-box-sizing: @sizing;
+  box-sizing: @sizing;
+}
+.appearance(@hidden: none) {
+  -moz-appearance: @hidden;
+  -webkit-appearance: @hidden;
+  appearance: @hidden;
+}
+.visibilityHidden() {
+    visibility: hidden;
+    display: none;
+}
+.visibilityVisible() {
+    visibility: visible;
+    display: inline;
+}
+.borderRadiusNone(@border-radius: 0) {
+    -webkit-border-radius: @border-radius;
+    -moz-border-radius: @border-radius;
+    border-radius: @border-radius;
+}
+.borderRadius4(@border-radius4: 4px) {
+    -webkit-border-radius: @border-radius4;
+    -moz-border-radius: @border-radius4;
+    border-radius: @border-radius4;
+}
+//transitions
+.transitionOut(@transition: 0.2s ease-out) {
+    -webkit-transition: @transition;
+       -moz-transition: @transition;
+         -o-transition: @transition;
+            transition: @transition;
+}
+.transitionAll(@transitionAll: all 0.2s) {
+    -webkit-transition: @transitionAll;
+       -moz-transition: @transitionAll;
+         -o-transition: @transitionAll;
+            transition: @transitionAll;
+}
+.border-transition(@duration:0.15s, @ease:ease-out){
+    -webkit-transition: border-color @duration @ease;
+       -moz-transition: border-color @duration @ease;
+         -o-transition: border-color @duration @ease;
+            transition: border-color @duration @ease;
+}
+.box-shadow-transition(@duration:0.15s, @ease:ease-out){
+    -webkit-transition: box-shadow @duration @ease;
+       -moz-transition: box-shadow @duration @ease;
+         -o-transition: box-shadow @duration @ease;
+            transition: box-shadow @duration @ease;
+}
+.background-transition(@duration:0.15s, @ease:ease-out){
+    -webkit-transition: background @duration @ease;
+       -moz-transition: background @duration @ease;
+         -o-transition: background @duration @ease;
+            transition: background @duration @ease;
+}
+.box-shadow(@string) {
+    -webkit-box-shadow:  @string;
+       -moz-box-shadow:  @string;
+         -o-box-shadow:  @string;
+            box-shadow:  @string;
+}
+
+.hide() {
+    position:absolute;
+	width:1px;
+	height:1px;
+	overflow:hidden;
+	clip:rect(1px, 1px, 1px, 1px); /* IE 6/7 */
+    clip:inset(50%);
+    white-space:nowrap;
+}
+// Images
+
+// Buttons
+.iaNavActive() {
+    background-color: #1F55A5;
+    color: @white;
+    text-decoration:none;
+    border-bottom: solid;
+    border-bottom-color: #FFFFFF;
+    border-radius: 0px 15px 0px 0px;
+}
+.ou-button() {
+	.borderRadius4;
+	.transitionOut;
+	font-family: @base-font-family;
+	font-size: 1.2em;
+	background: @pink;
+	color: @white;
+	font-weight: normal;
+	text-decoration: none;
+	padding: 0.6em 0.8em;
+	display: inline-block;
+	margin: 0 0 0.875em 0;
+	border: 1px solid @pink;
+	&:hover, &:focus {
+		background: @pinkDarker2;
+		color: @white;
+		text-decoration: underline;
+	}
+	&:focus {
+		outline: thin dotted;
+	}
+	&:active {
+		background: @pinkLighter1;
+		color: @white;
+	}
+}
+.ou-international-button() {
+    padding: .3em .8em;
+    margin-bottom: 0;
+}
+.ou-search() {
+    position: relative;
+    margin: 0 1px 0 2px;
+    display: inline-table;
+    //border: 1px solid @blackLighter5;
+    width: 172px;
+    //overflow: hidden;
+    .box-shadow-transition();
+    //.box-shadow (0.1px 0px 0px 0.07em @blackLighter5);
+    //background: #FFFFFF 0% 0% no-repeat padding-box;
+    //border: 1px solid #24285C;
+    opacity: 1;
+    /*&:hover {
+        .box-shadow(0.1px 0px 0px 0.07em @hoverColor);
+    }*/
+    form {
+        display: table;
+        width: 100%;
+    }
+
+    input {
+        .borderRadiusNone();
+        .boxSizing();
+        padding: 8px 5px 8px 5px;
+        margin: 0 0 0 5px;
+        background: @white;
+        font-size: @base-font-size-legacy; //for legacy IE
+        font-size: @base-font-size;
+        font-family: Arial, sans-serif;
+        width: 150px;
+        color: @black;
+        .appearance();
+        cursor: text;
+        line-height: 1.2;
+
+        &.ou-header-search {
+            .background-transition();
+            //margin: 1px 0;
+            border: 0;
+            width: 134px;
+            background: #FFFFFF;
+            border-radius: 5px 1px 1px 5px;
+        }
+
+        &:focus {
+            outline: 0;
+            background-color: #eef3f9;
+            color: @black;
+        }
+
+        &:focus-visible {
+            background: #FDF289;
+            outline: 0;
+        }
+
+        &::-webkit-input-placeholder {
+            color: #24285c;
+            opacity: 1;
+        }
+
+        &:-moz-placeholder {
+            color: #24285c;
+            opacity: 1;
+        }
+
+        &::-moz-placeholder {
+            color: #24285c; //firefox adds opacity by default
+            opacity: 1;
+        }
+
+        &:focus::-webkit-input-placeholder {
+            color: #24285c;
+            opacity: 1;
+        }
+
+        &:focus:-moz-placeholder {
+            color: #24285c;
+            opacity: 1;
+        }
+
+        &:focus::-moz-placeholder {
+            color: #24285c; //firefox adds opacity by default
+            opacity: 1;
+        }
+        //additional vendor overrides
+        &::-webkit-search-decoration {
+            display: none;
+        }
+    }
+
+    .ou-button-container {
+        background: #FFFFFF;
+        display: table-cell;
+        padding: 2px 7px;
+        width: 42px;
+        overflow: hidden;
+        background: #FFFFFF;
+        border-radius: 1px 25px 25px 1px;
+        border-left: 1.5px solid #24285c;
+
+        &:focus-within {
+            background: #FDF289;
+        }
+
+        button {
+            .borderRadiusNone();
+            .boxSizing();
+            position: absolute;
+            top: 7px;
+            right: 8px;
+            background: transparent;
+            color: @blue;
+            border: 0;
+            margin: 0;
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            padding: 0;
+            overflow: hidden;
+            //OUDigital overrides
+            -moz-transition: none;
+            -webkit-transition: none;
+            transition: none;
+
+            &#search-button-header:focus, &#search-button-header:focus-visible {
+                outline: 0;
+            }
+
+            img {
+                position: relative;
+                width: 18px;
+            }
+            /*&:hover img {
+                top: -164px;
+            }*/
+            // required by Firefox to ensure keyboard focus
+            &:focus::-moz-focus-inner {
+                border: 1px dotted;
+            }
+        }
+    }
+}
+#ou-head #ou-header #ou-service-links .ou-search input.input-focus {
+    &:focus {
+        outline: 0;
+        background: #E9EEF6;
+        color: #000;
+    }
+}

@@ -1,0 +1,60 @@
+Metadata-Version: 2.4
+Name: ou-book-theme
+Version: 2.0.0
+Project-URL: Documentation, https://stem-ts-gitlab.open.ac.uk/jupyterhub-infrastructure/ou-book-theme#ou-book-theme
+Project-URL: Issues, https://stem-ts-gitlab.open.ac.uk/jupyterhub-infrastructure/ou-book-theme/-/issues
+Project-URL: Source, https://stem-ts-gitlab.open.ac.uk/jupyterhub-infrastructure/ou-book-theme
+Author-email: Mark Hall <mark.hall@open.ac.uk>
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.10
+Requires-Dist: livereload<3,>=2.6.3
+Requires-Dist: myst-parser<5,>=4.0.1
+Requires-Dist: sphinx-book-theme<2.0.0,>=1.0.1
+Requires-Dist: sphinx-design<1.0.0,>=0.5.0
+Requires-Dist: sphinx-external-toc<2,>=1.0.1
+Requires-Dist: sphinx<9,>=8
+Requires-Dist: sphinxcontrib-mermaid<1.0.0,>=0.8.1
+Requires-Dist: typer
+Requires-Dist: webvtt-py<0.6.0,>=0.5.1
+Description-Content-Type: text/markdown
+
+# OU Book Theme
+
+[![PyPI - Version](https://img.shields.io/pypi/v/ou-book-theme.svg)](https://pypi.org/project/ou-book-theme)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/ou-book-theme.svg)](https://pypi.org/project/ou-book-theme)
+
+-----
+
+## Installation
+
+```console
+pip install ou-book-theme
+```
+
+Full documentation can be found at [https://docs.ocl.open.ac.uk/ou-book-theme/latest](https://docs.ocl.open.ac.uk/ou-book-theme/latest).
+
+## Development
+
+To reduce any code formatting and layouting issues, the project uses the [Ruff linter and formatter](https://docs.astral.sh/ruff/).
+
+To ensure that your code follows the formatting, a [pre-commit hook](https://pre-commit.com/) is provided, which can
+be installed via
+
+```console
+pre-commit install
+```
+
+The project uses [hatch](https://hatch.pypa.io) to manage the Python development environment. Additionally the build
+process requires [Node.js](https://nodejs.org/en). After installing the pre-requisites, you can run the development
+server with the following command:
+
+```console
+hatch run server
+```
