@@ -1,0 +1,21 @@
+[project]
+name = "krnel"
+version = "0.0.15"
+description = "Krnel client library"
+readme = "README.md"
+authors = [
+    { name = "Kimberly Wilber", email = "kimmy+pypispam@krnel.ai" },
+    { name = "Peyman Faratin", email = "peyman+pypispam@krnel.ai" },
+]
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.28.1",
+    "pydantic>=2.11.7",
+]
+
+[project.scripts]
+krnel = "krnel:main"
+
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
