@@ -1,0 +1,35 @@
+Metadata-Version: 2.4
+Name: science
+Version: 0.0.1
+Summary: Science
+Author-email: Andy Casey <andrew.casey@monash.edu>
+Maintainer-email: Andy Casey <andrew.casey@monash.edu>
+License: LICENSE.md
+Keywords: science
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-cov; extra == "dev"
+Requires-Dist: pytest-sugar; extra == "dev"
+Requires-Dist: pre-commit; extra == "dev"
+Requires-Dist: black; extra == "dev"
+
+<div align="Center">
+
+# science 
+
+Where you test hypotheses and shit.
+
+[![Test Status](https://github.com/andycasey/science/actions/workflows/ci.yml/badge.svg)](https://github.com/andycasey/science/actions/workflows/ci.yml)
+[![Coverage Status](https://coveralls.io/repos/github/andycasey/science/badge.svg?branch=main&service=github)](https://coveralls.io/github/andycasey/science?branch=main)
+
+</div>
+
+# Install
+
+```
+uv add science
+```
+
