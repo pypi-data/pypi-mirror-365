@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "odinai-sdk"
+version = "3.0.0"
+description = "Odin AI Python SDK - Official Python client library for Odin AI API"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Odin AI Team", email = "support@getodin.ai"},
+]
+keywords = ["odin", "ai", "api", "sdk", "python", "cybersecurity", "security"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "urllib3>=1.25.3,<3.0.0",
+    "python-dateutil>=2.8.2",
+    "pydantic>=2.5.0",
+    "typing-extensions>=4.7.1",
+]
+
+[project.urls]
+Homepage = "https://getodin.ai"
+Repository = "https://github.com/getodin/odin-sdk"
+Documentation = "https://docs.getodin.ai"
+"Bug Reports" = "https://github.com/getodin/odin-sdk/issues"
+
+[tool.setuptools.packages.find]
+include = ["odin_sdk*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.json", "*.yaml", "*.yml", "*.txt", "*.md"]

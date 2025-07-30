@@ -1,0 +1,9 @@
+include README.md
+include LICENSE
+recursive-include odin_sdk *.py
+recursive-include odin_sdk/_odin_sdk_internal *.py
+recursive-include odin_sdk/_odin_sdk_internal *.json
+recursive-include odin_sdk/_odin_sdk_internal *.yaml
+recursive-include odin_sdk/_odin_sdk_internal *.yml
+recursive-include odin_sdk/_odin_sdk_internal *.txt
+recursive-include odin_sdk/_odin_sdk_internal *.md

@@ -1,0 +1,104 @@
+Metadata-Version: 2.4
+Name: odinai-sdk
+Version: 3.0.0
+Summary: Odin AI Python SDK - Official Python client library for Odin AI API
+Home-page: https://getodin.ai
+Author: Odin AI Team
+Author-email: Odin AI Team <support@getodin.ai>
+License: MIT
+Project-URL: Homepage, https://getodin.ai
+Project-URL: Repository, https://github.com/getodin/odin-sdk
+Project-URL: Documentation, https://docs.getodin.ai
+Project-URL: Bug Reports, https://github.com/getodin/odin-sdk/issues
+Keywords: odin,ai,api,sdk,python,cybersecurity,security
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: urllib3<3.0.0,>=1.25.3
+Requires-Dist: python-dateutil>=2.8.2
+Requires-Dist: pydantic>=2.5.0
+Requires-Dist: typing-extensions>=4.7.1
+Dynamic: author
+Dynamic: home-page
+Dynamic: requires-python
+
+# Odin AI Python SDK
+
+[![PyPI version](https://badge.fury.io/py/odinai-sdk.svg)](https://badge.fury.io/py/odinai-sdk)
+[![Python Support](https://img.shields.io/pypi/pyversions/odinai-sdk.svg)](https://pypi.org/project/odinai-sdk/)
+
+Official Python client library for the [Odin AI](https://getodin.ai) API.
+
+## Installation
+
+```bash
+pip install odinai-sdk
+```
+
+## Quick Start
+
+```python
+from odin_sdk import OdinClient
+
+# Initialize the client
+client = OdinClient(
+    api_key="your-api-key",
+    api_secret="your-api-secret",
+    host="https://api.getodin.ai"  # optional, defaults to production
+)
+
+# Create a project
+project = client.projects.create(
+    name="My Project",
+    description="A test project"
+)
+
+# Start a chat
+chat = client.chats.create(
+    project_id=project.id,
+    message="Hello, Odin!"
+)
+
+print(f"Response: {chat.response}")
+```
+
+## Features
+
+- **Clean, Resource-based API**: Intuitive interface organized by resources (projects, chats, agents, etc.)
+- **Type Safety**: Full type hints for better IDE support and code completion
+- **Error Handling**: Meaningful exceptions for different error conditions
+- **Authentication**: Automatic API key and secret management
+- **Async Support**: Coming soon!
+
+## Documentation
+
+For detailed documentation and examples, visit [docs.getodin.ai](https://docs.getodin.ai)
+
+## API Resources
+
+- **Projects**: Create and manage AI projects
+- **Chats**: Have conversations with AI agents
+- **Agents**: Manage and configure AI agents  
+- **Knowledge Base**: Upload and manage knowledge base entries
+- **Data Types**: Define custom data types
+- **Roles**: Manage user roles and permissions
+
+## Support
+
+- GitHub Issues: [github.com/getodin/odin-sdk/issues](https://github.com/getodin/odin-sdk/issues)
+- Email: [support@getodin.ai](mailto:support@getodin.ai)
+- Documentation: [docs.getodin.ai](https://docs.getodin.ai)
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
