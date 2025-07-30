@@ -1,0 +1,151 @@
+Metadata-Version: 2.4
+Name: farady-python
+Version: 0.1.3
+Summary: Farady Python Library
+Home-page: https://github.com/Tinger-X/Farady-Python
+Author: Tinger
+Author-email: email@tingerx.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: matplotlib
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Farady-Python
+
+法拉第的python本地开发辅助库，目前为止兼容云端的导入环境，简化并加速开发过程。
+
+# 使用方法
+
++ 安装：`pip install Farady-Python`
++ 具体使用：`from FDLib import *`
+
+# 使用示例
+
+## 代码
+
+```python
+import math
+from FDLib import *
+
+
+def gen_x(b: float, e: float, s: float = 1.0):
+    assert s != 0, "s couldn't be zero"
+
+    def pos():
+        return b <= e
+
+    def neg():
+        return b >= e
+
+    cond = pos if s > 0 else neg
+    while cond():
+        yield b
+        b += s
+
+
+class MyLib(FDLibrary):
+    metalLayers = ["Metal Layer"]
+    Parameters = {
+        # 参数列表
+        "X": 0.0, "Y": 0.0, "L1": 50.6, "L2": 67.8
+    }
+    ParameterOrder = [
+        # 参数显示顺序
+        "X", "Y", "L1", "L2"
+    ]
+
+    def check_param(self):
+        # 检查参数是否合法，不能用f-string，需要用format
+        assert 0 < self.L1 < self.L2, "require: 0 < L1 < L2, got: L1={0}, L2={1}".format(self.L1, self.L2)
+        # 其它检查
+
+    def reload(self):
+        self.check_param()  # 调用前必须重写父类方法
+        # 生成polygon关键点
+        xs = list(gen_x(-self.L1 + 5, self.L1 - 5, 0.1))
+        sin_n = [math.sin(x) * 5 for x in xs]
+        y_t = [y + 2 for y in sin_n]
+        y_b = [y - 2 for y in sin_n]
+        ps_t = [(x, y) for (x, y) in zip(xs, y_t)]
+        ps_b = [(x, y) for (x, y) in zip(xs, y_b)]
+        ps = ps_t + ps_b[::-1]  # 带有宽度的sin曲线
+        
+        self.specifications = [
+            Arc(
+                location=(self.X, self.Y),
+                innerRadius=self.L1,
+                outerRadius=self.L2,
+                beginAngle=0,
+                endAngle=math.pi / 3 * 2,
+                clockwise=0,  # 逆时针从0转到120°
+                metalLayer="arc-small"  # 该部分为小圆部分
+            ),
+            Arc(
+                location=(self.X, self.Y),
+                innerRadius=self.L1,
+                outerRadius=self.L2,
+                beginAngle=0,
+                endAngle=math.pi / 3 * 2,
+                clockwise=1,  # 顺时针从0转到120°
+                metalLayer="arc-big"  # 该部分为大圆部分
+            ),
+            Rectangle(
+                location=(self.X - 20, self.Y + 10),
+                width=40,
+                height=10,
+                metalLayer="rect-up"  # 上面的矩形
+            ),
+            Rectangle(
+                location=(self.X - 5, self.Y - 40),
+                width=10,
+                height=30,
+                metalLayer="rect-bo"  # 下面的矩形
+            ),
+            Path(
+                location=[
+                    (self.X - self.L2, self.Y - self.L2),
+                    (self.X - self.L2, self.Y + self.L2)
+                ],
+                width=10,
+                path_type="round",
+                metalLayer="path-1"  # 左侧的线条
+            ),
+            Path(
+                location=[
+                    (self.X + self.L2, self.Y - self.L2),
+                    (self.X + self.L2, self.Y + self.L2)
+                ],
+                width=10,
+                path_type="round",
+                metalLayer="path-2"  # 右侧的线条
+            ),
+            Polygon(
+                location=ps,  # 中间的sin曲线
+                pins_location=[  # 上下的pin点
+                    [(self.X, self.Y - self.L2), (self.X, self.Y + self.L2)]
+                ]
+            )
+        ]
+
+
+if __name__ == "__main__":
+    MyLib().run()
+
+```
+
+## 运行结果
+
+![example](static/example.png)
