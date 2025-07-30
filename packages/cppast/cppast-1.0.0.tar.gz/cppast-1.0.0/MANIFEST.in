@@ -1,0 +1,7 @@
+recursive-include core *.py
+recursive-include output *.dot *.svg
+# Include images
+recursive-include images *
+# Include test data and C/CPP files
+recursive-include tests *.txt *.cpp
+recursive-include ctests *.c *.py
