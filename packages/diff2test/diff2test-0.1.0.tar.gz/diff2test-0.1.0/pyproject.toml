@@ -1,0 +1,24 @@
+[project]
+name = "diff2test"
+version = "0.1.0"
+description = "AI-Powered Unit Test Generation from Git Diffs"
+authors = [
+    {name = "yoon-yoo-sang",email = "yyss6188@naver.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "google-cloud-aiplatform (>=1.95.1,<2.0.0)",
+    "requests (>=2.32.3,<3.0.0)",
+    "typer (>=0.16.0,<0.17.0)",
+    "rich (>=14.0.0,<15.0.0)",
+    "black (>=25.1.0,<26.0.0)",
+    "pytest (>=8.3.5,<9.0.0)"
+]
+
+[tool.poetry.scripts]
+dtt = "diff2test.main:run"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
