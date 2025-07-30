@@ -1,0 +1,11 @@
+Metadata-Version: 2.4
+Name: PySideJZ
+Version: 0.1.0rc1
+Summary: Package of prefabricated custom PySide6 widgets
+Author-email: Jokubas Ziziunas <jokubas0001@gmail.com>
+Requires-Python: <3.14,>=3.12
+Requires-Dist: PySide6<7,>=6.9.0
+Requires-Dist: loguru<1,>=0.7.3
+Requires-Dist: qtawesome<2,>=1.4.0
+Provides-Extra: display
+Requires-Dist: numpy<3,>=2.2.6; extra == "display"

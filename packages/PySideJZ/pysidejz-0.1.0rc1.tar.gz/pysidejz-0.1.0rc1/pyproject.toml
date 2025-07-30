@@ -1,0 +1,49 @@
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+select = ["ALL"]
+ignore = [
+    "D",
+    "ANN",
+    "PLR0913",
+    "EM101",
+    "N805",
+    "TRY003",
+    "TRY002",
+    "EM102",
+    "N802",
+    "N999",
+    "FBT",
+    "Q000",
+    "BLE",
+    "DTZ"]
+
+[project.scripts]
+stylesheet_generator = "PySideJZ.stylesheet_generator:main"
+
+[project]
+name = "PySideJZ"
+version = "0.1.0.rc1"
+requires-python = ">=3.12,<3.14"
+description = "Package of prefabricated custom PySide6 widgets"
+authors = [{ name = "Jokubas Ziziunas", email = "jokubas0001@gmail.com"}]
+dependencies = [
+    "PySide6>=6.9.0,<7",
+    "loguru>=0.7.3,<1",
+    "qtawesome>=1.4.0,<2"
+]
+
+[tool.setuptools.package-data]
+PySideJZ = ["**/*"]
+
+[tool.setuptools.packages.find]
+exclude = ["logs*", "logs/*"]
+
+[project.optional-dependencies]
+display = [
+    "numpy>=2.2.6,<3",
+]
+
+[tool.ruff.lint.pylint]
+max-statements = 75
