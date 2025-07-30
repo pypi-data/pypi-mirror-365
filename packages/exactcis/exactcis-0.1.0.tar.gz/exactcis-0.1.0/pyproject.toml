@@ -1,0 +1,142 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "exactcis"
+version = "0.1.0"
+description = "Exact confidence intervals for odds ratios"
+readme = "readme.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [
+    {name = "ExactCIs Contributors", email = "exactcis-dev@example.org"},
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Scientific/Engineering :: Medical Science Apps.",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+# Core dependencies - minimal requirements for basic functionality
+dependencies = [
+    "numpy>=1.21,<2.0", # Constraining to pre-2.0 for broader compatibility
+    "scipy>=1.12.0",
+    "typing-extensions; python_version < '3.10'", # For older Python versions that need newer typing features
+    "statsmodels>=0.14.0",
+]
+
+[project.optional-dependencies]
+# Optional dependencies for enhanced functionality
+pandas = ["pandas>=1.3.0"]  # For data manipulation
+sympy = ["sympy>=1.9.0"]    # For symbolic mathematics
+tqdm = ["tqdm>=4.62.0"]  # For progress bars in long-running calculations
+viz = ["matplotlib>=3.4.0"]  # For visualization functions
+
+# Full set of optional dependencies for enhanced functionality
+full = [
+    "pandas>=1.3.0",
+    "sympy>=1.9.0",
+    "tqdm>=4.62.0",
+    "matplotlib>=3.4.0"
+]
+
+# Development dependencies
+dev = [
+    "pytest>=8.3.5",
+    "pytest-timeout>=2.1.0",
+    "pytest-xdist>=3.3.1",
+    "pytest-cov>=4.1.0",
+    "psutil>=7.0.0",
+    "line-profiler>=5.0.0",
+    "memory-profiler>=0.61.0",
+    "tqdm>=4.65.0",
+    "black>=23.0.0",
+    "ruff>=0.0.270",
+    "mypy>=1.0.0",
+    "pre-commit>=3.0.0"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/exactcis/exactcis"
+"Bug Tracker" = "https://github.com/exactcis/exactcis/issues"
+"Documentation" = "https://github.com/exactcis/exactcis/docs"
+
+[project.scripts]
+exactcis-cli = "exactcis.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/exactcis"]
+
+[tool.black]
+line-length = 88
+target-version = ["py39"]
+include = '\.pyi?$'
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.ruff]
+line-length = 88
+target-version = "py38"
+select = ["E", "F", "I"]
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_functions = "test_*"
+markers = [
+    "fast: mark a test as fast running",
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "unconditional: tests for the unconditional method",
+    "integration: integration tests",
+    "edge: tests edge cases",
+    "mock: tests that use mocking",
+]
+timeout = 300  # 5 minutes global timeout
+
+[tool.coverage.run]
+source = ["src/exactcis"]
+omit = ["*/__init__.py"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "pass",
+    "raise ImportError"
+]
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=8.3.5",
+    "pytest-timeout>=2.1.0",
+    "pytest-xdist>=3.3.1",
+    "pytest-cov>=4.1.0",
+    "psutil>=7.0.0",
+    "line-profiler>=5.0.0",
+    "memory-profiler>=0.61.0",
+    "tqdm>=4.65.0",
+    "black>=23.0.0",
+    "ruff>=0.0.270",
+    "mypy>=1.0.0",
+    "pre-commit>=3.0.0",
+    "sphinx>=4.0.0",
+    "sphinx-rtd-theme>=1.0.0",
+    "m2r2>=0.3.2",
+    "twine>=6.1.0",
+]
