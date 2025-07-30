@@ -1,0 +1,42 @@
+Metadata-Version: 2.1
+Name: abstra-connectors
+Version: 0.0.8
+Summary: Abstra Connectors
+Home-page: https://github.com/abstra-app/connectors
+License: MIT
+Platform: UNKNOWN
+Requires-Python: >=3.8, <4
+Description-Content-Type: text/markdown
+Requires-Dist: gql
+Requires-Dist: aiohttp
+Requires-Dist: pydantic
+
+Simplified SDK for many APIs.
+
+# Installing
+
+```bash
+pip install abstra-connectors
+```
+
+# Connectors
+
+- [abstra](./connectors/abstra)
+- [airtable](./connectors/airtable)
+- [clicksign](./connectors/clicksign)
+- [clickup](./connectors/clickup)
+- [discord](./connectors/discord)
+- [docusign](./connectors/docusign)
+- [google_calendar](./connectors/google_calendar)
+- [google_drive](./connectors/google_drive)
+- [google_sheets](./connectors/google_sheets)
+- [linkedin](./connectors/linkedin)
+- [microsoft_teams](./connectors/microsoft_teams)
+- [monday](./connectors/monday)
+- [openai](./connectors/openai)
+- [salesforce](./connectors/salesforce)
+- [slack](./connectors/slack)
+- [telegram](./connectors/telegram)
+- [whatsapp](./connectors/whatsapp)
+
+
