@@ -1,0 +1,62 @@
+# py_eio_logic
+
+A simple Python package for evaluating multiple boolean conditions provided as strings.
+
+**WARNING: This package uses `eval()` internally. It is EXTREMELY DANGEROUS to use this package with UNTRUSTED INPUT STRINGS. Malicious input can lead to arbitrary code execution on your system.**
+Please ensure all `conditions` passed to `eio()` are from trusted, internal sources only.
+
+## Installation
+
+```bash
+pip install py-eio
+
+from py_eio import eio
+
+# Example 1: Passing individual condition strings
+x = 10
+y = 5
+result = eio("x > 5", "y < 10")
+print(f"Result 1: {result}") # Expected: True
+
+result = eio("x == 10", "y == 6")
+print(f"Result 2: {result}") # Expected: False
+
+# Example 2: Passing a list of condition strings
+z = 7
+conditions_list = ["z >= 7", "x + y == 15"]
+result = eio(conditions_list)
+print(f"Result 3: {result}") # Expected: True
+
+conditions_list_fail = ["z < 5", "x > 0"]
+result = eio(conditions_list_fail)
+print(f"Result 4: {result}") # Expected: False
+
+# Example 3: When no conditions are passed (evaluates to True)
+result = eio()
+print(f"Result 5: {result}") # Expected: True
+
+
+from py_eio import eio
+
+# 'undefined_var' does not exist.
+# The second condition would cause a NameError if evaluated.
+
+# Case 1: Error condition is after a False condition
+result = eio("1 == 2", "undefined_var > 0")
+print(f"Result with error condition after False: {result}")
+# Output: Result with error condition after False: False
+# (No error message for 'undefined_var' because "1 == 2" is False, and evaluation stops)
+
+# Case 2: Error condition is the first one, or after a True condition
+# This will print an error message from the function (due to the try-except block)
+# and return None.
+result = eio("1 == 1", "another_undefined_var > 0")
+print(f"Result with error condition evaluated: {result}")
+# Output: Error evaluating condition 'another_undefined_var > 0': name 'another_undefined_var' is not defined
+#         Result with error condition evaluated: None
+
+git clone [https://github.com/MostafaHanii/py_eio.git](https://github.com/MostafaHanii/py_eio.git)
+cd py_eio
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -e .
