@@ -1,0 +1,29 @@
+Metadata-Version: 2.2
+Name: utilskit
+Version: 0.1.1
+Summary: description
+Author: Kimyh
+Author-email: kim_yh663927@naver.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: matplotlib==3.10.3
+Requires-Dist: numpy==2.2.6
+Requires-Dist: pandas==2.3.1
+Requires-Dist: PyMySQL==1.1.1
+Requires-Dist: SQLAlchemy==2.0.41
+Requires-Dist: tqdm==4.67.1
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+0.1.1
+repeatutils.py 추가
+utils.py 에서 repeat 관련 함수 제거
