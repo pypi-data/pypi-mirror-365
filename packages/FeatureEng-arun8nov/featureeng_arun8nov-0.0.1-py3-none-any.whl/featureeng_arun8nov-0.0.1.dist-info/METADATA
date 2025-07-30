@@ -1,0 +1,99 @@
+Metadata-Version: 2.4
+Name: FeatureEng_arun8nov
+Version: 0.0.1
+Summary: A collection of feature engineering methods for preprocessing datasets.
+Home-page: https://github.com/arun8nov/FeatureEng
+Author: Arunprakash
+Author-email: arunbabuprakash@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pandas
+Requires-Dist: numpy
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Feature Engineering Utilities
+
+This Python module provides a collection of feature engineering methods for preprocessing datasets using Pandas. It includes various encoding techniques and scaling methods, which can be used to transform categorical and numerical data for machine learning models.
+
+## 📦 Class: `FeatureEngineering`
+
+### 🔧 Methods
+
+#### 1. `OneHot_En(df)`
+Performs **One-Hot Encoding** on all columns of the given DataFrame.
+
+- **Input**: DataFrame with categorical columns.
+- **Output**: DataFrame with one-hot encoded columns.
+
+#### 2. `Lable_En(df)`
+Applies **Label Encoding** to all columns.
+
+- **Input**: DataFrame with categorical data.
+- **Output**: DataFrame with integer-encoded values.
+
+#### 3. `Order_En(o_list, df)`
+Applies **Ordinal Encoding** based on the given list of ordered values.
+
+- **Input**:
+  - `o_list`: List of lists with ordered values.
+  - `df`: DataFrame with categorical data.
+- **Output**: Ordinal encoded DataFrame.
+
+#### 4. `Target_En(df, Target_column_df)`
+Applies **Target Encoding** based on the average of the target column for each category.
+
+- **Input**:
+  - `df`: DataFrame with categorical features.
+  - `Target_column_df`: DataFrame with the target column.
+- **Output**: Encoded DataFrame using target mean values.
+
+#### 5. `Freq_En(df)`
+Applies **Frequency Encoding** to all columns.
+
+- **Input**: DataFrame with categorical values.
+- **Output**: DataFrame with frequency-based values.
+
+#### 6. `Bin_En(df)`
+Encodes numeric values as **binary string representations** based on their position.
+
+- **Input**: DataFrame with numerical or categorical data.
+- **Output**: DataFrame with binary representations.
+
+#### 7. `Stannd_Scale(df)`
+Applies **Standard Scaling (Z-score)** to numerical columns.
+
+- **Input**: DataFrame with numerical features.
+- **Output**: DataFrame with standardized values.
+
+#### 8. `Normm_Scale(df)`
+Applies **Min-Max Normalization** to numerical columns.
+
+- **Input**: DataFrame with numerical features.
+- **Output**: DataFrame with normalized values between 0 and 1.
+
+---
+
+## 🚀 How to Use
+
+```python
+from Preprocess import  FeaturEngineering
+import pandas as pd
+
+df = pd.DataFrame({...})  # your input data
+fe = Preprocess()
+
+encoded_df = fe.OneHot_En(df)       # One-Hot Encoding
+labeled_df = fe.Lable_En(df.copy()) # Label Encoding
