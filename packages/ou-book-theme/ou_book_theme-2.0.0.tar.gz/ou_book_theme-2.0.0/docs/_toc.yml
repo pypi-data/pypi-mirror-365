@@ -1,0 +1,24 @@
+format: jb-book
+root: index
+parts:
+  - caption: User documentation
+    chapters:
+      - file: user/installation
+      - file: user/markup
+      - file: user/extensions/index
+        sections:
+          - file: user/extensions/activity
+          - file: user/extensions/errata
+          - file: user/extensions/video
+          - file: user/extensions/where-next
+          - file: user/extensions/time
+      - file: user/figures
+      - file: user/cli
+  - caption: Developer documentation
+    chapters:
+      - file: dev/index
+  - caption: About
+    chapters:
+      - file: changelog
+      - file: accessibility-statement
+        title: Accessibility Statement
