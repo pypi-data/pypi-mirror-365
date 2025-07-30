@@ -1,0 +1,32 @@
+# env folders
+env/
+venv/
+rag_venv/
+.venv/
+
+# notebook folders
+.ipynb_checkpoints/
+
+# data folders
+data/
+*/source-materials/
+
+# keys
+.openai_key
+.weaviate_api_key
+
+# cache
+__pycache__/
+old/
+
+.env
+logs/
+
+.DS_Store
+
+.weaviate*
+source_documents/
+*.csv
+*.db
+
+dist/
