@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: stuom
+Version: 0.3.0
+Summary: Simple statically-typed unit of measurements with order conversions.
+Author-email: Shaun Ostoic <ostoic@proton.me>
+Requires-Python: ==3.10.*
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Provides-Extra: dev
+Requires-Dist: black~=24.4.0; extra == "dev"
+Requires-Dist: ruff~=0.5.0; extra == "dev"
+Requires-Dist: pytest~=8.2.0; extra == "dev"
+Requires-Dist: pytest-cov~=5.0.0; extra == "dev"
+Provides-Extra: pydantic
+Requires-Dist: pydantic~=2.6; extra == "pydantic"
+Dynamic: license-file
