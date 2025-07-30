@@ -1,0 +1,81 @@
+[build-system]
+requires = ["setuptools>=61.0", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dtnma-camp"
+version = "2.0.0"
+authors = [
+  { name="JHU/APL", email="dtnma-support@jhuapl.edu" },
+]
+description = "C code generator for DTNMA tools"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+]
+
+dependencies = [
+  "dtnma-ace",
+  "setuptools",
+  "jinja2",
+]
+
+[tool.setuptools.package-data]
+"*" = ["*.jinja"]
+
+[project.optional-dependencies]
+test = [
+  "jinja2",
+  "pytest",
+  "pytest-cov",
+  "coverage",
+  "psycopg2-binary"
+]
+pylint = [
+  "pylint",
+  "pylint_junit",
+]
+flake8 = [
+  "flake8",
+  "flake8_pyproject",
+  "flake8_formatter_junit_xml",
+]
+docs = [
+  "sphinx <6",
+  "sphinx_rtd_theme",
+  "sphinx-argparse",
+]
+
+[tool.pytest.ini_options]
+addopts = [
+    "--log-cli-level=warning",
+    "--import-mode=importlib",
+]
+testpaths = [
+    "test",
+    "integration-test",
+]
+norecursedirs = "deps"
+
+[tool.pylint.MAIN]
+load-plugins="pylint_junit"
+suggestion-mode="no"
+[tool.pylint.FORMAT]
+max-line-length=100
+[tool.pylint.DESIGN]
+min-public-methods=1
+
+[tool.flake8]
+max-line-length=100
+
+[project.scripts]
+camp = "camp.tools.camp:main"
+
+[project.urls]
+"Homepage" = "https://github.com/JHUAPL-DTNMA/dtnma-camp"
+"Bug Tracker" = "https://github.com/JHUAPL-DTNMA/dtnma-camp/issues"
