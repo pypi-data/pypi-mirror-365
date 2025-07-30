@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: personnel-matching-data-process-algo-v2-dev
+  labels:
+    app: personnel-matching-data-process-algo-v2-dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: personnel-matching-data-process-algo-v2-dev
+  template:
+    metadata:
+      labels:
+        app: personnel-matching-data-process-algo-v2-dev
+    spec:
+      containers:
+      - name: personnel-matching-data-process-algo-v2-service-dev
+        image: 172.22.121.50/personnel-matching/personnel_matching_data_process_algo_v2:v0.0.1-beta.8
+        ports:
+        - containerPort: 10000
+        volumeMounts:
+          - name: volume-env
+            readOnly: true
+            mountPath: /workspace/.env
+            subPath: .env
+          - name: logs
+            mountPath: /workspace/logs
+      - name: filebeat
+        image: 172.22.121.50/gzhu/library/elastic/filebeat:8.15.5
+        args: ["-e", "-c", "/workspace/filebeat.yml"]
+        volumeMounts:
+          - name: logs
+            mountPath: /workspace/logs
+          - name: volume-env
+            mountPath: /workspace/filebeat.yml
+            subPath: filebeat.yml
+      volumes:
+        - name: volume-env
+          configMap:
+            name: personnel-matching-data-process-algo-v2-config-dev
+            optional: true
+            defaultMode: 420
+        - name: logs
+          emptyDir: {}
+      imagePullSecrets:
+      - name: harbor-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: personnel-matching-data-process-algo-v2-service-dev
+spec:
+  type: NodePort
+  selector:
+    app: personnel-matching-data-process-algo-v2-dev
+  ports:
+    - protocol: TCP
+      port: 10000
+      targetPort: 10000
