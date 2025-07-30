@@ -1,0 +1,38 @@
+include README.md
+include README_NEW.md
+include RESTRUCTURE_COMPLETE.md
+include requirements.txt
+include LICENSE
+include MANIFEST.in
+include *.md
+include *.txt
+
+# Include all Python files
+recursive-include langchain_g4f *.py
+recursive-include langchain_g4f *.md
+
+# Include package data
+recursive-include langchain_g4f/core *.py
+recursive-include langchain_g4f/text *.py
+recursive-include langchain_g4f/images *.py
+recursive-include langchain_g4f/audio *.py
+recursive-include langchain_g4f/vision *.py
+recursive-include langchain_g4f/files *.py
+recursive-include langchain_g4f/video *.py
+
+# Include examples and tests
+include comprehensive_example.py
+include test_structure.py
+include example_usage.py
+
+# Exclude unnecessary files
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude *.orig
+global-exclude *.rej
+global-exclude __pycache__
+prune .git
+prune .github
+prune build
+prune dist
+prune *.egg-info
