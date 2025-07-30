@@ -1,0 +1,23 @@
+[build-system]
+requires = ['setuptools>=42']
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = "pyvisonic"
+version = "3.0.0"
+authors = [ 
+    { name="DaveSmegHead", email="davesmeghead@hotmail.com" },
+]
+description="An asyncio python interface library to the visonic alarm panel"
+readme = "README.md"
+requires-python = ">=3.13"
+classifiers = [
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+]
+dependencies = ["aconsole==0.0.8", "pyserial_asyncio==0.6", "Pillow"]
+
+[project.urls]
+Homepage = "https://github.com/davesmeghead/pyvisonic"
+Issues = "https://github.com/davesmeghead/pyvisonic/Issues"
