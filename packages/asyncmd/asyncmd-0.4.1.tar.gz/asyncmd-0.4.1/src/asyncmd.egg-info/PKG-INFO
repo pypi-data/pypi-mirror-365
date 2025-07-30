@@ -1,0 +1,90 @@
+Metadata-Version: 2.4
+Name: asyncmd
+Version: 0.4.1
+Summary: asyncmd is a library to write concurrent code to run and analyze molecular dynamics simulations using pythons async/await syntax.
+Author-email: Hendrik Jung <hendrik.jung@biophys.mpg.de>
+Maintainer-email: Hendrik Jung <hendrik.jung@biophys.mpg.de>
+Project-URL: Documentation, https://asyncmd.readthedocs.io/en/latest/
+Project-URL: Repository, https://github.com/bio-phys/asyncmd.git
+Project-URL: Issues, https://github.com/bio-phys/asyncmd/issues
+Keywords: molecular dynamics,molecular-dynamics,MD,high performance computing,HPC,slurm,SLURM,gromacs,GROMACS
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Natural Language :: English
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Chemistry
+Classifier: Topic :: Scientific/Engineering :: Physics
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: aiofiles
+Requires-Dist: mdanalysis
+Requires-Dist: numpy
+Requires-Dist: scipy
+Provides-Extra: docs
+Requires-Dist: sphinx; extra == "docs"
+Requires-Dist: myst-nb; extra == "docs"
+Requires-Dist: sphinx-book-theme; extra == "docs"
+Provides-Extra: tests
+Requires-Dist: pytest; extra == "tests"
+Requires-Dist: pytest-asyncio; extra == "tests"
+Provides-Extra: tests-all
+Requires-Dist: asyncmd[tests]; extra == "tests-all"
+Requires-Dist: h5py; extra == "tests-all"
+Requires-Dist: coverage; extra == "tests-all"
+Requires-Dist: pytest-cov; extra == "tests-all"
+Provides-Extra: dev
+Requires-Dist: asyncmd[docs,tests-all]; extra == "dev"
+Requires-Dist: jupyterlab; extra == "dev"
+Requires-Dist: ipywidgets; extra == "dev"
+Requires-Dist: tqdm; extra == "dev"
+Requires-Dist: pylint; extra == "dev"
+Dynamic: license-file
+
+# asyncmd
+
+[![codecov][codecov-badge]][codecov-link] [![Documentation Status][rtd-badge]][rtd-link] [![PyPI][pypi-badge]][pypi-link]
+
+asyncmd is a library to write **concurrent** code to run and analyze molecular dynamics simulations using pythons **async/await** syntax.
+Computationally costly operations can be performed locally or submitted to a queuing system.
+
+asyncmd enables users to construct complex molecular dynamics (MD) workflows or develop and implement trajectory based enhanced sampling methods with the following key features:
+
+- flexible, programmatic and parallel setup, control, and analysis of an arbitrary number of MD simulations
+- dictionary-like interface to the MD parameters
+- parallelized application of user defined (python) functions on trajectories (including the automatic caching of calculated values)
+- propagation of MD until any or all user-supplied conditions are fulfilled on the trajectory
+- extract molecular configurations from trajectories to (re)start an arbitrary number of MD simulations from it
+
+## Installation
+
+The following command will install asyncmd from [PyPi][pypi-link]:
+
+```bash
+pip install asyncmd
+```
+
+## Documentation
+
+See the [asyncmd documentation][rtd-link] for more information.
+
+## Contributing
+
+All contributions are appreciated! Please refer to the [documentation][rtd-link] for information.
+
+---
+<sub>This README.md is printed from 100% recycled electrons.</sub>
+
+[codecov-link]: https://app.codecov.io/gh/bio-phys/asyncmd
+[codecov-badge]: https://img.shields.io/codecov/c/github/bio-phys/asyncmd
+
+[rtd-link]: https://asyncmd.readthedocs.io/en/latest/
+[rtd-badge]: https://readthedocs.org/projects/asyncmd/badge/?version=latest
+
+[pypi-link]: https://pypi.org/project/asyncmd/
+[pypi-badge]: https://img.shields.io/pypi/v/asyncmd

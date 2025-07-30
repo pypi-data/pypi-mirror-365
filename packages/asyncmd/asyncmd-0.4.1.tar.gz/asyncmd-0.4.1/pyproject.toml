@@ -1,0 +1,103 @@
+[build-system]
+requires = ["setuptools >= 64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "asyncmd"
+version = "0.4.1"
+dependencies = ["aiofiles",
+                "mdanalysis",
+                "numpy",
+                "scipy",
+                ]
+# if you change requires-python also change py-version for pylint below!
+requires-python = ">=3.10"
+authors = [{ name = "Hendrik Jung", email = "hendrik.jung@biophys.mpg.de"}]
+maintainers = [{ name = "Hendrik Jung", email = "hendrik.jung@biophys.mpg.de"}]
+description = """asyncmd is a library to write concurrent code to run and \
+analyze molecular dynamics simulations using pythons async/await syntax."""
+readme = "README.md"
+keywords = ["molecular dynamics", "molecular-dynamics", "MD",
+            "high performance computing", "HPC",
+            "slurm", "SLURM",
+            "gromacs", "GROMACS",
+            ]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Natural Language :: English",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Chemistry",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[project.optional-dependencies]
+docs = ["sphinx", "myst-nb", "sphinx-book-theme"]
+tests = ["pytest", "pytest-asyncio"]
+tests-all = ["asyncmd[tests]", "h5py", "coverage", "pytest-cov"]
+dev = ["asyncmd[docs,tests-all]",
+       "jupyterlab", "ipywidgets", "tqdm",  # needed for example notebooks
+       "pylint",
+       ]
+
+[project.urls]
+Documentation = "https://asyncmd.readthedocs.io/en/latest/"
+Repository = "https://github.com/bio-phys/asyncmd.git"
+Issues = "https://github.com/bio-phys/asyncmd/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+asyncmd = ["py.typed"]
+
+# pylint configuration
+[tool.pylint.main]
+# Return non-zero exit code if any of these messages/categories are detected,
+# even if score is above --fail-under value. Syntax same as enable. Messages
+# specified are enabled, while categories only check already-enabled messages.
+fail-on = ["E"]
+
+# Specify a score threshold under which the program will exit with error.
+fail-under = 9.92
+
+# List of plugins (as comma separated values of python module names) to load,
+# usually to register additional checkers.
+load-plugins = ["pylint.extensions.bad_builtin",
+                "pylint.extensions.broad_try_clause",
+                "pylint.extensions.check_elif",
+                "pylint.extensions.code_style",
+                "pylint.extensions.comparison_placement",
+                "pylint.extensions.consider_refactoring_into_while_condition",
+                "pylint.extensions.dict_init_mutate",
+                "pylint.extensions.docparams",
+                "pylint.extensions.eq_without_hash",
+                "pylint.extensions.for_any_all",
+                "pylint.extensions.overlapping_exceptions",
+                "pylint.extensions.redefined_loop_name",
+                "pylint.extensions.redefined_variable_type",
+                "pylint.extensions.set_membership",
+                "pylint.extensions.typing",
+                ]
+
+# Minimum Python version to use for version dependent checks. Will default to the
+# version used to run pylint.
+py-version = "3.10"
+
+[tool.pylint."messages control"]
+# Enable the message, report, category or checker with the given id(s). You can
+# either give multiple identifier separated by comma (,) or put this option
+# multiple time (only on the command line, not in the configuration file where it
+# should appear only once). See also the "--disable" option for examples.
+enable = ["all"]
+
+[tool.pylint.design]
+# increase maximum number of arguments for functions/methods (default=5)
+max-args = 6
+# but decrease maximum number of positional arguments (default=5)
+max-positional-arguments = 4
