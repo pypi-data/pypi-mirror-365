@@ -1,0 +1,80 @@
+Metadata-Version: 2.4
+Name: toydl
+Version: 0.3.0
+Summary: ToyDL: Deep Learning from Scratch
+Project-URL: Homepage, https://shenxiangzhuang.github.io/toydl
+Project-URL: Repository, https://github.com/shenxiangzhuang/toydl
+Author-email: Xiangzhuang Shen <datahonor@gmail.com>
+License-Expression: MIT
+License-File: LICENSE
+Keywords: engineering,machine learning,statistics
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Requires-Python: <4.0,>=3.12
+Requires-Dist: matplotlib<4,>=3.8.2
+Provides-Extra: dev
+Requires-Dist: ipython<9,>=8.7.0; extra == 'dev'
+Requires-Dist: marimo>=0.14.13; extra == 'dev'
+Requires-Dist: mypy<0.982,>=0.981; extra == 'dev'
+Requires-Dist: pre-commit<4,>=3.5.0; extra == 'dev'
+Requires-Dist: pydeps<2,>=1.12.17; extra == 'dev'
+Requires-Dist: ruff>=0.12.5; extra == 'dev'
+Requires-Dist: tqdm<5,>=4.0.0; extra == 'dev'
+Requires-Dist: ty>=0.0.1a16; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: mkdocs; extra == 'docs'
+Requires-Dist: mkdocs-autorefs; extra == 'docs'
+Requires-Dist: mkdocs-bibtex; extra == 'docs'
+Requires-Dist: mkdocs-git-committers-plugin-2; extra == 'docs'
+Requires-Dist: mkdocs-git-revision-date-localized-plugin; extra == 'docs'
+Requires-Dist: mkdocs-material; extra == 'docs'
+Requires-Dist: mkdocs-material-extensions; extra == 'docs'
+Requires-Dist: mkdocstrings; extra == 'docs'
+Requires-Dist: mkdocstrings-python; extra == 'docs'
+Provides-Extra: test
+Requires-Dist: hypothesis<7,>=6.61.0; extra == 'test'
+Requires-Dist: pytest-cov<5,>=4.0.0; extra == 'test'
+Requires-Dist: pytest-sugar<0.10,>=0.9.7; extra == 'test'
+Requires-Dist: pytest<8,>=7.1.3; extra == 'test'
+Description-Content-Type: text/markdown
+
+# ToyDL: Deep Learning from Scratch
+
+
+[![Python](https://img.shields.io/pypi/pyversions/toydl.svg?color=%2334D058)](https://pypi.org/project/toydl/)
+[![PyPI](https://img.shields.io/pypi/v/toydl?color=%2334D058&label=pypi%20package)](https://pypi.org/project/toydl/)
+
+[![codecov](https://codecov.io/gh/ai-glimpse/toydl/graph/badge.svg?token=e2LQa7MF8s)](https://codecov.io/gh/ai-glimpse/toydl)
+[![Build Docs](https://github.com/ai-glimpse/toydl/actions/workflows/build_docs.yml/badge.svg)](https://github.com/ai-glimpse/toydl/actions/workflows/build_docs.yml)
+[![Test](https://github.com/ai-glimpse/toydl/actions/workflows/test.yml/badge.svg)](https://github.com/ai-glimpse/toydl/actions/workflows/test.yml)
+
+
+[![Ruff](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json)](https://github.com/astral-sh/ruff)
+[![Checked with mypy](https://www.mypy-lang.org/static/mypy_badge.svg)](https://mypy-lang.org/)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
+
+
+ToyDL, as an education project, is aimed to make the
+concepts behind the deep learning as clear as possible.
+I do believe the key to reach the target is **SIMPLE**, as simple as possible.
+I'm trying to use little code to build this library, although it's not simple enough yet.
+
+### Installation
+
+```bash
+pip install toydl
+```
+
+
+## Related Projects
+- [minitorch](https://github.com/minitorch/minitorch): The implementation of `toydl` is highly inspired by minitorch
+- micrograd: [https://github.com/karpathy/micrograd](https://github.com/karpathy/micrograd)
+- tinygrad: [https://github.com/tinygrad/tinygrad](https://github.com/tinygrad/tinygrad)
+- nanograd: [https://github.com/e3ntity/nanograd](https://github.com/e3ntity/nanograd)
