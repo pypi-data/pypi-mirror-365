@@ -1,0 +1,35 @@
+Metadata-Version: 2.4
+Name: tree-sitter-strudel
+Version: 1.1.7
+Summary: Parser for Strudel, a Tidal Cycles base live coding tool
+Author-email: Zedro <45104292+PedroZappa@users.noreply.github.com>
+License: MIT
+Project-URL: Homepage, https://github.com/pedrozappa/tree-sitter-strdl
+Keywords: incremental,parsing,tree-sitter,strudel
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Compilers
+Classifier: Topic :: Text Processing :: Linguistic
+Classifier: Typing :: Typed
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Provides-Extra: core
+Requires-Dist: tree-sitter~=0.24; extra == "core"
+Dynamic: license-file
+
+# tree-sitter-strdl
+
+Tree-sitter parser for Strudel, a Tidal Cycles based live coding tool.
+
+___
+
+## Docs
+
+- [Tree-sitter](https://tree-sitter.github.io/tree-sitter/)
+- [Strudel.cc](https://strudel.cc/)
+- [Tidal Cycles ](https://tidalcycles.org/)
+
+## Learning Resources
+
+- [Crafting Interpreters by Robert Nystrom](https://www.craftinginterpreters.com/)
+
