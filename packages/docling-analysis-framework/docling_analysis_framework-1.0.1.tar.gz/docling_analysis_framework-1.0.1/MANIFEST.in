@@ -1,0 +1,41 @@
+# Include essential files
+include README.md
+include LICENSE
+include requirements.txt
+include pyproject.toml
+include CONTRIBUTING.md
+include SECURITY.md
+include CHANGELOG.md
+
+# Include documentation
+recursive-include docs *.md *.rst *.txt
+recursive-include examples *.py *.md
+
+# Include source code
+recursive-include src *.py
+
+# Include notebooks but exclude outputs
+recursive-include notebooks *.ipynb *.md
+recursive-exclude notebooks *.json *.html *.csv *.py
+
+# Exclude test files and development artifacts
+recursive-exclude tests *
+recursive-exclude test_outputs *
+recursive-exclude artifacts *
+exclude *.json
+exclude test_framework.py
+exclude *_analysis_*.json
+exclude *_chunks_*.json
+exclude chunks_*.json
+exclude analysis_*.json
+exclude enhanced_*.json
+
+# Include package data
+global-include *.txt *.md
+
+# Exclude development and CI files
+exclude .gitignore
+exclude .pypirc
+exclude publish_pypi.sh
+exclude lint.sh
+exclude run_tests.sh 
