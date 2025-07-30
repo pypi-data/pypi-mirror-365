@@ -1,0 +1,398 @@
+Metadata-Version: 2.4
+Name: f-work-mcp
+Version: 1.0.0
+Summary: A MCP server for tracking work progress and generating daily reports with Python file diff analysis
+Project-URL: Homepage, https://github.com/your-username/f-work-mcp
+Project-URL: Documentation, https://github.com/your-username/f-work-mcp#readme
+Project-URL: Repository, https://github.com/your-username/f-work-mcp
+Project-URL: Issues, https://github.com/your-username/f-work-mcp/issues
+Project-URL: Changelog, https://github.com/your-username/f-work-mcp/blob/main/CHANGELOG.md
+Author-email: F-Work MCP Team <contact@f-work-mcp.com>
+Maintainer-email: F-Work MCP Team <contact@f-work-mcp.com>
+License: MIT
+License-File: LICENSE
+Keywords: daily-report,git,mcp,productivity,python,work-tracking
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Office/Business :: Scheduling
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Version Control :: Git
+Classifier: Topic :: Utilities
+Requires-Python: >=3.10
+Requires-Dist: mcp[cli]>=1.12.2
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: starlette>=0.27.0
+Provides-Extra: dev
+Requires-Dist: black>=23.0.0; extra == 'dev'
+Requires-Dist: build>=1.0.0; extra == 'dev'
+Requires-Dist: flake8>=6.0.0; extra == 'dev'
+Requires-Dist: isort>=5.12.0; extra == 'dev'
+Requires-Dist: mypy>=1.0.0; extra == 'dev'
+Requires-Dist: pre-commit>=3.0.0; extra == 'dev'
+Requires-Dist: pytest-asyncio>=0.21.0; extra == 'dev'
+Requires-Dist: pytest>=7.0.0; extra == 'dev'
+Requires-Dist: twine>=4.0.0; extra == 'dev'
+Provides-Extra: test
+Requires-Dist: pytest-asyncio>=0.21.0; extra == 'test'
+Requires-Dist: pytest-cov>=4.0.0; extra == 'test'
+Requires-Dist: pytest>=7.0.0; extra == 'test'
+Description-Content-Type: text/markdown
+
+# Work Daily Report MCP Server
+
+一个基于 MCP (Model Context Protocol) 的工作日报生成服务器，能够自动跟踪代码变更并生成详细的工作日报。**特别增强了对Python文件的差异分析功能，为大语言模型提供详细的代码变更信息。**
+
+## 功能特性
+
+### 🚀 核心功能
+- **上班工具** (`work_start`): 记录工作开始时的代码状态
+- **下班工具** (`work_end`): 记录工作结束状态并生成日报
+- **状态查询** (`get_work_status`): 获取当前工作状态
+- **日报查询** (`get_daily_report`): 获取指定日期的日报
+- **文件差异分析** (`get_python_file_diff`): 获取指定Python文件的详细差异
+
+### 📊 跟踪内容
+- Git 提交记录和状态
+- 文件修改、新增、删除情况
+- **Python文件内容差异分析** ⭐
+- 工作时长统计
+- 代码变更摘要
+- 分支信息
+
+### 🔧 扩展功能
+- 自动补全支持
+- 自定义 HTTP 路由
+- 资源访问接口
+- 提示词生成
+
+### 🐍 Python文件差异功能 ⭐
+- **完整内容跟踪**: 记录所有Python文件的完整内容
+- **精确差异分析**: 使用difflib生成标准化的差异格式
+- **行数统计**: 统计新增、删除、修改的代码行数
+- **变更类型识别**: 区分新增、修改、删除的文件
+- **LLM友好格式**: 提供结构化的差异数据，便于大语言模型分析
+
+## 安装和运行
+
+### 1. 安装依赖
+```bash
+uv sync
+```
+
+### 2. 运行服务器
+```bash
+uv run mcp dev main.py
+```
+
+### 3. 使用 MCP Inspector
+服务器启动后，会打开浏览器访问 MCP Inspector 界面，你可以在那里测试所有功能。
+
+## 使用方法
+
+### 上班时
+```python
+# 记录工作开始状态（包含Python文件内容）
+work_start(working_directory=".")
+```
+
+### 下班时
+```python
+# 记录工作结束状态并生成日报（包含代码差异）
+work_end(working_directory=".")
+```
+
+### 查询状态
+```python
+# 获取当前工作状态
+get_work_status(working_directory=".")
+
+# 获取指定日期的日报
+get_daily_report(date="2024-01-15")
+
+# 获取指定Python文件的详细差异
+get_python_file_diff(file_path="main.py")
+```
+
+## 工具详解
+
+### 1. work_start
+**功能**: 记录工作开始状态（包含Python文件内容）
+
+**参数**:
+- `working_directory` (str): 工作目录路径，默认为当前目录
+
+**返回**:
+```json
+{
+  "success": true,
+  "message": "工作开始状态已记录",
+  "timestamp": "2024-01-15T09:00:00",
+  "working_directory": "/path/to/project",
+  "branch_name": "main",
+  "total_files": 150,
+  "modified_files_count": 5,
+  "git_commits_count": 25,
+  "python_files_count": 12
+}
+```
+
+### 2. work_end
+**功能**: 记录工作结束状态并生成日报（包含代码差异）
+
+**参数**:
+- `working_directory` (str): 工作目录路径，默认为当前目录
+
+**返回**:
+```json
+{
+  "success": true,
+  "message": "工作结束状态已记录，日报已生成",
+  "report": {
+    "date": "2024-01-15",
+    "work_start_time": "09:00",
+    "work_end_time": "18:00",
+    "working_hours": 9.0,
+    "total_commits": 3,
+    "modified_files_count": 5,
+    "new_files_count": 2,
+    "deleted_files_count": 1,
+    "work_summary": "完成了 3 次代码提交，修改了 5 个文件，新增了 2 个文件，删除了 1 个文件。",
+    "code_changes_summary": "Python代码变更: 修改文件 main.py (+15 -3 行), 新增文件 utils.py (25 行)。 总计: +40 -3 行代码。",
+    "report_path": ".work_tracker/reports/daily_report_2024-01-15.json"
+  },
+  "details": {
+    "modified_files": ["main.py", "README.md"],
+    "new_files": ["utils.py", "config.py"],
+    "deleted_files": ["old_file.txt"],
+    "commits": [...],
+    "python_file_diffs": [
+      {
+        "file_path": "main.py",
+        "diff_type": "modified",
+        "added_lines": 15,
+        "deleted_lines": 3,
+        "changed_lines": 18,
+        "diff_preview": [
+          "@@ -10,6 +10,8 @@",
+          " from mcp.server.fastmcp import FastMCP",
+          "+from mcp.types import Completion, CompletionArgument",
+          "+from mcp.types import PromptReference, ResourceTemplateReference",
+          " ",
+          " # Create an MCP server",
+          " mcp = FastMCP(\"Demo\")",
+          "+",
+          "+# Add completion support",
+          "+@mcp.completion()",
+          "+async def handle_completion(ref, argument, context):",
+          "+    return Completion(values=[\"option1\", \"option2\"])"
+        ]
+      }
+    ]
+  }
+}
+```
+
+### 3. get_work_status
+**功能**: 获取当前工作状态
+
+**参数**:
+- `working_directory` (str): 工作目录路径，默认为当前目录
+
+**返回**:
+```json
+{
+  "success": true,
+  "current_time": "2024-01-15T14:30:00",
+  "working_directory": "/path/to/project",
+  "branch_name": "main",
+  "total_files": 150,
+  "modified_files": ["main.py"],
+  "modified_files_count": 1,
+  "git_commits_count": 25,
+  "python_files_count": 12,
+  "today_work_sessions": 1,
+  "has_work_start": true
+}
+```
+
+### 4. get_daily_report
+**功能**: 获取指定日期的日报
+
+**参数**:
+- `date` (str): 日期格式 YYYY-MM-DD，默认为今天
+
+**返回**:
+```json
+{
+  "success": true,
+  "date": "2024-01-15",
+  "report": {
+    "date": "2024-01-15",
+    "work_start_time": "09:00",
+    "work_end_time": "18:00",
+    "working_hours": 9.0,
+    "total_commits": 3,
+    "modified_files": ["main.py"],
+    "new_files": ["utils.py"],
+    "deleted_files": [],
+    "python_file_diffs": [...],
+    "commit_summary": [...],
+    "work_summary": "完成了 3 次代码提交，修改了 1 个文件，新增了 1 个文件。",
+    "code_changes_summary": "Python代码变更: 修改文件 main.py (+15 -3 行), 新增文件 utils.py (25 行)。 总计: +40 -3 行代码。"
+  }
+}
+```
+
+### 5. get_python_file_diff ⭐
+**功能**: 获取指定Python文件的详细差异信息
+
+**参数**:
+- `file_path` (str): Python文件路径
+- `working_directory` (str): 工作目录路径，默认为当前目录
+
+**返回**:
+```json
+{
+  "success": true,
+  "file_path": "main.py",
+  "diff_type": "modified",
+  "added_lines": 15,
+  "deleted_lines": 3,
+  "changed_lines": 18,
+  "diff_lines": [
+    "@@ -10,6 +10,8 @@",
+    " from mcp.server.fastmcp import FastMCP",
+    "+from mcp.types import Completion, CompletionArgument",
+    "+from mcp.types import PromptReference, ResourceTemplateReference",
+    " ",
+    " # Create an MCP server",
+    " mcp = FastMCP(\"Demo\")",
+    "+",
+    "+# Add completion support",
+    "+@mcp.completion()",
+    "+async def handle_completion(ref, argument, context):",
+    "+    return Completion(values=[\"option1\", \"option2\"])"
+  ],
+  "old_content": "原始文件内容...",
+  "new_content": "新文件内容..."
+}
+```
+
+## 资源访问
+
+### 工作状态资源
+```
+work-status://{working_directory}
+```
+
+### 日报资源
+```
+daily-report://{date}
+```
+
+### Python文件差异资源 ⭐
+```
+python-diff://{file_path}
+```
+
+## 自定义路由
+
+### 健康检查
+```
+GET /health
+```
+
+### 统计信息
+```
+GET /stats
+```
+
+## 数据存储
+
+所有数据存储在 `.work_tracker` 目录下：
+- `work_states.json`: 工作状态记录
+- `reports/`: 日报文件目录
+  - `daily_report_YYYY-MM-DD.json`: 每日日报
+
+## 技术实现
+
+### 核心组件
+
+1. **WorkTracker**: 工作跟踪器，负责状态管理和日报生成
+2. **WorkState**: 工作状态数据结构
+3. **DailyReport**: 日报数据结构
+4. **PythonFileContent**: Python文件内容结构 ⭐
+5. **FileDiff**: 文件差异结构 ⭐
+
+### 跟踪机制
+
+1. **文件哈希**: 使用 SHA256 计算文件哈希值，检测文件变更
+2. **Git 状态**: 跟踪 Git 提交记录和状态变化
+3. **时间统计**: 计算工作时长和效率指标
+4. **Python文件内容跟踪**: 记录所有Python文件的完整内容 ⭐
+5. **差异分析**: 使用difflib生成标准化的差异格式 ⭐
+
+### 忽略规则
+
+自动忽略以下文件和目录：
+- `.git`, `__pycache__`, `.pytest_cache`
+- `.venv`, `venv`, `node_modules`
+- `.DS_Store`, `*.pyc`, `*.log`
+- `.work_tracker` (数据目录)
+
+## 扩展功能
+
+### 自动补全
+- 工作目录补全
+- 日期补全
+- Python文件路径补全 ⭐
+
+### 提示词生成
+- 工作摘要提示词
+- 支持不同风格（专业、轻松、详细）
+- 重点关注Python文件的修改内容 ⭐
+
+## 使用场景
+
+1. **个人工作跟踪**: 记录每日代码工作内容
+2. **团队协作**: 了解团队成员的工作进展
+3. **项目管理**: 跟踪项目开发进度
+4. **绩效评估**: 基于代码变更的工作量统计
+5. **代码审查**: 分析代码变更的详细内容 ⭐
+6. **LLM分析**: 为大语言模型提供结构化的代码变更数据 ⭐
+
+## 注意事项
+
+1. 确保工作目录是 Git 仓库
+2. 建议每天上班时运行 `work_start`
+3. 建议每天下班时运行 `work_end`
+4. 数据存储在本地，注意备份重要数据
+5. Python文件内容可能较大，注意存储空间 ⭐
+
+## 故障排除
+
+### 常见问题
+
+1. **Git 命令失败**: 确保工作目录是有效的 Git 仓库
+2. **权限错误**: 确保有读写工作目录的权限
+3. **文件访问错误**: 检查文件是否被其他程序占用
+4. **内存不足**: Python文件内容较大时可能占用较多内存 ⭐
+
+### 调试模式
+
+可以通过查看 `.work_tracker` 目录下的日志文件来调试问题。
+
+## 贡献
+
+欢迎提交 Issue 和 Pull Request 来改进这个项目！
+
+## 许可证
+
+MIT License
