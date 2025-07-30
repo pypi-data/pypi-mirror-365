@@ -1,0 +1,56 @@
+site_name: CC License Plugin Example
+site_description: Example usage of the MkDocs Creative Commons License plugin
+
+# Configuration des plugins
+plugins:
+  - search
+  - i18n:
+      docs_structure: folder
+      fallback_to_default: true
+      reconfigure_material: true
+      reconfigure_search: true
+      languages:
+        - locale: en
+          default: true
+          name: English
+          build: true
+          site_name: "CC License Plugin Example"
+        - locale: fr
+          name: Français
+          build: true
+          site_name: "Exemple Plugin CC License"
+          nav_translations:
+            Home: Accueil
+            With License: Avec licence
+            No License: Sans licence
+  - cc-license:
+      default_license: "by-sa"
+      language: "en"
+      target_blank: true
+      show_icons: true
+
+# Thème
+theme:
+  name: material
+  custom_dir: theme_overrides
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - toc.integrate
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+  language: en
+
+# Navigation
+nav:
+  - Home: index.md
+  - With License: with-license.md  
+  - No License: no-license.md
+
+# Extensions Markdown
+markdown_extensions:
+  - admonition
+  - codehilite
+  - meta

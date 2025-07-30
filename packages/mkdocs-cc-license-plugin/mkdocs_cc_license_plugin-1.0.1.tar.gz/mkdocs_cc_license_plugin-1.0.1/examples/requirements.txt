@@ -1,0 +1,19 @@
+# Requirements for MkDocs CC License Plugin Examples
+# Install with: pip install -r requirements.txt
+
+# Core MkDocs
+mkdocs>=1.6.0
+
+# Material theme for modern UI
+mkdocs-material>=9.0.0
+
+# Multilingual support plugin
+mkdocs-static-i18n>=0.53
+
+# CC License plugin (install from parent directory)
+# Use: pip install -e ..
+# Or after publication: mkdocs-cc-license-plugin>=1.0.0
+
+# Optional development tools
+mkdocs-minify-plugin>=0.6.0  # For production builds
+mkdocs-awesome-pages-plugin>=2.8.0  # Enhanced navigation
