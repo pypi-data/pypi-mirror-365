@@ -1,0 +1,134 @@
+[project]
+name = "ai-forge-collective"
+version = "1.1.0"
+description = "A Python tool for programmatically building and validating Claude workflow instructions for AI Forge"
+readme = "README.md"
+authors = [
+    { name = "Marco Cricchio", email = "mcricchio@gmail.com" },
+    { name = "David D Lawson", email = "david@lawson.dev" }
+]
+requires-python = ">=3.12"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "click>=8.2.1",
+    "jinja2>=3.1.6",
+    "pydantic>=2.11.7",
+    "pyyaml>=6.0.2",
+    "rich>=14.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "anthropic>=0.57.1",
+    "anyio>=4.9.0",
+    "claude-code-sdk>=0.0.14",
+    "coverage>=7.9.2",
+    "greenlet>=3.2.3",
+    "mypy>=1.17.0",
+    "pytest>=8.4.1",
+    "pytest-asyncio>=1.1.0",
+    "pytest-cov>=6.2.1",
+    "python-dotenv>=1.1.1",
+    "ruff>=0.12.3",
+    "types-pyyaml>=6.0.12.20250516",
+]
+
+[project.scripts]
+ai-forge = "ai_forge.cli.main:cli"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.license]
+text = "MIT"
+
+[project.urls]
+Home = "https://github.com/ddlaws0n/ai-forge"
+Documentation = "https://github.com/ddlaws0n/ai-forge/blob/main/README.md"
+Issues = "https://github.com/ddlaws0n/ai-forge/issues"
+
+[tool.hatch.version]
+path = "src/ai_forge/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ai_forge"]
+include = ["*.py", "py.typed"]
+exclude = ["tests"]
+
+
+[tool.ruff]
+line-length = 100
+include = ["*.py"]
+exclude = ["dist", "build", ".venv", "src/ai_forge/generators"]
+target-version = "py312"
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+disallow_untyped_defs = true
+exclude = ["dist", "build", ".venv"]
+files = ["src/ai_forge"]
+
+[tool.ruff.lint]
+ignore = [
+    "D10",
+    "D203",
+    "D204",
+    "D213",
+    "D215",
+    "D400",
+    "D404",
+    "D406",
+    "D407",
+    "D408",
+    "D409",
+    "D413",
+    "D415",
+]
+select = ["E", "F", "I"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = [
+    "-o",
+    "console_output_style=progress",
+    "--disable-warnings",
+    "--showlocals",
+    "--cov=ai_forge",
+    "--cov=tests",
+    "--cov-report=term-missing",
+    "--cov-report=xml",
+    "--cov-report=html",
+]
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.coverage.run]
+parallel = true
+source = ["src/ai_forge", "tests"]
+omit = ["*__init__.py"]
+concurrency = ["thread", "greenlet", "multiprocessing"]
+
+[tool.coverage.report]
+exclude_lines = ["pragma: no cover"]
+
+[tool.coverage.html]
+directory = "htmlcov"
+
+[tool.coverage.xml]
+output = "coverage.xml"
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.setuptools.package-data]
+ai_forge = ["py.typed"]
+
+[tool.setuptools.packages.find]
+exclude = ["tests"]

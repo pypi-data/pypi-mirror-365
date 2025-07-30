@@ -1,0 +1,448 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Initialize Python Project with Modern Tooling",
+        "description": "Set up the foundational Python project structure using uv for dependency management, configure pyproject.toml with project metadata, and establish the development environment",
+        "details": "Use uv 0.5.14+ to initialize the project with 'uv init ai-forge'. Configure pyproject.toml with Python 3.12+ requirement, project metadata (name='ai-forge', version='0.1.0', description, authors). Set up development dependencies: pytest==8.3.3, pytest-cov==6.0.0, pytest-asyncio==0.25.2, mypy==1.14.1, ruff==0.9.2. Configure ruff for linting/formatting with line-length=120, select=['E', 'F', 'I', 'N', 'W', 'UP', 'B', 'C4', 'DTZ', 'T10', 'ISC', 'ICN', 'PIE', 'PT', 'RET', 'SIM', 'TID', 'TCH', 'ARG', 'PLC', 'PLE', 'PLR', 'PLW', 'RUF']. Set up .python-version with 3.12. Create src/ai_forge/__init__.py with __version__ = '0.1.0'. Implement justfile with commands: build-all, validate, test, format, lint, typecheck using uv run.",
+        "testStrategy": "Verify project initialization by running 'uv run python -c \"import ai_forge; print(ai_forge.__version__)\"'. Ensure all just commands execute successfully. Validate pyproject.toml structure with 'uv lock --check'. Run 'uv run mypy src' to verify type checking setup. Execute 'uv run ruff check src' and 'uv run ruff format --check src' to validate linting configuration.",
+        "priority": "high",
+        "dependencies": [],
+        "status": "done",
+        "subtasks": []
+      },
+      {
+        "id": 2,
+        "title": "Implement Core CLI Framework with Click",
+        "description": "Create the minimal CLI entry point using Click framework with only the 'init' command for true MVP phase",
+        "status": "done",
+        "dependencies": [
+          1
+        ],
+        "priority": "critical",
+        "details": "Add Click==8.1.8 dependency via 'uv add click rich==13.10.6'. Create src/ai_forge/cli/__init__.py and src/ai_forge/cli/main.py. Implement minimal CLI with ONLY the 'init' command - no validate or version commands for MVP. Use @click.command() for simple init command implementation. Add --verbose/-v flag for debug output. Use Rich for basic colored output (success/error messages only). Create minimal exception handling in src/ai_forge/exceptions.py with AIForgeError base class. Implement simple console output utilities in src/ai_forge/utils/console.py using Rich Console, with only success() and error() methods. Set up entry point in pyproject.toml: [project.scripts] ai-forge = 'ai_forge.cli.main:cli'. Focus on 'zero to productive in 60 seconds' - absolutely minimal implementation.",
+        "testStrategy": "Create tests/test_cli.py using Click's CliRunner. Test only 'ai-forge init' command with basic scenarios. Test --verbose flag increases output detail. Ensure 'ai-forge --help' shows init command. Mock file system operations to test without side effects. Keep tests minimal - just ensure init command runs without errors and creates expected files.",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Set up project structure and install Click dependencies",
+            "description": "Create the foundational directory structure for the CLI module and install Click framework along with Rich for enhanced console output",
+            "dependencies": [],
+            "details": "Use 'uv add click==8.1.8 rich==13.10.6' to install dependencies. Create src/ai_forge/cli/ directory structure with __init__.py files. Ensure the cli module is properly initialized and can be imported. Set up basic logging configuration for the CLI module.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Create main CLI entry point with command group setup",
+            "description": "Implement the main CLI entry point using Click's group decorator pattern to allow for multiple subcommands",
+            "dependencies": [
+              "2.1"
+            ],
+            "details": "Create src/ai_forge/cli/main.py with the main Click group. Use @click.group() decorator to create the root command group named 'ai-forge'. Add global options like --verbose/-v flag. Set up proper context passing for global options. Import and register all subcommands to the main group.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Implement individual command implementations",
+            "description": "Create the init, validate, and version commands as separate modules with proper Click decorators and functionality",
+            "dependencies": [
+              "2.2"
+            ],
+            "details": "Create src/ai_forge/cli/commands/ directory. Implement init.py with @click.command() for project initialization (accept language parameter, create basic CLAUDE.md). Implement validate.py to check configuration validity. Implement version.py to display AI Forge version. Each command should use proper Click options and arguments.\n<info added on 2025-07-25T21:34:06.283Z>\nSuccessfully implemented all three command modules with the following features:\n\n**init.py Implementation**:\n- Project initialization command with language auto-detection\n- Supports Python, TypeScript, JavaScript, Rust, and Go projects\n- Language detection based on file extensions and package files (package.json, Cargo.toml, go.mod, etc.)\n- --language flag for manual language specification\n- --force flag to overwrite existing CLAUDE.md files\n- Creates AI Forge-branded CLAUDE.md with:\n  - Project title and description placeholders\n  - Language-specific development guidelines\n  - Tool-specific instructions (pytest/ruff for Python, npm/eslint for JS/TS, cargo for Rust, go tools for Go)\n  - AI collaboration guidelines section\n- Uses Rich console for styled output with success/error messages\n\n**validate.py Implementation**:\n- Comprehensive project validation command\n- Validates multiple aspects:\n  - CLAUDE.md file presence and AI Forge branding\n  - .claude directory structure\n  - settings.json file validity\n  - Git repository status\n  - Project language detection\n- Results displayed in formatted Rich table with:\n  - Component names\n  - Pass/fail status with color coding (green checkmarks, red X marks)\n  - Detailed messages for each check\n- Summary line showing total passed/failed checks\n\n**version.py Implementation**:\n- Simple version display command\n- Shows AI Forge version from package __version__\n- Minimal implementation focusing on core functionality\n\nAll commands properly integrated into main.py CLI group using Click's add_command() method. Each command follows Click conventions with proper decorators, context handling, and consistent error reporting through Rich console.\n</info added on 2025-07-25T21:34:06.283Z>",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Create custom exception hierarchy",
+            "description": "Design and implement a comprehensive exception hierarchy for proper error handling throughout the CLI",
+            "dependencies": [
+              "2.1"
+            ],
+            "details": "Create src/ai_forge/exceptions.py with AIForgeError as base exception class. Implement specific exceptions: ConfigurationError, TemplateError, ValidationError, FileSystemError, DependencyError. Each exception should have meaningful error messages and optional error codes. Include exception chaining support for debugging.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Implement console output utilities with Rich integration",
+            "description": "Create a centralized console output system using Rich for colored output, progress bars, and formatted messages",
+            "dependencies": [
+              "2.1",
+              "2.4"
+            ],
+            "details": "Create src/ai_forge/cli/console.py with Console class wrapping Rich console. Implement methods: success(), error(), warning(), info(), progress_bar(). Add support for verbose mode output control. Create formatted output for tables, trees, and panels. Implement spinner contexts for long-running operations.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Implement error handling and exit code management",
+            "description": "Create a robust error handling system that catches exceptions, displays user-friendly messages, and returns appropriate exit codes",
+            "dependencies": [
+              "2.4",
+              "2.5"
+            ],
+            "details": "Create src/ai_forge/cli/errors.py with error handler decorator. Map exception types to exit codes (0=success, 1=general error, 2=misuse, etc). Implement @handle_errors decorator for commands. Add debug mode to show full stack traces when --verbose is used. Create user-friendly error messages with suggestions for common issues.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Configure entry point in pyproject.toml",
+            "description": "Set up the CLI entry point in pyproject.toml to make 'ai-forge' command available after installation",
+            "dependencies": [
+              "2.2",
+              "2.3"
+            ],
+            "details": "Add [project.scripts] section to pyproject.toml with 'ai-forge = \"ai_forge.cli.main:cli\"' entry. Ensure the main:cli function is the Click group. Test installation with 'uv pip install -e .' to verify command availability. Add console_scripts entry point for backward compatibility if needed.",
+            "status": "done",
+            "testStrategy": ""
+          },
+          {
+            "id": 8,
+            "title": "Create comprehensive CLI testing with CliRunner",
+            "description": "Implement thorough test coverage for all CLI commands and error scenarios using Click's testing utilities",
+            "dependencies": [
+              "2.3",
+              "2.6",
+              "2.7"
+            ],
+            "details": "Create tests/test_cli.py with CliRunner setup. Test 'ai-forge --help' displays all commands. Test 'ai-forge init python' creates expected files. Test validation command with valid/invalid configs. Test error handling and exit codes. Test verbose flag affects output detail. Mock file system operations to avoid side effects. Achieve >90% coverage for CLI module.",
+            "status": "done",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Design Configuration Schema with Pydantic",
+        "description": "Implement minimal configuration schema using Pydantic for YAML validation with only essential models for MVP",
+        "status": "done",
+        "dependencies": [
+          1
+        ],
+        "priority": "critical",
+        "details": "Add dependencies: 'uv add pydantic==2.10.5 pyyaml==6.0.2'. Create src/ai_forge/core/config.py with only 3 Pydantic models for MVP: AIForgeConfig (main config with project name, template reference), TemplateConfig (basic template metadata: name, description, version), and FileConfig (files to generate with path and content). Use standard Pydantic v2 field validators only. Implement basic path validation to prevent directory traversal. Create src/ai_forge/core/loader.py with simple YAML parsing and minimal default values. Skip all complex models (MemoryConfig, PermissionsConfig, HookConfig, AgentConfig, MCPServerConfig, StructureConfig, FeaturesConfig) for MVP.",
+        "testStrategy": "Create minimal test suite in tests/test_config.py. Test the 3 models load correctly from YAML. Test basic validation errors for invalid paths. Test YAML parsing with minimal configuration. Use pytest fixtures for test configurations. Keep tests focused on MVP functionality only.",
+        "subtasks": []
+      },
+      {
+        "id": 4,
+        "title": "Build Template System Architecture",
+        "description": "Create basic template loading and rendering system using Jinja2 for MVP, focusing on simple filesystem loading and rendering with security validation",
+        "status": "done",
+        "dependencies": [
+          3
+        ],
+        "priority": "critical",
+        "details": "Add 'uv add jinja2==3.1.5'. Create minimal template system in src/ai_forge/templates/: base.py (Template abstract class), loader.py (FileSystemLoader only for MVP), renderer.py (basic Jinja2 rendering). Implement TemplateManifest class for template.yaml parsing. Add basic security validation: validate template file paths (no path traversal), sanitize template content for security risks. Create builtin templates directory at src/ai_forge/builtin_templates/. Skip advanced features for MVP: no inheritance, no caching, no composition, no custom filters, no remote loading. Focus on getting basic template loading and rendering working reliably.",
+        "testStrategy": "Create tests/test_templates.py with fixtures for test templates. Test template loading from filesystem. Test basic Jinja2 rendering with variables. Test security validation: path traversal prevention, malicious template content rejection. Test invalid template rejection. Test TemplateManifest parsing. Ensure core functionality works before adding advanced features.",
+        "subtasks": []
+      },
+      {
+        "id": 5,
+        "title": "Implement File Generation Engine",
+        "description": "Build the file generation system that creates CLAUDE.md, settings.json, hooks, and other configuration files with proper formatting and basic security validation",
+        "status": "done",
+        "dependencies": [
+          4
+        ],
+        "priority": "critical",
+        "details": "Create generators module in src/ai_forge/generators/: claude_md.py (CLAUDE.md generation with section management), settings.py (settings.json with proper formatting), hooks.py (executable hook scripts), mcp.py (MCP server configurations), agents.py (sub-agent markdown files). Implement FileGenerator base class with: render_template() method, write_file() with basic file writing and security validation, validate_path() to ensure files are written within project directory. Add special handling for: JSON files (proper indentation), Markdown files (consistent formatting, proper line breaks), Shell scripts (shebang lines, executable permissions), YAML files (proper indentation, comments). Implement basic security validation: Path traversal prevention (no ../ in paths), Validate all write operations stay within project root, Basic content validation for generated files. Create src/ai_forge/utils/filesystem.py with: write_file() for basic file writing, ensure_directory() for path creation, is_within_directory() for security checks.",
+        "testStrategy": "Test file generation in temporary directories using pytest tmp_path. Verify generated files have correct content and formatting. Test permissions are set correctly (especially for hooks). Test security validation prevents writing outside project directory. Test path traversal attempts are blocked. Validate JSON/YAML files are syntactically correct. Test error handling for permission denied scenarios.",
+        "subtasks": []
+      },
+      {
+        "id": 6,
+        "title": "Create Starter Template",
+        "description": "Develop the universal starter template with minimal configuration that works for any project type, including basic CLAUDE.md, settings.json, and one example hook",
+        "status": "done",
+        "dependencies": [
+          5
+        ],
+        "priority": "critical",
+        "details": "Create src/ai_forge/builtin_templates/starter/ directory structure. Implement template.yaml with metadata and configuration. Create files/CLAUDE.md.j2 with sections: Project Overview ({{ project_name }} placeholder), Key Principles, Development Workflow, Code Style (language-agnostic), Important Notes. Create files/settings.json.j2 with minimal permissions: Edit (allow), Write (allow), Read (allow), other tools as deny. Add files/.claude/hooks/format-on-save.sh.j2 as example hook: detect changed files, run appropriate formatter if available, make executable. Include helpful comments in all generated files. Add variables: project_name, description, author, date. Create validation/schema.yaml for template validation. Add README.md explaining template usage.",
+        "testStrategy": "Test template generates valid files for empty directory. Test variable substitution works correctly. Test hook script is executable and safe. Validate generated settings.json with Claude Code schema. Test CLAUDE.md renders readable content. Ensure template works on all platforms (Windows, Mac, Linux). Test with various project names (spaces, special chars). Verify no hardcoded paths or assumptions.",
+        "subtasks": []
+      },
+      {
+        "id": 7,
+        "title": "Implement Project Detection System",
+        "description": "Build intelligent project detection that analyzes codebases to recommend appropriate templates and configurations based on languages, frameworks, and tooling",
+        "status": "deferred",
+        "dependencies": [
+          6
+        ],
+        "priority": "high",
+        "details": "Create src/ai_forge/core/detector.py with ProjectDetector class. Implement detection strategies: Language detection (by file extensions, package files), Framework detection (Django, FastAPI, Next.js, etc.), Tool detection (pytest, jest, prettier, etc.), Git repository analysis. Use pathlib for file system traversal with .gitignore respect. Create detection rules in src/ai_forge/core/detection_rules.py: PythonDetector (pyproject.toml, requirements.txt, setup.py), JavaScriptDetector (package.json, tsconfig.json), GoDetector (go.mod, go.sum), Framework-specific detectors. Implement confidence scoring (0-100) for each detection. Add heuristics for: Most common file types, Package manager files priority, Framework-specific patterns. Return DetectionResult with: primary_language, frameworks[], tools[], suggested_template, confidence_score. Cache detection results for performance.",
+        "testStrategy": "Create test fixtures with sample project structures. Test detection accuracy for pure Python, JavaScript, Go projects. Test framework detection (Django, React, etc.). Test mixed-language projects return correct primary language. Test confidence scoring reflects uncertainty. Test performance on large codebases. Test edge cases: empty projects, single file projects, no clear language. Verify gitignore patterns are respected.",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create Core Detector Infrastructure",
+            "description": "Build the foundational ProjectDetector class and base detection framework in src/ai_forge/core/detector.py",
+            "dependencies": [],
+            "details": "Implement ProjectDetector class with methods for filesystem traversal using pathlib, .gitignore parsing and respect, caching mechanism for detection results, and abstract base classes for language/framework/tool detectors. Create DetectionResult dataclass with fields for primary_language, frameworks list, tools list, suggested_template, and confidence_score (0-100). Implement file discovery logic that efficiently scans project directories while respecting ignore patterns.",
+            "status": "done",
+            "testStrategy": "Create unit tests for ProjectDetector initialization, file traversal with mock filesystems, .gitignore pattern matching, and caching behavior. Test DetectionResult serialization and validation."
+          },
+          {
+            "id": 2,
+            "title": "Implement Language Detection Rules",
+            "description": "Create language-specific detectors in src/ai_forge/core/detection_rules.py for Python, JavaScript/TypeScript, and Go",
+            "dependencies": [
+              "7.1"
+            ],
+            "details": "Implement PythonDetector that identifies Python projects by checking for pyproject.toml, requirements.txt, setup.py, setup.cfg, Pipfile, and .py file extensions. Create JavaScriptDetector for package.json, tsconfig.json, .js/.ts/.jsx/.tsx extensions, and yarn.lock/package-lock.json. Build GoDetector for go.mod, go.sum, and .go files. Each detector should calculate confidence scores based on file presence, with package manager files having higher weight than just file extensions. Include heuristics for determining project type certainty.",
+            "status": "done",
+            "testStrategy": "Test each detector with fixture directories containing various combinations of language files. Verify confidence scores reflect presence of multiple indicators. Test edge cases like polyglot projects."
+          },
+          {
+            "id": 3,
+            "title": "Build Framework and Tool Detection",
+            "description": "Implement framework-specific detectors for popular frameworks and development tool detection",
+            "dependencies": [
+              "7.2"
+            ],
+            "details": "Create framework detectors for Django (settings.py, manage.py, django imports), FastAPI (fastapi imports, main.py patterns), Flask (flask imports, app.py), Next.js (next.config.js, pages/app directories), React (react in package.json, jsx files), Vue (vue in package.json, .vue files). Implement tool detectors for pytest (pytest.ini, conftest.py), jest (jest.config.js), prettier (.prettierrc), ESLint (.eslintrc), ruff (ruff.toml), mypy (mypy.ini), and other common tools. Each detector should contribute to overall confidence scoring.",
+            "status": "in-progress",
+            "testStrategy": "Create test fixtures for each framework with minimal viable configurations. Test detection accuracy with real-world project structures. Verify tool detection works alongside framework detection."
+          },
+          {
+            "id": 4,
+            "title": "Implement Detection Orchestration and Scoring",
+            "description": "Build the orchestration layer that coordinates all detectors and produces final detection results with confidence scoring",
+            "dependencies": [
+              "7.3"
+            ],
+            "details": "Implement detection orchestration in ProjectDetector that runs all applicable detectors in parallel for performance. Create scoring algorithm that weighs different signals: package manager files (highest weight), framework-specific files (high weight), tool configuration files (medium weight), file extensions (lower weight). Handle mixed-language projects by determining primary language based on file count and strategic file presence. Implement template suggestion logic that maps detection results to appropriate builtin templates (python, typescript, go, fullstack).",
+            "status": "pending",
+            "testStrategy": "Test orchestration with complex multi-language projects. Verify scoring produces intuitive results for common project types. Test performance with large codebases. Validate suggested templates match detected characteristics."
+          },
+          {
+            "id": 5,
+            "title": "Create Git Repository Analysis",
+            "description": "Implement Git repository analysis to enhance detection accuracy using commit history and repository metadata",
+            "dependencies": [
+              "7.4"
+            ],
+            "details": "Add GitAnalyzer class that examines .git directory safely to extract: most frequently modified file types from recent commits, primary development patterns from commit messages, team size indicators from author count, and project age/maturity metrics. Use this data to refine confidence scores and detect project evolution (e.g., JavaScript project transitioning to TypeScript). Implement fallback behavior when .git is not present. Cache Git analysis results separately with longer TTL since Git history changes slowly.",
+            "status": "pending",
+            "testStrategy": "Test with mock Git repositories containing various commit patterns. Verify analyzer handles missing .git gracefully. Test caching behavior and performance impact. Validate enhanced scoring accuracy with Git data."
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Build Security Validation System",
+        "description": "Implement enhanced security validation and audit system for Phase 1, including security audit command, best practices documentation, basic compliance checking, and enhanced validation rules beyond the MVP basics",
+        "status": "deferred",
+        "dependencies": [
+          6
+        ],
+        "priority": "high",
+        "details": "Create src/ai_forge/core/security_audit.py with SecurityAuditor class for Phase 1 security analysis. Implement enhanced validation rules: ExtendedSecretDetector for comprehensive secret pattern matching beyond basic regex, ConfigurationValidator for security-focused configuration checks, DependencyChecker for basic vulnerability scanning in dependencies. Create basic compliance checking in src/ai_forge/core/compliance.py: BasicComplianceChecker for essential security standards (OWASP Top 10 basics), SecurityBestPracticesValidator for common security patterns. Implement security audit command in src/ai_forge/cli/commands/security_audit.py: Generate security audit reports in markdown format, Provide actionable recommendations for improvements, Include security score/rating for projects. Create security documentation generator: SecurityBestPracticesGuide generating customized markdown guides based on project type, BasicThreatModelTemplate for simple threat documentation. Add configuration hardening suggestions: SecureDefaultsAdvisor recommending secure configuration options, PermissionChecker validating file permissions for sensitive files. Focus on practical, actionable security improvements appropriate for Phase 1 scope.",
+        "testStrategy": "Test enhanced validation rules catch common security issues without excessive false positives. Test compliance checker correctly identifies basic security violations. Test security audit command produces useful, actionable reports. Test best practices documentation is relevant to project type. Test configuration hardening suggestions are practical and don't break functionality. Create test fixtures with known security issues. Test security audit exit codes for CI/CD integration. Verify recommendations are appropriate for Phase 1 users.",
+        "subtasks": []
+      },
+      {
+        "id": 9,
+        "title": "Develop Validation and Testing Framework",
+        "description": "Create comprehensive validation framework to ensure configurations work correctly with Claude Code, including actual integration testing",
+        "status": "deferred",
+        "dependencies": [
+          "6"
+        ],
+        "priority": "critical",
+        "details": "Implement src/ai_forge/cli/commands/validate.py with enhanced validations: File existence checks (CLAUDE.md, settings.json), JSON syntax validation for settings.json, Hook executability verification, MCP server configuration validity check, Claude Code integration testing (spawn actual 'claude' process to verify configs work). Create src/ai_forge/core/validator.py with validators: ConfigValidator for JSON schema validation, FileValidator for syntax checking, IntegrationValidator for real Claude Code testing. Add src/ai_forge/core/claude_integration.py to handle: Spawning 'claude' subprocess with test configurations, Verifying permissions are properly recognized by Claude Code, Testing hook execution in Claude Code context, Ensuring CLAUDE.md is loaded and processed correctly, Capturing and analyzing Claude Code output/errors. Implement clear error reporting with: Error location (file, line number), Helpful error messages, Suggestions for common fixes, Integration test results showing actual Claude Code behavior.",
+        "testStrategy": "Test validation catches common errors: missing files, JSON syntax errors, invalid settings.json schema, non-executable hooks. Test integration with real Claude Code process: spawn claude with test configs, verify permissions work as expected, test hook execution succeeds, confirm CLAUDE.md loads properly. Test error messages are clear and helpful for both static validation and integration failures. Create test fixtures with known-bad configurations and configurations that pass static checks but fail in Claude Code. Test validation exit codes for CI/CD integration. Verify no false positives on valid configs. Mock Claude Code process for unit tests, use real process for integration tests.",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Implement static configuration validators",
+            "description": "Create ConfigValidator and FileValidator classes for basic syntax and schema validation",
+            "status": "pending",
+            "dependencies": [],
+            "details": "Implement in src/ai_forge/core/validator.py: ConfigValidator for JSON schema validation against Claude Code settings schema, FileValidator for checking file existence and basic syntax validation",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Create Claude Code integration testing module",
+            "description": "Build IntegrationValidator to spawn and test actual Claude Code process",
+            "status": "pending",
+            "dependencies": [],
+            "details": "Create src/ai_forge/core/claude_integration.py with capability to spawn 'claude' subprocess, pass test configurations, capture output/errors, and verify configs actually work",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Implement permission verification tests",
+            "description": "Test that Claude Code properly recognizes and respects configured permissions",
+            "status": "pending",
+            "dependencies": [],
+            "details": "Create tests that verify Edit, Write, Read, and tool-specific permissions are correctly interpreted by Claude Code when using generated settings.json",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Add hook execution validation",
+            "description": "Verify hooks can execute within Claude Code context",
+            "status": "pending",
+            "dependencies": [],
+            "details": "Test that configured hooks (format-on-save, pre-commit, etc.) are executable and trigger correctly when Claude Code performs relevant actions",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Test CLAUDE.md loading",
+            "description": "Ensure CLAUDE.md content is properly loaded and available in Claude Code context",
+            "status": "pending",
+            "dependencies": [],
+            "details": "Verify that project instructions in CLAUDE.md are actually loaded by Claude Code and influence its behavior appropriately",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Create comprehensive test fixtures",
+            "description": "Build test configurations covering various success and failure scenarios",
+            "status": "pending",
+            "dependencies": [],
+            "details": "Create fixtures for: valid configs that work, configs with syntax errors, configs that pass static validation but fail in Claude Code, edge cases and platform-specific issues",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Create Documentation and Distribution",
+        "description": "Create minimal documentation for MVP launch - just README and LICENSE",
+        "status": "deferred",
+        "dependencies": [
+          9
+        ],
+        "priority": "critical",
+        "details": "For MVP, create only the absolute essentials: README.md with installation instructions (pip install ai-forge) and basic usage example showing how to run 'ai-forge init' command; LICENSE file (MIT license). That's it for MVP - no API documentation, no GitHub Actions, no CHANGELOG, no comprehensive examples. Everything else (API docs inline with docstrings, GitHub Actions for automated releases, multiple examples, CHANGELOG.md) will be moved to Phase 1 after MVP launch.",
+        "testStrategy": "Test README installation instructions work in fresh virtual environment. Verify basic usage example in README executes without errors. Ensure LICENSE file exists and is valid MIT license. Test that these two files provide sufficient information for users to install and start using ai-forge.",
+        "subtasks": []
+      },
+      {
+        "id": 11,
+        "title": "Implement Language-Specific Templates",
+        "description": "Create specialized templates for Python, TypeScript, Go, and Fullstack projects with language-specific best practices and tooling",
+        "status": "deferred",
+        "dependencies": [
+          "6"
+        ],
+        "priority": "high",
+        "details": "Create language templates in src/ai_forge/builtin_templates/: python/ (with pytest, ruff, mypy, black integrations), typescript/ (with prettier, eslint, jest support), go/ (with go fmt, go vet, golangci-lint), fullstack/ (combined frontend/backend setup). For Python template: CLAUDE.md with Python-specific instructions, pytest sub-agent for test generation, black/ruff hooks for formatting, mypy integration for type checking, virtual environment handling. For TypeScript template: Node.js best practices, npm/yarn/pnpm detection, TypeScript configuration help, React/Vue/Angular detection, Prettier/ESLint hooks. For Go template: Go modules support, Standard library emphasis, Error handling patterns, Testing conventions. For Fullstack template: Frontend/backend separation, API documentation emphasis, Database migration hooks, Container support. Each template includes 2-3 specialized sub-agents.",
+        "testStrategy": "Test each template generates valid configuration for its language. Test language-specific hooks work correctly. Test framework detection within languages. Verify sub-agents have appropriate permissions. Test templates work with common project structures. Validate tool integration (linters, formatters). Test on real-world example projects. Ensure cross-platform compatibility for all templates.",
+        "subtasks": []
+      },
+      {
+        "id": 12,
+        "title": "Build MCP Integration System",
+        "description": "Implement MCP (Model Context Protocol) server configuration with security controls and pre-configured templates for common services",
+        "status": "deferred",
+        "dependencies": [
+          6
+        ],
+        "priority": "high",
+        "details": "Create src/ai_forge/generators/mcp.py for MCP configuration generation. Implement pre-configured MCP servers: GitHub (read-only by default), Filesystem (sandboxed paths), Database (read-only templates), Slack/Discord (send-only). Add security controls: Server allowlisting/blocklisting, Capability restrictions per server, Network isolation validation, Credential management guidance. Create src/ai_forge/core/mcp_validator.py for: Server URL validation, Configuration schema checking, Security policy enforcement, Compatibility verification. Implement MCP templates in builtin_templates/mcp/: github-readonly.yaml, filesystem-sandboxed.yaml, postgres-readonly.yaml, http-api-readonly.yaml. Add interactive MCP configuration wizard. Create security warnings for risky configurations. Generate comprehensive MCP documentation. Add ability to test MCP connections. Include example use cases for each server type.",
+        "testStrategy": "Test MCP configuration generation is valid. Test security restrictions are enforced. Test pre-configured templates work out-of-box. Test validator catches insecure configurations. Test credential handling doesn't expose secrets. Mock MCP server connections for testing. Test compatibility with Claude Code MCP format. Verify warnings appear for risky configs. Test allowlist/blocklist functionality.",
+        "subtasks": []
+      },
+      {
+        "id": 13,
+        "title": "Create Sub-Agent Template System",
+        "description": "Implement a template generation system for creating Claude Code sub-agent configurations and include basic agent templates for common development workflows (code-reviewer, test-writer, debugger, refactorer) as a core Phase 1 feature",
+        "status": "deferred",
+        "dependencies": [
+          6
+        ],
+        "priority": "high",
+        "details": "Create src/ai_forge/generators/agents.py to handle sub-agent markdown file generation. Implement AgentGenerator class with methods: generate_agent_file(name, role, instructions, permissions), validate_agent_config(config), create_agent_from_template(template_name). Create src/ai_forge/builtin_templates/agents/ directory with basic agent templates: code-reviewer.yaml (reviews code for quality, patterns, security), test-writer.yaml (generates unit/integration tests), debugger.yaml (analyzes errors and suggests fixes), refactorer.yaml (improves code structure and readability). Each agent template should include: metadata (name, description, version), role definition, specific instructions, tool permissions (restricted to relevant tools), example prompts, integration hooks. Implement agent configuration schema in src/ai_forge/core/config.py: AgentTemplateConfig with fields for name, role, instructions, permissions, examples. Add agent generation to main template system: integrate with TemplateConfig to support 'agents' field, allow templates to specify which agents to include, support customization of agent instructions per project. Create .claude/agents/ directory structure in generated projects. Implement permission inheritance system where agents inherit base permissions but can add restrictions. Add support for custom agent templates via ~/.ai-forge/agents/ directory. Include agent validation to ensure: no dangerous permissions, clear role boundaries, appropriate tool restrictions",
+        "testStrategy": "Create tests/test_agent_generator.py to test agent file generation. Test each built-in agent template generates valid markdown with proper structure. Verify agent permissions are restrictive and safe (e.g., code-reviewer has read-only access). Test agent files are created in correct .claude/agents/ directory. Test custom agent template loading from user directory. Verify agent configuration validation catches invalid permissions or missing required fields. Test integration with main template system - ensure agents are generated when specified in template. Create fixture projects and verify agents work with Claude Code. Test permission inheritance works correctly. Ensure generated agent files follow Claude Code's expected format",
+        "subtasks": []
+      },
+      {
+        "id": 14,
+        "title": "Implement Interactive Mode for Phase 2",
+        "description": "Build an interactive configuration wizard that guides users through AI Forge setup with project type detection, feature selection, and live preview before generation",
+        "status": "deferred",
+        "dependencies": [
+          5,
+          6
+        ],
+        "priority": "medium",
+        "details": "Create src/ai_forge/cli/commands/interactive.py implementing InteractiveMode class with Rich-based TUI. Implement setup wizard flow: 1) Welcome screen with AI Forge branding and version, 2) Project analysis using ProjectDetector to suggest configuration, 3) Project type selection (Python/TypeScript/Go/Fullstack/Custom) with auto-detection, 4) Feature toggles using Rich checkboxes (Sub-agents, MCP servers, Hooks, Memory settings), 5) Configuration customization with inline editing, 6) Live preview of generated files using Rich panels, 7) Confirmation and generation. Use Rich components: Console for output, Prompt for user input, Panel for file previews, Progress for generation status, Table for feature comparison. Implement InteractiveWizard class with methods: analyze_project() leveraging ProjectDetector, select_project_type() with menu, configure_features() with checkbox list, preview_configuration() showing file contents, generate_files() with progress tracking. Add keyboard shortcuts (Ctrl+C to cancel, Tab to navigate, Space to toggle). Store user selections in WizardState object. Implement preview generation without writing files using dry-run mode. Add undo/redo for configuration changes. Support --no-interactive flag to skip wizard. Cache detection results to avoid re-scanning. Add telemetry opt-in during wizard. Create custom Rich themes for consistent branding.",
+        "testStrategy": "Test interactive mode with pytest-mock for user input simulation. Create fixtures for different project types to test detection accuracy. Test keyboard navigation and shortcuts work correctly. Verify preview matches final generation. Test cancellation at each wizard step exits cleanly. Test feature toggle combinations generate correct configs. Mock Rich console to test output formatting. Test with various terminal sizes for responsive layout. Verify generated files match preview exactly. Test --no-interactive bypasses wizard. Test detection caching improves performance. Ensure telemetry opt-in respects user choice. Test custom themes render correctly.",
+        "subtasks": []
+      },
+      {
+        "id": 15,
+        "title": "Implement Version Management System",
+        "description": "Create a comprehensive version management system for AI Forge templates and configurations, supporting template versioning, migration tooling, compatibility matrices, and backward compatibility for 2 major versions",
+        "status": "deferred",
+        "dependencies": [
+          6
+        ],
+        "priority": "high",
+        "details": "Create src/ai_forge/core/versioning.py with VersionManager class implementing semantic versioning (major.minor.patch). Implement template versioning in src/ai_forge/core/template_versioning.py: TemplateVersion class with version parsing and comparison, TemplateRegistry tracking available versions, version resolution logic (latest, specific, compatible range). Build migration system in src/ai_forge/core/migrations/: MigrationManager for orchestrating upgrades, Migration base class with upgrade() and downgrade() methods, automatic migration detection and ordering, rollback capability with state snapshots. Create compatibility matrix in src/ai_forge/core/compatibility.py: CompatibilityMatrix class mapping AI Forge versions to template versions, validate_compatibility() method checking version requirements, compatibility warnings for deprecated features. Implement backward compatibility layer: maintain schema versions for 2 major versions, automatic config transformation for older formats, deprecation warnings with migration guidance. Add version commands to CLI: 'ai-forge migrate' for upgrading configurations, 'ai-forge check-compatibility' for validation, '--template-version' flag for init command. Store version metadata in generated files: add _ai_forge_version to settings.json, version header in CLAUDE.md, migration history in .ai-forge/migrations.log. Create migration scripts in src/ai_forge/migrations/ for each breaking change. Implement diff generation showing changes between versions.",
+        "testStrategy": "Create comprehensive version testing in tests/test_versioning.py. Test semantic version parsing and comparison logic. Test template version resolution picks correct versions. Create migration test fixtures with old config formats and verify upgrade paths. Test backward compatibility with configs from 2 major versions back. Test rollback functionality restores previous state correctly. Verify compatibility matrix catches incompatible combinations. Test migration command with dry-run and actual execution. Create end-to-end tests upgrading through multiple versions. Test version metadata is correctly embedded in generated files. Verify deprecation warnings appear for old features. Test edge cases: corrupted version data, missing migrations, circular dependencies.",
+        "subtasks": []
+      },
+      {
+        "id": 16,
+        "title": "Implement Team Features for Phase 2",
+        "description": "Create comprehensive team collaboration features including template synchronization, shared configuration management, compliance validation, and team-specific CLI commands for team adoption",
+        "status": "deferred",
+        "dependencies": [
+          4,
+          5
+        ],
+        "priority": "medium",
+        "details": "Create src/ai_forge/core/team/ module structure with: team_manager.py (TeamManager class for orchestrating team operations), team_sync.py (SyncEngine for bidirectional template/config sync), team_validator.py (ComplianceValidator for team-wide rules), team_config.py (TeamConfiguration Pydantic models). Implement team CLI commands in src/ai_forge/cli/commands/team.py: 'ai-forge team init' (initialize team workspace with .aiforge/team.yaml), 'ai-forge team sync' (pull/push templates and configs with conflict resolution), 'ai-forge team validate' (check all team members meet compliance rules). Create team configuration schema: team.yaml with team_id, members list, template_repository, compliance_rules, sync_settings. Build template synchronization system: Git-based template repository support, Version conflict detection and resolution, Template inheritance from team to local, Override policies (team vs local precedence). Implement shared configuration management: Centralized settings.json fragments, Team-wide hook library, Shared MCP server configurations, Environment variable templates. Add compliance validation features: Minimum security requirements, Required hooks enforcement, Forbidden pattern detection, License compliance checking. Create team_templates/ directory structure: team_templates/shared/ (common team resources), team_templates/roles/ (role-specific templates), team_templates/compliance/ (validation rules). Implement conflict resolution strategies: Automatic merging for non-conflicting changes, Interactive resolution for conflicts, Backup creation before sync, Rollback capability. Add team member management: Role-based template assignment (developer, reviewer, lead), Permission inheritance system, Onboarding automation for new members. Create audit logging in src/ai_forge/core/team/audit.py: Track all team sync operations, Log compliance violations, Generate team activity reports.",
+        "testStrategy": "Create comprehensive team feature tests in tests/test_team/. Test team initialization creates correct directory structure and configuration files. Test sync engine handles conflicts correctly with fixtures for various conflict scenarios. Test compliance validation catches all violation types (missing required hooks, forbidden patterns, etc.). Create mock Git repository for testing template synchronization. Test role-based template assignment works correctly. Verify audit logs capture all team operations. Test conflict resolution strategies with automated and interactive modes. Test team commands work correctly with various team sizes. Verify backwards compatibility with non-team setups. Test performance with large team configurations and templates. Create integration tests simulating multi-user team workflows. Test rollback functionality after failed sync operations.",
+        "subtasks": []
+      },
+      {
+        "id": 17,
+        "title": "Add Validate and Version Commands for Phase 1",
+        "description": "Implement 'ai-forge validate' command to verify configurations and 'ai-forge version' command to show version info as Phase 1 additions after the minimal MVP is complete",
+        "details": "Extend the CLI framework to add two new commands beyond the MVP init command. For 'ai-forge validate' command: Create src/ai_forge/cli/commands/validate.py implementing @click.command() that leverages the validation framework from Task 9. Call ConfigValidator for JSON schema validation, FileValidator for syntax checking, and IntegrationValidator for Claude Code compatibility. Add progress indicators using Rich for validation steps. Return detailed validation report with pass/fail status for each check. For 'ai-forge version' command: Create src/ai_forge/cli/commands/version.py with @click.command() that displays: AI Forge version from __version__, Python version, uv version if available, installed template versions, and CLI dependencies. Update src/ai_forge/cli/main.py to register both new commands in the CLI group. Ensure commands follow existing CLI patterns with --verbose flag support and Rich formatting for output.",
+        "testStrategy": "Test validate command with various scenarios: valid configurations pass all checks, missing CLAUDE.md is detected, invalid settings.json syntax fails validation, non-executable hooks are caught, integration with Claude Code validator from Task 9 works correctly. Test version command displays all version information correctly, handles missing version data gracefully, formats output properly with Rich. Use Click's CliRunner for all command testing. Mock file system and external calls as needed. Verify both commands appear in 'ai-forge --help' output. Test --verbose flag provides additional debug information for both commands.",
+        "status": "deferred",
+        "dependencies": [
+          2,
+          9
+        ],
+        "priority": "high",
+        "subtasks": []
+      },
+      {
+        "id": 18,
+        "title": "Create Enhanced Documentation and Distribution for Phase 1",
+        "description": "Implement comprehensive documentation system with API documentation inline with docstrings, GitHub Actions for automated PyPI releases, extensive examples, and CHANGELOG.md - features deferred from MVP Task 10",
+        "details": "Create src/ai_forge/core/documentation.py with DocstringParser class to extract API documentation from Python docstrings using ast module. Implement automated API documentation generation that scans all public modules and creates markdown documentation files. Set up GitHub Actions workflow in .github/workflows/release.yml for automated PyPI releases: trigger on version tags (v*), run tests, build distribution, publish to PyPI using trusted publishing (no API tokens in secrets). Create comprehensive examples directory structure: examples/basic/ (simple initialization examples), examples/advanced/ (template customization, team features), examples/integrations/ (MCP configs, language-specific setups). Implement CHANGELOG.md generation using conventional commits with changelog generator tool. Add documentation command 'ai-forge docs generate' to create API reference from docstrings. Configure mkdocs or similar for hosting documentation with auto-deployment to GitHub Pages. Create detailed migration guides for version upgrades leveraging the version management system. Add inline code examples in all public API docstrings following NumPy style guide. Set up documentation linting with pydocstyle to ensure consistent documentation quality.",
+        "testStrategy": "Test DocstringParser correctly extracts documentation from various docstring formats (Google, NumPy, Sphinx styles). Verify GitHub Actions workflow successfully builds and would publish to PyPI (using TestPyPI for validation). Test all examples execute without errors in fresh environments. Ensure CHANGELOG generation captures all commit types correctly. Test documentation generation creates valid markdown with proper formatting and links. Verify API documentation includes all public classes and functions. Test documentation builds successfully with mkdocs/sphinx. Validate code examples in docstrings are syntactically correct using doctest. Test documentation command generates complete API reference. Ensure migration guides work for actual version upgrades.",
+        "status": "deferred",
+        "dependencies": [
+          10,
+          15
+        ],
+        "priority": "high",
+        "subtasks": []
+      }
+    ],
+    "metadata": {
+      "created": "2025-07-25T16:15:14.570Z",
+      "updated": "2025-07-29T12:15:42.898Z",
+      "description": "Tasks for master context"
+    }
+  }
+}

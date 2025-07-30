@@ -1,0 +1,101 @@
+{
+	"meta": {
+		"generatedAt": "2025-07-25T17:14:50.223Z",
+		"tasksAnalyzed": 11,
+		"totalTasks": 16,
+		"analysisCount": 11,
+		"thresholdScore": 5,
+		"projectName": "Taskmaster",
+		"usedResearch": true
+	},
+	"complexityAnalysis": [
+		{
+			"taskId": 2,
+			"taskTitle": "Implement Core CLI Framework with Click",
+			"complexityScore": 7,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Break down the CLI framework implementation into subtasks covering: 1) Project structure setup and Click dependency installation, 2) Main CLI entry point with command group setup, 3) Individual command implementations (init, validate, version), 4) Custom exception hierarchy creation, 5) Console output utilities with Rich integration, 6) Error handling and exit code management, 7) Entry point configuration in pyproject.toml, 8) Comprehensive CLI testing with CliRunner",
+			"reasoning": "This task involves creating the foundational CLI architecture with multiple commands, custom error handling, rich console output, and proper packaging setup. The complexity comes from integrating Click and Rich frameworks, implementing proper error handling patterns, and ensuring a good user experience with colored output and progress bars."
+		},
+		{
+			"taskId": 3,
+			"taskTitle": "Design Configuration Schema with Pydantic",
+			"complexityScore": 8,
+			"recommendedSubtasks": 10,
+			"expansionPrompt": "Divide the configuration schema design into subtasks: 1) Install Pydantic and related dependencies, 2) Create base configuration models (ConfigMeta, TemplateConfig), 3) Implement system configuration models (MemoryConfig, PermissionsConfig, HookConfig), 4) Build integration models (AgentConfig, MCPServerConfig, StructureConfig), 5) Create the main AIForgeConfig model with composition, 6) Implement custom validators for version compatibility and path validation, 7) Add command safety and template name validators, 8) Create JSON Schema generation functionality, 9) Build configuration loader with YAML parsing and env var substitution, 10) Create comprehensive configuration examples",
+			"reasoning": "This task requires deep understanding of Pydantic v2 features, complex validation logic, and careful schema design. The high complexity stems from multiple interconnected models, custom validation requirements, environment variable handling, and the need to generate JSON schemas for external validation."
+		},
+		{
+			"taskId": 4,
+			"taskTitle": "Build Template System Architecture",
+			"complexityScore": 9,
+			"recommendedSubtasks": 12,
+			"expansionPrompt": "Structure the template system implementation: 1) Install Jinja2 and create base template architecture, 2) Implement Template abstract base class, 3) Build FileSystemLoader for local templates, 4) Create stub for RemoteLoader (future functionality), 5) Implement Jinja2 renderer with environment setup, 6) Create custom Jinja2 filters (to_json, to_yaml, indent_multiline, escape_quotes), 7) Build template registry for discovery and registration, 8) Implement template inheritance resolution system, 9) Create TemplateManifest parser for template.yaml files, 10) Add template validation (required files, variables, circular dependencies), 11) Implement template caching mechanism, 12) Build template composition support for partial imports",
+			"reasoning": "This is one of the most complex tasks as it involves building a complete templating engine with inheritance, custom filters, validation, and caching. The complexity includes handling circular dependencies, implementing a registry system, and integrating with Jinja2 while adding custom functionality on top."
+		},
+		{
+			"taskId": 5,
+			"taskTitle": "Implement File Generation Engine",
+			"complexityScore": 7,
+			"recommendedSubtasks": 9,
+			"expansionPrompt": "Break down file generation into focused subtasks: 1) Create FileGenerator base class with core methods, 2) Implement CLAUDE.md generator with section management, 3) Build settings.json generator with proper JSON formatting, 4) Create hook script generator with executable permissions, 5) Implement MCP configuration generator, 6) Build agent file generator for sub-agents, 7) Create filesystem utilities (atomic writes, directory creation, backup), 8) Implement dry-run mode support across all generators, 9) Add file-type specific formatting handlers (JSON indentation, Markdown formatting, shell script shebangs)",
+			"reasoning": "While conceptually straightforward, this task involves handling multiple file types with specific formatting requirements, implementing atomic writes for safety, managing file permissions (especially for executables), and supporting dry-run mode throughout. The variety of file types and safety requirements add complexity."
+		},
+		{
+			"taskId": 6,
+			"taskTitle": "Create Starter Template",
+			"complexityScore": 4,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Organize starter template creation: 1) Set up starter template directory structure, 2) Create template.yaml with metadata and minimal configuration, 3) Implement CLAUDE.md.j2 with universal sections and placeholders, 4) Build settings.json.j2 with minimal safe permissions, 5) Create example format-on-save hook with cross-platform compatibility",
+			"reasoning": "This is a relatively straightforward task focused on creating content rather than complex logic. The main considerations are ensuring the template is truly universal, maintaining cross-platform compatibility for the hook, and keeping the configuration minimal yet useful."
+		},
+		{
+			"taskId": 9,
+			"taskTitle": "Develop Validation and Testing Framework",
+			"complexityScore": 8,
+			"recommendedSubtasks": 11,
+			"expansionPrompt": "Structure validation framework development: 1) Create validate CLI command with argument parsing, 2) Implement ConfigValidator for schema validation, 3) Build FileValidator for syntax checking (JSON/YAML), 4) Create PermissionValidator for Claude Code compatibility, 5) Implement StructureValidator for project layout verification, 6) Build comprehensive error reporting system with location tracking, 7) Add auto-fix functionality for common issues, 8) Create multi-format report generation (terminal, JSON, markdown), 9) Implement validation severity levels and classification, 10) Add performance benchmarking for validation, 11) Build CI/CD integration with proper exit codes",
+			"reasoning": "This task requires building a comprehensive validation system with multiple validators, detailed error reporting, auto-fixing capabilities, and various output formats. The complexity comes from needing to validate different aspects (syntax, schema, semantics, integration) and provide actionable feedback."
+		},
+		{
+			"taskId": 10,
+			"taskTitle": "Create Documentation and Distribution",
+			"complexityScore": 6,
+			"recommendedSubtasks": 8,
+			"expansionPrompt": "Organize documentation and distribution tasks: 1) Write comprehensive README.md with badges and quick start, 2) Create user guide and API reference documentation structure, 3) Set up PyPI distribution configuration in pyproject.toml, 4) Configure GitHub Actions for CI/CD (testing, security scanning, release), 5) Create example projects demonstrating various use cases, 6) Set up MkDocs Material for documentation site, 7) Create contribution guidelines and development setup docs, 8) Design GitHub issue and PR templates",
+			"reasoning": "While not technically complex, this task requires attention to detail and covers multiple aspects of project distribution. The complexity lies in creating clear, comprehensive documentation, setting up automated workflows, and ensuring smooth distribution through PyPI."
+		},
+		{
+			"taskId": 13,
+			"taskTitle": "Create Sub-Agent Template System",
+			"complexityScore": 6,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Implement sub-agent system in phases: 1) Create AgentGenerator class with core generation methods, 2) Build agent configuration schema with validation, 3) Implement code-reviewer agent template with read-only permissions, 4) Create test-writer agent template with appropriate file access, 5) Build debugger agent template with error analysis focus, 6) Implement refactorer agent template with code modification permissions, 7) Create agent validation system ensuring permission safety and role boundaries",
+			"reasoning": "This task involves creating a new subsystem for generating agent configurations with proper permission management. The moderate complexity comes from ensuring each agent has appropriate, safe permissions while maintaining usefulness, and integrating with the existing template system."
+		},
+		{
+			"taskId": 14,
+			"taskTitle": "Implement Interactive Mode for Phase 2",
+			"complexityScore": 8,
+			"recommendedSubtasks": 10,
+			"expansionPrompt": "Build interactive mode incrementally: 1) Create InteractiveMode command and basic Rich TUI setup, 2) Implement project analysis and detection integration, 3) Build project type selection menu with auto-detection, 4) Create feature toggle interface with Rich checkboxes, 5) Implement configuration customization with inline editing, 6) Build live preview system using dry-run mode, 7) Add keyboard navigation and shortcuts, 8) Implement wizard state management with undo/redo, 9) Create custom Rich themes for branding, 10) Add telemetry opt-in and caching mechanisms",
+			"reasoning": "This is a complex UI task requiring Rich TUI expertise, state management, project detection integration, and a smooth user experience. The complexity comes from building an interactive wizard with preview capabilities, keyboard navigation, and maintaining state throughout the process."
+		},
+		{
+			"taskId": 15,
+			"taskTitle": "Implement Version Management System",
+			"complexityScore": 9,
+			"recommendedSubtasks": 12,
+			"expansionPrompt": "Design version management systematically: 1) Create VersionManager with semantic versioning support, 2) Build TemplateVersion class with comparison logic, 3) Implement TemplateRegistry for version tracking, 4) Create Migration base class and MigrationManager, 5) Build automatic migration detection and ordering, 6) Implement rollback with state snapshots, 7) Create CompatibilityMatrix for version mapping, 8) Build backward compatibility transformation layer, 9) Add version-related CLI commands (migrate, check-compatibility), 10) Implement version metadata embedding in generated files, 11) Create migration scripts for breaking changes, 12) Build diff generation between versions",
+			"reasoning": "This is one of the most complex tasks, requiring careful design of version management, migration systems, and backward compatibility. The complexity stems from handling version conflicts, maintaining compatibility across multiple versions, implementing rollback functionality, and ensuring smooth upgrades."
+		},
+		{
+			"taskId": 16,
+			"taskTitle": "Implement Team Features for Phase 2",
+			"complexityScore": 10,
+			"recommendedSubtasks": 14,
+			"expansionPrompt": "Implement team features comprehensively: 1) Create team module structure and base classes, 2) Build team CLI commands (init, sync, validate), 3) Design team configuration schema with Pydantic, 4) Implement Git-based template synchronization engine, 5) Build conflict detection and resolution system, 6) Create shared configuration management system, 7) Implement compliance validation with rules engine, 8) Build team template directory structure, 9) Add automatic conflict resolution strategies, 10) Implement interactive conflict resolution, 11) Create role-based template assignment system, 12) Build audit logging system, 13) Implement team member management, 14) Add performance optimizations for large teams",
+			"reasoning": "This is the most complex task, involving distributed systems concepts, Git integration, conflict resolution, compliance systems, and team coordination. The complexity comes from handling synchronization, conflicts, compliance rules, role-based access, and maintaining consistency across team members while providing good UX."
+		}
+	]
+}

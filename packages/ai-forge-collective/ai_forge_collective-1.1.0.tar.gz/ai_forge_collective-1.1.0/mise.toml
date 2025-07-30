@@ -1,0 +1,79 @@
+[tools]
+python = "3.12"
+uv = "latest"
+"npm:@anthropic-ai/claude-code" = "latest" 
+"npm:@google/gemini-cli" = "latest"
+
+[tasks.sync]
+description = "Install / sync dependencies"
+run = "uv sync --all-extras"
+
+[tasks.build]
+description = "Build the CLI tool (ai-forge)"
+run = "uv build"
+
+[tasks.test]
+description = "Run tests"
+run = "uv run pytest -q --ignore=tests/test_generators/"
+
+[tasks.format]
+description = "Format code"
+run = "uv run ruff format -q --line-length 88 --target-version py312"
+
+[tasks.lint]
+description = "Lint code"
+run = "uv run ruff check -q --fix"
+
+[tasks.typecheck]
+description = "Type check code"
+run = "uv run mypy src/ai_forge"
+
+[tasks.check]
+description = "Run all quality checks (format, lint, typecheck)"
+depends = ["format", "lint", "typecheck"]
+
+[tasks.ci]
+description = "Run complete CI pipeline (check + test + build)"
+depends = ["check", "test", "build"]
+
+[tasks.release]
+description = "Full release pipeline (ci + clean)"
+depends = ["ci", "clean"]
+run = 'echo "✅ Release pipeline completed successfully"'
+
+[tasks.format-check]
+description = "Format check (CI mode)"
+run = "uv run ruff format --check --line-length 88 --target-version py312"
+
+[tasks.test-cov]
+description = "Test with coverage"
+run = "uv run pytest --cov=ai_forge"
+
+[tasks.clean]
+description = "Clean up python cache, build artifacts, and test artifacts"
+run = [
+    "find . -type d -name __pycache__ -exec rm -rf {} +",
+    "find . -type d -name '*.egg-info' -exec rm -rf {} +", 
+    "find . -type f -name '*.pyc' -delete",
+    "find . -type f -name '*.pyo' -delete",
+    "find . -type f -name '*.pyd' -delete",
+    "rm -f coverage.xml",
+    "rm -rf build dist htmlcov .pytest_cache .coverage .coverage.* .mypy_cache .ruff_cache .ruff_cache.* output/*.md output/.claude",
+    "rm -rf test-init/ test-directory/ test-logs-fix/"
+]
+
+[tasks.test-mvp]
+description = "Run MVP integration tests"
+run = "python3 local-tests/test_mvp_init.py"
+
+[tasks.test-phase2]
+description = "Run Phase 2 tests (generators, etc.)"
+run = "uv run pytest -q tests/test_generators/ --tb=short"
+
+[tasks.verify-mvp]
+description = "Run MVP verification script"
+run = "python3 local-tests/verify_mvp.py"
+
+[tasks.install-dev]
+description = "Install tool locally for development"
+run = "uv tool install . --editable"

@@ -1,0 +1,80 @@
+# AI Forge - Claude Collective Builder
+
+AI Forge is a Python CLI tool that transforms Claude Code from a powerful but low-level tool into a productivity multiplier through intelligent, templated configurations. It provides opinionated, best-practice setups while maintaining the flexibility teams need to customize their workflows.
+
+## Must-read documents
+- [CLAUDE.md](./CLAUDE.md): The core architecture and design document for AI Forge.
+- [REVIEW.md](./REVIEW.md): The latest code review and project status.
+- [PRD.md](./taskmaster/docs/PRD.md): The main project requirements document.
+
+<!-- TASKMASTER_EXPORT_START -->
+> 🎯 **Taskmaster Export** - 2025-07-29 12:16:32 UTC
+> 📋 Export: with subtasks • Status filter: none
+> 🔗 Powered by [Task Master](https://task-master.dev?utm_source=github-readme&utm_medium=readme-export&utm_campaign=ai-forge&utm_content=task-export-link)
+
+| Project Dashboard |  |
+| :-                |:-|
+| Task Progress     | ███████░░░░░░░░░░░░░ 33% |
+| Done | 6 |
+| In Progress | 0 |
+| Pending | 0 |
+| Deferred | 12 |
+| Cancelled | 0 |
+|-|-|
+| Subtask Progress | ███████████░░░░░░░░░ 53% |
+| Completed | 10 |
+| In Progress | 1 |
+| Pending | 8 |
+
+
+| ID | Title | Status | Priority | Dependencies | Complexity |
+| :- | :-    | :-     | :-       | :-           | :-         |
+| 1 | Initialize Python Project with Modern Tooling | ✓&nbsp;done | high | None | N/A |
+| 2 | Implement Core CLI Framework with Click | ✓&nbsp;done | critical | 1 | ● 7 |
+| 2.1 | Set up project structure and install Click dependencies | ✓&nbsp;done | -            | None | N/A |
+| 2.2 | Create main CLI entry point with command group setup | ✓&nbsp;done | -            | 2.1 | N/A |
+| 2.3 | Implement individual command implementations | ✓&nbsp;done | -            | 2.2 | N/A |
+| 2.4 | Create custom exception hierarchy | ✓&nbsp;done | -            | 2.1 | N/A |
+| 2.5 | Implement console output utilities with Rich integration | ✓&nbsp;done | -            | 2.1, 2.4 | N/A |
+| 2.6 | Implement error handling and exit code management | ✓&nbsp;done | -            | 2.4, 2.5 | N/A |
+| 2.7 | Configure entry point in pyproject.toml | ✓&nbsp;done | -            | 2.2, 2.3 | N/A |
+| 2.8 | Create comprehensive CLI testing with CliRunner | ✓&nbsp;done | -            | 2.3, 2.6, 2.7 | N/A |
+| 3 | Design Configuration Schema with Pydantic | ✓&nbsp;done | critical | 1 | ● 8 |
+| 4 | Build Template System Architecture | ✓&nbsp;done | critical | 3 | ● 9 |
+| 5 | Implement File Generation Engine | ✓&nbsp;done | critical | 4 | ● 7 |
+| 6 | Create Starter Template | ✓&nbsp;done | critical | 5 | ● 4 |
+| 7 | Implement Project Detection System | x&nbsp;deferred | high | 6 | N/A |
+| 7.1 | Create Core Detector Infrastructure | ✓&nbsp;done | -            | None | N/A |
+| 7.2 | Implement Language Detection Rules | ✓&nbsp;done | -            | 7.1 | N/A |
+| 7.3 | Build Framework and Tool Detection | ►&nbsp;in-progress | -            | 7.2 | N/A |
+| 7.4 | Implement Detection Orchestration and Scoring | ○&nbsp;pending | -            | 7.3 | N/A |
+| 7.5 | Create Git Repository Analysis | ○&nbsp;pending | -            | 7.4 | N/A |
+| 8 | Build Security Validation System | x&nbsp;deferred | high | 6 | N/A |
+| 9 | Develop Validation and Testing Framework | x&nbsp;deferred | critical | 6 | ● 8 |
+| 9.1 | Implement static configuration validators | ○&nbsp;pending | -            | None | N/A |
+| 9.2 | Create Claude Code integration testing module | ○&nbsp;pending | -            | None | N/A |
+| 9.3 | Implement permission verification tests | ○&nbsp;pending | -            | None | N/A |
+| 9.4 | Add hook execution validation | ○&nbsp;pending | -            | None | N/A |
+| 9.5 | Test CLAUDE.md loading | ○&nbsp;pending | -            | None | N/A |
+| 9.6 | Create comprehensive test fixtures | ○&nbsp;pending | -            | None | N/A |
+| 10 | Create Documentation and Distribution | x&nbsp;deferred | critical | 9 | ● 6 |
+| 11 | Implement Language-Specific Templates | x&nbsp;deferred | high | 6 | N/A |
+| 12 | Build MCP Integration System | x&nbsp;deferred | high | 6 | N/A |
+| 13 | Create Sub-Agent Template System | x&nbsp;deferred | high | 6 | ● 6 |
+| 14 | Implement Interactive Mode for Phase 2 | x&nbsp;deferred | medium | 5, 6 | ● 8 |
+| 15 | Implement Version Management System | x&nbsp;deferred | high | 6 | ● 9 |
+| 16 | Implement Team Features for Phase 2 | x&nbsp;deferred | medium | 4, 5 | ● 10 |
+| 17 | Add Validate and Version Commands for Phase 1 | x&nbsp;deferred | high | 2, 9 | N/A |
+| 18 | Create Enhanced Documentation and Distribution for Phase 1 | x&nbsp;deferred | high | 10, 15 | N/A |
+
+> 📋 **End of Taskmaster Export** - Tasks are synced from your project using the `sync-readme` command.
+<!-- TASKMASTER_EXPORT_END -->
+
+
+
+
+
+
+
+
+
