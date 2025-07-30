@@ -1,0 +1,33 @@
+{
+  "id": "cloud_pythonconsole",
+  "name": "Cloud Python Console",
+  "version": "1.0.0",
+  "description": "PyCloud OS için anlık Python REPL konsolu. Kod test etme ve sistem modüllerini keşfetme için kullanılır.",
+  "entry": "main.py",
+  "exec": "python3 main.py",
+  "icon": "icon.png",
+  "category": "Geliştirme",
+  "developer": "PyCloud Team",
+  "license": "MIT",
+  "homepage": "https://pycloudos.dev/apps/cloud_pythonconsole",
+  "tags": ["python", "repl", "console", "developer", "terminal"],
+  "screenshots": [
+    "screenshots/1.png",
+    "screenshots/2.png"
+  ],
+  "requires": ["python3", "pyqt6"],
+  "permissions": ["filesystem", "system"],
+  "dependencies": {
+    "pyqt6": ">=6.0.0",
+    "python": ">=3.8"
+  },
+  "features": [
+    "Anlık Python kod çalıştırma",
+    "Komut geçmişi ve navigasyon",
+    "PyCloud sistem modüllerine erişim",
+    "Renkli syntax highlighting",
+    "Hata yakalama ve görüntüleme",
+    "Interaktif REPL ortamı"
+  ],
+  "signature": "sha256:..."
+} 
