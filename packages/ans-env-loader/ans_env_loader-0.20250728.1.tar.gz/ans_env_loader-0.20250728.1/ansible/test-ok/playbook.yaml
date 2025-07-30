@@ -1,0 +1,8 @@
+- hosts: localhost
+  gather_facts: false
+  tasks:
+    - debug:
+        var: app_flask_SECRET
+
+    - debug:
+        var: app_pg_pass
