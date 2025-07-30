@@ -1,0 +1,40 @@
+{
+  "fallback_versions": {
+    "yq": {
+      "version": "v4.40.5",
+      "release_date": "2024-01-15",
+      "description": "稳定版本的 YAML 处理工具 (仅支持 AMD64)",
+      "files": {
+        "linux_amd64": "yq_linux_amd64.tar.gz"
+      }
+    },
+    "mihomo": {
+      "version": "v1.17.0",
+      "release_date": "2024-06-01",
+      "description": "稳定版本的 Mihomo 内核 (仅支持 AMD64)",
+      "files": {
+        "linux_amd64": "mihomo-linux-amd64-v1.17.0.gz"
+      }
+    }
+  },
+  "manual_download_guide": {
+    "cache_directory": "~/.cache/clash-cli/downloads",
+    "instructions": {
+      "zh": "如果网络下载失败，您可以手动下载文件并放置到缓存目录",
+      "en": "If network download fails, you can manually download files and place them in the cache directory"
+    },
+    "download_urls": {
+      "yq": "https://github.com/mikefarah/yq/releases/latest",
+      "mihomo": "https://github.com/MetaCubeX/mihomo/releases/latest"
+    },
+    "file_naming": {
+      "yq": "yq_linux_amd64.tar.gz",
+      "mihomo": "mihomo-linux-amd64-{version}.gz (例如: mihomo-linux-amd64-v1.19.2.gz)"
+    }
+  },
+  "notes": [
+    "预置版本仅支持 AMD64 架构",
+    "其他架构请使用网络下载或手动下载",
+    "手动下载的文件请放置到 ~/.cache/clash-cli/downloads/ 目录"
+  ]
+}
