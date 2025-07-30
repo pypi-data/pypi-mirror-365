@@ -1,0 +1,21 @@
+[project]
+name = "gitprompter"
+version = "0.1.1"
+description = "Генератор промтов для нейросетей на основе git diff."
+authors = [
+    {name = "pasha_danilevich",email = "danilevitch.pasha@yandex.ru"}
+]
+readme = "README.md"
+requires-python = ">=3.10, <4.0"
+
+
+[tool.poetry.dependencies]
+click = "^8.2.1"
+pyperclip = "^1.9.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[project.scripts]
+gitprompter = "gitprompter.cli:cli"  # Указываем группу команд, а не одну функцию
