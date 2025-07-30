@@ -1,0 +1,255 @@
+Metadata-Version: 2.1
+Name: github_oss_contributions
+Version: 0.3.1
+Summary: Fetch organizations where a user created issues or PRs for Open Source
+Author: Mohit Upadhyay and Anuj Kumar Upadhyay
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# github-oss-contributions Package
+
+`github-oss-contributions` is a Python package designed to fetch Open Source contributions the user has made in various reputed organizations to showcase on portfolio, resumes, etc.
+
+## ✨ Why Use This Package?
+- 🔗 Track your Open Source footprint across different organizations.
+
+- 💼 Showcase your real OSS contributions easily in personal portfolios, resumes, or developer profiles.
+
+- 🧠 Learn and reflect on your engagement with the open source community.
+
+- 🛠️ Easily integrates into dashboards, static websites, or CLI tools.
+
+## 📦 Perfect For:
+- Developers building personal portfolios with dynamic OSS stats.
+
+- Students applying for programs like GitHub Campus Experts, MLH Fellowships, or Google Summer of Code.
+
+- Anyone who wants to track and display their OSS impact beautifully.
+
+## 📋 Table of Contents
+
+- [Overview](#overview)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Reference](#api-reference)
+- [Advanced Usage](#advanced-usage)
+- [Troubleshooting](#troubleshooting)
+- [License](#license)
+- [Authors](#authors)
+- [Contributing](#contributing)
+
+## [Overview](#overview)
+
+`github-oss-contributions` is a Python package that allows you to discover and track your open source contributions across GitHub organizations. It retrieves information about issues and pull requests you've created in open source projects and organizes them by organization.
+
+## ✨ Features
+
+- **Async & Fast**: All network operations are fully asynchronous for best performance.
+- **Organization Discovery**: Find all organizations where you've contributed
+- **Contribution Tracking**: Separate lists of your issues and PRs for each organization
+- **Rich Metadata**: Get organization avatars, profile URLs, and contribution details
+- **User-Friendly**: Interactive CLI output with progress indicators
+- **GitHub API Integration**: Uses GitHub's REST API with authentication support
+- **Robust Error Handling**: Friendly messages and logging for network/API errors.
+- **Use Directly in CLI**: You can directly use in CLI as well with simple cli command given below.
+
+## Installation
+
+### Option 1: Install from PyPI (Recommended)
+
+```bash
+pip install github-oss-contributions
+```
+
+### Option 2: Install from Source
+
+```bash
+# Clone the repository
+git clone https://github.com/org-name/github-oss-contributions.git
+cd github-oss-contributions
+
+# Install in development mode
+pip install -e .
+
+# Or install dependencies only
+pip install -r requirements.txt
+```
+
+## Usage
+
+### Basic Usage
+
+```python
+from github_oss_contributions import GitHubOssContributions
+
+# Initialize with your GitHub username
+client = GitHubOssContributions(username="your_github_username")
+
+# Get your contributions
+org_data = client.get_contributions()
+print(org_data)
+
+# Pretty Print (rich installed)
+client.print_contributions()
+```
+
+### Using with GitHub Token (Recommended)
+
+```python
+from github_oss_contributions import GitHubOssContributions
+
+# Using a GitHub token increases API rate limits
+client = GitHubOssContributions(username="your_github_username", token="YOUR_GITHUB_TOKEN")
+org_data = client.get_contributions()
+print("Contributions fetched successfully:")
+print(org_data)
+
+# pretty print (rich installed)
+client.print_contributions()
+```
+
+### CLI Usage
+After installation, you can use the CLI tool directly from your terminal:
+```python
+github-oss-contributions --username YOUR_GITHUB_USERNAME
+
+```
+#### With Github Token (Higher Rate limits):
+```bash
+github-oss-contributions --username YOUR_GITHUB_USERNAME --token YOUR_GITHUB_TOKEN
+```
+
+#### To print raw HSON data instaed of pretty outputs:
+```bash
+github-oss-contributions --username YOUR_GITHUB_USERNAME --token <your-github-token_OPTIONAL> --raw
+```
+
+## 📦 About
+
+`github-oss-contributions` is a Python package to fetch organizations where a GitHub user has created issues or pull requests (PRs) in open source repositories. It helps you discover your open source impact across organizations.
+
+### Example Output
+
+```
+Data fetched Successfully! 
+
+Org: xyz-org
+Avatar: https://avatars.githubusercontent.com/u/25?v=4
+Profile: https://github.com/xyz-org
+Issues:
+  - 🐛 Bug Report: Validation is not properly handled in the form.    
+(https://github.com/xyz-org/website/issues/21)
+Pull Requests:
+  - docs: added type field in the documentation of package.json
+(https://github.com/xyz-org/docs/pull/16)
+
+--------------------------------
+
+Summary:
+Organizations: 10
+Issues: 11
+Pull Requests: 12
+
+```
+
+## 🧩 API Reference
+
+### `GitHubOssContributions` Class
+
+#### Constructor
+
+```python
+GitHubOssContributions(username, token=None)
+```
+
+**Parameters:**
+
+- `username` (str): GitHub username to fetch contributions for
+- `token` (str, optional): GitHub personal access token for authentication
+
+#### Methods
+
+##### `get_contributions()`
+
+Fetches all issues and pull requests created by the user in organization repositories.
+
+**Returns:**
+Dictionary with organization names as keys and contribution data as values:
+
+##### `print_contributions()`
+
+Pretty printing the output
+
+**Returns:**
+Return the output in most arranged format with spatial color coding and highlighting.
+
+
+## 🔍 Advanced Usage
+
+### Creating a GitHub Token
+
+For better API rate limits, create a GitHub Personal Access Token:
+
+1. Go to GitHub Settings → Developer Settings → Personal Access Tokens → Fine-grained tokens
+2. Click "Generate new token"
+3. Give it a name and set expiration
+4. Select "Only select repositories" and choose repositories you want to analyze
+5. For permissions, grant "Read-only" access to "Issues" and "Pull requests"
+6. Click "Generate token" and copy it
+
+### Using in a Project
+
+```python
+import os
+from github_oss_contributions import GitHubOssContributions
+
+# Use environment variables for sensitive tokens
+token = os.environ.get("GITHUB_TOKEN")
+client = GitHubOssContributions(username="your_github_username", token=token)
+contributions = client.get_contributions()
+
+# Process the contributions
+total_orgs = len(contributions)
+total_issues = sum(len(data['issues']) for data in contributions.values())
+total_prs = sum(len(data['prs']) for data in contributions.values())
+
+print(f"Contributed to {total_orgs} organizations")
+print(f"Created {total_issues} issues and {total_prs} pull requests")
+```
+
+## ⚠️ Troubleshooting
+
+### API Rate Limits
+
+If you encounter rate limiting errors:
+
+1. Use a GitHub personal access token
+2. Make fewer requests in a short time period
+3. Check your rate limit status: `https://api.github.com/rate_limit`
+
+### Common Issues
+
+- **Authentication Errors**: Verify your token has required permissions
+- **No Results**: Confirm the username is correct and has public activity
+- **Connection Issues**: Check your network connection
+
+## 📝 License
+
+MIT License
+
+## 👤 Authors
+
+- Mohit Upadhyay
+- Anuj Kumar Upadhyay
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
