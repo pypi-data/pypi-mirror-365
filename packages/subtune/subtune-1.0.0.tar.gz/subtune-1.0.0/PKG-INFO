@@ -1,0 +1,139 @@
+Metadata-Version: 2.4
+Name: subtune
+Version: 1.0.0
+Summary: Tune SRT subtitle timings with ease
+Project-URL: Homepage, https://github.com/rafa-garcia/subtune
+Project-URL: Repository, https://github.com/rafa-garcia/subtune.git
+Project-URL: Issues, https://github.com/rafa-garcia/subtune/issues
+Project-URL: Changelog, https://github.com/rafa-garcia/subtune/releases
+Author-email: Rafa Garcia <rafa@rafagarcia.info>
+Maintainer-email: Rafa Garcia <rafa@rafagarcia.info>
+License: MIT
+License-File: LICENSE
+Keywords: cli,shift,srt,subtitle,sync,timing,video
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Multimedia :: Video
+Classifier: Topic :: Text Processing :: General
+Classifier: Topic :: Utilities
+Classifier: Typing :: Typed
+Requires-Python: >=3.9
+Provides-Extra: build
+Requires-Dist: build>=0.10.0; extra == 'build'
+Requires-Dist: hatchling>=1.0.0; extra == 'build'
+Requires-Dist: twine>=4.0.0; extra == 'build'
+Provides-Extra: dev
+Requires-Dist: pytest-cov>=4.0.0; extra == 'dev'
+Requires-Dist: pytest>=7.0.0; extra == 'dev'
+Requires-Dist: ruff>=0.1.0; extra == 'dev'
+Provides-Extra: test
+Requires-Dist: pytest-cov>=4.0.0; extra == 'test'
+Requires-Dist: pytest>=7.0.0; extra == 'test'
+Description-Content-Type: text/markdown
+
+# subtune
+
+[![Tests](https://github.com/rafa-garcia/subtune/actions/workflows/test.yml/badge.svg)](https://github.com/rafa-garcia/subtune/actions/workflows/test.yml)
+[![Release](https://github.com/rafa-garcia/subtune/actions/workflows/release.yml/badge.svg)](https://github.com/rafa-garcia/subtune/actions/workflows/release.yml)
+
+A CLI tool for adjusting SRT subtitle timestamps with precision and safety.
+
+## Features
+
+- **Precise timing adjustment** - Shift subtitles by milliseconds
+- **Safe operations** - Optional backup creation before modifications  
+- **Robust validation** - Input validation with helpful error messages
+
+## Installation
+
+Install from PyPI:
+```bash
+pip install subtune
+```
+
+Or install from source:
+```bash
+git clone https://github.com/rafa-garcia/subtune.git
+cd subtune
+pip install .
+```
+
+## Usage
+
+### Basic Usage
+```bash
+# Shift subtitles 2 seconds later
+subtune input.srt --offset 2000 output.srt
+
+# Shift subtitles 1.5 seconds earlier  
+subtune input.srt --offset -1500 output.srt
+```
+
+### Advanced Options
+```bash
+# Modify in-place with backup
+subtune input.srt --offset 1000 --backup
+
+# Short flags
+subtune input.srt -o 1000 -b
+```
+
+### Command Reference
+```
+$ subtune --help
+usage: subtune [-h] -o OFFSET [--output OUTPUT] [-b] [--version] input_file
+
+Shift SRT subtitle timestamps by a specified offset
+
+positional arguments:
+  input_file            Input SRT file path
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -o OFFSET, --offset OFFSET
+                        Time offset in milliseconds (positive=forward,
+                        negative=backward)
+  --output OUTPUT       Output file path (default: modify input file in-place)
+  -b, --backup          Create backup of input file before modification
+  --version             show program's version number and exit
+```
+
+## Development
+
+### Quick Start
+```bash
+# Install development dependencies
+pip install -e ".[dev]"
+
+# Run all tests
+pytest
+
+# Verbose output with details
+pytest -v
+
+# Run specific test file
+pytest tests/test_cli.py
+
+# Run tests with coverage
+pytest --cov=src/subtune
+
+# Generate HTML coverage report
+pytest --cov=src/subtune --cov-report=html
+open htmlcov/index.html
+
+# Check code quality
+ruff check src/ tests/
+```
+
+## License
+
+MIT License - see [LICENSE](LICENSE) file for details.
