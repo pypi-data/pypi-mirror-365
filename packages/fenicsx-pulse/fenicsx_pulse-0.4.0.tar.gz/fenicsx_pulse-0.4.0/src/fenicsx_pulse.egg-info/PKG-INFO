@@ -1,0 +1,97 @@
+Metadata-Version: 2.4
+Name: fenicsx-pulse
+Version: 0.4.0
+Summary: Next generation cardiac mechanics solver based on FEniCSx
+Author-email: Henrik Finsberg <henriknf@simula.no>
+License: Copyright 2022 Henrik Finsberg
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+        
+Requires-Python: >=3.10.0
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: fenics-dolfinx
+Requires-Dist: pint
+Requires-Dist: scifem
+Requires-Dist: rich
+Requires-Dist: rich-argparse
+Provides-Extra: test
+Requires-Dist: pytest; extra == "test"
+Requires-Dist: pytest-cov; extra == "test"
+Requires-Dist: cardiac-geometriesx; extra == "test"
+Provides-Extra: dev
+Requires-Dist: pdbpp; extra == "dev"
+Requires-Dist: ipython; extra == "dev"
+Requires-Dist: bump2version; extra == "dev"
+Requires-Dist: pre-commit; extra == "dev"
+Provides-Extra: demo
+Requires-Dist: cardiac-geometriesx; extra == "demo"
+Requires-Dist: fenicsx-ldrb; extra == "demo"
+Requires-Dist: circulation; extra == "demo"
+Requires-Dist: gotranx; extra == "demo"
+Requires-Dist: adios4dolfinx; extra == "demo"
+Requires-Dist: scipy; extra == "demo"
+Requires-Dist: ukb-atlas; extra == "demo"
+Provides-Extra: docs
+Requires-Dist: jupyter-book; extra == "docs"
+Requires-Dist: jupytext; extra == "docs"
+Requires-Dist: jupyter; extra == "docs"
+Requires-Dist: pyvista[all]>=0.43.0; extra == "docs"
+Requires-Dist: trame-vuetify; extra == "docs"
+Requires-Dist: ipywidgets; extra == "docs"
+Requires-Dist: fenicsx-pulse[demo]; extra == "docs"
+Provides-Extra: benchmark
+Requires-Dist: pytest-codspeed; extra == "benchmark"
+Requires-Dist: fenicsx-pulse[test]; extra == "benchmark"
+Provides-Extra: all
+Requires-Dist: fenicsx-pulse[test]; extra == "all"
+Requires-Dist: fenicsx-pulse[docs]; extra == "all"
+Requires-Dist: fenicsx-pulse[dev]; extra == "all"
+Requires-Dist: fenicsx-pulse[demo]; extra == "all"
+Dynamic: license-file
+
+![_](docs/pulse-logo.png)
+
+[![MIT](https://img.shields.io/github/license/finsberg/fenicsx-pulse)](https://github.com/finsberg/fenicsx-pulse/blob/main/LICENSE)
+[![PyPI version](https://badge.fury.io/py/fenicsx-pulse.svg)](https://pypi.org/project/fenicsx_pulse/)
+[![Test package](https://github.com/finsberg/fenicsx-pulse/actions/workflows/test_package_coverage.yml/badge.svg)](https://github.com/finsberg/fenicsx-pulse/actions/workflows/test_package_coverage.yml)
+[![Pre-commit](https://github.com/finsberg/fenicsx-pulse/actions/workflows/pre-commit.yml/badge.svg)](https://github.com/finsberg/fenicsx-pulse/actions/workflows/pre-commit.yml)
+[![Deploy static content to Pages](https://github.com/finsberg/fenicsx-pulse/actions/workflows/build_docs.yml/badge.svg)](https://github.com/finsberg/fenicsx-pulse/actions/workflows/build_docs.yml)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+[![Create and publish a Docker image](https://github.com/finsberg/fenicsx-pulse/actions/workflows/docker-image.yml/badge.svg)](https://github.com/finsberg/fenicsx-pulse/pkgs/container/fenicsx_pulse)
+[![Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/finsberg/a7290de789564f03eb6b1ee122fce423/raw/fenicsx-pulse-coverage.json)](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/finsberg/a7290de789564f03eb6b1ee122fce423/raw/fenicsx-pulse-coverage.json)
+
+# fenicsx-pulse
+
+`fenicsx-pulse` is a cardiac mechanics solver based on FEniCSx. It is a successor of [`pulse`](https://github.com/finsberg/pulse) which is a cardiac mechanics solver based on FEniCS.
+
+* Documentation: https://finsberg.github.io/fenicsx-pulse/
+* Source code: https://github.com/finsberg/fenicsx-pulse
+
+## Install
+You can install the library with `pip`
+```
+python3 -m pip install fenicsx-pulse
+```
+or with `conda`
+```
+conda install -c conda-forge fenicsx-pulse
+```
+Note that installing with `pip` requires [FEniCSx already installed](https://fenicsproject.org/download/)
+
+We also provide a pre-built docker image with FEniCSx and `fenicsx_pulse` installed. You pull this image using the command
+```
+docker pull ghcr.io/finsberg/fenicsx-pulse:v0.4.0
+```
+
+## Getting started
+Checkout out [the demos](https://finsberg.github.io/fenicsx-pulse/demo/unit_cube.html) in the documentation
+
+
+
+## Contributing
+See https://finsberg.github.io/fenicsx-pulse/CONTRIBUTING.html
