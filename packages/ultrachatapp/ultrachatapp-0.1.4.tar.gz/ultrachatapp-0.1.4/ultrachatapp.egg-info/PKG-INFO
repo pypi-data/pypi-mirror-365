@@ -1,0 +1,52 @@
+Metadata-Version: 2.4
+Name: ultrachatapp
+Version: 0.1.4
+Summary: UltraXpert Chat App
+Home-page: https://github.com/UltraCreation-IT-Solution/UltraXpertChatApp.git
+Author: ultraxpert
+Author-email: ultraxpert <ultraxpertoffice@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/UltraCreation-IT-Solution/UltraXpertChatApp.git
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi
+Requires-Dist: uvicorn
+Requires-Dist: pydantic
+Requires-Dist: cryptography
+Requires-Dist: pymongo
+Requires-Dist: sqlalchemy
+Requires-Dist: boto3
+Requires-Dist: python-dotenv
+Requires-Dist: python-multipart
+Requires-Dist: rapidfuzz
+Requires-Dist: requests
+Dynamic: author
+Dynamic: home-page
+Dynamic: requires-python
+
+# UltraXpertChatApp
+
+**UltraChatApp** is a FastAPI-based chat application designed for scalability, modularity, and integration with modern cloud tools like AWS S3.
+
+---
+
+## 🚀 Features
+
+- Built using **FastAPI**
+- Environment configuration using **dotenv**
+- Secure encryption with **cryptography**
+- AWS S3 integration for file storage
+- Docker-ready and PyPI-packaged
+- Easy CLI startup with `ultrachat` command
+
+---
+
+## 📦 Installation
+
+Install from PyPI:
+
+```bash
+pip install ultrachatapp
