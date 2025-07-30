@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "coinfection"
+version = "0.0.1"
+authors = [
+  { name="Marton Szamecz", email="szamecz.marci@gmail.com" },
+]
+description = "A novel algorithm to find multiple infection events in your CRISPR data."
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "pandas",
+    "numpy",
+    "matplotlib",
+    "seaborn"
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
