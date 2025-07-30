@@ -1,0 +1,44 @@
+# .pre-commit-config.yaml
+# Pre-commit hooks for dbit project
+
+repos:
+  # 1. Autoformat Python code with Black
+  - repo: https://github.com/psf/black
+    rev: 24.3.0
+    hooks:
+      - id: black
+        language_version: python3
+        args: [--line-length=88]
+
+  # 2. Sort Python imports with isort
+  - repo: https://github.com/pycqa/isort
+    rev: 5.13.2
+    hooks:
+      - id: isort
+        name: isort (import sorter)
+        args: [--profile=black]
+
+  # 3. Linting with flake8
+  - repo: https://github.com/pycqa/flake8
+    rev: 7.0.0
+    hooks:
+      - id: flake8
+
+  # 4. Common file hygiene checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-yaml
+      - id: check-added-large-files
+      - id: debug-statements
+      - id: check-merge-conflict
+      - id: check-toml
+
+  # 5. Python-specific checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      - id: name-tests-test
+        args: [--pytest-test-first]

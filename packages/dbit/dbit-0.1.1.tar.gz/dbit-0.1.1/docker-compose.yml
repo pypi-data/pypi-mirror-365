@@ -1,0 +1,134 @@
+version: "3.8"
+
+services:
+  # Production dbit service
+  dbit:
+    build:
+      context: .
+      target: production
+    container_name: dbit-cli
+    volumes:
+      - .:/app
+      - /tmp/dbit-logs:/var/log/dbit
+    environment:
+      - PYTHONPATH=/app
+    networks:
+      - dbit-network
+    depends_on:
+      - postgres
+    entrypoint: ["sleep", "infinity"]
+    tty: true
+
+  # Development dbit service
+  dbit-dev:
+    build:
+      context: .
+      target: development
+    container_name: dbit-dev
+    volumes:
+      - .:/app
+      - /tmp/dbit-logs:/var/log/dbit
+    environment:
+      - PYTHONPATH=/app
+    networks:
+      - dbit-network
+    depends_on:
+      - postgres
+    entrypoint: ["sleep", "infinity"]
+    tty: true
+
+  airflow-webserver:
+    image: apache/airflow:2.7.1
+    container_name: dbit-airflow-webserver
+    depends_on:
+      - postgres
+      - airflow-init
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
+      - AIRFLOW__CORE__LOAD_EXAMPLES=false
+      - AIRFLOW__WEBSERVER__EXPOSE_CONFIG=true
+    volumes:
+      - ./providers/airflow/dags:/opt/airflow/dags:ro
+      - /tmp/dbit-logs:/var/log/dbit
+    ports:
+      - "8080:8080"
+    networks:
+      - dbit-network
+    command: webserver
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  airflow-scheduler:
+    image: apache/airflow:2.7.1
+    container_name: dbit-airflow-scheduler
+    depends_on:
+      - postgres
+      - airflow-init
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
+      - AIRFLOW__CORE__LOAD_EXAMPLES=false
+    volumes:
+      - ./providers/airflow/dags:/opt/airflow/dags:ro
+      - /tmp/dbit-logs:/var/log/dbit
+    networks:
+      - dbit-network
+    command: scheduler
+    healthcheck:
+      test: ["CMD", "airflow", "jobs", "check", "--job-type", "SchedulerJob"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  airflow-init:
+    image: apache/airflow:2.7.1
+    container_name: dbit-airflow-init
+    depends_on:
+      - postgres
+    environment:
+      - AIRFLOW__CORE__EXECUTOR=LocalExecutor
+      - AIRFLOW__CORE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
+      - AIRFLOW__CORE__LOAD_EXAMPLES=false
+      - _AIRFLOW_DB_UPGRADE=true
+      - _AIRFLOW_WWW_USER_CREATE=true
+      - _AIRFLOW_WWW_USER_USERNAME=airflow
+      - _AIRFLOW_WWW_USER_PASSWORD=airflow
+    volumes:
+      - ./providers/airflow/dags:/opt/airflow/dags:ro
+    networks:
+      - dbit-network
+    command: >
+      bash -c "
+        airflow db upgrade &&
+        airflow users create --username airflow --password airflow --firstname Admin --lastname User --role Admin --email admin@example.com
+      "
+
+  postgres:
+    image: postgres:15
+    container_name: dbit-postgres
+    environment:
+      - POSTGRES_USER=airflow
+      - POSTGRES_PASSWORD=airflow
+      - POSTGRES_DB=airflow
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - dbit-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U airflow"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+
+networks:
+  dbit-network:
+    driver: bridge
