@@ -1,0 +1,35 @@
+[project]
+name = "nestipy-db"
+version = "0.1.1"
+description = "Nestipy dababase adapter for edgy"
+readme = "README.md"
+authors = [
+    { name = "Tsiresy Milà", email = "tsiresymila@gmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "autoflake>=2.3.1",
+    "autopep8>=2.3.2",
+    "click-aliases>=1.0.5",
+    "edgy>=0.33.0",
+    "isort>=5.13.2",
+]
+
+[project.scripts]
+nestipy-db = "nestipy_db:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "autoflake>=2.3.1",
+    "autopep8>=2.3.2",
+    "isort>=5.13.2",
+]
+
+[tool.uv.workspace]
+members = [
+    "example",
+]
