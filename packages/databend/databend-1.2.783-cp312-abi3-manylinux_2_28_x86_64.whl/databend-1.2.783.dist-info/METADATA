@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: databend
+Version: 1.2.783
+Classifier: Programming Language :: Rust
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Dist: pdoc ; extra == 'docs'
+Requires-Dist: pytest ; extra == 'test'
+Requires-Dist: pandas ; extra == 'test'
+Requires-Dist: polars ; extra == 'test'
+Requires-Dist: pyarrow ; extra == 'test'
+Provides-Extra: benchmark
+Provides-Extra: docs
+Provides-Extra: test
+Summary: Databend Python Binding
+Requires-Python: >=3.10
+Project-URL: Documentation, https://pypi.org/project/databend/
+Project-URL: Homepage, https://databend.com
+Project-URL: Repository, https://github.com/datafuselabs/databend
