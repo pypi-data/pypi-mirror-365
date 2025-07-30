@@ -1,0 +1,48 @@
+[project]
+name = "authkeyman"
+version = "1.1.1"
+description = "Quickly manage your authorized public SSH keys"
+authors = [
+    {name = "Tactical Laptop Bag",email = "tacticallaptopbag@protonmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.9"
+license = "GPL-3.0-only"
+license-files = ["LICENSE"]
+keywords = [
+    "authorized_keys",
+    "ssh",
+    "cli",
+    "command-line",
+    "command",
+    "line",
+    "tool",
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: System Administrators",
+    "Environment :: Console",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "pathlib (>=1.0.0,<2.0.0)",
+    "argparse (>=1.0.0,<2.0.0)"
+]
+
+[project.urls]
+Repository = "https://github.com/TacticalLaptopBag/authkeyman"
+Issues = "https://github.com/TacticalLaptopBag/authkeyman/issues"
+
+
+[project.scripts]
+authkeyman = "authkeyman.authkeyman:main"
+
+
+[tool.poetry]
+packages = [{include = "authkeyman", from = "src"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
