@@ -1,0 +1,142 @@
+Metadata-Version: 2.4
+Name: glazzbocks
+Version: 0.1.1
+Summary: An explainable, modular machine learning toolbox — a glass-box alternative to AutoML.
+Home-page: https://github.com/yourusername/glazzbocks
+Author: Your Name
+Author-email: your@email.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: scikit-learn
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: matplotlib
+Requires-Dist: seaborn
+Requires-Dist: shap
+Requires-Dist: statsmodels
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+
+# 🧰 Machine Learning Toolbox
+
+This repository provides a collection of modular, production-ready tools for building, evaluating, and interpreting machine learning models. Each tool is built with a focus on clean design, extensibility, and practical utility.
+
+---
+
+## 🧠 Philosophy: Explainable, Transparent, Glass-Box ML
+
+Unlike traditional AutoML tools that act as "black boxes", this toolbox is designed to be a **glass box** — every decision, transformation, and output is **fully transparent and controllable**.
+
+This toolbox is ideal for:
+- Data scientists who value **interpretable models**
+- **Regulated industries** requiring auditability
+- Educators and learners exploring machine learning foundations
+- Teams that prioritize **trust and understanding** over automation
+
+We emphasize **explainability** through SHAP, feature importances, coefficients, and detailed diagnostics at every stage.
+
+---
+
+## 📦 Contents
+
+| Module                    | Description                                                                 |
+|--------------------------|-----------------------------------------------------------------------------|
+| `DataExplorer.py`         | Exploratory Data Analysis (EDA) and VIF calculation                        |
+| `ML_pipeline.py`          | Full preprocessing + modeling pipeline with cross-validation & diagnostics |
+| `ModelInterpreter.py`     | SHAP, feature importance, and coefficient visualizations                   |
+| `RecommendationEngine.py` | Rank-based and segment-based recommendation strategies                     |
+| `Clustering.py`           | Customer clustering with KMeans and cluster visualization                  |
+
+---
+
+## 🔍 Module Overviews
+
+### `DataExplorer.py`
+A lightweight class for quick exploratory analysis:
+- Displays dataset shape, dtypes, and missing values
+- Plots target distribution (auto-detects regression vs classification)
+- Correlation heatmap and Variance Inflation Factor (VIF)
+- Returns median-imputed numeric-only DataFrame for diagnostics
+
+### `ML_pipeline.py`
+A complete scikit-learn-based pipeline manager:
+- Auto-detects numerical and categorical columns
+- Builds preprocessing pipeline (scaling, imputation, encoding)
+- Supports both regression and classification
+- Cross-validation with metrics, ROC, F1-thresholds, and confusion matrix
+- Built-in visualizations for:
+  - Predicted vs. Actual
+  - Residual plots
+  - Error distribution
+  - ROC curve and F1-threshold optimization
+
+### `ModelInterpreter.py`
+Interpret model behavior post-training:
+- Works with pipelines and standalone models
+- Tree-based models: Feature importances
+- Linear models: Coefficients (with optional plot)
+- Universal SHAP summary plot (auto-handles pipelines)
+
+### `RecommendationEngine.py`
+Simple framework for personalized customer targeting:
+- Identify top-N high-value customers by prediction scores
+- Recommend segments based on quantiles (e.g., LTV)
+  - High-value → Retention
+  - Low-value → Acquisition
+
+### `Clustering.py`
+KMeans-based customer segmentation:
+- Automatically scales numeric features
+- Assigns cluster labels
+- Visualizes clusters with seaborn scatter plots
+
+---
+
+## 🚀 Getting Started
+
+Each module can be used independently. Example usage:
+
+```python
+from ML_pipeline import MLPipeline
+pipeline = MLPipeline()
+X_train, X_test, y_train, y_test = pipeline.split_data(df, 'target')
+pipeline.fit(X_train, y_train)
+pipeline.plot_roc_curve(X_test, y_test)
+```
+
+Or for model interpretation:
+
+```python
+from ModelInterpreter import ModelInterpreter
+interpreter = ModelInterpreter(model, X_train, task='classification')
+interpreter.shap_summary()
+```
+
+---
+
+## 📎 Requirements
+
+- `scikit-learn`
+- `pandas`, `numpy`
+- `matplotlib`, `seaborn`
+- `shap`
+- `statsmodels` (for VIF)
+
+---
+
+## 📌 Notes
+
+- SHAP is optimized for tree-based models; linear models are also supported
+- Pipelines handle preprocessing internally—no need to do it manually
+- Modules follow sklearn conventions for compatibility and ease of use
