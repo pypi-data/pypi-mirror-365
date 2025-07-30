@@ -1,0 +1,103 @@
+Metadata-Version: 2.1
+Name: flexscspace
+Version: 1.1.0
+Summary: The update to SCSpace provides more flexible version options
+Home-page: https://github.com/wangmy2025/flexcspace
+Author: wangmy2025
+Author-email: wangmy2022@gmail.com
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
+# FlexScspace 
+
+[![Python >=3.8](https://img.shields.io/badge/python-%3E%3D3.8-blue)](https://www.python.org/)
+[![PyPI Version](https://img.shields.io/pypi/v/flexscspace)](https://pypi.org/project/flexscspace/)
+[![License](https://img.shields.io/badge/license-GNU-green)](LICENSE)
+
+## Multi-Version Enhanced scRNA-seq Spatial Reconstruction Toolkit
+
+**Flexible Versioned Spatial Analysis Toolkit**  
+*Extending scSpace with multiple algorithm implementations for optimal single-cell spatial reconstruction*
+---
+
+## Quick Navigation
+- [Features](#-features)
+- [Installation](#-installation)  
+- [Quick Start](#-quick start)
+- [Version Guide](#-version comparison)
+
+---
+
+## Features
+- **Six Algorithm Versions**: `v0` through `v3c` 
+- **Unified API**: Switch versions with one parameter
+
+## Installation
+```bash
+pip install FlexScspace  # Requires Python≥3.8, pytorch, scanpy
+```
+
+## Quick Start
+### Common Usage(v0/v1/v2/v3b/v3c)
+```python
+# Initialize with selected version
+from FlexScspace import VersionSelector
+algorithm = VersionSelector(version="v2")
+# Load data (consistent across versions)
+sc_obj, st_obj = algorithm.load_data(
+    sc_data_path="sc_data.csv",
+    st_data_path="st_data.csv",
+    spatial_key=['imagerow','imagecol']
+)
+# Process data
+sc_obj, st_obj = algorithm.preprocess(
+    sc_adata=sc_obj,
+    st_adata=st_obj,
+    n_features=2000)
+# Spatial reconstruction
+sc_obj, st_obj = algorithm.construct_pseudo_space(
+    sc_adata=sc_obj,
+    st_adata=st_obj,
+    batch_size=16,
+    epoch_num=1000
+)
+```
+
+### v3a Specific Usage
+```python
+# Initialize with selected version
+from FlexScspace import VersionSelector
+algorithm = VersionSelector(version="v3a")
+# Load data (consistent across versions)
+sc_obj, st_obj = algorithm.load_data(
+    sc_data_path="sc_data.csv",
+    st_data_path="st_data.csv",
+    spatial_key=['imagerow','imagecol']
+)
+# Process data
+sc_obj, st_obj = algorithm.preprocess(
+    sc_adata=sc_obj,
+    st_adata=st_obj,
+    n_features=2000,
+    r_binary=r_path,
+    output_dir=output_dir)
+# Spatial reconstruction
+sc_obj, st_obj = algorithm.construct_pseudo_space(
+    sc_adata=sc_obj,
+    st_adata=t_obj,
+    batch_size=16,
+    epoch_num=1000
+)
+```
+
+## Version Comparison
+
+|Versions|Key Innovation|Recommended Use Case|
+|:---|:--|:--|
+|v0|Basic version|Baseline comparisons|
+|v1|Spatially variable gene|Tissues with clear spatial gradients|
+|v2|Implicit Neural Representation|To be explored|
+|v3.a|Batch correction:CCA|To be explored|
+|v3.b|Batch correction:Scanorama|To be explored|
+|v3.c|Batch correction:scVi|Tissues with complex organization|
