@@ -1,0 +1,29 @@
+{
+    "app": {
+        "log_level": 10,
+        "hil_polling_times": 6000,
+        "max_number_of_turns": 35,
+        "network_idle_timeout": -1,
+        "wait_time_heuristic": -1,
+        "project_log_folder": "logs",
+        "screenshot_folder": "screenshots",
+        "debug_files_folder": "debugfiles",
+        "browser_width": 1800,
+        "browser_height": 1100,
+        "llm_model2": "gemini-2.5-flash-lite-preview-06-17",
+        "llm_model": "gemini-2.5-flash",
+        "llm_model3": "gpt-4.1-mini",
+        "llm_model1": "gemma3:12b",
+        "llm_model4": "deepseek-2.5-8b",
+        "llm_model5": "claude-3-5-haiku-latest",
+        "model_costs": {
+            "input": 0.30,
+            "output": 2.50
+        },
+        "num_of_threads": 4,
+        "is_use_screenshot": false,
+        "run_in_background": false,
+        "is_save_screenshot": false,
+        "screenshot_time_out": 10
+    }
+}
