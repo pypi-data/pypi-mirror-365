@@ -1,0 +1,6 @@
+{
+  "python.envFile": "${workspaceFolder}/.env",
+  "code-runner.executorMap": {
+    "python": "uv run --env-file .env python",
+  },
+}
