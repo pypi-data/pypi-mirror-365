@@ -1,0 +1,70 @@
+Metadata-Version: 2.4
+Name: base64perf
+Version: 0.0.9
+Summary: Fast Base64 encoding/decoding with SSE2 and VSX optimizations
+Home-page: https://github.com/bahamondex/base64perf
+Author: Oscar Bahamonde
+Author-email: Oscar Bahamonde <oscar.bahamonde@indiecloud.co>
+License: MIT
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: C
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Utilities
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pyright; extra == "dev"
+Requires-Dist: isort; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: pytest-html; extra == "dev"
+Requires-Dist: setuptools; extra == "dev"
+Dynamic: author
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+
+# Base64C
+
+A faster base64 encoding/decoding library for Python, implemented in C with SSSE3 and VSX optimizations.
+
+## Installation
+
+```bash
+pip install base64c
+```
+
+## Usage
+
+```python
+
+from base64c import b64encode, b64decode
+
+print(b64encode(b"Hello, World!"))
+print(b64decode(b64encode(b"Hello, World!")))
+```
+
+## License
+
+MIT
+
+## Performance
+
+* 3-24x faster than the stdlib `base64` module.
+* Performance increases with input size.
+* Tested across different types and sizes of inputs.
+
+<br>
+
+![Table](assets/table.png)
+![Chart](assets/chart.png)
