@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cmdfixer"
+version = "0.1.1"
+description = "Suggests corrections for mistyped CLI commands (git, Linux, etc.)"
+authors = [
+    { name = "Nikhil Kumar", email = "Kumarn7570@gmail.com" }
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.6"
+dependencies = [
+    "thefuzz>=0.20.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/yourusername/cmdfixer"
