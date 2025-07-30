@@ -1,0 +1,56 @@
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "judge_micro"
+version = "0.0.3"
+requires-python = ">3.8, <3.14"
+description = ""
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+
+authors = [
+  { name = "Xuan‑You Lin", email = "a0985821880@gmail.com" }
+]
+maintainers = [
+  { name = "Xuan‑You Lin", email = "a0985821880@gmail.com" }
+]
+
+dependencies = [
+  "pydantic",
+  "python-dotenv",
+  "docker",
+  "paramiko",
+  
+  # Web Framework
+  "fastapi",
+  "uvicorn[standard]",
+  "gunicorn",
+  "python-multipart",
+  "httpx",
+  
+]
+
+[dependency-groups]
+test = [
+  "pytest",
+  "pytest-cov",
+  "pytest-asyncio",
+]
+dev = [
+  { include-group = "test" },
+  "ipykernel",
+  "ipywidgets",
+  "nest_asyncio",
+  "jupyterlab_widgets",
+]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q"
+testpaths = [
+  "tests"
+]
+python_files = "test_*.py"

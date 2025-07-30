@@ -1,0 +1,22 @@
+x-default-opts: &default-opts
+  restart: unless-stopped
+  tty: true
+  stdin_open: true
+  privileged: false
+  ipc: private
+
+services:
+  judge_micro:
+    <<: *default-opts
+    image: tsukisama9292/judge_micro:latest
+    container_name: judge_micro
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - "8000:8000"
+    command:
+      - uv
+      - run
+      - python
+      - main.py
+      - prod
