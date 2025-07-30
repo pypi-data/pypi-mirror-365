@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mni_to_atlas"
+version = "1.0.1"
+authors = [
+    { name="Thomas Samuel Binns", email="t.s.binns@outlook.com" },
+]
+description = "A simple Python-based tool for finding brain atlas regions based on MNI coordinates."
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "numpy >= 1.22",
+    "matplotlib >= 3.5",
+    "nibabel >= 3.2"
+]
+
+[project.optional-dependencies]
+dev = ["pytest"]
+
+[project.urls]
+"Homepage" = "https://github.com/tsbinns/mni_to_atlas"
+"Bug Tracker" = "https://github.com/tsbinns/mni_to_atlas/issues"
