@@ -1,0 +1,29 @@
+Metadata-Version: 2.4
+Name: odoo_addon_energy_communities_service_invoicing
+Version: 16.0.0.5.3
+Summary: Short (1 phrase/line) summary of the module's purpose, used as subtitle on modules listing or apps.openerp.com
+Home-page: https://git.coopdevs.org/coopdevs/comunitats-energetiques/odoo-ce
+Author: Som comunitats
+Classifier: Programming Language :: Python
+Classifier: Framework :: Odoo
+Classifier: Framework :: Odoo :: 16.0
+Requires-Python: >=3.10
+Requires-Dist: odoo-addon-account_invoice_inter_company<16.1dev,>=16.0dev
+Requires-Dist: odoo-addon-contract<16.1dev,>=16.0dev
+Requires-Dist: odoo-addon-contract_variable_quantity<16.1dev,>=16.0dev
+Requires-Dist: odoo-addon-energy_communities<16.1dev,>=16.0dev
+Requires-Dist: odoo-addon-energy_communities_cooperator<16.1dev,>=16.0dev
+Requires-Dist: odoo-addon-product_contract<16.1dev,>=16.0dev
+Requires-Dist: odoo-addon-sale_order_metadata<16.1dev,>=16.0dev
+Requires-Dist: odoo<16.1dev,>=16.0a
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+
+        Long description of module's purpose
+    
