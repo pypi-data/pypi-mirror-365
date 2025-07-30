@@ -1,0 +1,24 @@
+Metadata-Version: 2.4
+Name: txl_widgets
+Version: 0.3.5
+Summary: TXL plugin for kernel widgets
+Project-URL: Source, https://github.com/davidbrochart/jpterm/plugins/widgets
+Author-email: David Brochart <david.brochart@gmail.com>
+License-Expression: MIT
+License-File: LICENSE.txt
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.10
+Requires-Dist: pycrdt<0.13.0,>=0.10.9
+Requires-Dist: txl==0.3.1
+Requires-Dist: ypywidgets-textual<0.6.0,>=0.5.4
+Requires-Dist: ypywidgets<0.10.0,>=0.9.4
+Description-Content-Type: text/markdown
+
+# TXL plugin for widgets
