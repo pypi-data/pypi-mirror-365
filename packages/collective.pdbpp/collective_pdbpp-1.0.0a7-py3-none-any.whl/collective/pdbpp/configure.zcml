@@ -1,0 +1,21 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:five="http://namespaces.zope.org/five"
+    i18n_domain="undefined"
+    >
+
+  <five:registerPackage
+      package="."
+      initialize=".initialize"
+      />
+
+  <browser:page
+      name="pdb"
+      for="*"
+      class=".PdbView"
+      permission="zope.Public"
+      />
+
+
+</configure>
