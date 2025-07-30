@@ -1,0 +1,34 @@
+# Include essential files
+include README.md
+include LICENSE
+include requirements.txt
+
+# Exclude test files and development files
+exclude run_tests.py
+exclude testing.py
+exclude app.py
+exclude pytest.ini
+exclude .gitignore
+exclude CONTRIBUTING.md
+exclude TESTING.md
+exclude CHANGELOG.md
+exclude API_DOCUMENTATION.md
+
+# Exclude development and build directories
+recursive-exclude tests *
+recursive-exclude build *
+recursive-exclude dist *
+recursive-exclude *.egg-info *
+recursive-exclude __pycache__ *
+recursive-exclude .pytest_cache *
+recursive-exclude .venv *
+
+# Exclude version control and IDE files
+exclude .git*
+exclude .vscode*
+exclude .idea*
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude *.pyd
+global-exclude .DS_Store
+global-exclude Thumbs.db
