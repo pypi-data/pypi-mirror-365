@@ -1,0 +1,16 @@
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "plotverse"
+version = "0.0.8"
+description = "Data visualization library built with Pandas, Matplotlib, and Seaborn"
+authors = [
+  { name="sanju", email="sanjayskpy1@gmail.com" }
+]
+readme = "README.md"
+license = { text = "MIT" }
+dependencies = []
+requires-python = ">=3.7"
