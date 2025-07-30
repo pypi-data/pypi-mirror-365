@@ -1,0 +1,30 @@
+[project]
+name = "whatsapp-gpl"
+version = "0.0.0"
+description = "whatsapp_gpl ZerounIntezarAgler"
+authors = [{ name="{github_username}" }]
+license-files = ["LICENSE"]
+readme = "README.md"
+
+
+[project.urls]
+homepage = "https://github.com/{github_username}/whatsapp_gpl"
+repository = "https://github.com/{github_username}/whatsapp_gpl"
+documentation = "https://github.com/{github_username}/whatsapp_gpl"
+
+
+[tool.setuptools]
+package-dir = {"" = "lib"}
+
+[tool.setuptools.packages.find]
+where = ["lib"]
+
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+# publish
+# python -m build
+# twine upload dist/*
+
