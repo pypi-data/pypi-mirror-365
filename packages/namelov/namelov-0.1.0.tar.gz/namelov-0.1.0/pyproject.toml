@@ -1,0 +1,22 @@
+[project]
+name = "namelov"
+version = "0.1.0"
+description = "A lovely package that's describes your name in a lovely way"
+readme = "README.md"
+authors = [
+    { name = "GVKarthik-dev", email = "gokaraju3705@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+lovely = "lovely:main"
+
+[build-system]
+requires = ["uv_build>=0.8.0,<0.9"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+]
