@@ -1,0 +1,5 @@
+[console_scripts]
+codeflash = codeflash.main:main
+
+[pytest11]
+codeflash = codeflash.benchmarking.plugin.plugin
