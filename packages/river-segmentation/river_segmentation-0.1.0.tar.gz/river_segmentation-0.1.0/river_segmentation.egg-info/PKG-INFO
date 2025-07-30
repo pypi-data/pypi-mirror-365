@@ -1,0 +1,20 @@
+Metadata-Version: 2.4
+Name: river-segmentation
+Version: 0.1.0
+Summary: River segmentation pipeline with connectors and models as modules.
+Author: Your Name
+Requires-Python: >=3.8
+Requires-Dist: opencv-python
+Requires-Dist: torch
+Requires-Dist: torchvision
+Requires-Dist: segmentation-models-pytorch
+Requires-Dist: albumentations
+Requires-Dist: boto3
+Requires-Dist: sqlalchemy
+Requires-Dist: psycopg2-binary
+Requires-Dist: quixstreams
+Requires-Dist: numpy
+Dynamic: author
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
