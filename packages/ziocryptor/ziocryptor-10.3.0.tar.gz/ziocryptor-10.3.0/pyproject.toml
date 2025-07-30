@@ -1,0 +1,25 @@
+[project]
+name = "ziocryptor"
+version = "10.3.0"
+description = "Hybrid AES + RSA Encryption Tool by Ziole Visa Charles"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+authors = [
+  {name = "Ziole Visa Charles", email = "oozvc.co@gmail.com"}
+]
+keywords = ["encryption", "AES", "RSA", "security", "ziocryptor", "CLI", "python"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Topic :: Security :: Cryptography"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/oozvc/ziocryptor"
+"Source" = "https://github.com/oozvc/ziocryptor"
+"Issues" = "https://github.com/oozvc/ziocryptor/issues"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
