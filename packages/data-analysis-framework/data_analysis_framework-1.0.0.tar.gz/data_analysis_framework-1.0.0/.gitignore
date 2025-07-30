@@ -1,0 +1,308 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Claude files
+.claude/
+CLAUDE.md
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+.pypirc
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# poetry
+poetry.lock
+
+# PEP 582
+__pypackages__/
+
+# celery beat schedule file
+celerybeat-schedule
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# Project specific
+artifacts/analysis_results/*.json
+artifacts/reports/*
+temp/
+.DS_Store
+
+# Test output directories
+test_outputs/
+
+# Generated output files (keep directory structure, ignore contents)
+*.json
+!sample_data/**/*.json
+!notebooks/data/**/*
+!notebooks/test_data/**/*
+
+# Docling-specific outputs
+chunks_*.json
+analysis_*.json
+enhanced_*.json
+
+# Docling cache and temporary files
+.docling_cache/
+docling_temp/
+.docling/
+docling_models/
+docling_downloads/
+
+# AI/ML model files and caches
+models/
+*.model
+*.pkl
+*.pickle
+*.pt
+*.pth
+*.onnx
+*.h5
+*.joblib
+transformers_cache/
+huggingface_cache/
+.transformers/
+.cache/huggingface/
+.cache/torch/
+torch_cache/
+
+# Vector databases and embeddings
+vector_db/
+embeddings/
+.chroma/
+.faiss/
+*.index
+*.vector
+
+# Large data files
+*.csv
+*.tsv
+*.parquet
+*.feather
+*.hdf5
+*.h5
+data/raw/
+data/processed/
+!sample_data/
+
+# Repomix
+.repomixignore
+repomix.config.json
+repomix-output.*
+
+# CI Results
+ci-results/
+ci_results/
+
+# PYPI credentials and config
+.pypirc
+*.pypirc
+publish_pypi.sh
+
+# Environment files
+.env
+.env.local
+.env.*.local
+*.env
+!.env.example
+!*.env.example
+notebooks/.env
+
+# Notebook artifacts and outputs (keep .ipynb files)
+notebooks/*.py
+notebooks/*.yaml
+notebooks/*.yml
+notebooks/*.pipeline
+notebooks/*.json
+notebooks/.env*
+notebooks/data/
+notebooks/pipeline_outputs/
+notebooks/vector_db/
+notebooks/venv/
+notebooks/*.html
+notebooks/*.csv
+# Keep notebook files
+!notebooks/*.ipynb
+
+# OS specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Windows
+*.lnk
+
+# Linux
+*~
+
+# IDE specific
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.vim/
+.emacs.d/
+*.sublime-*
+
+# JetBrains
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Temporary test files
+test_framework.py
+
+# Logs
+*.log
+logs/
+log/
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Optional npm packages (if using any JS tooling)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Backup files
+*.bak
+*.backup
+*.old
+*.orig
+*.save
+
+# Compressed files (unless specifically needed)
+*.zip
+*.tar.gz
+*.rar
+*.7z
+*.gz
+*.bz2
+*.xz
+
+# Configuration files with secrets
+config.ini
+settings.ini
+secrets.json
+credentials.json
+!config.example.ini
+!settings.example.ini 

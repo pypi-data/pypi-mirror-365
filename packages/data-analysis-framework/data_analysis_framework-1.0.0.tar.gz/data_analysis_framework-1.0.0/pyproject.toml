@@ -1,0 +1,132 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "data-analysis-framework"
+dynamic = ["version"]
+description = "AI-powered analysis framework for structured data files and databases"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "AI Building Blocks", email = "wjackson@redhat.com"}
+]
+keywords = ["data-analysis", "ai", "ml", "structured-data", "database", "excel", "csv", "json", "semantic-search", "business-intelligence"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Database",
+    "Topic :: Office/Business",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "pandas>=1.5.0",
+    "numpy>=1.21.0",
+    "openpyxl>=3.0.0",
+    "pyarrow>=8.0.0",
+    "sqlalchemy>=1.4.0",
+    "pyyaml>=6.0",
+    "toml>=0.10.2",
+]
+
+[project.urls]
+Homepage = "https://github.com/rdwj/data-analysis-framework"
+Repository = "https://github.com/rdwj/data-analysis-framework"
+Issues = "https://github.com/rdwj/data-analysis-framework/issues"
+Documentation = "https://github.com/rdwj/data-analysis-framework/blob/main/README.md"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "black>=21.0",
+    "flake8>=3.8",
+    "mypy>=0.800",
+]
+docs = [
+    "sphinx>=3.0",
+    "sphinx_rtd_theme>=0.5",
+]
+database = [
+    "psycopg2-binary>=2.9.0",
+    "pymongo>=4.0.0",
+]
+advanced = [
+    "scikit-learn>=1.1.0",
+    "scipy>=1.8.0",
+]
+visualization = [
+    "matplotlib>=3.5.0",
+    "seaborn>=0.11.0",
+]
+
+[project.scripts]
+data-analyze = "data_analysis_framework.examples.basic_framework_demo:main"
+data-analyze-car-demo = "data_analysis_framework.examples.car_sales_demo:main"
+
+[tool.setuptools]
+package-dir = {"data_analysis_framework" = "src/data_analysis_framework"}
+
+[tool.setuptools_scm]
+write_to = "src/data_analysis_framework/_version.py"
+
+[tool.black]
+line-length = 100
+target-version = ['py38']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--verbose",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+]
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+show_error_codes = true
