@@ -1,0 +1,129 @@
+Metadata-Version: 2.4
+Name: paramus-world
+Version: 1.0.2
+Summary: Paramus World Client - API client for the Paramus World semantic knowledge graph system
+Home-page: https://paramus.ai/paramus-world/
+Author: Thorsten Gressling
+Author-email: Thorsten Gressling <gressling@paramus.ai>
+License: Proprietary
+Project-URL: Homepage, https://paramus.ai/paramus-world/
+Project-URL: Repository, https://github.com/gressling/paramus-world-client
+Project-URL: Issues, https://github.com/gressling/paramus-world-client/issues
+Project-URL: Documentation, https://paramus-world-client.readthedocs.io/en/latest/
+Keywords: semantic API,knowledge graph,SPARQL,JSON-RPC,paramus,world,client,api
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Internet :: WWW/HTTP :: HTTP Servers
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: requests>=2.25.0
+Requires-Dist: numpy>=1.20.0
+Requires-Dist: scipy>=1.7.0
+Requires-Dist: matplotlib>=3.3.0
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+Provides-Extra: optimization
+Requires-Dist: cvxpy>=1.1.0; extra == "optimization"
+Requires-Dist: gekko>=1.0.0; extra == "optimization"
+Dynamic: author
+Dynamic: home-page
+Dynamic: requires-python
+
+# Paramus World Client
+
+A Python client library for interacting with the Paramus World semantic knowledge graph system.
+
+## Features
+
+- **JSON-RPC API Client**: Easy-to-use client for Paramus World API
+- **SPARQL Support**: Execute SPARQL queries and updates against the knowledge graph
+- **Chat Interface**: Submit messages to the AI assistant
+- **Health Monitoring**: Check system status and statistics
+- **Authentication**: JWT token-based authentication
+
+## Installation
+
+```bash
+pip install paramus-world
+```
+
+## Quick Start
+
+```python
+from paramus.world.client import ParamusWorldClient
+
+# Initialize the client
+client = ParamusWorldClient(token="your-jwt-token")
+
+# Check system health
+health = client.check_system_health()
+print(health)
+
+# Submit a chat message
+response = client.submit_chat("Hello, World!")
+print(response)
+
+# Execute a SPARQL query
+query = """
+PREFIX world: <https://paramus.ai/world/>
+SELECT ?subject ?predicate ?object
+WHERE { ?subject ?predicate ?object }
+LIMIT 10
+"""
+result = client.sparql_query(query)
+print(result)
+```
+
+## API Methods
+
+### Authentication
+- `authenticate(username, password)` - Authenticate and get a token
+
+### Chat Interface  
+- `submit_chat(message, context=None)` - Submit a message to the AI assistant
+
+### SPARQL Operations
+- `sparql_query(query, format="json")` - Execute SPARQL queries
+- `sparql_update(update)` - Execute SPARQL updates
+
+### System Monitoring
+- `check_system_health()` - Get system health and statistics
+
+## Configuration
+
+The client connects to `http://127.0.0.1:8051` by default. You can configure this:
+
+```python
+client = ParamusWorldClient(
+    base_url="https://your-server.com",
+    token="your-jwt-token"
+)
+```
+
+## Examples
+
+See the [examples](https://github.com/gressling/paramus-world-client/tree/main/examples) directory for comprehensive usage examples.
+
+## License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
+## Links
+
+- **Repository**: https://github.com/gressling/paramus-world-client
+- **Documentation**: https://paramus-world-client.readthedocs.io/
+- **Issues**: https://github.com/gressling/paramus-world-client/issues

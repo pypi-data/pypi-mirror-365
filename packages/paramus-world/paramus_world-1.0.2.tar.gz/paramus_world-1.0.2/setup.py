@@ -1,0 +1,63 @@
+"""
+Setup configuration for PARAMUS-WORLD-CLIENT - Standard Process Control Library
+"""
+
+from setuptools import setup, find_packages
+import os
+
+# Read README file
+readme_path = os.path.join(os.path.dirname(__file__), "README.md")
+if os.path.exists(readme_path):
+    with open(readme_path, "r", encoding="utf-8") as fh:
+        long_description = fh.read()
+else:
+    long_description = "Standard Process Control Library for chemical process control"
+
+setup(
+    name="paramus-world",
+    version="1.0.2",
+    author="Thorsten Gressling",
+    author_email="gressling@paramus.ai",
+    description="Paramus World Client - API client for the Paramus World semantic knowledge graph system",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    url="https://paramus.ai/paramus-world/",
+    packages=find_packages(),
+    classifiers=[
+        "Development Status :: 5 - Production/Stable",
+        "Intended Audience :: Developers",
+        "Intended Audience :: Science/Research",
+        "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
+    ],
+    python_requires=">=3.8",
+    install_requires=[
+        "requests>=2.25.0",
+        "numpy",
+        "scipy",
+        "matplotlib",
+    ],
+    extras_require={
+        "dev": [
+            "pytest>=6.0",
+            "black",
+            "flake8",
+            "mypy",
+        ],
+        "optimization": [
+            "cvxpy>=1.1.0",
+            "gekko>=1.0.0",
+        ],
+    },
+    keywords="process control, chemical engineering, PID, control systems, process modeling, simulation",
+    project_urls={
+        "Documentation": "https://paramus-world-client.readthedocs.io/",
+        "Source": "https://github.com/gressling/paramus-world-client",
+        "Tracker": "https://github.com/gressling/paramus-world-client/issues",
+    },
+)
