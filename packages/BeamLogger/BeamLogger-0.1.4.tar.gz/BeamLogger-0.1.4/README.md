@@ -1,0 +1,99 @@
+# BeamLogger
+
+A stylish and colorful Python logging module with customizable console output.
+
+## Features
+
+- Beautiful colorized log output with different colors for each log level
+- Custom time stamps in 12-hour format
+- Stylish banners with gradient colors using pystyle
+- Custom console window title (Cross-platform - Windows, Linux, macOS)
+- Input prompt with styled formatting
+- Multiple log levels: info, debug, log, success, input, output, error, critical, warn
+
+## Requirements
+
+- colorama
+- pystyle
+- Python 3.6+
+
+## Installation
+
+```bash
+pip install BeamLogger
+```
+
+## Usage
+
+```python
+from beamlogger import BeamLogger
+import platform
+
+# Initialize logger with custom title
+system = platform.system()
+logger = BeamLogger(f"My Application on {system}")
+
+# Display a banner
+banner = """
+██████╗ ███████╗ █████╗ ███╗   ███╗██╗      ██████╗  ██████╗  ██████╗ ███████╗██████╗ 
+██╔══██╗██╔════╝██╔══██╗████╗ ████║██║     ██╔═══██╗██╔════╝ ██╔════╝ ██╔════╝██╔══██╗
+██████╔╝█████╗  ███████║██╔████╔██║██║     ██║   ██║██║  ███╗██║  ███╗█████╗  ██████╔╝
+██╔══██╗██╔══╝  ██╔══██║██║╚██╔╝██║██║     ██║   ██║██║   ██║██║   ██║██╔══╝  ██╔══██╗
+██████╔╝███████╗██║  ██║██║ ╚═╝ ██║███████╗╚██████╔╝╚██████╔╝╚██████╔╝███████╗██║  ██║
+╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝╚══════╝ ╚═════╝  ╚═════╝  ╚═════╝ ╚══════╝╚═╝  ╚═╝
+"""
+logger.banner(banner)
+
+# Different log levels
+logger.info("This is an information message")
+logger.debug("This is a debug message")
+logger.log("This is a regular log message")
+logger.success("This is a success message")
+logger.warn("This is a warning message")
+logger.error("This is an error message")
+logger.critical("This is a critical message")
+
+# Get user input
+name = logger.input("Please enter your name", "Name")
+logger.info(f"Hello, {name}!")
+
+# Change console title
+logger.set_title(f"New Title - {name}")
+```
+
+## Log Format
+
+The log format follows this pattern:
+```
+[Time stamp in 12hrs] ❆ [PREFIX] ➔ Message
+```
+
+For example:
+```
+[09:45:32 AM] ❆ [INFO] ➔ This is an information message
+```
+
+## Custom Banners
+
+You can create custom banners with different colors:
+
+```python
+logger.banner("Your ASCII Art Here", color=pystyle.Colors.purple_to_blue, spacing=10)
+```
+
+## Running the Example
+
+To see BeamLogger in action, run the included example:
+
+```bash
+py example.py
+```
+
+## Changelog
+
+### v0.1.3
+- Added cross-platform support for console title setting (Windows, Linux, macOS)
+- Fixed console title setting errors on Linux systems
+- Improved error handling for platform-specific features
+
+## Crafted With <3 By Bhaskar 
