@@ -1,0 +1,67 @@
+Metadata-Version: 2.4
+Name: tcai-pay-x
+Version: 0.1.0
+Summary: A Flask-based web app for matching invoices to purchase orders using OCR and fuzzy matching.
+Author: The Celeritas AI
+Author-email: business@theceleritasai.com
+Classifier: Programming Language :: Python :: 3
+Classifier: Framework :: Flask
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: Flask==3.1.1
+Requires-Dist: numpy==2.2.6
+Requires-Dist: pandas==2.2.3
+Requires-Dist: openpyxl==3.1.5
+Requires-Dist: pytesseract==0.3.13
+Requires-Dist: pdf2image==1.17.0
+Requires-Dist: pillow==11.2.1
+Requires-Dist: RapidFuzz==3.13.0
+Requires-Dist: python-dateutil==2.9.0.post0
+Requires-Dist: packaging==25.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# 📄 Invoice-PO Mapper
+
+A Flask-based web application to match **invoices** with **purchase orders** using **OCR** and **fuzzy matching**. Upload folders of scanned PDFs or images, extract text using OCR, match records with fuzzy logic, preview them in the browser, and export the result to Excel.
+
+---
+
+## 🚀 Features
+
+- 📄 **OCR Extraction** from scanned invoices and POs (PDFs or images)
+- 🔍 **Fuzzy Matching** between extracted PO numbers
+- 📊 **Excel Export** of matched results
+- 🌐 **Flask Web Interface** for file uploads, match preview, and download
+
+---
+
+## 💻 Requirements (Windows Only)
+
+This app requires **Tesseract OCR** and **Poppler for Windows** to function properly.
+
+### ✅ Step 1: Install Tesseract
+
+- Download from the official Windows installer (UB Mannheim build):  
+  👉 https://github.com/UB-Mannheim/tesseract/wiki
+
+- After installation, add the Tesseract path to your system environment variables:  
+  Example path: `C:\Program Files\Tesseract-OCR`
+
+### ✅ Step 2: Install Poppler
+
+- Download Poppler for Windows:  
+  👉 https://github.com/oschwartz10612/poppler-windows/releases/
+
+- Unzip to a folder (e.g., `C:\poppler`)
+
+- Add the binary path to your system environment variables:  
+  Example path: `C:\poppler\Library\bin`

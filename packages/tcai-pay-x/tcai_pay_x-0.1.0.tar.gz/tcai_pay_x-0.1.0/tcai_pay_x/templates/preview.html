@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Match Preview</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f7fa;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #3498db;
+            color: white;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        tr:hover {
+            background-color: #e8f4fc;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        .actions {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .match-score {
+            font-weight: bold;
+        }
+        
+        .match-score.high {
+            color: #27ae60;
+        }
+        
+        .match-score.medium {
+            color: #f39c12;
+        }
+        
+        .match-score.low {
+            color: #e74c3c;
+        }
+        
+        .summary {
+            background-color: #e8f4fc;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .summary p {
+            margin: 5px 0;
+        }
+        .fraud-message {
+            font-weight: bold;
+            text-align: center;
+            padding: 16px;
+            margin: 15px 0;
+            border-radius: 6px;
+            font-size: 18px;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+            animation: pop-in 0.4s ease;
+        }
+
+        .fraud-message.safe {
+            color: #155724;
+            background-color: #d4edda;
+            border-left: 6px solid #28a745;
+        }
+
+        .fraud-message.fraud {
+            color: #721c24;
+            background-color: #f8d7da;
+            border-left: 6px solid #dc3545;
+        }
+
+        /* Subtle pop animation */
+        @keyframes pop-in {
+            0% { transform: scale(0.95); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <h2>Invoice-PO Matching Results</h2>
+    
+    <div class="summary">
+        <p><strong>Results Summary:</strong></p>
+        <p>Total Invoices Processed: {{ matches|length }}</p>
+        <p>Perfect Matches: {{ perfect_matches_count }}</p>
+        <p>Partial Matches: {{ partial_matches_count }}</p>
+        <p>Unmatched Invoices: {{ unmatched_count }}</p>
+    </div>
+    
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Invoice File</th>
+                    <th>Invoice Number</th>
+                    <th>PO Number (Invoice)</th>
+                    <th>Invoice Date</th>
+                    <th>Invoice Amount</th>
+                    <th>Matched PO File</th>
+                    <th>PO Number (PO)</th>
+                    <th>PO Date</th>
+                    <th>PO Amount</th>
+                    <th>Match Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in matches %}
+                    <tr>
+                        <td>{{ row['Invoice File'] }}</td>
+                        <td>{{ row['Invoice Number'] }}</td>
+                        <td>{{ row['PO Number (from Invoice)'] }}</td>
+                        <td>{{ row['Invoice Date'] }}</td>
+                        <td>${{ "%.2f"|format(row['Invoice Amount']|float) }}</td>
+                        <td>{{ row['Matched PO File'] }}</td>
+                        <td>{{ row['PO Number (from PO)'] }}</td>
+                        <td>{{ row['PO Date'] }}</td>
+                        <td>${{ "%.2f"|format(row['PO Amount']|float) }}</td>
+                        <td class="match-score 
+                            {% if row['Match Score'] >= 80 %}high
+                            {% elif row['Match Score'] >= 50 %}medium
+                            {% else %}low
+                            {% endif %}">
+                            {{ "%.1f"|format(row['Match Score']|float) }}%
+                        </td>
+                    </tr>
+
+                    {% if row['Match Score'] == 100 %}
+                    <tr>
+                        <td colspan="10" class="fraud-message safe">
+                            ✅ SAFE TO PROCESS: Invoice and PO are fully matched and verified.<br><br>
+                            <form action="/secure-payment" method="post" style="margin-top: 15px;">
+                                <input type="hidden" name="invoice_number" value="{{ row['Invoice Number'] }}">
+                                <input type="hidden" name="amount" value="{{ row['Invoice Amount'] }}">
+                                <button type="submit" class="secure-payment-btn">💳 Proceed to Secure Payment</button>
+                            </form>
+                        </td>
+                    </tr>
+
+                    {% elif row['Match Score'] == 0 %}
+                    <tr>
+                        <td colspan="10" class="fraud-message fraud">🚨 FRAUD DETECTED: Invoice and PO do not match. Investigation required immediately.</td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="actions">
+        <a href="/download"><button>Download Results as Excel</button></a>
+    </div>
+</body>
+</html>
