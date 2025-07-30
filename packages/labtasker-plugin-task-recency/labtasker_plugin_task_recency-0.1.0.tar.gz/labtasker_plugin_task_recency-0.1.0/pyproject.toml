@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "labtasker-plugin-task-recency"
+version = "0.1.0"
+description = "A Labtasker plugin that groups tasks according to recency."
+authors = [{ name = "Your Name", email = "your.email@example.com" }]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.9,<4.0"
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
+dependencies = [
+    "labtasker"
+]
+
+[project.entry-points."labtasker.client.cli"]
+
+labtasker_plugin_task_recency = "labtasker_plugin_task_recency.main"
