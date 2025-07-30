@@ -1,0 +1,42 @@
+{% import "macros.j2" as macros %}
+
+{{ macros.header(date) }}
+
+# Required packages: tidyverse, janitor, stringi
+# Install with: install.packages(c("tidyverse", "janitor", "stringi"))
+
+library(tidyverse)
+library(janitor)
+library(stringi)
+
+# Load your dataset
+df_original <- read_csv("{{ filename or 'your_data_file.csv' }}", show_col_types = FALSE)
+cat("Original shape:", nrow(df_original), "rows x", ncol(df_original), "columns\n")
+
+# Apply cleaning operations using tidyverse pipe syntax
+{% if steps and steps.strip() %}
+df_cleaned <- df_original %>%
+  {{ steps }}
+{% else %}
+# No cleaning operations applied
+df_cleaned <- df_original
+{% endif %}
+
+# Display results
+cat("\nData cleaning completed!\n")
+cat("Original shape:", nrow(df_original), "rows x", ncol(df_original), "columns\n")
+cat("Final shape:", nrow(df_cleaned), "rows x", ncol(df_cleaned), "columns\n")
+cat("Columns removed:", ncol(df_original) - ncol(df_cleaned), "\n")
+cat("Rows removed:", nrow(df_original) - nrow(df_cleaned), "\n")
+
+cat("\nFirst 5 rows of cleaned data:\n")
+print(head(df_cleaned))
+
+# Column summary
+cat("\nColumn summary:\n")
+glimpse(df_cleaned)
+
+# Optionally save the cleaned data
+# write_csv(df_cleaned, "cleaned_data.csv")
+
+{{ macros.footer() }}
