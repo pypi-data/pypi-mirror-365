@@ -1,0 +1,43 @@
+Metadata-Version: 2.4
+Name: HDF5DataModel
+Version: 0.2.3
+Summary: A project for handling HDF5 data models
+Author: Thibaud Devie, Maximilien Lehujeur
+License: MIT
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: toml
+Requires-Dist: h5py>=3.6.0
+Requires-Dist: numpy>=2.3.1
+Requires-Dist: PySide6>=6.2.0
+Requires-Dist: pyqtgraph>=0.12.3
+Requires-Dist: pyseg2>=1.4.6
+Dynamic: license-file
+
+# Presentation
+
+This project creates a data model based on HDF5 architecture and simplify writing and reading data from a standardized 
+HDF5 file format. The data model has the following structure:
+
+```plaintext
+/ (File group)
+    /Dataset (group)
+        /Acquisition (group)
+            /Acquisition Signal (group)
+                /Traces (dataset)
+            /Generation Signal (group)
+                /Signal (dataset)
+``` 
+
+Each level has its own default attributes extendable by the user.
+
+Each File can contain multiple Datasets.
+A Dataset is a collection of Acquisitions of the same nature. For example, a measurement campaign of various samples.
+An Acquisition is a set of one Generation Signal and multiple Acquisition Signals. Each time the acquisition or
+generation parameters are modified a new Acquisition is created.
+An Acquisition Signal (2D) is a set of Traces (1D) that are acquired at the same time.
+A Generation Signal (1D) contains only one generation signal.
+
+Note : to build the wheel file from this repo, use  
+`pip -wheel . --no-deps -w dist`
