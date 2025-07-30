@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pelyx"
+version = "0.0.1"
+dependencies = []
+requires-python = ">=3.11"
+authors = [
+  { name = "Obvodny", email = "obvodny@yeah.net" },
+]
+maintainers = [
+  { name = "Obvodny", email = "obvodny@yeah.net" },
+]
+description = "Pelyx plans to be a toy terminal editor"
+readme = "README.md"
+license = "GPL-3.0-or-later"
+license-files = ["license"]
+keywords = ["editor"]
+classifiers = [
+  "Development Status :: 1 - Planning",
+  "Environment :: Console",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Topic :: Text Editors",
+]
+
+[project.scripts]
+pelyx = "pelyx.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["source"]
