@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "slice-to-offset-range"
+version = "0.1.0a1"
+description = "A utility function that converts Python slice objects to explicit `(start_offset, stop_offset, step)` offset ranges given a sequence length."
+readme = "README.md"
+requires-python = ">=2"
+license = "MIT"
+authors = [
+  { name="Jifeng Wu", email="jifengwu2k@gmail.com" }
+]
+classifiers = [
+    "Programming Language :: Python :: 2",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "canonicalize-range"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/jifengwu2k/slice-to-offset-range"
+"Bug Tracker" = "https://github.com/jifengwu2k/slice-to-offset-range/issues"
