@@ -1,0 +1,184 @@
+from dataclasses import KW_ONLY, dataclass, field, replace
+from enum import IntEnum
+from typing import Self, override
+
+from nextrpg import Draw
+from nextrpg.character.character_draw import CharacterDraw
+from nextrpg.core.coordinate import Coordinate
+from nextrpg.core.dataclass_with_instance_init import (
+    dataclass_with_instance_init,
+    instance_init,
+    not_constructor_below,
+)
+from nextrpg.core.dimension import Pixel, Size
+from nextrpg.core.direction import Direction
+from nextrpg.core.time import Millisecond
+from nextrpg.draw.cyclic_frames import CyclicFrames
+from nextrpg.global_config.global_config import config
+
+
+class DefaultFrameType(IntEnum):
+    _RIGHT_FOOT = 0
+    _IDLE = 1
+    _LEFT_FOOT = 2
+
+    @classmethod
+    def _frame_indices(cls) -> tuple[int, ...]:
+        return (
+            DefaultFrameType._IDLE,
+            DefaultFrameType._RIGHT_FOOT,
+            DefaultFrameType._IDLE,
+            DefaultFrameType._LEFT_FOOT,
+        )
+
+
+class XpFrameType(IntEnum):
+    _IDLE = 0
+    _RIGHT_FOOT = 1
+    _IDLE_AGAIN = 2
+    _LEFT_FOOT = 3
+
+    @classmethod
+    def _frame_indices(cls) -> tuple[int, ...]:
+        return tuple(cls)
+
+
+type FrameType = type[DefaultFrameType | XpFrameType]
+
+
+@dataclass(frozen=True)
+class SpriteSheetSelection:
+    row: int
+    column: int
+    max_rows: int = 2
+    max_columns: int = 4
+
+
+@dataclass(frozen=True)
+class Trim:
+    top: Pixel = 0
+    left: Pixel = 0
+    bottom: Pixel = 0
+    right: Pixel = 0
+
+
+@dataclass(frozen=True)
+class SpriteSheet:
+    draw: Draw
+    trim: Trim | None = None
+    style: FrameType = DefaultFrameType
+
+
+@dataclass_with_instance_init(frozen=True)
+class RpgMakerCharacterDraw(CharacterDraw):
+    sprite_sheet: SpriteSheet
+    sprite_sheet_selection: SpriteSheetSelection | None = None
+    animate_on_idle: bool = False
+    duration_per_frame: Millisecond = field(
+        default_factory=lambda: config().rpg_maker_character.duration_per_frame
+    )
+    _: KW_ONLY = not_constructor_below()
+    _frames: dict[Direction, CyclicFrames] = instance_init(
+        lambda self: self._init_frames
+    )
+
+    @property
+    def draw(self) -> Draw:
+        return self._frames[_adjust(self.direction)].draw
+
+    @override
+    def turn(self, direction: Direction) -> Self:
+        frames = {
+            d: frames if d == _adjust(direction) else frames.reset
+            for d, frames in self._frames.items()
+        }
+        return replace(self, direction=direction, _frames=frames)
+
+    @override
+    def tick_move(self, time_delta: Millisecond) -> Self:
+        frames = {
+            direction: self._tick_frames(time_delta, direction)
+            for direction, frames in self._frames.items()
+        }
+        return replace(self, _frames=frames)
+
+    @override
+    def tick_idle(self, time_delta: Millisecond) -> Self:
+        if self.animate_on_idle:
+            return self.tick_move(time_delta)
+        frames = {d: frames.reset for d, frames in self._frames.items()}
+        return replace(self, _frames=frames)
+
+    def _tick_frames(
+        self, time_delta: Millisecond, adjusted_direction: Direction
+    ) -> CyclicFrames:
+        frames = self._frames[adjusted_direction]
+        if adjusted_direction == _adjust(self.direction):
+            return frames.tick(time_delta)
+        return frames
+
+    def _crop_by_selection(self, selection: SpriteSheetSelection) -> Draw:
+        draw = self.sprite_sheet.draw
+        width = draw.width / selection.max_columns
+        height = draw.height / selection.max_rows
+        top_left = Coordinate(width * selection.column, height * selection.row)
+        size = Size(width, height)
+        return draw.crop(top_left, size)
+
+    def _load_frames_row(self, draw: Draw, row: int) -> CyclicFrames:
+        frames = tuple(
+            self._trim(d) for d in self._crop_into_frames_at_row(draw, row)
+        )
+        ordered_frames = tuple(
+            frames[i] for i in self.sprite_sheet.style._frame_indices()
+        )
+        return CyclicFrames(
+            frames=ordered_frames, duration_per_frame=self.duration_per_frame
+        )
+
+    def _crop_into_frames_at_row(
+        self, draw: Draw, row: int
+    ) -> tuple[Draw, ...]:
+        num_frames = len(self.sprite_sheet.style)
+        width = draw.width / num_frames
+        height = draw.height / 4
+        return tuple(
+            draw.crop(Coordinate(width * i, height * row), Size(width, height))
+            for i in range(num_frames)
+        )
+
+    def _trim(self, draw: Draw) -> Draw:
+        if not (trim := self.sprite_sheet.trim):
+            return draw
+        coord = Coordinate(trim.left, trim.top)
+        width = draw.width - coord.left - trim.right
+        height = draw.height - coord.top - trim.bottom
+        size = Size(width, height)
+        return draw.crop(coord, size)
+
+    @property
+    def _init_frames(self) -> dict[Direction, CyclicFrames]:
+        if select := self.sprite_sheet_selection:
+            draw = self._crop_by_selection(select)
+        else:
+            draw = self.sprite_sheet.draw
+        return {
+            direction: self._load_frames_row(draw, row)
+            for direction, row in _DIR_TO_ROW.items()
+        }
+
+
+_DIR_TO_ROW = {
+    Direction.DOWN: 0,
+    Direction.LEFT: 1,
+    Direction.RIGHT: 2,
+    Direction.UP: 3,
+}
+
+
+def _adjust(direction: Direction) -> Direction:
+    if direction in (Direction.UP_LEFT, Direction.UP_RIGHT):
+        return Direction.UP
+    if direction in (Direction.DOWN_LEFT, Direction.DOWN_RIGHT):
+        return Direction.DOWN
+    return direction

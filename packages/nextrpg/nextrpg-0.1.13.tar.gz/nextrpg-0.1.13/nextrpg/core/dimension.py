@@ -1,0 +1,36 @@
+from collections import namedtuple
+from math import sqrt
+from typing import Self
+
+type Pixel = int | float
+
+type PixelPerMillisecond = int | float
+
+
+class Size(namedtuple("Size", "width height")):
+    width: Pixel
+    height: Pixel
+
+    def __neg__(self) -> Self:
+        return Size(-self.width, -self.height)
+
+    def __add__(self, other: Self) -> Self:
+        return Size(self.width + other.width, self.height + other.height)
+
+    def __sub__(self, other: Self) -> Self:
+        return self + -other
+
+    def __mul__(self, scaling: float) -> Self:
+        dimension_scaling = sqrt(scaling)
+        width = self.width * dimension_scaling
+        height = self.height * dimension_scaling
+        return Size(width, height)
+
+    def __truediv__(self, scaling: float) -> Self:
+        return self * (1 / scaling)
+
+    def all_dimension_scale(self, scaling: float) -> Self:
+        return Size(self.width * scaling, self.height * scaling)
+
+    def __str__(self) -> str:
+        return f"({self.width:.0f}, {self.height:.0f})"
