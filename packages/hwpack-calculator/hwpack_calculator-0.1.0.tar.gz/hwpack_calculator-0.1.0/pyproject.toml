@@ -1,0 +1,15 @@
+[project]
+name = "hwpack_calculator"
+version = "0.1.0"
+description = "A simple calculator package for basic arithmetic operations"
+authors = [
+  { name = "heartedwings" }
+]
+readme = "README.md"
+requires-python = ">=3.6"
+license = {text = "MIT"}
+urls = { "Homepage" = "https://github.com/heartedwings/hwpack_calculator" }
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"

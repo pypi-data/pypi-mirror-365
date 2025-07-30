@@ -1,0 +1,29 @@
+Metadata-Version: 2.4
+Name: hwpack_calculator
+Version: 0.1.0
+Summary: A simple calculator package for basic arithmetic operations
+Author: heartedwings
+License: MIT
+Project-URL: Homepage, https://github.com/heartedwings/hwpack_calculator
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# hwpack_calculator
+
+基本的な四則演算を提供するシンプルな計算機パッケージです。
+
+## インストール方法
+
+```bash
+pip install hwpack_calculator
+```
+
+## 使い方
+```python
+from calculator import operations
+
+result = operations.add(5, 3)
+print(result)  # 8
+```
