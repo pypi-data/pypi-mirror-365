@@ -1,0 +1,37 @@
+Metadata-Version: 2.4
+Name: fernet256
+Version: 1.0.0
+Summary: Simplified AES-256 encryption tool inspired by Fernet
+Home-page: https://github.com/xRangeroQ/fernet256
+Author: xRangeroQ
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: cryptography>=41.0.0
+Requires-Dist: numpy>=1.24.0
+Requires-Dist: pytest>=7.0.0
+Dynamic: author
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# 🔐 fernet256 — Simplified AES-256 Encryption Inspired by Fernet
+
+`fernet256` is a lightweight and modular encryption library built around **AES-256-CBC** and **HMAC-SHA256**, inspired by the simplicity of the Fernet specification. It provides a clean interface for encrypting and decrypting byte-based payloads with optional integrity and timestamp features.
+
+## ✨ Highlights
+
+- AES-256-CBC encryption for secure data protection
+- HMAC-SHA256 verification for tamper detection
+- Optional timestamp support for expiration control
+- Simplified, readable code inspired by Fernet but fully customizable
+- Modular design: no opaque black-box structures
+
+## 🚀 Installation
+
+```bash
+pip install fernet256
