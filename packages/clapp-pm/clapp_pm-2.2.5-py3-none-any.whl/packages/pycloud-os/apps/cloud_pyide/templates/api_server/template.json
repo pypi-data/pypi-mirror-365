@@ -1,0 +1,21 @@
+{
+  "id": "api_server",
+  "name": "REST API Server",
+  "description": "FastAPI ile REST API sunucusu",
+  "category": "API",
+  "author": "PyCloud",
+  "version": "1.0.0",
+  "icon": "🔌",
+  "files": [
+    "main.py",
+    "models/",
+    "routes/",
+    "requirements.txt",
+    "README.md"
+  ],
+  "variables": {
+    "api_name": "My API",
+    "author_name": "Your Name",
+    "description": "A REST API server"
+  }
+}
