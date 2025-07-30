@@ -1,0 +1,6 @@
+
+[:sys_platform != "win32"]
+posix-ipc>=1.2.0
+
+[:sys_platform == "win32"]
+pywin32>=305
