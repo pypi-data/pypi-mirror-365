@@ -1,0 +1,24 @@
+Metadata-Version: 2.1
+Name: gh-map-pipelines
+Version: 0.1.3
+Summary: Map pipelines Github in Parquet and SQLite
+License: MIT
+Author: Cristiano Henrique dos Santos
+Author-email: cristianovisk@gmail.com
+Requires-Python: >=3.12,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.12
+Requires-Dist: httpx (>=0.28.1,<0.29.0)
+Requires-Dist: pandas (>=2.3.1,<3.0.0)
+Requires-Dist: pyarrow (>=21.0.0,<22.0.0)
+Requires-Dist: pyyaml (>=6.0.2,<7.0.0)
+Requires-Dist: rich (>=14.0.0,<15.0.0)
+Requires-Dist: typer (>=0.16.0,<0.17.0)
+Project-URL: Bug Tracker, https://github.com/cristianovisk/gh_map_pipelines/issues
+Project-URL: Code, https://github.com/cristianovisk/gh_map_pipelines
+Project-URL: Documentation, https://github.com/cristianovisk/gh_map_pipelines/blob/main/README.md
+Description-Content-Type: text/markdown
+
+# gh_map_pipelines
+
