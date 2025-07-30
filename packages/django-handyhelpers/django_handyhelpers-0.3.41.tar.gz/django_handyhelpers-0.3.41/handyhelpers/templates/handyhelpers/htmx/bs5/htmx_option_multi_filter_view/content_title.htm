@@ -1,0 +1,38 @@
+<div class="container-fluid px-5 py-2 animated fadeIn" style="animation-delay: .1s;">
+    <div class="row">
+        <div class="col-10">
+            {% if title %}<span class="h2 text-primary fw-bold my-3">{{ title }}: </span>{% endif %}
+            {% if subtitle %}<span class="h4 text-secondary mx-2">{{ subtitle }}</span>{% elif page_description %}<span class="h4 text-secondary mx-2">{{ page_description }}</span>{% endif %}
+        </div>
+        <div class="col-2 d-flex align-items-end justify-content-end pe-2">
+            {% if control_list|length > 1 %}
+            {% for control in control_list %}
+            <span class="mx-1">
+                <a href="#" {% if control.name == display %}class="text-secondary" style="opacity: .25;"{% endif %}
+                    hx-get="{{ control.url }}"
+                    hx-target="#body_main"
+                    title="{{ control.name }} view"
+                    hx-push-url="true"
+                >{{ control.icon|safe }}</a>
+            </span>
+            {% endfor %}
+            {% endif %}
+            {% if filter_form %}
+            <a href="#" class="mx-1 text-primary" title="filter data"
+            hx-get="{{ filter_form.modal_url }}?display={{ display }}" 
+            hx-target="#modal_wrapper"
+            data-bs-toggle="modal" 
+            data-bs-target="#modal_wrapper">
+                <i class="fa-solid fa-filter"></i>
+            </a>
+            {% endif %}
+            {% if query_string %}
+            <span class="mx-1 text-primary">
+                <a href="#" hx-get="{{ root_url }}" hx-target="#body_main" hx-push-url="true">
+                <i class="fas fa-undo-alt"></i>
+                </a>
+            </span>
+            {% endif %}
+        </div>
+    </div>
+</div>
