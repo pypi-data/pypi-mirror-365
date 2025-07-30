@@ -1,0 +1,82 @@
+Metadata-Version: 2.4
+Name: CFstreamparser
+Version: 0.1.1
+Summary: Stream-file parser for CrystFEL output
+Author-email: Paul Hager <paul.hager@su.se>
+License: MIT License
+        
+        Copyright (c) 2025 Paul Hager
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: Source, https://gitlab.com/kristallorakel/CFstreamparser
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+
+
+# CFstreamparser
+
+This is a simple Python library for parsing CrystFEL stream files, extracting global geometry, unit cell definitions, and per-frame indexing solutions.
+
+## Installation
+
+```bash
+pip install CFstreamparser
+```
+
+## Usage Examples
+
+```python
+from cfstreamparser import parse_stream_file
+
+# 1. Parse a stream file
+
+stream = parse_stream_file("path/to/your.stream")
+
+# 2. Access global unit cell
+print("Unit cell:", stream.uc)
+
+# you can also query specfic parameters, e.g. like this:
+
+print("Unit cell:", stream.uc.a) # to get length of a.
+
+# 3. Access global geometry parameters
+print("Detector center-to-lens distance (clen):", stream.geom.params["clen"])
+
+# 4. Retrieve a specific frame by its event number (e.g., 215)
+chunk = stream.get_chunk_by_event(215)
+if chunk:
+    print(f"Frame {chunk.event} has {chunk.num_peaks} peaks")
+
+    # 5. Iterate through all indexing solutions for this frame
+    for sol_idx, sol in enumerate(chunk.crystals, start=1):
+        print(f"Solution {sol_idx}: {sol.num_reflections} reflections, final residual {sol.predict_refine.final_residual:.3f}")
+
+    # 6. Access the first solution's indexed reflections
+    first_solution = chunk.crystals[0]
+    print("First 5 indexed reflections:", first_solution.reflections[:5])
+else:
+    print("No chunk found for event 215")
+```
