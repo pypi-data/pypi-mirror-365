@@ -1,0 +1,229 @@
+Metadata-Version: 2.4
+Name: metadata-py
+Version: 1.0.0
+Summary: Утилита для управления метаданными в markdown-файлах с автоматическим контролем версий и определением автора
+Home-page: https://github.com/woodg9461/metadata-py
+Author: we256681
+Author-email: we256681@gmail.com
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: Topic :: Documentation
+Classifier: Topic :: Text Processing :: Markup
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: packaging>=20.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# metadata-py: Утилита для управления метаданными в markdown-файлах
+
+[![PyPI version](https://img.shields.io/pypi/v/metadata-py.svg)](https://pypi.org/project/metadata-py/)
+[![License](https://img.shields.io/github/license/woodg9461/metadata-py)](https://github.com/woodg9461/metadata-py/blob/master/LICENSE)
+
+## Описание
+
+metadata-py — это мощная утилита для управления блоками метаданных в markdown-файлах. Она предоставляет автоматический контроль версий, определение автора и массовую обработку файлов. Разработана для работы с документацией и поддерживает семантическое версионирование.
+
+## Основные возможности
+
+1. **Управление метаданными**
+   - Добавление, обновление и удаление блоков метаданных
+   - Автоматический контроль версий с использованием семантического версионирования
+   - Обнаружение изменений и автоматическое обновление версий
+   - Поддержка пользовательских полей метаданных
+   - Хранение цифрового отпечатка документа для проверки целостности
+
+2. **Определение автора** (в порядке приоритета):
+   - История коммитов Git для конкретного файла
+   - Настройки репозитория Git
+   - Переменные окружения системы
+   - Владелец файла в файловой системе
+
+3. **Массовая обработка**
+   - Обработка всех markdown-файлов в директории
+   - Игнорирование ненужных файлов и директорий
+   - Поддержка пользовательских паттернов игнорирования
+   - Генерация отчетов о состоянии проекта
+
+4. **Управление игнор-файлами**
+   - Автоматическое создание и обновление файлов игнорирования
+   - Поддержка формата .gitignore
+   - Использование системных и пользовательских паттернов игнорирования
+
+## Методы определения автора
+
+metadata-py использует несколько методов для определения автора файла в порядке приоритета:
+
+1. История коммитов Git для конкретного файла
+2. Настройки репозитория Git
+3. Переменные окружения системы
+4. Владелец файла в файловой системе
+
+Вы можете отключить автоматическое определение автора с помощью флага `--no-auto-author`.
+
+## Управление версиями
+
+metadata-py поддерживает автоматическое семантическое версионирование:
+
+- **Мажорная версия (X.0.0)**: Изменения в заголовках первого уровня (`#`)
+- **Средняя версия (0.X.0)**: Изменения в подзаголовках (`##`, `###` и т.д.)
+- **Минорная версия (0.0.X)**: Изменения в содержимом без изменения заголовков
+
+Версия автоматически обновляется при обнаружении изменений в документе.
+
+## Установка
+
+```bash
+pip install metadata-py
+```
+
+## Использование
+
+```bash
+# Обработка конкретных файлов
+metadata-py README.md
+
+# Установка метаданных
+metadata-py README.md --set author="Имя Фамилия" --set version="1.0.0"
+
+# Удаление метаданных
+metadata-py README.md --remove
+
+# Пробный запуск (предпросмотр изменений)
+metadata-py README.md --dry-run
+
+# Отключение автоматического определения автора
+metadata-py README.md --no-auto-author
+
+# Подробный вывод
+metadata-py README.md --verbose
+
+# Массовая обработка всех markdown-файлов
+metadata-py --bulk .
+
+# Массовая обработка всех markdown-файлов с задданым автором
+metadata-py --bulk . --set author="Имя Фамилия"
+
+# Массовая обработка с игнорированием корневых файлов
+metadata-py --bulk . --exclude-root --set version="1.0.0"
+
+# Показать список файлов для обработки
+metadata-py --bulk . --list-files
+
+# Показать информацию об авторах
+metadata-py --bulk . --show-info --verbose
+
+# Добавление паттернов игнорирования
+metadata-py --bulk . --ignore "*.draft.md" --ignore "temp/*"
+
+# Для предварительного просмотра изменений без их применения
+metadata-py --bulk . --dry-run
+```python3 scripts/metadata_new.py --bulk . --dry-run --verbose
+
+# Создание файла игнорирования
+python3 scripts/metadata_new.py --create-ignore .mdignore
+```
+
+## Формат метаданных
+
+```markdown
+
+```
+
+## Зависимости
+
+- Python 3.6+
+- Модуль `packaging` (для сравнения версий)
+- Git (для определения автора)
+- Python модули для работы с файловой системой
+- Python модули для работы с регулярными выражениями
+
+## Обработка ошибок
+
+Скрипт включает всестороннюю обработку ошибок для:
+- Операций с файлами
+- Операций с Git
+- Парсинга JSON
+- Анализа строк версий
+- Операций с игнор-файлами
+- Массовой обработки файлов
+- Генерации отчетов
+- `AUTHOR_NAME` и `AUTHOR_EMAIL`
+- `USER_NAME` и `USER_EMAIL`
+
+### 3. Системная информация:
+- Текущий пользователь системы: `getpass.getuser()`
+- Владелец файла: `pwd.getpwuid(stat_info.st_uid).pw_name`
+- Проверка существования файлов и директорий
+- Проверка прав доступа к файлам
+
+## Параметры командной строки
+
+```bash
+# Обработка конкретных файлов (можно указать несколько)
+python3 scripts/metadata_new.py file1.md file2.md
+
+# Режим массовой обработки (можно указать директорию)
+python3 scripts/metadata_new.py --bulk .
+
+# Установка метаданных (можно использовать несколько раз)
+python3 scripts/metadata_new.py file.md --set author="Имя Фамилия" --set version="1.0.0"
+
+# Удаление блока метаданных
+python3 scripts/metadata_new.py file.md --remove
+
+# Полная перезапись существующих метаданных
+python3 scripts/metadata_new.py file.md --overwrite
+
+# Пробный запуск (предпросмотр изменений)
+python3 scripts/metadata_new.py file.md --dry-run
+
+# Отключение автоматического определения автора
+python3 scripts/metadata_new.py file.md --no-auto-author
+
+# Подробный вывод
+python3 scripts/metadata_new.py file.md --verbose
+
+# Игнорирование файлов (можно использовать несколько раз)
+python3 scripts/metadata_new.py --bulk . --ignore "*.draft.md" --ignore "temp/*"
+
+# Использование файла игнорирования
+python3 scripts/metadata_new.py --bulk . --ignore-file ".mdignore"
+
+# Исключение корневых файлов при массовой обработке
+python3 scripts/metadata_new.py --bulk . --exclude-root
+
+# Показ информации об авторах
+python3 scripts/metadata_new.py --bulk . --show-info
+
+# Показ списка файлов для обработки
+python3 scripts/metadata_new.py --bulk . --list-files
+```
+
+## Особенности:
+
+1. **Умное определение**: Скрипт сначала проверяет Git, затем переменные окружения, потом системную информацию
+2. **Безопасность**: Все Git команды выполняются с таймаутом для избежания зависания
+3. **Fallback**: Если один метод не работает, используется следующий
+4. **Совместимость**: Работает как в Git репозиториях, так и вне их
+5. **Гибкость**: Можно отключить автоопределение или переопределить автора вручную
+
+Теперь скрипт автоматически определит автора на основе доступной информации из Git, IDE настроек или системы!
