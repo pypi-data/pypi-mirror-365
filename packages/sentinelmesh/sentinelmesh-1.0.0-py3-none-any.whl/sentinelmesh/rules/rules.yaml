@@ -1,0 +1,18 @@
+rules:
+  - id: "block_sensitive_contexts"
+    type: "context_block"
+    match: ["hr_data", "prod_credentials"]
+    risk: 40
+
+  - id: "block_prompt_injection"
+    type: "payload_contains"
+    match:
+      - "ignore previous instructions"
+      - "delete all files"
+      - "send confidential"
+    risk: 80
+
+  - id: "block_external_links"
+    type: "payload_regex"
+    pattern: "https?://[^ ]+"
+    risk: 50
