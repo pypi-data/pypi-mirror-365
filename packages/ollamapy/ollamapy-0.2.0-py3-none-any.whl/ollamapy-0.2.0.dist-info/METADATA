@@ -1,0 +1,115 @@
+Metadata-Version: 2.4
+Name: ollamapy
+Version: 0.2.0
+Summary: A simple Python package for Ollama utilities
+Project-URL: Homepage, https://github.com/ScienceIsVeryCool/OllamaPy
+Project-URL: Repository, https://github.com/ScienceIsVeryCool/OllamaPy
+Project-URL: Issues, https://github.com/ScienceIsVeryCool/OllamaPy/issues
+Author-email: The Lazy Artist <TheRealLazyArtist@iCloud.com>
+License: GPL-3.0-or-later
+Keywords: ai,chat,llama,ollama,python,terminal,utilities
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.8
+Requires-Dist: requests>=2.25.0
+Provides-Extra: dev
+Requires-Dist: black; extra == 'dev'
+Requires-Dist: isort; extra == 'dev'
+Requires-Dist: mypy; extra == 'dev'
+Requires-Dist: pytest; extra == 'dev'
+Description-Content-Type: text/markdown
+
+# OllamaPy
+
+A simple Python package for Ollama utilities.
+
+## Installation
+
+Install from PyPI:
+
+```bash
+pip install ollamapy
+```
+
+Or install from source:
+
+```bash
+git clone https://github.com/ScienceIsVeryCool/OllamaPy.git
+cd OllamaPy
+pip install .
+```
+
+## Usage
+
+```python
+from ollamapy import hello, greet
+
+print(hello())        # Output: Hello, World!
+print(greet("World")) # Output: Hello, World!
+```
+
+## CLI
+
+After installation, you can use the command line interface:
+
+```bash
+ollamapy
+```
+
+This will run the main function and display:
+```
+Hello, World!
+Hello, Python!
+```
+
+## Development
+
+Clone the repository and install in development mode:
+
+```bash
+git clone https://github.com/ScienceIsVeryCool/OllamaPy.git
+cd OllamaPy
+pip install -e ".[dev]"
+```
+
+Run tests:
+
+```bash
+pytest
+```
+
+Format code:
+
+```bash
+black src/ tests/
+isort src/ tests/
+```
+
+Type checking:
+
+```bash
+mypy src/
+```
+
+## Project Information
+
+- **Version**: 0.1.0
+- **License**: GPL-3.0-or-later
+- **Author**: The Lazy Artist
+- **Python**: >=3.8
+
+## Links
+
+- [PyPI Package](https://pypi.org/project/ollamapy/)
+- [GitHub Repository](https://github.com/ScienceIsVeryCool/OllamaPy)
+- [Issues](https://github.com/ScienceIsVeryCool/OllamaPy/issues)
