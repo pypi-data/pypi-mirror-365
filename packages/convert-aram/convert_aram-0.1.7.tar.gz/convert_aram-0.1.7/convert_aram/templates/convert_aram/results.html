@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Résultat de la conversion</title>
+    <style>
+        body {
+            background: #f7f7f7;
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .result-box {
+            background: white;
+            padding: 2rem 3rem;
+            border-radius: 12px;
+            box-shadow: 0 0 12px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .result {
+            font-size: 1.5rem;
+            color: #2c3e50;
+        }
+
+        .error {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 1.5rem;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-box">
+        <h1>Résultat</h1>
+
+        {% if error %}
+            <div class="error">{{ resultat }}</div>
+        {% else %}
+            <div class="result">
+                {{ valeur }} × {{ taux }} = <strong>{{ resultat }}</strong>
+            </div>
+        {% endif %}
+
+        <a href="{% url 'convert_aram:index' %}">← Faire une autre conversion</a>
+    </div>
+</body>
+</html>
