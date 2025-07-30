@@ -1,0 +1,146 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools-scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dbit"
+version = "0.1.0"
+description = "Git-like CLI tool for database schema version control with multi-database support"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "MIT"
+authors = [
+    {name = "Navaneet", email = "navaneetnr@gmail.com"}
+]
+maintainers = [
+    {name = "Navaneet", email = "navaneetnr@gmail.com"}
+]
+keywords = [
+    "database",
+    "schema",
+    "version-control",
+    "migration",
+    "git",
+    "postgresql",
+    "mysql",
+    "sqlite",
+    "devops",
+    "database-management"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "Topic :: Database",
+    "Topic :: Software Development :: Version Control",
+    "Topic :: System :: Systems Administration",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: OS Independent",
+    "Environment :: Console",
+    "Natural Language :: English",
+]
+dependencies = [
+    "click>=8.0.0",
+    "pyyaml>=6.0",
+    "sqlparse>=0.4.0",
+    "psycopg2-binary>=2.9.0",
+    "mysql-connector-python>=8.0.0",
+    "SQLAlchemy>=1.4.0,<3.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=22.0.0",
+    "isort>=5.10.0",
+    "flake8>=4.0.0",
+    "pre-commit>=3.0.0",
+]
+
+[project.scripts]
+dbit = "dbit.cli:cli"
+
+[project.urls]
+Homepage = "https://github.com/navaneetnr/dbit"
+Repository = "https://github.com/navaneetnr/dbit"
+Documentation = "https://github.com/navaneetnr/dbit/blob/main/docs"
+Issues = "https://github.com/navaneetnr/dbit/issues"
+Discussions = "https://github.com/navaneetnr/dbit/discussions"
+Changelog = "https://github.com/navaneetnr/dbit/blob/main/CHANGELOG.md"
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+include = ["dbit*"]
+exclude = ["tests*", "providers*", "migrations*", "docs*", "*.egg-info*"]
+
+[tool.setuptools.package-data]
+dbit = ["py.typed"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38', 'py39', 'py310', 'py311', 'py312']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_first_party = ["dbit"]
+known_third_party = ["click", "yaml", "sqlalchemy", "psycopg2", "mysql"]
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+]
+
+[tool.coverage.run]
+source = ["dbit"]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "setup.py",
+    "*/venv/*",
+    "*/.venv/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+]
