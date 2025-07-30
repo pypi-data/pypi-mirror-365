@@ -1,0 +1,74 @@
+name: CI
+on:
+    push:
+    pull_request:
+    schedule:
+        - cron: '17 3 * * 0'
+
+jobs:
+    flake8:
+        name: Flake8
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v3
+        - uses: actions/setup-python@v4
+          with:
+            python-version: '3.x'
+        - name: Flake8
+          run:  python3 -m pip install .[dev] && flake8 --exclude examples
+
+    flake8_gen:
+        name: Flake8 on Generated Code
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v3
+        - uses: actions/setup-python@v4
+          with:
+            python-version: '3.x'
+        - name: Flake8
+          run: |
+            python3 -m pip install .[dev]
+            for mech in test/mechs/*.yaml; do
+              python3 -m pyrometheus                            \
+                  --language python      --mechanism "$mech"    \
+                  --name     pyrometheus --output    "$mech.py" \
+                  --phase    gas
+            done
+            python3 -m flake8 --extend-ignore E501,Q000 test/mechs
+
+    pytest:
+        name: Pytest Conda Py${{ matrix.python_version }}
+        strategy:
+            matrix:
+                python_version: ["3.9", "3.11"]
+        runs-on: ubuntu-latest
+        env:
+            PYTHON_VERSION: ${{ matrix.python_version }}
+        steps:
+        - uses: actions/checkout@v3
+        - uses: actions/setup-python@v4
+          with:
+            python-version: ${{ matrix.python_version }}
+        -   name: "PyTest"
+            run: |
+                python3 -m pip install .[test]
+                cmake -S test -B build -Dpybind11_DIR=`python3 -m pybind11 --cmakedir`
+                cmake --build build --parallel $(nproc)
+                ctest --test-dir build --output-on-failure -j $(nproc)
+
+    docs:
+        name: Documentation
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v3
+        - uses: actions/setup-python@v4
+          with:
+            python-version: '3.x'
+        - name: 'Build Docs'
+          run: |
+            python3 -m pip install -e .[docs]
+            python3 -m pyrometheus                                                   \
+                --language python      --mechanism test/mechs/sandiego.yaml          \
+                --name     pyrometheus --output    pyrometheus/thermochem_example.py \
+                --phase    gas
+            cd doc && make html SPHINXOPTS='-W --keep-going -n'

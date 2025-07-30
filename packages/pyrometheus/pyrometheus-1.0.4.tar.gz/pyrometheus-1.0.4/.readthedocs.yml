@@ -1,0 +1,21 @@
+version: 2
+
+python:
+  install:
+    - method: pip
+      path: .
+
+sphinx:
+  fail_on_warning: true
+
+build:
+  os: ubuntu-22.04
+  tools:
+    python: "3.10"
+  jobs:
+    post_install:
+      - python3 -m pip install .[docs]
+      # Generate the thermochem example
+      - python3 -m pyrometheus -l python -m test/mechs/sandiego.yaml -n pyrometheus -o pyrometheus/thermochem_example.py -p gas
+      # Reinstall pyrometheus as editable to take into account the generated file
+      - python3 -m pip install --editable .
