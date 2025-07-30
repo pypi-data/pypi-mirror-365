@@ -1,0 +1,38 @@
+[project]
+name = "djecharts"
+authors = [{ name = "André Lopes", email = "andrelopes.code@gmail.com" }]
+version = "0.1.5"
+description = "Django Echarts"
+license-files = ["LICENSE"]
+readme = "README.md"
+requires-python = ">=3.12"
+
+classifiers = [
+    "Environment :: Web Environment",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: MIT License",
+    "Framework :: Django",
+]
+
+dependencies = [
+    "django>=4.0,<6.0",
+    "django>=4.0,<6.0",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+djecharts = ["templates/**/*", "static/**/*"]
+
+[dependency-groups]
+dev = []
