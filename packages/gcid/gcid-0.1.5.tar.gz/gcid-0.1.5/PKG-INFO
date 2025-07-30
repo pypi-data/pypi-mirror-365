@@ -1,0 +1,54 @@
+Metadata-Version: 2.4
+Name: gcid
+Version: 0.1.5
+Summary: Global Cryptographic Identifiers
+Project-URL: Homepage, https://github.com/MythicaAI/jungle-ams/libs/python/gcid
+Project-URL: Repository, https://github.com/MythicaAI/jungle-ams
+Author-email: Jacob Repp <jacob@mythica.ai>
+License-Expression: MPL-2.0
+Keywords: api,crypto,database,identifiers,web
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Python: >=3.10
+Requires-Dist: base58>=2.1.1
+Requires-Dist: cryptography>=44.0.1
+Requires-Dist: pydantic-settings>=2.7.1
+Requires-Dist: pydantic>=2.10.6
+Requires-Dist: pyjwt>=2.10.1
+Requires-Dist: typing-extensions>=4.12.2
+Description-Content-Type: text/markdown
+
+GCID
+===
+
+Global, Cryptographic, Identifiers
+====
+
+
+Global 
+=====
+
+Identifiers contain internal location tagging information that can
+be used in a federated system to locate objects globally while
+maintaining private internal number spaces.
+
+
+Crytographic
+=====
+
+Identifiers can be reversed to provide metadata such as row number
+and shard without exposing this information to external observers.
+
+
+Identifiers
+=====
+
+Strings that can be used with APIs such as is seen in APIs from Stripe, et al.
+
+
