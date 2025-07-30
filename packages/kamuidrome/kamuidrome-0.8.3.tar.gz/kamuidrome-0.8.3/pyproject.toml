@@ -1,0 +1,109 @@
+[build-system]
+requires = [
+    "pdm-backend",
+]
+build-backend = "pdm.backend"
+
+[project]
+authors = [
+    { name = "Lura Skye", email = "fuyukai@proton.me" },
+]
+requires-python = ">=3.12"
+dependencies = [
+    "httpx>=0.28.1",
+    "attrs>=24.3.0",
+    "tomlkit>=0.13.2",
+    "rich>=13.9.4",
+    "platformdirs>=4.3.6",
+    "more-itertools>=10.5.0",
+    "cattrs>=24.1.2",
+    "whenever>=0.8.0",
+]
+name = "kamuidrome"
+dynamic = []
+description = "Modern Minecraft modpack builder"
+readme = "README.rst"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Topic :: Games/Entertainment",
+    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+]
+version = "0.8.3"
+
+[project.license]
+text = "GPL-3.0-or-later"
+
+[project.scripts]
+kamuidrome = "kamuidrome.cli.__main__:main"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.8.3",
+    "pyright>=1.1.390",
+]
+
+[tool.pdm.build]
+includes = [
+    "src/kamuidrome",
+]
+
+[tool.pdm.version]
+source = "scm"
+
+[tool.pyright]
+pythonVersion = "3.12"
+include = [
+    "src",
+]
+typeCheckingMode = "strict"
+reportImplicitOverride = "warning"
+reportUnusedVariable = false
+
+[tool.ruff]
+target-version = "py312"
+respect-gitignore = true
+src = [
+    "src/kamuidrome",
+]
+line-length = 100
+output-format = "full"
+
+[tool.ruff.lint]
+select = [
+    "RUF",
+    "F",
+    "E",
+    "W",
+    "I",
+    "UP",
+    "B",
+    "Q",
+    "YTT",
+    "PYI",
+    "SIM",
+    "RET",
+    "PERF",
+    "PIE",
+    "SIM",
+    "C4",
+    "D101",
+    "D102",
+    "D103",
+    "D201",
+    "D204",
+    "D211",
+    "D419",
+]
+ignore = [
+    "W291",
+    "W293",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/test_*" = [
+    "D",
+]
+
+[tool.ruff.lint.isort]
+combine-as-imports = true
