@@ -1,0 +1,1178 @@
+{
+    "help_categories": {
+        "start_here": {
+            "title": "NINA MCP 入门指南",
+            "description": "开始使用 NINA MCP 的基本信息",
+            "requirements": [
+                "已安装并运行 NINA 软件",
+                "在 NINA 中启用高级 API",
+                "与 NINA 服务器的网络连接",
+                "Python 3.7 或更高版本"
+            ],
+            "tools_overview": [
+                "连接工具: nina_connect, nina_disconnect, nina_get_status",
+                "相机工具: nina_capture_image, nina_get_camera_info",
+                "赤道仪工具: nina_slew_mount, nina_park_mount",
+                "序列工具: nina_start_sequence, nina_get_sequence_state",
+                "图像工具: nina_get_image, nina_get_image_history"
+            ]
+        },
+        "connection": {
+            "title": "连接管理",
+            "description": "用于管理 NINA 服务器连接和获取系统状态的工具"
+        },
+        "camera": {
+            "title": "相机控制",
+            "description": "用于控制相机和拍摄图像的工具。包括重要的 nina_capture_image 工具，支持不同的拍摄模式：下载模式用于立即获取图像，后台拍摄模式用于长时间曝光。",
+            "modes": {
+                "download": "立即以 JPEG/PNG 格式返回图像数据，支持调整大小和流式传输",
+                "background": "在后台拍摄，不等待完成，适合长时间曝光",
+                "platesolve": "可以进行图像解析，可选择是否返回图像数据"
+            }
+        },
+        "mount": {
+            "title": "赤道仪控制",
+            "description": "用于控制望远镜赤道仪的工具，包括指向、归位和跟踪控制"
+        },
+        "dome": {
+            "title": "圆顶控制",
+            "description": "用于控制天文台圆顶的工具，包括快门控制和赤道仪跟随"
+        },
+        "filterwheel": {
+            "title": "滤镜轮控制",
+            "description": "用于控制滤镜轮和管理滤镜的工具"
+        },
+        "focuser": {
+            "title": "调焦器控制",
+            "description": "用于控制调焦器的工具，包括移动和温度补偿"
+        },
+        "guider": {
+            "title": "导星控制",
+            "description": "用于控制自动导星的工具，包括校准和导星操作"
+        },
+        "flatpanel": {
+            "title": "平场板控制",
+            "description": "用于控制平场板的工具，包括亮度和盖子控制"
+        },
+        "flats": {
+            "title": "平场自动化",
+            "description": "用于自动化平场拍摄的工具，包括天空平场和面板平场"
+        },
+        "image": {
+            "title": "图像管理",
+            "description": "用于管理和处理拍摄图像的工具，包括历史和参数"
+        },
+        "rotator": {
+            "title": "旋转器控制",
+            "description": "用于控制相机旋转器的工具"
+        },
+        "utility": {
+            "title": "实用工具",
+            "description": "通用实用工具，如时间函数和等待操作"
+        }
+    },
+    "tool_help": {
+        "nina_capture_image": {
+            "title": "使用 NINA 相机拍摄图像",
+            "description": "使用连接的相机拍摄图像。主要在两种模式下运行：下载模式用于立即获取图像，后台拍摄模式用于长时间曝光。还可以进行图像解析，可选择是否下载图像。",
+            "modes": {
+                "download_mode": {
+                    "description": "立即以 JPEG/PNG 格式返回图像数据",
+                    "requirements": [
+                        "必须设置 download=True",
+                        "对于流式传输：需要 stream=True 和 resize=True",
+                        "对于 PNG 格式：quality=-1",
+                        "对于 JPEG 格式：quality=1-100",
+                        "调整大小时：需要 size 参数（例如 '1920x1080'）"
+                    ]
+                },
+                "background_mode": {
+                    "description": "在后台拍摄，不等待完成",
+                    "requirements": [
+                        "download=False",
+                        "适合长时间曝光",
+                        "图像由 NINA 以全分辨率保存"
+                    ]
+                },
+                "platesolve_mode": {
+                    "description": "图像解析，可选择是否返回图像",
+                    "requirements": [
+                        "solve=True",
+                        "图像解析需要 wait_for_result=True",
+                        "可以与 download=True 结合使用，同时获取解析结果和图像",
+                        "使用 omit_image=True 仅进行图像解析而不返回图像"
+                    ]
+                }
+            },
+            "parameters": {
+                "duration": {
+                    "type": "float",
+                    "description": "曝光时间（秒）",
+                    "required": true
+                },
+                "gain": {
+                    "type": "integer",
+                    "description": "相机增益设置（相机特定）",
+                    "required": false
+                },
+                "download": {
+                    "type": "boolean",
+                    "description": "是否等待并返回图像数据",
+                    "default": false
+                },
+                "resize": {
+                    "type": "boolean",
+                    "description": "下载时是否调整图像大小",
+                    "required": "仅在 download=True 时需要"
+                },
+                "quality": {
+                    "type": "integer",
+                    "description": "图像质量：-1 表示 PNG，1-100 表示 JPEG",
+                    "required": "仅在 download=True 时需要"
+                },
+                "size": {
+                    "type": "string",
+                    "description": "调整大小时的目标尺寸，格式：'宽x高'（例如 '1920x1080'）",
+                    "required": "仅在 resize=True 时需要"
+                },
+                "solve": {
+                    "type": "boolean",
+                    "description": "是否对图像进行解析",
+                    "default": false
+                },
+                "omit_image": {
+                    "type": "boolean",
+                    "description": "是否在响应中省略图像数据（适用于仅进行图像解析）",
+                    "default": false
+                },
+                "wait_for_result": {
+                    "type": "boolean",
+                    "description": "是否等待拍摄完成。图像解析和图像下载需要此参数。",
+                    "default": "如果 solve=True 或 download=True 则为 True，否则为 False"
+                }
+            },
+            "returns": {
+                "Success": "表示操作成功与否的布尔值",
+                "Message": "操作结果描述",
+                "Image": {
+                    "description": "当 download=True 时存在",
+                    "content_type": "image/jpeg 或 image/png",
+                    "data": "Base64 编码的图像数据"
+                },
+                "PlateSolveResult": {
+                    "description": "当 solve=True 时存在",
+                    "fields": {
+                        "Success": "表示解析成功与否的布尔值",
+                        "RA": "赤经（小时）",
+                        "Dec": "赤纬（度）",
+                        "Rotation": "图像旋转角度（度）",
+                        "PixelScale": "图像比例（角秒/像素）"
+                    }
+                },
+                "SavedPath": "图像保存路径（如果适用）",
+                "Type": "响应类型（NINA_API 或 NINA_API_STREAM）"
+            },
+            "examples": [
+                {
+                    "title": "简单后台拍摄",
+                    "description": "拍摄 5 秒曝光，不等待结果",
+                    "code": "result = await nina_capture_image(CameraCaptureInput(duration=5.0))"
+                },
+                {
+                    "title": "下载模式 JPEG",
+                    "description": "拍摄并下载调整大小的 JPEG 图像",
+                    "code": "result = await nina_capture_image(CameraCaptureInput(duration=1.0, download=True, resize=True, quality=90, size='1920x1080'))"
+                },
+                {
+                    "title": "下载模式 PNG",
+                    "description": "拍摄并下载 PNG 图像",
+                    "code": "result = await nina_capture_image(CameraCaptureInput(duration=1.0, download=True, resize=True, quality=-1, size='1920x1080'))"
+                },
+                {
+                    "title": "仅图像解析",
+                    "description": "拍摄并进行图像解析，不返回图像",
+                    "code": "result = await nina_capture_image(CameraCaptureInput(duration=5.0, solve=True, omit_image=True, wait_for_result=True))"
+                },
+                {
+                    "title": "图像解析并下载图像",
+                    "description": "拍摄、进行图像解析并下载图像",
+                    "code": "result = await nina_capture_image(CameraCaptureInput(duration=5.0, solve=True, download=True, resize=True, quality=90, size='1920x1080'))"
+                }
+            ]
+        },
+        "nina_connect": {
+            "title": "连接到 NINA 服务器",
+            "description": "建立与 NINA 服务器的连接。在使用任何其他工具之前必须调用此工具。",
+            "parameters": {
+                "host": {
+                    "type": "string",
+                    "description": "NINA 服务器主机名或 IP 地址",
+                    "default": "来自环境的 DEFAULT_NINA_HOST"
+                },
+                "port": {
+                    "type": "integer",
+                    "description": "NINA 服务器端口号（默认：1888）",
+                    "default": "1888（来自环境的 DEFAULT_NINA_PORT）"
+                }
+            },
+            "returns": {
+                "Success": "表示连接成功与否的布尔值",
+                "Message": "连接状态消息",
+                "State": "当前服务器状态，包括连接模式和设置",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "使用默认设置连接",
+                    "description": "使用默认主机和端口（1888）连接到 NINA",
+                    "code": "result = await nina_connect(ConnectInput())"
+                },
+                {
+                    "title": "使用自定义设置连接",
+                    "description": "使用特定主机和端口连接到 NINA",
+                    "code": "result = await nina_connect(ConnectInput(host='192.168.1.100', port=1888))"
+                }
+            ]
+        },
+        "nina_disconnect": {
+            "title": "断开 NINA 服务器连接",
+            "description": "关闭与 NINA 服务器的连接并清理资源。",
+            "parameters": {},
+            "returns": {
+                "Success": "表示断开连接成功与否的布尔值",
+                "Message": "断开连接状态消息",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "简单断开连接",
+                    "description": "断开与 NINA 服务器的连接",
+                    "code": "result = await nina_disconnect()"
+                }
+            ]
+        },
+        "nina_get_status": {
+            "title": "获取 NINA 状态",
+            "description": "获取所有连接设备和 NINA 服务器的综合状态信息。",
+            "parameters": {},
+            "returns": {
+                "Success": "表示状态获取成功与否的布尔值",
+                "Message": "包含连接设备数量的状态消息",
+                "Status": {
+                    "description": "每种设备类型的状态信息",
+                    "fields": {
+                        "server": "服务器连接状态",
+                        "camera": "相机连接和设置",
+                        "mount": "赤道仪连接和位置",
+                        "focuser": "调焦器连接和位置",
+                        "filterwheel": "滤镜轮连接和位置",
+                        "guider": "导星器连接和状态",
+                        "dome": "圆顶连接和状态",
+                        "flatpanel": "平场板连接和设置",
+                        "safetymonitor": "安全监控器状态",
+                        "weather": "天气设备状态",
+                        "switch": "开关设备状态"
+                    }
+                },
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "获取系统状态",
+                    "description": "获取所有连接设备的状态",
+                    "code": "result = await nina_get_status()"
+                }
+            ]
+        },
+        "nina_time_now": {
+            "title": "获取当前时间",
+            "description": "获取各种格式的当前时间，包括本地时间、UTC 和 Unix 时间戳。",
+            "parameters": {},
+            "returns": {
+                "Success": "表示成功与否的布尔值",
+                "Message": "操作状态消息",
+                "Time": {
+                    "LocalTime": "ISO 格式的当前本地时间",
+                    "UTCTime": "ISO 格式的当前 UTC 时间",
+                    "UnixTimestamp": "Unix 时间戳（秒）",
+                    "JulianDate": "当前儒略日",
+                    "Sidereal": {
+                        "Local": "本地恒星时",
+                        "Greenwich": "格林威治恒星时"
+                    }
+                },
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "获取当前时间",
+                    "description": "获取当前时间信息",
+                    "code": "result = await nina_time_now()"
+                }
+            ]
+        },
+        "nina_wait": {
+            "title": "等待指定时间",
+            "description": "等待指定的时间间隔。",
+            "parameters": {
+                "duration": {
+                    "type": "float",
+                    "description": "等待时间（秒）",
+                    "required": true
+                }
+            },
+            "returns": {
+                "Success": "表示成功与否的布尔值",
+                "Message": "操作状态消息",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "等待 5 秒",
+                    "description": "等待 5 秒钟",
+                    "code": "result = await nina_wait(WaitInput(duration=5.0))"
+                },
+                {
+                    "title": "短暂等待",
+                    "description": "等待 1 秒钟",
+                    "code": "result = await nina_wait(WaitInput(duration=1.0))"
+                }
+            ]
+        },
+        "nina_connect_camera": {
+            "title": "连接相机",
+            "description": "连接到 NINA 天文软件中的相机设备。",
+            "parameters": {
+                "device_id": {
+                    "type": "string",
+                    "description": "可选设备 ID 用于连接。如果未提供，将使用默认设备。",
+                    "required": false
+                }
+            },
+            "returns": {
+                "Success": "表示连接成功与否的布尔值",
+                "Message": "连接状态消息",
+                "Details": "来自 NINA 服务器的响应",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "连接默认相机",
+                    "description": "连接到默认相机设备",
+                    "code": "result = await nina_connect_camera(CameraConnectInput())"
+                },
+                {
+                    "title": "连接特定相机",
+                    "description": "通过设备 ID 连接到特定相机",
+                    "code": "result = await nina_connect_camera(CameraConnectInput(device_id='ASCOM.Simulator.Camera'))"
+                }
+            ]
+        },
+        "nina_disconnect_camera": {
+            "title": "断开相机连接",
+            "description": "断开当前连接的相机。",
+            "parameters": {},
+            "returns": {
+                "Success": "表示断开连接成功与否的布尔值",
+                "Message": "断开连接状态消息",
+                "Details": "来自 NINA 服务器的响应",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "断开相机连接",
+                    "description": "断开当前相机连接",
+                    "code": "result = await nina_disconnect_camera()"
+                }
+            ]
+        },
+        "nina_list_camera_devices": {
+            "title": "列出相机设备",
+            "description": "列出所有可用的相机设备。这将同时触发可用设备的重新扫描。",
+            "parameters": {},
+            "returns": {
+                "Success": "表示成功与否的布尔值",
+                "Message": "操作状态消息",
+                "Devices": "可用相机设备列表",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "列出可用相机",
+                    "description": "获取所有可用相机设备列表",
+                    "code": "result = await nina_list_camera_devices()"
+                }
+            ]
+        },
+        "nina_get_camera_info": {
+            "title": "获取相机信息",
+            "description": "获取连接相机的详细信息，包括功能和当前设置。",
+            "parameters": {},
+            "returns": {
+                "Success": "表示成功与否的布尔值",
+                "Message": "操作状态消息",
+                "Info": {
+                    "Connected": "表示相机是否连接的布尔值",
+                    "Name": "相机名称/型号",
+                    "Description": "相机描述",
+                    "DriverInfo": "相机驱动信息",
+                    "DriverVersion": "相机驱动版本",
+                    "SensorName": "相机传感器名称",
+                    "SensorType": "相机传感器类型",
+                    "BayerPattern": "拜耳图案（如果适用）",
+                    "ElectronsPerADU": "每 ADU 电子数",
+                    "BitDepth": "传感器位深度",
+                    "PixelSize": "像素大小（微米）",
+                    "Temperature": "当前传感器温度",
+                    "CoolerOn": "表示制冷器是否激活的布尔值",
+                    "CoolerPower": "当前制冷器功率百分比",
+                    "BinX": "当前 X 方向合并",
+                    "BinY": "当前 Y 方向合并",
+                    "Gain": "当前增益设置",
+                    "Offset": "当前偏移设置",
+                    "USBLimit": "USB 带宽限制（如果适用）"
+                },
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "获取相机信息",
+                    "description": "获取连接相机的详细信息",
+                    "code": "result = await nina_get_camera_info()"
+                }
+            ]
+        },
+        "nina_set_readout_mode": {
+            "title": "设置相机读取模式",
+            "description": "设置相机的读取模式。不同模式可能提供不同的速度/质量权衡。",
+            "parameters": {
+                "mode": {
+                    "type": "integer",
+                    "description": "读取模式索引",
+                    "required": true
+                }
+            },
+            "returns": {
+                "Success": "表示成功与否的布尔值",
+                "Message": "操作状态消息",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "设置读取模式",
+                    "description": "设置相机读取模式",
+                    "code": "result = await nina_set_readout_mode(ReadoutModeInput(mode=0))"
+                }
+            ]
+        },
+        "nina_start_camera_cooling": {
+            "title": "启动相机制冷",
+            "description": "启动相机制冷系统，将传感器冷却到指定温度。",
+            "parameters": {
+                "temperature": {
+                    "type": "float",
+                    "description": "目标温度（摄氏度）",
+                    "required": false
+                },
+                "duration": {
+                    "type": "float",
+                    "description": "制冷持续时间（秒）",
+                    "required": false
+                }
+            },
+            "returns": {
+                "Success": "表示成功与否的布尔值",
+                "Message": "操作状态消息",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "制冷到指定温度",
+                    "description": "将相机冷却到 -10 摄氏度",
+                    "code": "result = await nina_start_camera_cooling(CameraCoolingInput(temperature=-10.0))"
+                },
+                {
+                    "title": "制冷指定时间",
+                    "description": "制冷 30 秒",
+                    "code": "result = await nina_start_camera_cooling(CameraCoolingInput(duration=30.0))"
+                }
+            ]
+        },
+        "nina_stop_camera_cooling": {
+            "title": "停止相机制冷",
+            "description": "停止相机制冷系统。",
+            "parameters": {},
+            "returns": {
+                "Success": "表示成功与否的布尔值",
+                "Message": "操作状态消息",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "停止制冷",
+                    "description": "停止相机制冷",
+                    "code": "result = await nina_stop_camera_cooling()"
+                }
+            ]
+        },
+        "nina_abort_camera_exposure": {
+            "title": "中止相机曝光",
+            "description": "中止当前正在进行的相机曝光。",
+            "parameters": {},
+            "returns": {
+                "Success": "表示成功与否的布尔值",
+                "Message": "操作状态消息",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "中止曝光",
+                    "description": "中止当前相机曝光",
+                    "code": "result = await nina_abort_camera_exposure()"
+                }
+            ]
+        },
+        "nina_control_dew_heater": {
+            "title": "控制除雾加热器",
+            "description": "控制相机除雾加热器的开关状态。",
+            "parameters": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "是否启用除雾加热器",
+                    "required": true
+                }
+            },
+            "returns": {
+                "Success": "表示成功与否的布尔值",
+                "Message": "操作状态消息",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "启用除雾加热器",
+                    "description": "启用相机除雾加热器",
+                    "code": "result = await nina_control_dew_heater(DewHeaterInput(enabled=True))"
+                },
+                {
+                    "title": "禁用除雾加热器",
+                    "description": "禁用相机除雾加热器",
+                    "code": "result = await nina_control_dew_heater(DewHeaterInput(enabled=False))"
+                }
+            ]
+        },
+        "nina_set_camera_binning": {
+            "title": "设置相机合并",
+            "description": "设置相机的像素合并设置。",
+            "parameters": {
+                "bin_x": {
+                    "type": "integer",
+                    "description": "X 方向合并因子",
+                    "required": true
+                },
+                "bin_y": {
+                    "type": "integer",
+                    "description": "Y 方向合并因子",
+                    "required": true
+                }
+            },
+            "returns": {
+                "Success": "表示成功与否的布尔值",
+                "Message": "操作状态消息",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "设置 1x1 合并",
+                    "description": "设置相机为 1x1 像素合并",
+                    "code": "result = await nina_set_camera_binning(CameraBinningInput(bin_x=1, bin_y=1))"
+                },
+                {
+                    "title": "设置 2x2 合并",
+                    "description": "设置相机为 2x2 像素合并",
+                    "code": "result = await nina_set_camera_binning(CameraBinningInput(bin_x=2, bin_y=2))"
+                }
+            ]
+        },
+        "nina_get_capture_statistics": {
+            "title": "获取拍摄统计",
+            "description": "获取相机拍摄的统计信息。",
+            "parameters": {},
+            "returns": {
+                "Success": "表示成功与否的布尔值",
+                "Message": "操作状态消息",
+                "Statistics": "拍摄统计信息",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "获取统计信息",
+                    "description": "获取相机拍摄统计信息",
+                    "code": "result = await nina_get_capture_statistics()"
+                }
+            ]
+        },
+        "nina_connect_mount": {
+            "title": "连接赤道仪",
+            "description": "连接到 NINA 天文软件中的望远镜赤道仪。",
+            "parameters": {
+                "device_id": {
+                    "type": "string",
+                    "description": "可选设备 ID 用于连接。如果未提供，将使用默认设备。",
+                    "required": false
+                }
+            },
+            "returns": {
+                "Success": "表示连接成功与否的布尔值",
+                "Message": "连接状态消息",
+                "Details": "来自 NINA 服务器的响应",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "连接默认赤道仪",
+                    "description": "连接到默认赤道仪设备",
+                    "code": "result = await nina_connect_mount(MountConnectInput())"
+                },
+                {
+                    "title": "连接特定赤道仪",
+                    "description": "通过设备 ID 连接到特定赤道仪",
+                    "code": "result = await nina_connect_mount(MountConnectInput(device_id='ASCOM.Simulator.Telescope'))"
+                }
+            ]
+        },
+        "nina_disconnect_mount": {
+            "title": "断开赤道仪连接",
+            "description": "断开当前连接的望远镜赤道仪。",
+            "parameters": {},
+            "returns": {
+                "Success": "表示断开连接成功与否的布尔值",
+                "Message": "断开连接状态消息",
+                "Details": "来自 NINA 服务器的响应",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "断开赤道仪连接",
+                    "description": "断开当前赤道仪连接",
+                    "code": "result = await nina_disconnect_mount()"
+                }
+            ]
+        },
+        "nina_list_mount_devices": {
+            "title": "列出赤道仪设备",
+            "description": "列出所有可用的望远镜赤道仪设备。这将同时触发可用设备的重新扫描。",
+            "parameters": {},
+            "returns": {
+                "Success": "表示成功与否的布尔值",
+                "Message": "操作状态消息",
+                "Devices": "可用赤道仪设备列表",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "列出可用赤道仪",
+                    "description": "获取所有可用赤道仪设备列表",
+                    "code": "result = await nina_list_mount_devices()"
+                }
+            ]
+        },
+        "nina_get_mount_info": {
+            "title": "获取赤道仪信息",
+            "description": "获取连接赤道仪的详细信息，包括功能和当前位置。",
+            "parameters": {},
+            "returns": {
+                "Success": "表示成功与否的布尔值",
+                "Message": "操作状态消息",
+                "Info": {
+                    "Connected": "表示赤道仪是否连接的布尔值",
+                    "Name": "赤道仪名称/型号",
+                    "Description": "赤道仪描述",
+                    "DriverInfo": "赤道仪驱动信息",
+                    "DriverVersion": "赤道仪驱动版本",
+                    "CanPark": "表示赤道仪是否可以归位的布尔值",
+                    "CanSetPark": "表示是否可以设置归位位置的布尔值",
+                    "CanSync": "表示赤道仪是否可以同步到坐标的布尔值",
+                    "CanSlew": "表示赤道仪是否可以指向的布尔值",
+                    "CanMoveAxis": "表示赤道仪轴是否可以直接移动的布尔值",
+                    "CanPulseGuide": "表示赤道仪是否支持脉冲导星的布尔值",
+                    "RightAscension": "当前赤经位置",
+                    "Declination": "当前赤纬位置",
+                    "Altitude": "当前高度",
+                    "Azimuth": "当前方位角",
+                    "SideOfPier": "当前极轴侧",
+                    "IsPulseGuiding": "表示赤道仪当前是否正在脉冲导星的布尔值",
+                    "IsParked": "表示赤道仪是否已归位的布尔值",
+                    "IsSlewing": "表示赤道仪是否正在指向的布尔值"
+                },
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "获取赤道仪信息",
+                    "description": "获取连接赤道仪的详细信息",
+                    "code": "result = await nina_get_mount_info()"
+                }
+            ]
+        },
+        "nina_park_mount": {
+            "title": "赤道仪归位",
+            "description": "将望远镜赤道仪归位到其初始位置。",
+            "parameters": {},
+            "returns": {
+                "Success": "表示归位成功与否的布尔值",
+                "Message": "操作状态消息",
+                "Details": "来自 NINA 服务器的响应",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "赤道仪归位",
+                    "description": "将赤道仪归位到初始位置",
+                    "code": "result = await nina_park_mount()"
+                }
+            ]
+        },
+        "nina_unpark_mount": {
+            "title": "赤道仪解除归位",
+            "description": "将望远镜赤道仪从其归位位置解除。",
+            "parameters": {},
+            "returns": {
+                "Success": "表示解除归位成功与否的布尔值",
+                "Message": "操作状态消息",
+                "Details": "来自 NINA 服务器的响应",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "赤道仪解除归位",
+                    "description": "解除赤道仪归位",
+                    "code": "result = await nina_unpark_mount()"
+                }
+            ]
+        },
+        "nina_slew_mount": {
+            "title": "赤道仪指向",
+            "description": "将望远镜赤道仪指向指定坐标。",
+            "parameters": {
+                "ra": {
+                    "type": "float",
+                    "description": "赤经（小时，0-24）",
+                    "required": true
+                },
+                "dec": {
+                    "type": "float",
+                    "description": "赤纬（度，-90 到 +90）",
+                    "required": true
+                }
+            },
+            "returns": {
+                "Success": "表示指向成功与否的布尔值",
+                "Message": "操作状态消息",
+                "Details": "来自 NINA 服务器的响应",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "指向坐标",
+                    "description": "将赤道仪指向赤经：5.575 小时，赤纬：-5.45 度",
+                    "code": "result = await nina_slew_mount(MountSlewInput(ra=5.575, dec=-5.45))"
+                }
+            ]
+        },
+        "nina_sync_mount": {
+            "title": "赤道仪同步",
+            "description": "将赤道仪位置同步到指定坐标。",
+            "parameters": {
+                "ra": {
+                    "type": "float",
+                    "description": "赤经（小时，0-24）",
+                    "required": true
+                },
+                "dec": {
+                    "type": "float",
+                    "description": "赤纬（度，-90 到 +90）",
+                    "required": true
+                }
+            },
+            "returns": {
+                "Success": "表示同步成功与否的布尔值",
+                "Message": "操作状态消息",
+                "Details": "来自 NINA 服务器的响应",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "同步到坐标",
+                    "description": "将赤道仪同步到指定坐标",
+                    "code": "result = await nina_sync_mount(MountSyncInput(ra=5.575, dec=-5.45))"
+                }
+            ]
+        },
+        "nina_move_mount_axis": {
+            "title": "移动赤道仪轴",
+            "description": "直接移动赤道仪的指定轴。",
+            "parameters": {
+                "axis": {
+                    "type": "string",
+                    "description": "要移动的轴（'Primary' 或 'Secondary'）",
+                    "required": true
+                },
+                "rate": {
+                    "type": "float",
+                    "description": "移动速率（度/秒）",
+                    "required": true
+                }
+            },
+            "returns": {
+                "Success": "表示移动成功与否的布尔值",
+                "Message": "操作状态消息",
+                "Details": "来自 NINA 服务器的响应",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "移动赤经轴",
+                    "description": "以 0.1 度/秒的速率移动赤经轴",
+                    "code": "result = await nina_move_mount_axis(MountAxisInput(axis='Primary', rate=0.1))"
+                },
+                {
+                    "title": "移动赤纬轴",
+                    "description": "以 0.05 度/秒的速率移动赤纬轴",
+                    "code": "result = await nina_move_mount_axis(MountAxisInput(axis='Secondary', rate=0.05))"
+                }
+            ]
+        },
+        "nina_stop_mount": {
+            "title": "停止赤道仪",
+            "description": "停止赤道仪的所有移动。",
+            "parameters": {},
+            "returns": {
+                "Success": "表示停止成功与否的布尔值",
+                "Message": "操作状态消息",
+                "Details": "来自 NINA 服务器的响应",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "停止赤道仪",
+                    "description": "停止赤道仪的所有移动",
+                    "code": "result = await nina_stop_mount()"
+                }
+            ]
+        },
+        "nina_connect_focuser": {
+            "title": "连接调焦器",
+            "description": "连接到 NINA 天文软件中的调焦器设备。",
+            "parameters": {
+                "device_id": {
+                    "type": "string",
+                    "description": "可选设备 ID 用于连接。如果未提供，将使用默认设备。",
+                    "required": false
+                }
+            },
+            "returns": {
+                "Success": "表示连接成功与否的布尔值",
+                "Message": "连接状态消息",
+                "Details": "来自 NINA 服务器的响应",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "连接默认调焦器",
+                    "description": "连接到默认调焦器设备",
+                    "code": "result = await nina_connect_focuser(FocuserConnectInput())"
+                },
+                {
+                    "title": "连接特定调焦器",
+                    "description": "通过设备 ID 连接到特定调焦器",
+                    "code": "result = await nina_connect_focuser(FocuserConnectInput(device_id='ASCOM.Simulator.Focuser'))"
+                }
+            ]
+        },
+        "nina_disconnect_focuser": {
+            "title": "断开调焦器连接",
+            "description": "断开当前连接的调焦器。",
+            "parameters": {},
+            "returns": {
+                "Success": "表示断开连接成功与否的布尔值",
+                "Message": "断开连接状态消息",
+                "Details": "来自 NINA 服务器的响应",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "断开调焦器连接",
+                    "description": "断开当前调焦器连接",
+                    "code": "result = await nina_disconnect_focuser()"
+                }
+            ]
+        },
+        "nina_list_focuser_devices": {
+            "title": "列出调焦器设备",
+            "description": "列出所有可用的调焦器设备。这将同时触发可用设备的重新扫描。",
+            "parameters": {},
+            "returns": {
+                "Success": "表示成功与否的布尔值",
+                "Message": "操作状态消息",
+                "Devices": "可用调焦器设备列表",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "列出可用调焦器",
+                    "description": "获取所有可用调焦器设备列表",
+                    "code": "result = await nina_list_focuser_devices()"
+                }
+            ]
+        },
+        "nina_get_focuser_info": {
+            "title": "获取调焦器信息",
+            "description": "获取连接调焦器的详细信息，包括功能和当前位置。",
+            "parameters": {},
+            "returns": {
+                "Success": "表示成功与否的布尔值",
+                "Message": "操作状态消息",
+                "Info": {
+                    "Connected": "表示调焦器是否连接的布尔值",
+                    "Name": "调焦器名称/型号",
+                    "Description": "调焦器描述",
+                    "DriverInfo": "调焦器驱动信息",
+                    "DriverVersion": "调焦器驱动版本",
+                    "Position": "当前调焦器位置（步数）",
+                    "IsMoving": "表示调焦器是否正在移动的布尔值",
+                    "MaxStep": "最大步数位置",
+                    "MaxIncrement": "每次移动的最大步数增量",
+                    "StepSize": "每步大小（微米）",
+                    "Temperature": "当前温度（摄氏度）",
+                    "TempComp": "表示温度补偿是否启用的布尔值",
+                    "IsAbsolute": "表示调焦器是否为绝对定位的布尔值"
+                },
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "获取调焦器信息",
+                    "description": "获取连接调焦器的详细信息",
+                    "code": "result = await nina_get_focuser_info()"
+                }
+            ]
+        },
+        "nina_move_focuser": {
+            "title": "移动调焦器",
+            "description": "将调焦器移动到特定位置。",
+            "parameters": {
+                "position": {
+                    "type": "integer",
+                    "description": "目标位置（步数）",
+                    "required": true
+                }
+            },
+            "returns": {
+                "Success": "表示移动是否开始的布尔值",
+                "Message": "操作状态消息",
+                "Details": "来自 NINA 服务器的响应",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "移动到位置",
+                    "description": "将调焦器移动到位置 5000",
+                    "code": "result = await nina_move_focuser(FocuserMoveInput(position=5000))"
+                }
+            ]
+        },
+        "nina_move_focuser_relative": {
+            "title": "相对移动调焦器",
+            "description": "从当前位置相对移动调焦器指定步数。",
+            "parameters": {
+                "steps": {
+                    "type": "integer",
+                    "description": "要移动的步数（正数或负数）",
+                    "required": true
+                }
+            },
+            "returns": {
+                "Success": "表示移动是否开始的布尔值",
+                "Message": "操作状态消息",
+                "Details": "来自 NINA 服务器的响应",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "向内移动",
+                    "description": "将调焦器向内移动 100 步",
+                    "code": "result = await nina_move_focuser_relative(FocuserRelativeMoveInput(steps=-100))"
+                },
+                {
+                    "title": "向外移动",
+                    "description": "将调焦器向外移动 100 步",
+                    "code": "result = await nina_move_focuser_relative(FocuserRelativeMoveInput(steps=100))"
+                }
+            ]
+        },
+        "nina_stop_focuser": {
+            "title": "停止调焦器",
+            "description": "停止任何当前的调焦器移动。",
+            "parameters": {},
+            "returns": {
+                "Success": "表示停止成功与否的布尔值",
+                "Message": "操作状态消息",
+                "Details": "来自 NINA 服务器的响应",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "停止调焦器",
+                    "description": "停止当前调焦器移动",
+                    "code": "result = await nina_stop_focuser()"
+                }
+            ]
+        },
+        "nina_set_focuser_temp_comp": {
+            "title": "设置温度补偿",
+            "description": "如果支持，启用或禁用调焦器温度补偿。",
+            "parameters": {
+                "enabled": {
+                    "type": "boolean",
+                    "description": "True 启用，False 禁用温度补偿",
+                    "required": true
+                }
+            },
+            "returns": {
+                "Success": "表示设置是否更改的布尔值",
+                "Message": "操作状态消息",
+                "Details": "来自 NINA 服务器的响应",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "启用温度补偿",
+                    "description": "启用调焦器温度补偿",
+                    "code": "result = await nina_set_focuser_temp_comp(FocuserTempCompInput(enabled=True))"
+                },
+                {
+                    "title": "禁用温度补偿",
+                    "description": "禁用调焦器温度补偿",
+                    "code": "result = await nina_set_focuser_temp_comp(FocuserTempCompInput(enabled=False))"
+                }
+            ]
+        },
+        "nina_connect_filterwheel": {
+            "title": "连接滤镜轮",
+            "description": "连接到 NINA 天文软件中的滤镜轮设备。",
+            "parameters": {
+                "device_id": {
+                    "type": "string",
+                    "description": "可选设备 ID 用于连接。如果未提供，将使用默认设备。",
+                    "required": false
+                }
+            },
+            "returns": {
+                "Success": "表示连接成功与否的布尔值",
+                "Message": "连接状态消息",
+                "Details": "来自 NINA 服务器的响应",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "连接默认滤镜轮",
+                    "description": "连接到默认滤镜轮设备",
+                    "code": "result = await nina_connect_filterwheel(FilterWheelConnectInput())"
+                },
+                {
+                    "title": "连接特定滤镜轮",
+                    "description": "通过设备 ID 连接到特定滤镜轮",
+                    "code": "result = await nina_connect_filterwheel(FilterWheelConnectInput(device_id='ASCOM.Simulator.FilterWheel'))"
+                }
+            ]
+        },
+        "nina_disconnect_filterwheel": {
+            "title": "断开滤镜轮连接",
+            "description": "断开当前连接的滤镜轮。",
+            "parameters": {},
+            "returns": {
+                "Success": "表示断开连接成功与否的布尔值",
+                "Message": "断开连接状态消息",
+                "Details": "来自 NINA 服务器的响应",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "断开滤镜轮连接",
+                    "description": "断开当前滤镜轮连接",
+                    "code": "result = await nina_disconnect_filterwheel()"
+                }
+            ]
+        },
+        "nina_list_filterwheel_devices": {
+            "title": "列出滤镜轮设备",
+            "description": "列出所有可用的滤镜轮设备。这将同时触发可用设备的重新扫描。",
+            "parameters": {},
+            "returns": {
+                "Success": "表示成功与否的布尔值",
+                "Message": "操作状态消息",
+                "Devices": "可用滤镜轮设备列表",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "列出可用滤镜轮",
+                    "description": "获取所有可用滤镜轮设备列表",
+                    "code": "result = await nina_list_filterwheel_devices()"
+                }
+            ]
+        },
+        "nina_get_filterwheel_info": {
+            "title": "获取滤镜轮信息",
+            "description": "获取连接滤镜轮的详细信息，包括功能和当前滤镜位置。",
+            "parameters": {},
+            "returns": {
+                "Success": "表示成功与否的布尔值",
+                "Message": "操作状态消息",
+                "Info": {
+                    "Connected": "表示滤镜轮是否连接的布尔值",
+                    "Name": "滤镜轮名称/型号",
+                    "Description": "滤镜轮描述",
+                    "DriverInfo": "滤镜轮驱动信息",
+                    "DriverVersion": "滤镜轮驱动版本",
+                    "Position": "当前滤镜位置",
+                    "Names": "滤镜名称列表",
+                    "Offsets": "滤镜偏移列表",
+                    "FocusOffsets": "焦点偏移列表"
+                },
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "获取滤镜轮信息",
+                    "description": "获取连接滤镜轮的详细信息",
+                    "code": "result = await nina_get_filterwheel_info()"
+                }
+            ]
+        },
+        "nina_set_filterwheel_position": {
+            "title": "设置滤镜轮位置",
+            "description": "将滤镜轮移动到指定位置。",
+            "parameters": {
+                "position": {
+                    "type": "integer",
+                    "description": "目标滤镜位置",
+                    "required": true
+                }
+            },
+            "returns": {
+                "Success": "表示移动成功与否的布尔值",
+                "Message": "操作状态消息",
+                "Details": "来自 NINA 服务器的响应",
+                "Type": "NINA_API"
+            },
+            "examples": [
+                {
+                    "title": "设置滤镜位置",
+                    "description": "将滤镜轮移动到位置 2",
+                    "code": "result = await nina_set_filterwheel_position(FilterWheelPositionInput(position=2))"
+                }
+            ]
+        }
+    }
+} 
