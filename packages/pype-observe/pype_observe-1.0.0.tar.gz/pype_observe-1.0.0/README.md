@@ -1,0 +1,80 @@
+# LiveKit Agent
+
+## Prerequisites
+- Python > 3.10
+- `venv` (comes with Python)
+- Internet connection for downloading models and dependencies
+
+## Setup
+```bash
+python -m venv venv
+source venv/bin/activate          # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
+python agent.py download-files
+python agent.py console
+```
+
+## Usage & Metrics Collection
+
+1. **Start the agent in console mode:**
+   ```bash
+   python agent.py console
+   ```
+
+2. **Interact with the agent** through voice or text input
+
+3. **Stop the agent** by pressing `Ctrl + C` to gracefully shutdown and save metrics
+
+4. **View collected metrics** in the generated file:
+   ```bash
+   cat livekit_agent_metrics.json
+   ```
+
+## Metrics Data
+
+The agent automatically collects comprehensive metrics including:
+
+- **LLM Metrics**: Token usage, response times (TTFT), model performance
+- **TTS Metrics**: Character count, audio generation times (TTFB), audio duration
+- **STT Metrics**: Audio processing duration, transcription accuracy
+- **Session Data**: Conversation turns, timestamps, duration
+- **Usage Summary**: Official LiveKit usage statistics
+
+### Metrics File Structure
+```json
+{
+  "sessions": [
+    {
+      "session_id": "uuid",
+      "duration": 12.22,
+      "total_llm_calls": 3,
+      "total_llm_tokens_input": 71,
+      "total_llm_tokens_output": 51,
+      "total_tts_calls": 1,
+      "total_tts_characters": 56,
+      "total_stt_calls": 2,
+      "total_stt_duration": 9.95,
+      "conversation_turns": 7,
+      "transcripts": [...],
+      "usage_summary": {...}
+    }
+  ]
+}
+```
+
+## Key Features
+
+- ✅ **Automatic metrics collection** using LiveKit's official metrics system
+- ✅ **Real-time monitoring** with console output during sessions
+- ✅ **Persistent storage** in JSON format for analysis
+- ✅ **Conversation tracking** with full transcript history
+- ✅ **Usage analytics** for cost estimation and optimization
+- ✅ **Error-safe serialization** handles all LiveKit metric types
+
+## Troubleshooting
+
+If you encounter any issues:
+1. Ensure all dependencies are installed: `pip install -r requirements.txt`
+2. Check that your environment variables are set correctly
+3. Verify internet connection for model downloads
+4. Make sure you have proper API keys configured
