@@ -1,0 +1,130 @@
+Metadata-Version: 2.4
+Name: vios
+Version: 3.5.3
+Summary: QuarkStudio-Based Experimental Runtime
+Author-email: YL Feng <fengyl@baqis.ac.cn>
+License-Expression: MIT
+Project-URL: homepage, https://quarkstudio.readthedocs.io/en/latest
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Natural Language :: Chinese (Simplified)
+Classifier: Natural Language :: English
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: MacOS :: MacOS X
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering :: Physics
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: tqdm
+Requires-Dist: rich
+Requires-Dist: lmfit
+Requires-Dist: sympy
+Requires-Dist: loguru
+Requires-Dist: jsonschema
+Requires-Dist: gitpython
+Requires-Dist: dill
+Requires-Dist: inset
+Requires-Dist: apscheduler
+Requires-Dist: networkx
+Requires-Dist: qlispc
+Dynamic: license-file
+
+以下是截至 2025 年中期，全球超导量子计算领域在政府投资、商业资本与学术研究方面的主要进展汇总：
+
+---
+
+## 一、政府投资 🌍
+
+### 中国
+
+* 国家财政投资约 7.2 亿美元用于量子产业化子基金，加速将科研成果转化为商用技术 ([Quantum Computing Report][1], [SpinQ][2])。
+* 中国科学家团队发布了「祖冲之 3.0」105 qubit 超导量子处理器，项目已进入多项前沿控制、纠错研究 ([Reddit][3])。
+
+### 美国
+
+* DARPA 的 Quantum Benchmarking Initiative 涉及微软、PsiQuantum、Rigetti、IonQ 等企业，以推动至 2033 年的实用规模发展 ([巴伦周刊][4])。
+* 《国家量子倡议法》正拟修订，新增 “Quantum Sandbox” 测试平台，探索短期落地应用 ([维基百科][5])。
+
+### 欧洲
+
+* 欧盟量子旗舰计划（Quantum Flagship）规模超过 10 亿欧元，推动超导量子技术聚集与标准化 ([DeepAI][6])。
+* 西班牙启动 8.08 亿欧元（\~9.17 亿美元）国家量子战略，涵盖超导、通信与感测技术 ([Sutor Group][7], [Qureca][8])。
+* 丹麦 Novo Nordisk 基金与国家基金投资 8000 万欧元用于“QuNorth”计划，目标建设搭载数百逻辑 qubit 的 Magne 超导量子机 ([Reuters][9])。
+* 英国政府为 National Quantum Computing Centre 投入至少 £270M 并额外提供 £500M 试点环境，用于超导平台的商业化落地 ([维基百科][10], [泰晤士报][11])。
+
+### 亚太地区
+
+* 日本 Moonshot、Q-LEAP 等计划总投入约 ¥740 亿（约 7.4 亿美元）量子研究经费 ([Qureca][12])。
+* 韩国设立 ₩1 万亿科技基金，其中每年拨款 ₩200 亿给量子初创，2025 年计划拨款 ₩1980 亿（约 1.45 亿美元）([量子内幕][13])。
+* 印度的 National Quantum Mission 投资 ₹6003.65 亿（\~7.3 亿美元），设立 4 个量子政府-学术中心，推动超导量子进展 ([维基百科][14])。
+
+---
+
+## 二、商业资本
+
+* 2024 年全球量子创企共融资约 20 亿美元，其中政府资助占 6.8 亿美元；2025 年前半年全球公共量子资助累计超 100 亿美元 ([McKinsey & Company][15], [商业书单][16])。
+* SoftBank、Aramco 分别投入 Quantinuum、Pasqal，NIAIST 与 QuEra、IonQ 合作，日本私营资本活跃 ([McKinsey & Company][15])。
+* 商业产品方面，D-Wave Advantage2 超导退火机拥有超 1200 qubit，已在 40 多国推商用，目标扩增至 7000 qubit ([Investors.com][17])；OQC（英国）与 Riverlane 联手已在商业数据中心部署误差校正的超导量子测试环境 ([泰晤士报][11])。
+* 大厂新品发布包括：谷歌 105 qubit “Willow” 超导芯片（可实现基于错误校正的量子随机电路采样）([维基百科][18])；微软宣布首款 Majorana 1 拓扑超导芯片（8 qubit 原型，有望发展成百万 qubit 级）([The Verge][19])；亚马逊发布“奥西洛特（Ocelot）”芯片，专注错误校正与可扩展性 ([Business Insider][20])。
+
+---
+
+## 三、学术研究与技术突破
+
+* 中国科学院团队打造「祖冲之 3.0」（105 qubit），聚焦表面码纠错并朝更高距离码发展 ([Reddit][3])。
+* 谷歌 Quantum AI 发布超导“Willow”量子芯片，实现量子纠错阈值、将 RCS 运算从传统超算的 10^25 年降到 5 分钟 ([维基百科][18])。
+* 微软 Majorana 1 原型揭示拓扑零模信号，为拓扑纠错 qubit 研究奠基 ([维基百科][21], [The Verge][19])。
+* 学术团队构建本地可部署教学研究型超导量子电脑，促进本科/研教学实验与基础研究 ([arXiv][22])。
+* 波兰引入 IQM Spark（5 qubit 超导机），推动高校与博士人才参与超导量子研究 ([Sutor Group][7])。
+* 西班牙 Barcelona Supercomputing Center 发布首台 100% 欧洲制造的超导量子机，完全集成 MareNostrum 超算平台 ([Reddit][23])。
+
+---
+
+## 四、综合趋势分析
+
+| 区域 | 特长与策略                                |
+| -- | ------------------------------------ |
+| 北美 | 技术领先，资源雄厚；美国主推实用性/纠错测试；谷歌、IBM、微软芯片齐进 |
+| 欧洲 | 政府+企业联合，推进标准化与试点系统部署；超导技术主力力量        |
+| 中国 | 政府主导、大规模集资，实现超导和光量子双路线并进             |
+| 亚太 | 日本/韩国/印度等积极布局，以国家战略为导向加强基础建设         |
+
+全球超导量子计算正驶入“规模化—纠错—走向商用”三阶段融合期。超导 qubit 的发展已从学术演示跃入多国政策扶持与产业化竞赛。主要卡点仍是纠错精度提升、物理 qubit 成本、系统集成与生态发展。但资金、技术、人才正在快速聚合，预计未来 3\~5 年将爆发第一批能实际应用于化学模拟、优化与加密破译的可控量子系统。
+
+---
+
+### ✅ 总结要点
+
+1. **各国政府齐力出手**：美 DARPA/DOE、欧盟旗帜计划、中国基金、日韩印大型国家计划为产业注入洪荒之力。
+2. **商业势力跃跃欲试**：大厂与创企在超导芯片（Willow、Majorana、Ocelot 等）、退火机（D‑Wave）方面频频突破。
+3. **学术研究成果丰富**：从 5 qubit 实验机到 105 qubit Willow，其推进进入了实用级别的门槛。
+4. **路径仍长**：容错能力、物理呈现、商业生态仍是超导量子进军实用化的核心挑战。
+
+若你想深入了解某一国家策略、公司技术详情或学术论文分析，请告诉我～
+
+[1]: https://quantumcomputingreport.com/global-quantum-ecosystem-analysis-gqis-2025-mid-year-outlook/?utm_source=chatgpt.com "Global Quantum Ecosystem Analysis: GQI's 2025 Mid-Year Outlook - Quantum Computing Report"
+[2]: https://www.spinquanta.com/news-detail/latest-quantum-computing-news-and-quantum-research?utm_source=chatgpt.com "Quantum Computing News: ICQE 2025 & Latest Quantum Research | SpinQ"
+[3]: https://www.reddit.com/r/MarxistCulture/comments/1j35ig9?utm_source=chatgpt.com "Chinese quantum physicist Zhu Xiaobo (1st left) has a discussion with his students at a laboratory in Hefei, Anhui, March 3 of 2025 - Chinese scientists unveiled a superconducting quantum computer prototype named \"Zuchongzhi 3.0\" with 105 qubits on Monday (Beijing Time)."
+[4]: https://www.barrons.com/articles/rigetti-ionq-quantum-computing-darpa-d30fbd9d?utm_source=chatgpt.com "Rigetti and IonQ Selected for U.S. Quantum Initiative. Moving 'From Hype to Prototype.'"
+[5]: https://en.wikipedia.org/wiki/National_Quantum_Initiative_Act?utm_source=chatgpt.com "National Quantum Initiative Act"
+[6]: https://lisboatv.pt/news_en/superconducting-quantum-processors-market-2025-rapid-growth-driven-by-28-cagr-and-breakthroughs-in-qubit-stability/61330/?utm_source=chatgpt.com "Superconducting Quantum Processors Market 2025: Rapid Growth Driven by 28% CAGR and Breakthroughs in Qubit Stability - NOTICIAS"
+[7]: https://sutorgroupintelligenceandadvisory.com/2025/04/29/quantum-news-and-commentary-tuesday-april-29-2025/?utm_source=chatgpt.com "Quantum News and Commentary | Tuesday, April 29, 2025 – Sutor Group"
+[8]: https://www.qureca.com/quantum-initiatives-worldwide/?utm_source=chatgpt.com "Quantum Initiatives Worldwide 2025 - Qureca"
+[9]: https://www.reuters.com/business/healthcare-pharmaceuticals/denmark-aims-host-worlds-most-powerful-quantum-computer-2025-07-17/?utm_source=chatgpt.com "Denmark aims to host world's most powerful quantum computer"
+[10]: https://en.wikipedia.org/wiki/UK_National_Quantum_Technologies_Programme?utm_source=chatgpt.com "UK National Quantum Technologies Programme"
+[11]: https://www.thetimes.co.uk/article/uk-firms-in-quantum-leap-for-commercial-use-of-high-powered-tech-enterprise-network-mrn8gqs8g?utm_source=chatgpt.com "UK firms in quantum leap for commercial use of supercomputers"
+[12]: https://www.qureca.com/es/quantum-initiatives-worldwide-update-2023/?utm_source=chatgpt.com "Quantum initiatives worldwide - update 2023 - Qureca Spain"
+[13]: https://thequantuminsider.com/2025/03/13/south-korea-launches-quantum-strategy-comittee-allocates-15m-annually-for-quantum-startups-but-some-warn-it-falls-short/?utm_source=chatgpt.com "South Korea Launches Quantum Strategy Comittee, Allocates $15M Annually for Quantum Startups, But Some Warn It Falls Short"
+[14]: https://en.wikipedia.org/wiki/National_Quantum_Mission_India?utm_source=chatgpt.com "National Quantum Mission India"
+[15]: https://www.mckinsey.com/capabilities/mckinsey-digital/our-insights/the-year-of-quantum-from-concept-to-reality-in-2025?utm_source=chatgpt.com "Quantum Technology Monitor 2025 | McKinsey"
+[16]: https://www.businessbooklist.com/blog/global-quantum-computing-investments-2025/?utm_source=chatgpt.com "Global Quantum Computing Investments 2025"
+[17]: https://www.investors.com/news/technology/quantum-computing-stocks-dwave-advantage2-availability/?utm_source=chatgpt.com "Quantum Computing Stocks: D-Wave's Most Advanced System Commercially Ready"
+[18]: https://en.wikipedia.org/wiki/Willow_processor?utm_source=chatgpt.com "Willow processor"
+[19]: https://www.theverge.com/news/614205/microsoft-quantum-computing-majorana-1-processor?utm_source=chatgpt.com "Microsoft announces quantum computing breakthrough with new Majorana 1 chip"
+[20]: https://www.businessinsider.com/big-tech-officially-entered-quantum-era-major-advancements-2025-4?utm_source=chatgpt.com "Big Tech has officially entered its quantum era &mdash;&nbsp;here's what it means for the industry"
+[21]: https://en.wikipedia.org/wiki/Majorana_1?utm_source=chatgpt.com "Majorana 1"
+[22]: https://arxiv.org/abs/2402.07315?utm_source=chatgpt.com "On-Premises Superconducting Quantum Computer for Education and Research"
+[23]: https://www.reddit.com/r/QuantumStockLovers/comments/1im6uog?utm_source=chatgpt.com "BSC presents the first quantum computer in Spain - 100% Made In Europe"
