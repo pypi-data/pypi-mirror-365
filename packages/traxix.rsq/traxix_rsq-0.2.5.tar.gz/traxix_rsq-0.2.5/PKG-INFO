@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: traxix.rsq
+Version: 0.2.5
+Home-page: https://gitlab.com/traxix/python/rsq
+Author: trax Omar Givernaud
+Author-email: o.givernaud@gmail.com
+License: GPLv3
+Requires-Dist: pymongo>=4.7
+Requires-Dist: fire>=0.2.1
+Requires-Dist: dnspython>=2.1.0
+Provides-Extra: dev
+Requires-Dist: safety; extra == "dev"
+Requires-Dist: pylint; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+Requires-Dist: bandit; extra == "dev"
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-cov; extra == "dev"
+Dynamic: author
+Dynamic: author-email
+Dynamic: home-page
+Dynamic: license
+Dynamic: provides-extra
+Dynamic: requires-dist

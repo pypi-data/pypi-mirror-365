@@ -1,0 +1,11 @@
+pymongo>=4.7
+fire>=0.2.1
+dnspython>=2.1.0
+
+[dev]
+safety
+pylint
+flake8
+bandit
+pytest
+pytest-cov

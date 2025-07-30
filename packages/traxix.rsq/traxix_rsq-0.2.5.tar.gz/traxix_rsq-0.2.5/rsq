@@ -1,0 +1,8 @@
+#!/usr/bin/env python3
+
+from fire import Fire
+from traxix.rsq import RSQ
+
+
+if __name__ == "__main__":
+    Fire(RSQ)
