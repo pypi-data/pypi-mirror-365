@@ -1,0 +1,23 @@
+{
+  "id": "app_store",
+  "name": "App Store",
+  "version": "2.0.0",
+  "description": "PyCloud OS için modern uygulama mağazası. Kategori bazlı gezinme, arama, kurulum/kaldırma, kullanıcı puanları ve yorum sistemi.",
+  "entry": "main.py",
+  "exec": "python3 main.py",
+  "icon": "icon.png",
+  "category": "Sistem",
+  "developer": "PyCloud OS Team",
+  "license": "MIT",
+  "homepage": "https://pycloudos.dev/apps/app_store",
+  "tags": ["appstore", "package", "manager", "modern", "ui"],
+  "screenshots": [
+    "screenshots/main.png",
+    "screenshots/categories.png",
+    "screenshots/app_detail.png"
+  ],
+  "requires": ["python3", "pyqt6"],
+  "permissions": ["system", "internet", "filesystem"],
+  "postinstall": "postinstall.py",
+  "signature": "appstore_v2_0_0_sha256hash"
+} 

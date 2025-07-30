@@ -1,0 +1,1129 @@
+{
+  "apps": {
+    "cloud_pythonconsole": {
+      "app_id": "cloud_pythonconsole",
+      "name": "Cloud Python Console",
+      "version": "1.0.0",
+      "description": "PyCloud OS için sade ve doğrudan bir Python yorumlayıcı uygulaması. Kullanıcılar anlık olarak Python kodlarını çalıştırabilir, test edebilir.",
+      "category": "Geliştirme",
+      "developer": "PyCloud OS Team",
+      "icon_path": "apps/cloud_pythonconsole/icon.png",
+      "app_path": "apps/cloud_pythonconsole",
+      "entry_file": "main.py",
+      "exec_command": "python3 main.py",
+      "tags": [
+        "terminal",
+        "console",
+        "dev",
+        "developer",
+        "repl",
+        "programming",
+        "ide",
+        "python",
+        "code"
+      ],
+      "discovery_time": "2025-05-29T16:42:44.870367",
+      "last_validated": "2025-07-29T20:39:47.051693",
+      "status": "indexed",
+      "metadata": {
+        "id": "cloud_pythonconsole",
+        "name": "Cloud Python Console",
+        "version": "1.0.0",
+        "description": "PyCloud OS için sade ve doğrudan bir Python yorumlayıcı uygulaması. Kullanıcılar anlık olarak Python kodlarını çalıştırabilir, test edebilir.",
+        "entry": "main.py",
+        "exec": "python3 main.py",
+        "icon": "icon.png",
+        "category": "Geliştirme",
+        "developer": "PyCloud OS Team",
+        "license": "MIT",
+        "homepage": "https://pycloudos.dev/apps/cloud_pythonconsole",
+        "tags": [
+          "python",
+          "console",
+          "repl",
+          "dev",
+          "programming",
+          "ide",
+          "terminal",
+          "code",
+          "developer"
+        ],
+        "requires": [
+          "python3",
+          "pyqt6"
+        ],
+        "permissions": [
+          "system"
+        ],
+        "signature": "sha256:a1b2c3d4e5f6..."
+      },
+      "requires": [],
+      "permissions": {},
+      "custom_folder": ""
+    },
+    "cloud_browser": {
+      "app_id": "cloud_browser",
+      "name": "Cloud Browser",
+      "version": "2.0.0",
+      "description": "PyCloud OS için modern sekmeli web tarayıcısı. WebEngine tabanlı, PDF desteği ve yer imi yönetimi ile sade ve hızlı deneyim sunar.",
+      "category": "İnternet",
+      "developer": "PyCloud OS Team",
+      "icon_path": "apps/cloud_browser/icon.png",
+      "app_path": "apps/cloud_browser",
+      "entry_file": "main.py",
+      "exec_command": "python3 main.py",
+      "tags": [
+        "browser",
+        "bookmarks",
+        "network",
+        "modern",
+        "pdf",
+        "internet",
+        "webkit",
+        "web",
+        "tabs"
+      ],
+      "discovery_time": "2025-06-01T18:03:45.449324",
+      "last_validated": "2025-07-29T20:39:47.050939",
+      "status": "indexed",
+      "metadata": {
+        "id": "cloud_browser",
+        "name": "Cloud Browser",
+        "version": "2.0.0",
+        "description": "PyCloud OS için modern sekmeli web tarayıcısı. WebEngine tabanlı, PDF desteği ve yer imi yönetimi ile sade ve hızlı deneyim sunar.",
+        "entry": "main.py",
+        "exec": "python3 main.py",
+        "icon": "icon.png",
+        "category": "İnternet",
+        "developer": "PyCloud OS Team",
+        "license": "MIT",
+        "homepage": "https://pycloudos.dev/apps/cloud_browser",
+        "tags": [
+          "browser",
+          "web",
+          "internet",
+          "webkit",
+          "tabs",
+          "pdf",
+          "bookmarks",
+          "modern"
+        ],
+        "features": [
+          "Sekmeli gezinti: yeni sekme, sekme kapatma, geçmiş yönlendirme",
+          "Adres çubuğu ile web navigasyonu",
+          "Geri, ileri, yenile, ana sayfa tuşları",
+          "Koyu/açık tema uyumu",
+          "Yer imi yönetimi: kaydet, düzenle, sil",
+          "Klavye kısayolları (CTRL+T, CTRL+W, CTRL+D)",
+          "PDF görüntüleyici: hem https://...pdf hem file:///...dosya.pdf",
+          "Otomatik MIME türü tanıma: PDF sekmeleri farklı ikonla görünür",
+          "Yer imi ve geçmiş JSON dosyalarında saklanır",
+          "Modern UI tasarımı",
+          "Tam ekran modu desteği",
+          "İndirme yöneticisi",
+          "Güvenlik ve gizlilik ayarları"
+        ],
+        "screenshots": [
+          "screenshots/browser_main.png",
+          "screenshots/browser_tabs.png",
+          "screenshots/browser_bookmarks.png",
+          "screenshots/browser_pdf.png",
+          "screenshots/browser_dark.png"
+        ],
+        "requires": [
+          "python3",
+          "pyqt6",
+          "pyqt6-webengine"
+        ],
+        "permissions": [
+          "internet",
+          "filesystem",
+          "downloads"
+        ],
+        "signature": "sha256:modern_cloud_browser_v2..."
+      },
+      "requires": [],
+      "permissions": {},
+      "custom_folder": ""
+    },
+    "cloud_pyide": {
+      "app_id": "cloud_pyide",
+      "name": "Cloud PyIDE",
+      "version": "2.1.0",
+      "description": "PyCloud OS için tam özellikli modern Python IDE. Gelişmiş syntax highlighting, 4 tema desteği, kod parçacıkları, plugin sistemi, .app derleme ve gerçek zamanlı kod çalıştırma özellikleri.",
+      "category": "Geliştirme",
+      "developer": "PyCloud OS Team",
+      "icon_path": "apps/cloud_pyide/icon.png",
+      "app_path": "apps/cloud_pyide",
+      "entry_file": "main.py",
+      "exec_command": "python3 main.py",
+      "tags": [
+        "syntax-highlighting",
+        "dev",
+        "code",
+        "python",
+        "plugins",
+        "breakpoints",
+        "snippets",
+        "themes",
+        "compiler",
+        "ide",
+        "programming",
+        "editor",
+        "development",
+        "modern"
+      ],
+      "discovery_time": "2025-05-31T00:28:08.868774",
+      "last_validated": "2025-07-29T20:39:47.051064",
+      "status": "indexed",
+      "metadata": {
+        "id": "cloud_pyide",
+        "name": "Cloud PyIDE",
+        "version": "2.1.0",
+        "description": "PyCloud OS için tam özellikli modern Python IDE. Gelişmiş syntax highlighting, 4 tema desteği, kod parçacıkları, plugin sistemi, .app derleme ve gerçek zamanlı kod çalıştırma özellikleri.",
+        "entry": "main.py",
+        "exec": "python3 main.py",
+        "icon": "icon.png",
+        "category": "Geliştirme",
+        "developer": "PyCloud OS Team",
+        "license": "MIT",
+        "homepage": "https://pycloudos.dev/apps/cloud_pyide",
+        "tags": [
+          "ide",
+          "python",
+          "editor",
+          "development",
+          "code",
+          "programming",
+          "syntax-highlighting",
+          "themes",
+          "plugins",
+          "snippets",
+          "compiler",
+          "breakpoints",
+          "modern",
+          "dev"
+        ],
+        "features": [
+          "Gelişmiş syntax highlighting",
+          "4 tema desteği (Monokai, Dracula, Light Plus, Dark Plus)",
+          "Kod parçacıkları (snippets)",
+          "Plugin sistemi",
+          ".app derleme desteği",
+          "Gerçek zamanlı kod çalıştırma",
+          "Breakpoint desteği",
+          "Modern UI tasarımı"
+        ],
+        "requires": [
+          "python3",
+          "pyqt6"
+        ],
+        "permissions": [
+          "filesystem",
+          "system"
+        ],
+        "signature": "sha256:c3d4e5f6a7b8..."
+      },
+      "requires": [],
+      "permissions": {},
+      "custom_folder": ""
+    },
+    "cloud_notepad": {
+      "app_id": "cloud_notepad",
+      "name": "Cloud Notepad",
+      "version": "2.0.0",
+      "description": "PyCloud OS için modern, hafif ve kullanıcı dostu metin düzenleyici. Dark mode, sekmeli yapı, otomatik kaydetme ve gelişmiş özellikler.",
+      "category": "Geliştirme",
+      "developer": "PyCloud OS Team",
+      "icon_path": "apps/cloud_notepad/icon.png",
+      "app_path": "apps/cloud_notepad",
+      "entry_file": "main.py",
+      "exec_command": "python3 main.py",
+      "tags": [
+        "programming",
+        "ide",
+        "text",
+        "utf8",
+        "code",
+        "tabs",
+        "editor",
+        "dark-mode",
+        "dev",
+        "modern",
+        "notepad"
+      ],
+      "discovery_time": "2025-06-01T16:49:45.712853",
+      "last_validated": "2025-07-29T20:39:47.051552",
+      "status": "indexed",
+      "metadata": {
+        "id": "cloud_notepad",
+        "name": "Cloud Notepad",
+        "version": "2.0.0",
+        "description": "PyCloud OS için modern, hafif ve kullanıcı dostu metin düzenleyici. Dark mode, sekmeli yapı, otomatik kaydetme ve gelişmiş özellikler.",
+        "entry": "main.py",
+        "exec": "python3 main.py",
+        "icon": "icon.png",
+        "category": "Geliştirme",
+        "developer": "PyCloud OS Team",
+        "license": "MIT",
+        "homepage": "https://pycloudos.dev/apps/cloud_notepad",
+        "tags": [
+          "notepad",
+          "text",
+          "editor",
+          "utf8",
+          "modern",
+          "dark-mode",
+          "tabs"
+        ],
+        "features": [
+          "Modern UI tasarımı",
+          "Dark/Light mode desteği",
+          "Sekmeli doküman yönetimi",
+          "Otomatik kaydetme",
+          "Son açılan dosyalar",
+          "Bul ve değiştir",
+          "Yazı tipi özelleştirme",
+          "Kelime kaydırma",
+          "Tam ekran modu",
+          "Klavye kısayolları",
+          "UTF-8 desteği",
+          "Çoklu dosya formatı desteği"
+        ],
+        "screenshots": [
+          "screenshots/notepad_main.png",
+          "screenshots/notepad_dark.png",
+          "screenshots/notepad_tabs.png",
+          "screenshots/notepad_find.png"
+        ],
+        "requires": [
+          "python3",
+          "pyqt6"
+        ],
+        "permissions": [
+          "filesystem",
+          "settings"
+        ],
+        "signature": "sha256:modernized_cloud_notepad_v2..."
+      },
+      "requires": [],
+      "permissions": {},
+      "custom_folder": ""
+    },
+    "cloud_login": {
+      "app_id": "cloud_login",
+      "name": "Cloud Login",
+      "version": "1.0.0",
+      "description": "PyCloud OS kullanıcı seçimli ve parola korumalı giriş ekranı. Kişisel temalar ve avatar desteğiyle özelleştirilebilir yapıdadır.",
+      "category": "Sistem",
+      "developer": "PyCloud OS Team",
+      "icon_path": "apps/cloud_login/icon.png",
+      "app_path": "apps/cloud_login",
+      "entry_file": "main.py",
+      "exec_command": "python3 main.py",
+      "tags": [
+        "session",
+        "auth",
+        "user",
+        "login",
+        "security"
+      ],
+      "discovery_time": "2025-05-29T17:42:49.042902",
+      "last_validated": "2025-07-29T20:39:47.051621",
+      "status": "indexed",
+      "metadata": {
+        "id": "cloud_login",
+        "name": "Cloud Login",
+        "version": "1.0.0",
+        "description": "PyCloud OS kullanıcı seçimli ve parola korumalı giriş ekranı. Kişisel temalar ve avatar desteğiyle özelleştirilebilir yapıdadır.",
+        "entry": "main.py",
+        "exec": "python3 main.py",
+        "icon": "icon.png",
+        "category": "Sistem",
+        "developer": "PyCloud OS Team",
+        "license": "MIT",
+        "homepage": "https://pycloudos.dev/apps/cloud_login",
+        "tags": [
+          "login",
+          "auth",
+          "user",
+          "security",
+          "session"
+        ],
+        "screenshots": [
+          "screenshots/login_users.png",
+          "screenshots/login_password.png"
+        ],
+        "requires": [
+          "python3",
+          "pyqt6"
+        ],
+        "permissions": [
+          "system",
+          "users"
+        ],
+        "signature": "sha256:e5f6a7b8c9d0..."
+      },
+      "requires": [],
+      "permissions": {},
+      "custom_folder": ""
+    },
+    "clapp_ui_legacy": {
+      "app_id": "clapp_ui_legacy",
+      "name": "Clapp Store (Legacy)",
+      "version": "1.0.0",
+      "description": "PyCloud OS için eski Clapp tabanlı App Store. Uygulama keşfetme, yükleme ve yönetim arayüzü.",
+      "category": "Sistem",
+      "developer": "PyCloud OS Team",
+      "icon_path": "apps/clapp.ui/icon.png",
+      "app_path": "apps/clapp.ui",
+      "entry_file": "main.py",
+      "exec_command": "python3 main.py",
+      "tags": [
+        "manager",
+        "clapp",
+        "package",
+        "legacy",
+        "appstore"
+      ],
+      "discovery_time": "2025-06-01T16:44:42.558587",
+      "last_validated": "2025-07-29T20:39:47.051476",
+      "status": "indexed",
+      "metadata": {
+        "id": "clapp_ui_legacy",
+        "name": "Clapp Store (Legacy)",
+        "version": "1.0.0",
+        "description": "PyCloud OS için eski Clapp tabanlı App Store. Uygulama keşfetme, yükleme ve yönetim arayüzü.",
+        "entry": "main.py",
+        "exec": "python3 main.py",
+        "icon": "icon.png",
+        "category": "Sistem",
+        "developer": "PyCloud OS Team",
+        "license": "MIT",
+        "homepage": "https://pycloudos.dev/apps/clapp_ui",
+        "tags": [
+          "appstore",
+          "package",
+          "manager",
+          "clapp",
+          "legacy"
+        ],
+        "requires": [
+          "python3",
+          "pyqt6",
+          "requests"
+        ],
+        "permissions": [
+          "system",
+          "internet",
+          "filesystem"
+        ],
+        "signature": "sha256:d4e5f6a7b8c9..."
+      },
+      "requires": [],
+      "permissions": {},
+      "custom_folder": ""
+    },
+    "cloud_taskmanager": {
+      "app_id": "cloud_taskmanager",
+      "name": "Cloud Task Manager",
+      "version": "2.0.0",
+      "description": "PyCloud OS için modern sistem görev yöneticisi. Çalışan uygulamalar, işlemler, thread'ler ve sistem kaynaklarını izleme ve yönetme.",
+      "category": "Sistem",
+      "developer": "PyCloud OS Team",
+      "icon_path": "apps/cloud_taskmanager/icon.png",
+      "app_path": "apps/cloud_taskmanager",
+      "entry_file": "main.py",
+      "exec_command": "python3 main.py",
+      "tags": [
+        "resources",
+        "performance",
+        "utility",
+        "modern",
+        "monitor",
+        "process",
+        "taskmanager",
+        "threads",
+        "system"
+      ],
+      "discovery_time": "2025-06-01T17:45:03.192726",
+      "last_validated": "2025-07-29T20:39:47.051403",
+      "status": "indexed",
+      "metadata": {
+        "id": "cloud_taskmanager",
+        "name": "Cloud Task Manager",
+        "version": "2.0.0",
+        "description": "PyCloud OS için modern sistem görev yöneticisi. Çalışan uygulamalar, işlemler, thread'ler ve sistem kaynaklarını izleme ve yönetme.",
+        "entry": "main.py",
+        "exec": "python3 main.py",
+        "icon": "icon.png",
+        "category": "Sistem",
+        "developer": "PyCloud OS Team",
+        "license": "MIT",
+        "homepage": "https://pycloudos.dev/apps/cloud_taskmanager",
+        "tags": [
+          "taskmanager",
+          "system",
+          "monitor",
+          "process",
+          "threads",
+          "resources",
+          "modern",
+          "performance"
+        ],
+        "features": [
+          "Modern sekmeli arayüz (Applications, Processes, Threads, Resources)",
+          "Çalışan uygulamaların detaylı listesi (PID, bellek, CPU)",
+          "Sistem işlemleri ve process ağacı görünümü",
+          "Thread izleme ve TID bazlı görünüm",
+          "Gerçek zamanlı kaynak kullanımı grafikleri",
+          "Uygulama/işlem sonlandırma ve yönetimi",
+          "Thread dondurma (freeze) ve öldürme",
+          "Arka planda askıya alınan uygulamalar",
+          "Dark/Light tema desteği",
+          "Sistem performans metrikleri",
+          "Filtreleme ve sıralama seçenekleri",
+          "Bağlam menüleri ve klavye kısayolları"
+        ],
+        "screenshots": [
+          "screenshots/main.png",
+          "screenshots/processes.png",
+          "screenshots/threads.png",
+          "screenshots/resources.png"
+        ],
+        "requires": [
+          "python3",
+          "pyqt6",
+          "psutil"
+        ],
+        "permissions": [
+          "system",
+          "processes",
+          "memory",
+          "threads"
+        ],
+        "signature": "sha256:modern_cloud_taskmanager_v2..."
+      },
+      "requires": [],
+      "permissions": {},
+      "custom_folder": ""
+    },
+    "cloud_settings": {
+      "app_id": "cloud_settings",
+      "name": "Cloud Settings",
+      "version": "2.0.0",
+      "description": "PyCloud OS için modern sistem ayarları ve konfigürasyon yönetimi. Canlı önizleme, widget yönetimi, tema özelleştirme ve gelişmiş ayar sistemi.",
+      "category": "Sistem",
+      "developer": "PyCloud OS Team",
+      "icon_path": "apps/cloud_settings/icon.png",
+      "app_path": "apps/cloud_settings",
+      "entry_file": "main.py",
+      "exec_command": "python3 main.py",
+      "tags": [
+        "themes",
+        "settings",
+        "widgets",
+        "live-preview",
+        "modern",
+        "system",
+        "config",
+        "preferences",
+        "customization"
+      ],
+      "discovery_time": "2025-06-01T17:02:50.236888",
+      "last_validated": "2025-07-29T20:39:47.051846",
+      "status": "indexed",
+      "metadata": {
+        "id": "cloud_settings",
+        "name": "Cloud Settings",
+        "version": "2.0.0",
+        "description": "PyCloud OS için modern sistem ayarları ve konfigürasyon yönetimi. Canlı önizleme, widget yönetimi, tema özelleştirme ve gelişmiş ayar sistemi.",
+        "entry": "main.py",
+        "exec": "python3 main.py",
+        "icon": "icon.png",
+        "category": "Sistem",
+        "developer": "PyCloud OS Team",
+        "license": "MIT",
+        "homepage": "https://pycloudos.dev/apps/cloud_settings",
+        "tags": [
+          "settings",
+          "config",
+          "system",
+          "preferences",
+          "modern",
+          "themes",
+          "widgets",
+          "live-preview",
+          "customization"
+        ],
+        "features": [
+          "Modern macOS tarzı arayüz",
+          "Canlı önizleme sistemi",
+          "Widget görünürlüğü ve sıralama",
+          "Gelişmiş tema özelleştirme",
+          "Ayar geçmişi ve geri alma",
+          "Arama ve filtre özelliği",
+          "Responsive tasarım",
+          "JSON tabanlı ayar sistemi",
+          "Sistem entegrasyonu"
+        ],
+        "screenshots": [
+          "screenshots/main.png",
+          "screenshots/appearance.png",
+          "screenshots/widgets.png",
+          "screenshots/live_preview.png"
+        ],
+        "requires": [
+          "python3",
+          "pyqt6"
+        ],
+        "permissions": [
+          "system",
+          "filesystem",
+          "config",
+          "ui"
+        ],
+        "signature": "sha256:modern_cloud_settings_v2..."
+      },
+      "requires": [],
+      "permissions": {},
+      "custom_folder": ""
+    },
+    "cloud_files": {
+      "app_id": "cloud_files",
+      "name": "Cloud Files",
+      "version": "2.0.0",
+      "description": "PyCloud OS için modern dosya yöneticisi. Finder benzeri grafik tabanlı dosya yönetimi, etiket sistemi, sekmeli gezinme ve gelişmiş özellikler.",
+      "category": "Sistem",
+      "developer": "PyCloud OS Team",
+      "icon_path": "apps/cloud_files/icon.png",
+      "app_path": "apps/cloud_files",
+      "entry_file": "main.py",
+      "exec_command": "python3 main.py",
+      "tags": [
+        "filesystem",
+        "modern",
+        "tabs",
+        "tags",
+        "manager",
+        "files",
+        "finder"
+      ],
+      "discovery_time": "2025-05-30T23:57:12.546488",
+      "last_validated": "2025-07-29T20:39:47.051248",
+      "status": "indexed",
+      "metadata": {
+        "id": "cloud_files",
+        "name": "Cloud Files",
+        "version": "2.0.0",
+        "description": "PyCloud OS için modern dosya yöneticisi. Finder benzeri grafik tabanlı dosya yönetimi, etiket sistemi, sekmeli gezinme ve gelişmiş özellikler.",
+        "entry": "main.py",
+        "exec": "python3 main.py",
+        "icon": "icon.png",
+        "category": "Sistem",
+        "developer": "PyCloud OS Team",
+        "license": "MIT",
+        "homepage": "https://pycloudos.dev/apps/cloud_files",
+        "tags": [
+          "files",
+          "manager",
+          "finder",
+          "filesystem",
+          "modern",
+          "tags",
+          "tabs"
+        ],
+        "features": [
+          "Modern UI tasarımı",
+          "Liste, Izgara ve Detaylı görünüm modları",
+          "Sekmeli gezinme",
+          "Etiket sistemi",
+          "Sürükle-bırak desteği",
+          "Gelişmiş arama",
+          "Klavye kısayolları",
+          "Dosya önizleme",
+          "Bağlam menüleri"
+        ],
+        "screenshots": [
+          "screenshots/main.png",
+          "screenshots/grid_view.png",
+          "screenshots/tags.png",
+          "screenshots/tabs.png"
+        ],
+        "requires": [
+          "python3",
+          "pyqt6"
+        ],
+        "postinstall": "postinstall.py",
+        "permissions": [
+          "filesystem",
+          "clipboard"
+        ],
+        "signature": "sha256:b8c9d0e1f2a3..."
+      },
+      "requires": [],
+      "permissions": {},
+      "custom_folder": ""
+    },
+    "cloud_terminal": {
+      "app_id": "cloud_terminal",
+      "name": "Cloud Terminal",
+      "version": "2.0.0",
+      "description": "PyCloud OS için modern, modüler, sistemle entegre terminal uygulaması. Geliştirici dostu CLI ortamı, komut geçmişi, çoklu oturum desteği ile birlikte gelir.",
+      "category": "Sistem",
+      "developer": "PyCloud OS Team",
+      "icon_path": "apps/cloud_terminal/icon.png",
+      "app_path": "apps/cloud_terminal",
+      "entry_file": "main.py",
+      "exec_command": "python3 main.py",
+      "tags": [
+        "sistem",
+        "cli",
+        "command",
+        "terminal",
+        "modern",
+        "developer",
+        "shell",
+        "tabs"
+      ],
+      "discovery_time": "2025-06-01T17:45:03.194926",
+      "last_validated": "2025-07-29T20:39:47.051769",
+      "status": "indexed",
+      "metadata": {
+        "id": "cloud_terminal",
+        "name": "Cloud Terminal",
+        "version": "2.0.0",
+        "description": "PyCloud OS için modern, modüler, sistemle entegre terminal uygulaması. Geliştirici dostu CLI ortamı, komut geçmişi, çoklu oturum desteği ile birlikte gelir.",
+        "entry": "main.py",
+        "exec": "python3 main.py",
+        "icon": "icon.png",
+        "category": "Sistem",
+        "developer": "PyCloud OS Team",
+        "license": "MIT",
+        "homepage": "https://pycloudos.dev/apps/cloud_terminal",
+        "tags": [
+          "terminal",
+          "cli",
+          "command",
+          "shell",
+          "sistem",
+          "developer",
+          "modern",
+          "tabs"
+        ],
+        "features": [
+          "Sistem içi komut desteği (clapp, fs, users, mem, notify, thread)",
+          "Komut geçmişi (↑↓ ile gezinme), geçmiş temizleme, komut arama",
+          "Oturum bazlı sekmeler (çoklu terminal penceresi)",
+          "Renkli çıktı desteği, hata mesajı ayrımı (stdout / stderr)",
+          "Autocomplete / öneri (cd, list, clapp komutları gibi)",
+          "Terminal stilleri: hacker, klasik, transparan",
+          "Çıktı kopyalama / temizleme / kaydetme seçenekleri",
+          "Komut sınıflandırma: sistem, dosya, kullanıcı, geliştirici",
+          "Temaya uygun koyu/açık arayüz geçişi"
+        ],
+        "screenshots": [
+          "screenshots/main.png",
+          "screenshots/tabs.png",
+          "screenshots/autocomplete.png",
+          "screenshots/themes.png"
+        ],
+        "requires": [
+          "python3",
+          "pyqt6",
+          "psutil"
+        ],
+        "permissions": [
+          "system",
+          "filesystem",
+          "processes",
+          "threads"
+        ],
+        "signature": "sha256:modern_cloud_terminal_v2..."
+      },
+      "requires": [],
+      "permissions": {},
+      "custom_folder": ""
+    },
+    "cloud_search": {
+      "app_id": "cloud_search",
+      "name": "CloudSearch",
+      "version": "1.0.0",
+      "description": "PyCloud dosya sisteminde içerik tabanlı arama motoru. Belge içeriğinde anahtar kelime, tarih, dosya tipi gibi filtrelerle arama yapar.",
+      "category": "Sistem",
+      "developer": "PyCloud OS Team",
+      "icon_path": "apps/cloud_search/icon.png",
+      "app_path": "apps/cloud_search",
+      "entry_file": "main.py",
+      "exec_command": "python3 main.py",
+      "tags": [
+        "files",
+        "indexing",
+        "content",
+        "search"
+      ],
+      "discovery_time": "2025-05-29T17:42:49.042902",
+      "last_validated": "2025-07-29T20:39:47.051163",
+      "status": "indexed",
+      "metadata": {
+        "id": "cloud_search",
+        "name": "CloudSearch",
+        "version": "1.0.0",
+        "description": "PyCloud dosya sisteminde içerik tabanlı arama motoru. Belge içeriğinde anahtar kelime, tarih, dosya tipi gibi filtrelerle arama yapar.",
+        "entry": "main.py",
+        "exec": "python3 main.py",
+        "icon": "icon.png",
+        "category": "Sistem",
+        "developer": "PyCloud OS Team",
+        "license": "MIT",
+        "homepage": "https://pycloudos.dev/apps/cloud_search",
+        "tags": [
+          "search",
+          "files",
+          "indexing",
+          "content"
+        ],
+        "requires": [
+          "python3",
+          "pyqt6"
+        ],
+        "permissions": [
+          "filesystem",
+          "system"
+        ],
+        "signature": "sha256:d0e1f2a3b4c5..."
+      },
+      "requires": [],
+      "permissions": {},
+      "custom_folder": ""
+    },
+    "app_store": {
+      "app_id": "app_store",
+      "name": "App Store",
+      "version": "2.0.0",
+      "description": "PyCloud OS için modern uygulama mağazası. Kategori bazlı gezinme, arama, kurulum/kaldırma, kullanıcı puanları ve yorum sistemi.",
+      "category": "Sistem",
+      "developer": "PyCloud OS Team",
+      "icon_path": "apps/app_store/icon.png",
+      "app_path": "apps/app_store",
+      "entry_file": "main.py",
+      "exec_command": "python3 main.py",
+      "tags": [
+        "manager",
+        "modern",
+        "package",
+        "ui",
+        "appstore"
+      ],
+      "discovery_time": "2025-06-01T16:44:42.557226",
+      "last_validated": "2025-07-29T20:39:47.051327",
+      "status": "indexed",
+      "metadata": {
+        "id": "app_store",
+        "name": "App Store",
+        "version": "2.0.0",
+        "description": "PyCloud OS için modern uygulama mağazası. Kategori bazlı gezinme, arama, kurulum/kaldırma, kullanıcı puanları ve yorum sistemi.",
+        "entry": "main.py",
+        "exec": "python3 main.py",
+        "icon": "icon.png",
+        "category": "Sistem",
+        "developer": "PyCloud OS Team",
+        "license": "MIT",
+        "homepage": "https://pycloudos.dev/apps/app_store",
+        "tags": [
+          "appstore",
+          "package",
+          "manager",
+          "modern",
+          "ui"
+        ],
+        "screenshots": [
+          "screenshots/main.png",
+          "screenshots/categories.png",
+          "screenshots/app_detail.png"
+        ],
+        "requires": [
+          "python3",
+          "pyqt6"
+        ],
+        "permissions": [
+          "system",
+          "internet",
+          "filesystem"
+        ],
+        "postinstall": "postinstall.py",
+        "signature": "appstore_v2_0_0_sha256hash"
+      },
+      "requires": [],
+      "permissions": {},
+      "custom_folder": ""
+    }
+  },
+  "category_index": {
+    "Sistem": [
+      "cloud_login",
+      "clapp_ui_legacy",
+      "cloud_taskmanager",
+      "cloud_settings",
+      "cloud_files",
+      "cloud_terminal",
+      "cloud_search",
+      "app_store"
+    ],
+    "Geliştirme": [
+      "cloud_pythonconsole",
+      "cloud_pyide",
+      "cloud_notepad"
+    ],
+    "İnternet": [
+      "cloud_browser"
+    ]
+  },
+  "tag_index": {
+    "terminal": [
+      "cloud_pythonconsole",
+      "cloud_terminal"
+    ],
+    "console": [
+      "cloud_pythonconsole"
+    ],
+    "dev": [
+      "cloud_pythonconsole",
+      "cloud_pyide",
+      "cloud_notepad"
+    ],
+    "developer": [
+      "cloud_pythonconsole",
+      "cloud_terminal"
+    ],
+    "repl": [
+      "cloud_pythonconsole"
+    ],
+    "programming": [
+      "cloud_pythonconsole",
+      "cloud_pyide",
+      "cloud_notepad"
+    ],
+    "ide": [
+      "cloud_pythonconsole",
+      "cloud_pyide",
+      "cloud_notepad"
+    ],
+    "python": [
+      "cloud_pythonconsole",
+      "cloud_pyide"
+    ],
+    "code": [
+      "cloud_pythonconsole",
+      "cloud_pyide",
+      "cloud_notepad"
+    ],
+    "web": [
+      "cloud_browser"
+    ],
+    "webkit": [
+      "cloud_browser"
+    ],
+    "internet": [
+      "cloud_browser"
+    ],
+    "tabs": [
+      "cloud_browser",
+      "cloud_files",
+      "cloud_notepad",
+      "cloud_terminal"
+    ],
+    "network": [
+      "cloud_browser"
+    ],
+    "browser": [
+      "cloud_browser"
+    ],
+    "syntax-highlighting": [
+      "cloud_pyide"
+    ],
+    "plugins": [
+      "cloud_pyide"
+    ],
+    "breakpoints": [
+      "cloud_pyide"
+    ],
+    "snippets": [
+      "cloud_pyide"
+    ],
+    "themes": [
+      "cloud_pyide",
+      "cloud_settings"
+    ],
+    "compiler": [
+      "cloud_pyide"
+    ],
+    "development": [
+      "cloud_pyide"
+    ],
+    "editor": [
+      "cloud_pyide",
+      "cloud_notepad"
+    ],
+    "modern": [
+      "cloud_pyide",
+      "cloud_files",
+      "app_store",
+      "cloud_notepad",
+      "cloud_settings",
+      "cloud_taskmanager",
+      "cloud_terminal",
+      "cloud_browser"
+    ],
+    "text": [
+      "cloud_notepad"
+    ],
+    "basit": [
+      "cloud_notepad"
+    ],
+    "utf8": [
+      "cloud_notepad"
+    ],
+    "notepad": [
+      "cloud_notepad"
+    ],
+    "session": [
+      "cloud_login"
+    ],
+    "auth": [
+      "cloud_login"
+    ],
+    "user": [
+      "cloud_login"
+    ],
+    "login": [
+      "cloud_login"
+    ],
+    "security": [
+      "cloud_login"
+    ],
+    "manager": [
+      "clapp_ui_legacy",
+      "cloud_taskmanager",
+      "cloud_files",
+      "app_store"
+    ],
+    "clapp": [
+      "clapp_ui_legacy"
+    ],
+    "package": [
+      "clapp_ui_legacy",
+      "app_store"
+    ],
+    "legacy": [
+      "clapp_ui_legacy"
+    ],
+    "appstore": [
+      "clapp_ui_legacy",
+      "app_store"
+    ],
+    "system": [
+      "cloud_taskmanager",
+      "cloud_settings"
+    ],
+    "monitor": [
+      "cloud_taskmanager"
+    ],
+    "utility": [
+      "cloud_taskmanager"
+    ],
+    "process": [
+      "cloud_taskmanager"
+    ],
+    "task": [
+      "cloud_taskmanager"
+    ],
+    "preferences": [
+      "cloud_settings"
+    ],
+    "config": [
+      "cloud_settings"
+    ],
+    "settings": [
+      "cloud_settings"
+    ],
+    "files": [
+      "cloud_files",
+      "cloud_terminal",
+      "cloud_search"
+    ],
+    "filesystem": [
+      "cloud_files"
+    ],
+    "finder": [
+      "cloud_files"
+    ],
+    "tags": [
+      "cloud_files"
+    ],
+    "sistem": [
+      "cloud_terminal"
+    ],
+    "shell": [
+      "cloud_terminal"
+    ],
+    "command": [
+      "cloud_terminal"
+    ],
+    "cli": [
+      "cloud_terminal"
+    ],
+    "indexing": [
+      "cloud_search"
+    ],
+    "content": [
+      "cloud_search"
+    ],
+    "search": [
+      "cloud_search"
+    ],
+    "ui": [
+      "app_store"
+    ],
+    "dark-mode": [
+      "cloud_notepad"
+    ],
+    "widgets": [
+      "cloud_settings"
+    ],
+    "live-preview": [
+      "cloud_settings"
+    ],
+    "customization": [
+      "cloud_settings"
+    ],
+    "resources": [
+      "cloud_taskmanager"
+    ],
+    "performance": [
+      "cloud_taskmanager"
+    ],
+    "taskmanager": [
+      "cloud_taskmanager"
+    ],
+    "threads": [
+      "cloud_taskmanager"
+    ],
+    "bookmarks": [
+      "cloud_browser"
+    ],
+    "pdf": [
+      "cloud_browser"
+    ]
+  },
+  "developer_index": {
+    "PyCloud OS Team": [
+      "cloud_notepad",
+      "cloud_settings",
+      "cloud_taskmanager",
+      "cloud_terminal",
+      "cloud_browser"
+    ]
+  },
+  "last_updated": "2025-07-29T20:39:51.041513"
+}
