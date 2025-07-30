@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_ {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.control.layers.tree@1.1.0/L.Control.Layers.Tree.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.control.layers.tree@1.1.0/L.Control.Layers.Tree.min.css"/>
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_ = L.map(
+                "map_",
+                {
+                    center: [1.9262979815479042, 1.0619524389888824],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 10,
+                    zoomControl: true,
+                    preferCanvas: false,
+                    zoomSnap: 0.25,
+                    zoomDelta: 0.25,
+                    wheelPxPerZoomLevel: 180,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_ = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_.addTo(map_);
+        
+    
+            var tile_layer_ = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_.addTo(map_);
+        
+    
+            var tile_layer_ = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e", "detectRetina": false, "maxNativeZoom": 20, "maxZoom": 20, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abcd", "tms": false}
+            );
+        
+    
+            tile_layer_.addTo(map_);
+        
+    
+            var tile_layer_ = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e", "detectRetina": false, "maxNativeZoom": 20, "maxZoom": 20, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abcd", "tms": false}
+            );
+        
+    
+            tile_layer_.addTo(map_);
+        
+    
+            var feature_group_ = L.featureGroup(
+                {}
+            );
+        
+    
+
+        function geo_json__onEachFeature(feature, layer) {
+            layer.on({
+            });
+        };
+        var geo_json_ = L.geoJson(null, {
+                onEachFeature: geo_json__onEachFeature,
+            
+        });
+
+        function geo_json__add (data) {
+            geo_json_
+                .addData(data);
+        }
+            geo_json__add({"features": [{"geometry": {"coordinates": [-115.22033625210064, 18.575192081267197], "type": "Point"}, "properties": {}, "type": "Feature"}, {"geometry": {"coordinates": [26.063782545842447, 80.39436534400363], "type": "Point"}, "properties": {}, "type": "Feature"}, {"geometry": {"coordinates": [49.05261435048705, -4.815956446107803], "type": "Point"}, "properties": {}, "type": "Feature"}, {"geometry": {"coordinates": [8.298298403258588, 3.265395718979831], "type": "Point"}, "properties": {}, "type": "Feature"}, {"geometry": {"coordinates": [130.3834619679142, 17.94832898544832], "type": "Point"}, "properties": {}, "type": "Feature"}, {"geometry": {"coordinates": [41.0643987376985, 23.10496993075887], "type": "Point"}, "properties": {}, "type": "Feature"}, {"geometry": {"coordinates": [140.09288702107037, -79.82588120665534], "type": "Point"}, "properties": {}, "type": "Feature"}, {"geometry": {"coordinates": [-31.33508848342683, 65.68458929468702], "type": "Point"}, "properties": {}, "type": "Feature"}, {"geometry": {"coordinates": [58.44881548901721, 84.8853824878401], "type": "Point"}, "properties": {}, "type": "Feature"}, {"geometry": {"coordinates": [77.04454017583608, 29.486980779188666], "type": "Point"}, "properties": {}, "type": "Feature"}, {"geometry": {"coordinates": [107.47713770103157, 6.917930384972415], "type": "Point"}, "properties": {}, "type": "Feature"}, {"geometry": {"coordinates": [-68.17183799661818, 27.691434423742535], "type": "Point"}, "properties": {}, "type": "Feature"}, {"geometry": {"coordinates": [-105.87254645545934, -49.14751775337236], "type": "Point"}, "properties": {}, "type": "Feature"}, {"geometry": {"coordinates": [-155.62605321754808, 70.97382140916633], "type": "Point"}, "properties": {}, "type": "Feature"}, {"geometry": {"coordinates": [-123.7349853874018, -14.647829768918847], "type": "Point"}, "properties": {}, "type": "Feature"}, {"geometry": {"coordinates": [-0.36734519059763215, 88.2822470543127], "type": "Point"}, "properties": {}, "type": "Feature"}, {"geometry": {"coordinates": [157.74995809552584, 80.99874246047408], "type": "Point"}, "properties": {}, "type": "Feature"}, {"geometry": {"coordinates": [145.95945856456706, -84.4296510912169], "type": "Point"}, "properties": {}, "type": "Feature"}, {"geometry": {"coordinates": [42.96815134503646, -19.59615491929395], "type": "Point"}, "properties": {}, "type": "Feature"}, {"geometry": {"coordinates": [72.79396334324804, -34.56200984243971], "type": "Point"}, "properties": {}, "type": "Feature"}, {"geometry": {"coordinates": [-150.43597038790634, 28.109470894931103], "type": "Point"}, "properties": {}, "type": "Feature"}, {"geometry": {"coordinates": [116.74794885910944, 69.22591756002855], "type": "Point"}, "properties": {}, "type": "Feature"}, {"geometry": {"coordinates": [50.05807001557586, 74.29939249996231], "type": "Point"}, "properties": {}, "type": "Feature"}, {"geometry": {"coordinates": [5.2769045824745575, 86.27124808396252], "type": "Point"}, "properties": {}, "type": "Feature"}, {"geometry": {"coordinates": [79.23081298019815, 3.3840202530143326], "type": "Point"}, "properties": {}, "type": "Feature"}], "type": "FeatureCollection"});
+        geo_json_.setStyle(function(feature) {return feature.properties.style;});
+
+        
+    
+            geo_json_.addTo(feature_group_);
+        
+    
+            feature_group_.addTo(map_);
+        
+    
+            L.control.fullscreen(
+                {"forceSeparateButton": false, "position": "topright", "title": "Expand me", "titleCancel": "Exit me"}
+            ).addTo(map_);
+        
+    
+            L.control.layers.tree(
+                {
+  "label": "Base Layers",
+  "children": [
+{
+  "label": "Tiles",
+  "radioGroup": "tiles",
+  "children": [
+{
+  "label": "openstreetmap",
+  "layer": tile_layer_,
+},
+{
+  "label": "cartodbdark_matter",
+  "layer": tile_layer_,
+},
+{
+  "label": "cartodb positron",
+  "layer": tile_layer_,
+},
+],
+},
+],
+},
+                {
+  "label": "Overlays",
+  "selectAllCheckbox": "Un/select all",
+  "children": [
+{
+  "label": "GeoJSONs",
+  "selectAllCheckbox": true,
+  "collapsed": true,
+  "children": [
+{
+  "label": "GeoJSON 0",
+  "layer": feature_group_,
+},
+],
+},
+],
+},
+                {"closedSymbol": "+", "collapseAll": "", "expandAll": "", "labelIsSelector": "both", "namedToggle": false, "openenedSymbol": "-", "selectorBack": false, "spaceSymbol": "\u0026nbsp;"}
+            ).addTo(map_);
+        
+    
+            map_.fitBounds(
+                [[-84.4296510912169, -155.62605321754808], [88.2822470543127, 157.74995809552584]],
+                {}
+            );
+        
+</script>
+</html>
