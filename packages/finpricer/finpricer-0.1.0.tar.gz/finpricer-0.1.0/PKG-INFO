@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: finpricer
+Version: 0.1.0
+Summary: A Python library capable of pricing various financial assets.
+Author-email: Jing Nie <niejing1@gmail.com>
+Project-URL: Homepage, https://github.com/njulia/finpricer
+Project-URL: Bug Tracker, https://github.com/njulia/finpricer/issues
+Keywords: finance,pricing,bond,rates,credit
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+Requires-Dist: build; extra == "dev"
+Requires-Dist: twine; extra == "dev"
+Requires-Dist: sphinx; extra == "dev"
+Requires-Dist: sphinx-rtd-theme; extra == "dev"
+Dynamic: license-file
+
+Financer is a Python application capable of pricing various financial assets. For example, bond, bond future, interest rate swap.
