@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fcpxml-subtitle-generator"
+version = "0.1.1"
+description = "CLI tool to generate Final Cut Pro compatible subtitle files from audio/video files using Whisper"
+readme = "README.md"
+license = "MIT"
+authors = [
+    {name = "taejun0622", email = "taejun0622@gmail.com"}
+]
+keywords = ["subtitle", "whisper", "final-cut-pro", "transcription", "video", "audio"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Multimedia :: Video",
+    "Topic :: Multimedia :: Sound/Audio :: Speech",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.13"
+dependencies = [
+    "moviepy>=2.2.1",
+    "openai-whisper>=20250625",
+]
+
+[project.urls]
+Homepage = "https://github.com/taejun0622/fcpxml-subtitle-generator"
+Repository = "https://github.com/taejun0622/fcpxml-subtitle-generator"
+Issues = "https://github.com/taejun0622/fcpxml-subtitle-generator/issues"
+
+[project.scripts]
+fs-gen = "subtitle_generator:main"
+
+[tool.setuptools]
+py-modules = ["subtitle_generator"]
