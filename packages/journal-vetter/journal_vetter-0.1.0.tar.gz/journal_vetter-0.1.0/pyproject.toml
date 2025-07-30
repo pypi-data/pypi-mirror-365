@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "journal-vetter"
+version = "0.1.0"
+description = "uses tokenized & carefully summarized journals to query an LLM for analysis, based also on user-defined YAML attributes"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [{ name = "Melina Norton", email = "linamelina0707@gmail.com" }]
+requires-python = ">=3.7"
+dependencies = [
+  "click>=8.0.0",
+  "langchain>=0.0.153",
+  "PyMuPDF>=1.20.0",
+  "python-dotenv>=0.21.0",
+  "openai>=0.27.0",
+]
+
+[project.scripts]
+journal-vetter = "journalvetter.cli:run"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
