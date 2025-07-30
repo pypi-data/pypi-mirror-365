@@ -1,0 +1,9 @@
+# 需打包的文件
+include requirements.txt
+
+# 排除不需要的文件
+exclude *.pyc
+exclude *.log
+
+# 排除测试文件夹
+prune tests
