@@ -1,0 +1,203 @@
+Metadata-Version: 2.4
+Name: sifaka
+Version: 0.2.0
+Summary: Simple AI text improvement through research-backed critique with complete observability
+Author-email: Evan Volgas <evan.volgas@gmail.com>
+License-Expression: MIT
+Keywords: ai,llm,validation,text-improvement,critique
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Requires-Python: <3.14,>=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pydantic>=2.11.3
+Requires-Dist: pydantic-ai>=0.0.14
+Requires-Dist: openai>=1.82.0
+Requires-Dist: httpx>=0.28.1
+Requires-Dist: python-dotenv>=1.0.1
+Requires-Dist: aiofiles>=24.1.0
+Requires-Dist: logfire>=3.21.1
+Requires-Dist: redis>=6.2.0
+Requires-Dist: beautifulsoup4>=4.12.0
+Requires-Dist: numpy>=1.24.0
+Requires-Dist: typing-extensions>=4.0.0
+Requires-Dist: defusedxml>=0.7.1
+Provides-Extra: anthropic
+Requires-Dist: anthropic>=0.50.0; extra == "anthropic"
+Provides-Extra: gemini
+Requires-Dist: google-generativeai>=0.8.5; extra == "gemini"
+Provides-Extra: redis
+Requires-Dist: redis>=5.0.0; extra == "redis"
+Provides-Extra: dev
+Requires-Dist: pytest>=8.0.2; extra == "dev"
+Requires-Dist: pytest-cov>=4.1.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.21.0; extra == "dev"
+Requires-Dist: pytest-mock>=3.14.0; extra == "dev"
+Requires-Dist: pytest-xdist>=3.6.1; extra == "dev"
+Requires-Dist: black>=24.2.0; extra == "dev"
+Requires-Dist: mypy>=1.9.0; extra == "dev"
+Requires-Dist: ruff>=0.3.0; extra == "dev"
+Requires-Dist: types-redis>=4.6.0; extra == "dev"
+Requires-Dist: types-aiofiles>=24.1.0; extra == "dev"
+Requires-Dist: ipython>=8.0.0; extra == "dev"
+Requires-Dist: rich>=13.7.1; extra == "dev"
+Requires-Dist: ipdb>=0.13.13; extra == "dev"
+Requires-Dist: mkdocs>=1.6.0; extra == "dev"
+Requires-Dist: mkdocs-material>=9.5.0; extra == "dev"
+Requires-Dist: mkdocstrings[python]>=0.25.0; extra == "dev"
+Requires-Dist: pre-commit>=3.7.1; extra == "dev"
+Requires-Dist: watchdog>=4.0.1; extra == "dev"
+Requires-Dist: python-dotenv>=1.0.1; extra == "dev"
+Requires-Dist: psutil>=5.9.0; extra == "dev"
+Requires-Dist: setuptools>=60.0.0; extra == "dev"
+Requires-Dist: twine>=4.0.0; extra == "dev"
+Provides-Extra: all
+Requires-Dist: sifaka[anthropic,dev,gemini,redis]; extra == "all"
+Dynamic: license-file
+
+# Sifaka
+
+**Simple AI text improvement through research-backed critique with complete observability**
+
+[![Python](https://img.shields.io/badge/python-3.10+-blue)](https://python.org)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Version](https://img.shields.io/badge/version-0.1.6-blue)](https://github.com/sifaka-ai/sifaka)
+[![CI/CD](https://github.com/sifaka-ai/sifaka/actions/workflows/ci.yml/badge.svg)](https://github.com/sifaka-ai/sifaka/actions/workflows/ci.yml)
+[![Coverage](https://img.shields.io/badge/coverage-60%25+-yellowgreen)](https://github.com/sifaka-ai/sifaka/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/sifaka)](https://pypi.org/project/sifaka/)
+[![Documentation](https://img.shields.io/badge/docs-Read%20the%20Docs-blue)](https://sifaka.readthedocs.io/)
+
+
+## What is Sifaka?
+
+Sifaka improves AI-generated text through iterative critique using research-backed techniques. Instead of hoping your AI output is good enough, Sifaka provides a transparent feedback loop where AI systems validate and improve their own outputs.
+
+**Core Value**: See exactly how AI improves your text through research-backed techniques with complete audit trails.
+
+## Installation
+
+```bash
+# Install from PyPI
+pip install sifaka
+
+# Or with uv
+uv pip install sifaka
+```
+
+## Quick Start
+
+### 1. Set up your API key
+
+Sifaka requires an LLM API key. Set one of these environment variables:
+
+```bash
+export OPENAI_API_KEY="your-api-key"     # For OpenAI (GPT-4, etc.)
+# or
+export ANTHROPIC_API_KEY="your-api-key"  # For Claude
+# or
+export GEMINI_API_KEY="your-api-key"     # For Google Gemini
+# or
+export GROQ_API_KEY="your-api-key"       # For Groq
+# or (for local Ollama - no API key needed)
+export OLLAMA_BASE_URL="http://localhost:11434/v1"  # Optional, defaults to localhost
+```
+
+Or create a `.env` file in your project:
+```env
+OPENAI_API_KEY=your-api-key
+```
+
+**Using Ollama (Local LLMs)**:
+```python
+from sifaka import improve_sync, Config
+from sifaka.core.config import LLMConfig
+
+# Use Ollama with specific model (must set critic_model too!)
+config = Config(
+    llm=LLMConfig(
+        provider="ollama",
+        model="mistral:latest",
+        critic_model="mistral:latest"  # Important: set this to use Ollama for critiques
+    )
+)
+result = improve_sync("Climate change is bad.", config=config)
+```
+
+### 2. Use Sifaka
+
+```python
+from sifaka import improve_sync
+
+# Simple one-liner
+result = improve_sync("Climate change is bad.")
+print(result.final_text)
+```
+
+📚 **[Full Documentation →](https://sifaka.readthedocs.io/)**
+
+## Key Features
+
+- **🔬 Research-Backed**: Implements Reflexion, Constitutional AI, Self-Refine, and more
+- **👁️ Complete Observability**: Full audit trail of every improvement
+- **🎯 Simple API**: One function does everything you need
+- **💾 Memory-Safe**: Bounded history prevents memory leaks
+- **⚡ Fast**: Minimal dependencies, maximum performance
+
+## Documentation
+
+### Getting Started
+- **[Installation](https://sifaka.readthedocs.io/en/latest/installation/)** - Installation options and setup
+- **[Quickstart Guide](https://sifaka.readthedocs.io/en/latest/getting-started/quickstart/)** - Get up and running in 5 minutes
+- **[Basic Usage](https://sifaka.readthedocs.io/en/latest/guide/basic-usage/)** - Common usage patterns
+- **[API Reference](https://sifaka.readthedocs.io/en/latest/reference/api/)** - Complete API documentation
+
+### User Guides
+- **[Critics Guide](https://sifaka.readthedocs.io/en/latest/guide/critics/)** - Available critics and usage
+- **[Validators Guide](https://sifaka.readthedocs.io/en/latest/guide/validators/)** - Input validation options
+- **[Configuration](https://sifaka.readthedocs.io/en/latest/guide/configuration/)** - Configuration options
+- **[Advanced Usage](https://sifaka.readthedocs.io/en/latest/guide/advanced-usage/)** - Advanced patterns
+
+### Architecture & Development
+- **[Architecture Overview](https://sifaka.readthedocs.io/en/latest/architecture/)** - System design
+- **[Contributing](CONTRIBUTING.md)** - How to contribute
+- **[Changelog](CHANGELOG.md)** - Version history
+
+### Examples
+- **[Working Examples](examples/)** - Code examples for all features
+
+## Research Foundation
+
+Sifaka implements these peer-reviewed techniques:
+
+- **[Reflexion](https://arxiv.org/abs/2303.11366)** - Self-reflection for iterative improvement
+- **[Constitutional AI](https://arxiv.org/abs/2212.08073)** - Principle-based evaluation
+- **[Self-Refine](https://arxiv.org/abs/2303.17651)** - Iterative self-improvement
+- **[N-Critics](https://arxiv.org/abs/2310.18679)** - Ensemble of diverse perspectives
+- **[Self-RAG](https://arxiv.org/abs/2310.11511)** - Retrieval-augmented critique
+- **[Meta-Rewarding](https://arxiv.org/abs/2407.19594)** - Two-stage meta-evaluation
+- **[Self-Consistency](https://arxiv.org/abs/2203.11171)** - Multiple reasoning paths
+- **[Self-Taught Evaluator](https://arxiv.org/abs/2408.02666)** - Contrasting outputs with reasoning traces
+- **[Agent4Debate](https://arxiv.org/abs/2408.04472)** - Multi-agent competitive debate dynamics
+- **Style** - Transform text to match specific writing styles and voices
+- **Prompt** - Simple prompt-engineered critic for simple use cases
+
+## Development
+
+```bash
+git clone https://github.com/sifaka-ai/sifaka
+cd sifaka
+pip install -e ".[dev]"
+pytest
+```
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines.
+
+## License
+
+MIT License - see [LICENSE](LICENSE) file for details.
