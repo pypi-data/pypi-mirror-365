@@ -1,0 +1,35 @@
+Metadata-Version: 2.4
+Name: RRPad
+Version: 0.0.2
+Summary: ReplicationReflectionPad combines ReplicationPad and ReflectionPad to prevent errors from being reported due to small input sizes when using non-constant padding types. 
+Author-email: Psyche Halo <Psyche@WinsGod.com>
+Project-URL: Homepage, https://github.com/PsycheHalo/RRPad
+Project-URL: Issues, https://github.com/PsycheHalo/RRPad/issues
+Keywords: RRPad,ReplicationReflectionPad,Pad,PyTorch,AI,neural,NN,Padding
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: torch>=1.7.0
+Dynamic: license-file
+
+# RRPad
+ReplicationReflectionPad combines ReplicationPad and ReflectionPad to prevent errors from being reported due to small input sizes when using non-constant padding types.
+
+## Install
+```bash
+pip install RRPad
+```
+
+## Use
+```python
+from RRPad import ReplicationReflectionPad1d,ReplicationReflectionPad2d
+...
+pad=ReplicationReflectionPad1d(paddingSize)
+input=torch.randn((1,2,3))
+output=pad(input)
+```
+
+## HomePage
+<https://github.com/PsycheHalo/RRPad/>
