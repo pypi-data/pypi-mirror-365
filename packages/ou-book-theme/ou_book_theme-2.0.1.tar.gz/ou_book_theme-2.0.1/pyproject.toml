@@ -1,0 +1,155 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ou-book-theme"
+description = ''
+readme = "README.md"
+requires-python = ">=3.10"
+keywords = []
+authors = [{ name = "Mark Hall", email = "mark.hall@open.ac.uk" }]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+  "livereload>=2.6.3,<3",
+  "myst-parser>=4.0.1,<5",
+  "sphinx>=8,<9",
+  "sphinx_book_theme>=1.0.1,<2.0.0",
+  "sphinx_design>=0.5.0,<1.0.0",
+  "sphinx_external_toc>=1.0.1,<2",
+  "sphinxcontrib-mermaid>=0.8.1,<1.0.0",
+  "typer",
+  "webvtt-py>=0.5.1,<0.6.0",
+]
+dynamic = ["version"]
+[project.scripts]
+ou-book-theme = "ou_book_theme.__main__:app"
+obt = "ou_book_theme.__main__:app"
+
+[project.urls]
+Documentation = "https://stem-ts-gitlab.open.ac.uk/jupyterhub-infrastructure/ou-book-theme#ou-book-theme"
+Issues = "https://stem-ts-gitlab.open.ac.uk/jupyterhub-infrastructure/ou-book-theme/-/issues"
+Source = "https://stem-ts-gitlab.open.ac.uk/jupyterhub-infrastructure/ou-book-theme"
+
+[tool.hatch.version]
+path = "ou_book_theme/__about__.py"
+
+[tool.hatch.build]
+exclude = ["assets"]
+artifacts = [
+  "ou_book_theme/theme/ou_book_theme/static/scripts/**/*.*",
+  "ou_book_theme/theme/ou_book_theme/static/styles/**/*.*",
+]
+
+[tool.hatch.envs.default]
+extra-dependencies = [
+  "coverage[toml]>=6.5",
+  "pytest",
+  "ruff==0.9.7",
+]
+
+[tool.hatch.envs.default.scripts]
+server = "python dev-server.py"
+test = "pytest {args:tests}"
+test-cov = "coverage run -m pytest {args:tests}"
+cov-report = ["- coverage combine", "coverage report"]
+cov = ["test-cov", "cov-report"]
+build-ou-branding = [
+  "npm install",
+  "npx terser ou_book_theme/theme/ou_book_theme/ouheaders/js/src/ou-header.js ou_book_theme/theme/ou_book_theme/ouheaders/js/src/ou-translate.js ou_book_theme/theme/ou_book_theme/ouheaders/js/src/ou-cookie-policy.js > ou_book_theme/theme/ou_book_theme/ouheaders/js/headerfooter.min.js",
+]
+style-check = "ruff check {args:.}"
+style-format = "ruff format {args:.}"
+style = ["style-format", "style-check"]
+
+[[tool.hatch.envs.all.matrix]]
+python = ["3.9", "3.10", "3.11", "3.12", "3.13"]
+
+[tool.ruff]
+target-version = "py39"
+line-length = 120
+lint.select = [
+  "A",
+  "ARG",
+  "B",
+  "C",
+  "DTZ",
+  "E",
+  "EM",
+  "F",
+  "FBT",
+  "I",
+  "ICN",
+  "ISC",
+  "N",
+  "PLC",
+  "PLE",
+  "PLR",
+  "PLW",
+  "Q",
+  "RUF",
+  "S",
+  "T",
+  "TID",
+  "UP",
+  "W",
+  "YTT",
+]
+lint.ignore = [
+  # Allow non-abstract empty methods in abstract base classes
+  "B027",
+  # Allow boolean positional values in function calls, like `dict.get(... True)`
+  "FBT003",
+  # Ignore single-line concatenation
+  "ISC001",
+  # Ignore checks for possible passwords
+  "S105",
+  "S106",
+  "S107",
+  # Ignore complexity
+  "C901",
+  "PLR0911",
+  "PLR0912",
+  "PLR0913",
+  "PLR0915",
+]
+lint.unfixable = [
+  # Don't touch unused imports
+  "F401",
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["ou_book_theme"]
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.lint.per-file-ignores]
+# Tests can use magic values, assertions, and relative imports
+"tests/**/*" = ["PLR2004", "S101", "TID252"]
+
+[tool.pytest]
+junit_suite_name = "ou_book_theme"
+
+[tool.coverage.run]
+source_pkgs = ["ou_book_theme"]
+branch = true
+parallel = true
+omit = ["ou_book_theme/__about__.py"]
+
+[tool.coverage.paths]
+ou_book_theme = ["ou_book_theme", "*/ou-docs-server/ou_book_theme"]
+
+[tool.coverage.report]
+exclude_also = ["no cov", "if __name__ == .__main__.:", "if TYPE_CHECKING:"]
+skip_covered = true
+show_missing = true
