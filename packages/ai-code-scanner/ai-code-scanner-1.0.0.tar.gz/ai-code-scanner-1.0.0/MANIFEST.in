@@ -1,0 +1,12 @@
+include README.md
+include requirements.txt
+include test_scanner.py
+include demo_comments.py
+include enhanced_demo.js
+include enhanced_demo.py
+recursive-include __pycache__ *
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude *.pyd
+global-exclude __pycache__
+global-exclude *.so 

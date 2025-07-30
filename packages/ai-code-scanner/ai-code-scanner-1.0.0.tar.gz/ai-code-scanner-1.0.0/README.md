@@ -1,0 +1,201 @@
+# 🔒 Security Code Scanner
+
+A powerful Python tool that scans your codebase for security vulnerabilities using Claude AI. This tool analyzes your code files and provides detailed security findings with suggested fixes.
+
+## ✨ Features
+
+- **Multi-language Support**: Scans Python, JavaScript, TypeScript, Java, C/C++, PHP, Ruby, Go, Rust, and many more
+- **AI-Powered Analysis**: Uses Claude AI to identify security vulnerabilities with high accuracy
+- **Parallel Processing**: Fast scanning with configurable parallel workers
+- **Detailed Reports**: Provides vulnerability type, severity, location, and suggested fixes
+- **Smart File Filtering**: Automatically skips irrelevant files and directories
+- **JSON Output**: Option to save results in JSON format for further processing
+- **Inline Comments**: Add vulnerability comments directly to source files for easy review
+- **Enhanced Comments**: Include suggested fix code as comments, making it easy to implement fixes
+
+## 🚀 Installation
+
+1. **Clone or download the tool:**
+   ```bash
+   git clone <repository-url>
+   cd AI-code-sec-reviewer
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Set up your Anthropic API key:**
+   ```bash
+   export ANTHROPIC_API_KEY='your-api-key-here'
+   ```
+   
+   Or add it to your `.bashrc` or `.zshrc`:
+   ```bash
+   echo 'export ANTHROPIC_API_KEY="your-api-key-here"' >> ~/.bashrc
+   source ~/.bashrc
+   ```
+
+## 📋 Usage
+
+### Basic Usage
+
+Scan a project directory:
+```bash
+python security_scanner.py /path/to/your/project
+```
+
+Scan current directory:
+```bash
+python security_scanner.py .
+```
+
+### Advanced Options
+
+**Increase parallel workers for faster scanning:**
+```bash
+python security_scanner.py /path/to/project --max-workers 8
+```
+
+**Save results to JSON file:**
+```bash
+python security_scanner.py /path/to/project --output scan_results.json
+```
+
+**Combine options:**
+```bash
+python security_scanner.py /path/to/project --max-workers 6 --output results.json
+```
+
+## 📊 Output Format
+
+The tool provides detailed output including:
+
+- **Summary Statistics**: Files analyzed, vulnerability rate, files modified with comments
+- **Per-file Analysis**: Each file with vulnerabilities is listed separately
+- **Vulnerability Details**: 
+  - Type and severity (High/Medium/Low)
+  - Line number or code section
+  - Description of the issue
+  - Vulnerable code snippet
+  - Suggested fix with commented code
+
+### Example Output
+
+```
+🔒 SECURITY SCAN RESULTS
+================================================================================
+
+📊 Summary:
+   Files analyzed: 15
+   Files with vulnerabilities: 3
+   Files modified with comments: 3
+   Vulnerability rate: 20.0%
+
+🔍 /path/to/project/app.py
+------------------------------------------------------------
+
+🔴 HIGH - SQL Injection
+   Line/Section: 45
+   Description: User input directly concatenated into SQL query
+   Vulnerable Code:
+   query = f"SELECT * FROM users WHERE id = {user_id}"
+   
+   Suggested Fix:
+   # Use parameterized queries to prevent SQL injection
+   query = "SELECT * FROM users WHERE id = %s"
+   cursor.execute(query, (user_id,))
+
+💬 Added vulnerability comments to 3 files
+   Review the comments in your source files for detailed information
+
+📈 VULNERABILITY SUMMARY
+================================================================================
+   Total vulnerabilities found: 5
+   High severity: 2
+   Medium severity: 2
+   Low severity: 1
+```
+
+## 🔍 Supported File Types
+
+The scanner automatically detects and analyzes files with these extensions:
+
+- **Web Development**: `.py`, `.js`, `.ts`, `.jsx`, `.tsx`, `.php`, `.rb`
+- **Backend**: `.java`, `.cs`, `.go`, `.rs`, `.swift`, `.kt`
+- **Systems**: `.c`, `.cpp`, `.cxx`, `.h`, `.hpp`
+- **Scripts**: `.sh`, `.bash`, `.ps1`, `.vbs`, `.pl`
+- **Data**: `.sql`, `.r`, `.m`
+- **Functional**: `.scala`, `.clj`, `.hs`, `.ml`, `.fs`
+- **Others**: `.scm`, `.lisp`, `.el`
+
+## 🚫 Skipped Directories and Files
+
+The tool automatically skips:
+- **Version Control**: `.git`, `.svn`, `.hg`
+- **Dependencies**: `node_modules`, `venv`, `.venv`, `env`
+- **Build Artifacts**: `build`, `dist`, `target`, `bin`, `obj`
+- **IDE Files**: `.idea`, `.vscode`, `.vs`
+- **Cache**: `__pycache__`, `.pytest_cache`, `coverage`
+- **Lock Files**: `package-lock.json`, `yarn.lock`, `poetry.lock`
+- **Documentation**: `README.md`, `LICENSE`
+
+## ⚙️ Configuration
+
+### Environment Variables
+
+- `ANTHROPIC_API_KEY`: Your Anthropic API key (required)
+
+### Command Line Options
+
+- `project_path`: Path to the project directory to scan (required)
+- `--max-workers`: Maximum number of parallel workers (default: 4)
+- `--output`: Output file to save results as JSON
+- `--add-comments`: Add vulnerability comments directly to source files
+
+## 🔧 Troubleshooting
+
+### Common Issues
+
+**1. API Key Error:**
+```
+❌ Error: ANTHROPIC_API_KEY environment variable not set
+```
+**Solution:** Set your API key as shown in the installation section.
+
+**2. No Files Found:**
+```
+⚠️  No files found to scan
+```
+**Solution:** Check if the project path is correct and contains code files.
+
+**3. Permission Errors:**
+```
+❌ Error: [Errno 13] Permission denied
+```
+**Solution:** Ensure you have read permissions for the project directory.
+
+**4. API Rate Limits:**
+```
+❌ Error: Rate limit exceeded
+```
+**Solution:** Reduce the number of parallel workers or wait before retrying.
+
+**5. Comment Addition Failed:**
+```
+⚠️  Failed to add comments to filename.py
+```
+**Solution:** Check if the file is writable and not locked by another process.
+
+## 🛡️ Security Considerations
+
+- **API Key Security**: Never commit your API key to version control
+- **Code Privacy**: Your code is sent to Claude API for analysis
+- **Rate Limits**: Be mindful of API rate limits for large projects
+- **False Positives**: Review all findings manually before implementing fixes
+- **File Modifications**: The `--add-comments` flag modifies your source files. Consider backing up your code before running
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit issues and pull requests.
