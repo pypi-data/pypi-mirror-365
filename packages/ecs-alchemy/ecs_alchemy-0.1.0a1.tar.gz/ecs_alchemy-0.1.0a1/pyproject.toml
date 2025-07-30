@@ -1,0 +1,31 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ecs-alchemy"
+version = "0.1.0a1"
+authors = [
+  { name="Cody-Jane Stahl", email="cody-jane.stahl@gmail.com" },
+]
+description = "An Entity Component System architecture module for Flask projects."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "flask",
+    "click",
+    "sqlalchemy"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/Cody-Jane-Stahl/ecs"
+"Bug Tracker" = "https://github.com/Cody-Jane-Stahl/ecs/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ecs"]

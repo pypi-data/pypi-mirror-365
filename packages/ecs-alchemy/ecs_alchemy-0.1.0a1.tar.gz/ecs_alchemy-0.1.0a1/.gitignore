@@ -1,0 +1,32 @@
+# Byte-compiled and optimised files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+.venv/
+env/
+ENV/
+
+# Database files
+*.db
+*.sqlite3
+mydatabase.db
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Test and coverage reports
+.pytest_cache/
+.coverage
+htmlcov/
