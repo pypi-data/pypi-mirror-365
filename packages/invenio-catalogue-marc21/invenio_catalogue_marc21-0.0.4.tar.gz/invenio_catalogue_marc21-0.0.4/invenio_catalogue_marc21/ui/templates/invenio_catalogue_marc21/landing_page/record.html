@@ -1,0 +1,67 @@
+{#
+  Copyright (C) 2024 Graz University of Technology.
+
+  invenio-catalogue-marc21 is free software; you can redistribute it and/or
+  modify it under the terms of the MIT License; see LICENSE file for more
+  details.
+#}
+
+{%- extends config.MARC21_CATALOGUE_BASE_TEMPLATE %}
+
+{%- from "invenio_records_marc21/landing_page/macros/detail.html" import record_detail %}
+
+{%- set metadata = record.ui.metadata %}
+
+{% block head_title %}
+  <title>
+    {{ metadata.get("title_statement", {}).get("title", "") }}
+  </title>
+{% endblock head_title %}
+
+{%- block page_body %}
+  <div class="ui container" id="marc21-catalogue-landing-page">
+    <div class="ui relaxed grid">
+      {# Landing Page Header #}
+
+      <div class="row">
+        {%- include "invenio_catalogue_marc21/landing_page/helpers/header.html" %}
+      </div>
+
+      {# Main Content #}
+      <div class="row">
+        <div class="twelve wide computer sixteen wide tablet column center aligned">
+          {%- include "invenio_catalogue_marc21/landing_page/helpers/title.html" %}
+        </div>
+      </div>
+
+      <div class="twelve wide computer sixteen wide tablet column">
+        {%- include "invenio_catalogue_marc21/landing_page/helpers/metadata.html" %}
+        {%- include "invenio_records_marc21/landing_page/helpers/files.html" %}
+      </div>
+
+      {# Right Sidebar #}
+      <div class="four wide computer sixteen wide tablet column">
+        {#
+          {%- include "invenio_catalogue_marc21/landing_page/helpers/links.html" %}
+        #}
+        {%- include "invenio_catalogue_marc21/landing_page/helpers/chapters.html" %}
+      </div>
+    </div>
+
+
+    <div class="ui divider hidden"></div>
+
+    <div class="centered" id="jump-btn">
+      <a style="cursor: pointer;" href="#">
+        <span class="ui button">
+          <i class="arrow alternate circle up outline icon"></i>
+          {{_("Jump up")}}
+        </span>
+      </a>
+    </div>
+  </div>
+{%- endblock page_body %}
+
+{%- block javascript %}
+  {{ super() }}
+{%- endblock javascript %}

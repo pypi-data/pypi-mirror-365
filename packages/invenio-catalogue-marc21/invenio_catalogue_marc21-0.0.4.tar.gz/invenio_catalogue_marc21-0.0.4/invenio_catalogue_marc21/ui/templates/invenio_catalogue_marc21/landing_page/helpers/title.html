@@ -1,0 +1,19 @@
+{#
+    Copyright (C) 2024 Graz University of Technology.
+  
+    invenio-catalogue-marc21 is free software; you can redistribute it and/or
+    modify it under the terms of the MIT License; see LICENSE file for more
+    details.
+#}
+
+{% macro display_titles(titles) %}
+  {% if "full_title" in titles %}
+    {{ titles.full_title }}
+  {% elif "title" in titles %}
+    {{ titles.title }}
+  {% endif %}
+{% endmacro %}
+
+<div class="ui huge header">
+  {{ display_titles(metadata.get('title_statement', {})) }}
+</div>

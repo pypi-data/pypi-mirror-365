@@ -1,0 +1,140 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2024-2025 Graz University of Technology.
+#
+# invenio-catalogue-marc21 is free software; you can redistribute it and/or
+# modify it under the terms of the MIT License; see LICENSE file for more
+# details.
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "invenio-catalogue-marc21"
+description = "Invenio module link multiple marc21 records modules."
+authors = [
+  { name = "Graz University of Technology", email = "info@tugraz.at" }
+]
+dynamic = ["version"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
+keywords = ["invenio", "catalogue", "publications", "tugraz"]
+license = { file = "LICENSE" }
+readme = "README.rst"
+requires-python = ">=3.12"
+urls = { Repository = "https://github.com/tu-graz-library/invenio-catalogue-marc21" }
+
+dependencies = [
+    "invenio-base>=2.0.0,<3.0.0",
+    "invenio-i18n>=3.0.0,<4.0.0",
+    "invenio-search[opensearch2]>=3.0.0,<4.0.0",
+    "invenio-records-marc21>=0.20.0,<1.0.0",
+    "faker>=9.0.0",
+    "faker-file[pdf]>0.17.0",
+    "reportlab>=4.0.0",
+]
+
+[project.optional-dependencies]
+tests = [
+    "invenio-app>=2.0.0,<3.0.0",
+    "pytest-invenio>=3.0.0,<4.0.0",
+    "pytest-black>=0.6.0",
+    "ruff>=0.11",
+    "sphinx>=8.0.0",
+]
+
+# Entrypoints
+[project.entry-points."flask.commands"]
+catalogue = "invenio_catalogue_marc21.cli:catalogue"
+
+[project.entry-points."invenio_base.apps"]
+invenio_catalogue_marc21 = "invenio_catalogue_marc21:InvenioCatalogueMarc21"
+
+[project.entry-points."invenio_base.api_apps"]
+invenio_catalogue_marc21 = "invenio_catalogue_marc21:InvenioCatalogueMarc21"
+
+[project.entry-points."invenio_base.finalize_app"]
+invenio_catalogue_marc21 = "invenio_catalogue_marc21.ext:finalize_app"
+
+[project.entry-points."invenio_base.api_finalize_app"]
+invenio_catalogue_marc21 = "invenio_catalogue_marc21.ext:api_finalize_app"
+
+[project.entry-points."invenio_base.blueprints"]
+invenio_catalogue_marc21_ui = "invenio_catalogue_marc21.ui:create_blueprint"
+
+[project.entry-points."invenio_base.api_blueprints"]
+invenio_catalogue_marc21_record = "invenio_catalogue_marc21.views:create_record_bp"
+invenio_catalogue_marc21_catalogue = "invenio_catalogue_marc21.views:create_catalogue_bp"
+invenio_catalogue_marc21_alma_proxy = "invenio_catalogue_marc21.views:create_alma_proxy_bp"
+
+[project.entry-points."invenio_celery.tasks"]
+invenio_catalogue_marc21_demo = "invenio_catalogue_marc21.fixtures.tasks"
+
+[project.entry-points."invenio_i18n.translations"]
+messages = "invenio_catalogue_marc21"
+
+[project.entry-points."invenio_jsonschemas.schemas"]
+marc21-catalogue = "invenio_catalogue_marc21.records.jsonschemas"
+
+[project.entry-points."invenio_assets.webpack"]
+invenio_catalogue_marc21_theme = "invenio_catalogue_marc21.ui.webpack:theme"
+
+[tool.hatch.version]
+path = "invenio_catalogue_marc21/__init__.py"
+
+[tool.hatch.build]
+exclude = [
+  "run-tests.sh",
+  "docs/**",
+  "tests/**",
+]
+
+[tool.isort]
+profile = "black"
+
+[tool.pydocstyle]
+add_ignore = [
+    "D401",
+    "D403",
+]
+
+[tool.pytest.ini_options]
+addopts = "--black --isort --cov=invenio_catalogue_marc21 --cov-report=term-missing"
+testpaths = "tests invenio_catalogue_marc21"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+  "D203", "D211", "D212", "D213",
+  "E501",
+  "FA100", "FA102",
+  "FIX002",
+  "INP001",
+  "N999",
+  "PERF203",
+  "PLR0913",
+  "RET504",
+  "S101",
+  "TD",
+  "TID252",
+  "UP009",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**.py" = [
+  "ANN201",
+  "S108", "S311",
+]
+
+[tool.mypy]
+extra_checks = true
+strict = true
+strict_bytes = true
+strict_equality = true
+follow_untyped_imports = true
