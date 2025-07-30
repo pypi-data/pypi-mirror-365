@@ -1,0 +1,48 @@
+[build-system]
+requires = [ "setuptools>=61.0", "wheel",]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "py-semver-bumper"
+version = "0.1.1"
+description = "A Python command-line tool for bumping semantic versions"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [ "argparse>=1.4.0", "pyproject-parser>=0.13.0", "ty>=0.0.1a16",]
+dynamic = []
+
+[project.license]
+file = "LICENSE"
+
+[[project.authors]]
+name = "Matthew Cane"
+email = "matthew.cane0@gmail.com"
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "W",
+    "F",
+    "I",
+    "N",
+    "D",
+    "UP",
+    "ANN",
+    "S",
+    "BLE",
+    "B",
+    "A",
+    "C4",
+    "T10",
+    "EM",
+    "Q",
+    "RET",
+    "TRY",
+    "FURB",
+    "RUF",
+    "PERF",
+]
+ignore = [ "D203", "D213",]
+
+[dependency-groups]
+dev = [ "py-semver-bumper", "pytest>=8.4.1",]
