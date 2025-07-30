@@ -1,0 +1,2573 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Readme.rst</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<h1 id="ut_aod">ut_aod</h1>
+<h2 id="overview">Overview</h2>
+<p><strong>Utilities to manage Arrays of Dictionaries</strong></p>
+<h2 id="installation">Installation</h2>
+<p>Package <code>ut_aod</code> can be installed from PyPI or Anaconda.</p>
+<p>To install with <code>pip</code>:</p>
+<pre class="shell"><code>$ python -m pip install ut_aod</code></pre>
+<p>To install with <code>conda</code>:</p>
+<pre class="shell"><code>$ conda install -c conda-forge ut_aod</code></pre>
+<h2 id="package-logging">Package logging</h2>
+<p>c.f.: <code class="interpreted-text" role="ref">Appendix: Application Logging &lt;appx-log&gt;</code></p>
+<h2 id="package-files">Package files</h2>
+<h3 id="classification">Classification</h3>
+<p>The Package <code>ut_aod</code> consist of the following file types (c.f.: <strong>Appendix</strong>):</p>
+<ol>
+<li><strong>Special files:</strong> (c.f.: <code class="interpreted-text" role="ref">Appendix: &gt;Python Special Files &lt;python-special-files&gt;</code>)</li>
+<li><strong>Modules</strong> (c.f.: <code class="interpreted-text" role="ref">Appendix: &gt;Python Files &lt;python-files&gt;</code>)
+<ol type="a">
+<li><em>aod.py</em></li>
+<li><em>aodpath.py</em></li>
+</ol></li>
+<li><strong>Dunder modules:</strong> (c.f.: <code class="interpreted-text" role="ref">Appendix: &gt;Python Special Modules &lt;python-special-modules&gt;</code>)</li>
+</ol>
+<h2 id="modules">Modules</h2>
+<h3 id="module-aod.py">Module: aod.py</h3>
+<p>The Module <code>aod.py</code> contains only the static class <code>AoD</code>.</p>
+<h4 id="class-aod">Class: AoD</h4>
+<p>The Class <code>AoD</code> contains the following methods:</p>
+<h5 id="aod-methods">AoD Methods</h5>
+<blockquote>
+<table>
+<caption><em>AoD Methods</em></caption>
+<colgroup>
+<col style="width: 39%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Short description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>add</td>
+<td>Add object to array of dictionaries.</td>
+</tr>
+<tr class="even">
+<td>apply_function</td>
+<td>Apply function to array of dictionaries.</td>
+</tr>
+<tr class="odd">
+<td>csv_dictwriterows</td>
+<td>Write array of dictionaries to csv file with function dictwriterows.</td>
+</tr>
+<tr class="even">
+<td>dic_found_with_empty_value</td>
+<td>Return True or raise an exception if the array of dictionaries contains a dictionary with empty value and the execption switch is True.</td>
+</tr>
+<tr class="odd">
+<td>extend_if_not_empty</td>
+<td>Extend array of dictionaries with non empty dictionary.</td>
+</tr>
+<tr class="even">
+<td>join_aod</td>
+<td>Join elements of array of dictionaries.</td>
+</tr>
+<tr class="odd">
+<td>merge_dic</td>
+<td>Merge elements of array of dicts.</td>
+</tr>
+<tr class="even">
+<td>nvl</td>
+<td>Replace empty array of dictionaries.</td>
+</tr>
+<tr class="odd">
+<td>pd_to_csv</td>
+<td>Write array of dictionaries to csv file with pandas.</td>
+</tr>
+<tr class="even">
+<td>pl_to_csv</td>
+<td>Write array of dictionaries to csv file with polars.</td>
+</tr>
+<tr class="odd">
+<td>put</td>
+<td>Write transformed array of dictionaries to a csv file file with a selected I/O function.</td>
+</tr>
+<tr class="even">
+<td>sh_doaod_split_by_value_is_not_empty</td>
+<td>Converted array of dictionaries to dictionary of array of dictionaries by using conditional split.</td>
+</tr>
+<tr class="odd">
+<td>sh_dod</td>
+<td>Convert array of dictionaries to dictionaries of dictionaries.</td>
+</tr>
+<tr class="even">
+<td>sh_key_value_found</td>
+<td>Show True if an element exists in the array of dictionaries which contains the key, value pair.</td>
+</tr>
+<tr class="odd">
+<td>sh_unique</td>
+<td>Deduplicate array of dictionaries.</td>
+</tr>
+<tr class="even">
+<td>split_by_value_is_not_empty</td>
+<td>Split array of dictionaries by the condition "the given key value is not empty".</td>
+</tr>
+<tr class="odd">
+<td>to_aoa</td>
+<td>Convert array of dictionaries to array of arrays controlled by key- and value-switch.</td>
+</tr>
+<tr class="even">
+<td>to_aoa of_keys_values</td>
+<td>Convert array of dictionaries to array of arrays using keys of any dictionary and values of all dictionaries.</td>
+</tr>
+<tr class="odd">
+<td>to_aoa of_values</td>
+<td>Convert array of dictionaries to array of arrays using values of all dictionaries.</td>
+</tr>
+<tr class="even">
+<td>to_aoa of_key_values</td>
+<td>Convert array of dictionaries to array using dictionary values with given key.</td>
+</tr>
+<tr class="odd">
+<td>to_doaod_by_key</td>
+<td>Convert array of dictionaries to dictionary of arrays of dictionaries by using the key.</td>
+</tr>
+<tr class="even">
+<td>to_dic_by_key</td>
+<td>Convert array of dictionaries to dictionary by using the key</td>
+</tr>
+<tr class="odd">
+<td>to_dic_by_lc_keys</td>
+<td>Convert array of dictionaries to dictionary by using lowercase keys.</td>
+</tr>
+<tr class="even">
+<td>to_unique_by_key</td>
+<td>Convert array of dictionaries to unique array of dictionaries by selecting dictionaries with key.</td>
+</tr>
+<tr class="odd">
+<td>sh_unique</td>
+<td>Make the array of dictionaries unique.</td>
+</tr>
+<tr class="even">
+<td>write_xlsx_wb</td>
+<td>Write array of dictionaries to xlsx workbook.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aod-method-add">AoD Method: add</h5>
+<h6 id="description">Description</h6>
+<p>Add object to array of dictionaries.</p>
+<ol>
+<li>If the objects is a dictionary:
+<ul>
+<li>the object is appended to the array of dictionaries</li>
+</ul></li>
+<li>If the objects is an array of dictionaries:
+<ul>
+<li>the object extends the array of dictionaries</li>
+</ul></li>
+</ol>
+<h6 id="parameter">Parameter</h6>
+<blockquote>
+<table style="width:57%;">
+<caption><em>AoD-Method-add-Parameter</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 11%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod</td>
+<td>TyAoD</td>
+<td></td>
+<td>Array of dictionaries</td>
+</tr>
+<tr class="even">
+<td>obj</td>
+<td>TyAny</td>
+<td></td>
+<td>Object</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h6 id="return-value">Return Value</h6>
+<blockquote>
+<table style="width:44%;">
+<caption><em>AoD Method-add: Return Value</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>None</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aod-method-apply_function">AoD Method: apply_function</h5>
+<h6 id="description-1">Description</h6>
+<p>Create a new array of dictionaries by applying the function to each element of the array of dictionaries.</p>
+<h6 id="parameter-1">Parameter</h6>
+<blockquote>
+<table style="width:51%;">
+<caption><em>AoD Method apply_function: Parameter</em></caption>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 11%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod</td>
+<td>TyAoD</td>
+<td>Array of dictionaries</td>
+</tr>
+<tr class="even">
+<td>fnc</td>
+<td>TN_Call</td>
+<td>Object</td>
+</tr>
+<tr class="odd">
+<td>kwargs</td>
+<td>TN_Dic</td>
+<td>Keyword arguments</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h6 id="return-value-1">Return Value</h6>
+<blockquote>
+<table style="width:56%;">
+<caption><em>AoD Method apply_function: Return Value</em></caption>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 8%" />
+<col style="width: 36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod_new</td>
+<td>TyAoD</td>
+<td>new array of dictionaries</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aod-method-csv_dictwriterows">AoD Method: csv_dictwriterows</h5>
+<h6 id="description-2">Description</h6>
+<p>Write given array of dictionaries (1.argument) to a csv file with the given path name (2.argument) using the function "dictwriter" of the builtin path module "csv"</p>
+<h6 id="parameter-2">Parameter</h6>
+<blockquote>
+<table style="width:47%;">
+<caption><em>AoD Method csv_dictwriterows: Parameter</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 9%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod</td>
+<td>TyAoD</td>
+<td>Array of dictionaries</td>
+</tr>
+<tr class="even">
+<td>path</td>
+<td>TyPath</td>
+<td>Path</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h6 id="return-value-2">Return Value</h6>
+<blockquote>
+<table style="width:47%;">
+<caption><em>AoD Method csv_dictwriterows: Return Value</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 9%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>None</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aod-method-dic_found_with_empty_value">AoD Method: dic_found_with_empty_value</h5>
+<h6 id="description-3">Description</h6>
+<ol>
+<li>Set the switch sw_found to True if a dictionary with an empty value for the key is found in the given array of dictionaries (1.argument).</li>
+<li>If the Argument "sw_raise" is True and the switch "sw_found" is True, then an Exception is raised, otherwise the value of "sw_found" is returned.</li>
+</ol>
+<h6 id="parameter-3">Parameter</h6>
+<blockquote>
+<table style="width:64%;">
+<caption><em>AoD Method csv_dictwriterows: Parameter</em></caption>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 9%" />
+<col style="width: 11%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod</td>
+<td>TyAoD</td>
+<td></td>
+<td>array of dictionaries</td>
+</tr>
+<tr class="even">
+<td>key</td>
+<td>TyStr</td>
+<td></td>
+<td>Key</td>
+</tr>
+<tr class="odd">
+<td>sw_raise</td>
+<td>TyBool</td>
+<td>False</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h6 id="return-value-3">Return Value</h6>
+<blockquote>
+<table style="width:62%;">
+<caption><em>AoD Method csv_dictwriterows: Return Value</em></caption>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 9%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>sw_found</td>
+<td>TyBool</td>
+<td>key is found in a dictionary</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aod-method-extend_if_not_empty">AoD Method: extend_if_not_empty</h5>
+<h6 id="description-4">Description</h6>
+<ol>
+<li>Apply the given function (4.argument) to the value of the given dictionary (2.argument) for the key (3.argument).</li>
+<li>The result is used to extend the given array of dictionaries (1.argument).</li>
+</ol>
+<h6 id="parameter-4">Parameter</h6>
+<blockquote>
+<table style="width:64%;">
+<caption><em>AoD Method extend_if_not_empty: Parameter</em></caption>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 9%" />
+<col style="width: 11%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod</td>
+<td>TyAoD</td>
+<td></td>
+<td>Array of dictionaries</td>
+</tr>
+<tr class="even">
+<td>dic</td>
+<td>TyDic</td>
+<td></td>
+<td>Dictionary</td>
+</tr>
+<tr class="odd">
+<td>key</td>
+<td>TN_Any</td>
+<td></td>
+<td>Key</td>
+</tr>
+<tr class="even">
+<td>function</td>
+<td>TyCall</td>
+<td></td>
+<td>Function</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h6 id="return-value-4">Return Value</h6>
+<blockquote>
+<table style="width:56%;">
+<caption><em>AoD Method extend_if_not_empty: Return Value</em></caption>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 8%" />
+<col style="width: 36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod_new</td>
+<td>TyAoD</td>
+<td>New array of dictionaries</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aod-method-join_aod">AoD Method: join_aod</h5>
+<h6 id="description-5">Description</h6>
+<p>join 2 arrays of dictionaries</p>
+<h6 id="parameter-5">Parameter</h6>
+<blockquote>
+<table style="width:67%;">
+<caption><em>AoD Method join_aod: Parameter</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 11%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod0</td>
+<td>TyAoD</td>
+<td></td>
+<td>First array of dictionaries</td>
+</tr>
+<tr class="even">
+<td>aod1</td>
+<td>TyAoD</td>
+<td></td>
+<td>Second array of dictionaries</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h6 id="return-value-5">Return Value</h6>
+<blockquote>
+<table style="width:56%;">
+<caption><em>AoD Method join_aod: Return Value</em></caption>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 8%" />
+<col style="width: 36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod_new</td>
+<td>TyAoD</td>
+<td>New array of dictionaries</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aod-method-merge_dic">AoD Method: merge_dic</h5>
+<h6 id="description-6">Description</h6>
+<p>Merge array of dictionaries (1.argument) with the dictionary (2.argument).</p>
+<ol>
+<li>Each element of the new array of dictionaries is created by merging an element of the given array of dictionaries with the given dictionary.</li>
+</ol>
+<h6 id="parameter-6">Parameter</h6>
+<blockquote>
+<table style="width:58%;">
+<caption><em>AoD Method merge_dic: Parameter</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 9%" />
+<col style="width: 11%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod</td>
+<td>TN_AoD</td>
+<td></td>
+<td>Array of dictionaries</td>
+</tr>
+<tr class="even">
+<td>dic</td>
+<td>TN_Dic</td>
+<td></td>
+<td>Dictionary</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h6 id="return-value-6">Return Value</h6>
+<blockquote>
+<table style="width:56%;">
+<caption><em>AoD Method merge_dic: Return Value</em></caption>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 8%" />
+<col style="width: 36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod_new</td>
+<td>TyAoD</td>
+<td>New array of dictionaries</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aod-method-nvl">AoD Method: nvl</h5>
+<h6 id="description-7">Description</h6>
+<p>Replace a none value of the first argument with the emty array.</p>
+<h6 id="parameter-7">Parameter</h6>
+<blockquote>
+<table style="width:58%;">
+<caption><em>AoD Method nvl: Parameter</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 9%" />
+<col style="width: 11%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod</td>
+<td>TN_AoD</td>
+<td></td>
+<td>Array of dictionaries</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h6 id="return-value-7">Return Value</h6>
+<blockquote>
+<table style="width:56%;">
+<caption><em>AoD Method nvl: Return Value</em></caption>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 8%" />
+<col style="width: 36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod_new</td>
+<td>TyArr</td>
+<td>New array of dictionaries</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aod-method-pd_to_csv">AoD Method: pd_to_csv</h5>
+<h6 id="description-8">Description</h6>
+<ol>
+<li>Convert the given array of dictionaries (1.argument) to a panda dataframe using the panda function "from_dict".</li>
+<li>Write the result to a csv file with the given path name (2.argument using the panda function "to_csv".</li>
+</ol>
+<h6 id="parameter-8">Parameter</h6>
+<blockquote>
+<table style="width:61%;">
+<caption><em>AoD Method pd_to_csv: Parameter</em></caption>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 11%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod</td>
+<td>TyAoD</td>
+<td></td>
+<td>Array of dictionaries</td>
+</tr>
+<tr class="even">
+<td>path</td>
+<td>TyPath</td>
+<td></td>
+<td>Csv file psth</td>
+</tr>
+<tr class="odd">
+<td>fnc_pd</td>
+<td>TyCall</td>
+<td></td>
+<td>Panda function</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aod-method-pl_to_csv">AoD Method: pl_to_csv</h5>
+<h6 id="description-9">Description</h6>
+<ol>
+<li>Convert the given array of dictionaries (1.argument) to a panda dataframe with the panda function "from_dict".</li>
+<li>Convert the result to a polars dataframe using the polars function "to_pandas".</li>
+<li>Apply the given function (3. argument) to the polars dataframe.</li>
+<li>Write the result to a csv file with the given name (2.argument) using the polars function "to_csv".</li>
+</ol>
+<h6 id="parameter-9">Parameter</h6>
+<blockquote>
+<table style="width:61%;">
+<caption><em>AoD Method pl_to_csv: Parameter</em></caption>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 11%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod</td>
+<td>TyAoD</td>
+<td></td>
+<td>Array of dictionaries</td>
+</tr>
+<tr class="even">
+<td>path</td>
+<td>TyPath</td>
+<td></td>
+<td>Csv file path</td>
+</tr>
+<tr class="odd">
+<td>fnc_pd</td>
+<td>TyCall</td>
+<td></td>
+<td>Polars function</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h6 id="return-value-8">Return Value</h6>
+<blockquote>
+<table style="width:44%;">
+<caption><em>AoD Method pl_to_csv: Return Value</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>None</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aod-method-put">AoD Method: put</h5>
+<h6 id="description-10">Description</h6>
+<ol>
+<li>Transform array of dictionaries (1.argument) with a transformer function (3.argument)</li>
+<li>If the I/O function is defined for the given dataframe type (4.argument).
+<ol>
+<li>write result to a csv file with the given path name (2.argument).</li>
+</ol></li>
+</ol>
+<h6 id="parameter-10">Parameter</h6>
+<blockquote>
+<table style="width:62%;">
+<caption><em>AoD Method put: Parameter</em></caption>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 9%" />
+<col style="width: 11%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod</td>
+<td>TyAoD</td>
+<td></td>
+<td>Array of dictionaries</td>
+</tr>
+<tr class="even">
+<td>path</td>
+<td>TyPath</td>
+<td></td>
+<td>Csv file path</td>
+</tr>
+<tr class="odd">
+<td>fnc_aod</td>
+<td>TyAoD</td>
+<td></td>
+<td>AoD function</td>
+</tr>
+<tr class="even">
+<td>df_type</td>
+<td>TyStr</td>
+<td></td>
+<td>Dataframe type</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h6 id="return-value-9">Return Value</h6>
+<blockquote>
+<table style="width:43%;">
+<caption><em>AoD Method put: Return Value</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 29%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>None</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aod-method-sh_doaod_split_by_value_is_not_empty">AoD Method: sh_doaod_split_by_value_is_not_empty</h5>
+<h6 id="description-11">Description</h6>
+<p>#. Create 2-dimensional dict. of array of dictionaries from given array of dict. (1.argument) and key (2.argument) to split the array of dictionaries into 2 array of dictionaries by the two conditions</p>
+<blockquote>
+<ol>
+<li>"the key is contained in the dictionary and the value empty".</li>
+<li>"the key is contained in the dictionary and the value is not empty".</li>
+</ol>
+</blockquote>
+<ol>
+<li>The first array of dictionaries is created by the condition and is assigned to the new dictionary of array of dictionaries using the given key (3.argument).</li>
+<li>The second array of dictionaries is created by the negation of the condition and is assigned to the new dictionary of array of dictionaries using the given key (4.argument).</li>
+</ol>
+<h6 id="parameter-11">Parameter</h6>
+<blockquote>
+<table style="width:82%;">
+<caption><em>AoD Method sh_doaod_split_by_value_is_not_empty: Parameter</em></caption>
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 11%" />
+<col style="width: 54%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod</td>
+<td>TyAoD</td>
+<td></td>
+<td>Array of dictionaries</td>
+</tr>
+<tr class="even">
+<td>key</td>
+<td>Any</td>
+<td></td>
+<td>Key</td>
+</tr>
+<tr class="odd">
+<td>key_n</td>
+<td>Any</td>
+<td></td>
+<td>key of the array of dictionaries wich satisfies the condition.</td>
+</tr>
+<tr class="even">
+<td>key_y</td>
+<td>Any</td>
+<td></td>
+<td>key of the array of dictionaries which does not satisfies the condition.</td>
+</tr>
+</tbody>
+</table>
+<table style="width:69%;">
+<caption><em>AoD Method sh_doaod_split_by_value_is_not_empty: Return Value</em></caption>
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 11%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>doaod</td>
+<td>TyDoAoD</td>
+<td>Dictionary of array of dictionaries</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aod-method-sh_dod">AoD Method: sh_dod</h5>
+<h6 id="description-12">Description</h6>
+<p>Create dictionary of dicionaries from the array of dictionaries (1.argument) and the key (2.argument).</p>
+<h6 id="parameter-12">Parameter</h6>
+<blockquote>
+<table style="width:57%;">
+<caption><em>AoD Method sh_dod: Parameter</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 11%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod</td>
+<td>TyAoD</td>
+<td></td>
+<td>Array of dictionaries</td>
+</tr>
+<tr class="even">
+<td>key</td>
+<td>Any</td>
+<td></td>
+<td>Key</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h6 id="return-value-10">Return Value</h6>
+<blockquote>
+<table style="width:53%;">
+<caption><em>AoD Method sh_dod: Return Value</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 37%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>dod</td>
+<td>TyDoD</td>
+<td>Dictionary of dictionaries</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aod-method-sh_unique">AoD Method: sh_unique</h5>
+<h6 id="description-13">Description</h6>
+<p>Deduplicate array of dictionaries (1.argument).</p>
+<h6 id="parameter-13">Parameter</h6>
+<blockquote>
+<table style="width:57%;">
+<caption><em>AoD Method sh_unique: Parameter</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 11%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod</td>
+<td>TyAoD</td>
+<td></td>
+<td>Array of dictionaries</td>
+</tr>
+<tr class="even">
+<td>key</td>
+<td>Any</td>
+<td></td>
+<td>Key</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h6 id="return-value-11">Return Value</h6>
+<blockquote>
+<table style="width:56%;">
+<caption><em>AoD Method sh_unique: Return Value</em></caption>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 8%" />
+<col style="width: 36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod_new</td>
+<td>TyAoD</td>
+<td>New array of dictionaties</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aod-method-split_by_value_is_not_empty">AoD Method: split_by_value_is_not_empty</h5>
+<h6 id="description-14">Description</h6>
+<p>Split the given array of dictionary into 2 arrays of dictionary by the condition "the key is contained in the dictionary and the value is not empty"</p>
+<h6 id="parameter-14">Parameter</h6>
+<blockquote>
+<table style="width:57%;">
+<caption><em>AoD Method split_by_value_is_not_empty: Parameter</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 11%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod</td>
+<td>TyAoD</td>
+<td></td>
+<td>array of dictionaries</td>
+</tr>
+<tr class="even">
+<td>key</td>
+<td>Any.</td>
+<td></td>
+<td>Key</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h6 id="return-value-12">Return Value</h6>
+<blockquote>
+<table style="width:81%;">
+<caption><em>AoD Method split_by_value_is_not_empty: Return Value</em></caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 12%" />
+<col style="width: 47%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(aod_n, aod_y)</td>
+<td>Ty2ToAoD</td>
+<td>Tuple of 2 arrays of dictionaries</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aod-method-sw_key_value_found">AoD Method: sw_key_value_found</h5>
+<h6 id="description-15">Description</h6>
+<p>Set the condition to True if:</p>
+<ul>
+<li>the key is contained in a dictionary of the array of dictionaries and</li>
+<li>the key value is not empty"</li>
+</ul>
+<h6 id="parameter-15">Parameter</h6>
+<blockquote>
+<table style="width:57%;">
+<caption><em>AoD Method sw_key_value_found: Parameter</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 11%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod</td>
+<td>TyAoD</td>
+<td></td>
+<td>Array of dictionaries</td>
+</tr>
+<tr class="even">
+<td>key</td>
+<td>Any</td>
+<td></td>
+<td>Key</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h6 id="return-value-13">Return Value</h6>
+<blockquote>
+<table style="width:74%;">
+<caption><em>AoD Method sw_key_value_found: Return Value</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 9%" />
+<col style="width: 11%" />
+<col style="width: 45%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>sw</td>
+<td>TyBool</td>
+<td></td>
+<td>key is contained in a dictionary of the array of dictionaries</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aod-method-to_aoa">AoD Method: to_aoa</h5>
+<h6 id="description-16">Description</h6>
+<p>Create array of arrays from given array of dictionaries (1.argument).</p>
+<ol>
+<li><p>If switch sw_keys (2.argument) is True:</p>
+<p>Create the first element of the array of arrays as the list of dict. keys of the first elements of the array of dictionaries.</p></li>
+<li><p>If the switch sw_values (3. argument) is True:</p>
+<p>Create the other elemens of the array of dictionries as list of dict. values of the elements of the array of dictionaries.</p></li>
+</ol>
+<h6 id="parameter-16">Parameter</h6>
+<blockquote>
+<table style="width:65%;">
+<caption><em>AoD Method to_aoa: Parameter</em></caption>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 9%" />
+<col style="width: 11%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod</td>
+<td>TyAoD</td>
+<td></td>
+<td>array of dictionaries</td>
+</tr>
+<tr class="even">
+<td>sw_keys</td>
+<td>TyBool</td>
+<td></td>
+<td>keys switch</td>
+</tr>
+<tr class="odd">
+<td>sw_values</td>
+<td>TyBool</td>
+<td></td>
+<td>values switch</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h6 id="return-value-14">Return Value</h6>
+<blockquote>
+<table style="width:38%;">
+<caption><em>AoD Method to_aoa: Return Value</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aoa</td>
+<td>TyAoA</td>
+<td>array of arrays</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aod-method-to_aoa-of_key_values">AoD Method: to_aoa of_key_values</h5>
+<h6 id="description-17">Description</h6>
+<p>Convert the given array of dictionary (1.argument) into an array of arrays. #. Create first element of the new array of arrays as the keys-list of the first dictionary. #. Create other elements as the values-lists of the dictionaries of the array of dictionaries.</p>
+<h6 id="parameter-17">Parameter</h6>
+<blockquote>
+<table style="width:58%;">
+<caption><em>AoD Method to_aoa of_key_values: Parameter</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 12%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod</td>
+<td>TyAoD</td>
+<td></td>
+<td>Array of dictionaries</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h6 id="return-value-15">Return Value</h6>
+<blockquote>
+<table style="width:38%;">
+<caption><em>AoD Method to_aoa of_key_values: Return Value</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aoa</td>
+<td>TyAoA</td>
+<td>Array of arrays</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aod-method-to_aoa_of_values">AoD Method: to_aoa_of_values</h5>
+<h6 id="description-18">Description</h6>
+<p>Convert the given array of dictionaries (1.argument) into an array of arrays. The elements of the new array of arrays are the values-lists of the dictionaries of the array of dictionaries.</p>
+<h6 id="parameter-18">Parameter</h6>
+<blockquote>
+<table style="width:58%;">
+<caption><em>AoD Method to_aoa_of_values: Parameter</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 12%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod</td>
+<td>TyAoD</td>
+<td></td>
+<td>Array of dictionaries</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h6 id="return-value-16">Return Value</h6>
+<blockquote>
+<table style="width:50%;">
+<caption><em>AoD Method to_aoa_of_values: Return Value</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 12%" />
+<col style="width: 22%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aoa</td>
+<td>TyAoA</td>
+<td></td>
+<td>Array of arrays</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aod-method-to_arr-of_key_values">AoD Method: to_arr of_key_values</h5>
+<h6 id="description-19">Description</h6>
+<p>Convert the given array of dictionaries (1.argument) to an array. The elements of the new array are the selected values of each dictionary of the array of dictionaries with the given key (2.argument).</p>
+<h6 id="parameter-19">Parameter</h6>
+<blockquote>
+<table style="width:58%;">
+<caption><em>AoD Method to_arr of_key_values: Parameter</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 12%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod</td>
+<td>TyAoD</td>
+<td></td>
+<td>Array of dictionaries</td>
+</tr>
+<tr class="even">
+<td>key</td>
+<td>Any</td>
+<td></td>
+<td>Key</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h6 id="return-value-17">Return Value</h6>
+<blockquote>
+<table style="width:32%;">
+<caption><em>AoD Method to_arr of_key_values: Return Value</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>arr</td>
+<td>TyAoD</td>
+<td>New array</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aod-method-to_doaod_by_key">AoD Method: to_doaod_by_key</h5>
+<h6 id="parameter-20">Parameter</h6>
+<blockquote>
+<table style="width:57%;">
+<caption><em>AoD Method to_doaod_by_key: Parameter</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 11%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod</td>
+<td>TyAoD</td>
+<td></td>
+<td>Array of dictionaries</td>
+</tr>
+<tr class="even">
+<td>key</td>
+<td>Any</td>
+<td></td>
+<td>Key</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h6 id="return-value-18">Return Value</h6>
+<blockquote>
+<table style="width:67%;">
+<caption><em>AoD Method to_doaod_by_key: Return Value</em></caption>
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>doaod</td>
+<td>TyAoD</td>
+<td>Dictionary of array of dictionaries</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aod-method-to_dod_by_key">AoD Method: to_dod_by_key</h5>
+<h6 id="parameter-21">Parameter</h6>
+<blockquote>
+<table style="width:46%;">
+<caption><em>AoD Method to_dod_by_key: Parameter</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 11%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod</td>
+<td>TyAoD</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>key</td>
+<td>Any</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h6 id="return-value-19">Return Value</h6>
+<blockquote>
+<table style="width:35%;">
+<caption><em>AoD Method to_dod_by_key: Return Value</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>dic</td>
+<td>TyDic</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aod-method-to_doa_by_lc_keys">AoD Method: to_doa_by_lc_keys</h5>
+<h6 id="parameter-22">Parameter</h6>
+<blockquote>
+<table style="width:46%;">
+<caption><em>AoD Method to_doa_by_lc_keys: Parameter</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 11%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod</td>
+<td>TyAoD</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>key</td>
+<td>Any</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h6 id="return-value-20">Return Value</h6>
+<blockquote>
+<table style="width:35%;">
+<caption><em>AoD Method to_doa_by_lc_keys: Return Value</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>doa</td>
+<td>TyDoA</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aod-method-to_unique_by_key">AoD method: to_unique_by_key</h5>
+<h6 id="parameter-23">Parameter</h6>
+<blockquote>
+<table style="width:46%;">
+<caption><em>AoD Method to_unique_by_key: Parameter</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 11%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod</td>
+<td>TyAoD</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>key</td>
+<td>Any</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h6 id="return-value-21">Return Value</h6>
+<blockquote>
+<table style="width:50%;">
+<caption><em>AoD Method csv_dictwriterows: Return Value</em></caption>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 8%" />
+<col style="width: 11%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod_new</td>
+<td>TyAoD</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aod-method-write_xlsx_wb">AoD method: write_xlsx_wb</h5>
+<h6 id="parameter-24">Parameter</h6>
+<blockquote>
+<table style="width:57%;">
+<caption><em>AoD Method write_xlsx_wb: Parameter</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 11%" />
+<col style="width: 30%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod</td>
+<td>TyAoD</td>
+<td></td>
+<td>array of dictionaries</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h6 id="return-value-22">Return Value</h6>
+<blockquote>
+<table style="width:32%;">
+<caption><em>AoD Method write_xlsx_wb: Return Value</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>None</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h3 id="module-aodpath.py">Module: aodpath.py</h3>
+<p>The Module <code>aodpath.py</code> contains only the static class <code>AoDPath</code>;</p>
+<h4 id="class-aodpath">Class: AoDPath</h4>
+<h5 id="aodpath-methods">AoDPath Methods</h5>
+<blockquote>
+<table style="width:79%;">
+<caption><em>AoPath methods</em></caption>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>short Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>sh_aopath</td>
+<td>Show array of paths for array of dictionaries.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h5 id="aodpath-method-sh_a_path">AoDPath Method: sh_a_path</h5>
+<p>Convert Array of Path-Disctionaries to Array of Paths.</p>
+<h6 id="parameter-25">Parameter</h6>
+<blockquote>
+<table style="width:65%;">
+<caption><em>AoD Method sh_aopath: Parameter</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 8%" />
+<col style="width: 11%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>aod</td>
+<td>TyAoD</td>
+<td></td>
+<td>Array of Path-Dictionaries.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h6 id="return-value-23">Return Value</h6>
+<blockquote>
+<table style="width:40%;">
+<caption><em>AoD Method sh_aopath: Return Value</em></caption>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 12%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>TyAoPath</td>
+<td>Array of paths</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h1 id="appendix">Appendix</h1>
+<h2 id="appx-log">Package Logging</h2>
+<h3 id="description-20">Description</h3>
+<p>Logging use the module <strong>log.py</strong> of the logging package <strong>ut_log</strong>. The module supports two Logging types:</p>
+<ol>
+<li><strong>Standard Logging</strong> (std) or</li>
+<li><strong>User Logging</strong> (usr).</li>
+</ol>
+<p>The Logging type can be defined by one of the values 'std' or 'usr' of the parameter log_type; 'std' is the default. The different Logging types are configured by one of the following configuration files:</p>
+<ol>
+<li><strong>log.std.yml</strong> or</li>
+<li><strong>log.usr.yml</strong></li>
+</ol>
+<p>The configuration files can be stored in different configuration directories (ordered by increased priority):</p>
+<ol>
+<li>&lt;package directory of the log package <strong>ut_log</strong>&gt;/<strong>cfg</strong>,</li>
+<li>&lt;package directory of the application package <strong>ui_eviq_srr</strong>&gt;/<strong>cfg</strong>,</li>
+<li>&lt;application directory of the application <strong>eviq</strong>&gt;/<strong>cfg</strong>,</li>
+</ol>
+<p>The active configuration file is the configuration file in the directory with the highest priority.</p>
+<h3 id="examples">Examples</h3>
+<p>Site-packages-path = <strong>/appl/eviq/.pyenv/versions/3.11.12/lib/python3.11/site-packages</strong> Log-package = <strong>ut_log</strong> Application-package = <strong>ui_eviq_srr</strong> Application-home-path = <strong>/appl/eviq</strong></p>
+<h3 id="log-message-types">Log message types</h3>
+<p>Logging defines log file path names for the following log message types: .</p>
+<ol>
+<li><em>debug</em></li>
+<li><em>info</em></li>
+<li><em>warning</em></li>
+<li><em>error</em></li>
+<li><em>critical</em></li>
+</ol>
+<h4 id="log-types-and-log-directories">Log types and Log directories</h4>
+<p>Single or multiple Application log directories can be used for each message type:</p>
+<h4 id="application-parameter-for-logging">Application parameter for logging</h4>
+<table>
+<caption><em>Application parameter used in log naming</em></caption>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 19%" />
+<col style="width: 7%" />
+<col style="width: 24%" />
+<col style="width: 10%" />
+<col style="width: 15%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Decription</th>
+<th>Value</th>
+<th>Description</th>
+<th>Default</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>appl_data</td>
+<td>data directory</td>
+<td></td>
+<td></td>
+<td></td>
+<td>/data/eviq</td>
+</tr>
+<tr class="even">
+<td>tenant</td>
+<td>tenant name</td>
+<td>UMH</td>
+<td></td>
+<td></td>
+<td>UMH</td>
+</tr>
+<tr class="odd">
+<td>package</td>
+<td>package name</td>
+<td></td>
+<td></td>
+<td></td>
+<td>ui_eviq_srr</td>
+</tr>
+<tr class="even">
+<td>cmd</td>
+<td>command</td>
+<td></td>
+<td></td>
+<td></td>
+<td>evupreg</td>
+</tr>
+<tr class="odd">
+<td>log_type</td>
+<td><dl>
+<dt>Logging Type</dt>
+<dd><ul>
+<li></li>
+</ul>
+</dd>
+</dl></td>
+<td>std: -----+ usr:</td>
+<td>Standard logging ------------------+ User Logging</td>
+<td>std</td>
+<td>std</td>
+</tr>
+<tr class="even">
+<td>log_ts_type</td>
+<td>Logging timestamp + type</td>
+<td>ts: -----+ dt:</td>
+<td>Sec since 1.1.1970 ------------------+ Datetime</td>
+<td>ts</td>
+<td>ts</td>
+</tr>
+<tr class="odd">
+<td>log_sw_single_dir</td>
+<td>Use single log directory +</td>
+<td>True -----+ False</td>
+<td>use single dir. ------------------+ use muliple dir.</td>
+<td>True</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<h4 id="log-files-naming">Log files naming</h4>
+<h5 id="naming-conventions-table-format">Naming Conventions (table format)</h5>
+<table>
+<caption><em>Naming conventions for logging file paths</em></caption>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 61%" />
+<col style="width: 26%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type</th>
+<th>Directory</th>
+<th>File</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>debug</td>
+<td>/&lt;appl_data&gt;/&lt;tenant&gt;/RUN/&lt;package&gt;/&lt;cmd&gt;/debs</td>
+<td><a href="">debs</a>&lt;ts&gt;_&lt;pid&gt;.log</td>
+</tr>
+<tr class="even">
+<td>critical</td>
+<td>/&lt;appl_data&gt;/&lt;tenant&gt;/RUN/&lt;package&gt;/&lt;cmd&gt;/logs</td>
+<td><a href="">crts</a>&lt;ts&gt;_&lt;pid&gt;.log</td>
+</tr>
+<tr class="odd">
+<td>error</td>
+<td>/&lt;appl_data&gt;/&lt;tenant&gt;/RUN/&lt;package&gt;/&lt;cmd&gt;/logs</td>
+<td><a href="">errs</a>&lt;ts&gt;_&lt;pid&gt;.log</td>
+</tr>
+<tr class="even">
+<td>info</td>
+<td>/&lt;appl_data&gt;/&lt;tenant&gt;/RUN/&lt;package&gt;/&lt;cmd&gt;/logs</td>
+<td><a href="">infs</a>&lt;ts&gt;_&lt;pid&gt;.log</td>
+</tr>
+<tr class="odd">
+<td>warning</td>
+<td>/&lt;appl_data&gt;/&lt;tenant&gt;/RUN/&lt;package&gt;/&lt;cmd&gt;/logs</td>
+<td><a href="">rnsg</a>&lt;ts&gt;_&lt;pid&gt;.log</td>
+</tr>
+</tbody>
+</table>
+<h5 id="naming-conventions-tree-format">Naming Conventions (tree format)</h5>
+<pre><code>&lt;appl_data&gt;   Application data folder
+│
+└── &lt;tenant&gt;  Application tenant folder
+    │
+    └── RUN  Applications RUN folder for Application log files
+        │
+        └── &lt;package&gt;  RUN folder of Application package: &lt;package&gt;
+            │
+            └── &lt;cmd&gt;  RUN folder of Application command &lt;cmd&gt;
+                │
+                ├── debs  Application command debug messages folder
+                │   │
+                │   └── debs_&lt;ts&gt;_&lt;pid&gt;.log  debug messages for
+                │                            run of command &lt;cmd&gt;
+                │                            with pid &lt;pid&gt; at &lt;ts&gt;
+                │
+                └── logs  Application command log messages folder
+                    │
+                    ├── crts_&lt;ts&gt;_&lt;pid&gt;.log  critical messages for
+                    │                        run of command &lt;cmd&gt;
+                    │                        with pid &lt;pid&gt; at &lt;ts&gt;
+                    ├── errs_&lt;ts&gt;_&lt;pid&gt;.log  error messages for
+                    │                        run of command &lt;cmd&gt;
+                    │                        with pid &lt;pid&gt; at &lt;ts&gt;
+                    ├── infs_&lt;ts&gt;_&lt;pid&gt;.log  info messages for
+                    │                        run of command &lt;cmd&gt;
+                    │                        with pid &lt;pid&gt; at &lt;ts&gt;
+                    └── wrns_&lt;ts&gt;_&lt;pid&gt;.log  warning messages for
+                                             run of command &lt;cmd&gt;
+                                             with pid &lt;pid&gt; at &lt;ts&gt;</code></pre>
+<h5 id="naming-examples-table-format">Naming Examples (table format)</h5>
+<h5 id="naming-examples-tree-format">Naming Examples (tree format)</h5>
+<pre class="text"><code>/data/eviq/UMH/RUN/ui_eviq_srr/evdomap  Run folder of
+│                                       of function evdomap
+│                                       of package ui_eviq_srr
+│                                       for teanant UMH
+│                                       of application eviq
+│
+├── debs  debug folder of Application function: evdomap
+│   │
+│   └── debs_1748609414_314062.log  debug messages for run 
+│                                   of function evdomap     
+│                                   using pid: 314062 at: 1748609414
+│
+└── logs  log folder of Application function: evdomap
+    │
+    ├── errs_1748609414_314062.log  error messages for run
+    │                               of function evdomap     
+    │                               with pid: 314062 at: 1748609414
+    ├── infs_1748609414_314062.log  info messages for run
+    │                               of function evdomap     
+    │                               with pid: 314062 at: 1748609414
+    └── wrns_1748609414_314062.log  warning messages for run
+                                    of function evdomap     
+                                    with pid: 314062 at: 1748609414</code></pre>
+<h3 id="configuration-files">Configuration files</h3>
+<h4 id="log.std.yml-jinja2-yml-file">log.std.yml (jinja2 yml file)</h4>
+<h5 id="content">Content</h5>
+<pre class="jinja"><code>version: 1
+
+disable_existing_loggers: False
+
+loggers:
+
+    # standard logger
+    std:
+        # level: NOTSET
+        level: DEBUG
+        handlers:
+            - std_debug_console
+            - std_debug_file
+            - std_info_file
+            - std_warning_file
+            - std_error_file
+            - std_critical_file
+
+handlers:
+
+    std_debug_console:
+        class: &#39;logging.StreamHandler&#39;
+        level: DEBUG
+        formatter: std_debug
+        stream: &#39;ext://sys.stderr&#39;
+
+    std_debug_file:
+        class: &#39;logging.FileHandler&#39;
+        level: DEBUG
+        formatter: std_debug
+        filename: &#39;{{dir_run_debs}}/debs_{{ts}}_{{pid}}.log&#39;
+        mode: &#39;a&#39;
+        delay: true
+
+    std_info_file:
+        class: &#39;logging.FileHandler&#39;
+        level: INFO
+        formatter: std_info
+        filename: &#39;{{dir_run_infs}}/infs_{{ts}}_{{pid}}.log&#39;
+        mode: &#39;a&#39;
+        delay: true
+
+    std_warning_file:
+        class: &#39;logging.FileHandler&#39;
+        level: WARNING
+        formatter: std_warning
+        filename: &#39;{{dir_run_wrns}}/wrns_{{ts}}_{{pid}}.log&#39;
+        mode: &#39;a&#39;
+        delay: true
+
+    std_error_file:
+        class: &#39;logging.FileHandler&#39;
+        level: ERROR
+        formatter: std_error
+        filename: &#39;{{dir_run_errs}}/errs_{{ts}}_{{pid}}.log&#39;
+        mode: &#39;a&#39;
+        delay: true
+
+    std_critical_file:
+        class: &#39;logging.FileHandler&#39;
+        level: CRITICAL
+        formatter: std_critical
+        filename: &#39;{{dir_run_crts}}/crts_{{ts}}_{{pid}}.log&#39;
+        mode: &#39;a&#39;
+        delay: true
+
+    std_critical_mail:
+        class: &#39;logging.handlers.SMTPHandler&#39;
+        level: CRITICAL
+        formatter: std_critical_mail
+        mailhost : localhost
+        fromaddr: &#39;monitoring@domain.com&#39;
+        toaddrs:
+            - &#39;dev@domain.com&#39;
+            - &#39;qa@domain.com&#39;
+        subject: &#39;Critical error with application name&#39;
+
+formatters:
+
+    std_debug:
+        format: &#39;%(asctime)-15s %(levelname)s-%(name)s-%(process)d::%(module)s.%(funcName)s|%(lineno)s:: %(message)s&#39;
+        datefmt: &#39;%Y-%m-%d %H:%M:%S&#39;
+    std_info:
+        format: &#39;%(asctime)-15s %(levelname)s-%(name)s-%(process)d::%(module)s.%(funcName)s|%(lineno)s:: %(message)s&#39;
+        datefmt: &#39;%Y-%m-%d %H:%M:%S&#39;
+    std_warning:
+        format: &#39;%(asctime)-15s %(levelname)s-%(name)s-%(process)d::%(module)s.%(funcName)s|%(lineno)s:: %(message)s&#39;
+        datefmt: &#39;%Y-%m-%d %H:%M:%S&#39;
+    std_error:
+        format: &#39;%(asctime)-15s %(levelname)s-%(name)s-%(process)d::%(module)s.%(funcName)s|%(lineno)s:: %(message)s&#39;
+        datefmt: &#39;%Y-%m-%d %H:%M:%S&#39;
+    std_critical:
+        format: &#39;%(asctime)-15s %(levelname)s-%(name)s-%(process)d::%(module)s.%(funcName)s|%(lineno)s:: %(message)s&#39;
+        datefmt: &#39;%Y-%m-%d %H:%M:%S&#39;
+    std_critical_mail:
+        format: &#39;%(asctime)-15s %(levelname)s-%(name)s-%(process)d::%(module)s.%(funcName)s|%(lineno)s:: %(message)s&#39;
+        datefmt: &#39;%Y-%m-%d %H:%M:%S&#39;</code></pre>
+<h5 id="jinja2-variables">Jinja2-variables</h5>
+<h2 id="python-terminology">Python Terminology</h2>
+<h3 id="python-modules">Python Modules</h3>
+<h4 id="overview-1">Overview</h4>
+<blockquote>
+
+</blockquote>
+<div id="python-functions">
+<p>Python Modules Python Function ===============</p>
+</div>
+<h4 id="overview-2">Overview</h4>
+<blockquote>
+
+</blockquote>
+<h3 id="python-packages">Python Packages</h3>
+<h4 id="overview-3">Overview</h4>
+<blockquote>
+<table style="width:94%;">
+<caption><em>Python Packages Overview</em></caption>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Python package</td>
+<td>Python packages are directories that contains the special module <code>__init__.py</code> and other modules, sub packages, files or directories.</td>
+</tr>
+<tr class="even">
+<td>Python sub-package</td>
+<td>Python sub-packages are python packages which are contained in another python package.</td>
+</tr>
+<tr class="odd">
+<td>Python package sub-directory</td>
+<td>directory contained in a python package.</td>
+</tr>
+<tr class="even">
+<td>Python package special sub-directory</td>
+<td>Python package sub-directories with a special meaning like data or cfg</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h4 id="special-python-package-sub-directories">Special python package sub-directories</h4>
+<blockquote>
+<table style="width:71%;">
+<caption><em>Special python package sub-directories</em></caption>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 59%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>bin</td>
+<td>Directory for package scripts.</td>
+</tr>
+<tr class="even">
+<td>cfg</td>
+<td>Directory for package configuration files.</td>
+</tr>
+<tr class="odd">
+<td>data</td>
+<td>Directory for package data files.</td>
+</tr>
+<tr class="even">
+<td>service</td>
+<td>Directory for systemd service scripts.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h3 id="python-files">Python Files</h3>
+<h4 id="overview-4">Overview</h4>
+<blockquote>
+
+</blockquote>
+<h4 id="python-special-files">Python Special Files</h4>
+<blockquote>
+<table>
+<caption><em>Python special files</em></caption>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 77%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>py.typed</td>
+<td>Type checking marker file</td>
+<td>The <code>py.typed</code> file is a marker file used in Python packages to indicate that the package supports type checking. This is a part of the PEP 561 standard, which provides a standardized way to package and distribute type information in Python.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h4 id="python-special-modules">Python Special Modules</h4>
+<blockquote>
+<table>
+<caption><em>Python special modules</em></caption>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 13%" />
+<col style="width: 70%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>__init__.py</td>
+<td>Package directory marker file</td>
+<td>The dunder (double underscore) module <code>__init__.py</code> is used to execute initialisation code or mark the directory it contains as a package. The Module enforces explicit imports and thus clear namespace use and call them with the dot notation.</td>
+</tr>
+<tr class="even">
+<td>__main__.py</td>
+<td>entry point for the package</td>
+<td>The dunder module <code>__main__.py</code> serves as package entry point point. The module is executed when the package is called by the interpreter with the command <strong>python -m &lt;package name&gt;</strong>.</td>
+</tr>
+<tr class="odd">
+<td>__version__.py</td>
+<td>Version file</td>
+<td>The dunder module <code>__version__.py</code> consist of assignment statements used in Versioning.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h3 id="python-classes">Python classes</h3>
+<h4 id="overview-5">Overview</h4>
+<blockquote>
+<table>
+<caption><em>Python classes overview</em></caption>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 72%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Python class</td>
+<td>A class is a container to group related methods and variables together, even if no objects are created. This helps in organizing code logically.</td>
+</tr>
+<tr class="even">
+<td>Python static class</td>
+<td>A class which contains only @staticmethod or @classmethod methods and no instance-specific attributes or methods.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h3 id="python-methods">Python methods</h3>
+<h4 id="overview-6">Overview</h4>
+<blockquote>
+<table style="width:82%;">
+<caption><em>Python methods overview</em></caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 61%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Python method</td>
+<td>Python functions defined in python modules.</td>
+</tr>
+<tr class="even">
+<td>Python class method</td>
+<td>Python functions defined in python classes.</td>
+</tr>
+<tr class="odd">
+<td>Python special class method</td>
+<td>Python class methods with special names and functionalities.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h4 id="python-class-methods">Python class methods</h4>
+<blockquote>
+<table style="width:86%;">
+<caption><em>Python class methods</em></caption>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Python no instance class method</td>
+<td>Python function defined in python classes and decorated with @classmethod or @staticmethod. The first parameter conventionally called cls is a reference to the current class.</td>
+</tr>
+<tr class="even">
+<td>Python instance class method</td>
+<td>Python function defined in python classes; the first parameter conventionally called self is a reference to the current class object.</td>
+</tr>
+<tr class="odd">
+<td>special Python class method</td>
+<td>Python class functions with special names and functionalities.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h4 id="python-special-class-methods">Python special class methods</h4>
+<blockquote>
+<table>
+<caption><em>Python methods examples</em></caption>
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 14%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>__init__</td>
+<td>class object constructor method</td>
+<td>The special method <code>__init__</code> is called when an instance (object) of a class is created; instance attributes can be defined and initalized in the method. The method us a single parameter conventionally called <code>self</code> to access the object.</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+<h1 id="table-of-contents">Table of Contents</h1>
+<div class="contents">
+<p><strong>Table of Content</strong></p>
+</div>
+</body>
+</html>
