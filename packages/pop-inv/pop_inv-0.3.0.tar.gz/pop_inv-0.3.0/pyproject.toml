@@ -1,0 +1,36 @@
+## pyproject.toml
+
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pop_inv"
+version = "0.3.0"
+description = "Polar onion peeling for inverting VMI data"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "Xligt" }]
+keywords = ["polar", "onion", "peeling", "VMI", "inversion"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+]
+dependencies = [
+  "numpy>=1.17",
+  "scipy>=1.5",
+  "scikit-learn>=0.24",
+]
+
+[project.urls]
+Homepage = "https://github.com/xligt/pop"
+
+[tool.setuptools]
+# now we have a real package directory named "pop"
+packages = ["pop_inv"]
+include-package-data = true
+# tie the .pkl files into the pop package
+package-data = { "pop_inv" = ["RBFs512.pkl", "img.pkl"] }
+
