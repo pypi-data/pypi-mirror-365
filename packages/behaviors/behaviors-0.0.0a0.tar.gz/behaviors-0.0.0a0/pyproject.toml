@@ -1,0 +1,13 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "behaviors"
+version = "0.0.0a0"
+description = ""
+requires-python = "==3.12.*,!=3.12.5"
+dependencies = []
+
+[tool.uv]
+managed = false
