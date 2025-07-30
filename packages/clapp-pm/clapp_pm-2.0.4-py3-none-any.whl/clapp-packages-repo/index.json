@@ -1,0 +1,43 @@
+[
+  {
+    "name": "pycloud-os",
+    "version": "1.0.0",
+    "language": "python",
+    "description": "Modern, Python tabanlı, macOS benzeri işletim sistemi. Modüler mimarisi, güçlü GUI sistemi ve kapsamlı uygulama ekosistemine sahiptir.",
+    "entry": "main.py",
+    "dependencies": [
+      "PyQt6",
+      "PyQt6-WebEngine",
+      "Pillow",
+      "psutil",
+      "requests",
+      "pyserial",
+      "Flask",
+      "pytest",
+      "pytest-cov",
+      "pytest-mock",
+      "black",
+      "flake8",
+      "isort",
+      "mypy",
+      "types-requests",
+      "types-setuptools",
+      "sphinx",
+      "sphinx-rtd-theme",
+      "sphinx-autodoc-typehints",
+      "wheel",
+      "setuptools",
+      "build",
+      "ipython",
+      "jupyterlab",
+      "memory-profiler",
+      "line-profiler",
+      "bandit",
+      "safety",
+      "pre-commit"
+    ],
+    "folder": "pycloud-os",
+    "repo_url": "https://github.com/mburakmmm/clapp-packages",
+    "subdir": "pycloud-os"
+  }
+]
