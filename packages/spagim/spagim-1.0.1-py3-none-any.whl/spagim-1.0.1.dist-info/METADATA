@@ -1,0 +1,41 @@
+Metadata-Version: 2.4
+Name: spagim
+Version: 1.0.1
+Summary: Revealing the biological utility of gene imputation in spatial transcriptomics
+Home-page: https://github.com/uhlerlab/Spatial-Gene-Imputation-Methods
+Author: Kai Cao
+Author-email: caokai1073@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: torch
+Requires-Dist: scikit-learn
+Requires-Dist: scanpy
+Requires-Dist: scvi-tools
+Requires-Dist: matplotlib
+Requires-Dist: scipy
+Requires-Dist: anndata
+Requires-Dist: tangram-sc
+Requires-Dist: scenvi
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Run Gene Imputation Methods
+[![PyPI version](https://img.shields.io/pypi/v/spagim)](https://pypi.org/project/spagim/)
+[![Downloads](https://static.pepy.tech/badge/spagim)](https://pepy.tech/project/spagim)
+
+**spagim** is a package for single-cell gene imputation. It provides a unified interface for various imputation methods, making it easy to apply them to your data. 
