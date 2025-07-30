@@ -1,0 +1,52 @@
+Metadata-Version: 2.4
+Name: openapi-slice-mcp
+Version: 0.1.0
+Summary: MCP server that extracts relevant portions of OpenAPI specs for specific endpoints, reducing context size when working with large API specifications
+Author-email: OpenAPI Slice MCP <maciek@ultraview.pl>
+License: MIT
+Project-URL: Homepage, https://github.com/vvarp/openapi-slice-mcp
+Project-URL: Repository, https://github.com/vvarp/openapi-slice-mcp
+Keywords: mcp,openapi,api
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: fastmcp>=2.10.6
+Requires-Dist: pyyaml>=6.0
+Dynamic: license-file
+
+# OpenAPI Slice MCP Server
+
+An MCP (Model Context Protocol) server that helps you work with large OpenAPI specifications by extracting only the relevant portions for specific endpoints. This is particularly useful when working with LLMs that have context limitations - instead of loading an entire large OpenAPI spec, you can extract just the parts you need for a specific endpoint.
+
+## Features
+
+- **Endpoint-specific extraction**: Get minimal OpenAPI specs containing only the requested endpoint and its dependencies
+- **Automatic dependency resolution**: Recursively finds and includes all referenced components (schemas, parameters, etc.)
+- **Multiple formats**: Output in YAML or JSON format
+- **File support**: Load OpenAPI specs from YAML or JSON files
+- **Discovery tools**: List all available endpoints in a loaded specification
+
+## Tools
+
+The server provides the following MCP tools:
+
+- `load_openapi_spec(file_path: str)` - Load an OpenAPI specification from a YAML or JSON file
+- `list_endpoints()` - List all available endpoints in the currently loaded specification
+- `extract_endpoint_slice(path: str, method: str, output_format: str = "yaml")` - Extract a minimal spec slice for a specific endpoint
+- `get_server_status()` - Get the current status of the server
+
+## Usage
+
+### Running the Server
+
+```bash
+uvx openapi-slice-mcp
+```
+
+The server runs using the STDIO transport and can be integrated with any MCP client.
