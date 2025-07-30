@@ -1,0 +1,50 @@
+# UAC Bypass
+
+A python library that is an exploit for UAC Bypass on Windows. It works on any version of Windows and can execute a pyload(exe) with admin access without confirmation.
+
+**Project:** UAC
+**Creator:** Mohammad Taha Gorji
+
+---
+
+
+
+## Installation
+
+Users can install UAC Bypass using pip:
+
+```bash
+pip install UAC
+```
+
+## Getting Started
+
+Use
+
+```python
+# Import UAC Bypass
+from UACbypass import exploit_windows_uac_bypass
+
+
+# Use
+if __name__ == "__main__":
+    # Your Path! For Example payload = r"D:\Project\UACbypass\hack.exe"
+    payload = r"D:\Project\UACbypass\hack.exe"
+
+    if exploit_windows_uac_bypass(payload):
+        print("Bypass initiated. اگر لاگ آف کنید، payload اجرا می‌شود.")
+    else:
+        print("Bypass failed.")
+```
+
+---
+
+
+## License
+
+This project is licensed under the MIT License.
+```
+
+
+By Mohammad Taha Gorji
+Github: https://Github.com/mr-r0ot
