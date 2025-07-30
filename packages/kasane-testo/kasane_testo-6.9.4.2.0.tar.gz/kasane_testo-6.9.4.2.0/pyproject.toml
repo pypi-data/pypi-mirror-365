@@ -1,0 +1,20 @@
+[project]
+name = "kasane_testo"
+version = "6.9.4.2.0"
+authors = [{ name="Moltony", email="koronavirusnyj@gmail.com" }]
+description = "my first ever pypi package"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent"
+]
+license = "MIT"
+
+[project.urls]
+Homepage = "https://github.com/IAmMoltony/kasane-testo"
+Issues = "https://github.com/IAmMoltony/kasane-testo/issues"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta" # this is so meta
