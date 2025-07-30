@@ -1,0 +1,555 @@
+{
+  "about": {
+    "about_aleksis": "About AlekSIS®",
+    "about_aleksis_1": "This platform is powered by AlekSIS®, a web-based school information system (SIS) which can be used to manage and/or publish organisational artifacts of educational institutions. AlekSIS is free software and can be used by anyone.",
+    "about_aleksis_2": "AlekSIS® is a registered trademark of the AlekSIS open source project, represented by Teckids e.V.",
+    "free_open_source_licence": "Free/Open Source Licence",
+    "free_software": "Free Software",
+    "full_licence_text": "Full Licence Text",
+    "licence_consists_of": "The licence consists of",
+    "licence_information": "Licence Information",
+    "licence_information_1": "The core and the official apps of AlekSIS are licenced under the EUPL, version 1.2 or later. For licence information from third-party apps, if installed, refer to the respective components below. The licences are marked like this:",
+    "licence_type": "Licence Type",
+    "licenced_under": "Licenced under",
+    "more_information_eupl": "More information about the EUPL",
+    "open_source": "Open Source",
+    "other_licence": "Other Licence",
+    "page_title": "About AlekSIS®",
+    "proprietary": "Proprietary",
+    "show_copyright": "Show copyright",
+    "source_code": "Source Code",
+    "website_of_aleksis": "Website of AlekSIS"
+  },
+  "accounts": {
+    "change_password": {
+      "menu_title": "Change Password"
+    },
+    "invitation": {
+      "accept_invitation": {
+        "menu_title": "Accept Invitation"
+      },
+      "invite_person": {
+        "menu_title": "Invite Person"
+      }
+    },
+    "login": {
+      "menu_title": "Login"
+    },
+    "logout": {
+      "menu_title": "Logout"
+    },
+    "signup": {
+      "menu_title": "Sign Up"
+    },
+    "social_connections": {
+      "menu_title": "Third-party Accounts"
+    },
+    "two_factor": {
+      "add_authentication_method": "Add Authentication Method",
+      "backup_codes_count": "You have no backup codes remaining.|You have only one backup code remaining.|You have {counter} backup codes remaining.",
+      "backup_codes_description": "If you can't use any of your devices, you can access your account using backup codes.",
+      "backup_codes_title": "Backup Codes",
+      "disable_button": "Disable Two-Factor Authentication",
+      "disable_description": "However we strongly discourage you to do so, you can also disable two-factor authentication for your account.",
+      "disable_title": "Disable Two-Factor Authentication",
+      "enable_button": "Enable Two-Factor Authentication",
+      "enable_description": "Two-factor authentication is not enabled for your account. Enable two-factor authentication for enhanced account security.",
+      "enable_title": "Two-Factor Authentication Currently Disabled",
+      "menu_title": "2FA",
+      "methods": {
+        "call": "We will call you at your mobile phone and tell you a one-time code.",
+        "email": "We will send you one-time codes to your e-mail address.",
+        "generator": "You generate one-time codes using a code generator.",
+        "sms": "We will send you one-time codes to your mobile phone number.",
+        "webauthn": "You use a security key (either as external device or integrated in your personal device).",
+        "yubikey": "You use a Yubikey to generate one-time codes."
+      },
+      "other_devices_description": "If your primary authentication device is not available during logging in, you can use one of these devices:",
+      "other_devices_title": "Other Authentication Devices",
+      "primary_device_description": "While logging in, AlekSIS will ask you to confirm the login with the following device. If this device is not available, you can use a backup device.",
+      "primary_device_title": "Primary Authentication Device",
+      "title": "Two-Factor Authentication"
+    }
+  },
+  "actions": {
+    "back": "Back",
+    "cancel": "Cancel",
+    "clear": "Clear field",
+    "clear_filters": "Clear Filters",
+    "close": "Close",
+    "confirm": "Confirm",
+    "confirm_deletion": "Are you sure you want to delete this item?",
+    "confirm_deletion_multiple": "Are you sure you want to delete these items?",
+    "continue": "Continue",
+    "copied": "Copied",
+    "copy": "Copy",
+    "create": "Add",
+    "delete": "Delete",
+    "edit": "Edit",
+    "filter": "Filter",
+    "save": "Save",
+    "search": "Search",
+    "select_action": "Select Action",
+    "select_all": "Select all",
+    "stop_editing": "Stop editing",
+    "title": "Actions",
+    "update": "Update",
+    "next": "Next",
+    "type_to_search": "Start typing to search",
+    "toggle_sidenav": "Toggle side navigation panel",
+    "select_school_term": "Open Active School Term Select",
+    "list_notifications": "Open Notification List",
+    "account_menu": "Open account menu",
+    "more_actions": "More actions",
+    "scroll_prev": "Scroll to previous",
+    "scroll_next": "Scroll to next",
+    "open_details": "View details",
+    "open_in_new": "Open in new tab"
+  },
+  "administration": {
+    "backend_admin": {
+      "menu_title": "Backend Admin"
+    },
+    "menu_title": "Administration",
+    "system_status": {
+      "menu_title": "System Status"
+    }
+  },
+  "alerts": {
+    "page_cached": "This page may contain outdated information since there is no internet connection."
+  },
+  "announcement": {
+    "menu_title": "Announcements",
+    "title_plural": "Announcements",
+    "valid_from": "Valid from",
+    "valid_until": "Valid until",
+    "recipient_groups": "Recipient groups",
+    "recipient_persons": "Recipient persons",
+    "title": "Title",
+    "description": "Description",
+    "priority": "Priority"
+  },
+  "base": {
+    "about_aleksis": "About AlekSIS® — The Free School Information System",
+    "about_copyright": "© The AlekSIS Team",
+    "imprint": "Imprint",
+    "logo": "Logo",
+    "no_permission": "No Permission",
+    "no_permission_message_long": "You have no permission to view this page. Please login with an other account.",
+    "no_permission_message_short": "No permission",
+    "no_permission_redirect_text": "Go to login",
+    "person_is_dummy": "Your administrator account is not linked to any person. Therefore, a dummy person has been linked to your account.",
+    "privacy_policy": "Privacy Policy",
+    "user_not_linked_to_person": "Your user account is not linked to a person. This means you cannot access any school-related information. Please contact the managers of AlekSIS at your school."
+  },
+  "calendar": {
+    "cancelled": "Cancelled",
+    "day": "Day",
+    "download_all": "Download all",
+    "download_ics": "Download ICS",
+    "ics_to_clipboard": "Copy link to calendar ICS to clipboard",
+    "menu_title": "Calendar",
+    "month": "Month",
+    "my_calendars": "My Calendars",
+    "select": "Select calendars",
+    "today": "Today",
+    "week": "Week",
+    "more_events": "{n} more"
+  },
+  "celery_progress": {
+    "error_message": "The operation couldn't be finished successfully.",
+    "progress_title": "Loading ...",
+    "running_tasks": "1 running task | {number} running tasks",
+    "success_message": "The operation has been finished successfully."
+  },
+  "dashboard": {
+    "dashboard_widget": {
+      "menu_title": "Dashboard Widgets",
+      "title": "Dashboard Widget",
+      "title_plural": "Dashboard Widgets"
+    },
+    "menu_title": "Dashboard"
+  },
+  "data_check": {
+    "menu_title": "Data Checks"
+  },
+  "download_pdf": {
+    "download": "Download",
+    "notice": "If the download does not start automatically, please click the button below.",
+    "title": "Downloading PDF file ..."
+  },
+  "graphql": {
+    "snackbar_error_message": "There was an error retrieving the page data. Please try again.",
+    "snackbar_success_message": "The operation has been finished successfully."
+  },
+  "group": {
+    "group_type": {
+      "menu_title": "Group Types",
+      "title": "Group Type",
+      "title_plural": "Group Types",
+      "create": "Create Group Type",
+      "name": "Name",
+      "description": "Description",
+      "no_group_type": "No Group Type",
+      "additional_attributes": "Additional attributes",
+      "owners_can_see_groups": "Owners of groups with this group type can see the groups",
+      "owners_can_see_members": "Owners of groups with this group type can see group members",
+      "owners_can_see_members_allowed_information": "Information owners of groups with this group type can see of the group's members",
+      "owners_can_see_members_including": "(including {allowedInformation})",
+      "allowed_information": {
+        "personal_details": "Personal details",
+        "address": "Address",
+        "contact_details": "Contact details",
+        "photo": "Photo",
+        "avatar": "Avatar",
+        "groups": "Groups"
+      },
+      "available_roles": "Available roles"
+    },
+    "groups_and_child_groups": "Groups and Child Groups",
+    "menu_title": "Groups",
+    "ownership": "Group ownership",
+    "title": "Group",
+    "title_plural": "Groups",
+    "short_name": "Short name",
+    "name": "Name",
+    "avatar": "Avatar",
+    "school_term": "School Term",
+    "no_groups": "No groups",
+    "properties": "Properties",
+    "child_groups": "Child Groups",
+    "child_groups_n": "No Child Groups | {n} Child Group | {n} Child Groups",
+    "parent_groups": "Parent Groups",
+    "parent_groups_n": "No Parent Groups | {n} Parent Group | {n} Parent Groups",
+    "member_of_n": "Not member in any group | Member of {n} group | Member of {n} groups",
+    "owner_of_n": "Not owner of any group | Owner of {n} group | Owner of {n} groups",
+    "confirm_delete": "Do you really want to delete this group?",
+    "statistics": {
+      "title": "Statistics",
+      "members_n": "No members | One member | {n} members",
+      "age_range": "Age Range",
+      "age_range_from_to": "{min} - {max} years",
+      "age_average": "Average Age"
+    },
+    "tabs": {
+      "members": "Group Members",
+      "members_tab": "Members"
+    }
+  },
+  "role": {
+    "menu_title": "Roles",
+    "title": "Role",
+    "title_plural": "Roles",
+    "create": "Create Role",
+    "name": "Name",
+    "short_name": "Short name",
+    "reciprocal_name": "Reciprocal name",
+    "fg_color": "Foreground color",
+    "bg_color": "Background color"
+  },
+  "holidays": {
+    "create_holiday": "Create Holiday",
+    "date_end": "End Date",
+    "date_start": "Start Date",
+    "holiday_name": "Name",
+    "menu_title": "Holidays",
+    "title": "Holiday",
+    "title_plural": "Holidays"
+  },
+  "ical_feed": {
+    "menu_title": "Calendar Feeds"
+  },
+  "legacy": {
+    "unworthy": "The life-form who created this view did not bow to the powers of the almighty Aleksolotl."
+  },
+  "network_errors": {
+    "back_to_start": "Back to home page",
+    "error_404": "404",
+    "offline_notification": "You are offline. Some features may not work and some data may not be up to date.",
+    "page_not_found": "The requested page or resource could not be found.",
+    "snackbar_error_message": "A network error occurred. Please try again.",
+    "service_unavailable": "The server is under maintenance and therefore temporarily unavailable."
+  },
+  "browser_errors": {
+    "incompatible_browser": "Incompatible browser",
+    "browsers_compatibility": "AlekSIS is not compatible with this browser and version. Please use a recent version of Firefox (recommended) or another commonly used browser."
+  },
+  "notifications": {
+    "mark_as_read": "Mark as read",
+    "more_information": "More information",
+    "no_notifications": "You have no new notifications.",
+    "notifications": "Notifications"
+  },
+  "oauth": {
+    "application": {
+      "menu_title": "OAuth Applications",
+      "title": "OAuth Application",
+      "title_plural": "OAuth Applications",
+      "name": "Name",
+      "icon": "Icon",
+      "client_id": "Client ID",
+      "client_secret": "Client Secret",
+      "client_secret_hint": "Hashed on save. Copy it now if this is a new secret.",
+      "client_type": "Client Type",
+      "client_type_confidential": "confidential",
+      "client_type_public": "public",
+      "algorithm": "Algorithm",
+      "algorithm_no_oidc": "No OIDC support",
+      "algorithm_rsa": "RSA with SHA-2 256",
+      "algorithm_hmac": "HMAC with SHA-2 256",
+      "allowed_scopes": "Allowed Scopes",
+      "redirect_uris": "Redirect URIs",
+      "redirect_uris_hint": "Allowed URIs list. Space seperated.",
+      "skip_authorization": "Skip Authorization"
+    },
+    "authorized_application": {
+      "access_since": "Access since {date}",
+      "description": "The following third-party applications have access to your account. You can revoke access at any time for those you don't need or trust anymore.",
+      "has_access_to": "Has access to:",
+      "menu_title": "Third-party Applications",
+      "revoke": "Revoke Access",
+      "revoke_question": "Are you sure you want to revoke access for this application?",
+      "subtitle": "Third-party Applications With Access to Your Account",
+      "title": "Third-party Applications",
+      "valid_until": "Valid until {date}"
+    },
+    "authorized_token": {
+      "menu_title": ""
+    }
+  },
+  "people": "People",
+  "data_management": "Data management",
+  "permissions": {
+    "manage": {
+      "menu_title": "Manage Permissions"
+    }
+  },
+  "person": {
+    "account_menu_title": "Account",
+    "additional_image": "Additional Image",
+    "addresses": "Addresses",
+    "avatar": "Avatar",
+    "photo": "Photo",
+    "birth_date": "Date of birth",
+    "birth_place": "Place of birth",
+    "birth_date_and_birth_place_formatted": "{date} in {place}",
+    "birth_date_and_birth_place": "Date of birth and place of birth",
+    "children": "Children",
+    "delete": "Delete",
+    "confirm_delete": "Do you really want to delete this person?",
+    "details": "Contact details",
+    "email_address": "Email address",
+    "form": {
+      "create": "Create person",
+      "edit": "Edit person",
+      "titles": {
+        "base_data": "Base data",
+        "address": "Address",
+        "contact_data": "Contact data",
+        "advanced_personal_data": "Advanced personal data"
+      }
+    },
+    "guardians": "Guardians / Parents",
+    "home": "Home phone",
+    "impersonation": {
+      "impersonate": "Impersonate",
+      "impersonating": "Impersonating",
+      "stop": "Stop Impersonation"
+    },
+    "invite": "Invite",
+    "logged_in_as": "Logged in as",
+    "menu_title": "Persons",
+    "mobile": "Mobile phone",
+    "name": "Name",
+    "no_additional_image": "The person didn't upload an additional Image",
+    "no_persons": "No Persons",
+    "page_title": "Person",
+    "title": "Person",
+    "title_plural": "Persons",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "short_name": "Short Name",
+    "sex": {
+      "field": "Sex",
+      "m": "Male",
+      "f": "Female",
+      "x": "Other"
+    },
+    "primary_group": "Primary Group",
+    "sex_description": "Sex",
+    "username": "Username",
+    "view_in_new_tab": "View {fullName} in a new tab",
+    "user": "Linked user",
+    "additional_name": "Additional name",
+    "street": "Street",
+    "housenumber": "Housenumber",
+    "postal_code": "Postal code",
+    "place": "Place",
+    "country": "Country",
+    "phone_number": "Phone number",
+    "mobile_number": "Mobile number",
+    "email": "Email",
+    "date_of_birth": "Date of birth",
+    "place_of_birth": "Place of birth",
+    "description": "Description"
+  },
+  "preferences": {
+    "person": {
+      "change_preferences": "Preferences",
+      "menu_title": "Preferences"
+    },
+    "site": {
+      "menu_title": "Configuration"
+    }
+  },
+  "rooms": {
+    "create_room": "Create new room",
+    "menu_title": "Rooms",
+    "name": "Name",
+    "short_name": "Short Name",
+    "title_plural": "Rooms"
+  },
+  "school_term": {
+    "after": "Ends after",
+    "before": "Starts before",
+    "create_school_term": "Create School Term",
+    "date_end": "End Date",
+    "date_start": "Start Date",
+    "menu_title": "School Terms",
+    "name": "Name",
+    "title": "School Term",
+    "title_plural": "School Terms",
+    "current": "Current",
+    "active_school_term": {
+      "title": "Active School Term",
+      "subtitle": "This selection affects all pages in AlekSIS.",
+      "warning": "Warning: You are currently viewing data from a different school term ({termName}). Information may be outdated and may not reflect the current situation.",
+      "select_action": "Select current"
+    }
+  },
+  "selection": {
+    "num_items_selected": "No items selected | 1 item selected | {n} items selected"
+  },
+  "service_worker": {
+    "new_version_available": {
+      "header": "New version available",
+      "body": "AlekSIS® has been updated in the background. Refresh your version to keep using {instance}."
+    },
+    "update": "Refresh"
+  },
+  "status": {
+    "changes": "You have unsaved changes.",
+    "error": "There has been an error while saving the latest changes.",
+    "object_create_success": "The object was created successfully.",
+    "object_delete_success": "The object was deleted successfully.",
+    "object_edit_success": "The object was updated successfully.",
+    "objects_delete_success": "The objects were deleted successfully."
+  },
+  "generic_messages": {
+    "error": "An error occurred. Please try again.",
+    "success": "The operation has been finished successfully."
+  },
+  "forms": {
+    "labels": {
+      "start": "Start",
+      "end": "End",
+      "comment": "Comment",
+      "persons": "Persons"
+    },
+    "errors": {
+      "required": "This field is required.",
+      "invalid_date": "This is not a valid date.",
+      "invalid_time": "This is not a valid time.",
+      "invalid_color": "This is not a valid color.",
+      "not_a_number": "Not a valid number",
+      "not_a_whole_number": "Please enter a whole number",
+      "number_too_small": "Please enter a bigger number.",
+      "number_too_big": "Please enter a smaller number.",
+      "date_too_early": "Please enter a later date.",
+      "date_too_late": "Please enter an earlier date.",
+      "string_too_long": "Please enter less than {maxLength} characters.",
+      "invalid_email": "Please enter a valid email address",
+      "username_not_allowed": "This is not an allowed username",
+      "username_not_ascii": "This username contains the following non-allowed characters: {characters}."
+    },
+    "recurrence": {
+      "frequencies": {
+        "daily": "Daily",
+        "weekly": "Weekly",
+        "monthly": "Monthly",
+        "yearly": "Yearly"
+      },
+      "start": "Start",
+      "until": "Until",
+      "frequency": "Frequency",
+      "no_repeat": "No repeat"
+    },
+    "date_time": {
+      "date": "Date",
+      "time": "Time"
+    },
+    "file": {
+      "hint": "Existing file: {fileName}"
+    }
+  },
+  "weekdays": {
+    "A_0": "Monday",
+    "A_1": "Tuesday",
+    "A_2": "Wednesday",
+    "A_3": "Thursday",
+    "A_4": "Friday",
+    "A_5": "Saturday",
+    "A_6": "Sunday"
+  },
+  "weekdays_short": {
+    "A_0": "Mo",
+    "A_1": "Tu",
+    "A_2": "We",
+    "A_3": "Th",
+    "A_4": "Fr",
+    "A_5": "Sa",
+    "A_6": "Su"
+  },
+  "personal_events": {
+    "title": "Title",
+    "description": "Description",
+    "location": "Location",
+    "datetime_start": "Start",
+    "datetime_end": "End",
+    "date_start": "Start",
+    "date_end": "End",
+    "is_full_day": "Full day event",
+    "is_recurring": "Recurring",
+    "is_not_recurring": "One-time",
+    "recurrences": "Repeat",
+    "persons": "Participating people",
+    "groups": "Participating groups",
+    "create_title": "Create personal event",
+    "edit_title": "Edit personal event",
+    "create_button": "Create event"
+  },
+  "date_select": {
+    "label": "Select date"
+  },
+  "crud_components": {
+    "infinite_scrolling_date_sorted_iterator": {
+      "load": {
+        "no_items": "No items found between {dateStart} and {dateEnd}.",
+        "load_more": "Load {increment} more days"
+      }
+    },
+    "iterator_empty_message": {
+      "no_data": "No items found",
+      "no_data_with_dates": "No items found between {dateStart} and {dateEnd}",
+      "no_results": "No search results for {search}",
+      "load_more": "Load more items"
+    }
+  },
+  "error_code": "Error code: {errorCode}",
+  "action_select": {
+    "incompatible_selection_message": "Action was called on incompatible selection."
+  },
+  "time": {
+    "years_n": "zero years | one year | {n} years"
+  }
+}

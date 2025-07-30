@@ -1,0 +1,7 @@
+query formPersons {
+  items: persons {
+    id
+    shortName
+    fullName
+  }
+}
