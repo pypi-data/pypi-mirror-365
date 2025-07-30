@@ -1,0 +1,38 @@
+Metadata-Version: 2.4
+Name: open-xtract
+Version: 0.1.0
+Summary: Open-source framework that extracts structured data from PDFs. Bring your own OCR or LLM and extend to any file type.
+Project-URL: Homepage, https://www.open-xtract.com/
+Author-email: Cole McIntosh <colemcintosh6@gmail.com>
+License: MIT
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+
+# Open Xtract
+
+Open-source framework that extracts structured data from PDFs. Bring your own OCR or LLM and extend to any file type.
+
+## Features
+- **Model-agnostic** – simple adapter API works with any OCR engine or large language model.
+- **PDF-first ingestion** – layout-aware parsing produces clean, tokenized text.
+- **Cited retrieval** – vector search with reranked answers and inline citations.
+
+## Installation
+```bash
+pip install open-xtract
+```
+
+## Quick Start
+```python
+from open_xtract import main
+
+main()  # prints a greeting for now
+```
+
+## CLI
+```bash
+open-xtract
+```
+
+## License
+MIT
