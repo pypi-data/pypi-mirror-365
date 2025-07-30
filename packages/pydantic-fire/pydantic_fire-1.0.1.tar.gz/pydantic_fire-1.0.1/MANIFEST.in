@@ -1,0 +1,18 @@
+# Include only package-related files
+include README.md
+include LICENSE
+include requirements.txt
+
+# Include only the package directory and its contents
+recursive-include pydantic_fire *.py
+recursive-include pydantic_fire/templates *.template
+
+# Exclude GitHub-specific directories and test files
+recursive-exclude firestore_tree *
+recursive-exclude test_firestore_tree *
+recursive-exclude usage_doc *
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+recursive-exclude * .git*
+recursive-exclude * .pytest_cache*
+recursive-exclude * .mypy_cache*

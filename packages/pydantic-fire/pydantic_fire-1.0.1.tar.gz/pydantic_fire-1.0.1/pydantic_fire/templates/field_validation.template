@@ -1,0 +1,30 @@
+      // Field validation for: {{ field_name }}
+      // Type: {{ field_type }}, Required: {{ required }}, Read-only: {{ read_only }}
+      // Permissions: {{ permissions }}
+      {% if required %}
+      && '{{ field_name }}' in resource.data
+      {% endif %}
+      {% if field_type == 'str' %}
+      && resource.data.{{ field_name }} is string
+      {% elif field_type == 'int' %}
+      && resource.data.{{ field_name }} is number
+      {% elif field_type == 'float' %}
+      && resource.data.{{ field_name }} is number
+      {% elif field_type == 'bool' %}
+      && resource.data.{{ field_name }} is bool
+      {% elif field_type == 'datetime' %}
+      && resource.data.{{ field_name }} is timestamp
+      {% elif field_type == 'list' %}
+      && resource.data.{{ field_name }} is list
+      {% elif field_type == 'dict' %}
+      && resource.data.{{ field_name }} is map
+      {% endif %}
+      {% if read_only %}
+      && (!('{{ field_name }}' in request.resource.data) || request.resource.data.{{ field_name }} == resource.data.{{ field_name }})
+      {% endif %}
+      {% if ui_hints and ui_hints.max_length %}
+      && resource.data.{{ field_name }}.size() <= {{ ui_hints.max_length }}
+      {% endif %}
+      {% if ui_hints and ui_hints.min_length %}
+      && resource.data.{{ field_name }}.size() >= {{ ui_hints.min_length }}
+      {% endif %}
