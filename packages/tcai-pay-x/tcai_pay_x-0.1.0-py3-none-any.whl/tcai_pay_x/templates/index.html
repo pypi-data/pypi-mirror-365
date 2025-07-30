@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Invoice-PO Matcher</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f7fa;
+        }
+        
+        h2 {
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        
+        form {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f8f9fa;
+            margin-bottom: 20px;
+        }
+        
+        input[type="number"] {
+            width: 100px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .instructions {
+            background-color: #e8f4fc;
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .instructions h3 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <h2>Invoice-PO Matching Tool</h2>
+    
+    <div class="instructions">
+        <h3>How to use this tool:</h3>
+        <ol>
+            <li>Upload your invoice files (PDF, Excel, or CSV)</li>
+            <li>Upload your purchase order (PO) files</li>
+            <li>Set your desired matching threshold (higher means stricter matching)</li>
+            <li>Click "Match and Preview" to see the results</li>
+        </ol>
+    </div>
+    
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="invoices">Invoice Files:</label>
+            <input type="file" id="invoices" name="invoices" multiple required>
+            <small>Select one or more invoice files to process</small>
+        </div>
+        
+        <div class="form-group">
+            <label for="pos">PO Files:</label>
+            <input type="file" id="pos" name="pos" multiple required>
+            <small>Select one or more purchase order files</small>
+        </div>
+        
+        <div class="form-group">
+            <label for="threshold">Match Score Threshold (0-100):</label>
+            <input type="number" id="threshold" name="threshold" min="0" max="100" value="80" required>
+            <small>Higher values require closer matches between invoices and POs</small>
+        </div>
+        
+        <button type="submit">Match and Preview</button>
+    </form>
+</body>
+</html>
