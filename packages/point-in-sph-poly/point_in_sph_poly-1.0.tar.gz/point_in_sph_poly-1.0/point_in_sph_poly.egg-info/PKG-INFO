@@ -1,0 +1,19 @@
+Metadata-Version: 2.4
+Name: point-in-sph-poly
+Version: 1.0
+Summary: Point in Spherical Polygon Python implementation
+Author-email: Tobias Köhne <47008700+tobiscode@users.noreply.github.com>
+License-Expression: Apache-2.0
+Project-URL: Repository, https://github.com/tobiscode/pisp
+Project-URL: Bug Tracker, https://github.com/tobiscode/pisp/issues
+Project-URL: Documentation, https://tobiscode.github.io/pisp
+Requires-Python: >=3.12
+License-File: LICENSE
+Requires-Dist: numpy>=2
+Requires-Dist: scipy
+Requires-Dist: numba
+Provides-Extra: dev
+Requires-Dist: pdoc; extra == "dev"
+Requires-Dist: twine; extra == "dev"
+Requires-Dist: build; extra == "dev"
+Dynamic: license-file

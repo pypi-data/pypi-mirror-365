@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools >= 64.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "point-in-sph-poly"
+version = "1.0"
+requires-python = ">= 3.12"
+dependencies = ["numpy>=2", "scipy", "numba"]
+authors = [{ name = "Tobias Köhne", email = "47008700+tobiscode@users.noreply.github.com" }]
+description = "Point in Spherical Polygon Python implementation"
+license = "Apache-2.0"
+
+[project.optional-dependencies]
+dev = ["pdoc", "twine", "build"]
+
+[project.urls]
+"Repository" = "https://github.com/tobiscode/pisp"
+"Bug Tracker" = "https://github.com/tobiscode/pisp/issues"
+"Documentation" = "https://tobiscode.github.io/pisp"
+
+[tool.setuptools]
+py-modules = ["pisp"]
