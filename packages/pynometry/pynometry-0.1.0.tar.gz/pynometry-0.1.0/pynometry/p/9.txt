@@ -1,0 +1,25 @@
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsClassifier
+import numpy as np
+
+iris = load_iris()
+print(f"Feature Names: {iris.feature_names}")
+print(f"Data: {iris.data}")
+print(f"Target Names: {iris.target_names}")
+print(f"Target: {iris.target}")
+
+X_train,X_test,y_train,y_test = train_test_split(iris.data,iris.target,test_size=0.25)
+
+cls = KNeighborsClassifier()
+cls.fit(X_train,y_train)
+
+predicted = cls.predict(X_test)
+print(f"Accuracy: {cls.score(X_test,y_test)}")
+print(f"Predicted: {predicted}")
+print(f"Actual: {y_test}")
+
+misclassified = np.where(predicted!=y_test)[0]
+print("Misclassification report")
+for i in misclassified:
+    print(f"Index {i} Actual: {y_test[i]} Predicted: {predicted[i]}")

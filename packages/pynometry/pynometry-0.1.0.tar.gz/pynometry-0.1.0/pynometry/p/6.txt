@@ -1,0 +1,26 @@
+from sklearn.datasets import fetch_20newsgroups
+from sklearn.feature_extraction.text import TfidfVectorizer  
+from sklearn.naive_bayes import MultinomialNB
+from sklearn.pipeline import Pipeline
+from sklearn import metrics
+import numpy as np
+
+
+train = fetch_20newsgroups(subset='train', shuffle=True)
+test = fetch_20newsgroups(subset='test', shuffle=True)
+
+print(f"Training set size: {len(train.data)}")
+print("First line of first document:\n", train.data[0].split('\n')[0])
+
+
+model = Pipeline([
+    ('tfidf', TfidfVectorizer()),  
+    ('clf', MultinomialNB())
+])
+model.fit(train.data, train.target)
+
+
+predicted = model.predict(test.data)
+accuracy = np.mean(predicted == test.target)
+print(f"\nAccuracy: {accuracy:.3f}")
+print(metrics.classification_report(test.target, predicted, target_names=test.target_names))

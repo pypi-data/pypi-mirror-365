@@ -1,0 +1,16 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+
+data = pd.read_csv('kmeans.csv')
+print(data)
+print()
+kmeans = KMeans(n_clusters=3)
+data['Cluster'] = kmeans.fit_predict(data)
+print(data)
+
+plt.scatter(data['Maths'],data['Science'],c=data['Cluster'])
+plt.xlabel('Maths')
+plt.ylabel('Science')
+plt.plot()
+plt.show()

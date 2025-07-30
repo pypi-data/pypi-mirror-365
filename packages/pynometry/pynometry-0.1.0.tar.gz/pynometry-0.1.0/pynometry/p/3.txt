@@ -1,0 +1,62 @@
+import pandas as pd
+import numpy as np
+
+
+
+def entropy(col):
+    elements, counts = np.unique(col, return_counts=True)
+    return np.sum([-(counts[i]/np.sum(counts))*np.log2(counts[i]/np.sum(counts)) for i in range(len(elements))])
+
+def InfoGain(data, attr, target):
+    total_entropy = entropy(data[target])
+    vals, counts = np.unique(data[attr], return_counts=True)
+    weighted_entropy = sum(
+    (counts[i] / np.sum(counts)) * entropy(data[data[attr] == vals[i]][target])
+    for i in range(len(vals)))
+    return total_entropy - weighted_entropy
+
+def ID3(data, features, target="class"):
+    if len(np.unique(data[target])) == 1:
+        return data[target].iloc[0]
+    elif len(data) == 0 or len(features) == 0:
+        return 
+    else:
+        gains = [InfoGain(data, f, target) for f in features]
+        best = features[np.argmax(gains)]
+        tree = {best: {}}
+        features = [f for f in features if f != best]
+        for val in np.unique(data[best]):
+#             sub_data = data.where(data[best] == val).dropna()
+            sub_data = data[data[best] == val]
+            subtree = ID3(sub_data, features, target)
+            tree[best][val] = subtree
+        return tree
+
+def predict(query, tree):
+    for key in query.keys():
+        if key in tree.keys():        
+            result = tree[key].get(query[key])            
+            if isinstance(result, dict):
+                return predict(query, result)
+            else:
+                return result
+    return 'No'
+
+
+dataset = pd.read_csv('playtennis.csv')
+training_data = dataset.iloc[:13]
+tree = ID3(training_data, training_data.columns[:-1])
+print('Tree:', tree)
+
+print()
+
+single_query = {}
+for attr in training_data.columns[:-1]:
+    val = input(f"Enter value for {attr}: ")
+    single_query[attr] = val
+result = predict(single_query, tree)
+
+
+
+print('\nPredicted class:', result)
+

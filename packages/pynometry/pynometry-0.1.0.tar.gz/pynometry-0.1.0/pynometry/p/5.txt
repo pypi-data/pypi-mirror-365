@@ -1,0 +1,27 @@
+import pandas as pd
+import math
+
+
+data = pd.read_csv('playtennis.csv')
+train, test = data.iloc[:-4], data.iloc[-4:]
+features, target = data.columns[:-1], data.columns[-1]
+
+
+class_counts = train[target].value_counts().to_dict()
+probs = {f: {} for f in features}
+for f in features:
+    for val in train[f].unique():
+        for cls in class_counts:
+            count = len(train[(train[f] == val) & (train[target] == cls)])
+            probs[f][(val, cls)] = count / class_counts[cls]
+
+
+
+def predict(row):
+    best = max(class_counts, 
+               key=lambda cls: (class_counts[cls]/len(train)) * math.prod([probs[f][(row[f], cls)] for f in features]))
+    return best
+
+
+correct = sum(predict(row) == row[target] for _, row in test.iterrows())
+print(f"Accuracy: {correct/len(test):.2%}")
