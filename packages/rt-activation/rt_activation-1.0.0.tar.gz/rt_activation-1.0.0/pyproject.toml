@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rt-activation"
+version = "1.0.0"
+authors = [
+    {name = "Gaurav Pandey", email = "gaurav.pandey1812@gmail.com"},
+]
+description = "Rectified Tangent Activation (RTA) function for Keras/TensorFlow"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+keywords = ["keras", "tensorflow", "activation", "neural-networks", "deep-learning"]
+dependencies = [
+    "keras>=3.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/gkp1812/rt-activation"
+Repository = "https://github.com/gkp1812/rt-activation"
+Issues = "https://github.com/gkp1812/rt-activation/issues"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "pytest-cov",
+    "black",
+    "flake8",
+    "mypy",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
