@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aa_psycopg"
+version = "0.1.6"
+description = "Internal Partenamut library for PostgreSQL access using Psycopg 3"
+readme = "README.md"
+license = { file = "LICENSE.txt" }
+authors = [
+    { name = "Botquin Thomas", email = "thomas.botquin@partenamut.com" }
+]
+requires-python = ">=3.11"
+
+dependencies = [
+    "psycopg[binary, pool]>=3.2.9",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.9.10",
+    "pre-commit>=4.1.0",
+    "ipywidgets>=8.1.5",
+    "ipykernel>=6.29.0"
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
