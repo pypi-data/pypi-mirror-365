@@ -1,0 +1,199 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Edu Upload Service REST API Documentation",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8090",
+      "description": "Generated server url"
+    }
+  ],
+  "tags": [
+    {
+      "name": "API для загрузки сведений по ученикам и их представителей"
+    }
+  ],
+  "paths": {
+    "/api/edu-upload/{version}/multipart/csv": {
+      "parameters": [
+        {
+          "name": "version",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "tags": [
+          "API для загрузки сведений по ученикам и их представителей"
+        ],
+        "summary": "Загрузить/изменить сведения несколькими файлами.",
+        "operationId": "uploadMultipart",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "files"
+                ],
+                "type": "object",
+                "properties": {
+                  "files": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Запрос выполнен успешно."
+          },
+          "400": {
+            "description": "Ошибка входных данных."
+          },
+          "500": {
+            "description": "Внутренняя ошибка."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "API для загрузки сведений по ученикам и их представителей"
+        ],
+        "summary": "Удалить сведения несколькими файлами.",
+        "operationId": "deleteMultipart",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "required": [
+                  "files"
+                ],
+                "type": "object",
+                "properties": {
+                  "files": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "format": "binary"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Запрос выполнен успешно."
+          },
+          "400": {
+            "description": "Ошибка входных данных"
+          },
+          "500": {
+            "description": "Внутренняя ошибка."
+          }
+        }
+      }
+    },
+    "/api/edu-upload/{version}/csv/{table}": {
+      "parameters": [
+        {
+          "name": "version",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }
+      ],
+      "post": {
+        "tags": [
+          "API для загрузки сведений по ученикам и их представителей"
+        ],
+        "summary": "Загрузить/изменить сведения одним файлом.",
+        "operationId": "upload",
+        "parameters": [
+          {
+            "name": "table",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/octet-stream": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Запрос выполнен успешно."
+          },
+          "400": {
+            "description": "Ошибка входных данных."
+          },
+          "500": {
+            "description": "Внутренняя ошибка."
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "API для загрузки сведений по ученикам и их представителей"
+        ],
+        "summary": "Удалить сведения одним файлом.",
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "table",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/octet-stream": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Запрос выполнен успешно."
+          },
+          "400": {
+            "description": "Ошибка входных данных"
+          },
+          "500": {
+            "description": "Внутренняя ошибка."
+          }
+        }
+      }
+    }
+  },
+  "components": {}
+}
