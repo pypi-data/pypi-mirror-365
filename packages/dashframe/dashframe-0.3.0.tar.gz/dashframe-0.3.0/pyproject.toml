@@ -1,0 +1,46 @@
+[project]
+name = "dashframe"
+dynamic = []
+description = "Quick template to build dash app"
+authors = [
+    { name = "svtter", email = "svtter@qq.com" },
+]
+dependencies = [
+    "dash>=2.18.2",
+    "dash-bootstrap-components>=1.7.1",
+    "sqlalchemy>=1.4.27",
+    "celery>=5.4.0",
+]
+requires-python = ">=3.9"
+readme = "README.md"
+version = "0.3.0"
+
+[project.license]
+text = "LIMIT LICENSE"
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8.3.4",
+]
+
+[build-system]
+requires = [
+    "pdm-backend",
+]
+build-backend = "pdm.backend"
+
+[tool.ruff]
+line-length = 120
+indent-width = 2
+
+[tool.pdm]
+distribution = true
+
+[tool.pdm.version]
+source = "file"
+path = "dashframe/__init__.py"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.9.3",
+]

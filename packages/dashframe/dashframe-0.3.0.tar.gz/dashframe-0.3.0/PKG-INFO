@@ -1,0 +1,37 @@
+Metadata-Version: 2.1
+Name: dashframe
+Version: 0.3.0
+Summary: Quick template to build dash app
+Author-Email: svtter <svtter@qq.com>
+License: LIMIT LICENSE
+Requires-Python: >=3.9
+Requires-Dist: dash>=2.18.2
+Requires-Dist: dash-bootstrap-components>=1.7.1
+Requires-Dist: sqlalchemy>=1.4.27
+Requires-Dist: celery>=5.4.0
+Provides-Extra: test
+Requires-Dist: pytest>=8.3.4; extra == "test"
+Description-Content-Type: text/markdown
+
+# DashFrame
+
+A quick builder for dash application.
+
+## Usage
+
+```bash
+
+pdm add dashframe
+# or
+uv add dashframe
+
+```
+
+## Supported Project
+
+1.  high-energy: <https://github.com/Svtter/high-energy.git>
+2.  artificial-joints: <https://github.com/Svtter/artificial-joints>
+
+## Related Projects
+
+1.  <https://dash-bootstrap-components.opensource.faculty.ai/docs/components/button/>
