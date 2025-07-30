@@ -1,0 +1,198 @@
+# PLTools
+
+一个实用的 Python 工具集合，提供常用的开发工具和实用函数。
+
+## 项目结构
+
+```
+pltools/
+├── pltools/           # 主要工具模块
+│   ├── __init__.py
+│   ├── __main__.py    # 命令行入口
+│   └── gittools.py    # Git 相关工具
+├── pycommon/          # 通用工具库（子模块）
+│   ├── __init__.py
+│   ├── exe_cmd.py     # 命令执行工具
+│   └── README.md
+└── README.md
+```
+
+## 功能模块
+
+### pltools - 主工具包
+
+主要的工具集合，包含各种开发辅助工具。
+
+#### gittools.py - Git 工具
+提供 Git 仓库管理的相关功能。
+
+### pycommon - 通用工具库
+
+通用的 Python 实用函数库，作为子模块集成。
+
+#### exe_cmd.py - 命令执行工具
+- **跨平台命令执行**: 自动处理 Windows 和 Linux 下的编码差异
+- **工作目录支持**: 支持指定命令执行的工作目录
+- **错误处理**: 提供详细的错误信息和异常处理
+
+## 安装
+
+### 从 PyPI 安装（推荐）
+
+```bash
+pip install pltools
+```
+
+### 从源码安装
+
+#### 克隆项目
+
+```bash
+git clone <repository-url>
+cd pltools
+```
+
+#### 初始化子模块
+
+```bash
+git submodule init
+git submodule update
+```
+
+或者一次性克隆包含子模块：
+
+```bash
+git clone --recursive <repository-url>
+```
+
+#### 安装到本地
+
+```bash
+# 开发模式安装
+pip install -e .
+
+# 或者正常安装
+pip install .
+```
+
+## 使用方法
+
+### 作为模块导入
+
+```python
+# 导入命令执行工具
+from pycommon.exe_cmd import execute_cmd
+
+# 执行系统命令
+execute_cmd("ls -la")  # Linux/Mac
+execute_cmd("dir")     # Windows
+
+# 在指定目录执行命令
+execute_cmd("git status", cwd="/path/to/git/repo")
+```
+
+### 命令行使用
+
+```bash
+# 运行主程序
+python -m pltools
+
+# 或者直接运行
+python pltools/__main__.py
+```
+
+## 依赖要求
+
+- Python 3.6+
+- 支持 Windows、Linux、macOS
+
+## 开发
+
+### 设置开发环境
+
+```bash
+# 克隆项目
+git clone --recursive <repository-url>
+cd pltools
+
+# 创建虚拟环境（推荐）
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+# 或
+venv\Scripts\activate     # Windows
+
+# 安装开发依赖
+pip install -e ".[dev]"
+# 或者
+pip install -r requirements-dev.txt
+```
+
+### 打包和发布
+
+```bash
+# 更新版本号（可选）
+python update_version.py 1.0.1
+
+# 构建包
+python -m build
+
+# 检查包
+twine check dist/*
+
+# 上传到 PyPI（需要配置认证）
+twine upload dist/*
+
+# 上传到测试 PyPI
+twine upload --repository testpypi dist/*
+```
+
+### 更新子模块
+
+```bash
+# 更新 pycommon 子模块到最新版本
+git submodule update --remote pycommon
+
+# 提交子模块更新
+git add pycommon
+git commit -m "更新 pycommon 子模块"
+```
+
+## 特性
+
+- 🔧 **模块化设计**: 清晰的项目结构，易于扩展
+- 🌍 **跨平台支持**: 兼容 Windows、Linux、macOS
+- 📦 **子模块集成**: 集成 pycommon 通用工具库
+- 🛠️ **开发友好**: 简单的安装和使用流程
+- 📝 **详细文档**: 完整的使用说明和示例
+
+## 贡献
+
+欢迎贡献代码！请遵循以下步骤：
+
+1. Fork 本项目
+2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 创建 Pull Request
+
+## 许可证
+
+[在此添加许可证信息]
+
+## 更新日志
+
+### v1.0.0
+- 初始版本发布
+- 集成 pycommon 子模块
+- 基础项目结构搭建
+
+---
+
+## 相关链接
+
+- [PyCommon 子模块](https://gitee.com/PatchLion/pycommon.git)
+
+---
+
+**作者**: PatchLion  
+**最后更新**: 2025年7月29日
