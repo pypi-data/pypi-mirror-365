@@ -1,0 +1,24 @@
+[tool.poetry]
+name = "avinf"
+version = "1.0.0"
+description = "Anytime-Valid Inference python package for Casual Inference in Randomized Experiments by Lindon, Ham, Tingley and Bojinov (2025)."
+authors = ["Prajwal Kafle <prrajkafle@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.12"
+numpy = "^2.3.2"
+scipy = "^1.16.1"
+matplotlib = "^3.10.3"
+statsmodels = "^0.14.5"
+pandas = "^2.3.1"
+
+
+[tool.poetry.group.dev.dependencies]
+sphinx = "^8.2.3"
+pytest = "^8.4.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
