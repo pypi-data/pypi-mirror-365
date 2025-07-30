@@ -1,0 +1,23 @@
+Metadata-Version: 2.3
+Name: mcp-spec-driven-development
+Version: 0.0.1
+Summary: MCP tool for AI assistants to perform spec-driven development
+Author: lhy
+Author-email: lhy <873904524@qq.com>
+Requires-Dist: mcp>=1.12.2
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: jinja2>=3.1.0
+Requires-Dist: structlog>=23.0.0
+Requires-Dist: pytest>=7.0.0 ; extra == 'dev'
+Requires-Dist: pytest-asyncio>=0.21.0 ; extra == 'dev'
+Requires-Dist: pytest-cov>=4.0.0 ; extra == 'dev'
+Requires-Dist: pytest-mock>=3.10.0 ; extra == 'dev'
+Requires-Dist: pytest-benchmark>=4.0.0 ; extra == 'dev'
+Requires-Dist: black>=23.0.0 ; extra == 'dev'
+Requires-Dist: mypy>=1.0.0 ; extra == 'dev'
+Requires-Dist: pre-commit>=3.0.0 ; extra == 'dev'
+Requires-Dist: hypothesis>=6.0.0 ; extra == 'dev'
+Requires-Python: >=3.10
+Provides-Extra: dev
+Description-Content-Type: text/markdown
+
