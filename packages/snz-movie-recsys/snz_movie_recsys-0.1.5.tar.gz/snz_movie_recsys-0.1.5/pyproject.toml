@@ -1,0 +1,28 @@
+[project]
+name = "snz-movie-recsys"
+version = "0.1.5"
+description = "A LangGraph-powered chatbot using tools like OpenAI"
+authors = [{name = "Seungho Song", email = "songseungho9258@gmail.com"}]
+readme = "README.md"
+requires-python = ">=3.10"
+
+dependencies = [
+    "langchain",
+    "langgraph",
+    "langchain-openai",
+    "langchain-tavily",
+    "langchain-community",
+    "python-dotenv",
+    "pandas"
+]
+
+[project.urls]
+Homepage = "https://github.com/Team-SNZ/snz-movie-recsys"
+Repository = "https://github.com/Team-SNZ/snz-movie-recsys"
+
+[project.scripts]
+snz-movie-recsys = "snz_movie_recsys.main:main"
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
