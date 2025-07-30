@@ -1,0 +1,35 @@
+Metadata-Version: 2.4
+Name: spagim
+Version: 1.0.0
+Summary: Revealing the biological utility of gene imputation in spatial transcriptomics
+Home-page: https://github.com/uhlerlab/Spatial-Gene-Imputation-Methods
+Author: Kai Cao
+Author-email: caokai1073@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: torch
+Requires-Dist: scikit-learn
+Requires-Dist: scanpy
+Requires-Dist: scvi-tools
+Requires-Dist: matplotlib
+Requires-Dist: scipy
+Requires-Dist: anndata
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Gene-Imputation
