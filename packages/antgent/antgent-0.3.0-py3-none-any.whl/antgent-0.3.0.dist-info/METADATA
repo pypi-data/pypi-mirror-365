@@ -1,0 +1,32 @@
+Metadata-Version: 2.4
+Name: antgent
+Version: 0.3.0
+Author-email: ant31 <2t.antoine@gmail.com>
+License-File: LICENSE
+Requires-Python: <4,>=3.12
+Requires-Dist: aiohttp
+Requires-Dist: aiohttp-prometheus-exporter
+Requires-Dist: ant31box[cli,fastapi,s3]>=0.2.8
+Requires-Dist: asyncio>=3
+Requires-Dist: click
+Requires-Dist: fpdf2>=2.8.3
+Requires-Dist: google-genai
+Requires-Dist: litellm
+Requires-Dist: openai
+Requires-Dist: openai-agents
+Requires-Dist: openpyxl>=3.1.5
+Requires-Dist: pydantic
+Requires-Dist: pydantic-ai[logfire]
+Requires-Dist: pydot>=4.0.1
+Requires-Dist: pypdf>=5.8.0
+Requires-Dist: python-docx>=1.2.0
+Requires-Dist: pyyaml
+Requires-Dist: sentry-sdk[fastapi]
+Requires-Dist: temporalloop>=0.2.2
+Requires-Dist: tiktoken
+Requires-Dist: tokenizers<=v0.21.3
+Requires-Dist: typer>=0.16.0
+Requires-Dist: typing-extensions
+Description-Content-Type: text/markdown
+
+# DOCI
