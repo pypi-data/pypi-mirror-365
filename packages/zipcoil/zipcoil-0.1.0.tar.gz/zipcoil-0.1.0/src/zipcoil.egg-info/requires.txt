@@ -1,0 +1,13 @@
+openai>=1.0.0
+docstring-parser>=0.16
+
+[build]
+zipcoil[dev]
+build==1.2.2.post1
+twine==6.1.0
+
+[dev]
+pytest>=7.0.0
+python-dotenv==1.1.1
+requests
+beautifulsoup4
