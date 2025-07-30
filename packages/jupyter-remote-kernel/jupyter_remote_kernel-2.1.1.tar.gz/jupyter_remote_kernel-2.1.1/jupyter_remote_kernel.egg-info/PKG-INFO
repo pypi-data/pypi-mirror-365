@@ -1,0 +1,215 @@
+Metadata-Version: 2.4
+Name: jupyter_remote_kernel
+Version: 2.1.1
+Summary: Remote Jupyter Kernel Launcher with SSH port forwarding
+Author-email: Leo <leoustc@icloud.com>
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: paramiko>=3.4.0
+Requires-Dist: sshtunnel>=0.4.0
+Requires-Dist: pydantic
+Dynamic: license-file
+
+# Jupyter Remote Kernel
+
+A CLI tool for launching and managing remote Jupyter kernels over SSH port forwarding.
+
+## Features
+
+- **SSH tunneling** for all five Jupyter ZMQ channels (`shell`, `iopub`, `stdin`, `control`, `hb`)
+- **Support Bastion** you can use -J user@basion:port to forward into your private network
+- **Kernel spec management**: add, list, and delete remote kernels for seamless integration with Jupyter and VS Code
+- **Graceful tunnel management**: start and stop SSH tunnels as needed
+
+---
+
+## Simple Architecture
+
+```plaintext
+[ JupyterLab / VS Code ]
+            |
+    ~/.local/share/jupyter/kernels/remote_cuda/kernel.json
+            |
+     [ remote_kernel CLI ]
+            |
+  SSH tunnel  <====>  [ Remote Host: ipykernel + Python ]
+            |
+    /tmp/<connection file> is copied to remote host before starting
+```
+---
+
+## Installation
+
+```bash
+pip install jupyter_remote_kernel
+```
+
+---
+
+## Usage
+
+## Kernel Spec Management
+
+### Add a remote kernel
+
+Registers a new kernel spec so it appears in Jupyter and VS Code:
+
+```bash
+remote_kernel add --endpoint ubuntu@11.0.0.10:22 -J gw@1.1.1.1:3223 --name "Remote CUDA"
+```
+
+This creates a kernel spec at `~/.local/share/jupyter/kernels/remote_cuda/kernel.json`:
+
+```json
+{
+  "argv": [
+    "/path/to/remote_kernel",
+    "--endpoint", "ubuntu@11.0.0.10:22",
+    "-J", "gw@1.1.1.1:3223",
+    "-f", "{connection_file}"
+  ],
+  "display_name": "Remote CUDA",
+  "language": "python"
+}
+```
+
+### List all registered kernels
+
+```bash
+remote_kernel list
+```
+
+Example output:
+```
+slug: remote_cuda
+  name: Remote CUDA
+  endpoint: ubuntu@11.0.0.10:22
+---
+slug: gpu_lab
+  name: GPU Lab
+  endpoint: dev@10.0.0.5:2222
+---
+```
+
+### Delete a kernel
+
+Delete by slug (preferred):
+
+```bash
+remote_kernel delete remote_cuda
+```
+
+Or by display name:
+
+```bash
+remote_kernel delete "Remote CUDA"
+```
+
+Both remove the kernel spec from `~/.local/share/jupyter/kernels/<slug>`.
+
+---
+
+## Notes
+
+- Slug names are lowercased from the display name, with spaces and dashes converted to underscores.
+- **SSH jump host (bastion) support:**
+  If your remote server is only accessible via a jump host (bastion), simply configure with -J.
+
+---
+
+## Example Workflow
+
+```bash
+remote_kernel add --endpoint ubuntu@11.0.0.10:22 --name "Remote CUDA"
+remote_kernel list
+remote_kernel delete remote_cuda
+remote_kernel --kill
+```
+
+---
+
+## Integration with JupyterLab and VS Code
+
+Once a remote kernel is registered, it will appear in the JupyterLab and VS Code kernel selector.  
+Select it as you would any local kernel to launch a remote session.
+
+---
+
+## License
+
+Apache License Version 2.0, January 2004# Changelog
+
+## Changelog
+
+### [2.1.1] - 2025-07-28
+
+### New Features
+
+1. **Full Python-based SSH and SCP**
+   - Removed reliance on system `ssh` and `scp` commands.
+   - Uses **Paramiko** for SSH sessions and **SFTP** for file transfers.
+   - Jump host (`-J`) connections now handled natively using Paramiko `open_channel`.
+
+2. **Integrated SSH Tunneling**
+   - Implemented **SSHTunnelForwarder** to maintain tunnels for Jupyter kernel ports.
+   - Tunnel lifecycle tied directly to command execution to avoid dangling sessions.
+   - Tunnel retry interval reduced to **5 seconds** to minimize log noise.
+
+3. **Interactive SSH Sessions**
+   - Added `SSHWrapper.connect()` to open a **fully interactive shell** (like `ssh`).
+   - Terminal mode and input fully supported, with `Ctrl+D` to exit.
+
+4. **Kernel Auto-Cleanup**
+   - Automatically removes remote JSON connection files if a kernel fails to start or exits.
+   - Local JSON connection files also cleaned up to prevent stale Jupyter entries.
+
+5. **CLI Simplification**
+   - Removed the `--kill` option — tunnel and kernel cleanup is now automatic.
+   - Supported commands: `add`, `list`, `delete`, `connect`, and kernel execution.
+
+### Bug Fixes
+
+- **Fixed socket argument conflict**: Restructured session logic to prevent Paramiko `sock` conflicts between tunnels and `exec_command()`.
+- **Fixed tunnel and exec race conditions**: Ensured that SSH tunnels and command sessions do not overlap improperly.
+- **Reduced error spam**: Adjusted tunnel retry timing (5 seconds) and added graceful handling for closed SSH sessions.
+- **Proper cleanup of stale kernels**: Avoids retry loops when remote kernels fail by closing sessions and cleaning connection files.
+- **Stability improvements**: Resolved issues where tunnels kept retrying even after remote kernels exited.
+
+
+### [2.0.0] - 2025-07-28
+
+### Major Changes
+- **Replaced raw SSH calls with `sshtunnel` and `paramiko`**  
+  Port forwarding and SSH connections are now handled via Python libraries, removing reliance on system `ssh` and `scp`.  
+  This improves portability (works on Windows, macOS, and Linux) and enables smoother error handling and reconnection.
+
+- **Jump Host (-J) Support via Paramiko**  
+  Jump/bastion servers are now supported directly using `sshtunnel` instead of relying on `ssh -J`.  
+  This makes chained connections more reliable and cross-platform.
+
+### New Features
+- **Dependency-managed installation**  
+  `paramiko` and `sshtunnel` are now added to the package’s dependencies, so they are installed automatically via `pip`.
+
+- **Improved Logging**  
+  Logs now use the `__version__` field (from `__init__.py`) in log prefixes for easier debugging and tracking which version launched the kernel.
+
+- **Cleaner Process Management**  
+  `start_kernel` manages tunnel and kernel processes separately, making `--kill` and exit cleanup more reliable.
+
+### Breaking Changes
+- **Removed reliance on system `ssh` and `scp` binaries**  
+  All network operations are now handled by Python libraries.  
+  If you previously relied on system `ssh` configs, you may need to reconfigure host keys and credentials in `paramiko`.
+
+### [1.6.0] - 2025-07-28
+### Added
+- **`remote_kernel connect` command**  
+  - Allows direct SSH connection to a registered remote kernel by its slug name.
+  - If no kernel name is provided, lists all available kernels with endpoints and optional bastion (`-J`) details.
+  - Supports automatic detection of jump hosts for seamless SSH access.
+- **`remote_kernel -v` command**  
+  - Show the version
+- **`remote_kernel -h` command**  
+  - Show usage
