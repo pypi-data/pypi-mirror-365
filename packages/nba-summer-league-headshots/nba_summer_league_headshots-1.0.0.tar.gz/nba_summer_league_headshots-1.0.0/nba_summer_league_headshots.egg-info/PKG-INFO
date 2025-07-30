@@ -1,0 +1,127 @@
+Metadata-Version: 2.4
+Name: nba-summer-league-headshots
+Version: 1.0.0
+Summary: NBA Summer League 2025 Player Headshots API - Access 431+ verified player images
+Home-page: https://github.com/BuddyBob/summer_league_headshot_api
+Author: Thavas Antonio
+Author-email: Thavas Antonio <thavasantonio@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/BuddyBob/summer_league_headshot_api
+Project-URL: Bug Reports, https://github.com/BuddyBob/summer_league_headshot_api/issues
+Project-URL: Source, https://github.com/BuddyBob/summer_league_headshot_api
+Keywords: nba,basketball,headshots,summer league,sports,api
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: author
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+
+# NBA Summer League Headshots
+
+Get NBA Summer League player headshots 
+
+## Installation
+
+```bash
+pip install nba-summer-league-headshots
+```
+
+## Basic
+
+```python
+from nba_summer_league_headshots import get_headshot, get_headshots
+
+# Get one player's headshot
+image_path = get_headshot("Bronny James")
+print(f"Saved to: {image_path}")
+
+# Get multiple players' headshots  
+players = ["Bronny James", "Dalton Knecht", "Reed Sheppard"]
+result = get_headshots(players)
+print(f"Downloaded: {result['total_found']} players to {result['output_dir']}")
+```
+
+
+## Advanced 
+
+
+```python
+from nba_summer_league_headshots import GLeagueAPI
+
+api = GLeagueAPI()
+
+# List all available players
+all_players = api.list_all_players()
+print(f"Total players: {len(all_players)}")
+
+# Get all players from a specific team
+hawks_players = api.get_team("Atlanta Hawks")
+for player in hawks_players:
+    print(f"{player['name']} - {player['team']}")
+
+# Search for players by name
+james_players = api.search_players("James")
+print(f"Players with 'James': {james_players}")
+
+# Copy individual headshots with custom directory
+headshot_path = api.copy_headshot("Bronny James", "./my_custom_folder")
+
+# Batch download multiple players' headshots
+result = api.batch_download(["Bronny James", "Dalton Knecht"], output_dir="./my_custom_folder")
+
+```
+
+
+## Command Line
+
+```bash
+# Download player headshots
+nba-headshots -d "Bronny James" "Dalton Knecht"
+
+# Search players  
+nba-headshots -s "James"
+
+# List team players
+nba-headshots -t "Atlanta Hawks"
+
+# See all options
+nba-headshots --help
+```
+
+## Example
+```python
+from nba_summer_league_headshots import GLeagueAPI
+
+api = GLeagueAPI()
+
+# List all available players
+all_players = api.list_all_players()
+result = api.batch_download(all_players, output_dir="./my_custom_folder")
+
+```
+
+
+## API Reference
+
+### Simple Functions
+- `get_headshot(player_name, output_dir="./headshots")` → Save one player's image
+- `get_headshots(player_names, output_dir="./headshots")` → Save multiple players' images
+
+### Advanced API (GLeagueAPI)
+- `list_all_players()` → Get list of all players 
+- `get_team(team_name)` → Get all players from a specific NBA team -> type: string
+- `search_players(query)` → Find players by name -> type: string
+- `copy_headshot(name, output_dir)` → Copy single player to custom directory -> type: string, output_dir: string
+- `batch_download(names, output_dir)` → Download multiple with detailed results -> type: list, output_dir: string
