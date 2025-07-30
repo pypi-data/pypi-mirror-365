@@ -1,0 +1,29 @@
+Metadata-Version: 2.4
+Name: odoo_addon_energy_communities_crm
+Version: 16.0.0.2.4
+Summary: Use CRM for coordinators and energy communities
+Home-page: https://git.coopdevs.org/coopdevs/comunitats-energetiques/odoo-ce
+Author: Som Comunitats
+License: AGPL-3
+Classifier: Programming Language :: Python
+Classifier: Framework :: Odoo
+Classifier: Framework :: Odoo :: 16.0
+Classifier: License :: OSI Approved :: GNU Affero General Public License v3
+Requires-Python: >=3.10
+Requires-Dist: odoo-addon-crm_metadata<16.1dev,>=16.0dev
+Requires-Dist: odoo-addon-crm_metadata_rest_api<16.1dev,>=16.0dev
+Requires-Dist: odoo-addon-crm_rest_api<16.1dev,>=16.0dev
+Requires-Dist: odoo-addon-energy_communities<16.1dev,>=16.0dev
+Requires-Dist: odoo<16.1dev,>=16.0a
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: home-page
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+
+        Use CRM for coordinators and energy communities
+    
