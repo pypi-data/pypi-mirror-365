@@ -1,0 +1,61 @@
+# GitHub Actions Workflow for Development Builds
+# Runs on every push and pull request for quick feedback
+
+name: Development Build
+
+on:
+  push:
+    branches-ignore: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+env:
+  PACKAGE_NAME: ray_simplify
+
+jobs:
+  quick-test:
+    name: Quick Tests (Python 3.11)
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python 3.11
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/uv
+        key: ${{ runner.os }}-uv-dev-${{ hashFiles('**/pyproject.toml') }}
+
+    - name: Install uv and dependencies
+      run: |
+        python -m pip install --upgrade pip uv
+        uv venv .venv
+        source .venv/bin/activate
+        uv pip install -e ".[dev]"
+
+    - name: Run linting
+      run: |
+        source .venv/bin/activate
+        echo "🔍 Running Ruff linter..."
+        ruff check src tests
+        echo "🎨 Checking Black formatting..."
+        black --check --diff src tests
+
+    - name: Run quick tests
+      run: |
+        source .venv/bin/activate
+        echo "🧪 Running tests..."
+        pytest --maxfail=3 -x --disable-warnings
+
+    - name: Check package build
+      run: |
+        source .venv/bin/activate
+        python -m pip install build
+        python -m build --wheel
+        echo "✅ Package builds successfully"
