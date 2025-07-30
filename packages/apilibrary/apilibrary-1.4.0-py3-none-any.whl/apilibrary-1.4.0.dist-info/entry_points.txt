@@ -1,0 +1,9 @@
+[console_scripts]
+addgitignore = apilib.commands:addgitignore_command
+checkauth = apilib.password_commands:check_auth_status_command
+deleteallkeys = apilib.commands:delete_all_keys_command
+deletekey = apilib.commands:delete_key_command
+fetchallkeys = apilib.commands:fetch_all_keys_command
+fetchkey = apilib.commands:fetch_key_command
+hiiapi = apilib.commands:hiiapi_command
+storekey = apilib.commands:store_key_command
