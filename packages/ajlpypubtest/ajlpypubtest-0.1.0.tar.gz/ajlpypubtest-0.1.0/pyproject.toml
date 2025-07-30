@@ -1,0 +1,34 @@
+[build-system]
+requires = [ "setuptools>=77.0.3", "setuptools-scm", ]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ajlpypubtest"
+dynamic = [
+  "version",
+  "readme",
+]
+description = "AJl python publishing tester"
+keywords = []
+authors = [
+  {name = "Andy Loftus", email = "aloftus@gmail.com"},
+]
+requires-python = ">=3.6"
+license-files = ["LICEN[CS]E*"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+]
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/andylytical/ajlpypubtest"
+
+# [project.scripts]
+
+[tool.setuptools.dynamic]
+readme = { file = [ "README.md" ] }
+
+[tool.setuptools_scm]
+version_file = "ajlpypubtest/_version.py"
+version_scheme = "guess-next-dev"  # this is the default
+local_scheme = "no-local-version"  # local version component not allowed on pypi
