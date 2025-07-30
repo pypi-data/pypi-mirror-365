@@ -1,0 +1,105 @@
+[build-system]
+requires = ["setuptools>=64", "setuptools_scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "waveform-editor"
+description = "Python tool to create and edit 1D waveforms (time-varying signals)"
+readme = {file = "README.md", content-type = "text/markdown"}
+authors = [
+    {name = "Waveform Editor Developers"}
+]
+classifiers = [
+]
+license = {file = "LICENSE.txt"}
+dependencies = [
+    "numpy",
+    "pandas",
+    "click",
+    "matplotlib",
+    "scipy",
+    "imas-python[netcdf]",
+    "panel>=1.6.3",
+    "pygments",
+    "plotly",
+    "holoviews",
+    "ruamel.yaml",
+    "kaleido", # required for exporting PNG to disk
+    "asteval"
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+all = ["waveform-editor[muscle3,dev,linting,test,docs]"]
+muscle3 = [
+    "muscle3",
+]
+dev = [
+    "waveform-editor[test,linting]",
+    # useful to run panel in --dev mode
+    "watchfiles",
+]
+linting = [
+    "ruff",
+]
+test = [
+    "pytest>=5.4.1",
+    "pytest-cov>=0.6",
+    "pytest-xdist",
+    "pytest-randomly",
+]
+docs = [
+    "waveform-editor[muscle3]",
+    "sphinx>=6.0.0,<7.0.0",
+    "sphinx-autosummary-accessors>=0.1.2",
+    "sphinx-immaterial>=0.11.0,<0.12",
+]
+
+[project.urls]
+homepage = "https://github.com/iterorganization/Waveform-Editor"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["waveform_editor*"]
+
+[project.scripts]
+waveform-editor = "waveform_editor.cli:cli"
+
+[tool.setuptools_scm]
+#version_file = "waveform_editor/_version.py"
+local_scheme = "no-local-version"
+
+[tool.isort]
+line_length = 88
+profile = "black"
+
+[tool.ruff]
+exclude = [
+    "docs",
+    ".git",
+]
+# Same as Black
+line-length = 88
+indent-width = 4
+
+[tool.ruff.lint]
+select = [
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+]
+
+[tool.pytest.ini_options]
+filterwarnings = [
+    # filter deprecation warning mentioned in https://github.com/plotly/Kaleido/issues/194
+    "ignore:setDaemon\\(\\) is deprecated, set the daemon attribute instead:DeprecationWarning"
+]
