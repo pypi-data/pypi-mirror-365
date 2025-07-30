@@ -1,0 +1,20 @@
+[build-system]
+requires = ["flit_core >=3.11,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "ansible-forum-events"
+authors = [{name = "Anwesha Das", email = "anwesha.srkr@gmail.com"}]
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE"]
+dynamic = ["version", "description"]
+readme = "README.md"
+dependencies = [
+"httpx",
+]
+
+[project.urls]
+Home = "https://github.com/anweshadas/ansible-forum-events"
+
+[project.scripts]
+afe = "ansible_forum_events:main"

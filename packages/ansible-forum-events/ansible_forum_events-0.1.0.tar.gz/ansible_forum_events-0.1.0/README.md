@@ -1,0 +1,31 @@
+# afe
+
+`afe` aka Ansible Forum events, prints out the upcoming Ansible Forum events from the [Ansible forum](https://forum.ansible.com/c/events/8)  in markdown format.
+
+## Usage
+
+```sh
+❯ afe
+Skipping about-the-events-category
+Skipping documentation-wg-weekly-meeting
+Skipping community-wg-weekly-meeting
+
+
+
+[AAP Config as Code Office Hours - First Thursday of Every Month](https://forum.ansible.com/t/aap-config-as-code-office-hours-first-thursday-of-every-month/398)
+[AWX Community Meeting](https://forum.ansible.com/t/awx-community-meeting/120)
+[Ansible-Minneapolis: August Meetup [2025-08-28]](https://forum.ansible.com/t/ansible-minneapolis-august-meetup-2025-08-28/43809)
+[AWS Community Meeting](https://forum.ansible.com/t/aws-community-meeting/1848)
+[8. Ansible Anwendertreffen](https://forum.ansible.com/t/8-ansible-anwendertreffen/43960)
+[Ansible-Pune: Ansible Bangalore Meetup - September 2025 [2025-09-06]](https://forum.ansible.com/t/ansible-pune-ansible-bangalore-meetup-september-2025-2025-09-06/44105)
+[Ansible-London: Ansible London – Thursday 9th October 2025 [2025-10-09]](https://forum.ansible.com/t/ansible-london-ansible-london-thursday-9th-october-2025-2025-10-09/43849)
+[Red Hat Summit: Connect 2025 London](https://forum.ansible.com/t/red-hat-summit-connect-2025-london/43244)
+
+```
+
+It currently skips two regular weekly working group meetings.
+
+
+## License
+
+"GPL-3.0-or-later"
