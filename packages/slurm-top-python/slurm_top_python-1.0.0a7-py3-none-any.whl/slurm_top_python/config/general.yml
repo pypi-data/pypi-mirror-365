@@ -1,0 +1,17 @@
+---
+# general stuff
+logging:
+    clear-log-on-exit: True
+    clear-log-on-error: False # if True: when an exception is detected, logs will be cleared. NOT suggested to enable since you won't have debug logs if something breaks.
+check-for-updates: False
+
+# theming
+theming:
+    available-themes:
+        default: &default npyscreen.Themes.DefaultTheme # best for general use. opaque background makes text redable on transparent terminals
+        elegant: &elegant npyscreen.Themes.ElegantTheme # almost the same as default
+        colorful: &colorful npyscreen.Themes.ColorfulTheme
+        blackOnWhite: &blackOnWhite npyscreen.Themes.BlackOnWhiteTheme
+        transparentDark: &transparentDark npyscreen.Themes.TransparentThemeDarkText
+        transparentLight: &transparentLight npyscreen.Themes.TransparentThemeLightText # better legibility than dark theme
+    current-theme: *default
