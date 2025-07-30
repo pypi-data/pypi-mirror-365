@@ -1,0 +1,31 @@
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cowlist"
+version = "0.1.0a2"
+description = "An efficient, immutable, type-safe copy-on-write (COW) list implementation for Python 2+."
+readme = "README.md"
+requires-python = ">=2"
+license = "Apache-2.0"
+authors = [
+  { name="Jifeng Wu", email="jifengwu2k@gmail.com" }
+]
+classifiers = [
+    "Programming Language :: Python :: 2",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "determine-slice-assignment-action",
+    "range-tools",
+    "tuplehash",
+    "typing; python_version < '3.5'",
+    "typing-extensions"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/jifengwu2k/cowlist"
+"Bug Tracker" = "https://github.com/jifengwu2k/cowlist/issues"
