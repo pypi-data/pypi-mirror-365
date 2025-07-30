@@ -1,0 +1,42 @@
+id
+__typename
+assignees(first: 100) {
+    edges {
+        node {
+        id
+        email
+        login
+        name
+        }
+    }
+}
+author {
+    login
+    ... on User {
+        id
+        email
+        login
+        name
+    }
+}
+body
+closed
+closedAt
+createdAt
+databaseId
+labels(first: 100) {
+edges {
+    node {
+    id
+    name
+    description
+    }
+}
+}
+number
+title
+updatedAt
+url
+repository {
+    {% include "partial/repository.graphql" %}
+}
