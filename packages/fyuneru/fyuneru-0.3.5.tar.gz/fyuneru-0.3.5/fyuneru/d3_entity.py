@@ -1,0 +1,27 @@
+from dataclasses import dataclass, field
+import numpy as np
+from scipy.spatial.transform import Rotation as R
+
+
+@dataclass
+class SElement:
+    translation: np.ndarray = field(default_factory=lambda: np.array([0.0, 0.0, 0.0]))
+    rotation: np.ndarray = field(default_factory=lambda: np.array([0.0, 0.0, 0.0, 1.0]))
+
+    def euler_rot(self, seq="xyz", degrees=False):
+        return R.from_quat(self.rotation).as_euler(seq=seq, degrees=degrees)
+
+    def matrix_rot(self):
+        return R.from_quat(self.rotation).as_matrix()
+
+    def as_matrix(self):
+        matrix = np.eye(4)
+        matrix[:3, :3] = R.from_quat(self.rotation).as_matrix()
+        matrix[:3, 3] = self.translation
+        return matrix
+
+    @classmethod
+    def from_matrix(cls, matrix: np.ndarray) -> "SElement":
+        return cls(
+            translation=matrix[:3, 3], rotation=R.from_matrix(matrix[:3, :3]).as_quat()
+        )
