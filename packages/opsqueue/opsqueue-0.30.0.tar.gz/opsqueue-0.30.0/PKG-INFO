@@ -1,0 +1,27 @@
+Metadata-Version: 2.4
+Name: opsqueue
+Version: 0.30.0
+Classifier: Programming Language :: Rust
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Dist: cbor2
+Requires-Dist: opentelemetry-api
+Requires-Dist: opentelemetry-sdk
+Requires-Dist: opentelemetry-exporter-otlp
+Requires-Dist: pytest==8.3.3 ; extra == 'test'
+Requires-Dist: pytest-random-order==1.1.1 ; extra == 'test'
+Requires-Dist: pytest-parallel==0.1.1 ; extra == 'test'
+Requires-Dist: py==1.11.0 ; extra == 'test'
+Provides-Extra: test
+Summary: Python client library for Opsqueue, the lightweight batch processing queue for heavy loads
+Keywords: queue,processing,paralellism,distributed,batch,producer,consumer
+License: MIT
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown; charset=UTF-8; variant=GFM
+Project-URL: Repository, https://github.com/channable/opsqueue
+Project-URL: Issues, https://github.com/channable/opsqueue/issues
+
+The Python client library for the Opsqueue lightweight batch processing queue system.
+
+Find the full README with examples at https://github.com/channable/opsqueue
+
