@@ -1,0 +1,41 @@
+Metadata-Version: 2.4
+Name: faculty-cli
+Version: 0.15.0
+Summary: The command line interface to Faculty
+Home-page: https://faculty.ai/platform/
+Author: Faculty
+Author-email: opensource@faculty.ai
+License: Apache Software License
+Keywords: data science platform
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Operating System :: POSIX
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Natural Language :: English
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE-2.0.txt
+Requires-Dist: click
+Requires-Dist: python-dateutil
+Requires-Dist: requests
+Requires-Dist: tabulate
+Requires-Dist: faculty>=0.31.0
+Requires-Dist: setuptools
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# faculty-cli
+
+`faculty` is the command line interface to the [Faculty platform](https://faculty.ai/products-services/platform/).

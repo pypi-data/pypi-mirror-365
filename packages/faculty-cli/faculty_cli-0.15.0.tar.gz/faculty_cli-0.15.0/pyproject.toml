@@ -1,0 +1,14 @@
+[tool.black]
+line-length = 79
+exclude = '''
+/(
+    \.git
+  | \.mypy_cache
+  | build
+  | dist
+  | \.eggs
+)/
+'''
+
+[tool.setuptools_scm]
+version_scheme = "post-release"
