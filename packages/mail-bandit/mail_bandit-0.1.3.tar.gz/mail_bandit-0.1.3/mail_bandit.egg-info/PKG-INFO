@@ -1,0 +1,51 @@
+Metadata-Version: 2.4
+Name: mail_bandit
+Version: 0.1.3
+Summary: Mail Bandit is a fast, lightweight tool that classifies emails into five categories using DistilBERT and XGBoost.
+Home-page: https://github.com/yourusername/mail-bandit
+Author: Jabez Gershon Aldrin
+Author-email: Jabez123jaze@gmail.com
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: transformers
+Requires-Dist: scikit-learn
+Requires-Dist: pandas
+Requires-Dist: joblib
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# mail-bandit
+
+**mail-bandit** is a plug-and-play email classifier that reads emails from an Amazon S3 bucket and classifies them into 5 categories using a fine-tuned DistilBERT model and XGBoost classifier.
+
+---
+
+## Features
+
+- Classifies emails into:
+  - Offer Rollout
+  - Rejection
+  - Additional Information Required
+  - General Communication
+  - Unrelated to Application
+- DistilBERT embeddings + XGBoost classifier
+- Reads email data from `.jsonl` stored in S3
+- Easy to train, deploy, and extend
+
+---
+
+## Installation
+
+```bash
+pip install mail-bandit
