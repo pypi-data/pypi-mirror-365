@@ -1,0 +1,27 @@
+- [X] Search
+- [X] Download
+- [X] Play
+- [X] Name Episode
+- [X] All language
+- [X] Order Episode
+- [X] Separate backend
+- [X] Fallback on other players
+- [X] Retry players
+- [X] Config
+- [ ] Tests
+- [X] Make a package
+- [ ] Implement all NotImplemented
+- [ ] Auto detect download folder and config folder, see https://stackoverflow.com/questions/35851281/python-finding-the-users-downloads-folder and appdirs (pypi)
+- [ ] Select a range of seasons to download
+- [ ] Take args in cli
+- [ ] Cache players link for offline use
+- [ ] Nix?
+- [ ] Auto-download at start-up & queue download
+- [ ] Do all TODO (present in .py files)
+- [ ] Menu
+- [ ] Planning
+- [ ] Ani-skip
+- [ ] Resume play (history)
+- [ ] MAL sync
+- [ ] Play from download
+- [ ] Discord presence
