@@ -1,0 +1,19 @@
+numpy>=1.20.0
+matplotlib>=2.2.0
+
+[:python_version < "3.8"]
+importlib-metadata>=6.0
+
+[dev]
+pytest
+ase>=3.20.0
+ruff==0.11.2
+
+[h5_parsing]
+h5py
+
+[schemaparsing]
+xmlschema
+
+[serialisation]
+monty
