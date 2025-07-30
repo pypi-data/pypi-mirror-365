@@ -1,0 +1,39 @@
+[build-system]
+requires = ["maturin>=1.0,<2.0"]
+build-backend = "maturin"
+
+[tool.maturin]
+python-source = "python"
+module-name = "linkapy"
+bindings = "pyo3"
+
+[project]
+description = "A common framework to analyse scNMT-seq data."
+dynamic = ["version"]
+name = "linkapy"
+authors = [
+    {name = "Ward Deboutte", email = "w@rddeboutte.com"},
+]
+requires-python = ">= 3.10, < 3.13"
+dependencies = [
+    "anndata >= 0.11.1",
+    "scanpy >= 1.10.4",
+    "rich >= 13.9.4",
+    "pyarrow >= 18.1.0",
+    "muon >= 0.1.7",
+    "tables >= 3.10.1",
+    "polars >= 1.17.1"
+]
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "pytest"
+]
+docs = [
+    "sphinx",
+    "sphinx-rtd-theme",
+    "sphinx-autoapi"
+]
+build = [
+    "build"
+]
