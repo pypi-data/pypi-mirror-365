@@ -1,0 +1,72 @@
+# SmartBinDB
+
+![Python Version](https://img.shields.io/badge/Python-3.8%2B-blue)
+![Version](https://img.shields.io/badge/Version-2.16.1-green)
+
+A powerful asynchronous Python library for retrieving Bank Identification Number (BIN) database information, supporting lookups by country name, bank name, and individual BINs. Ideal for bots, MTProto API frameworks, and Python scripts. **This is a closed-source project, and the source code is not available for public distribution.**
+
+## Features
+- Asynchronous operations using `asyncio` for high-performance data retrieval.
+- Flexible lookups by country code, bank name, or specific BIN number.
+- Optional limit support for bank and country-based searches.
+- Compatible with Python 3.8 and all future versions.
+- Seamless integration for developers working with bots, APIs, and scripts.
+
+## Installation
+Install SmartBinDB via pip:
+
+```bash
+pip install smartbindb
+```
+
+## Usage
+
+### Basic Asyncio Example
+```python
+import asyncio
+from smartbindb import SmartBinDB
+
+async def main():
+    smartdb = SmartBinDB()
+    print("What would you like to do?")
+    print("1. BIN lookup")
+    print("2. Bank based search")
+    print("3. Country based search")
+    choice = input("Enter your choice (1, 2, or 3): ")
+
+    if choice == "1":
+        bin_number = input("Enter BIN number: ")
+        result = await smartdb.get_bin_info(bin_number)
+        print("BIN info:", result)
+    elif choice == "2":
+        bank_name = input("Enter bank name: ")
+        use_limit = input("Do you want to use a limit? (yes/no): ").lower()
+        limit = None
+        if use_limit == "yes":
+            limit = int(input("Enter limit: "))
+        result = await smartdb.get_bins_by_bank(bank_name, limit)
+        print("Bank results:", result)
+    elif choice == "3":
+        country_code = input("Enter country code: ").upper()
+        use_limit = input("Do you want to use a limit? (yes/no): ").lower()
+        limit = None
+        if use_limit == "yes":
+            limit = int(input("Enter limit: "))
+        result = await smartdb.get_bins_by_country(country_code, limit)
+        print("Country results:", result)
+    else:
+        print("Invalid choice. Please select 1, 2, or 3.")
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+## Contributing
+This is a closed-source project, and contributions are not accepted at this time.
+
+## License
+This project is proprietary and not licensed for open-source use.
+
+## Contact
+- **Author**: @ISmartCoder
+- **Email**: abirxdhackz.info.me@gmail.com

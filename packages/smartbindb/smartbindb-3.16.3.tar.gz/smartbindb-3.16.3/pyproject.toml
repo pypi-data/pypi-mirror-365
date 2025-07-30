@@ -1,0 +1,34 @@
+[project]
+name = "smartbindb"
+version = "3.16.3"
+description = "A powerful Asynchronous Python library for getting BINs database by country name or bank name. Also supports BIN lookup for bots, MTProto API frameworks, and Python scripts."
+authors = [
+    { name = "@ISmartCoder", email = "abirxdhackz.info.me@gmail.com" }
+]
+dependencies = [
+    "pycountry",
+    "pycountry-convert",
+    "asyncio"
+]
+requires-python = ">=3.8"
+readme = "README.md"
+license = { text = "Proprietary" }
+classifiers = [
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries"
+]
+
+[tool.setuptools.package-data]
+smartbindb = ["data/*.json"]
+
+[project.urls]
+Homepage = "https://github.com/abirxdhack"
+Documentation = "https://abirxdhack.github.io/SmartBinDBDocs/"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
