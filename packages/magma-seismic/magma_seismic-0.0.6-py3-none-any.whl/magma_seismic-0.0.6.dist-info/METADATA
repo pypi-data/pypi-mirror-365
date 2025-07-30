@@ -1,0 +1,118 @@
+Metadata-Version: 2.4
+Name: magma-seismic
+Version: 0.0.6
+Summary: MAGMA Seismic
+Keywords: magma,indonesia,volcano,seismic
+Author-email: Martanto <martanto@live.com>, Devy Kamil Syahbana <devy.syahbana@gmail.com>, Syarif Abdul Manaf <riefmof@gmail.com>
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+License-File: LICENSE
+Requires-Dist: obspy>=1.4.2
+Requires-Dist: openpyxl>=3.1.5
+Requires-Dist: pandas>=2.2.2
+Requires-Dist: numpy>=2.2.5
+Requires-Dist: isort ; extra == "dev"
+Requires-Dist: black[d] ; extra == "dev"
+Requires-Dist: obspy ; extra == "dev"
+Requires-Dist: openpyxl ; extra == "dev"
+Requires-Dist: pandas ; extra == "dev"
+Requires-Dist: numpy ; extra == "dev"
+Project-URL: Homepage, https://github.com/martanto/magma-seismic
+Project-URL: Issues, https://github.com/martanto/magma-seismic/issues
+Provides-Extra: dev
+
+# magma-seismic
+Some tools for MAGMA to handle seismic
+
+## 1. Install
+```python
+pip install magma-seismic
+```
+## 2. Import module
+```python
+from magma_seismic.download import Download
+import magma_seismic
+```
+## 3. Check version
+```python
+magma_seismic.__version__
+```
+## 4. Download from Winston
+```python
+download = Download(
+    station='LEKR',
+    channel='EHZ',
+    start_date='2025-05-26',
+    end_date='2025-05-26',
+    
+    # (str, optional)
+    # Change the output directory. 
+    # Default to current directory
+    output_directory=r'D:\Projects\magma-seismic', 
+    
+    # (bool, optional) 
+    # Change to False to skip download 
+    # when file already exists. 
+    # Default False
+    overwrite=True,
+    
+    # (bool, optional)
+    # To show detailed process. 
+    # Default to False
+    verbose=True,
+)
+```
+
+### 4.1 (Optional) Change Winston client
+```python
+download.set_client(
+    host='winston address',
+    port=123456, # winston port
+    timeout=30
+)
+```
+### 4.2 Download to IDDS
+```python
+download.to_idds(
+    # (int, optional) 
+    # Download per how many minutes. 
+    # Default to 60 minutes
+    period=60,
+    
+    # (bool, optional)
+    # Merging or filling empty data/gaps. 
+    # Default to False
+    use_merge=True, 
+)
+```
+### 4.3 Download to SDS
+```python
+download.to_sds( 
+    # (bool, optional)
+    # Merging or filling empty data/gaps. 
+    # Default to False
+    use_merge=True, 
+    
+    # (int, optional)
+    # Use it if you unstable connection
+    # It takes longer to download, but
+    # can continue if the download failed.
+    #
+    # Download per one hour, then merged it as daily
+    # Value in minutes
+    chunk_size=60
+)
+```
+
+## Check download result
+```python
+# will show list of failed download
+download.failed
+
+# will show list of successfully download
+download.success 
+```
