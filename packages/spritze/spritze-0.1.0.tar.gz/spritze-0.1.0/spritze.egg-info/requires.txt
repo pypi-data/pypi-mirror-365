@@ -1,0 +1,13 @@
+
+[dev]
+ruff
+pip-audit
+
+[examples]
+uvicorn
+litestar
+flask
+
+[test]
+pytest
+pytest-asyncio
