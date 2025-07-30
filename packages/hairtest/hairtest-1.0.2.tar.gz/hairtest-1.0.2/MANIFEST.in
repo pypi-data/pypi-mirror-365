@@ -1,0 +1,8 @@
+# 包含额外的文件到发布包中
+include README.md
+include LICENSE
+include MANIFEST.in
+recursive-include hairtest *.py
+recursive-include hairtest/templates *
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
