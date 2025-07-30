@@ -1,0 +1,20 @@
+[project]
+name = "jaxpy"
+version = "0.0.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Bernardo Esteves", email = "24633851+esteveste@users.noreply.github.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "jax",
+    "flax",
+]
+
+[project.scripts]
+jaxpy = "jaxpy:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
