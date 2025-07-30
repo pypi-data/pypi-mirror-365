@@ -1,0 +1,35 @@
+Metadata-Version: 2.4
+Name: ashi
+Version: 0.0.0
+Summary: Aesthetics Structures for Human Interpretation
+Author-email: Bernardo Dionisi <bernardo.dionisi@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/bernardodionisi/ashi
+Project-URL: Source, https://github.com/bernardodionisi/ashi
+Project-URL: Issues, https://github.com/bernardodionisi/ashi/issues
+Project-URL: Documentation, https://bernardodionisi.github.io/ashi/latest/
+Keywords: information,strings,styles
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Provides-Extra: dev
+Requires-Dist: ruff==0.1.4; extra == "dev"
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-cov[toml]; extra == "dev"
+Requires-Dist: pytest-xdist; extra == "dev"
+Requires-Dist: pytest-benchmark>=4.0.0; extra == "dev"
+Requires-Dist: requests; extra == "dev"
+Requires-Dist: pdfminer.six; extra == "dev"
+Dynamic: license-file
+
+# Aesthetics Structures for Human Interpretation
