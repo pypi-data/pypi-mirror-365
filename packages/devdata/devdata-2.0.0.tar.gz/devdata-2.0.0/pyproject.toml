@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "devdata"
+version = "2.0.0"
+description = "A powerful set of utilities for data processing, visualization, and AI tasks."
+authors = [
+    { name="Aiden Wilson", email="visitoratbo@gmail.com" }
+]
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.7"
+dependencies = [
+    "asyncio",
+    "boto3",
+    "botocore",
+    "category_encoders",
+    "cryptography",
+    "dask",
+    "google",
+    "matplotlib",
+    "numpy",
+    "pandas",
+    "plotly",
+    "prefect",
+    "pyspark",
+    "scipy",
+    "seaborn",
+    "scikit-learn",
+    "tenacity",
+    "tensorflow",
+    "torch",
+    "torchvision",
+    "transformers"
+]
