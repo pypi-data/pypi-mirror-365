@@ -1,0 +1,25 @@
+[project]
+name = "hellohellohello"
+description = "A simple Python CLI app inspired by the Beatles' 'Hello, Goodbye'. Responds to user input with lyric-inspired opposites."
+authors = [
+    { name = "Your Name", email = "your.email@example.com" }
+]
+readme = "README.md"
+requires-python = ">=3.7"
+dynamic = ["version"]
+
+[project.scripts]
+hellohellohello = "hellohellohello:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "hellohellohello/hellohellohello.py"
+pattern = "__version__ = ['\"](?P<version>[^'\"]+)['\"]"
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+  "/.github",
+]
