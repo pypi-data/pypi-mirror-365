@@ -1,0 +1,81 @@
+[build-system]
+requires      = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pipeGEM"
+version = "0.1.1"
+description = "Processing and integrating data with genome-scale metabolic models (GEM)"
+readme = "README.md"
+authors = [{ name = "Yu-Te Lin", email = "qwerty239qwe@gmail.com" }]
+classifiers = [
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+keywords = ["metabolism", "metabolic-model", "computational-biology", "system-biology", "cobra"]
+dependencies = [
+    "cobra",
+    "pandas",
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "requests",
+    "scikit-learn",
+    "scikit-posthocs",
+    "seaborn",
+    "umap-learn",
+    "biodbs",
+    "tqdm",
+    "optlang",
+    "networkx",
+    "zeep",
+    "pint",
+    "pingouin",
+    "scanpy",
+    "tomlkit",
+    "dask[distributed]",
+    "openpyxl"
+]
+requires-python = ">=3.8"
+
+[project.optional-dependencies]
+dev = [
+    "pip-tools",
+    "pytest",
+    "flake8"
+]
+doc = [
+    "numpydoc",
+    "nbconvert",
+    "ipykernel",
+    "sphinx",
+    "sphinx-copybutton",
+    "sphinx-issues",
+    "sphinx-design",
+    "pydata_sphinx_theme",
+    "myst-nb",
+    "ipywidgets"
+]
+dlkcat = [
+    "torch",
+    "rdkit"
+]
+
+[project.urls]
+Homepage = "https://github.com/qwerty239qwe/pipeGEM"
+
+[project.scripts]
+pipeGEM = "pipeGEM.cli.main:main"
+
+[tool.setuptools.package-data]
+"analysis.tasks" = ["task_files/*.json"]
+"data" = ["enzyme_data/*", "medium/*"]
+"cli" = ["configs/*.toml"]
+
+[tool.setuptools]
+include-package-data = true

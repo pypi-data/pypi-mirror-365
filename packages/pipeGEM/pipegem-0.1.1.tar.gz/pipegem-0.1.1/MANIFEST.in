@@ -1,0 +1,5 @@
+include pipeGEM/*.toml
+recursive-include pipeGEM/analysis/tasks/task_files *.json
+recursive-include pipeGEM/data/enzyme_data *
+recursive-include pipeGEM/cli/configs *.toml
+recursive-include pipeGEM/data/medium *

@@ -1,0 +1,24 @@
+integrator_name = "mCADRE"
+saved_path = ""
+exp_cutoff = 0.9
+absent_value = 0
+absent_value_indicator = -1e-6
+evidence_scores = nan
+salvage_check_tasks = nan
+default_salv_test = true
+func_test_tasks = nan
+required_met_ids = nan
+default_func_test = false
+
+[threshold_kws]
+    return_heuristic = false
+
+[precompute]
+    [precompute.model]
+        cobra_model_path = nan
+        model_name_tag = "human1"
+    [precompute.tasks]
+        task_result_path = nan
+    [precompute.threshold]
+        threshold_result_path = nan
+        type = "rFASTCORMICS"

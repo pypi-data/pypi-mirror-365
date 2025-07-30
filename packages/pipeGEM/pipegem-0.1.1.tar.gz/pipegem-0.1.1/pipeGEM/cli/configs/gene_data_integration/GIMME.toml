@@ -1,0 +1,20 @@
+integrator_name = "GIMME"
+saved_path = ""
+high_exp = "default"
+protected_rxns = []
+obj_frac = 0.8
+remove_zero_fluxes = true
+flux_threshold = 1e-6
+max_inconsistency_score = 1e3
+return_fluxes = true
+keep_context = false
+
+[precompute]
+    [precompute.model]
+        cobra_model_path = nan
+        model_name_tag = "human1"
+    [precompute.tasks]
+        task_result_path = nan
+    [precompute.threshold]
+        threshold_result_path = nan
+        type = "rFASTCORMICS"
