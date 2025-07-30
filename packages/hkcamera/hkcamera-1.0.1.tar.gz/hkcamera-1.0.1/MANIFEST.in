@@ -1,0 +1,5 @@
+include README.md
+include requirements.txt
+recursive-include camera/lib *
+include camera/lib/win/*
+include camera/lib/linux/*
