@@ -1,0 +1,4 @@
+[console_scripts]
+build-parser = llm_extractinator.launch_schema_builder:main
+extractinate = llm_extractinator.main:main
+launch-extractinator = llm_extractinator.launch_gui:main
