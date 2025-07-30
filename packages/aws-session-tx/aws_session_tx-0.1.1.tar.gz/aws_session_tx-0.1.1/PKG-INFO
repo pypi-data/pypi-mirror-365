@@ -1,0 +1,83 @@
+Metadata-Version: 2.4
+Name: aws-session-tx
+Version: 0.1.1
+Summary: A per-session 'begin → plan → rollback' tool for AWS sandboxes
+Home-page: https://github.com/GarvitBanga/aws-session-tx
+Author: Session TX Team
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: typer>=0.9.0
+Requires-Dist: boto3>=1.34.0
+Requires-Dist: botocore>=1.34.0
+Requires-Dist: pydantic>=2.5.0
+Requires-Dist: rich>=13.7.0
+Requires-Dist: click>=8.1.0
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# AWS Session TX
+
+Track and clean up AWS resources created during development sessions.
+
+## Install
+
+```bash
+pip install aws-session-tx
+```
+
+## Quick Start
+
+```bash
+aws-tx infra deploy
+aws-tx begin my-session --ttl 2h
+aws s3 mb s3://my-test-bucket
+aws-tx status my-session
+aws-tx rollback my-session --approve
+```
+
+## Commands
+
+| Command | Description |
+|---------|-------------|
+| `aws-tx begin <name>` | Start session |
+| `aws-tx status <name>` | Show status |
+| `aws-tx plan <name>` | Show deletion plan |
+| `aws-tx rollback <name>` | Delete resources |
+| `aws-tx commit <name>` | Keep resources |
+| `aws-tx cleanup all` | Clean everything |
+| `aws-tx infra deploy` | Deploy infrastructure |
+| `aws-tx infra destroy` | Destroy infrastructure |
+
+## Configuration
+
+```bash
+export AWS_SESSION_TX_TABLE_NAME=session-tx-dev
+```
+
+## Examples
+
+```bash
+aws-tx begin dev --ttl 4h
+aws-tx rollback dev --approve
+```
+
+## License
+
+MIT 
