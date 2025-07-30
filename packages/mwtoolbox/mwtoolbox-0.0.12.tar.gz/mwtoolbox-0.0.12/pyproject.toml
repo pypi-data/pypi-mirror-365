@@ -1,0 +1,143 @@
+[build-system]
+build-backend = 'setuptools.build_meta'
+requires = ['setuptools', 'wheel']
+
+[project]
+name = "mwtoolbox"
+version = "0.0.12"
+dependencies = ["quantities",
+                "numpy",
+                "scipy",
+                "sympy",
+                ]
+description="Microwave Toolbox"
+readme = "README.md"
+keywords = ["microwave", "rf", "s-parameters"]
+authors = [{ name = "Tuncay Erdöl", email = "terdol@hotmail.com"}]
+requires-python = ">=3.10"
+license = {text = "MIT"}
+classifiers=[
+	"Development Status :: 3 - Alpha",
+	"License :: OSI Approved :: MIT License",
+	"Operating System :: OS Independent",
+        "Programming Language :: Python :: 3.8",
+	"Topic :: Scientific/Engineering"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["mwtoolbox","mwtoolbox.em","mwtoolbox.em.fdfd_2d","mwtoolbox.em.mode_matching"]
+
+[tool.yapfignore]
+ignore_patterns = [
+  "temp/**/*.py",
+  "temp2/*.py",
+  "*old*"
+]
+# [tool.pyrefly]
+# python-interpreter = "C:/Users/Erdoel/Documents/Works/Python_Works/PythonInstallation/baseenv/Scripts/python.exe"
+
+[tool.yapf]
+ARITHMETIC_PRECEDENCE_INDICATION = true
+BLANK_LINE_BEFORE_NESTED_CLASS_OR_DEF = false
+BLANK_LINE_BEFORE_MODULE_DOCSTRING = false
+BLANK_LINE_BEFORE_CLASS_DOCSTRING = false
+COALESCE_BRACKETS = true
+CONTINUATION_ALIGN_STYLE = "SPACE"
+CONTINUATION_INDENT_WIDTH = 2
+DEDENT_CLOSING_BRACKETS = true
+DISABLE_ENDING_COMMA_HEURISTIC = true
+EACH_DICT_ENTRY_ON_SEPARATE_LINE = false
+FORCE_MULTILINE_DICT = false
+INDENT_DICTIONARY_VALUE = true
+INDENT_WIDTH = 4
+INDENT_CLOSING_BRACKETS = true
+JOIN_MULTIPLE_LINES = true
+NO_SPACES_AROUND_SELECTED_BINARY_OPERATORS = "*,/"
+SPACES_AROUND_POWER_OPERATOR = false
+SPACES_AROUND_DEFAULT_OR_NAMED_ASSIGN = false
+SPACES_AROUND_DICT_DELIMITERS = true
+SPACES_AROUND_LIST_DELIMITERS = true
+SPACES_AROUND_SUBSCRIPT_COLON = false
+SPACES_AROUND_TUPLE_DELIMITERS = true
+SPACES_BEFORE_COMMENT = 5
+SPACE_BETWEEN_ENDING_COMMA_AND_CLOSING_BRACKET = true
+SPACE_INSIDE_BRACKETS = true
+SPLIT_ALL_COMMA_SEPARATED_VALUES = false
+SPLIT_ALL_TOP_LEVEL_COMMA_SEPARATED_VALUES = false
+SPLIT_BEFORE_ARITHMETIC_OPERATOR = true
+SPLIT_BEFORE_BITWISE_OPERATOR = true
+SPLIT_BEFORE_CLOSING_BRACKET = true
+SPLIT_BEFORE_DICT_SET_GENERATOR = true
+SPLIT_BEFORE_DOT = true
+SPLIT_BEFORE_EXPRESSION_AFTER_OPENING_PAREN = true
+SPLIT_BEFORE_FIRST_ARGUMENT = true
+SPLIT_BEFORE_LOGICAL_OPERATOR = true
+SPLIT_BEFORE_NAMED_ASSIGNS = true
+SPLIT_COMPLEX_COMPREHENSION = true
+USE_TABS = false
+
+[tool.ruff.lint]
+# 1. Enable flake8-bugbear (`B`) rules, in addition to the defaults.
+select = ["E4", "E7", "E9", "F", "B"]
+
+# 2. Avoid enforcing line-length violations (`E501`)
+ignore = ["E501"]
+
+# 3. Avoid trying to fix flake8-bugbear (`B`) violations.
+unfixable = ["B"]
+
+# 4. Ignore `E402` (import violations) in all `__init__.py` files, and in select subdirectories.
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["E402"]
+"**/{tests,docs,tools}/*" = ["E402"]
+
+[tool.ruff.format]
+# 5. Use double quotes for non-triple-quoted strings.
+quote-style = "double"
+exclude = ["*.pyi"]
+
+[tool.ruff.lint.flake8-quotes]
+docstring-quotes = "double"
+
+[tool.pylsp-mypy]
+enabled = true
+live_mode = true
+strict = true
+exclude = ["tests/*"]
+
+[tool.pyright]
+exclude = ["**/node_modules", "**/__pycache__"]
+ignore = ["**/node_modules", "**/__pycache__"]
+include = ["src/mwtoolbox"]
+defineConstant = { DEBUG = true }
+pythonPlatform = "Windows"
+pythonVersion = "3.9"
+reportMissingImports = true
+reportMissingTypeStubs = true
+stubPath = "C:/Users/Erdoel/Documents/Technical/Python/typings_for_pyright"
+typeCheckingMode = "basic"
+
+[tool.bumpver]
+current_version = "0.0.12"
+version_pattern = "MAJOR.MINOR.PATCH"
+commit_message = "bump version {old_version} -> {new_version}"
+commit = true
+tag = true
+push = true
+
+[tool.bumpver.file_patterns]
+"pyproject.toml" = [
+    'current_version = "{version}"', 'version = "{version}"'
+]
+"src/mwtoolbox/__init__.py" = ['__version__ = "{version}"']
+"README.md" = [
+    "{version}"
+]
+
+[tool.ruff]
+ignore = [
+    "E501",     # Line too long
+    "E701",     # Multiple statements on one line (colon)
+    "E702",     # Multiple statements on one line (semicolon)
+]
