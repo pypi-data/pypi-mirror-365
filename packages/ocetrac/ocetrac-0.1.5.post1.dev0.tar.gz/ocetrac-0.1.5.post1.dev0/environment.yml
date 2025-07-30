@@ -1,0 +1,13 @@
+name: ocetrac
+channels:
+  - conda-forge
+dependencies:
+  # Required for full project functionality 
+  - pytest
+  # Examples 
+  - jupyter
+  - jupyterlab
+  - xarray
+  - scipy
+  - dask
+  - scikit-image
