@@ -1,0 +1,91 @@
+Metadata-Version: 2.4
+Name: lazybrains
+Version: 1.0.8
+Summary: Model Selection Tool
+Author-email: Foresty <dsparthsrivastava@email.com>
+Project-URL: Homepage, https://github.com/Parth-Srivastava-bithub/lightml
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: matplotlib
+Requires-Dist: seaborn
+Requires-Dist: scikit-learn
+Requires-Dist: xgboost
+Requires-Dist: shap
+Requires-Dist: joblib
+Requires-Dist: rich
+
+# 🧠 Universal ML Model Explorer Pro
+
+![Python](https://img.shields.io/badge/Python-3.8+-blue?logo=python)
+![Platform](https://img.shields.io/badge/Platform-Cross--Platform-lightgrey)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Maintained](https://img.shields.io/badge/Maintained%3F-Yes-blue)
+![Status](https://img.shields.io/badge/Status-Active-success)
+![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
+![Downloads](https://img.shields.io/pypi/dm/lazybrains?label=Downloads&color=orange)
+
+> One-line ML pipeline that preprocesses, trains, compares, and visualizes the best model — automatically.
+
+
+Automatically train, evaluate, compare, and visualize multiple machine learning models — all with one command.
+
+## 🚀 Features
+
+* Auto detection: Classification or Regression
+* Auto preprocessing: Scaling, Encoding, Imputation, PCA
+* Parallel model training on all cores
+* SHAP interpretability plots
+* Beautiful visual reports (Confusion Matrix, ROC, Residuals, etc.)
+* CLI + Notebook compatible
+
+## 📦 Installation
+
+```bash
+pip install -r requirements.txt
+```
+
+## 🧪 CLI Usage
+
+```bash
+python main.py path/to/dataset.csv target_column_name
+```
+
+### Optional flags:
+
+* `--output_dir`: Folder to save results (default: `results`)
+* `--pca_components`: Apply PCA on numeric features
+* `--no_shap`: Disable SHAP plot (faster)
+
+## 🧬 Python Usage
+
+```python
+from yourlib import run_pipeline_in_notebook
+
+run_pipeline_in_notebook(
+    dataset_path="data.csv",
+    target_column="target",
+    pca_components=5,
+    no_shap=False
+)
+```
+
+## 📂 Output
+
+* `best_model.pkl`: Trained model
+* Plots: Confusion Matrix, ROC, Residuals, SHAP
+* `model_report.txt`: Full model comparison
+
+## 🛠️ Supported Models
+
+* Linear, Tree-based, Ensemble (RF, GB, AdaBoost, XGBoost), KNN, SVM, Stacking
+* Auto selection of best based on Accuracy / R²
+
+## Run this in your terminal to install all dependencies
+
+```cmd
+pip install pandas numpy matplotlib seaborn scikit-learn xgboost shap joblib rich
+```
+
+---
