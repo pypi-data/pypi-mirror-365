@@ -1,0 +1,43 @@
+Metadata-Version: 2.4
+Name: nested-mapping
+Version: 0.10.2
+Summary: Package to work with nested dictionaries supporing list/set as keys
+Author-email: DAGModelling Team <dagflow@jinr.ru>
+Maintainer-email: DAGModelling Team <dagflow@jinr.ru>
+License-Expression: MIT
+Project-URL: Bug Tracker, https://github.com/dagflow-team/nested-mapping/issues
+Project-URL: DAGModelling Team, https://github.com/dagflow-team
+Project-URL: documentation, https://github.com/dagflow-team/nested-mapping/wiki
+Project-URL: homepage, https://github.com/dagflow-team/nested-mapping
+Project-URL: repository, https://github.com/dagflow-team/nested-mapping
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: ordered-set
+Provides-Extra: test
+Requires-Dist: coverage; extra == "test"
+Requires-Dist: pytest; extra == "test"
+Requires-Dist: pytest-cov; extra == "test"
+Dynamic: license-file
+
+# Summary
+
+[![python](https://img.shields.io/badge/python-3.11-purple.svg)](https://www.python.org/)
+[![pipeline](https://git.jinr.ru/dagflow-team/nested-mapping/badges/master/pipeline.svg)](https://git.jinr.ru/dagflow-team/nested-mapping/commits/master)
+[![coverage report](https://git.jinr.ru/dagflow-team/nested-mapping/badges/master/coverage.svg)](https://git.jinr.ru/dagflow-team/nested-mapping/-/commits/master)
+<!--- Uncomment here after adding docs!
+[![pages](https://img.shields.io/badge/pages-link-white.svg)](http://dagflow-team.pages.jinr.ru/nested-mapping)
+-->
+
+A package to work with nested dictionaries.
+
+# Repositories
+
+- Development/CI: https://git.jinr.ru/dagflow-team/nested-mapping
+- Contact/pypi/mirror: https://github.com/dagflow-team/nested-mapping
+- PYPI: https://pypi.org/project/nested-mapping
