@@ -1,0 +1,52 @@
+Metadata-Version: 2.4
+Name: telemaster
+Version: 1.1.0
+Summary: Telemaster — easy Python library for logs management in Telegram.
+Author: David Pim
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+Dynamic: author
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license-file
+Dynamic: summary
+
+## **Telemaster – Telegram logging utility**  
+
+---
+
+A simple Python tool for delivering logs, status updates, and files to Telegram admins.  
+
+#### **Installation**  
+```bash  
+pip install telemaster  
+```  
+
+#### **Quick Start**  
+```python  
+import telemaster  
+
+logger = telemaster.TeleLogs(  
+    bot_token="YOUR_BOT_TOKEN",  
+    log_file_path="app.log",  
+    admin_chat_ids=[1234567890, 9876543210]  
+)  
+
+logger.send_message_to_all("Service is online!")  
+```  
+
+#### **Key Features**  
+- **Real-time alerts** – Notify admins instantly  
+- **Log forwarding** – Send log files directly to Telegram  
+- **Graceful shutdown reports** – Automatic alerts on exit  
+
+#### **Best Practices**  
+- Store credentials securely (e.g., environment variables)  
+- Restrict access to trusted admin chats  
+- Implement log rotation  
+
+---
+
+## License
+
+MIT License - Free for commercial and personal use.
