@@ -1,0 +1,14 @@
+[project]
+name = "texttoolkitx"
+version = "0.1.2"
+description = "A Python utility package for string manipulation (slugify, truncate, palindrome, etc.)"
+authors = [
+    { name = "Muhammad Mehdi", email = "syedmuhammadmehdi159@gmail.com" }
+]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.6"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
