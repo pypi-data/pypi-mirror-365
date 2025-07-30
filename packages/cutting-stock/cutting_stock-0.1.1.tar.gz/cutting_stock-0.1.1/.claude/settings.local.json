@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -m pytest tests/test_cutting_stock.py::test_solve_basic -v)",
+      "Bash(python -m pytest tests/test_cutting_stock.py -v)",
+      "Bash(python:*)",
+      "Bash(uv run:*)"
+    ],
+    "deny": []
+  }
+}
