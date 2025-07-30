@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Search - ANIPY</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#1E293B',
+                        accent: '#F43F5E',
+                        dark: '#0F172A',
+                        light: '#F8FAFC',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #0F172A; color: #F8FAFC; }
+        .anime-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .anime-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-secondary/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <a href="/" class="flex items-center">
+                            <i class="fas fa-play-circle text-accent text-2xl mr-2"></i>
+                            <span class="text-xl font-bold text-white">ANIPY</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <form method="get" action="/search" class="ml-4 flex items-center md:ml-6">
+                        <div class="relative">
+                            <input type="text" name="q" value="{{ q }}" placeholder="Search anime..." class="bg-dark text-white px-4 py-2 rounded-full w-64 focus:outline-none focus:ring-2 focus:ring-primary">
+                            <button class="absolute right-3 top-2 text-gray-400 hover:text-white">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <a href="/" class="text-primary hover:underline flex items-center mb-6"><i class="fas fa-arrow-left mr-2"></i>Back to Home</a>
+        <h1 class="text-3xl font-bold mb-8">Anime Search</h1>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            {% for anime in results %}
+            <div class="anime-card bg-secondary rounded-lg overflow-hidden shadow-md">
+                <a href="/anime/{{ anime.session }}">
+                    <div class="relative">
+                        <img src="/proxy-image?url={{ anime.poster | urlencode }}" alt="{{ anime.title }}" class="w-full h-48 object-cover">
+                        <div class="absolute bottom-2 left-2 bg-primary text-white text-xs px-2 py-1 rounded">{{ anime.type }}</div>
+                        {% if anime.status %}<div class="absolute top-2 right-2 bg-accent text-white text-xs px-2 py-1 rounded">{{ anime.status }}</div>{% endif %}
+                    </div>
+                    <div class="p-3">
+                        <h3 class="font-medium text-white truncate">{{ anime.title }}</h3>
+                        <div class="flex items-center mt-1">
+                            <i class="fas fa-star text-yellow-400 text-xs mr-1"></i>
+                            <span class="text-xs text-gray-300">{{ anime.score }}</span>
+                            <span class="text-xs text-gray-500 mx-2">|</span>
+                            <span class="text-xs text-gray-300">{{ anime.episodes }} eps</span>
+                        </div>
+                        <div class="text-xs text-gray-400 mt-1">{{ anime.season }} {{ anime.year }}</div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        <!-- Pagination -->
+        <div class="pagination text-center mt-8">
+            {% if page > 1 %}
+                <a href="/search?q={{ q | urlencode }}&page={{ page - 1 }}" class="page-btn inline-block bg-secondary text-primary px-4 py-2 rounded mr-2">&laquo; Previous</a>
+            {% endif %}
+            <span class="text-white">Page {{ page }} of {{ last_page }}</span>
+            {% if page < last_page %}
+                <a href="/search?q={{ q | urlencode }}&page={{ page + 1 }}" class="page-btn inline-block bg-secondary text-primary px-4 py-2 rounded ml-2">Next &raquo;</a>
+            {% endif %}
+        </div>
+		 <footer class="bg-slate-900 border-t border-slate-800 mt-12">
+        <div class="max-w-6xl mx-auto px-4 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">ANIPY</h4>
+                    <p class="text-slate-400 text-sm">
+                        The best place to watch and download your favorite anime with high quality and fast servers.
+                    </p>
+                </div>
+                <div>
+                 <!--   <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="/" class="hover:text-white transition">Home</a></li>
+                        <li><a href="#" class="hover:text-white transition">Popular Anime</a></li>
+                        <li><a href="#" class="hover:text-white transition">New Releases</a></li>
+                        <li><a href="#" class="hover:text-white transition">Request Anime</a></li>
+                    </ul> -->
+                </div>
+                <div>
+                   <!-- <h4 class="text-lg font-semibold mb-4">Information</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="#" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition">DMCA</a></li>
+                        <li><a href="#" class="hover:text-white transition">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                    </ul> -->
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://discord.gg/ajQvfppN" class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center hover:bg-indigo-500 transition">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="https://t.me/nafisfuad1" class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center hover:bg-blue-500 transition">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://facebook.com/nafisfuad6969" class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center hover:bg-pink-500 transition">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 mt-8 pt-8 text-center text-sm text-slate-500">
+                <p>© 2025 ANIPY. All rights reserved.<br><center><h1>MADE WITH PYTHON BY <a href="https://t.me/Nafisfuad1">B14CK-KN1GH7</a></h1></center></p>
+            </div>
+        </div>
+    </footer>
+    </main>
+</body>
+</html> 

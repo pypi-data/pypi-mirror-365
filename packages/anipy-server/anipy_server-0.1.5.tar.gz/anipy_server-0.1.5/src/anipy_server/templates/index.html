@@ -1,0 +1,232 @@
+{% set trending = animes %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANIPY - Stream & Download Anime</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3B82F6',
+                        secondary: '#1E293B',
+                        accent: '#F43F5E',
+                        dark: '#0F172A',
+                        light: '#F8FAFC',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #0F172A; color: #F8FAFC; }
+        .hero-gradient { background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.8) 100%); }
+        .anime-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .anime-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        .episode-list::-webkit-scrollbar { height: 6px; }
+        .episode-list::-webkit-scrollbar-track { background: #1E293B; }
+        .episode-list::-webkit-scrollbar-thumb { background: #3B82F6; border-radius: 3px; }
+        .quality-badge { font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 9999px; }
+        .loading-spinner { animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="bg-secondary/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <a href="/" class="flex items-center">
+                            <i class="fas fa-play-circle text-accent text-2xl mr-2"></i>
+                            <span class="text-xl font-bold text-white">ANIPY</span>
+                        </a>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="ml-10 flex items-baseline space-x-4">
+                            <a href="/" class="px-3 py-2 rounded-md text-sm font-medium text-white bg-primary">Home</a>
+                            <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Popular</a>
+                            <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Genres</a>
+                            <a href="#" class="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-white">Seasonal</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <form method="get" action="/search" class="ml-4 flex items-center md:ml-6">
+                        <div class="relative">
+                            <input type="text" name="q" placeholder="Search anime..." class="bg-dark text-white px-4 py-2 rounded-full w-64 focus:outline-none focus:ring-2 focus:ring-primary">
+                            <button class="absolute right-3 top-2 text-gray-400 hover:text-white">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {% if user_time and user_timezone %}
+        <div class="mb-6 text-right text-sm text-slate-400">
+            <span>Your current time: <span class="text-white font-semibold">{{ user_time }}</span> ({{ user_timezone }})</span>
+        </div>
+        {% endif %}
+        <!-- Upcoming Releases Today -->
+        {% if upcoming_releases and upcoming_releases|length > 0 %}
+        <section id="upcoming-releases" class="mb-12">
+            <h2 class="text-2xl font-bold mb-4">Upcoming Releases Today</h2>
+            <div class="bg-secondary rounded-xl p-4 shadow-lg">
+                <ul class="divide-y divide-slate-700">
+                    {% for anime in upcoming_releases %}
+                    <li class="py-3 flex items-center gap-4">
+                        <span class="font-semibold text-primary cursor-pointer upcoming-anime-title" data-image="{{ anime.image_url }}">{{ anime.title }}</span>
+                        <span class="ml-4 text-xs text-slate-400">{{ anime.time }}</span>
+                        <span class="ml-2 text-xs px-2 py-1 rounded-full {% if anime.aired %}bg-green-700 text-green-300{% else %}bg-slate-700 text-slate-300{% endif %}">{% if anime.aired %}Aired{% else %}Not Aired{% endif %}</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <!-- Floating image popup -->
+            <div id="anime-image-popup" style="display:none;position:fixed;z-index:1000;pointer-events:none;" class="rounded-lg shadow-lg border-2 border-primary bg-slate-900"></div>
+        </section>
+        {% endif %}
+        <!-- Trending Anime Section -->
+        <section id="trending" class="mb-12">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-2xl font-bold">Trending This Week</h2>
+                <a href="#" class="text-primary hover:underline flex items-center">
+                    View All <i class="fas fa-chevron-right ml-1 text-sm"></i>
+                </a>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                {% for anime in trending %}
+                <div class="anime-card bg-secondary rounded-lg overflow-hidden shadow-md">
+                    <a href="/anime/{{ anime.anime_session }}">
+                        <div class="relative">
+                            <img src="/proxy-image?url={{ anime.snapshot | urlencode }}" alt="{{ anime.anime_title }}" class="w-full h-48 object-cover">
+                            <div class="absolute bottom-2 left-2 bg-primary text-white text-xs px-2 py-1 rounded">EP {{ anime.episode }}</div>
+                            {% if anime.fansub %}<div class="absolute top-2 right-2 bg-accent text-white text-xs px-2 py-1 rounded">{{ anime.fansub }}</div>{% endif %}
+                        </div>
+                        <div class="p-3">
+                            <h3 class="font-medium text-white truncate">{{ anime.anime_title }}</h3>
+                            <div class="flex items-center mt-1">
+                                <i class="fas fa-star text-yellow-400 text-xs mr-1"></i>
+                                <span class="text-xs text-gray-300">{{ anime.episode }}</span>
+                                <span class="text-xs text-gray-500 mx-2">|</span>
+                                <span class="text-xs text-gray-300">TV</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+        <!-- Pagination -->
+        <div class="pagination text-center mt-8">
+            {% if page > 1 %}
+                <a href="/?page={{ page - 1 }}" class="page-btn inline-block bg-secondary text-primary px-4 py-2 rounded mr-2">&laquo; Previous</a>
+            {% endif %}
+            <span class="text-white">Page {{ page }} of {{ last_page }}</span>
+            {% if page < last_page %}
+                <a href="/?page={{ page + 1 }}" class="page-btn inline-block bg-secondary text-primary px-4 py-2 rounded ml-2">Next &raquo;</a>
+            {% endif %}
+        </div>
+    </main>
+    <script>
+    // Hover popup for upcoming releases
+    const popup = document.getElementById('anime-image-popup');
+    document.querySelectorAll('.upcoming-anime-title').forEach(el => {
+        el.addEventListener('mouseenter', function(e) {
+            const img = document.createElement('img');
+            img.src = this.dataset.image;
+            img.style.maxWidth = '180px';
+            img.style.maxHeight = '260px';
+            img.style.display = 'block';
+            img.style.borderRadius = '0.5rem';
+            popup.innerHTML = '';
+            popup.appendChild(img);
+            popup.style.display = 'block';
+            // Position popup near cursor
+            const movePopup = ev => {
+                popup.style.left = (ev.clientX + 20) + 'px';
+                popup.style.top = (ev.clientY - 40) + 'px';
+            };
+            movePopup(e);
+            document.addEventListener('mousemove', movePopup);
+            el._movePopup = movePopup;
+        });
+        el.addEventListener('mouseleave', function() {
+            popup.style.display = 'none';
+            popup.innerHTML = '';
+            if (el._movePopup) document.removeEventListener('mousemove', el._movePopup);
+        });
+    });
+    </script>
+	    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 mt-12">
+        <div class="max-w-6xl mx-auto px-4 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">ANIPY</h4>
+                    <p class="text-slate-400 text-sm">
+                        The best place to watch and download your favorite anime with high quality and fast servers.
+                    </p>
+                </div>
+                <div>
+                 <!--   <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="/" class="hover:text-white transition">Home</a></li>
+                        <li><a href="#" class="hover:text-white transition">Popular Anime</a></li>
+                        <li><a href="#" class="hover:text-white transition">New Releases</a></li>
+                        <li><a href="#" class="hover:text-white transition">Request Anime</a></li>
+                    </ul> -->
+                </div>
+                <div>
+                   <!-- <h4 class="text-lg font-semibold mb-4">Information</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="#" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition">DMCA</a></li>
+                        <li><a href="#" class="hover:text-white transition">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                    </ul> -->
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://discord.gg/ajQvfppN" class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center hover:bg-indigo-500 transition">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="https://t.me/nafisfuad1" class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center hover:bg-blue-500 transition">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://facebook.com/nafisfuad6969" class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center hover:bg-pink-500 transition">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 mt-8 pt-8 text-center text-sm text-slate-500">
+                <p>© 2025 ANIPY. All rights reserved.<br><center><h1>MADE WITH PYTHON BY <a href="https://t.me/Nafisfuad1">B14CK-KN1GH7</a></h1></center></p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

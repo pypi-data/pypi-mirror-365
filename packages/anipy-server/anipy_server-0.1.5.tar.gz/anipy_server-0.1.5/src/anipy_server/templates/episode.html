@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ anime_title }} - Episode {{ episode_number }} | ANIPY</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 min-h-screen text-slate-100">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-slate-900/90 backdrop-blur border-b border-slate-800 shadow-sm">
+        <div class="max-w-6xl mx-auto flex items-center justify-between px-4 py-3">
+            <a href="/" class="flex items-center gap-2">
+                <span class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-indigo-500 to-pink-500 shadow-lg">
+                    <i class="fas fa-play text-white text-lg"></i>
+                </span>
+                <span class="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-pink-400 bg-clip-text text-transparent">ANIPY</span>
+            </a>
+            <form method="get" action="/search" class="hidden md:block relative w-64">
+                <input type="text" name="q" placeholder="Search anime..." class="w-full bg-slate-800 border border-slate-700 rounded-full py-2 px-4 pl-10 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 text-slate-100 placeholder-slate-400">
+                <i class="fas fa-search absolute left-3 top-2.5 text-slate-400"></i>
+            </form>
+            <button class="md:hidden text-slate-400 hover:text-white">
+                <i class="fas fa-search text-xl"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 py-8">
+        <!-- Breadcrumb -->
+        <nav class="flex items-center text-xs text-slate-400 mb-6 gap-2">
+            <a href="/" class="hover:text-white">Home</a>
+            <i class="fas fa-chevron-right text-xs"></i>
+            <a href="/anime/{{ anime_session }}" class="hover:text-white">{{ anime_title }}</a>
+            <i class="fas fa-chevron-right text-xs"></i>
+            <span class="text-indigo-400 font-semibold">Episode {{ episode_number }}</span>
+        </nav>
+
+        <!-- Episode Info Card -->
+        <section class="bg-slate-800 rounded-2xl shadow-lg p-6 flex flex-col md:flex-row gap-6 mb-10">
+            <div class="flex-shrink-0 w-full md:w-44 lg:w-56 aspect-[2/3] rounded-xl overflow-hidden bg-slate-700 flex items-center justify-center">
+                <img src="{{ anime_image }}" alt="{{ anime_title }}" class="w-full h-full object-cover">
+            </div>
+            <div class="flex-1 flex flex-col justify-between">
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-bold mb-1">{{ anime_title }}</h1>
+                    <h2 class="text-lg md:text-xl text-indigo-400 font-semibold mb-2">Episode {{ episode_number }}{% if episode_title %}: {{ episode_title }}{% endif %}</h2>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        {% for genre in anime_genres %}
+                            <span class="bg-slate-700 text-xs px-2 py-1 rounded-full">{{ genre }}</span>
+                        {% endfor %}
+                    </div>
+                    <p class="text-slate-300 text-sm mb-4 line-clamp-4">{{ anime_description }}</p>
+                </div>
+                <div class="flex gap-3 mt-2">
+                    {% if stream_first_link %}
+                    <a href="/stream?url={{ stream_first_link | urlencode }}" class="inline-flex items-center gap-2 bg-indigo-500 hover:bg-indigo-600 text-white px-5 py-2 rounded-full font-semibold shadow transition">
+                        <i class="fas fa-play"></i> Watch Now
+                    </a>
+                    {% endif %}
+                    <button class="inline-flex items-center gap-2 bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-full transition">
+                        <i class="fas fa-bookmark"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Download Links Section -->
+        <section class="bg-slate-800 rounded-2xl shadow-lg p-6">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between mb-6 gap-3">
+                <h3 class="text-xl font-bold flex items-center gap-2">
+                    <i class="fas fa-download text-indigo-400"></i> Download Links
+                </h3>
+                <div class="flex items-center gap-2">
+                    <span class="text-xs text-slate-400">Sort by:</span>
+                    <select class="bg-slate-700 border border-slate-600 rounded-full px-3 py-1 text-xs focus:outline-none focus:ring-1 focus:ring-indigo-500">
+                        <option>Quality</option>
+                        <option>File Size</option>
+                        <option>Fansub</option>
+                    </select>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {% if links %}
+                    {% for link in links %}
+                    <div class="flex flex-col bg-slate-900 rounded-xl p-4 shadow hover:shadow-indigo-500/20 border border-slate-800 transition">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex flex-col gap-1">
+                                <span class="text-sm font-semibold text-slate-100">{{ link.source or 'AnimePahe' }}</span>
+                                {% if link.fansub %}<span class="bg-slate-700 text-xs px-2 py-0.5 rounded-full">{{ link.fansub }}</span>{% endif %}
+                            </div>
+                            {% if link.quality %}
+                                <span class="inline-block px-2 py-1 rounded text-xs font-semibold
+                                    {% if '1080' in link.quality %}bg-green-500/20 text-green-400
+                                    {% elif '720' in link.quality %}bg-blue-500/20 text-blue-400
+                                    {% elif '480' in link.quality %}bg-purple-500/20 text-purple-400
+                                    {% else %}bg-slate-700 text-slate-300{% endif %}">
+                                    {{ link.quality }}
+                                </span>
+                            {% endif %}
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-slate-400 mb-3">
+                            <span>{{ link.size or '' }}</span>
+                            <span>{% if link.uploaded %}{{ link.uploaded }}{% endif %}</span>
+                        </div>
+                        <div class="flex gap-2 mt-auto">
+                            <a href="{{ link.href }}" class="flex-1 bg-indigo-500 hover:bg-indigo-600 text-white text-center py-2 px-4 rounded font-medium transition text-sm" target="_blank">
+                                <i class="fas fa-download mr-1"></i> Download
+                            </a>
+                            {% if link.href and 'pahe.win' in link.href %}
+                            <a href="/stream?url={{ link.href | urlencode }}" class="bg-slate-700 hover:bg-slate-600 text-white py-2 px-4 rounded font-medium transition text-sm">
+                                <i class="fas fa-play"></i>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="col-span-full text-center text-slate-400">No download links found. Try refreshing the page.</div>
+                {% endif %}
+            </div>
+            {% if pagination %}
+            <div class="flex justify-center mt-8">
+                <nav class="inline-flex rounded-md shadow-sm">
+                    <a href="{{ pagination.prev_url }}" class="px-3 py-1 rounded-l-md bg-slate-700 text-slate-400 hover:bg-slate-600{% if not pagination.has_prev %} pointer-events-none opacity-50{% endif %}">
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
+                    {% for page in pagination.pages %}
+                        <a href="{{ page.url }}" class="px-3 py-1 bg-slate-700 {% if page.active %}text-white{% else %}text-slate-400 hover:bg-white{% endif %}">{{ page.number }}</a>
+                    {% endfor %}
+                    <a href="{{ pagination.next_url }}" class="px-3 py-1 rounded-r-md bg-slate-700 text-slate-400 hover:bg-slate-600{% if not pagination.has_next %} pointer-events-none opacity-50{% endif %}">
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                </nav>
+            </div>
+            {% endif %}
+        </section>
+        
+        <!-- Torrent Download Links Section -->
+        <section class="bg-slate-800 rounded-2xl shadow-lg p-6 mt-8">
+            <h3 class="text-xl font-bold flex items-center gap-2 mb-6">
+                <i class="fas fa-magnet text-pink-400"></i> Torrent Downloads (Nyaa.si)
+            </h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {% if torrent_links and torrent_links|length > 0 %}
+                    {% for torrent in torrent_links %}
+                    <div class="flex flex-col bg-slate-900 rounded-xl p-4 shadow hover:shadow-pink-500/20 border border-slate-800 transition">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm font-semibold text-slate-100 truncate">{{ torrent.title }}</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs text-slate-400 mb-3">
+                            <span>{{ torrent.size or '' }}</span>
+                        </div>
+                        <div class="flex gap-2 mt-auto">
+                            <a href="{{ torrent.link }}" class="flex-1 bg-pink-500 hover:bg-pink-600 text-white text-center py-2 px-4 rounded font-medium transition text-sm" target="_blank">
+                                <i class="fas fa-magnet mr-1"></i> Download Torrent
+                            </a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="col-span-full text-center text-slate-400">No torrent links found for this episode.</div>
+                {% endif %}
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-slate-800 mt-12">
+        <div class="max-w-6xl mx-auto px-4 py-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">AnimeHub</h4>
+                    <p class="text-slate-400 text-sm">
+                        The best place to watch and download your favorite anime with high quality and fast servers.
+                    </p>
+                </div>
+                <div>
+                   <!-- <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="/" class="hover:text-white transition">Home</a></li>
+                        <li><a href="#" class="hover:text-white transition">Popular Anime</a></li>
+                        <li><a href="#" class="hover:text-white transition">New Releases</a></li>
+                        <li><a href="#" class="hover:text-white transition">Request Anime</a></li>
+                    </ul> -->
+                </div>
+                <div>
+                  <!--  <h4 class="text-lg font-semibold mb-4">Information</h4>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li><a href="#" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition">DMCA</a></li>
+                        <li><a href="#" class="hover:text-white transition">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                    </ul> -->
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://discord.gg/ajQvfppN" class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center hover:bg-indigo-500 transition">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                        <a href="https://t.me/nafisfuad1" class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center hover:bg-blue-500 transition">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://facebook.com/nafisfuad6969" class="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center hover:bg-pink-500 transition">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 mt-8 pt-8 text-center text-sm text-slate-500">
+                <p>© 2023 AnimeHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
