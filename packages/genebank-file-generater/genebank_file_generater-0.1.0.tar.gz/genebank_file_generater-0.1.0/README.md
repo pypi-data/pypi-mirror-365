@@ -1,0 +1,443 @@
+# GbkGen - GenBank File Generator
+
+A comprehensive tool for converting DNA FASTA files to annotated GenBank format with automated gene prediction using Augustus. GbkGen provides both command-line and web-based interfaces for flexible genomic data processing.
+
+## Features
+
+### Core Functionality
+- **FASTA to GenBank Conversion**: Convert DNA sequences from FASTA format to fully annotated GenBank files
+- **Automated Gene Prediction**: Integrated Augustus gene prediction with support for multiple species models
+- **GFF File Support**: Use existing GFF annotations or generate new ones with Augustus
+- **Multiprocessing Support**: Parallel processing for large datasets with configurable CPU cores
+- **Web Interface**: FastAPI-based web application for browser-based file conversion
+
+### Technical Capabilities
+- **Multi-sequence Processing**: Handle multiple DNA sequences in a single FASTA file
+- **Species-Specific Models**: Configurable Augustus species models for accurate gene prediction
+- **Robust Error Handling**: Comprehensive logging and error reporting
+- **File Validation**: Automatic validation of input files and compatibility checking
+- **Temporary File Management**: Automatic cleanup of intermediate files
+
+## Installation
+
+### Prerequisites
+- Python 3.13 or higher
+- Augustus gene prediction tool (installed and available in PATH)
+- pip or uv package manager
+
+### Using UV (Recommended)
+```bash
+# Clone the repository
+git clone https://github.com/darrengao628/genebank_file_generater
+cd genebank_file_generater
+
+# Install with uv
+uv sync
+```
+
+### Using pip
+```bash
+# Clone the repository
+git clone https://github.com/darrengao628/genebank_file_generater
+cd genebank_file_generater
+
+# Install dependencies
+pip install -r genebank_file_generater/requirements.txt
+```
+
+### Augustus Installation
+Make sure Augustus is installed and available in your PATH:
+
+```bash
+# For Ubuntu/Debian
+sudo apt-get install augustus
+
+# For macOS with Homebrew
+brew install augustus
+
+# Or build from source
+# Follow instructions at: http://bioinf.uni-greifswald.de/augustus/
+```
+
+## Usage
+
+### Command Line Interface
+
+#### Basic Usage
+```bash
+# Convert FASTA to GenBank (automatically creates input.gbk)
+python -m genebank_file_generater.genebank_generater input.fasta
+
+# With custom output filename
+python -m genebank_file_generater.genebank_generater input.fasta -o output.gbk
+
+# With specific species model
+python -m genebank_file_generater.genebank_generater input.fasta -s human
+
+# Using multiple CPU cores for faster processing
+python -m genebank_file_generater.genebank_generater input.fasta -c 8
+```
+
+#### Automatic GFF File Detection
+The program automatically detects corresponding GFF files:
+- If `input.fasta` is provided, it looks for `input.gff` or `input.gff3`
+- If found, the GFF file is used automatically (no need for `-g` flag)
+- The output filename is always based on the input FASTA filename
+
+```bash
+# If 299.fa and 299.gff exist, this automatically uses 299.gff
+python -m genebank_file_generater.genebank_generater 299.fa
+# Creates 299.gbk as output
+
+# Override automatic GFF detection with explicit GFF file
+python -m genebank_file_generater.genebank_generater 299.fa -g custom.gff -o output.gbk
+```
+
+#### Advanced Usage
+```bash
+# Use existing GFF file instead of running Augustus
+python -m genebank_file_generater.genebank_generater input.fasta -g annotations.gff -o output.gbk
+
+# Specify custom working directory
+python -m genebank_file_generater.genebank_generater input.fasta -w /tmp/augustus -o output.gbk
+
+# Full example with all options
+python -m genebank_file_generater.genebank_generater input.fasta \
+  --output output.gbk \
+  --species aspergillus_fumigatus \
+  --workdir ./augustus_output \
+  --cpu 4
+```
+
+#### Command Line Options
+| Option | Short | Description | Default |
+|--------|-------|-------------|---------|
+| `input` | | Input DNA FASTA file (required) | |
+| `--output` | `-o` | Output GenBank file | input.gbk |
+| `--species` | `-s` | Augustus species model | aspergillus_fumigatus |
+| `--workdir` | `-w` | Working directory for Augustus | ./augustus_output |
+| `--gff` | `-g` | Pre-existing GFF3 file | None |
+| `--cpu` | `-c` | Number of CPU cores | All available |
+
+### Web Interface
+
+#### Starting the Web Server
+```bash
+# Navigate to the web converter directory
+cd genebank_file_generater/gb_converter
+
+# Start the FastAPI server
+python main.py
+
+# Or with uvicorn
+uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+```
+
+#### Using the Web Interface
+1. Open your browser and navigate to `http://localhost:8000`
+2. Upload your DNA FASTA file
+3. Optionally upload a GFF file if you have existing annotations
+4. Select the species model for gene prediction (if needed)
+5. Click "Convert" and wait for processing
+6. Download the generated GenBank file
+
+#### Web API Endpoints
+- `GET /`: Web interface
+- `POST /api/convert`: Convert files to GenBank format
+- `GET /api/health`: Health check endpoint
+- `GET /docs`: API documentation (Swagger UI)
+
+## Supported Species Models
+
+GbkGen supports all Augustus species models. Common models include:
+- `human` - Human genome
+- `mouse` - Mouse genome
+- `aspergillus_fumigatus` - Aspergillus fumigatus (default)
+- `fly` - Drosophila melanogaster
+- `caenorhabditis` - Caenorhabditis elegans
+- `arabidopsis` - Arabidopsis thaliana
+- `yeast` - Saccharomyces cerevisiae
+
+For a complete list, run:
+```bash
+augustus --species=help
+```
+
+## Project Structure
+
+```
+GbkGen/
+├── README.md                           # Main project documentation
+├── pyproject.toml                      # Project configuration
+├── main.py                             # Simple entry point
+├── claude.md                           # Technical analysis
+├── genebank_file_generater/            # Core conversion library
+│   ├── __init__.py
+│   ├── genebank_generater.py          # Main conversion logic
+│   ├── gff_parser.py                  # GFF file parsing
+│   ├── record.py                      # Record and feature management
+│   ├── pyproject.toml                 # Package configuration
+│   ├── requirements.txt               # Dependencies
+│   ├── README.md                      # Package documentation
+│   └── ToDO.md                        # Development roadmap
+├── gb_converter/                      # Web application
+│   ├── app/
+│   │   ├── __init__.py
+│   │   ├── main.py                    # FastAPI application
+│   │   ├── api/
+│   │   │   ├── __init__.py
+│   │   │   └── routes.py              # API endpoints
+│   │   ├── core/
+│   │   │   ├── __init__.py
+│   │   │   └── config.py              # Configuration
+│   │   ├── models/
+│   │   │   ├── __init__.py
+│   │   │   └── schemas.py             # Pydantic models
+│   │   └── services/
+│   │       ├── __init__.py
+│   │       └── converter.py           # Conversion service
+│   ├── static/
+│   │   └── index.html                 # Web interface
+│   ├── main.py                        # Server entry point
+│   ├── server.py                      # Alternative server
+│   └── README.md                      # Web app documentation
+├── augustus_output/                   # Default Augustus output directory
+├── 299.fa                             # Example FASTA file
+├── 299.gbk                            # Example GenBank file
+└── test_genebank_generator.py         # Test file
+```
+
+## Dependencies
+
+### Core Dependencies
+- **biopython**: Sequence handling and GenBank format support
+- **bcbio-gff**: GFF file parsing and processing
+
+### Web Application Dependencies
+- **fastapi**: Modern web framework for APIs
+- **uvicorn**: ASGI server for FastAPI
+- **python-multipart**: File upload support
+- **pydantic**: Data validation and serialization
+- **aiofiles**: Async file operations
+
+### System Dependencies
+- **augustus**: Gene prediction tool (must be installed separately)
+
+## Examples
+
+### Example 1: Basic Conversion
+```bash
+# Convert a single FASTA file
+python -m genebank_file_generater.genebank_generater sequence.fasta -o sequence.gbk
+```
+
+### Example 2: Batch Processing
+```bash
+# Process multiple files with parallel processing
+for file in *.fasta; do
+    python -m genebank_file_generater.genebank_generater "$file" -c 8 -o "${file%.fasta}.gbk"
+done
+```
+
+### Example 3: Using Existing Annotations
+```bash
+# Convert with pre-existing GFF annotations
+python -m genebank_file_generater.genebank_generater genome.fasta -g annotations.gff -o genome.gbk
+```
+
+### Example 4: Web Interface Usage
+```bash
+# Start the web server
+cd genebank_file_generater/gb_converter
+python main.py
+
+# Access the web interface at http://localhost:8000
+# Upload your files and convert through the browser
+```
+
+## Development
+
+### Setting Up Development Environment
+```bash
+# Clone the repository
+git clone https://github.com/darrengao628/genebank_file_generater
+cd genebank_file_generater
+
+# Install development dependencies
+uv sync --dev
+
+# Run tests
+python -m pytest
+
+# Run linting
+python -m flake8 genebank_file_generater/
+```
+
+### Contributing
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+### Running Tests
+```bash
+# Run all tests
+python -m pytest
+
+# Run with coverage
+python -m pytest --cov=genebank_file_generater
+
+# Run specific test file
+python -m pytest test_genebank_generator.py
+```
+
+## Building and Distributing the Package
+
+### Building the Package
+
+To build the package for distribution to PyPI, you can use the provided build script:
+
+```bash
+# Build the package with uv (recommended)
+uv run build.py
+
+# Or with python
+python build.py
+```
+
+This script will:
+1. Check and install necessary build tools
+2. Clean previous build artifacts
+3. Build both source distribution and wheel
+4. Check the package integrity
+5. Optionally upload to PyPI
+
+The script automatically detects if `uv` is available and uses it for better performance and dependency management.
+
+### Manual Build
+
+If you prefer to build manually:
+
+```bash
+# Navigate to the package directory
+cd genebank_file_generater
+
+# With uv (recommended)
+uv build
+uv run pip install twine
+uv run twine check dist/*
+uv run twine upload --repository testpypi dist/*  # Test PyPI
+uv run twine upload dist/*  # Production PyPI
+
+# Or with traditional pip
+pip install build twine
+python -m build
+python -m twine check dist/*
+python -m twine upload --repository testpypi dist/*  # Test PyPI
+python -m twine upload dist/*  # Production PyPI
+```
+
+### Prerequisites for Building
+
+- Python 3.13 or higher
+- `build` package for building
+- `twine` package for uploading (optional)
+
+### Installation from PyPI
+
+Once the package is published to PyPI, users can install it with:
+
+```bash
+# Install from PyPI
+pip install genebank-file-generater
+
+# Or install with specific version
+pip install genebank-file-generater==0.1.0
+```
+
+### Usage After Installation
+
+After installing from PyPI, the package can be used directly:
+
+```bash
+# Using the command-line tool
+gbkgen input.fasta -o output.gbk
+
+# Or using the module directly
+python -m genebank_file_generater.genebank_generater input.fasta
+```
+
+## Troubleshooting
+
+### Common Issues
+
+#### Augustus Not Found
+```bash
+# Error: augustus: command not found
+# Solution: Install Augustus
+sudo apt-get install augustus  # Ubuntu/Debian
+brew install augustus          # macOS
+```
+
+#### Permission Errors
+```bash
+# Error: Permission denied
+# Solution: Check file permissions
+chmod +x genebank_file_generater/genebank_generater.py
+```
+
+#### Memory Issues with Large Files
+```bash
+# Solution: Limit CPU cores and use temporary directory
+python -m genebank_file_generater.genebank_generater large_file.fasta -c 2 -w /tmp/large_processing
+```
+
+#### Web Server Issues
+```bash
+# Solution: Check port availability
+lsof -i :8000
+# Or use different port
+uvicorn app.main:app --port 8001
+```
+
+### Getting Help
+- Check the [Issues](https://github.com/darrengao628/genebank_file_generater/issues) page
+- Review the [ToDO.md](genebank_file_generater/ToDO.md) for known limitations
+- Create a new issue with detailed error information
+
+## License
+
+This project is licensed under the GNU Affero General Public License v3.0 or later (AGPL-3.0-or-later). See the [LICENSE](LICENSE) file for details.
+
+## Citation
+
+If you use GbkGen in your research, please cite:
+
+```
+GbkGen: A Comprehensive Tool for GenBank File Generation with Automated Gene Prediction
+[Your citation information here]
+```
+
+## Changelog
+
+### Version 0.1.0
+- Initial release
+- Core FASTA to GenBank conversion functionality
+- Augustus integration with multiprocessing support
+- FastAPI-based web interface
+- GFF file parsing and validation
+- Comprehensive error handling and logging
+- Package distribution support with PyPI
+- Simplified dependencies for easier installation
+
+## Acknowledgments
+
+- **BioPython** team for sequence handling libraries
+- **Augustus** team for gene prediction software
+- **antiSMASH** project for GFF parsing components
+- **FastAPI** team for the modern web framework
+
+---
+
+For more information, visit the [project repository](https://github.com/darrengao628/genebank_file_generater) or contact the development team.
