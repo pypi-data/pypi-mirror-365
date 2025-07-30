@@ -1,0 +1,40 @@
+Metadata-Version: 2.2
+Name: qlsdk2
+Version: 0.5.0
+Summary: SDK for quanlan device
+Home-page: https://github.com/hehuajun/qlsdk
+Author: hehuajun
+Author-email: hehuajun@eegion.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: loguru>=0.6.0
+Requires-Dist: numpy>=1.23.5
+Requires-Dist: bitarray>=1.5.3
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0; extra == "dev"
+Requires-Dist: twine>=3.0; extra == "dev"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+版本：v0.5.0 
+时间：2025-07-29
+[新特性]
+1. C16R设备搜索
+2、C16R设备连接
+3、C16R信号采集/停止
+4、C16R数据自动记录到文件
+5、C16R采集通道设置支持数字和名称两种模式（可混用）
+
+[优化]
+1、提升信号接收及指令解析性能
+2、日志级别及文案优化
