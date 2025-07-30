@@ -1,0 +1,106 @@
+# pp
+[![Tests](https://github.com/JoshCap20/pp/actions/workflows/test.yml/badge.svg)](https://github.com/JoshCap20/pp/actions/workflows/test.yml)
+[![CI/CD](https://github.com/JoshCap20/pp/actions/workflows/publish.yml/badge.svg)](https://github.com/JoshCap20/pp/actions/workflows/publish.yml)
+
+A declarative, language-agnostic build system and utility manager.
+
+`pp` provides a unified interface for building, testing, and running applications across different programming languages and environments. By defining configurations in a declarative `pp.yaml` file, you eliminate the need to remember language-specific toolchains and command variations. The system works equally well for managing complex build processes, running simple utility scripts, and orchestrating development workflows.
+
+Whether you're working on a Python web application, a Rust CLI tool, or a Node.js frontend, `pp` abstracts away the underlying toolchain complexity while providing powerful parameterization and environment management capabilities.
+
+## Install
+
+Install directly from PyPI:
+
+```bash
+pip install ppbuild
+```
+
+Then run:
+```bash
+pp --help
+```
+
+### Development Installation
+
+1. Clone the repository
+```bash
+git clone https://github.com/JoshCap20/pp.git
+cd pp
+```
+
+2. Install in development mode
+```bash
+pip install -e .
+```
+
+3. Install development dependencies
+```bash
+pip install pytest pytest-cov black isort flake8 mypy
+```
+
+4. Run tests
+```bash
+pytest
+```
+
+The setup.py file creates a console script entry point, so after installation you can run `pp` from anywhere in your terminal.
+
+## Configuration
+
+Create a `pp.yaml` configuration file that defines the commands for your applications. The beauty is that you can have:
+
+- A global config at `~/.pp/pp.yaml` for system-wide tools
+- Project-specific configs that override the global one
+- Environment-specific settings via `.env` files
+
+See [TEMPLATE.md](TEMPLATE.md) for examples of creating your definition file.
+
+## Usage
+
+```bash
+pp <application name> <action> [command]
+```
+
+**Examples:**
+```bash
+pp myapp build       # Build your application
+pp myapp test        # Run tests
+pp myapp run dev     # Start development server
+pp backend deploy    # Deploy backend services
+```
+
+**Advanced Examples with Parameters:**
+```bash
+pp ollama run --model deepseek-r1 --temperature 0.8    # Run AI model with specific settings
+pp web_server run --port 3000 --debug                  # Start server on custom port with debug
+pp database backup --output prod-backup.sql --compress # Create compressed database backup
+pp docker scale --service web --replicas 3             # Scale web service to 3 instances
+```
+
+The configuration is overridden by the current directory, so you can drop a `pp.yaml` in any project and immediately have access to all your build, test, run, lint, docker, and deployment commands through the same simple interface.
+
+## Features
+
+- **Simple Commands**: Define basic commands that just work (`pp myapp build`)
+- **Parameterized Commands**: Add typed parameters with validation, defaults, and help text
+- **Environment Management**: Automatic virtual environment activation (for python only) and environment variable injection
+- **Directory Context**: Commands run in the right directory with the right environment
+- **Type Safety**: Parameters are validated (strings, integers, floats, booleans) with constraints
+- **Flexible Configuration**: Global configs, project-specific overrides, and environment-specific settings
+
+## How it Works
+
+1. `pp` looks for a `pp.yaml` in your current directory, then falls back to `~/.pp/pp.yaml`
+2. It loads your application definitions and creates CLI subcommands automatically
+3. When you run a command, it executes the underlying tool (npm, cargo, docker, etc.) with the right arguments
+4. Parameters are validated and interpolated into your commands with proper escaping
+5. You get consistent logging and error handling across all your projects
+
+This means you can finally stop context-switching between different build tools and just focus on building cool stuff.
+
+## Todo
+
+- [ ] Download github repos and setup commands automatically
+- [ ] Chain existing commands
+- [ ] Easy MCP setup integration
