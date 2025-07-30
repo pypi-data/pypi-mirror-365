@@ -1,0 +1,96 @@
+Metadata-Version: 2.4
+Name: jepa
+Version: 0.1.0
+Summary: Joint-Embedding Predictive Architecture for Self-Supervised Learning
+Home-page: https://github.com/dipsivenkatesh/jepa
+Author: Dilip Venkatesh
+Author-email: Dilip Venkatesh <your.email@example.com>
+Maintainer-email: Dilip Venkatesh <your.email@example.com>
+License: MIT License
+        
+        Copyright (c) 2025 dipsivenkatesh
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: Homepage, https://github.com/dipsivenkatesh/jepa
+Project-URL: Documentation, https://jepa.readthedocs.io/
+Project-URL: Repository, https://github.com/dipsivenkatesh/jepa.git
+Project-URL: Bug Tracker, https://github.com/dipsivenkatesh/jepa/issues
+Project-URL: Changelog, https://github.com/dipsivenkatesh/jepa/blob/main/CHANGELOG.md
+Keywords: self-supervised-learning,representation-learning,deep-learning,pytorch,jepa,joint-embedding,predictive-architecture
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: torch>=1.12.0
+Requires-Dist: numpy>=1.21.0
+Requires-Dist: tqdm>=4.64.0
+Requires-Dist: transformers>=4.20.0
+Requires-Dist: datasets>=2.0.0
+Requires-Dist: wandb>=0.13.0
+Requires-Dist: scikit-learn>=1.1.0
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: tensorboard>=2.9.0
+Requires-Dist: matplotlib>=3.5.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=3.0.0; extra == "dev"
+Requires-Dist: black>=22.0.0; extra == "dev"
+Requires-Dist: isort>=5.10.0; extra == "dev"
+Requires-Dist: flake8>=5.0.0; extra == "dev"
+Requires-Dist: mypy>=0.950; extra == "dev"
+Requires-Dist: pre-commit>=2.20.0; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: sphinx>=5.0.0; extra == "docs"
+Requires-Dist: sphinx-rtd-theme>=1.0.0; extra == "docs"
+Requires-Dist: myst-parser>=0.18.0; extra == "docs"
+Requires-Dist: sphinx-autodoc-typehints>=1.19.0; extra == "docs"
+Provides-Extra: all
+Requires-Dist: jepa[dev,docs]; extra == "all"
+Dynamic: author
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+
+# JEPA
+
+A JEPA (Joint Embedding Predictive Architecture) training framework to train JEPAs.
+
+## Features
+- Modular model, data, trainer structure
+- Easy to extend with new encoders/predictors
+- CLI-based training and evaluation
+
+## Getting Started
+```bash
+pip install -e .
+jepa-train
+```
