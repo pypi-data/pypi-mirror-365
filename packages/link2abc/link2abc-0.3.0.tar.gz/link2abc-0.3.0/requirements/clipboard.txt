@@ -1,0 +1,15 @@
+# LinkTune Clipboard Dependencies
+# Optional clipboard support with cross-platform compatibility
+
+# Primary clipboard library (desktop)
+pyperclip>=1.8.0
+
+# Windows clipboard support (optional)
+# pywin32>=227  # Uncomment for Windows-specific clipboard
+
+# Alternative clipboard library (Android/Termux compatible)
+# clipman>=0.1.0  # Alternative if pyperclip fails
+
+# Note: Termux users should install termux-api package:
+# pkg install termux-api
+# This provides termux-clipboard-get and termux-clipboard-set commands
