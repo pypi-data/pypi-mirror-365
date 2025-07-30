@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "monaco-race-report"
+version = "0.0.2"
+authors = [
+  { name="Andrii Bezus", email="silverbird5567@gmail.com" },
+]
+description = """Package for parcing F1 race data files and building and printing a report either for
+every racer or for a specific racer on a specific lap of the race and best lap of the race"""
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[project.scripts]
+F1_race_report = "race_report.cli:parse_and_build_report"

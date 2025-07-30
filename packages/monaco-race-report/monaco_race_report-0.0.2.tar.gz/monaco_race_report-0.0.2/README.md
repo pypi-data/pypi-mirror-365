@@ -1,0 +1,96 @@
+# **Title**
+monaco-race-report
+
+## **Description**
+Provides ways parse race event logs and abbreviations files with specific format, build and
+print reports based on parsed data either for all the racers, or for a specific one.
+Includes both functions and CLI functional.
+
+## **Installation**
+pip install monaco_race_report
+
+## **Usage**
+- read_and_strip_lines() - A generator that reads a file and yields each line, stripped of
+whitespace
+  - **Example:**
+    from race_report.parse_and_report import read_and_strip_lines
+    for line in read_and_strip_lines(file_path)
+      print(line)
+
+
+- parse_log_files() - Parses a log file from provided file path and extracts racer's
+abbreviation and lap start or end timestamp based on the file to store in a dictionary.
+Important: Data in the logs is expected to be in this format: 'SVF2018-05-24_12:02:58.917'.
+Other formats will cause an error.
+   - **Example:**
+    from race_report.parse_and_report import parse_log_files
+    print(parse_log_files(path/to/log/file))
+
+     
+- parse_abbreviations_file() - Parses a txt file from provided file path and extracts racer's
+abbreviation, full name and team to store in a dictionary. Important:Data in the file is
+expected to be in this format: 'SVF_Sebastian Vettel_FERRARI'. Other formats are
+likely cause an error.
+   - **Example:**
+    from race_report.parse_and_report import parse_abbreviations_file
+    print(parse_abbreviations_file(path/to/file))
+
+
+- Racer - A data class to hold all info about a single racer(full name, team, start time of a lap,
+end time of a lap, lap time(calculated by a function)).
+   - **Example:**
+    from race_report.parse_and_report import Racer
+    racer = Racer("JDF", "John Doe", "FERRARI", "lap_start_time", "lap_end_time")
+    lap_time = lap_end_time - lap_start_time or lap_start_time - lap_end_time if its greater
+
+
+- calculate_lap_time() - Calculates the difference between end and start time.
+If the start time is recorded as being after the end time, the values get swapped.
+   - **Example:**
+    from race_report.parse_and_report import Racer
+    racer = Racer("blahblahblah")
+    print(racer.calculate_lap_time())
+
+
+- format_lap_time() - Formats the lap time into a "M:SS.ms" string.
+   - **Example:**
+    from race_report.parse_and_report import Racer
+    racer = Racer("blahblahblah")
+    print(racer.format_lap_time())
+
+
+- build_report() - Builds a structured report of racer performance from data files in
+a provided dir. Important: data files in a provided dir have to be named "start.log",
+"end.log" and "abbreviations.txt". Other file names will not be registered.
+   - **Example:**
+    from race_report.parse_and_report import build_report
+    print(build_report(data/dir))
+
+
+- print_report() - Prints a formatted race report to the console.
+The report shows each racer's place, full name, team, and lap time.
+Separates the top 15 racers from the rest with a horizontal line. Can print the report
+in ascending(default) or descending order.
+   - **Example:**
+    from race_report.parse_and_report import build_report, print_report
+    print(print_report(build_report(data/dir), optional: "desc" for descending order))
+
+
+- print_racer_stat() - Finds and prints the statistics for a single specified racer.
+   - **Example:**
+    from race_report.parse_and_report import build_report, print_racer_stats
+    report = build_report(data/dir)
+    report.sort(key=lambda racer: racer.lap_time)
+    indexes = {racer.full_name: index for index, racer in enumerate(report)}
+    print(print_racer_stats(indexes, report, "John_Doe"))
+
+## **CLI Usage**
+F1_race_report --folder <data/dir> - Parses data files in a provided dir. Then builds and
+prints a race report.
+
+F1_race_report --folder <data/dir> --desc - Parses data files in a provided dir. Then builds and
+prints a race report in descending order. Ascending order is default.
+
+F1_race_report --folder <data/dir> --racer "John_Doe" - Parses data files in a provided dir.
+Then builds a race report and prints a report for a specified racer if they are present
+in the race.
