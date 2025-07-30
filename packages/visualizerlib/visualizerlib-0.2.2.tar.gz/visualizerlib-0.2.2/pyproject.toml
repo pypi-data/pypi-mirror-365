@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "visualizerlib"  
+version = "0.2.2"
+description = "An EDA helper package"
+authors = [{ name = "Vishnu", email = "vishnurrajeev@gmail.com" }]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = [
+    "pandas",
+    "matplotlib",
+    "seaborn"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
