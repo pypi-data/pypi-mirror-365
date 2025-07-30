@@ -1,0 +1,17 @@
+{% extends "admin/change_form.html" %}
+
+
+{% block extrahead %}
+{{ block.super }}
+{% if original.template_type %}
+<script>
+    django.jQuery(document).ready(function() {
+        $('#id_template_type').change(function(){
+            $.get('{% url "admin:mailtemplate_variables" original.template_type %}', function(data, textStatus, jqXHR) {
+                $('.field-get_variable_help_text').innerHTML = data
+            });
+        });
+    });
+</script>
+{% endif %}
+{% endblock %}
