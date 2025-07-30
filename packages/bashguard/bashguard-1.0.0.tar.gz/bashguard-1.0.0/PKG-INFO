@@ -1,0 +1,16 @@
+Metadata-Version: 2.4
+Name: bashguard
+Version: 1.0.0
+Requires-Python: >=3.10
+Requires-Dist: click==8.1.8
+Requires-Dist: click-default-group
+Requires-Dist: colorama==0.4.6
+Requires-Dist: iniconfig==2.1.0
+Requires-Dist: packaging==24.2
+Requires-Dist: pluggy==1.5.0
+Requires-Dist: pytest==8.3.5
+Requires-Dist: shellcheck-py==0.10.0.1
+Requires-Dist: tree-sitter==0.24.0
+Requires-Dist: tree-sitter-bash==0.23.3
+Dynamic: requires-dist
+Dynamic: requires-python
