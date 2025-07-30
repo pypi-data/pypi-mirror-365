@@ -1,0 +1,7 @@
+include README.md
+include pyproject.toml
+exclude smb_agent/*
+recursive-exclude smb_agent *
+recursive-exclude tests *
+prune smb_agent
+prune tests
