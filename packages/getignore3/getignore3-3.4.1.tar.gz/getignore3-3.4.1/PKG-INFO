@@ -1,0 +1,64 @@
+Metadata-Version: 2.3
+Name: getignore3
+Version: 3.4.1
+Summary: Get gitignore files without bothering yourself
+Author: ashkanfeyzollahi@gmail.com
+Author-email: ashkanfeyzollahi@gmail.com
+Requires-Python: >=3.8
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: appdirs (>=1.4.4,<2.0.0)
+Requires-Dist: requests (>=2.32.4,<3.0.0)
+Project-URL: Repository, https://github.com/ashkanfeyzollahi/getignore3
+Description-Content-Type: text/markdown
+
+# GetIgnore3
+
+<p align="center">😎 Get gitignore files without bothering yourself</p>
+
+```
+usage: getignore [-h] [-L] [-l] [-n] [-c] [-o OUTPUT] [-w]
+                 [template_name ...]
+
+Get gitignore files without bothering yourself
+
+positional arguments:
+  template_name         Name(s) of gitignore templates to fetch
+                        (e.g., Python, Node and etc.)
+
+options:
+  -h, --help            show this help message and exit
+  -L, --list-cached-templates
+                        List cached gitignore templates
+  -l, --list-templates  List available gitignore templates
+  -n, --no-cache        Don't cache the gitignore template file when
+                        downloaded
+  -c, --offline         Get the cached gitignore template instead of
+                        downloading
+  -o, --output OUTPUT   Where to write the gitignore template
+                        content to
+  -w, --override        Override existing gitignore file instead of
+                        appending
+```
+
+## Installation
+
+- You either install it from `pypi` using `pip`:
+
+```bash
+pip install getignore3
+```
+
+- Or directly install it from `github` using `pip`:
+
+```bash
+pip install git+https://github.com/ashkanfeyzollahi/getignore3.git
+```
+
+- Or even build it from source!
+
