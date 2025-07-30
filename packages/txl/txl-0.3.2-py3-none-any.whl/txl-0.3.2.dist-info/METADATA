@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: txl
+Version: 0.3.2
+Project-URL: Source, https://github.com/davidbrochart/jpterm/txl
+Author-email: David Brochart <david.brochart@gmail.com>
+License-Expression: MIT
+License-File: LICENSE.txt
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Python: >=3.10
+Requires-Dist: fps<0.6.0,>=0.5.1
+Requires-Dist: textual[syntax]<6.0.0,>=5.0.1
+Description-Content-Type: text/markdown
+
+# txl
+
+The plugin system for jpterm
