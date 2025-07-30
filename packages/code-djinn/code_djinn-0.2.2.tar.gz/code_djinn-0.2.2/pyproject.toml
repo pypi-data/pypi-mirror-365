@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "code_djinn"
+version = "0.2.2"
+description = "High-performance CLI assistant for generating shell commands using LLM models"
+authors = [
+    {name = "phisanti", email = "tisalon@outlook.com"}
+]
+license = {text = "MIT"}
+readme = {file = "README.md", content-type = "text/markdown; charset=UTF-8"}
+requires-python = ">=3.10"
+dependencies = [
+    "langchain-community>=0.3.20",
+    "langchain-mistralai>=0.2.9",
+    "langchain-google-genai>=2.1.1",
+    "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+code-djinn = "codedjinn.main:code_djinn"
