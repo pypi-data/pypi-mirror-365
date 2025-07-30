@@ -1,0 +1,42 @@
+[build-system]
+requires = ["maturin>=1.9,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "baai-datacube"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+dynamic = ["version"]
+dependencies = [
+    "requests>=2.32.4",
+    "psutil>=7.0.0"
+]
+
+[project.scripts]
+baai_datacube = "baai_datacube.cmd.runcmd:run"
+
+[tool.maturin]
+module-name = "baai_datacube"
+python-packages = ["baai_datacube"]
+features = ["pyo3/extension-module"]
+
+
+[tool.poetry]
+name = "baai-datacube"
+version = "0.1.0"
+description = ""
+authors = ["史红光 <hgshi@baai.ac.cn>"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+maturin = "1.9.1"
+psutil = "7.0.0"
+requests = "^2.32.4"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.1"
+
