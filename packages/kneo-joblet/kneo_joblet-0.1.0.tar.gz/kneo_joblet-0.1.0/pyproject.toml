@@ -1,0 +1,59 @@
+[project]
+name = "kneo-joblet"
+version = "0.1.0"
+description = "KNeo Serverless Job"
+authors = [
+    {name = "Marian Neagul", email = "mneagul@gmail.com"},
+    {name = "Vasile Craciunescu", email="vasile.craciunescu@terrasigna.com"}
+]
+license = "Apache-2.0"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "cloudevents>=1.12.0",
+    "fastapi (>=0.116.1,<0.117.0)",
+    "pydantic>=2.11.7",
+    "requests (>=2.32.4,<3.0.0)",
+    "uvicorn>=0.35.0",
+]
+
+[project.scripts]
+joblet = "joblet.cli:main"
+
+
+[tool.ruff]
+target-version = "py39" # minimum supported version
+line-length = 90
+
+[tool.ruff.lint]
+select = [
+    "C9",
+    "D1",
+    "E",
+    "F",
+    "I",
+    "W",
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["joblet"]
+known-third-party = ["cloudevents", "fastapi"]
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.mypy]
+ignore_missing_imports = true
+namespace_packages = true
+explicit_package_bases = true
+exclude = ["tests", ".venv"]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+    "httpx>=0.27.0",
+]
+
+[tool.pytest.ini_options]
+addopts = "--maxfail=1"
