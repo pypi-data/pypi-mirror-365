@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "remarcableclient"
+version = "1.0.0"
+description = "Interacts with Remarcable's API to support inventory management"
+readme = "README.md"
+
+requires-python = ">=3.10"
+authors = [{ name = "Jacob Selbo", email = "selbo.a.jacob@gmail.com" }]
+dependencies = ["pandas>=2.3.0", "requests>=2.32.4"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+]
+
+[dependency-groups]
+dev = ["numpydoc>=1.8.0", "pre-commit>=4.2.0", "ruff>=0.11.13"]
+
+[tool.numpydoc_validation]
+checks = [
+    "all",  # Enable all checks, except for these below
+    "GL08", # GL08: Require docstring to be in each file
+    "SA01", # SA01: Require see also section
+    "EX01", # EX01: Require examples section
+    "ES01", # ES01: Require extended summary
+    "GL01", # GL01: Require docstring text starting line
+]
