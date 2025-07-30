@@ -1,0 +1,342 @@
+Metadata-Version: 2.4
+Name: getnet_sdk
+Version: 0.1.2
+Summary: Python SDK for integrating with the Getnet payment API
+Home-page: https://github.com/ninjaroot-509/getnet_sdk
+Author: ninjaroot-509
+Project-URL: Source, https://github.com/ninjaroot-509/getnet_sdk
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: requests
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: project-url
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+[![PyPI version](https://img.shields.io/pypi/v/getnet_sdk.svg)](https://pypi.org/project/getnet_sdk/)
+\[![Python Version](https://img.shields.io/pypi/pyversions/getnet_sdk.svg)]
+\[![License](https://img.shields.io/github/license/ninjaroot-509/getnet_sdk.svg)]
+
+---
+
+## Table of Contents
+
+1. [About](#about)
+2. [Features](#features)
+3. [Requirements](#requirements)
+4. [Installation](#installation)
+5. [Quickstart](#quickstart)
+6. [Configuration](#configuration)
+7. [API Reference](#api-reference)
+
+   - [Initialization](#initialization)
+   - [create_session](#create_session)
+   - [reverse_payment](#reverse_payment)
+   - [get_request_information](#get_request_information)
+
+8. [Contributing](#contributing)
+9. [License](#license)
+10. [Author](#author)
+
+---
+
+## About
+
+A lightweight, Pythonic SDK for the Getnet Web Checkout API, featuring:
+
+- TLS 1.2 out of the box
+- HMAC‑SHA256 authentication
+- Session creation, status checks, reversals, and detailed info
+
+---
+
+## Features
+
+- 🔒 **Secure**: TLSAdapter for strict TLS 1.2 connections
+- 🔑 **Authenticated**: Nonce + seed + secret → tranKey
+- 💳 **create_session**: Start a payment session
+- ↩️ **reverse_payment**: Cancel a transaction
+- 📋 **get_request_information**: Full transaction details
+
+---
+
+## Requirements
+
+- Python ≥ 3.6
+- [requests](https://pypi.org/project/requests/)
+
+---
+
+## Installation
+
+```bash
+pip install getnet_sdk
+```
+
+_or via source_
+
+```bash
+git clone https://github.com/ninjaroot-509/getnet_sdk.git
+cd getnet_sdk
+pip install .
+```
+
+---
+
+## Quickstart
+
+```python
+from getnet_sdk.client import GetnetClient
+
+client = GetnetClient(
+    login="YOUR_LOGIN",
+    secret_key="YOUR_SECRET_KEY",
+    return_url="https://yourapp.com/payment/return",
+    sandbox=True
+)
+
+# 1. Create a payment session
+session = client.create_session(
+    order_id="ORD12345",
+    total=1500.00,
+    currency="CLP",
+    buyer={
+        "name": "Stanley Castin",
+        "surname": "Ninjaroot",
+        "email": "test@n1n24.dev",
+        "document": "11111111-9",
+        "documentType": "CLRUT",
+        "mobile": "+509xxxxxxxx"
+    },
+    ip_address="0.0.0.0",
+    user_agent="MyApp/1.0"
+)
+print(session)
+
+# 2. Reverse a payment
+reverse = client.reverse_payment(request_id=session["session"]["id"])
+print(reverse)
+
+# 3. Get full transaction info
+info = client.get_request_information(request_id=session["session"]["id"])
+print(info)
+```
+
+---
+
+## Configuration
+
+| Parameter    | Description                             |
+| ------------ | --------------------------------------- |
+| `login`      | Your Getnet merchant login              |
+| `secret_key` | Your Getnet secret key                  |
+| `return_url` | Redirect URL after payment completion   |
+| `sandbox`    | `True` for test, `False` for production |
+
+---
+
+## API Reference
+
+### Initialization
+
+```python
+client = GetnetClient(
+    login: str,
+    secret_key: str,
+    return_url: str,
+    sandbox: bool = True,
+    session: requests.Session = None
+)
+```
+
+---
+
+### create_session
+
+```python
+create_session(
+    order_id: str,
+    total: float,
+    currency: str = "CLP",
+    buyer: dict = None,
+    expiration_minutes: int = 15,
+    locale: str = "es_CL",
+    ip_address: str = None,
+    user_agent: str = None,
+    **extra_fields
+) -> dict
+```
+
+- Starts a new checkout session.
+- **Returns** (200 OK):
+
+```json
+{
+  "status": {
+    "status": "OK",
+    "reason": "PC",
+    "message": "La petición se ha procesado correctamente",
+    "date": "2022-02-05T14:48:15+00:00"
+  },
+  "requestId": "234567",
+  "processUrl": "https://checkout.getnet.cl/session/xxxx/xxxxxxxxxxxxxxxxx"
+}
+```
+
+---
+
+### reverse_payment
+
+```python
+reverse_payment(request_id: str) -> dict
+```
+
+- Cancels (reverses) a prior payment session.
+- **Returns** (200 OK):
+
+```json
+{
+  "status": {
+    "status": "APPROVED",
+    "reason": "00",
+    "message": "Se ha reversado el pago correctamente",
+    "date": "2022-02-05T18:54:49-05:00"
+  },
+  "payment": {
+    "status": {
+      "status": "APPROVED",
+      "reason": "00",
+      "message": "Aprobada",
+      "date": "2022-02-05T18:54:49-05:00"
+    },
+    "internalReference": "1502099576",
+    "paymentMethod": "visa",
+    "paymentMethodName": "Visa",
+    "issuerName": "BANCO DE PRUEBAS",
+    "amount": {
+      "from": {
+        "currency": "CLP",
+        "total": -2000
+      },
+      "to": {
+        "currency": "CLP",
+        "total": -2000
+      },
+      "factor": 1
+    },
+    "authorization": "000000",
+    "reference": "123456",
+    "receipt": "1611446089",
+    "franchise": "CR_VS",
+    "refunded": false
+  }
+}
+```
+
+---
+
+### get_request_information
+
+```python
+get_request_information(request_id: str) -> dict
+```
+
+- Retrieves full details for a session and its transactions.
+- **Returns** (200 OK):
+
+```json
+{
+  "requestId": 251623,
+  "status": {
+    "status": "APPROVED",
+    "reason": "00",
+    "message": "La petición ha sido aprobada exitosamente",
+    "date": "2022-02-05T14:51:44+00:00"
+  },
+  "request": {
+    "locale": "es_CL",
+    "payer": {
+      "document": "11.111.111-1",
+      "documentType": "CLRUT",
+      "name": "Luis",
+      "surname": "Perez",
+      "email": "luis.perez.prueba@gmail.com",
+      "mobile": "+56999999999"
+    },
+    "payment": {
+      "reference": "TEST_20220205_080946",
+      "description": "Pago de pruebas",
+      "amount": { "currency": "CLP", "total": 1000 }
+    },
+    "returnUrl": "https://dnetix.co/p2p/client",
+    "ipAddress": "127.0.0.1",
+    "userAgent": "PlacetoPay Sandbox",
+    "expiration": "2022-02-05T09:45:46-05:00"
+  },
+  "payment": [
+    {
+      "amount": {
+        "to": { "total": 1000, "currency": "CLP" },
+        "from": { "total": 1000, "currency": "CLP" },
+        "factor": 1
+      },
+      "status": {
+        "date": "2022-02-05T14:51:44+00:00",
+        "reason": "00",
+        "status": "APPROVED",
+        "message": "Aprobada"
+      },
+      "receipt": "303312009300",
+      "refunded": false,
+      "franchise": "PS_MC",
+      "reference": "TEST_20220205_080946",
+      "issuerName": "Bank",
+      "authorization": "600236",
+      "paymentMethod": "master",
+      "processorFields": [
+        { "value": "000896", "keyword": "merchantCode" },
+        { "value": "10000001", "keyword": "terminalNumber" },
+        { "value": "P", "keyword": "cardType" },
+        { "value": "555912", "keyword": "bin" },
+        { "value": 1, "keyword": "installments" },
+        { "value": "4753", "keyword": "lastDigits" },
+        { "value": "cbd306y665508789e150bacc84f4facd", "keyword": "id" },
+        { "value": "000", "keyword": "b24" }
+      ],
+      "internalReference": 94236,
+      "paymentMethodName": "Master"
+    }
+  ],
+  "subscription": null
+}
+```
+
+---
+
+## Contributing
+
+1. Fork the repo
+2. Create a feature branch
+3. Commit your changes
+4. Open a Pull Request
+
+---
+
+## License
+
+Distributed under the MIT License. See [LICENSE](LICENSE) for details.
+
+---
+
+## Author
+
+Maintained by **ninjaroot-509**
+[https://github.com/ninjaroot-509/getnet_sdk](https://github.com/ninjaroot-509/getnet_sdk)
