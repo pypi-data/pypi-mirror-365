@@ -1,0 +1,23 @@
+Metadata-Version: 2.4
+Name: sense-table
+Version: 0.0.1rc9
+Summary: Smoothly make sense of your large-scale multi-modal tabular data
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: boto3>=1.39.11
+Requires-Dist: click>=8.1.8
+Requires-Dist: duckdb>=1.2.1
+Requires-Dist: flask>=3.1.0
+Requires-Dist: pydantic>=2.11.7
+Requires-Dist: pytz>=2025.2
+Requires-Dist: requests>=2.32.3
+Dynamic: license-file
+
+# SenseTable
+
+![SenseTable](./sense_table/statics/SenseTable-light.svg)
+
+
+SenseTable helps you explore large-volumn of multi-modal AI data easily.
+
