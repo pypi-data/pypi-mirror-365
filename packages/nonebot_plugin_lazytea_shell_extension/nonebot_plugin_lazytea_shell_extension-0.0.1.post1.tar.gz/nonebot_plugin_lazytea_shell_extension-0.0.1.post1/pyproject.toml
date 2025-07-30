@@ -1,0 +1,11 @@
+[project]
+name = "nonebot_plugin_lazytea_shell_extension"
+version = "0.0.1.post1"
+description = "NoneBot2 lazytea的命令扩展, 允许指令操作GUI"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "nonebot-plugin-alconna>=0.59.0",
+    "nonebot-plugin-lazytea>=0.0.2",
+    "nonebot2>=2.4.2",
+]
