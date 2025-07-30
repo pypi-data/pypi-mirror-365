@@ -1,0 +1,81 @@
+Metadata-Version: 2.4
+Name: explicit-python-django
+Version: 1.1.0
+Summary: Набор компонентов для интеграции explicit с django
+Author: BARS Group
+Author-email: education_dev@bars-open.ru
+License: MIT
+Classifier: Intended Audience :: Developers
+Classifier: Environment :: Web Environment
+Classifier: Natural Language :: Russian
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Framework :: Django :: 2.2
+Classifier: Framework :: Django :: 3.0
+Classifier: Framework :: Django :: 3.1
+Classifier: Framework :: Django :: 3.2
+Classifier: Framework :: Django :: 4.0
+Classifier: Framework :: Django :: 4.1
+Classifier: Framework :: Django :: 4.2
+Description-Content-Type: text/markdown
+Requires-Dist: explicit-python<3,>=2
+Requires-Dist: django
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: summary
+
+# Explicit-Django
+## Набор компонентов для интеграции Explicit с Django.
+
+### Базовая единица работы на транзакциях Django ORM.
+
+```python
+# persons/core/unit_of_work.py
+
+from explicit.django.unit_of_work import BaseUnitOfWork
+
+from persons.core.persons.adapters.db import Repository as PersonsRepository
+from persons.core.persons.adapters.db import repository as persons_repository
+
+# (имя атрибута, инстанс репо)
+KNOWN_REPOS = (
+    ('persons', persons_repository),
+)
+
+
+class UnitOfWork(BaseUnitOfWork):
+
+    persons: PersonsRepository
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._registry.register(*KNOWN_REPOS)
+```
+
+### Декоратор для преобразования ошибок валидации предметной области в ошибки валидации Django
+```python
+from explicit.django.domain.validation.exceptions import handle_domain_validation_error
+
+class ViewSet(...):
+
+   @handle_domain_validation_error
+   def create(self, request, *args, **kwargs):
+       command = Command(...)
+       bus.handle(command)
+
+```
+## Запуск тестов
+```sh
+$ tox
+```
+>>>>>>> e30984f (EDUEO-552 Вынос интеграции с django в отдельный пакет.)
