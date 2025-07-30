@@ -1,0 +1,21 @@
+{
+  "models": {
+    "default": "groq",
+    "fallback": "openai",
+    "available": ["groq", "openai", "anthropic"]
+  },
+  "security": {
+    "file_access": "ask",
+    "code_execution": "restricted",
+    "allowed_extensions": [".py", ".txt", ".md", ".json", ".yaml", ".yml", ".toml"],
+    "blocked_patterns": ["password", "secret", "token", "key", "credential"]
+  },
+  "workspace": {
+    "auto_backup": true,
+    "max_file_size": "10MB"
+  },
+  "logging": {
+    "level": "INFO",
+    "format": "structured"
+  }
+}
