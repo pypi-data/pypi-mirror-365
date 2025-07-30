@@ -1,0 +1,102 @@
+[project]
+name = "sklearn-ann"
+description = "Various integrations for ANN (Approximate Nearest Neighbours) libraries into scikit-learn."
+authors = [
+    { name = "Frankie Robertson", email = "frankie@robertson.name" },
+    { name = "Philipp Angerer", email = "phil.angerer@gmail.com" }
+]
+license = "BSD-3-Clause"
+urls.Source = "https://github.com/scikit-learn-contrib/sklearn-ann"
+urls.Documentation = "https://sklearn-ann.readthedocs.io/"
+dynamic = ["version", "readme"]
+requires-python = "<3.13,>=3.9"  # enforced by scipy
+dependencies = [
+    "scikit-learn>=1.6.0",
+    "scipy>=1.11.1,<2.0.0",
+]
+
+[project.optional-dependencies]
+tests = [
+    "pytest>=6.2.1",
+    "pytest-cov>=2.10.1",
+]
+docs = [
+    "sphinx>=7",
+    "sphinx-gallery>=0.8.2",
+    "sphinx-book-theme>=1.1.0",
+    "sphinx-issues>=1.2.0",
+    "numpydoc>=1.1.0",
+    "matplotlib>=3.3.3",
+    "scanpydoc",
+]
+annoy = [
+    "annoy>=1.17.0,<2.0.0",
+]
+faiss = [
+    "faiss-cpu>=1.6.5,<2.0.0",
+]
+pynndescent = [
+    "pynndescent>=0.5.1,<1.0.0",
+    "numba>=0.52",
+]
+nmslib = [
+    "nmslib-metabrainz>=2.1.1,<3.0.0",
+]
+annlibs = [
+    "sklearn-ann[annoy,faiss,pynndescent,nmslib]",
+]
+
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.metadata.hooks.fancy-pypi-readme]
+content-type = "text/x-rst"
+[[tool.hatch.metadata.hooks.fancy-pypi-readme.fragments]]
+path = "README.rst"
+start-after = ".. inclusion-marker-do-not-remove\n\n"
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
+# Flaky tests should be marked as xfail(strict=False),
+# this will notify us when a test considered broken starts succeeding.
+xfail_strict = true
+
+[tool.ruff.lint]
+select = [
+    "F", # Pyflakes
+    "E", # Pycodestyle errors
+    "W", # Pycodestyle warnings
+    "I", # Isort
+    "UP", # Pyupgrade
+    "PT", # Pytest style
+    "PTH", # Pathlib
+    "RUF", # Ruff’s own rules
+    "T20", # print statements
+]
+ignore = [
+    # Don’t complain about “confusables”
+    "RUF001", "RUF002", "RUF003"
+]
+[tool.ruff.lint.per-file-ignores]
+"examples/*.py" = ["E402", "T20"]
+"tests/*.py" = ["T20"]
+[tool.ruff.lint.isort]
+known-first-party = ["sklearn_ann"]
+
+[tool.hatch.envs.docs]
+installer = "uv"
+features = ["docs", "annlibs"]
+scripts.build = "sphinx-build -M html docs docs/_build"
+
+[tool.hatch.envs.hatch-test]
+default-args = []
+features = ["tests", "annlibs"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/sklearn_ann"]
+
+[build-system]
+requires = ["hatchling", "hatch-vcs", "hatch-fancy-pypi-readme"]
+build-backend = "hatchling.build"
