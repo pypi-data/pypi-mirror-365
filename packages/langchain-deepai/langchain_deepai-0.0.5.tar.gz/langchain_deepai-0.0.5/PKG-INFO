@@ -1,0 +1,379 @@
+Metadata-Version: 2.4
+Name: langchain-deepai
+Version: 0.0.5
+Summary: LangChain integration for DeepAI API with chat, images, and speech capabilities
+Author: AIMLStudent
+License: MIT
+Project-URL: Homepage, https://github.com/your-org/langchain-deepai
+Project-URL: Documentation, https://langchain-deepai.readthedocs.io
+Project-URL: Repository, https://github.com/your-org/langchain-deepai
+Project-URL: Bug Tracker, https://github.com/your-org/langchain-deepai/issues
+Keywords: langchain,deepai,ai,chat,image-generation,text-to-speech,speech-to-text,machine-learning
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: langchain-core>=0.1.0
+Requires-Dist: requests>=2.25.0
+Requires-Dist: pydantic>=1.10.0
+Requires-Dist: typing-extensions>=4.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-asyncio>=0.21.0; extra == "dev"
+Requires-Dist: black>=22.0.0; extra == "dev"
+Requires-Dist: isort>=5.12.0; extra == "dev"
+Requires-Dist: flake8>=6.0.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Provides-Extra: image
+Requires-Dist: Pillow>=8.0.0; extra == "image"
+Provides-Extra: all
+Requires-Dist: langchain-deepai[dev,image]; extra == "all"
+Dynamic: license-file
+
+# LangChain DeepAI Integration
+
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+A comprehensive LangChain integration for the DeepAI API, providing seamless access to chat completions, image generation, text-to-speech, and speech-to-text capabilities.
+
+## Features
+
+- **🗨️ Chat Completions**: Multiple specialized models for different use cases
+- **🎨 Image Generation**: Text-to-image with various artistic styles
+- **🔊 Text-to-Speech**: High-quality speech synthesis
+- **🎤 Speech-to-Text**: Accurate audio transcription
+- **⚡ LangChain Compatible**: Full integration with LangChain ecosystem
+- **🔄 Async Support**: Both sync and async operations
+- **📚 Well Documented**: Comprehensive docstrings and examples
+
+## Installation
+
+```bash
+pip install langchain-deepai
+```
+
+For image processing capabilities:
+```bash
+pip install langchain-deepai[image]
+```
+
+For development:
+```bash
+pip install langchain-deepai[dev]
+```
+
+## Quick Start
+
+### 1. Set up your API key
+
+```bash
+export DEEPAI_API_KEY="your-deepai-api-key"
+```
+
+Or pass it directly:
+
+```python
+from langchain_deepai import ChatDeepAI
+
+chat = ChatDeepAI(api_key="your-deepai-api-key")
+```
+
+### 2. Basic Chat Example
+
+```python
+from langchain_deepai import ChatDeepAI
+from langchain_core.messages import HumanMessage
+
+# Initialize chat model
+chat = ChatDeepAI(
+    model="standard",
+    chat_style="chatgpt-alternative"
+)
+
+# Send a message
+messages = [HumanMessage(content="Hello! How are you today?")]
+response = chat.invoke(messages)
+print(response.content)
+```
+
+### 3. Specialized Models
+
+```python
+from langchain_deepai import DeepAIMath, DeepAICode
+
+# Math-focused model
+math_chat = DeepAIMath()
+response = math_chat.invoke([HumanMessage(content="Solve: 2x + 5 = 15")])
+
+# Code-focused model  
+code_chat = DeepAICode()
+response = code_chat.invoke([HumanMessage(content="Write a Python sorting function")])
+```
+
+### 4. Image Generation
+
+```python
+from langchain_deepai import ImageDeepAI, generate_image
+
+# Using the class
+image_gen = ImageDeepAI()
+result = image_gen.generate(
+    prompt="A beautiful sunset over mountains",
+    model="text2img",
+    width=512,
+    height=512
+)
+
+# Save the image
+with open("sunset.jpg", "wb") as f:
+    f.write(result["image_data"])
+
+# Using the convenience function
+result = generate_image(
+    prompt="A cyberpunk cityscape at night",
+    model="cyberpunk-generator"
+)
+```
+
+### 5. Text-to-Speech
+
+```python
+from langchain_deepai import TextToSpeechDeepAI
+
+tts = TextToSpeechDeepAI()
+result = tts.synthesize(
+    text="Hello, this is a test of text-to-speech synthesis.",
+    voice="default"
+)
+
+# Save audio file
+with open("speech.wav", "wb") as f:
+    f.write(result["audio_data"])
+```
+
+### 6. Speech-to-Text
+
+```python
+from langchain_deepai import SpeechToTextDeepAI
+
+stt = SpeechToTextDeepAI()
+result = stt.transcribe("audio_file.wav")
+print(result["text"])
+```
+
+## Available Models and Styles
+
+### Chat Models
+
+- **standard**: General purpose conversational AI
+- **math**: Mathematics and problem-solving specialized
+- **online**: Web-aware model with current information
+- **code**: Programming and development focused
+
+### Chat Styles
+
+- **chatgpt-alternative**: Default conversational style
+- **ai-code**: Programming focused
+- **mathematics**: Mathematical reasoning
+- **professional**: Business communication
+- **creative**: Creative and imaginative
+- **casual**: Relaxed and informal
+- **goku**: Enthusiastic character style
+- **gojo_9**: Confident character style
+
+### Image Models
+
+- **text2img**: Standard text-to-image generation
+- **fantasy-world-generator**: Fantasy themed
+- **cyberpunk-generator**: Cyberpunk aesthetic
+- **renaissance-painting-generator**: Renaissance art style
+- **abstract-painting-generator**: Abstract art
+- **impressionism-painting-generator**: Impressionist style
+
+## Advanced Usage
+
+### Custom Chat Styles
+
+```python
+from langchain_deepai import ChatDeepAI
+
+# Professional business communication
+business_chat = ChatDeepAI(
+    model="standard",
+    chat_style="professional"
+)
+
+# Creative writing assistant
+creative_chat = ChatDeepAI(
+    model="standard", 
+    chat_style="creative"
+)
+```
+
+### Session Management
+
+```python
+chat = ChatDeepAI()
+chat.set_session_id("user-123")
+
+# All messages in this session will maintain context
+response1 = chat.invoke([HumanMessage(content="My name is Alice")])
+response2 = chat.invoke([HumanMessage(content="What's my name?")])
+```
+
+### Error Handling
+
+```python
+from langchain_deepai import ChatDeepAI
+import logging
+
+# Enable logging
+logging.basicConfig(level=logging.INFO)
+
+try:
+    chat = ChatDeepAI(api_key="invalid-key")
+    response = chat.invoke([HumanMessage(content="Hello")])
+except Exception as e:
+    print(f"Error: {e}")
+```
+
+### Batch Processing
+
+```python
+from langchain_deepai import ImageDeepAI
+
+image_gen = ImageDeepAI()
+
+prompts = [
+    "A serene lake at sunrise",
+    "A bustling city street at night", 
+    "A peaceful forest in autumn"
+]
+
+results = image_gen.generate_multiple(prompts, model="text2img")
+```
+
+## Integration with LangChain
+
+### Chains
+
+```python
+from langchain.chains import LLMChain
+from langchain.prompts import PromptTemplate
+from langchain_deepai import ChatDeepAI
+
+# Create a chain
+prompt = PromptTemplate(
+    input_variables=["topic"],
+    template="Write a short story about {topic}"
+)
+
+chain = LLMChain(
+    llm=ChatDeepAI(chat_style="creative"),
+    prompt=prompt
+)
+
+result = chain.run(topic="time travel")
+```
+
+### Agents
+
+```python
+from langchain.agents import initialize_agent, Tool
+from langchain_deepai import ChatDeepAI, ImageDeepAI
+
+def generate_image_tool(prompt: str) -> str:
+    image_gen = ImageDeepAI()
+    result = image_gen.generate(prompt)
+    return f"Image generated and saved. URL: {result['image_url']}"
+
+tools = [
+    Tool(
+        name="ImageGenerator",
+        func=generate_image_tool,
+        description="Generate images from text descriptions"
+    )
+]
+
+agent = initialize_agent(
+    tools=tools,
+    llm=ChatDeepAI(),
+    agent="zero-shot-react-description"
+)
+```
+
+## API Reference
+
+### ChatDeepAI
+
+Main chat model class with full LangChain compatibility.
+
+**Parameters:**
+- `model_name`: Model to use ("standard", "math", "online", "code")
+- `chat_style`: Conversation style 
+- `api_key`: DeepAI API key
+- `max_tokens`: Maximum tokens to generate
+- `temperature`: Response randomness
+- `session_id`: Session identifier for context
+
+### Specialized Models
+
+- **DeepAIMath**: Mathematics-focused chat model
+- **DeepAICode**: Programming-focused chat model  
+- **DeepAIOnline**: Web-aware chat model
+- **DeepAIProfessional**: Business communication model
+- **DeepAICreative**: Creative writing model
+- **DeepAICasual**: Casual conversation model
+
+### ImageDeepAI
+
+Image generation with multiple artistic styles.
+
+**Methods:**
+- `generate()`: Generate single image
+- `generate_multiple()`: Generate multiple images
+- `generate_and_save()`: Generate and save to file
+
+### TextToSpeechDeepAI
+
+High-quality text-to-speech synthesis.
+
+**Methods:**
+- `synthesize()`: Convert text to speech
+- `synthesize_and_save()`: Convert and save audio
+- `synthesize_multiple()`: Batch TTS processing
+
+### SpeechToTextDeepAI
+
+Accurate speech-to-text transcription.
+
+**Methods:**
+- `transcribe()`: Transcribe audio to text
+- `transcribe_multiple()`: Batch STT processing
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+For support and questions:
+- Check the [documentation](https://langchain-deepai.readthedocs.io)
+- Open an [issue](https://github.com/your-org/langchain-deepai/issues)
+- DeepAI API documentation: [https://deepai.org/docs](https://deepai.org/docs)
