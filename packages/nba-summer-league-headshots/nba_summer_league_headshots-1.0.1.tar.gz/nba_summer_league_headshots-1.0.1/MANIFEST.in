@@ -1,0 +1,8 @@
+include README.md
+include LICENSE
+include nba_summer_league_headshots/NBA_Roster_Clean.csv
+recursive-include nba_summer_league_headshots/NBA_Combined_Headshots *.jpg *.png
+exclude __pycache__
+exclude *.pyc
+exclude .git
+exclude .gitignore

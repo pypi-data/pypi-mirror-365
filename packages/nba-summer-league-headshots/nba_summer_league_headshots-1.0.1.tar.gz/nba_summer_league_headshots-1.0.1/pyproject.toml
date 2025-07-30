@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nba-summer-league-headshots"
+version = "1.0.1"
+description = "NBA Summer League 2025 Player Headshots API - Access 431+ verified player images"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Thavas Antonio", email = "thavasantonio@gmail.com"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers", 
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9", 
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+keywords = ["nba", "basketball", "headshots", "summer league", "sports", "api"]
+
+[project.urls]
+Homepage = "https://github.com/BuddyBob/summer_league_headshot_api"
+"Bug Reports" = "https://github.com/BuddyBob/summer_league_headshot_api/issues"
+"Source" = "https://github.com/BuddyBob/summer_league_headshot_api"
+
+[project.scripts]
+nba-headshots = "nba_summer_league_headshots.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["nba_summer_league_headshots*"]
+
+[tool.setuptools.package-data]
+nba_summer_league_headshots = [
+    "NBA_Roster_Clean.csv",
+    "NBA_Combined_Headshots/*.jpg", 
+    "NBA_Combined_Headshots/*.png"
+]
