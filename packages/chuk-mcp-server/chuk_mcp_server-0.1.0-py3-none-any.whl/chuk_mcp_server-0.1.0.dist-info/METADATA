@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: chuk-mcp-server
+Version: 0.1.0
+Summary: Add your description here
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: asyncio>=3.4.3
+Requires-Dist: chuk-mcp>=0.2.3
+Requires-Dist: httptools>=0.6.4
+Requires-Dist: orjson>=3.10.18
+Requires-Dist: pydantic>=2.11.7
+Requires-Dist: starlette>=0.47.1
+Requires-Dist: uvicorn>=0.35.0
+Requires-Dist: uvloop>=0.21.0
