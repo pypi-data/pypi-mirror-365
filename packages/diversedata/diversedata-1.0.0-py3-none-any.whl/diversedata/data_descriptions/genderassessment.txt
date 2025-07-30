@@ -1,0 +1,66 @@
+Gender Assessment 2024 Dataset.
+
+This data set comes from the World Benchmarking Alliance's 2024 Gender
+Assessment. It evaluates over 2,000 companies on their performance
+regarding gender equality based on a subset of core gender indicators.
+The assessment is part of a broader effort to benchmark private sector
+progress on gender equality.
+
+Variables
+----------
+company : Name of the company.
+country : Country where the company is headquartered.
+region : Geographical region (e.g., "North America", "Europe & Central Asia").
+industry : Industry sector (e.g., "Chemicals", "Retail", "Metals & Mining").
+ownership : Ownership type (e.g., "Public", "Private", "Government").
+year : Year of assessment.
+score : Overall gender assessment score.
+percent_score : Overall score expressed as a percentage.
+strategic_action : Score for strategic gender action.
+gender_targets : Score for gender-related target setting.
+gender_due_diligence : Score for due diligence on gender issues.
+grievance_mechanisms : Availability and quality of grievance mechanisms.
+stakeholder_engagement : Score for gender-related stakeholder engagement.
+corrective_action : Corrective measures in place.
+gender_leadership : Gender representation in leadership roles.
+development_recruitment : Recruitment and career development opportunities
+                          by gender.
+employee_data_by_sex : Availability of employee data by sex.
+supply_chain_gender_leadership : Gender representation in supply chain
+                                 leadership.
+enabling_environment_union_rights : Union rights and enabling environment
+                                    for gender equity.
+gender_procurement : Use of gender-based procurement policies.
+gender_pay_gap : Disclosure and performance on gender pay equity.
+carer_leave_paid : Paid leave policies for caregivers.
+childcare_support : Availability of childcare-related policies.
+flex_work : Flexible work options.
+living_wage_supply_chain : Enforcement of living wage in supply chain.
+health_safety : Workplace health and safety.
+health_safety_supply_chain : Supply chain health and safety indicators.
+violence_prevention : Policies and measures to prevent gender-based violence.
+violence_remediation : Mechanisms for remediation after violence incidents.
+
+Source
+------
+World Benchmarking Alliance 2024 Gender Assessment data set:
+https://www.worldbenchmarkingalliance.org/research/2024-gender-assessment-data-set/
+
+Notes
+-----
+Data sourced from World Benchmarking Alliance is available under the
+Creative Commons Attribution 4.0 International License (CC BY 4.0):
+https://creativecommons.org/licenses/by/4.0/
+
+Examples
+--------
+>>> import diversedata as dd
+>>> df = dd.load_data("genderassessment")
+>>> df.head()
+    company   country         region          ...
+0   3M        United States   North America   ...
+
+>>> dd.print_data_description("genderassessment")
+Gender Assessment 2024 Dataset.
+
+This data set comes from the World Benchmarking Alliance's...
