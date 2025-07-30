@@ -1,0 +1,90 @@
+[project]
+authors = [
+    {name = "mk.fshr"},
+]
+requires-python = ">=3.11"
+dependencies = [
+    "pyspark[connect]>=3.5.1",
+    "pytest>=8.0.0",
+    "setuptools>=75.8.0",
+]
+name = "pytest-pyspark-plugin"
+version = "0.2.0"
+description = "Pytest pyspark plugin (p3)"
+readme = "README.md"
+classifiers = [
+    "Framework :: Pytest",
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Testing",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
+[project.entry-points.pytest11]
+p3 = "plugin"
+
+[tool.uv]
+dev-dependencies = [
+]
+
+[tool.hatch.build.targets.wheel]
+only-include = ["p3"]
+sources = ["p3"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+
+[tool.pytest.ini_options]
+addopts = "--verbose"
+testpaths = [
+    "tests",
+]
+log_cli_level = "DEBUG"
+log_cli_format = "%(asctime)s [%(levelname)8s] %(message)s (%(filename)s:%(lineno)s)"
+log_cli_date_format = "%Y-%m-%d %H:%M:%S"
+
+[tool.ruff]
+line-length = 100
+indent-width = 4
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
+docstring-code-format = true
+exclude = [
+    "build",
+    "dist",
+    ".eggs",
+]
+
+[tool.ruff.lint]
+ignore = [
+    "N801", # class names should use CapWords convention (class names)
+    "N812", # lowercase imported as non-lowercase (pyspark.sql functions as F)
+    "N818"  # Exception name should have Error suffix
+]
+
+select = [
+    "E",
+    "F",
+    "N",
+    "W",
+    "I001", # isort configuration for ruff "--profile", "black"
+]
+
+
+[tool.bandit]
+skips = ["B601", "B608", "B101"] # B101 asserts used
+
+
+[tool.ruff.lint.isort.sections]
+typing = ["typing"]
+
+
+[tool.ruff.lint.isort]
+no-lines-before = ["future", "standard-library", "third-party", "first-party", "local-folder", "typing"]
+section-order = ["future", "standard-library", "third-party", "first-party", "local-folder", "typing"]
