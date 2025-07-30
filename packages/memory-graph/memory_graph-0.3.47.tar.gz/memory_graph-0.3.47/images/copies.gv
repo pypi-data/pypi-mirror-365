@@ -1,0 +1,63 @@
+digraph memory_graph {
+	node [shape=plaintext]
+	node137074818502208 [label=<
+<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="5" CELLPADDING="0" BGCOLOR="lightcoral" PORT="table">
+    <TR><TD BORDER="0"><font color="#505050">0</font></TD><TD BORDER="1"> 1 </TD></TR>
+    <TR><TD BORDER="0"><font color="#505050">1</font></TD><TD BORDER="1"> 2 </TD></TR>
+</TABLE>
+> xlabel=list]
+	node137074816590976 [label=<
+<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="5" CELLPADDING="0" BGCOLOR="lightcoral" PORT="table">
+    <TR><TD BORDER="0"><font color="#505050">0</font></TD><TD BORDER="1"> x </TD></TR>
+    <TR><TD BORDER="0"><font color="#505050">1</font></TD><TD BORDER="1"> y </TD></TR>
+</TABLE>
+> xlabel=list]
+	node137074817331776 [label=<
+<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="5" CELLPADDING="0" BGCOLOR="lightcoral" PORT="table">
+    <TR><TD BORDER="0"><font color="#505050">0</font></TD><TD BORDER="0"><font color="#505050">1</font></TD></TR>
+    <TR><TD BORDER="1" PORT="ref0"> </TD><TD BORDER="1" PORT="ref1"> </TD></TR>
+</TABLE>
+> xlabel=list]
+	node137074817331776:ref0 -> node137074818502208:table [style=solid]
+	node137074817331776:ref1 -> node137074816590976:table [style=solid]
+	node137074817331904 [label=<
+<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="5" CELLPADDING="0" BGCOLOR="lightcoral" PORT="table">
+    <TR><TD BORDER="0"><font color="#505050">0</font></TD><TD BORDER="0"><font color="#505050">1</font></TD></TR>
+    <TR><TD BORDER="1" PORT="ref0"> </TD><TD BORDER="1" PORT="ref1"> </TD></TR>
+</TABLE>
+> xlabel=list]
+	node137074817331904:ref0 -> node137074818502208:table [style=solid]
+	node137074817331904:ref1 -> node137074816590976:table [style=solid]
+	node137074812592384 [label=<
+<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="5" CELLPADDING="0" BGCOLOR="lightcoral" PORT="table">
+    <TR><TD BORDER="0"><font color="#505050">0</font></TD><TD BORDER="1"> 1 </TD></TR>
+    <TR><TD BORDER="0"><font color="#505050">1</font></TD><TD BORDER="1"> 2 </TD></TR>
+</TABLE>
+> xlabel=list]
+	node137074812592448 [label=<
+<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="5" CELLPADDING="0" BGCOLOR="lightcoral" PORT="table">
+    <TR><TD BORDER="0"><font color="#505050">0</font></TD><TD BORDER="1"> x </TD></TR>
+    <TR><TD BORDER="0"><font color="#505050">1</font></TD><TD BORDER="1"> y </TD></TR>
+</TABLE>
+> xlabel=list]
+	node137074817331840 [label=<
+<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="5" CELLPADDING="0" BGCOLOR="lightcoral" PORT="table">
+    <TR><TD BORDER="0"><font color="#505050">0</font></TD><TD BORDER="0"><font color="#505050">1</font></TD></TR>
+    <TR><TD BORDER="1" PORT="ref0"> </TD><TD BORDER="1" PORT="ref1"> </TD></TR>
+</TABLE>
+> xlabel=list]
+	node137074817331840:ref0 -> node137074812592384:table [style=solid]
+	node137074817331840:ref1 -> node137074812592448:table [style=solid]
+	node137074816796608 [label=<
+<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="5" CELLPADDING="0" BGCOLOR="#60a5ff" PORT="table">
+    <TR><TD BORDER="1" STYLE="ROUNDED"> a </TD><TD BORDER="1" STYLE="ROUNDED"> c1 </TD><TD BORDER="1" STYLE="ROUNDED"> c2 </TD><TD BORDER="1" STYLE="ROUNDED"> c3 </TD></TR>
+    <TR><TD BORDER="1" PORT="ref0"> </TD><TD BORDER="1" PORT="ref1"> </TD><TD BORDER="1" PORT="ref2"> </TD><TD BORDER="1" PORT="ref3"> </TD></TR>
+</TABLE>
+> xlabel=dict]
+	node137074816796608:ref0 -> node137074817331776:table [style=solid]
+	node137074816796608:ref1 -> node137074817331776:table [style=solid]
+	node137074816796608:ref2 -> node137074817331904:table [style=solid]
+	node137074816796608:ref3 -> node137074817331840:table [style=solid]
+subgraph { rank=same; node137074817331776 -> node137074817331904 -> node137074817331840[weight=10, style=invis]; }
+subgraph { rank=same; node137074818502208 -> node137074816590976 -> node137074812592384 -> node137074812592448[weight=10, style=invis]; }
+}

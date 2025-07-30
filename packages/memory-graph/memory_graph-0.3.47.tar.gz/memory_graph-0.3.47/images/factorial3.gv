@@ -1,0 +1,34 @@
+digraph memory_graph {
+	node [shape=plaintext]
+	node125453343539968 [label=<
+<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="0" CELLPADDING="0" BGCOLOR="#60a5ff" PORT="table">
+    <TR><TD BORDER="0"> </TD></TR>
+</TABLE>
+> xlabel=dict]
+	node125453343436224 [label=<
+<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="5" CELLPADDING="0" BGCOLOR="#60a5ff" PORT="table">
+    <TR><TD BORDER="1" STYLE="ROUNDED"> n </TD><TD BORDER="1"> 4 </TD></TR>
+</TABLE>
+> xlabel=dict]
+	node125453339063488 [label=<
+<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="5" CELLPADDING="0" BGCOLOR="#60a5ff" PORT="table">
+    <TR><TD BORDER="1" STYLE="ROUNDED"> n </TD><TD BORDER="1"> 3 </TD></TR>
+</TABLE>
+> xlabel=dict]
+	node125453339415872 [label=<
+<TABLE BORDER="1" CELLBORDER="1" CELLSPACING="5" CELLPADDING="0" BGCOLOR="#60a5ff" PORT="table">
+    <TR><TD BORDER="1" STYLE="ROUNDED"> n </TD><TD BORDER="1"> 2 </TD></TR>
+</TABLE>
+> xlabel=dict]
+	node125453339277296 [label=<
+<TABLE BORDER="3" CELLBORDER="1" CELLSPACING="5" CELLPADDING="0" BGCOLOR="khaki" PORT="table">
+    <TR><TD BORDER="1" STYLE="ROUNDED"> 0: &lt;module&gt; </TD><TD BORDER="1" STYLE="ROUNDED"> 1: factorial </TD><TD BORDER="1" STYLE="ROUNDED"> 2: factorial </TD><TD BORDER="1" STYLE="ROUNDED"> 3: factorial </TD></TR>
+    <TR><TD BORDER="1" PORT="ref0"> </TD><TD BORDER="1" PORT="ref1"> </TD><TD BORDER="1" PORT="ref2"> </TD><TD BORDER="1" PORT="ref3"> </TD></TR>
+</TABLE>
+> xlabel=call_stack]
+	node125453339277296:ref0 -> node125453343539968:table [style=solid]
+	node125453339277296:ref1 -> node125453343436224:table [style=solid]
+	node125453339277296:ref2 -> node125453339063488:table [style=solid]
+	node125453339277296:ref3 -> node125453339415872:table [style=solid]
+subgraph { rank=same; node125453343539968 -> node125453343436224 -> node125453339063488 -> node125453339415872[weight=10, style=invis]; }
+}
