@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fruits Fruits Fruits</title>
+<style>
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #fff;
+  z-index: 100;
+  padding: 10px 20px 15px 20px;
+  border-bottom: 1px solid #303030;
+  width: 100%;
+}
+.tab {
+  margin: 20px;
+  display: none;
+}
+#btn00:checked ~ #tab00,
+#btn01:checked ~ #tab01,
+#btn02:checked ~ #tab02 {
+  display: block;
+}
+label {
+  border: 1px solid #303030;
+  padding: 0.2em 0.4em;
+  margin-bottom: 0.4em;
+  background: #f0f0f0;
+  cursor: pointer;
+  display: inline-block;
+}
+:has(#btn00:checked) .header label[for="btn00"],
+:has(#btn01:checked) .header label[for="btn01"],
+:has(#btn02:checked) .header label[for="btn02"] {
+  background: #4d4d4d;
+  color: #ffffff;
+}
+body {
+  padding-top: 10em;
+}
+body {
+  margin: 0;
+  color: #303030;
+  font-family: 'Verdana', 'BIZ UDGothic', sans-serif;
+  font-size: 90%;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+}
+table {
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #303030;
+  padding: 0.2em 0.4em;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+<h1>Fruits Fruits Fruits</h1>
+<label for="btn00">apple</label>
+<label for="btn01">banana</label>
+<label for="btn02">cherry</label>
+</div>
+
+<input type="radio" name="tab" id="btn00" hidden checked/>
+<input type="radio" name="tab" id="btn01" hidden/>
+<input type="radio" name="tab" id="btn02" hidden/>
+
+
+<div id="tab00" class="tab">
+apple apple
+</div>
+
+<div id="tab01" class="tab">
+banana banana
+</div>
+
+<div id="tab02" class="tab">
+cherry cherry
+</div>
+
+
+</body>
+</html>
