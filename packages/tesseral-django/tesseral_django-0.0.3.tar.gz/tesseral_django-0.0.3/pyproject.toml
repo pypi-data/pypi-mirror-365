@@ -1,0 +1,33 @@
+[project]
+name = "tesseral-django"
+version = "0.0.3"
+description = "Tesseral SDK for Django"
+readme = "README.md"
+authors = [
+    { name = "Blake Williams", email = "blake.williams@tesseral.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "django",
+    "httpx>=0.28.1",
+    "pytest>=8.4.0",
+    "tesseral-sdk>=0.0.10",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "django-stubs",
+    "mypy>=1.15.0",
+    "python-dotenv>=1.1.1",
+    "ruff>=0.11.3",
+]
+
+[tool.mypy]
+exclude = "^example/example/"
+
+[tool.mypy."example.example.*"]
+ignore_errors = true
