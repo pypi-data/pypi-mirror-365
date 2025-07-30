@@ -1,0 +1,21 @@
+{
+  "id": "flask_app",
+  "name": "Flask Web Application",
+  "description": "Flask web uygulaması şablonu",
+  "category": "Web",
+  "author": "PyCloud",
+  "version": "1.0.0",
+  "icon": "🌐",
+  "files": [
+    "app.py",
+    "requirements.txt",
+    "templates/",
+    "static/",
+    "README.md"
+  ],
+  "variables": {
+    "app_name": "My Flask App",
+    "author_name": "Your Name",
+    "description": "A Flask web application"
+  }
+}
