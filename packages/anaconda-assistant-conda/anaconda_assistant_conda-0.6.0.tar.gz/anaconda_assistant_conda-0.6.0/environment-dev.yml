@@ -1,0 +1,18 @@
+# Local dev conda dependencies
+channels:
+- defaults
+- conda-forge
+dependencies:
+- python=3.10
+- conda
+- tox=3
+- tox-conda
+- cruft
+- pip
+- fastmcp==2.8.1
+- pydantic>=2.0.0
+- pydantic-settings>=2.0.0
+- pip:
+    - "-e ../anaconda-assistant-sdk"
+    - "-e .[dev]"
+    - "-e ../anaconda-assistant-mcp"
