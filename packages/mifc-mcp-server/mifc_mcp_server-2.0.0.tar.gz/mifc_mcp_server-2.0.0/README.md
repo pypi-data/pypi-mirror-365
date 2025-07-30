@@ -1,0 +1,4 @@
+发布到PyPi
+uv build 
+uv publish --token [pypi-xxxxxxxxxx (token) ]
+uv publish --token pypi-AgEIcHlwaS5vcmcCJGFmYTZiMDQwLWM1OWUtNGE3NS1hZGU0LWJhODE2MjhlNmJiNAACKlszLCI0YzI3ZTczMS02NmQwLTRhMGUtOTNkMy1iMDAzNjIxZWNjOGQiXQAABiCwIJE39QZqm9IFFK3ACwTkW2SfecABRzo0n27kMhw_1g
