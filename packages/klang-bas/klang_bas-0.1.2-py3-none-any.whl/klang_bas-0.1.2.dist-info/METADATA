@@ -1,0 +1,38 @@
+Metadata-Version: 2.4
+Name: klang_bas
+Version: 0.1.2
+Summary: Get current keyboard layout language on Windows
+Home-page: https://github.com/AbodyPrmaga/klang
+Author: Abdelrahman
+Author-email: Abdelrahman <abdelrahmanmbartak@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/AbodyPrmaga/
+Project-URL: Repository, https://github.com/AbodyPrmaga/klang
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pywin32
+Dynamic: author
+Dynamic: home-page
+Dynamic: license-file
+
+# klang-boda
+
+مكتبة Python بسيطة للحصول على لغة الكيبورد الحالية على Windows.
+
+## الاستخدام
+
+```python
+#import a main func
+from src.__init__ import get_keyboard_language,get_language_name
+#get a hex code of lang keyboard
+lang_hex = get_keyboard_language()
+#convert hex code of lang keyborad to EN lang easy to read
+lang_name = get_language_name(lang_hex)
+#print final result
+print(lang_name)
+
+```
+## اصدار البايثون المطلوب 
+
+python >> 3.7+
