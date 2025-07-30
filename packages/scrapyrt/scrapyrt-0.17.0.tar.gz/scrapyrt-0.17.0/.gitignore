@@ -1,0 +1,41 @@
+# python
+*.py[cod]
+/build/
+/dist/
+/*.egg-info/
+/venv/
+/.venv/
+
+# twisted
+dropin.cache
+twistd.log
+twistd.pid
+_trial_temp
+
+# workspace
+/eggs/
+/logs/
+
+# development
+/.vagrant/
+/dev/
+/src/
+/dist/
+/test_urls*
+testing_scripts*
+coverage.xml
+/.coverage.*
+.python-version
+
+# IDE
+/.idea/
+.vscode
+
+# tests
+.coverage
+/.tox/
+/.cache/
+
+
+# sphinx
+docs/build/*
