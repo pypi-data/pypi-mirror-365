@@ -1,0 +1,37 @@
+import bayespy as bp
+import numpy as np
+import csv
+
+enum=[{'SuperSeniorCitizen':0, 'SeniorCitizen':1, 'MiddleAged':2, 'Youth':3, 'Teen':4},
+     {'Male':0, 'Female':1},
+     {'Yes':0, 'No':1},
+     {'High':0, 'Medium':1, 'Low':2},
+     {'Athlete':0, 'Active':1, 'Moderate':2,'Sedetary':3},
+     {'High':0, 'BorderLine':1, 'Normal':2},
+     {'Yes':0,'No':1}]
+
+with open('heart_disease_data.csv') as f:
+    data = np.array([[enum[i][v] for i, v in enumerate(row)]for row in csv.reader(f)])
+
+N = len(data)
+
+nodes = []
+for i, size in enumerate([5,2,2,3,4,3]):
+    p = bp.nodes.Dirichlet(np.ones(size))
+    n = bp.nodes.Categorical(p, plates=(N,))
+    n.observe(data[:,i])
+    nodes.append(n)
+
+p_hd = bp.nodes.Dirichlet(np.ones(2),plates=(5,2,2,3,4,3))
+hd = bp.nodes.MultiMixture(nodes,bp.nodes.Categorical,p_hd)
+hd.observe(data[:,6])
+p_hd.update()
+
+while True:
+    ip = [int(input(f"Enter: {list(e.keys())}"))for e in enum[:-1]]
+    predict = bp.nodes.MultiMixture(ip, bp.nodes.Categorical, p_hd).get_moments()[0][0]
+    print(f"Probability of Heart Disease: {predict:.4f}")
+    
+
+    if input("Try again? (y/n): ").lower() != 'y':
+        break

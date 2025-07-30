@@ -1,0 +1,50 @@
+import numpy as np
+
+X = np.array([[2,9],[1,5],[3,6]])
+Y = np.array([[92], [86], [89]])
+
+def sig(x):
+    return 1 / (1 + np.exp(-x))
+
+learning_rate = 0.01
+epochs = 5000
+
+weights_hidden = np.random.randn(2,3)
+weights_output = np.random.randn(3,1)
+
+for _ in range(epochs):
+    #Forward
+    output_hidden = sig(X @ weights_hidden)
+    output = output_hidden @ weights_output
+    
+    #Backward
+    error = Y-output
+    delta_output = error
+    delta_hidden = delta_output @ weights_output.T * output_hidden * (1-output_hidden)
+    
+    # Update output weights
+    weights_output += output_hidden.T @ delta_output * learning_rate
+    weights_hidden += X.T @ delta_hidden * learning_rate 
+
+# Training results
+print("=== TRAINING RESULTS ===")
+print("Input Data:\n", X)
+print("Actual Outputs:\n", Y)
+print("Predicted Outputs:\n", output)
+
+# Test data - new examples the network hasn't seen before
+test_X = np.array([[2, 7], [1, 4], [3, 8]])
+test_Y = np.array([[89], [87], [90]])
+
+# Test predictions
+# Same forward pass as training, but with test data
+h_test = sig(test_X @ weights_hidden)  # Hidden layer activations
+test_predictions = h_test @ weights_output  # Final predictions
+
+# Test results - compare predictions to actual values
+print("\n=== TEST RESULTS ===")
+for i in range(len(test_X)):
+    print(f"Input: {test_X[i]}")
+    print(f"Predicted: {test_predictions[i][0]:.2f}")  # Formatted to 2 decimal places
+    print(f"Actual: {test_Y[i][0]}")
+    print("-----")  # Separator between test cases
