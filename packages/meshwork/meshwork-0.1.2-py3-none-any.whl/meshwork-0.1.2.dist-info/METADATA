@@ -1,0 +1,47 @@
+Metadata-Version: 2.4
+Name: meshwork
+Version: 0.1.2
+Summary: Library for the propagation of distributed parameterized jobs and their streams
+Project-URL: Homepage, https://github.com/MythicaAI/infra/libs/python/meshwork
+Project-URL: Repository, https://github.com/MythicaAI/infra
+Author-email: Jacob Repp <jacob@mythica.ai>, Kevin Calderone <kevin@mythica.ai>, Pedro <pedro@mythica.ai>
+License: MPL-2.0
+Keywords: distributed-computing,job-scheduling,microservices,streaming
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.10
+Requires-Dist: aiohttp>=3.11.12
+Requires-Dist: base58>=2.1.1
+Requires-Dist: cryptography>=44.0.1
+Requires-Dist: fastapi>=0.115.8
+Requires-Dist: gcid>=0.1.0
+Requires-Dist: nats-py>=2.9.0
+Requires-Dist: opentelemetry-api>=1.30.0
+Requires-Dist: opentelemetry-exporter-otlp>=1.30.0
+Requires-Dist: opentelemetry-sdk>=1.30.0
+Requires-Dist: pydantic-settings>=2.7.1
+Requires-Dist: pydantic>=2.10.6
+Requires-Dist: pyjwt>=2.10.1
+Requires-Dist: python-json-logger>=3.2.1
+Requires-Dist: requests>=2.32.3
+Requires-Dist: typing-extensions>=4.12.2
+Requires-Dist: tzdata>=2025.1
+Requires-Dist: uvicorn>=0.34.0
+Description-Content-Type: text/markdown
+
+Meshwork
+===
+
+Library to connect a set of processes in a mesh configuration using
+some form of network transparent bus. 
+
+Used to issue automation requests to backend workers and capture their
+output.
+
+This library is still very specific to the automation for the
+https://api.mythica.gg API backend.
