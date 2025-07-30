@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "leme"
+version = "1.0.0"
+authors = [
+    {name = "CLI Leme DevOps", email = "dev@example.com"},
+]
+description = "CLI para configuração automática de ambiente DevOps"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Installation/Setup",
+    "Topic :: System :: Systems Administration",
+]
+keywords = ["devops", "cli", "docker", "terraform", "azure", "aws", "kubernetes", "automation"]
+dependencies = [
+    "typer>=0.16.0",
+    "rich>=14.0.0",
+    "jinja2>=3.1.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/iesodias/projeto_cli"
+"Bug Reports" = "https://github.com/iesodias/projeto_cli/issues"
+"Source" = "https://github.com/iesodias/projeto_cli"
+"Documentation" = "https://github.com/iesodias/projeto_cli#readme"
+
+[project.scripts]
+leme = "leme.cli:main"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "build>=0.10.0",
+    "twine>=4.0.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["leme*"]
+exclude = ["tests*"]
+
+[tool.setuptools.package-data]
+leme = ["*.md", "*.txt", "*.yml", "*.yaml"]
