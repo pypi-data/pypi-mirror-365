@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+# --- THIS IS THE CRITICAL CHANGE ---
+name = "tmng"
+version = "1.2.1" # Remember to increment this for new releases
+authors = [{ name="Luis Guilherme", email="lgpelin92@gmail.com" }]
+description = "A framework-agnostic, process-safe, local performance timer for Python applications."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT License" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "pydantic",
+    "pandas",
+    "plotly",
+    "typer[all]",
+    "rich",
+    "appdirs"
+]
+
+[project.optional-dependencies]
+dev = ["ruff", "pytest", "build"]
+
+[project.urls]
+"Homepage" = "https://github.com/your-repo/py-timing-tool"
+"Bug Tracker" = "https://github.com/your-repo/py-timing-tool/issues"
+
+[project.scripts]
+timing = "timing.cli:app"
+
+[tool.setuptools]
+packages = ["timing", "timing.report", "timing.storage"]
