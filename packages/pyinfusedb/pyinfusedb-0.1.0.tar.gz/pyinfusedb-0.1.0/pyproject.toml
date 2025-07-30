@@ -1,0 +1,19 @@
+[project]
+name = "pyinfusedb"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "maturin>=1.9.2",
+    "ipython>=9.4.0",
+]
+
+[build-system]
+requires = ["maturin>=1.9.2"]
+build-backend = "maturin"
+
+[tool]
+
+[tool.maturin]
+manifest-path = "InfuseDB-py/Cargo.toml"

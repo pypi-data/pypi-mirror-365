@@ -1,0 +1,28 @@
+[package]
+name = "InfuseDB"
+version = "0.2.0"
+edition = "2024"
+authors = ["Alb Ruiz G. <me@albruiz.dev>"]
+description = "InfuseDB is a Document oriented KV database"
+license = "MIT"
+readme = "README.md"
+
+[features]
+server = ["dep:mio"]
+
+[lib]
+name = "infusedb"
+path = "src/infusedb/mod.rs"
+
+
+[[bin]]
+name = "infusedb"
+path = "src/main.rs"
+
+[dependencies]
+mio = { version = "1.0.4", features = ["net", "os-poll"], optional = true }
+
+
+[dependencies.uuid]
+version = "1.12.1"
+features = ["v4", "js"]
