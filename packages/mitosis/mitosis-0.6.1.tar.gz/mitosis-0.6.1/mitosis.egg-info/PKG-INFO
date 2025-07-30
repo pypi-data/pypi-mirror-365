@@ -1,0 +1,191 @@
+Metadata-Version: 2.4
+Name: mitosis
+Version: 0.6.1
+Summary: Reproduce Machine Learning experiments easily
+Author-email: Jake Stevens-Haas <jacob.stevens.haas@gmail.com>
+License: MIT
+Project-URL: homepage, https://github.com/Jacob-Stevens-Haas/mitosis
+Keywords: Machine Learning,Science,Mathematics,Experiments
+Classifier: Development Status :: 4 - Beta
+Classifier: Programming Language :: Python
+Classifier: Framework :: Jupyter
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: SQL
+Classifier: Topic :: Documentation
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Software Development :: Testing
+Classifier: Topic :: Software Development :: Version Control :: Git
+Classifier: Topic :: Text Processing :: Markup
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: dill
+Requires-Dist: GitPython
+Requires-Dist: importlib_metadata
+Requires-Dist: ipykernel
+Requires-Dist: matplotlib
+Requires-Dist: nbconvert
+Requires-Dist: nbclient
+Requires-Dist: nbformat
+Requires-Dist: sqlalchemy>=2.0
+Requires-Dist: toml
+Requires-Dist: types-toml
+Provides-Extra: dev
+Requires-Dist: pytest<8.0.0,>=6.0.0; extra == "dev"
+Requires-Dist: pytest-cov; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+Requires-Dist: flake8-comprehensions>=3.1.0; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: coverage; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+Requires-Dist: pre-commit; extra == "dev"
+Requires-Dist: pytest-lazy-fixture; extra == "dev"
+Requires-Dist: sphinx; extra == "dev"
+Requires-Dist: codecov; extra == "dev"
+Requires-Dist: myst-parser; extra == "dev"
+Dynamic: license-file
+
+[![Documentation Status](https://readthedocs.org/projects/mitosis/badge/?version=latest)](https://mitosis.readthedocs.io/en/latest/?badge=latest)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![PyPI version](https://badge.fury.io/py/mitosis.svg)](https://badge.fury.io/py/mitosis)
+[![Downloads](https://pepy.tech/badge/mitosis)](https://pepy.tech/project/mitosis)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
+
+# Overview
+Mitosis is an experiment _runner_.
+It handles administrative tasks to decrease the mental overhead of collaboration:
+* Creating a CLI for your experiment
+* Recording commit information
+* Tracking parameterization, as well as parameter names (e.g. "low-noise")
+* Storing logs
+* Generating HTML visuals
+* Pickling result data
+
+The virtuous consequence of these checks and organization
+    is a faster workflow,
+    a more rigorous scientific method,
+    and reduced mental overhead of collaboration.
+
+## Trivial Example
+
+Hypothesis: the maximum value of a sine wave is equal to its amplitude.
+
+*sine_experiment/\_\_init\_\_.py*
+
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+
+    name = "sine-exp"
+    lookup_dict = {"frequency": {"fast": 10, "slow": 1}}
+
+    def run(amplitude, frequency):
+        """Deterimne if the maximum value of the sine function equals ``amplitude``"""
+        x = np.arange(0, 10, .05)
+        y = amplitude * np.sin(frequency * x)
+        err = np.abs(max(y) - amplitude)
+        plt.title("What's the maximum value of a sine wave?")
+        plt.plot(x, y, label="trial data")
+        plt.plot(x, amplitude * np.ones_like(x), label="expected")
+        plt.legend()
+        return {"main": err, "data": y}
+
+
+*pyproject.toml*
+
+    [tool.mitosis.steps]
+    my_exp = ["sine_experiment:run", "sine_experiment:lookup_dict"]
+
+
+Commit these changes to a repository.  After installing sine_experiment as a python package, in CLI, run:
+
+    mitosis my_exp --param my_exp.frequency=slow --eval-param my_exp.amplitude=4
+
+Mitosis will run `sin_experiment.run()`, saving
+all output as an html file in a subdirectory.  It will also
+track the parameters and results.
+If you later change the variant named "slow" to set frequency=2, mitosis will
+raise a `RuntimeError`, preventing you from running a trial.  If you want to run
+`sine_experiment` with a different parameter value, you need to name that variant
+something new.  Eval parameters, like "amplitude" in the example, behave differently.
+Rather than being specified by `lookup_dict`, they are evaluated directly.
+
+
+# Use
+
+Philosophically, an experiment is any time we run code with an aim to convince someone
+    of something.
+As code, mitosis takes the approach that an experiment is a callable
+    (or a sequence of callables).
+
+Using mitosis involves
+    registering experiments in pyproject.toml,
+    naming interesting parameters,
+    running experiments on the command line,
+    and browsing results.
+
+## Registration
+
+mitosis uses the `tool.mitosis.steps` table of pyproject.toml to learn
+    what python callables are experiment steps
+        and where to lookup named parameter values.
+It uses a syntax evocative of entry points:
+
+    [tool.mitosis.steps]
+    my_exp = ["sine_experiment:run", "sine_experiment:lookup_dict"]
+
+Experiment steps must be callables with a dictionary return type.  The returned
+dictionary is required to have a key "main".  All but the final step in an experiment
+must also have a key "data" that gets passed to the first argument of the subsequent
+step.  If the key "metrics" is present, it will display prominently in the HTML output
+
+_Developer note: Building an experiment step static type at_ `mitosis._typing.ExpRun`
+
+## CLI
+
+The basic invocation lists the steps along with the values of any parameters for each
+step.
+
+    mitosis [OPTION...] step [steps...] [[-p step.lookup_param=key...]
+        [-e step.eval_param=val...]]...
+
+Some nuance:
+* `--debug` can be used to waive a lot of the reproducibility checks mitosis does.
+    This arg allows you to run experiments in a dirty git repository (or no repository)
+    and will neither save results in the experimental database, nor increment the trials
+    counter, nor verify/lock in the definitions of any variants.  It will, however,
+    create the output notebook.  It also changes the experiment log level  from INFO
+    to DEBUG.
+* lookup parameters can be nearly any python object that is pickleable.  Tracking
+    parameter values can be turned off for parameters either for something that isn't
+    pickleable (e.g. a lambda function) or isn't important to track
+    (e.g. which GPU to run on).  This can be done with eval or lookup parameters
+    by adding a `+` to the parameter, e.g. `-e +jax_playground.gpu_id=1`.
+* Eval parameters which are strings will need quotation marks that escape the shell
+    (e.g. `-e smoothing.kernel=\"rbf\"`)
+* `-e` and `-p` are short form for `--eval-param` and `--param` (lookup param).
+
+## Results
+
+Trials are saved in `trials/` (or whatever is passed after `-F`).  Each trial has a
+pseudorandom bytes key, postpended to a metadata folder and an html output filename.
+
+There are two obviously useful things to do after an experiment:
+* view the html file.  `python -m http.server` is helpful to browse results
+* load the data with `mitosis.load_trial_data()`
+
+Beyond this, the metadata mitosis keeps to disk is useful for troubleshooting or reproducing experiments, but no facility yet exists to browse or compare experiments.
+
+## API
+
+Mitosis is primarily intended as a command line program, so `mitosis --help` has the syntax documentation.
+There is only one intentionally public part of the api: `mitosis.load_trial_data()`.
