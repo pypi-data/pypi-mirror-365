@@ -1,0 +1,56 @@
+Metadata-Version: 2.4
+Name: noisy_load_profiles
+Version: 0.1.0
+Summary: A Python package for adding realistic noise to electrical load or current profiles. Useful for studying robustness to noise of algorithms
+Author-email: Flin Verdaasdonk <flin.verdaasdonk@gmail.com>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/flinverdaasdonk/noisy_load_profiles
+Project-URL: Repository, https://github.com/flinverdaasdonk/noisy_load_profiles
+Classifier: Development Status :: 3 - Alpha
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+Requires-Dist: numpy>=1.20.0
+Provides-Extra: dev
+
+# Overview
+This is a package to ADD realistic sources of noise to electrical load profiles. 
+This is useful for testing the robustness of algorithms to noise, to enhance the realism of synthetic data, or to generate augmented data for machine learning purposes.
+
+The overal approach is as follows:
+- The package contains various `Perturbations`, such as perturbations to add Gaussian or Ornstein-Uhlenbeck noise, or to simulate measurement deadbands (and many others)
+- You decide which perturbations you want to use, and you add them to a `Pipeline` object.
+- You can call `pipeline.apply(profiles)`, and the pipeline sequentially applies the various perturbations to the given profiles.
+
+Note, the package expects `profiles` as a 2D array (timesteps X measurement devices)
+
+## Examples
+We have examples that demonstrate basic usage, advanced usage, and how to construct new Perturbations on our github.
+
+Below we show the most barebones example of a pipeline applying two types of noise.
+
+```
+import noisy_load_profiles as nolp
+import numpy as np
+
+
+
+# initialize some profiles
+timesteps = 10
+n_profiles = 2
+profiles = np.ones((timesteps, n_profiles)) # 2 profiles with 10 timesteps each; example
+
+
+# Initialize some pertubations
+gaussian_noise = nolp.perturbations.MultiplicativeGaussianNoise(mean=0.0, std=0.01, seed=42)
+deadband = nolp.perturbations.PercentualDeadBand(seed=42)
+
+# construct the pipeline
+pipeline = nolp.Pipeline([gaussian_noise, deadband])
+
+
+# apply the perturbation to the profiles
+perturbed_profiles = pipeline.apply(profiles)
+
+```
