@@ -1,0 +1,12 @@
+# these are dependencies required to use the package
+#
+# ought to mirror [project.dependencies] in pyproject.toml
+#
+-r build.txt
+docutils
+importlib_metadata; python_version < '3.8'
+jinja2 != 3.1
+packaging
+sphinx >= 4.4
+sphinx-gallery
+sphinx_rtd_theme >= 1.0.0

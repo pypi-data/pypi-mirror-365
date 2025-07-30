@@ -1,0 +1,18 @@
+# These are dependencies required to build package documentation
+#
+# ought to mirror [project.optional-dependencies.docs] in pyproject.toml
+#
+-r install.txt
+numpydoc
+packaging
+pillow
+plasmapy > 8.0
+pygments >= 2.11.0
+sphinx-changelog
+sphinx-copybutton
+sphinx-hoverxref >= 1.1.1
+sphinx-issues >= 3.0.1
+sphinx-notfound-page >= 0.8
+sphinx-reredirects
+sphinxcontrib-bibtex
+towncrier >= 19.2.0
