@@ -1,0 +1,50 @@
+[input]
+    input_file_path = ""
+[param]
+    name_tag = "human"
+[medium_data]
+    name = "Ham"
+    apply_before = true  # applied before consistency and functionality test
+    apply_after = false   # applied after consistency and functionality test
+    [medium_data.params]
+        file_path = "Hams.tsv"
+        conc_col_label = "mmol/L"
+        conc_unit = "mmol/L"
+        id_index = false
+        name_index = true
+        id_col_label = "human_1"
+        name_col_label = nan
+        [medium_data.params.csv_kw]
+            sep = "\t"
+    [medium_data.apply_params]
+        cell_dgw = 1e-12
+        n_cells_per_l = 1e6
+        time_hr = 96
+        flux_unit = "mmol/g/hr"
+        threshold = 1e-6
+[rescale]
+    method = "geometric_mean"
+    n_iter = 10
+    saved_path = "./rescaling"
+[consistency]
+    method = "FASTCC"
+    saved_path = "./consistency_test"
+    [consistency.params]
+        tol = 1e-6
+        return_model = true
+[functionality_test]
+    method = "default"
+    saved_path = "./functionality_test"
+    [functionality_test.params]
+        tasks_file_name = "tasks_for_human1"
+    [functionality_test.test_tasks]
+        model_compartment_parenthesis = "{}"
+        method="pFBA"
+        method_kws=nan
+        solver="gurobi"
+        get_support_rxns=true
+        task_ids="all"
+        verbosity=0
+        fail_threshold=1e-6
+        n_additional_path=0
+        log=nan
