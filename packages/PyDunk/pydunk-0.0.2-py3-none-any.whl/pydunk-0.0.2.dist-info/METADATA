@@ -1,0 +1,26 @@
+Metadata-Version: 2.4
+Name: PyDunk
+Version: 0.0.2
+Summary: A package for communicating with Apple's Grand Slam Authentication and relating APIs.
+Project-URL: Homepage, https://github.com/nythepegasus/PyDunk
+Project-URL: Bug Tracker, https://github.com/nythepegasus/PyDunk/issues
+Author-email: nythepegasus <me@nythepegas.us>, JJTech0130 <jjtech@jjtech.dev>
+License-File: LICENSE
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Security :: Cryptography
+Requires-Python: >=3.10
+Requires-Dist: anisettev3
+Requires-Dist: click
+Requires-Dist: cryptography
+Requires-Dist: httpx
+Requires-Dist: pbkdf2
+Requires-Dist: questionary
+Requires-Dist: srp
+Description-Content-Type: text/markdown
+
+# PyDunk
+A package for communicating with Apple's Grand Slam Authentication.
+
+Heavily based off [JJTech0130's](https://github.com/JJTech0130) [grandslam](https://github.com/JJTech0130/grandslam) library that I personally cleaned up.
