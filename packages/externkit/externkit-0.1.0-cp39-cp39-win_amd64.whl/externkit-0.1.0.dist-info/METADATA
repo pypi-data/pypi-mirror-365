@@ -1,0 +1,49 @@
+Metadata-Version: 2.4
+Name: externkit
+Version: 0.1.0
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Rust
+License-File: LICENSE
+Summary: A Python extension for external environment utilities
+Author: externref
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Project-URL: Repository, https://github.com/externref/externkit
+
+# externkit
+
+A Python extension for external environment utilities built with Rust.
+
+## Features
+
+- Fast environment variable access
+- Cross-platform support
+- Built with Rust for performance
+
+## Installation
+
+```bash
+pip install externkit
+```
+
+## Usage
+
+```python
+import externkit
+
+# Get an environment variable
+value = externkit.env.get("HOME")
+print(value)
+```
+
+## License
+
+MIT License
