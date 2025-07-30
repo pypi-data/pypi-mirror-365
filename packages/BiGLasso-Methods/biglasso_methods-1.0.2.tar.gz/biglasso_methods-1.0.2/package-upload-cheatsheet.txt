@@ -1,0 +1,17 @@
+# PyPI
+
+First, build the package:
+
+```
+python -m build
+```
+
+This should add files to `dist`, so run the following to put them on PyPI:
+
+```
+python3 -m twine upload dist/*
+```
+
+The username is __token__ and the password is the unique API token.
+
+If we just want to test before uploading, `pip install .` will install the package from the local wheels
