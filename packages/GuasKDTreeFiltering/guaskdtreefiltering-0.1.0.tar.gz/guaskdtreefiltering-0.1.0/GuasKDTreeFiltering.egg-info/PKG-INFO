@@ -1,0 +1,59 @@
+Metadata-Version: 2.4
+Name: GuasKDTreeFiltering
+Version: 0.1.0
+Summary: Spatial and Bilateral filtering using Gaussian KDTree data structures
+Author-email: Manideepu Reddy Enugala <enugalamanideepreddy99@gmail.com>
+License: MIT License
+        
+        Copyright (c) 2024 Your Name
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE. 
+Project-URL: Homepage, https://github.com/enugalamanideepreddy/GuassianKDTreeFiltering
+Project-URL: Issues, https://github.com/enugalamanideepreddy/GuassianKDTreeFiltering/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: tqdm
+Dynamic: license-file
+
+# KDTreeFiltering
+
+KDTreeFiltering is a Python library for efficient spatial and bilateral filtering using Gaussian KDTree data structures. It provides fast and scalable filtering operations for multidimensional data, leveraging the power of KD-trees for neighborhood queries and Gaussian kernels for smoothing.
+
+## Features
+- Spatial filtering using KDTree and Gaussian kernels
+- Bilateral filtering for edge-preserving smoothing
+- Efficient for high-dimensional data
+
+## Installation
+```bash
+pip install guaskd
+```
+
+## Usage
+```python
+from guaskd.kdtree import Filtering
+
+# Example usage
+filtered = Filtering(data, mode = 'Bilateral')
+```
