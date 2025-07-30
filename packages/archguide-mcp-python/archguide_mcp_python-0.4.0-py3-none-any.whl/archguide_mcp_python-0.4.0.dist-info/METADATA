@@ -1,0 +1,394 @@
+Metadata-Version: 2.4
+Name: archguide-mcp-python
+Version: 0.4.0
+Summary: Architecture Guidelines MCP Server - Inject architectural best practices into AI workflows
+Project-URL: Homepage, https://github.com/ioansalau/archguide-mcp-python
+Project-URL: Bug Reports, https://github.com/ioansalau/archguide-mcp-python/issues
+Project-URL: Source, https://github.com/ioansalau/archguide-mcp-python
+Project-URL: Documentation, https://github.com/ioansalau/archguide-mcp-python#readme
+Author-email: Ioan Salau <salauioan@yahoo.com>
+Maintainer-email: Ioan Salau <salauioan@yahoo.com>
+License: MIT
+License-File: LICENSE
+Keywords: ai,architecture,best-practices,claude,design-patterns,fastmcp,guidelines,mcp,microservices,patterns,software-architecture
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Documentation
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Systems Administration
+Classifier: Typing :: Typed
+Requires-Python: >=3.12
+Requires-Dist: click>=8.0.0
+Requires-Dist: fastmcp>=0.9.0
+Requires-Dist: pydantic-settings>=2.0.0
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: python-frontmatter>=1.0.0
+Requires-Dist: pyyaml>=6.0.0
+Requires-Dist: whoosh>=2.7.0
+Provides-Extra: dev
+Requires-Dist: black>=23.0.0; extra == 'dev'
+Requires-Dist: mypy>=1.0.0; extra == 'dev'
+Requires-Dist: pytest-asyncio>=0.21.0; extra == 'dev'
+Requires-Dist: pytest>=7.0.0; extra == 'dev'
+Requires-Dist: ruff>=0.1.0; extra == 'dev'
+Description-Content-Type: text/markdown
+
+# ArchGuide MCP Server
+
+A Python-based Model Context Protocol (MCP) server that provides architecture guidelines, design patterns, and best practices directly into AI development workflows. Built with modern Python tooling including FastMCP, Pydantic, and uv.
+
+## Features
+
+- **Architecture Guidelines**: Comprehensive guidelines for various architectural patterns
+- **Smart Search**: Full-text search across all guidelines and patterns using Whoosh
+- **Context-Aware**: Filter guidelines based on tech stack, scale, and domain
+- **Version Control**: Support for multiple versions of guidelines
+- **Compliance Checking**: Validate designs against architectural standards
+- **Fast & Efficient**: In-memory caching and optimized search
+- **Modern Python**: Built with FastMCP, Pydantic, and uv package manager
+
+## Installation
+
+### Prerequisites
+
+- Python 3.12+
+- uv package manager ([installation guide](https://docs.astral.sh/uv/getting-started/installation/))
+
+### Install from Source
+
+```bash
+git clone https://github.com/yourusername/archguide-mcp-python.git
+cd archguide-mcp-python
+uv sync
+```
+
+### Development Setup
+
+```bash
+# Install with development dependencies
+uv sync --dev
+
+# Run tests
+uv run python -m pytest
+
+# Run the server
+uv run archguide-mcp
+```
+
+## Usage with Claude Code
+
+1. **Add to your Claude Code configuration**:
+
+```json
+{
+  "mcpServers": {
+    "archguide": {
+      "command": "uv",
+      "args": ["run", "archguide-mcp"],
+      "cwd": "/path/to/archguide-mcp-python",
+      "env": {
+        "GUIDELINES_PATH": "/path/to/your/guidelines"
+      }
+    }
+  }
+}
+```
+
+2. **Use in your prompts**:
+
+```
+Design a microservices architecture for an e-commerce platform. use archguide
+
+Show me the event sourcing pattern with examples. use archguide
+
+Check if this API design follows our REST guidelines. use archguide
+
+What are the best practices for authentication in Python FastAPI apps? use archguide
+```
+
+## Available MCP Tools
+
+### `get-architecture-guideline`
+Fetch architecture guidelines for a specific topic with optional context filtering.
+
+**Parameters**:
+- `topic` (required): Architecture topic (e.g., "microservices", "api-design", "security")
+- `context` (optional): Additional filtering context
+  - `tech_stack`: Technology stack (e.g., ["python", "fastapi"])
+  - `scale`: System scale ("startup", "growth", "enterprise")
+  - `domain`: Business domain (e.g., "e-commerce", "fintech")
+- `version` (optional): Specific version of guidelines
+- `include_examples` (optional): Include code examples (default: true)
+
+### `search-patterns`
+Search for architecture patterns, best practices, and solutions.
+
+**Parameters**:
+- `query` (required): Search query
+- `filters` (optional): Search filters
+  - `category`: Filter by category
+  - `tags`: Filter by tags
+  - `tech_stack`: Filter by technology stack
+- `limit` (optional): Maximum results (default: 10)
+
+### `list-categories`
+List all available architecture guideline categories.
+
+### `check-compliance`
+Check if a design or code snippet complies with architecture guidelines.
+
+**Parameters**:
+- `design` (required): Design description or code snippet
+- `guidelines` (optional): Specific guideline IDs to check against
+
+### `get-server-stats`
+Get statistics about the ArchGuide server including guideline counts and categories.
+
+### Dynamic Guideline Management Tools ✨
+
+#### `add-guideline`
+Add a new architecture guideline dynamically during your Claude Code session.
+
+**Parameters**:
+- `title` (required): Title of the guideline
+- `category` (required): Category (e.g., "microservices", "security", "cloud-native")
+- `content` (required): Main content in markdown format
+- `subcategory` (optional): Subcategory for organization
+- `tags` (optional): List of tags for categorization
+- `patterns` (optional): List of patterns with keys: name, description, when, implementation, consequences
+- `anti_patterns` (optional): List of anti-patterns with keys: name, description, why, instead
+- `examples` (optional): List of code examples with keys: title, description, language, code
+- `tech_stack` (optional): Applicable technology stack
+- `applicability` (optional): Contexts where this applies (e.g., ['startup', 'enterprise'])
+- `author` (optional): Author name (default: "Claude Code User")
+
+**Example Usage**:
+```
+Add a new guideline about API rate limiting patterns for microservices with examples in Python and Go
+```
+
+#### `update-guideline`
+Update an existing architecture guideline.
+
+**Parameters**:
+- `guideline_id` (required): ID of the guideline to update
+- `title` (optional): New title
+- `content` (optional): New content
+- `tags` (optional): New tags
+- `patterns` (optional): New patterns list
+- `anti_patterns` (optional): New anti-patterns list
+- `examples` (optional): New examples list
+
+#### `delete-guideline`
+Delete an architecture guideline.
+
+**Parameters**:
+- `guideline_id` (required): ID of the guideline to delete
+
+#### `reload-guidelines`
+Reload all guidelines from the filesystem to pick up any manual changes made to .md files.
+
+## Dynamic Guideline Creation Examples
+
+With the new dynamic management tools, you can create guidelines on-the-fly during your development workflow:
+
+### Example 1: Create a Performance Guideline
+```
+Add a new guideline titled "Database Query Optimization" in the "performance" category with content about N+1 queries, including patterns for eager loading and anti-patterns for sequential queries
+```
+
+### Example 2: Update Existing Guideline
+```
+Update the guideline "microservices-data-management" to add a new pattern about distributed transactions using the Saga pattern
+```
+
+### Example 3: Create Team-Specific Guidelines
+```
+Add a guideline about our team's specific React component patterns with examples showing our custom hooks and state management conventions
+```
+
+## Writing Guidelines
+
+Guidelines are written in Markdown with YAML frontmatter:
+
+```markdown
+---
+id: unique-guideline-id
+title: Guideline Title
+category: main-category
+subcategory: sub-category
+tags: [tag1, tag2, tag3]
+version: 1.0.0
+author: Your Name
+created: 2024-01-01
+lastUpdated: 2024-01-02
+applicability: [startup, enterprise, cloud-native]
+techStack: [python, fastapi, postgresql]
+prerequisites: [http-basics, api-design]
+relatedGuidelines: [other-guideline-id]
+---
+
+# Guideline Content
+
+Your guideline content here...
+
+## Pattern: Pattern Name
+
+### Description
+Pattern description.
+
+### When to use
+When to use this pattern.
+
+### Implementation
+How to implement.
+
+### Consequences
+- Positive consequence
+- Negative consequence
+
+## Anti-pattern: Anti-pattern Name
+
+### Description
+Anti-pattern description.
+
+### Why it's bad
+Why this is problematic.
+
+### Instead
+What to do instead.
+
+### Example: Code Example
+Description of the example.
+
+```python
+def example_function():
+    return "Hello, World!"
+```
+```
+
+## Project Structure
+
+```
+archguide-mcp-python/
+├── src/
+│   └── archguide_mcp_python/
+│       ├── __init__.py             # Package initialization
+│       ├── server.py               # FastMCP server implementation
+│       ├── models/
+│       │   └── types.py            # Pydantic data models
+│       ├── storage/
+│       │   ├── store.py            # Main guideline store
+│       │   ├── filesystem.py       # File-based storage
+│       │   └── search.py           # Whoosh search index
+│       ├── parsers/
+│       │   └── content.py          # Markdown content parser
+│       └── utils/
+│           ├── cache.py            # Caching utilities
+│           └── formatters.py       # Output formatting
+├── guidelines/                     # Architecture guidelines content
+│   ├── microservices/
+│   ├── cloud-native/
+│   ├── security/
+│   └── data-patterns/
+├── tests/                          # Test suite
+├── pyproject.toml                  # Project configuration
+└── README.md
+```
+
+## Configuration
+
+### Environment Variables
+
+- `GUIDELINES_PATH`: Path to guidelines directory (default: `./guidelines`)
+- `INDEX_DIR`: Path to search index directory (optional)
+- `CACHE_TTL`: Cache time-to-live in seconds (default: 300)
+
+### Guidelines Directory Structure
+
+```
+guidelines/
+├── microservices/
+│   ├── data-management.md
+│   └── communication-patterns.md
+├── cloud-native/
+│   ├── api-design.md
+│   └── containerization.md
+├── security/
+│   ├── authentication.md
+│   └── authorization.md
+└── data-patterns/
+    ├── database-design.md
+    └── caching-strategies.md
+```
+
+## Development
+
+### Running Tests
+
+```bash
+# Run all tests
+uv run python -m pytest
+
+# Run specific test file
+uv run python -m pytest tests/test_cache.py -v
+
+# Run with coverage
+uv run python -m pytest --cov=archguide_mcp_python
+```
+
+### Code Quality
+
+```bash
+# Format code
+uv run black src/ tests/
+
+# Lint code
+uv run ruff check src/ tests/
+
+# Type checking
+uv run mypy src/
+```
+
+### Adding New Guidelines
+
+1. Create a new markdown file in the appropriate category directory
+2. Follow the guideline template with proper frontmatter
+3. Include patterns, anti-patterns, and examples as needed
+4. Restart the server to load new guidelines
+
+## Sample Guidelines Included
+
+The project includes sample guidelines for:
+
+- **Microservices**: Data management patterns, event sourcing, database per service
+- **Cloud-Native APIs**: RESTful design, versioning, status codes
+- **Security**: Authentication patterns, JWT, OAuth2, RBAC
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Write guidelines in the appropriate category
+4. Add tests for new functionality
+5. Commit your changes (`git commit -m 'Add amazing feature'`)
+6. Push to the branch (`git push origin feature/amazing-feature`)
+7. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Built with [FastMCP](https://github.com/jlowin/fastmcp) for MCP server functionality
+- Uses [Whoosh](https://whoosh.readthedocs.io/) for full-text search
+- Powered by [Pydantic](https://pydantic.dev/) for data validation
+- Package management by [uv](https://github.com/astral-sh/uv)
+
+---
+
+**ArchGuide MCP Server** - Making architectural knowledge instantly accessible within AI development workflows.
