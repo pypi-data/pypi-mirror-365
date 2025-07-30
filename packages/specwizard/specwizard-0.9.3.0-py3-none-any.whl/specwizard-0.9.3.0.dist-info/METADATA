@@ -1,0 +1,60 @@
+Metadata-Version: 2.4
+Name: specwizard
+Version: 0.9.3.0
+Summary: .
+Author-email: Andres Aramburo-Garcia <aramburo@lorentz.leidenuniv.nl>, Tom Theuns <tom.theuns@durham.ac.uk>
+Project-URL: Homepage, https://github.com/specwizard/specwizard
+Project-URL: Bug Tracker, https://github.com/specwizard/specwizard/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/x-rst
+License-File: LICENSE
+Requires-Dist: numpy
+Requires-Dist: scipy
+Requires-Dist: swiftsimio
+Requires-Dist: mendeleev
+Requires-Dist: roman
+Requires-Dist: swiftsimio
+Requires-Dist: pyread_eagle
+Requires-Dist: matplotlib
+Requires-Dist: hydrangea
+Requires-Dist: bs4
+Requires-Dist: pyyaml
+Requires-Dist: h5py
+Requires-Dist: requests
+Requires-Dist: html5lib
+Requires-Dist: astropy
+Dynamic: license-file
+
+Overview
+========
+.. INTRO_FLAG
+
+SPECWIZARD is a python package to compute and analyze mock quasar absorption spectra from cosmological simulations. 
+
+
+.. INTRO_FLAG_END
+
+Citing SPECWIZARD
+-----------------
+
+
+Installation Notes
+==================
+
+.. INSTALL_FLAG
+
+SPECWIZARD is written in ``python3`` and stable versions are available on PyPI_. Therefore the easiest installation method is through ``pip``
+
+
+.. code-block::
+
+    pip install specwizard 
+
+The code is constantly updated. Any feedback, bug or error is greatly appreciated. This can be done through email_ or github. 
+
+.. _PyPI: https://pypi.org/project/specwizard/
+.. _email: mailto:aramburo@lorentz.leidenuniv.nl 
+.. INSTALL_FLAG_END
