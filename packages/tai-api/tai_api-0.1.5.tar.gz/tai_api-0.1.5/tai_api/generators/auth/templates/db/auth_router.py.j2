@@ -1,0 +1,197 @@
+"""
+{{ project_name }} - Authentication Endpoints
+Generado automáticamente por tai-api set-auth
+
+Este módulo contiene los endpoints de login y logout con manejo de sesiones.
+"""
+
+from fastapi import APIRouter, Depends
+from fastapi.security import OAuth2PasswordRequestForm
+from pydantic import BaseModel
+
+from .jwt import JWTHandler
+from .dependencies import get_current_user, CurrentUser
+from {{ crud_import_path }} import {{ crud_class }}, {{ auth_table_name}}UpdateValues
+from {{ responses_import_path }} import (
+    InvalidCredentialsException,
+    {% if has_session_management %}
+    ConcurrentSessionDetectedException,
+    {% endif %}
+    DatabaseException
+)
+
+router = APIRouter(prefix="/auth", tags=["Autenticación"])
+
+class LoginRequest(BaseModel):
+    """Modelo para datos de login"""
+    {{ username_field }}: str
+    {{ password_field }}: str
+
+class LoginResponse(BaseModel):
+    """Modelo para respuesta de login"""
+    access_token: str
+    token_type: str = "bearer"
+    user: dict  # Información básica del usuario
+    {% if has_session_management %}
+    session_id: str
+    {% endif %}
+
+class LogoutResponse(BaseModel):
+    """Modelo para respuesta de logout"""
+    message: str = "Sesión cerrada exitosamente"
+
+
+async def authenticate({{ username_field }}: str, {{ password_field }}: str, api: PublicAsyncDBAPI) -> LoginResponse:
+    """
+    Función auxiliar que realiza la lógica de login compartida.
+    
+    Args:
+        username: Nombre de usuario
+        password: Contraseña
+        api: DAO para acceso a datos
+        
+    Returns:
+        LoginResponse: Token y datos de usuario
+        
+    Raises:
+        InvalidCredentialsException: Si credenciales son incorrectas
+        DatabaseException: Si hay error en BD
+    """
+    try:
+        # 1. Buscar usuario
+        user = await api.{{ auth_table_name.lower() }}.find(
+            {{ username_field }}={{ username_field }}
+        )
+        
+        if not user:
+            raise InvalidCredentialsException()
+        
+        # 2. Verificar contraseña
+        if user.{{ password_field }} != {{ password_field }}:
+            raise InvalidCredentialsException()
+        
+        {% if has_session_management %}
+        # 3. Generar nuevo session_id
+        new_session_id = JWTHandler.generate_session_id()
+        
+        # 4. Actualizar session_id en BD
+        await api.{{ auth_table_name.lower() }}.update(
+            {{ username_field }}=user.{{ username_field }},
+            updated_values={{ auth_table_name}}UpdateValues(
+                {{ session_id_field }}=new_session_id
+            )
+        )
+        
+        # Refrescar el objeto user
+        user = await api.{{ auth_table_name.lower() }}.find({{ username_field }}=user.{{ username_field }})
+        {% endif %}
+        
+        # 5. Generar token JWT
+        token = JWTHandler.create_token(
+            username={{ username_field }},
+            {% if has_session_management %}
+            session_id=new_session_id
+            {% endif %}
+        )
+        
+        # 6. Preparar respuesta (sin datos sensibles)
+        user_data = {
+            "{{ username_field }}": user.{{ username_field }},
+            # Agregar otros campos públicos según necesites
+        }
+        
+        return LoginResponse(
+            access_token=token,
+            user=user_data,
+            {% if has_session_management %}
+            session_id=new_session_id
+            {% endif %}
+        )
+        
+    except Exception as e:
+        if isinstance(e, (InvalidCredentialsException, {% if has_session_management %}ConcurrentSessionDetectedException{% endif %})):
+            raise e
+        raise DatabaseException(f"Error en login: {str(e)}")
+
+
+@router.post("/login", response_model=LoginResponse)
+async def login(
+    credentials: LoginRequest,
+    api: PublicAsyncDBAPI = Depends(PublicAsyncDBAPI)
+):
+    """
+    Endpoint de autenticación de usuarios
+    """
+    return await authenticate(credentials.{{ username_field }}, credentials.{{ password_field }}, api)
+
+
+@router.post("/docslogin", response_model=LoginResponse, include_in_schema=False)
+async def docs_login(
+    form_data: OAuth2PasswordRequestForm = Depends(),
+    api: PublicAsyncDBAPI = Depends(PublicAsyncDBAPI)
+):
+    """
+    Endpoint de autenticación para la documentación de FastAPI (formulario)
+    """
+    return await authenticate(form_data.{{ username_field }}, form_data.{{ password_field }}, api)
+
+
+@router.post("/logout", response_model=LogoutResponse)
+async def logout(
+    current_user: CurrentUser = Depends(get_current_user),
+    api: {{ crud_class }} = Depends({{ crud_class }})
+):
+    """
+    Endpoint para cerrar sesión.
+    {% if has_session_management %}
+    Invalida la sesión actual eliminando o cambiando el session_id
+    {% endif %}
+    
+    Args:
+        current_user: Usuario autenticado (obtenido de token)
+        
+    Returns:
+        LogoutResponse: Confirmación de logout
+        
+    Raises:
+        DatabaseException: Si hay error al invalidar sesión
+    """
+    
+    try:
+        {% if has_session_management %}
+        # Invalidar sesión actual
+        await api.{{ auth_table_name.lower() }}.update(
+            {{ username_field }}=current_user.{{ username_field }},
+            updated_values={{ auth_table_name}}UpdateValues(
+                {{ session_id_field }}=None
+            )
+        )
+        {% endif %}
+        
+        return LogoutResponse()
+        
+    except Exception as e:
+        raise DatabaseException(f"Error en logout: {str(e)}")
+
+
+@router.get("/me")
+async def get_current_user_info(current_user: CurrentUser = Depends(get_current_user)):
+    """
+    Endpoint para obtener información del usuario actual.
+    
+    Útil para verificar si el token sigue siendo válido
+    y obtener datos actualizados del usuario.
+    
+    Args:
+        current_user: Usuario autenticado
+        
+    Returns:
+        dict: Información pública del usuario
+    """
+    
+    return {
+        "{{ username_field }}": current_user.{{ username_field }},
+        {% if has_session_management %}
+        "session_id": current_user.{{ session_id_field }},
+        {% endif %}
+    }
