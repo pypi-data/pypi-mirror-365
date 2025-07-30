@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "canonicalize-range"
+version = "0.1.0a0"
+description = "This Python module provides utilities for normalizing and canonicalizing range objects to ensure they contain complete steps from their start value."
+readme = "README.md"
+requires-python = ">=2"
+license = "MIT"
+authors = [
+  { name="Jifeng Wu", email="jifengwu2k@gmail.com" }
+]
+classifiers = [
+    "Programming Language :: Python :: 2",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/jifengwu2k/canonicalize-range"
+"Bug Tracker" = "https://github.com/jifengwu2k/canonicalize-range/issues"
