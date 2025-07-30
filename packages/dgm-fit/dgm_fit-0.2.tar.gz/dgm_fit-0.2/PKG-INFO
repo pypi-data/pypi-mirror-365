@@ -1,0 +1,43 @@
+Metadata-Version: 2.4
+Name: dgm-fit
+Version: 0.2
+Summary: The package implements the fitter interface for the dag-modelling framework
+Author-email: DAGModelling Team <dagflow@jinr.ru>
+Maintainer-email: DAGModelling Team <dagflow@jinr.ru>
+License-Expression: MIT
+Project-URL: Bug Tracker, https://github.com/dagflow-team/dgm-fit/issues
+Project-URL: DAGModelling Team, https://github.com/dagflow-team
+Project-URL: documentation, https://github.com/dagflow-team/dgm-fit/wiki
+Project-URL: homepage, https://github.com/dagflow-team/dgm-fit
+Project-URL: repository, https://github.com/dagflow-team/dgm-fit
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: dag-modelling
+Requires-Dist: iminuit
+Requires-Dist: numba
+Requires-Dist: scipy
+Provides-Extra: test
+Requires-Dist: coverage; extra == "test"
+Requires-Dist: pytest; extra == "test"
+Requires-Dist: pytest-cov; extra == "test"
+Dynamic: license-file
+
+# dgm-fit
+
+[![python](https://img.shields.io/badge/python-3.11-purple.svg)](https://www.python.org/)
+[![pipeline](https://git.jinr.ru/dagflow-team/dgm-fit/badges/master/pipeline.svg)](https://git.jinr.ru/dagflow-team/dgm-fit/commits/master)
+[![coverage report](https://git.jinr.ru/dagflow-team/dgm-fit/badges/master/coverage.svg)](https://git.jinr.ru/dagflow-team/dgm-fit/-/commits/master)
+
+The fitter interface for the dag-modelling framework.
+
+## Repositories
+
+- Main repo:
+  - Development/CI: https://git.jinr.ru/dagflow-team/dgm-fit
+  - Contact/pypi/mirror: https://github.com/dagflow-team/dgm-fit
+  - PYPI: https://pypi.org/project/dgm-fit
