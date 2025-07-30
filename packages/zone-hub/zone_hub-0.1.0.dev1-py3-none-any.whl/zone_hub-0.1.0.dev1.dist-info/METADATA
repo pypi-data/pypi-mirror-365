@@ -1,0 +1,53 @@
+Metadata-Version: 2.1
+Name: zone-hub
+Version: 0.1.0.dev1
+Summary: Zone framework for acceptance testing 
+Home-page: http://10.133.122.70/liuhaijiang/zmclient
+Author: Liu Haijiang
+Author-email: liuhaijiang@saicmotor.com
+License: Apache License 2.0
+Download-URL: https://pypi.org/project/zoneclient
+Project-URL: Source, http://10.133.122.70/liuhaijiang/zmclient
+Keywords: framework automation-test automation-testing atdd bdd
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.8
+Description-Content-Type: text/x-rst
+Requires-Dist: thrift
+Requires-Dist: PyYAML (==6.0.2)
+Provides-Extra: dev
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: furo ; extra == 'dev'
+Requires-Dist: sphinx-autobuild ; extra == 'dev'
+Requires-Dist: codespell ; extra == 'dev'
+Requires-Dist: sphinx-copybutton ; extra == 'dev'
+Requires-Dist: beanbag-docutils (>=2.0) ; extra == 'dev'
+Requires-Dist: pygments-csv-lexer ; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: furo ; extra == 'docs'
+Requires-Dist: sphinx-autobuild ; extra == 'docs'
+Requires-Dist: codespell ; extra == 'docs'
+Requires-Dist: sphinx-copybutton ; extra == 'docs'
+Requires-Dist: beanbag-docutils (>=2.0) ; extra == 'docs'
+Requires-Dist: pygments-csv-lexer ; extra == 'docs'
+
+# zone hub
+
+## `INSTALL.rst <http://10.133.122.70/liuhaijiang/zmclient/-/blob/main//INSTALL.rst>`__.
+## `CONTRIBUTING.rst <http://10.133.122.70/liuhaijiang/zmclient/-/blob/main//CONTRIBUTING.rst>`__.
+## `<DEVELOPMENT.rst>`__.
+
+
+
+
+
