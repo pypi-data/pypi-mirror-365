@@ -1,0 +1,38 @@
+# 构建文件
+build/
+dist/
+*.egg-info/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# 测试文件
+*.docx
+test/*.docx
+test/simple_test_doc.docx
+test/test_document.docx
+
+# 日志文件
+*.log
+word-mcp.log
+
+# 虚拟环境
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+
+# 临时文件
+tmp/
+*.tmp
+*.temp
