@@ -1,0 +1,4244 @@
+{
+  "test_type": "espocrm_login",
+  "total_tests": 300,
+  "concurrent_tests": 300,
+  "successful_tests": 300,
+  "failed_tests": 0,
+  "total_duration": 357.5658812522888,
+  "tests_per_second": 0.839006224389536,
+  "success_rate": 100.0,
+  "step_averages": {
+    "environment_creation": {
+      "average": 19.081584944725037,
+      "min": 2.431556224822998,
+      "max": 36.54081702232361
+    },
+    "environment_ready": {
+      "average": 220.73148293972017,
+      "min": 193.7391550540924,
+      "max": 256.03512716293335
+    },
+    "total_workflow_iterations": {
+      "average": 66.73400534709295,
+      "min": 34.35011410713196,
+      "max": 80.29759120941162
+    },
+    "average_iteration_time": {
+      "average": 22.244668449030982,
+      "min": 11.450038035710653,
+      "max": 26.76586373647054
+    },
+    "environment_closure": {
+      "average": 23.84258125305176,
+      "min": 5.20805025100708,
+      "max": 34.453903913497925
+    },
+    "public_url_retrieval": {
+      "average": 1.7002423604329427e-05,
+      "min": 2.6226043701171875e-06,
+      "max": 0.0007040500640869141
+    }
+  },
+  "individual_test_metrics": [
+    {
+      "success": true,
+      "total_duration": 315.1121699810028,
+      "environment_id": "f81b096e-d45a-46f0-9fb5-9d4eb86c4d74",
+      "steps_timing": {
+        "environment_creation": 2.431556224822998,
+        "environment_ready": 237.39119482040405,
+        "public_url_retrieval": 8.344650268554688e-06,
+        "total_workflow_iterations": 73.28753924369812,
+        "average_iteration_time": 24.429179747899372,
+        "environment_closure": 25.76038694381714
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 303.18757009506226,
+      "environment_id": "7a3dafe8-61a8-4ebf-ab33-ce83cac7accc",
+      "steps_timing": {
+        "environment_creation": 7.617933750152588,
+        "environment_ready": 224.37133884429932,
+        "public_url_retrieval": 9.775161743164062e-06,
+        "total_workflow_iterations": 69.19687247276306,
+        "average_iteration_time": 23.06562415758769,
+        "environment_closure": 28.740936994552612
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 265.0599932670593,
+      "environment_id": "4fb7660b-c15b-4e88-be4d-2d41cc268af4",
+      "steps_timing": {
+        "environment_creation": 3.3475661277770996,
+        "environment_ready": 216.6144299507141,
+        "public_url_retrieval": 1.8358230590820312e-05,
+        "total_workflow_iterations": 43.09690880775452,
+        "average_iteration_time": 14.365636269251505,
+        "environment_closure": 29.72370195388794
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 318.4018838405609,
+      "environment_id": "9b9168f0-ac98-4bc7-ad37-9ff2c067f1c9",
+      "steps_timing": {
+        "environment_creation": 8.865336894989014,
+        "environment_ready": 231.168142080307,
+        "public_url_retrieval": 1.621246337890625e-05,
+        "total_workflow_iterations": 76.36643695831299,
+        "average_iteration_time": 25.45547898610433,
+        "environment_closure": 24.23482394218445
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 288.5422558784485,
+      "environment_id": "099c51ae-ea0d-4528-a9e6-456d1b24fafd",
+      "steps_timing": {
+        "environment_creation": 9.123742818832397,
+        "environment_ready": 218.68490314483643,
+        "public_url_retrieval": 1.9788742065429688e-05,
+        "total_workflow_iterations": 58.73223614692688,
+        "average_iteration_time": 19.577412048975628,
+        "environment_closure": 32.46768879890442
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 298.3738992214203,
+      "environment_id": "66d7f393-2730-455b-b222-29b2b56a2929",
+      "steps_timing": {
+        "environment_creation": 20.84390115737915,
+        "environment_ready": 209.75431609153748,
+        "public_url_retrieval": 1.5020370483398438e-05,
+        "total_workflow_iterations": 65.77366161346436,
+        "average_iteration_time": 21.924553871154785,
+        "environment_closure": 29.562983751296997
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 311.4339551925659,
+      "environment_id": "8f8c3f9b-8f89-4311-a0c6-3d57b3b8e7af",
+      "steps_timing": {
+        "environment_creation": 6.714686870574951,
+        "environment_ready": 231.11281895637512,
+        "public_url_retrieval": 1.3113021850585938e-05,
+        "total_workflow_iterations": 71.60413575172424,
+        "average_iteration_time": 23.86804525057475,
+        "environment_closure": 26.99346685409546
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 268.3302631378174,
+      "environment_id": "51c40079-f008-48f0-aeec-b6a7ab2cad81",
+      "steps_timing": {
+        "environment_creation": 9.757953882217407,
+        "environment_ready": 210.89002203941345,
+        "public_url_retrieval": 1.811981201171875e-05,
+        "total_workflow_iterations": 45.680980920791626,
+        "average_iteration_time": 15.226993640263876,
+        "environment_closure": 29.88049626350403
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 262.5136730670929,
+      "environment_id": "c52a6a1e-2c99-4bfc-85e6-f3abd0c1e36a",
+      "steps_timing": {
+        "environment_creation": 5.881306171417236,
+        "environment_ready": 220.28032684326172,
+        "public_url_retrieval": 1.5735626220703125e-05,
+        "total_workflow_iterations": 34.35011410713196,
+        "average_iteration_time": 11.450038035710653,
+        "environment_closure": 29.66165018081665
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 318.572252035141,
+      "environment_id": "2d0f8923-e4dc-4f88-8a51-b1a647fd6f6c",
+      "steps_timing": {
+        "environment_creation": 21.933887004852295,
+        "environment_ready": 218.49643802642822,
+        "public_url_retrieval": 1.7881393432617188e-05,
+        "total_workflow_iterations": 76.14034223556519,
+        "average_iteration_time": 25.38011407852173,
+        "environment_closure": 24.109088897705078
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 289.3910310268402,
+      "environment_id": "af74cc87-f847-4f52-a123-1a1163e888fd",
+      "steps_timing": {
+        "environment_creation": 5.983198165893555,
+        "environment_ready": 221.8139979839325,
+        "public_url_retrieval": 2.0265579223632812e-05,
+        "total_workflow_iterations": 59.592578649520874,
+        "average_iteration_time": 19.864192883173626,
+        "environment_closure": 32.898186922073364
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 269.8524262905121,
+      "environment_id": "24c24428-e27a-4378-a603-be4eae0d4eac",
+      "steps_timing": {
+        "environment_creation": 10.251940250396729,
+        "environment_ready": 212.3418848514557,
+        "public_url_retrieval": 1.2874603271484375e-05,
+        "total_workflow_iterations": 45.25719118118286,
+        "average_iteration_time": 15.085730393727621,
+        "environment_closure": 30.529286861419678
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 289.7149398326874,
+      "environment_id": "19070100-59f0-43b4-ae04-5514f1aec318",
+      "steps_timing": {
+        "environment_creation": 11.646183967590332,
+        "environment_ready": 217.14312505722046,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 58.92333960533142,
+        "average_iteration_time": 19.64111320177714,
+        "environment_closure": 33.14414429664612
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 314.27939796447754,
+      "environment_id": "2bd4a10f-a329-46eb-9376-b5e89d1a625f",
+      "steps_timing": {
+        "environment_creation": 8.93844199180603,
+        "environment_ready": 230.56196093559265,
+        "public_url_retrieval": 1.52587890625e-05,
+        "total_workflow_iterations": 72.77741193771362,
+        "average_iteration_time": 24.25913731257121,
+        "environment_closure": 25.992851972579956
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 336.20813632011414,
+      "environment_id": "9c89e9ab-af6e-4b69-b796-52a58cb0d092",
+      "steps_timing": {
+        "environment_creation": 26.30819296836853,
+        "environment_ready": 230.30303812026978,
+        "public_url_retrieval": 1.5020370483398438e-05,
+        "total_workflow_iterations": 77.5953357219696,
+        "average_iteration_time": 25.8651119073232,
+        "environment_closure": 13.070395946502686
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 286.3238341808319,
+      "environment_id": "e0af27ae-27a6-4bbe-9c55-fc681d4e47ad",
+      "steps_timing": {
+        "environment_creation": 6.954204082489014,
+        "environment_ready": 219.75247931480408,
+        "public_url_retrieval": 1.3828277587890625e-05,
+        "total_workflow_iterations": 57.61583590507507,
+        "average_iteration_time": 19.205278635025024,
+        "environment_closure": 33.629546880722046
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 268.53427505493164,
+      "environment_id": "13a780f7-3fbc-491a-8b1e-cbbae55128e6",
+      "steps_timing": {
+        "environment_creation": 10.39345407485962,
+        "environment_ready": 210.66439390182495,
+        "public_url_retrieval": 1.7881393432617188e-05,
+        "total_workflow_iterations": 45.475492000579834,
+        "average_iteration_time": 15.158497333526611,
+        "environment_closure": 29.979058027267456
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 318.4844741821289,
+      "environment_id": "638d2619-4035-4d50-83ba-14c86f73014d",
+      "steps_timing": {
+        "environment_creation": 8.656410217285156,
+        "environment_ready": 231.72136688232422,
+        "public_url_retrieval": 1.5974044799804688e-05,
+        "total_workflow_iterations": 76.1040267944336,
+        "average_iteration_time": 25.368008931477863,
+        "environment_closure": 24.151535034179688
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 298.2836389541626,
+      "environment_id": "5e09786d-2e76-4c9f-ab21-2be2684529dd",
+      "steps_timing": {
+        "environment_creation": 17.95448589324951,
+        "environment_ready": 213.183336019516,
+        "public_url_retrieval": 1.71661376953125e-05,
+        "total_workflow_iterations": 65.14449143409729,
+        "average_iteration_time": 21.71483047803243,
+        "environment_closure": 29.586936235427856
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 281.93116879463196,
+      "environment_id": "7c6773cc-fd8b-45f1-a9d9-6e5a11e954f6",
+      "steps_timing": {
+        "environment_creation": 7.788525819778442,
+        "environment_ready": 224.39527893066406,
+        "public_url_retrieval": 1.0967254638671875e-05,
+        "total_workflow_iterations": 47.744529008865356,
+        "average_iteration_time": 15.914843002955118,
+        "environment_closure": 34.36898183822632
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 283.4137878417969,
+      "environment_id": "09fab7ca-fd26-4aa5-aab9-ac6256b5776c",
+      "steps_timing": {
+        "environment_creation": 23.963858127593994,
+        "environment_ready": 203.4995629787445,
+        "public_url_retrieval": 1.3113021850585938e-05,
+        "total_workflow_iterations": 53.949405908584595,
+        "average_iteration_time": 17.98313530286153,
+        "environment_closure": 33.65246891975403
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 263.0475389957428,
+      "environment_id": "2cff3287-00f3-4420-a351-5721af6ad65f",
+      "steps_timing": {
+        "environment_creation": 6.0591490268707275,
+        "environment_ready": 220.11542105674744,
+        "public_url_retrieval": 1.8835067749023438e-05,
+        "total_workflow_iterations": 34.871476888656616,
+        "average_iteration_time": 11.623825629552206,
+        "environment_closure": 29.694605112075806
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 286.24795293807983,
+      "environment_id": "6f0d2b14-ecef-4318-aa4f-c7a2cfc24689",
+      "steps_timing": {
+        "environment_creation": 5.853252172470093,
+        "environment_ready": 222.88787984848022,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 55.504021406173706,
+        "average_iteration_time": 18.501340468724568,
+        "environment_closure": 33.64861011505127
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 335.4677052497864,
+      "environment_id": "4d8e0e37-7d27-45d5-9b52-3bc0a2903ab1",
+      "steps_timing": {
+        "environment_creation": 6.7625250816345215,
+        "environment_ready": 249.65381479263306,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "total_workflow_iterations": 77.04937028884888,
+        "average_iteration_time": 25.68312342961629,
+        "environment_closure": 13.613026857376099
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 269.1000199317932,
+      "environment_id": "b4c5995d-fe6f-4672-83e8-44b84ba219a9",
+      "steps_timing": {
+        "environment_creation": 7.69244384765625,
+        "environment_ready": 213.94609308242798,
+        "public_url_retrieval": 9.059906005859375e-06,
+        "total_workflow_iterations": 45.46101188659668,
+        "average_iteration_time": 15.15367062886556,
+        "environment_closure": 30.622517108917236
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 298.7875409126282,
+      "environment_id": "a4a8c6a6-ef42-4b5e-957e-535d03914ec3",
+      "steps_timing": {
+        "environment_creation": 9.157116889953613,
+        "environment_ready": 222.17526984214783,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 65.45270204544067,
+        "average_iteration_time": 21.817567348480225,
+        "environment_closure": 29.530003786087036
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 258.4816620349884,
+      "environment_id": "2f1c9a3e-5b45-4155-ab61-4abf33aa17de",
+      "steps_timing": {
+        "environment_creation": 6.774550914764404,
+        "environment_ready": 211.51748085021973,
+        "public_url_retrieval": 5.0067901611328125e-06,
+        "total_workflow_iterations": 38.18354916572571,
+        "average_iteration_time": 12.72784972190857,
+        "environment_closure": 27.445124864578247
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 258.8862829208374,
+      "environment_id": "66cc49b5-a876-427e-861f-28edef995293",
+      "steps_timing": {
+        "environment_creation": 10.700664758682251,
+        "environment_ready": 207.86895895004272,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "total_workflow_iterations": 38.31481170654297,
+        "average_iteration_time": 12.77160390218099,
+        "environment_closure": 27.775833129882812
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 272.03954100608826,
+      "environment_id": "e1c909aa-de6c-4d96-890f-af320c3e5181",
+      "steps_timing": {
+        "environment_creation": 10.241636991500854,
+        "environment_ready": 213.35864806175232,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 46.43762969970703,
+        "average_iteration_time": 15.479209899902344,
+        "environment_closure": 5.326110124588013
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 343.13602089881897,
+      "environment_id": "a2a8df9b-97b1-4078-88d9-d6ee3b63b3e7",
+      "steps_timing": {
+        "environment_creation": 12.479911804199219,
+        "environment_ready": 253.20481610298157,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 75.44852638244629,
+        "average_iteration_time": 25.149508794148762,
+        "environment_closure": 8.042199850082397
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 269.49195528030396,
+      "environment_id": "99aa07a6-2282-4965-91e8-790924e6e4f5",
+      "steps_timing": {
+        "environment_creation": 11.829321146011353,
+        "environment_ready": 210.17082285881042,
+        "public_url_retrieval": 5.507469177246094e-05,
+        "total_workflow_iterations": 45.49003005027771,
+        "average_iteration_time": 15.16334335009257,
+        "environment_closure": 30.607955932617188
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 269.69887804985046,
+      "environment_id": "c3c85555-6ab6-426e-a1c8-a8fd35b06df2",
+      "steps_timing": {
+        "environment_creation": 9.546119213104248,
+        "environment_ready": 215.1836941242218,
+        "public_url_retrieval": 1.2159347534179688e-05,
+        "total_workflow_iterations": 42.96815586090088,
+        "average_iteration_time": 14.322718620300293,
+        "environment_closure": 30.71377205848694
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 297.20169401168823,
+      "environment_id": "8e948b88-e563-489d-933f-25e2c58ca0ec",
+      "steps_timing": {
+        "environment_creation": 9.803793907165527,
+        "environment_ready": 220.28040504455566,
+        "public_url_retrieval": 8.106231689453125e-06,
+        "total_workflow_iterations": 65.11575984954834,
+        "average_iteration_time": 21.70525328318278,
+        "environment_closure": 30.09845519065857
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 288.4326250553131,
+      "environment_id": "cb8392e8-c38c-4d25-a109-effb0cb2a0b7",
+      "steps_timing": {
+        "environment_creation": 5.794697999954224,
+        "environment_ready": 221.92369318008423,
+        "public_url_retrieval": 2.5987625122070312e-05,
+        "total_workflow_iterations": 58.71287727355957,
+        "average_iteration_time": 19.570959091186523,
+        "environment_closure": 32.42741513252258
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 279.99595499038696,
+      "environment_id": "b32f8262-dc99-49a1-b770-82056194092e",
+      "steps_timing": {
+        "environment_creation": 8.150371074676514,
+        "environment_ready": 216.1235511302948,
+        "public_url_retrieval": 1.71661376953125e-05,
+        "total_workflow_iterations": 53.7206711769104,
+        "average_iteration_time": 17.906890392303467,
+        "environment_closure": 34.09839606285095
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 265.82065320014954,
+      "environment_id": "4332c41d-f961-403b-b80a-1553897453e8",
+      "steps_timing": {
+        "environment_creation": 5.746448278427124,
+        "environment_ready": 215.0853853225708,
+        "public_url_retrieval": 1.1920928955078125e-05,
+        "total_workflow_iterations": 42.98447823524475,
+        "average_iteration_time": 14.328159411748251,
+        "environment_closure": 29.22025179862976
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 266.2343637943268,
+      "environment_id": "6daaf543-7fbd-4d83-8837-fed59a06e603",
+      "steps_timing": {
+        "environment_creation": 9.66571593284607,
+        "environment_ready": 210.91381216049194,
+        "public_url_retrieval": 7.152557373046875e-06,
+        "total_workflow_iterations": 43.65348935127258,
+        "average_iteration_time": 14.55116311709086,
+        "environment_closure": 30.126766204833984
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 295.0932879447937,
+      "environment_id": "3552634b-8256-42e5-a336-2ed46f5252d1",
+      "steps_timing": {
+        "environment_creation": 8.851212978363037,
+        "environment_ready": 221.23495602607727,
+        "public_url_retrieval": 1.2874603271484375e-05,
+        "total_workflow_iterations": 63.00482749938965,
+        "average_iteration_time": 21.001609166463215,
+        "environment_closure": 31.53531002998352
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 265.8669340610504,
+      "environment_id": "136f3961-b84a-48a8-8dce-1d0b789a9abf",
+      "steps_timing": {
+        "environment_creation": 8.915195941925049,
+        "environment_ready": 212.52091217041016,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "total_workflow_iterations": 42.42976784706116,
+        "average_iteration_time": 14.143255949020386,
+        "environment_closure": 29.197519063949585
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 309.4992289543152,
+      "environment_id": "42bf5977-cac9-4c5f-b69c-b03d211ebc98",
+      "steps_timing": {
+        "environment_creation": 10.333611965179443,
+        "environment_ready": 225.77227020263672,
+        "public_url_retrieval": 1.2874603271484375e-05,
+        "total_workflow_iterations": 71.39121890068054,
+        "average_iteration_time": 23.797072966893513,
+        "environment_closure": 28.138436794281006
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 302.35305285453796,
+      "environment_id": "6335978c-c06f-4bf9-b1f6-39f1a638dbc7",
+      "steps_timing": {
+        "environment_creation": 10.018086910247803,
+        "environment_ready": 223.67257595062256,
+        "public_url_retrieval": 1.2159347534179688e-05,
+        "total_workflow_iterations": 66.66025638580322,
+        "average_iteration_time": 22.220085461934406,
+        "environment_closure": 29.337822198867798
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 293.2157380580902,
+      "environment_id": "dc098419-d8ff-4116-bef5-55e31141667d",
+      "steps_timing": {
+        "environment_creation": 19.407273054122925,
+        "environment_ready": 209.73958802223206,
+        "public_url_retrieval": 2.09808349609375e-05,
+        "total_workflow_iterations": 62.06713819503784,
+        "average_iteration_time": 20.689046065012615,
+        "environment_closure": 32.470252990722656
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 281.1709039211273,
+      "environment_id": "99438376-2c57-4eb5-9443-64f9a1a92a8b",
+      "steps_timing": {
+        "environment_creation": 5.961778879165649,
+        "environment_ready": 220.15099596977234,
+        "public_url_retrieval": 1.1682510375976562e-05,
+        "total_workflow_iterations": 53.056535959243774,
+        "average_iteration_time": 17.685511986414593,
+        "environment_closure": 34.116333961486816
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 285.14803099632263,
+      "environment_id": "6d4d69ea-4842-4152-acd3-4a0b28018784",
+      "steps_timing": {
+        "environment_creation": 31.37797212600708,
+        "environment_ready": 197.16264414787292,
+        "public_url_retrieval": 4.291534423828125e-06,
+        "total_workflow_iterations": 54.605058431625366,
+        "average_iteration_time": 18.201686143875122,
+        "environment_closure": 34.09851288795471
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 294.30334091186523,
+      "environment_id": "2f099c97-55ce-40f2-8576-34b56e034e38",
+      "steps_timing": {
+        "environment_creation": 12.537781953811646,
+        "environment_ready": 217.18838715553284,
+        "public_url_retrieval": 1.8835067749023438e-05,
+        "total_workflow_iterations": 62.57632565498352,
+        "average_iteration_time": 20.85877521832784,
+        "environment_closure": 32.024911880493164
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 276.7064518928528,
+      "environment_id": "b95a5d0f-b8e8-4b5e-97d8-98c2d4a48374",
+      "steps_timing": {
+        "environment_creation": 9.034188985824585,
+        "environment_ready": 216.65462017059326,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 49.01513051986694,
+        "average_iteration_time": 16.338376839955647,
+        "environment_closure": 31.70127010345459
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 284.5072603225708,
+      "environment_id": "78726d79-baf7-4a1b-a005-acce53d4b5cc",
+      "steps_timing": {
+        "environment_creation": 11.47432804107666,
+        "environment_ready": 214.700786113739,
+        "public_url_retrieval": 5.0067901611328125e-06,
+        "total_workflow_iterations": 56.33048462867737,
+        "average_iteration_time": 18.776828209559124,
+        "environment_closure": 34.453903913497925
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 270.9748830795288,
+      "environment_id": "93c2b2b1-bac0-41bd-8f85-18f0ddb628f4",
+      "steps_timing": {
+        "environment_creation": 22.534542083740234,
+        "environment_ready": 207.1492269039154,
+        "public_url_retrieval": 1.5735626220703125e-05,
+        "total_workflow_iterations": 39.28834414482117,
+        "average_iteration_time": 13.09611471494039,
+        "environment_closure": 31.36869716644287
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 315.1990010738373,
+      "environment_id": "cf6c2bfe-a04b-4b18-8786-a19f8d430f98",
+      "steps_timing": {
+        "environment_creation": 10.044277906417847,
+        "environment_ready": 229.94187474250793,
+        "public_url_retrieval": 1.52587890625e-05,
+        "total_workflow_iterations": 73.21045303344727,
+        "average_iteration_time": 24.403484344482422,
+        "environment_closure": 25.679826021194458
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 296.96607398986816,
+      "environment_id": "ddc107c0-398d-4f9c-9f91-f3bcfe434827",
+      "steps_timing": {
+        "environment_creation": 31.343250036239624,
+        "environment_ready": 201.96160984039307,
+        "public_url_retrieval": 1.5020370483398438e-05,
+        "total_workflow_iterations": 61.65868282318115,
+        "average_iteration_time": 20.55289427439372,
+        "environment_closure": 30.258835077285767
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 269.43408608436584,
+      "environment_id": "b176e3d5-e431-4c7e-a41f-fbbcd7ac68af",
+      "steps_timing": {
+        "environment_creation": 9.751343011856079,
+        "environment_ready": 213.27386689186096,
+        "public_url_retrieval": 1.811981201171875e-05,
+        "total_workflow_iterations": 44.404637813568115,
+        "average_iteration_time": 14.801545937856039,
+        "environment_closure": 30.514434814453125
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 309.46023511886597,
+      "environment_id": "130b5456-c21e-4b01-861f-261924a3f3a5",
+      "steps_timing": {
+        "environment_creation": 5.140258073806763,
+        "environment_ready": 230.86859011650085,
+        "public_url_retrieval": 1.8835067749023438e-05,
+        "total_workflow_iterations": 71.44948196411133,
+        "average_iteration_time": 23.81649398803711,
+        "environment_closure": 28.138198137283325
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 338.17149901390076,
+      "environment_id": "fe40730d-d4a5-4197-a314-1e3b1db17416",
+      "steps_timing": {
+        "environment_creation": 20.897035121917725,
+        "environment_ready": 236.66230702400208,
+        "public_url_retrieval": 2.0265579223632812e-05,
+        "total_workflow_iterations": 78.60961365699768,
+        "average_iteration_time": 26.20320455233256,
+        "environment_closure": 12.978113174438477
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 270.32478499412537,
+      "environment_id": "acf60ac1-782e-4261-a3cd-30772d372860",
+      "steps_timing": {
+        "environment_creation": 27.014271020889282,
+        "environment_ready": 196.62124800682068,
+        "public_url_retrieval": 5.245208740234375e-06,
+        "total_workflow_iterations": 44.68783712387085,
+        "average_iteration_time": 14.89594570795695,
+        "environment_closure": 31.94690775871277
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 264.6255249977112,
+      "environment_id": "f8cc9f12-1b0d-4dde-abb2-0aef9bfcbbe8",
+      "steps_timing": {
+        "environment_creation": 9.660293817520142,
+        "environment_ready": 210.34913992881775,
+        "public_url_retrieval": 9.059906005859375e-06,
+        "total_workflow_iterations": 42.61546444892883,
+        "average_iteration_time": 14.20515481630961,
+        "environment_closure": 29.338342905044556
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 308.76221990585327,
+      "environment_id": "0b0610b8-0005-4259-87bb-8f1e4578d94d",
+      "steps_timing": {
+        "environment_creation": 9.651812076568604,
+        "environment_ready": 225.278639793396,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "total_workflow_iterations": 71.83002829551697,
+        "average_iteration_time": 23.94334276517232,
+        "environment_closure": 28.50540804862976
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 331.9210319519043,
+      "environment_id": "372b1459-61fe-48bd-a389-5e29b0672ce6",
+      "steps_timing": {
+        "environment_creation": 19.598686933517456,
+        "environment_ready": 231.01847314834595,
+        "public_url_retrieval": 1.0967254638671875e-05,
+        "total_workflow_iterations": 79.30262303352356,
+        "average_iteration_time": 26.434207677841187,
+        "environment_closure": 15.080136775970459
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 272.40183877944946,
+      "environment_id": "a5061f19-0dc8-4e56-aff2-486a632227a6",
+      "steps_timing": {
+        "environment_creation": 20.276564121246338,
+        "environment_ready": 203.94426798820496,
+        "public_url_retrieval": 8.106231689453125e-06,
+        "total_workflow_iterations": 46.17953419685364,
+        "average_iteration_time": 15.39317806561788,
+        "environment_closure": 31.405965089797974
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 258.70777010917664,
+      "environment_id": "d33aed94-e959-4658-99fc-c02cee59b922",
+      "steps_timing": {
+        "environment_creation": 10.211190223693848,
+        "environment_ready": 207.32633209228516,
+        "public_url_retrieval": 5.245208740234375e-06,
+        "total_workflow_iterations": 39.16872692108154,
+        "average_iteration_time": 13.056242307027182,
+        "environment_closure": 27.743502140045166
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 286.20751309394836,
+      "environment_id": "0365fe09-21f0-4802-b031-baff8f1da905",
+      "steps_timing": {
+        "environment_creation": 28.357619285583496,
+        "environment_ready": 200.25647807121277,
+        "public_url_retrieval": 5.245208740234375e-06,
+        "total_workflow_iterations": 55.59168291091919,
+        "average_iteration_time": 18.530560970306396,
+        "environment_closure": 33.452622175216675
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 271.8325500488281,
+      "environment_id": "766fe8c1-5941-486b-8f43-ca022513769a",
+      "steps_timing": {
+        "environment_creation": 10.163907051086426,
+        "environment_ready": 213.17767024040222,
+        "public_url_retrieval": 2.6226043701171875e-06,
+        "total_workflow_iterations": 46.49056077003479,
+        "average_iteration_time": 15.496853590011597,
+        "environment_closure": 31.679509162902832
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 313.78551602363586,
+      "environment_id": "1e42c88e-4e3b-4ccb-b735-81b127a182b7",
+      "steps_timing": {
+        "environment_creation": 10.364890098571777,
+        "environment_ready": 228.2263720035553,
+        "public_url_retrieval": 6.198883056640625e-06,
+        "total_workflow_iterations": 73.19084191322327,
+        "average_iteration_time": 24.396947304407757,
+        "environment_closure": 25.93504786491394
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 265.6150679588318,
+      "environment_id": "c033d4c4-ec14-45fa-b164-ef105172cea6",
+      "steps_timing": {
+        "environment_creation": 10.694155216217041,
+        "environment_ready": 211.01772379875183,
+        "public_url_retrieval": 1.5974044799804688e-05,
+        "total_workflow_iterations": 41.90074396133423,
+        "average_iteration_time": 13.966914653778076,
+        "environment_closure": 29.29034924507141
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 286.8115870952606,
+      "environment_id": "ace87735-ccf5-4dcd-832d-6946f8aa76c3",
+      "steps_timing": {
+        "environment_creation": 9.743520975112915,
+        "environment_ready": 219.26625299453735,
+        "public_url_retrieval": 1.9788742065429688e-05,
+        "total_workflow_iterations": 55.79953384399414,
+        "average_iteration_time": 18.599844614664715,
+        "environment_closure": 33.24315690994263
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 258.370099067688,
+      "environment_id": "a7562405-28e1-47ba-8ca6-c949001fb773",
+      "steps_timing": {
+        "environment_creation": 10.174268960952759,
+        "environment_ready": 207.59285402297974,
+        "public_url_retrieval": 8.106231689453125e-06,
+        "total_workflow_iterations": 38.60150146484375,
+        "average_iteration_time": 12.867167154947916,
+        "environment_closure": 27.415799856185913
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 325.0798029899597,
+      "environment_id": "bd648b66-22e9-4b12-9b4c-dfecbb9c78a3",
+      "steps_timing": {
+        "environment_creation": 12.51709794998169,
+        "environment_ready": 233.52871680259705,
+        "public_url_retrieval": 1.0967254638671875e-05,
+        "total_workflow_iterations": 77.03165245056152,
+        "average_iteration_time": 25.677217483520508,
+        "environment_closure": 19.675795078277588
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 294.67442297935486,
+      "environment_id": "51f0ae8a-c952-4f10-86e8-4966f24775ad",
+      "steps_timing": {
+        "environment_creation": 15.564265012741089,
+        "environment_ready": 214.90747809410095,
+        "public_url_retrieval": 1.0967254638671875e-05,
+        "total_workflow_iterations": 62.200881004333496,
+        "average_iteration_time": 20.7336270014445,
+        "environment_closure": 31.821842908859253
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 304.0766530036926,
+      "environment_id": "63879241-5bcf-424f-b847-27c86a79772c",
+      "steps_timing": {
+        "environment_creation": 10.1330087184906,
+        "environment_ready": 222.64238095283508,
+        "public_url_retrieval": 1.621246337890625e-05,
+        "total_workflow_iterations": 69.29796099662781,
+        "average_iteration_time": 23.09932033220927,
+        "environment_closure": 28.20125913619995
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 267.620726108551,
+      "environment_id": "0c58667d-7e63-4bf8-95e5-834b2a36a408",
+      "steps_timing": {
+        "environment_creation": 7.207789897918701,
+        "environment_ready": 215.43214797973633,
+        "public_url_retrieval": 1.4066696166992188e-05,
+        "total_workflow_iterations": 42.978540897369385,
+        "average_iteration_time": 14.326180299123129,
+        "environment_closure": 29.818736791610718
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 281.6057801246643,
+      "environment_id": "8f8c8156-794f-48a7-8e39-aecd4b49b788",
+      "steps_timing": {
+        "environment_creation": 19.98013186454773,
+        "environment_ready": 205.20154476165771,
+        "public_url_retrieval": 8.821487426757812e-06,
+        "total_workflow_iterations": 54.42238974571228,
+        "average_iteration_time": 18.140796581904095,
+        "environment_closure": 34.16942095756531
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 287.1989600658417,
+      "environment_id": "17d10a94-0367-4950-b605-83595057ba62",
+      "steps_timing": {
+        "environment_creation": 7.930247068405151,
+        "environment_ready": 219.91250157356262,
+        "public_url_retrieval": 1.9073486328125e-05,
+        "total_workflow_iterations": 57.354422092437744,
+        "average_iteration_time": 19.118140697479248,
+        "environment_closure": 32.952269077301025
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 294.8906202316284,
+      "environment_id": "da3df44a-49ff-49e4-a217-bcc7d927407b",
+      "steps_timing": {
+        "environment_creation": 11.992427110671997,
+        "environment_ready": 225.88475489616394,
+        "public_url_retrieval": 1.5735626220703125e-05,
+        "total_workflow_iterations": 55.010626554489136,
+        "average_iteration_time": 18.336875518163044,
+        "environment_closure": 31.607574701309204
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 293.5057792663574,
+      "environment_id": "fef6b8f3-277c-45dc-aa15-e15de136b27a",
+      "steps_timing": {
+        "environment_creation": 12.057424068450928,
+        "environment_ready": 218.36739826202393,
+        "public_url_retrieval": 1.3113021850585938e-05,
+        "total_workflow_iterations": 61.07854986190796,
+        "average_iteration_time": 20.359516620635986,
+        "environment_closure": 32.35155987739563
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 277.75482511520386,
+      "environment_id": "01faaed4-3d2d-4b0b-9d48-b2df12608850",
+      "steps_timing": {
+        "environment_creation": 11.47248125076294,
+        "environment_ready": 213.95861792564392,
+        "public_url_retrieval": 1.621246337890625e-05,
+        "total_workflow_iterations": 50.32181668281555,
+        "average_iteration_time": 16.77393889427185,
+        "environment_closure": 31.81030797958374
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 280.5803370475769,
+      "environment_id": "28c14a2c-1bec-4716-b9be-0f6ecbd41d6d",
+      "steps_timing": {
+        "environment_creation": 9.673854112625122,
+        "environment_ready": 215.095397233963,
+        "public_url_retrieval": 1.1920928955078125e-05,
+        "total_workflow_iterations": 53.809006214141846,
+        "average_iteration_time": 17.936335404713947,
+        "environment_closure": 34.32991313934326
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 314.6565749645233,
+      "environment_id": "5237079d-9871-4e8f-b453-bf33b6e008b4",
+      "steps_timing": {
+        "environment_creation": 9.653873920440674,
+        "environment_ready": 229.4907681941986,
+        "public_url_retrieval": 8.344650268554688e-06,
+        "total_workflow_iterations": 73.5093789100647,
+        "average_iteration_time": 24.5031263033549,
+        "environment_closure": 25.866665840148926
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 269.5924217700958,
+      "environment_id": "30d8923b-08eb-4394-a943-88962d900d25",
+      "steps_timing": {
+        "environment_creation": 9.422571182250977,
+        "environment_ready": 212.7293791770935,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 45.439265727996826,
+        "average_iteration_time": 15.146421909332275,
+        "environment_closure": 30.664826154708862
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 262.26291680336,
+      "environment_id": "d28c678a-81fd-499e-a0b2-000a6fb5703b",
+      "steps_timing": {
+        "environment_creation": 27.06472086906433,
+        "environment_ready": 193.7391550540924,
+        "public_url_retrieval": 1.3828277587890625e-05,
+        "total_workflow_iterations": 39.45840287208557,
+        "average_iteration_time": 13.152800957361857,
+        "environment_closure": 29.845757961273193
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 298.22305607795715,
+      "environment_id": "3f25a39e-51d7-4650-ba32-e45885445398",
+      "steps_timing": {
+        "environment_creation": 14.013883113861084,
+        "environment_ready": 217.23948311805725,
+        "public_url_retrieval": 2.002716064453125e-05,
+        "total_workflow_iterations": 64.96813607215881,
+        "average_iteration_time": 21.656045357386272,
+        "environment_closure": 29.52405095100403
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 269.79840302467346,
+      "environment_id": "b62ac54c-b65a-4d30-ad5e-1461f4688731",
+      "steps_timing": {
+        "environment_creation": 20.17185688018799,
+        "environment_ready": 202.9317650794983,
+        "public_url_retrieval": 1.4066696166992188e-05,
+        "total_workflow_iterations": 44.69291973114014,
+        "average_iteration_time": 14.897639910380045,
+        "environment_closure": 30.6063129901886
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 278.86143708229065,
+      "environment_id": "2d796e1e-230d-483e-98c2-539d1d47b852",
+      "steps_timing": {
+        "environment_creation": 12.158658027648926,
+        "environment_ready": 212.1060700416565,
+        "public_url_retrieval": 2.3126602172851562e-05,
+        "total_workflow_iterations": 52.594687700271606,
+        "average_iteration_time": 17.531562566757202,
+        "environment_closure": 32.62139320373535
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 276.853866815567,
+      "environment_id": "0fbc5ba9-87cb-4c9f-ac07-cf4f29661f3a",
+      "steps_timing": {
+        "environment_creation": 11.82531213760376,
+        "environment_ready": 212.78207898139954,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 50.244139671325684,
+        "average_iteration_time": 16.748046557108562,
+        "environment_closure": 32.015385150909424
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 281.2867650985718,
+      "environment_id": "d3511716-7d68-4f25-8021-42cada13c27d",
+      "steps_timing": {
+        "environment_creation": 5.66717004776001,
+        "environment_ready": 218.8070149421692,
+        "public_url_retrieval": 1.9073486328125e-05,
+        "total_workflow_iterations": 54.81091499328613,
+        "average_iteration_time": 18.270304997762043,
+        "environment_closure": 34.13869595527649
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 282.9195349216461,
+      "environment_id": "af05d4db-160f-45be-84bf-f29224d5d428",
+      "steps_timing": {
+        "environment_creation": 12.037643909454346,
+        "environment_ready": 213.8071780204773,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 55.07316517829895,
+        "average_iteration_time": 18.35772172609965,
+        "environment_closure": 33.82864999771118
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 271.7098128795624,
+      "environment_id": "d2824685-97ee-430f-a562-504b0d48196f",
+      "steps_timing": {
+        "environment_creation": 15.691553115844727,
+        "environment_ready": 207.4843819141388,
+        "public_url_retrieval": 4.76837158203125e-06,
+        "total_workflow_iterations": 46.53228998184204,
+        "average_iteration_time": 15.51076332728068,
+        "environment_closure": 31.74079990386963
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 283.6858477592468,
+      "environment_id": "3d7baa01-3b0d-4fb8-918a-c24b46870466",
+      "steps_timing": {
+        "environment_creation": 8.13617992401123,
+        "environment_ready": 218.49663376808167,
+        "public_url_retrieval": 3.814697265625e-06,
+        "total_workflow_iterations": 55.05106782913208,
+        "average_iteration_time": 18.350355943044026,
+        "environment_closure": 33.92303776741028
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 260.9729871749878,
+      "environment_id": "d9276396-d1bc-429e-8e76-7238c0546afb",
+      "steps_timing": {
+        "environment_creation": 6.718680143356323,
+        "environment_ready": 213.4724600315094,
+        "public_url_retrieval": 1.1920928955078125e-05,
+        "total_workflow_iterations": 38.78028416633606,
+        "average_iteration_time": 12.926761388778687,
+        "environment_closure": 30.178221225738525
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 272.3185729980469,
+      "environment_id": "20749747-b634-4500-8248-d0574ee019c0",
+      "steps_timing": {
+        "environment_creation": 7.705128908157349,
+        "environment_ready": 216.2557442188263,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 46.35697889328003,
+        "average_iteration_time": 15.45232629776001,
+        "environment_closure": 31.5189688205719
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 331.89664578437805,
+      "environment_id": "0583fc9b-0a67-42fe-a905-725b45d42710",
+      "steps_timing": {
+        "environment_creation": 28.234680891036987,
+        "environment_ready": 222.4649260044098,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "total_workflow_iterations": 79.19477605819702,
+        "average_iteration_time": 26.398258686065674,
+        "environment_closure": 15.066608905792236
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 281.2259430885315,
+      "environment_id": "182dafa9-2b1f-4a33-a402-b5e7510f3daf",
+      "steps_timing": {
+        "environment_creation": 12.55496597290039,
+        "environment_ready": 213.88067507743835,
+        "public_url_retrieval": 1.0967254638671875e-05,
+        "total_workflow_iterations": 52.788861989974976,
+        "average_iteration_time": 17.596287329991657,
+        "environment_closure": 34.14706110954285
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 281.05773973464966,
+      "environment_id": "499e913c-1989-4707-84e5-840ff0727d4e",
+      "steps_timing": {
+        "environment_creation": 12.517545938491821,
+        "environment_ready": 212.41503405570984,
+        "public_url_retrieval": 1.0013580322265625e-05,
+        "total_workflow_iterations": 54.12335920333862,
+        "average_iteration_time": 18.04111973444621,
+        "environment_closure": 34.15591335296631
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 286.2168881893158,
+      "environment_id": "b2219cb3-8e8c-49ed-924a-fd46c36eda8d",
+      "steps_timing": {
+        "environment_creation": 8.318488121032715,
+        "environment_ready": 218.64921021461487,
+        "public_url_retrieval": 2.86102294921875e-06,
+        "total_workflow_iterations": 57.24688768386841,
+        "average_iteration_time": 19.082295894622803,
+        "environment_closure": 33.73325490951538
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 271.3543622493744,
+      "environment_id": "4019b589-0de0-4485-9cd7-88b253c8c9f6",
+      "steps_timing": {
+        "environment_creation": 6.985020160675049,
+        "environment_ready": 222.55740594863892,
+        "public_url_retrieval": 1.4066696166992188e-05,
+        "total_workflow_iterations": 39.80835580825806,
+        "average_iteration_time": 13.26945193608602,
+        "environment_closure": 31.379645824432373
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 267.9069490432739,
+      "environment_id": "f841b87c-eb2a-47a3-8c7d-d5f0d19179e0",
+      "steps_timing": {
+        "environment_creation": 8.137474060058594,
+        "environment_ready": 214.2838740348816,
+        "public_url_retrieval": 1.3113021850585938e-05,
+        "total_workflow_iterations": 43.483173847198486,
+        "average_iteration_time": 14.494391282399496,
+        "environment_closure": 29.953350067138672
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 287.7343487739563,
+      "environment_id": "f4aa5687-313b-45db-bffb-91bb34f7989a",
+      "steps_timing": {
+        "environment_creation": 11.822351932525635,
+        "environment_ready": 215.79331827163696,
+        "public_url_retrieval": 5.7220458984375e-06,
+        "total_workflow_iterations": 58.11815404891968,
+        "average_iteration_time": 19.37271801630656,
+        "environment_closure": 32.88557314872742
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 299.27156710624695,
+      "environment_id": "feee0d17-f4ba-4782-b3fb-cc0b3cc1f5b5",
+      "steps_timing": {
+        "environment_creation": 9.752187728881836,
+        "environment_ready": 222.14391016960144,
+        "public_url_retrieval": 1.4781951904296875e-05,
+        "total_workflow_iterations": 65.37359571456909,
+        "average_iteration_time": 21.79119857152303,
+        "environment_closure": 29.667215824127197
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 269.92653799057007,
+      "environment_id": "50cf1aec-2921-4ebe-939d-595c275a821b",
+      "steps_timing": {
+        "environment_creation": 12.62311601638794,
+        "environment_ready": 210.39674496650696,
+        "public_url_retrieval": 1.6927719116210938e-05,
+        "total_workflow_iterations": 44.904480934143066,
+        "average_iteration_time": 14.968160311381022,
+        "environment_closure": 30.632452964782715
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 283.8812780380249,
+      "environment_id": "1476dd72-bf77-4b55-9878-da42eed402f7",
+      "steps_timing": {
+        "environment_creation": 6.993329048156738,
+        "environment_ready": 220.21695804595947,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 54.6690878868103,
+        "average_iteration_time": 18.223029295603435,
+        "environment_closure": 34.25226187705994
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 274.6881558895111,
+      "environment_id": "ff426ef3-2b12-4b23-af55-065d0854983d",
+      "steps_timing": {
+        "environment_creation": 21.86416220664978,
+        "environment_ready": 202.88313603401184,
+        "public_url_retrieval": 2.002716064453125e-05,
+        "total_workflow_iterations": 47.93939924240112,
+        "average_iteration_time": 15.979799747467041,
+        "environment_closure": 30.897297859191895
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 291.0019459724426,
+      "environment_id": "ce0e0311-3087-4e77-8805-e4b90d18e65b",
+      "steps_timing": {
+        "environment_creation": 12.547863960266113,
+        "environment_ready": 216.3726589679718,
+        "public_url_retrieval": 0.00022792816162109375,
+        "total_workflow_iterations": 60.079551458358765,
+        "average_iteration_time": 20.026517152786255,
+        "environment_closure": 32.6638879776001
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 292.1464660167694,
+      "environment_id": "cf03aed5-9cca-46b5-b0cf-a7293c1fd295",
+      "steps_timing": {
+        "environment_creation": 29.417747259140015,
+        "environment_ready": 199.58828902244568,
+        "public_url_retrieval": 2.09808349609375e-05,
+        "total_workflow_iterations": 61.138848066329956,
+        "average_iteration_time": 20.379616022109985,
+        "environment_closure": 32.88209104537964
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 263.54887413978577,
+      "environment_id": "bf1926f5-77af-435a-a50c-70e14e8d7e12",
+      "steps_timing": {
+        "environment_creation": 7.7571399211883545,
+        "environment_ready": 213.07725167274475,
+        "public_url_retrieval": 2.09808349609375e-05,
+        "total_workflow_iterations": 40.713080167770386,
+        "average_iteration_time": 13.571026722590128,
+        "environment_closure": 29.372089862823486
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 322.52862095832825,
+      "environment_id": "da99c7d3-8aef-4c3c-8e67-3e0e5871fcbc",
+      "steps_timing": {
+        "environment_creation": 7.8898091316223145,
+        "environment_ready": 234.49036717414856,
+        "public_url_retrieval": 2.193450927734375e-05,
+        "total_workflow_iterations": 78.14685416221619,
+        "average_iteration_time": 26.048951387405396,
+        "environment_closure": 21.814632892608643
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 269.33857917785645,
+      "environment_id": "51505ac6-1257-43d2-8f37-23322ec238f1",
+      "steps_timing": {
+        "environment_creation": 7.991486310958862,
+        "environment_ready": 214.40107822418213,
+        "public_url_retrieval": 1.1920928955078125e-05,
+        "total_workflow_iterations": 44.94363188743591,
+        "average_iteration_time": 14.981210629145304,
+        "environment_closure": 30.55612301826477
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 270.31475830078125,
+      "environment_id": "9efa9edc-2f2d-4ff3-aaa8-ee130dfa9967",
+      "steps_timing": {
+        "environment_creation": 25.307100296020508,
+        "environment_ready": 196.75096797943115,
+        "public_url_retrieval": 1.71661376953125e-05,
+        "total_workflow_iterations": 46.25597381591797,
+        "average_iteration_time": 15.418657938639322,
+        "environment_closure": 31.46535873413086
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 314.5717041492462,
+      "environment_id": "e4ba52f7-b603-44fd-8dcd-ede0c0ecd371",
+      "steps_timing": {
+        "environment_creation": 9.059238195419312,
+        "environment_ready": 228.0146381855011,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "total_workflow_iterations": 75.4964451789856,
+        "average_iteration_time": 25.165481726328533,
+        "environment_closure": 25.853603839874268
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 294.4184801578522,
+      "environment_id": "a436e11f-45a2-4542-85b3-c29ca80b4fbe",
+      "steps_timing": {
+        "environment_creation": 7.838998079299927,
+        "environment_ready": 221.43933391571045,
+        "public_url_retrieval": 1.4781951904296875e-05,
+        "total_workflow_iterations": 63.13774657249451,
+        "average_iteration_time": 21.045915524164837,
+        "environment_closure": 31.878835916519165
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 294.8576889038086,
+      "environment_id": "7d7c567c-4d7f-46d2-99af-3e164d1ecbed",
+      "steps_timing": {
+        "environment_creation": 10.162384986877441,
+        "environment_ready": 220.16061186790466,
+        "public_url_retrieval": 5.0067901611328125e-06,
+        "total_workflow_iterations": 62.53248596191406,
+        "average_iteration_time": 20.844161987304688,
+        "environment_closure": 31.62806010246277
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 264.6403980255127,
+      "environment_id": "d9988273-f9e1-494d-8768-f894485e2220",
+      "steps_timing": {
+        "environment_creation": 21.95150113105774,
+        "environment_ready": 197.90002918243408,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 42.787700176239014,
+        "average_iteration_time": 14.262566725413004,
+        "environment_closure": 29.58423089981079
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 310.9707341194153,
+      "environment_id": "229504e2-83ff-47b5-aeda-3e253fd90b35",
+      "steps_timing": {
+        "environment_creation": 12.421087980270386,
+        "environment_ready": 223.5444438457489,
+        "public_url_retrieval": 1.5020370483398438e-05,
+        "total_workflow_iterations": 73.00325298309326,
+        "average_iteration_time": 24.334417661031086,
+        "environment_closure": 27.196858882904053
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 279.4900949001312,
+      "environment_id": "08d61cf7-f218-4a27-9c17-ccfcee89b4ad",
+      "steps_timing": {
+        "environment_creation": 12.760065078735352,
+        "environment_ready": 211.86950135231018,
+        "public_url_retrieval": 7.867813110351562e-06,
+        "total_workflow_iterations": 52.85950469970703,
+        "average_iteration_time": 17.619834899902344,
+        "environment_closure": 32.926445960998535
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 287.28131008148193,
+      "environment_id": "8ea8887d-01ca-4ab1-af90-18147f14f3e8",
+      "steps_timing": {
+        "environment_creation": 9.416316986083984,
+        "environment_ready": 218.39605712890625,
+        "public_url_retrieval": 1.621246337890625e-05,
+        "total_workflow_iterations": 57.46742868423462,
+        "average_iteration_time": 19.15580956141154,
+        "environment_closure": 33.190083026885986
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 303.13392901420593,
+      "environment_id": "8f79ce6e-8485-490e-811d-9cae18b0cb03",
+      "steps_timing": {
+        "environment_creation": 26.681121110916138,
+        "environment_ready": 206.79097509384155,
+        "public_url_retrieval": 1.9073486328125e-05,
+        "total_workflow_iterations": 67.66017603874207,
+        "average_iteration_time": 22.55339201291402,
+        "environment_closure": 28.860811948776245
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 305.19907093048096,
+      "environment_id": "df50a629-83f4-4c2f-abef-cad035927ed4",
+      "steps_timing": {
+        "environment_creation": 18.930192232131958,
+        "environment_ready": 214.77969121932983,
+        "public_url_retrieval": 1.4066696166992188e-05,
+        "total_workflow_iterations": 69.48678994178772,
+        "average_iteration_time": 23.16226331392924,
+        "environment_closure": 28.361588954925537
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 320.30207204818726,
+      "environment_id": "e674fafa-0d2a-48bf-8816-8e4f4de1251e",
+      "steps_timing": {
+        "environment_creation": 9.546578884124756,
+        "environment_ready": 230.94304585456848,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 77.80983185768127,
+        "average_iteration_time": 25.936610619227093,
+        "environment_closure": 22.99395203590393
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 285.45244216918945,
+      "environment_id": "c27b0146-ba6b-4093-9e9f-91cb8418230d",
+      "steps_timing": {
+        "environment_creation": 27.161073207855225,
+        "environment_ready": 200.1633152961731,
+        "public_url_retrieval": 1.8835067749023438e-05,
+        "total_workflow_iterations": 56.1261990070343,
+        "average_iteration_time": 18.70873300234477,
+        "environment_closure": 33.900139808654785
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 308.89892983436584,
+      "environment_id": "798dcd65-c808-4d4f-af84-b4d3821080e4",
+      "steps_timing": {
+        "environment_creation": 14.757956981658936,
+        "environment_ready": 220.62738680839539,
+        "public_url_retrieval": 2.4080276489257812e-05,
+        "total_workflow_iterations": 71.51182293891907,
+        "average_iteration_time": 23.837274312973022,
+        "environment_closure": 28.614704847335815
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 292.57567501068115,
+      "environment_id": "bd39abf2-cafc-4fd3-bb89-42bc788ccb38",
+      "steps_timing": {
+        "environment_creation": 15.218034982681274,
+        "environment_ready": 213.7261040210724,
+        "public_url_retrieval": 8.821487426757812e-06,
+        "total_workflow_iterations": 61.63046145439148,
+        "average_iteration_time": 20.543487151463825,
+        "environment_closure": 32.6761429309845
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 268.22663402557373,
+      "environment_id": "7a730297-5f11-44ad-be41-5a99ef73879f",
+      "steps_timing": {
+        "environment_creation": 14.267390966415405,
+        "environment_ready": 208.0558478832245,
+        "public_url_retrieval": 8.106231689453125e-06,
+        "total_workflow_iterations": 43.90194916725159,
+        "average_iteration_time": 14.633983055750528,
+        "environment_closure": 29.793694019317627
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 269.99938201904297,
+      "environment_id": "8bf5ba11-cec6-468d-b221-4e5a884e79ce",
+      "steps_timing": {
+        "environment_creation": 20.81999397277832,
+        "environment_ready": 201.42915511131287,
+        "public_url_retrieval": 5.0067901611328125e-06,
+        "total_workflow_iterations": 45.748334884643555,
+        "average_iteration_time": 15.249444961547852,
+        "environment_closure": 30.584848165512085
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 298.81422424316406,
+      "environment_id": "0782da7a-7e44-4eb4-ad38-b5264bfbeab5",
+      "steps_timing": {
+        "environment_creation": 26.965677976608276,
+        "environment_ready": 205.12280797958374,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 64.7242648601532,
+        "average_iteration_time": 21.5747549533844,
+        "environment_closure": 29.46351981163025
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 280.2847261428833,
+      "environment_id": "0f1b31ad-c464-469a-bdc4-7960d788db15",
+      "steps_timing": {
+        "environment_creation": 14.097985982894897,
+        "environment_ready": 210.84142684936523,
+        "public_url_retrieval": 1.1920928955078125e-05,
+        "total_workflow_iterations": 53.34456181526184,
+        "average_iteration_time": 17.78152060508728,
+        "environment_closure": 34.23784875869751
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 309.64688086509705,
+      "environment_id": "cf89bd6a-c5f3-4f0d-af21-019a1b07f8ad",
+      "steps_timing": {
+        "environment_creation": 15.339489698410034,
+        "environment_ready": 219.91289901733398,
+        "public_url_retrieval": 2.09808349609375e-05,
+        "total_workflow_iterations": 72.39267134666443,
+        "average_iteration_time": 24.13089044888814,
+        "environment_closure": 28.001925945281982
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 319.81677293777466,
+      "environment_id": "edd2b634-a64c-45b3-973d-bef338fdbf78",
+      "steps_timing": {
+        "environment_creation": 15.220002174377441,
+        "environment_ready": 226.07867813110352,
+        "public_url_retrieval": 1.3828277587890625e-05,
+        "total_workflow_iterations": 76.51618957519531,
+        "average_iteration_time": 25.505396525065105,
+        "environment_closure": 23.39642024040222
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 310.883749961853,
+      "environment_id": "2d3195d9-7fec-4ec9-8acc-60496e502e69",
+      "steps_timing": {
+        "environment_creation": 29.658735036849976,
+        "environment_ready": 208.90403413772583,
+        "public_url_retrieval": 1.0967254638671875e-05,
+        "total_workflow_iterations": 70.31871390342712,
+        "average_iteration_time": 23.439571301142376,
+        "environment_closure": 27.272773027420044
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 289.48557686805725,
+      "environment_id": "8e4d3277-c94b-44a4-aa92-00c148fa28df",
+      "steps_timing": {
+        "environment_creation": 12.097362041473389,
+        "environment_ready": 215.72243118286133,
+        "public_url_retrieval": 1.3113021850585938e-05,
+        "total_workflow_iterations": 59.66411519050598,
+        "average_iteration_time": 19.888038396835327,
+        "environment_closure": 32.83841681480408
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 321.0275971889496,
+      "environment_id": "02116d2d-0224-4144-91b8-a17978c3ab10",
+      "steps_timing": {
+        "environment_creation": 10.209112167358398,
+        "environment_ready": 230.41681003570557,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 78.39978694915771,
+        "average_iteration_time": 26.133262316385906,
+        "environment_closure": 22.92475390434265
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 337.26482105255127,
+      "environment_id": "132d4b74-f6f6-4585-8fd7-9f79857f099b",
+      "steps_timing": {
+        "environment_creation": 25.456745386123657,
+        "environment_ready": 233.5134699344635,
+        "public_url_retrieval": 1.4066696166992188e-05,
+        "total_workflow_iterations": 76.29204535484314,
+        "average_iteration_time": 25.430681784947712,
+        "environment_closure": 12.352945327758789
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 289.1411991119385,
+      "environment_id": "57be3066-dd22-43a5-8dbf-a3b1c631a181",
+      "steps_timing": {
+        "environment_creation": 12.08869194984436,
+        "environment_ready": 216.10912013053894,
+        "public_url_retrieval": 6.198883056640625e-06,
+        "total_workflow_iterations": 58.941657066345215,
+        "average_iteration_time": 19.64721902211507,
+        "environment_closure": 32.783620834350586
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 334.3518400192261,
+      "environment_id": "4796c521-8d62-47d2-999e-8a1adeca41ab",
+      "steps_timing": {
+        "environment_creation": 30.75194025039673,
+        "environment_ready": 223.28891682624817,
+        "public_url_retrieval": 1.0013580322265625e-05,
+        "total_workflow_iterations": 78.3088526725769,
+        "average_iteration_time": 26.102950890858967,
+        "environment_closure": 14.301191091537476
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 333.3424508571625,
+      "environment_id": "cb4f6de4-8045-460f-9594-83e58e2554c5",
+      "steps_timing": {
+        "environment_creation": 32.02468299865723,
+        "environment_ready": 220.87318992614746,
+        "public_url_retrieval": 8.511543273925781e-05,
+        "total_workflow_iterations": 78.44265627861023,
+        "average_iteration_time": 26.147552092870075,
+        "environment_closure": 14.993885040283203
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 343.414674282074,
+      "environment_id": "0ab9acc2-ed26-43e3-a7f7-ac0393564d23",
+      "steps_timing": {
+        "environment_creation": 31.24349308013916,
+        "environment_ready": 232.34902215003967,
+        "public_url_retrieval": 7.152557373046875e-06,
+        "total_workflow_iterations": 77.8197569847107,
+        "average_iteration_time": 25.939918994903564,
+        "environment_closure": 7.809309005737305
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 313.494323015213,
+      "environment_id": "329331cd-07b3-4276-8ec5-a0824d708a17",
+      "steps_timing": {
+        "environment_creation": 18.622419118881226,
+        "environment_ready": 220.13971304893494,
+        "public_url_retrieval": 1.8835067749023438e-05,
+        "total_workflow_iterations": 72.72960495948792,
+        "average_iteration_time": 24.24320165316264,
+        "environment_closure": 26.153642177581787
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 316.2204511165619,
+      "environment_id": "f0660a3b-7c0c-43b2-8a77-c3a890d2985a",
+      "steps_timing": {
+        "environment_creation": 12.669992208480835,
+        "environment_ready": 226.77111434936523,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 74.77688097953796,
+        "average_iteration_time": 24.92562699317932,
+        "environment_closure": 25.166026830673218
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 316.12961888313293,
+      "environment_id": "9581472f-48f1-4700-98ac-9f3aaec2af4d",
+      "steps_timing": {
+        "environment_creation": 13.740968942642212,
+        "environment_ready": 226.33429718017578,
+        "public_url_retrieval": 1.5974044799804688e-05,
+        "total_workflow_iterations": 74.05223941802979,
+        "average_iteration_time": 24.68407980600993,
+        "environment_closure": 25.115039825439453
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 312.9606969356537,
+      "environment_id": "c1ac96eb-add4-4620-b341-238cfa7f5438",
+      "steps_timing": {
+        "environment_creation": 11.850592851638794,
+        "environment_ready": 227.01181626319885,
+        "public_url_retrieval": 1.71661376953125e-05,
+        "total_workflow_iterations": 72.09550070762634,
+        "average_iteration_time": 24.031833569208782,
+        "environment_closure": 26.658348083496094
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 332.841943025589,
+      "environment_id": "9e7dad58-b912-4fd7-b5bf-e0abd00d5643",
+      "steps_timing": {
+        "environment_creation": 28.606138229370117,
+        "environment_ready": 223.19477796554565,
+        "public_url_retrieval": 2.09808349609375e-05,
+        "total_workflow_iterations": 79.03921008110046,
+        "average_iteration_time": 26.34640336036682,
+        "environment_closure": 15.130719900131226
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 302.82838201522827,
+      "environment_id": "853a2daf-2b03-469e-922d-1cc770b9a381",
+      "steps_timing": {
+        "environment_creation": 15.823440313339233,
+        "environment_ready": 218.16194200515747,
+        "public_url_retrieval": 1.6927719116210938e-05,
+        "total_workflow_iterations": 66.84062576293945,
+        "average_iteration_time": 22.280208587646484,
+        "environment_closure": 29.049373388290405
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 337.6161253452301,
+      "environment_id": "7409fbbc-095a-4516-aec2-91992e1be0a4",
+      "steps_timing": {
+        "environment_creation": 26.398545026779175,
+        "environment_ready": 231.69873309135437,
+        "public_url_retrieval": 1.4781951904296875e-05,
+        "total_workflow_iterations": 77.51631379127502,
+        "average_iteration_time": 25.838771263758343,
+        "environment_closure": 13.456893920898438
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 280.31439208984375,
+      "environment_id": "f6a69b3f-f75d-4c69-b4f9-f1c75b9e9274",
+      "steps_timing": {
+        "environment_creation": 13.557958364486694,
+        "environment_ready": 211.75137615203857,
+        "public_url_retrieval": 1.0013580322265625e-05,
+        "total_workflow_iterations": 53.003214836120605,
+        "average_iteration_time": 17.667738278706867,
+        "environment_closure": 34.33117413520813
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 308.770112991333,
+      "environment_id": "b7a0f1e4-63e9-4c30-99ad-060a46bada21",
+      "steps_timing": {
+        "environment_creation": 13.215536117553711,
+        "environment_ready": 221.22490882873535,
+        "public_url_retrieval": 5.0067901611328125e-06,
+        "total_workflow_iterations": 72.32808709144592,
+        "average_iteration_time": 24.109362363815308,
+        "environment_closure": 28.44399404525757
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 335.9477701187134,
+      "environment_id": "831b3fc2-ace5-414a-9035-4a4941053db3",
+      "steps_timing": {
+        "environment_creation": 31.590564012527466,
+        "environment_ready": 223.5125880241394,
+        "public_url_retrieval": 1.9311904907226562e-05,
+        "total_workflow_iterations": 78.84236168861389,
+        "average_iteration_time": 26.280787229537964,
+        "environment_closure": 13.588950157165527
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 334.0123200416565,
+      "environment_id": "bb89a55c-59d1-483b-a5af-50ee356c9c5e",
+      "steps_timing": {
+        "environment_creation": 30.35423493385315,
+        "environment_ready": 224.8056938648224,
+        "public_url_retrieval": 1.3828277587890625e-05,
+        "total_workflow_iterations": 76.85022115707397,
+        "average_iteration_time": 25.616740385691326,
+        "environment_closure": 14.572879076004028
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 311.30505299568176,
+      "environment_id": "257abeb7-fa0c-46ba-b11f-8d899fe8b22f",
+      "steps_timing": {
+        "environment_creation": 17.756450653076172,
+        "environment_ready": 218.6065480709076,
+        "public_url_retrieval": 1.52587890625e-05,
+        "total_workflow_iterations": 72.94023013114929,
+        "average_iteration_time": 24.31341004371643,
+        "environment_closure": 27.080681085586548
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 331.76268792152405,
+      "environment_id": "4df10d95-79ab-4fb8-a108-9272d35e1008",
+      "steps_timing": {
+        "environment_creation": 30.920963764190674,
+        "environment_ready": 219.43024802207947,
+        "public_url_retrieval": 1.4066696166992188e-05,
+        "total_workflow_iterations": 79.4084267616272,
+        "average_iteration_time": 26.469475587209065,
+        "environment_closure": 14.744986772537231
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 337.44567799568176,
+      "environment_id": "50898407-cd4d-4cd0-80a0-f3b666c94708",
+      "steps_timing": {
+        "environment_creation": 31.359745025634766,
+        "environment_ready": 226.42911005020142,
+        "public_url_retrieval": 1.6689300537109375e-05,
+        "total_workflow_iterations": 77.65531587600708,
+        "average_iteration_time": 25.88510529200236,
+        "environment_closure": 12.425676107406616
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 325.16242003440857,
+      "environment_id": "180bdf60-34e4-4f86-abab-5b0088ef5721",
+      "steps_timing": {
+        "environment_creation": 18.512646913528442,
+        "environment_ready": 228.0712080001831,
+        "public_url_retrieval": 1.6927719116210938e-05,
+        "total_workflow_iterations": 76.575932264328,
+        "average_iteration_time": 25.525310754776,
+        "environment_closure": 19.696521997451782
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 309.7262120246887,
+      "environment_id": "597d562e-f249-49df-87d6-84c561beb249",
+      "steps_timing": {
+        "environment_creation": 23.903165102005005,
+        "environment_ready": 212.65547966957092,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 71.16645216941833,
+        "average_iteration_time": 23.722150723139446,
+        "environment_closure": 27.995198965072632
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 289.33897280693054,
+      "environment_id": "28a51488-0cb2-4798-992c-1b14fe2418a1",
+      "steps_timing": {
+        "environment_creation": 14.352656841278076,
+        "environment_ready": 214.2835340499878,
+        "public_url_retrieval": 1.7881393432617188e-05,
+        "total_workflow_iterations": 58.7021541595459,
+        "average_iteration_time": 19.567384719848633,
+        "environment_closure": 32.69139003753662
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 320.5967171192169,
+      "environment_id": "4748c119-1043-4b91-b047-971697fe5052",
+      "steps_timing": {
+        "environment_creation": 13.510620832443237,
+        "environment_ready": 229.15397810935974,
+        "public_url_retrieval": 7.152557373046875e-06,
+        "total_workflow_iterations": 75.93035006523132,
+        "average_iteration_time": 25.310116688410442,
+        "environment_closure": 22.876775979995728
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 282.85147500038147,
+      "environment_id": "d681aa53-d036-4c4f-8fd4-1046ef2ce649",
+      "steps_timing": {
+        "environment_creation": 18.332397937774658,
+        "environment_ready": 208.97680401802063,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 53.54087519645691,
+        "average_iteration_time": 17.84695839881897,
+        "environment_closure": 33.806477069854736
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 323.0287139415741,
+      "environment_id": "38a09327-0382-47bf-9f5c-3435e3ba6715",
+      "steps_timing": {
+        "environment_creation": 14.547855138778687,
+        "environment_ready": 227.12434792518616,
+        "public_url_retrieval": 1.2159347534179688e-05,
+        "total_workflow_iterations": 79.35488700866699,
+        "average_iteration_time": 26.451629002888996,
+        "environment_closure": 21.40855073928833
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 311.71535897254944,
+      "environment_id": "fe099cf4-7d10-46ab-9068-4825f40291dc",
+      "steps_timing": {
+        "environment_creation": 13.853032112121582,
+        "environment_ready": 223.49812507629395,
+        "public_url_retrieval": 1.8835067749023438e-05,
+        "total_workflow_iterations": 72.36154222488403,
+        "average_iteration_time": 24.120514074961346,
+        "environment_closure": 27.24913001060486
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 352.0417799949646,
+      "environment_id": "8c3fcdf8-f404-4632-8cbf-23c2c1ba5117",
+      "steps_timing": {
+        "environment_creation": 23.566139936447144,
+        "environment_ready": 256.03512716293335,
+        "public_url_retrieval": 5.888938903808594e-05,
+        "total_workflow_iterations": 70.4382712841034,
+        "average_iteration_time": 23.479423761367798,
+        "environment_closure": 5.229464054107666
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 292.3186368942261,
+      "environment_id": "1e5e3489-4396-4ea2-bc7f-190e5b0351cc",
+      "steps_timing": {
+        "environment_creation": 19.984930753707886,
+        "environment_ready": 208.79587769508362,
+        "public_url_retrieval": 5.0067901611328125e-06,
+        "total_workflow_iterations": 61.53557825088501,
+        "average_iteration_time": 20.51185941696167,
+        "environment_closure": 32.83564877510071
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 321.4257800579071,
+      "environment_id": "e82c2abd-b7ba-4046-b70a-c7961176fd4e",
+      "steps_timing": {
+        "environment_creation": 24.183428049087524,
+        "environment_ready": 219.2403781414032,
+        "public_url_retrieval": 1.4781951904296875e-05,
+        "total_workflow_iterations": 75.99944710731506,
+        "average_iteration_time": 25.333149035771687,
+        "environment_closure": 22.534873008728027
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 304.75655221939087,
+      "environment_id": "a1736a2b-536c-4a04-9679-e7d1bd6abfb1",
+      "steps_timing": {
+        "environment_creation": 21.35670018196106,
+        "environment_ready": 211.81645107269287,
+        "public_url_retrieval": 1.811981201171875e-05,
+        "total_workflow_iterations": 69.5808641910553,
+        "average_iteration_time": 23.193621397018433,
+        "environment_closure": 28.26100516319275
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 321.81095695495605,
+      "environment_id": "49dd34d3-96b6-4275-bdfa-bd7f4324d8a1",
+      "steps_timing": {
+        "environment_creation": 14.353722095489502,
+        "environment_ready": 229.3132438659668,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 76.14222002029419,
+        "average_iteration_time": 25.38074000676473,
+        "environment_closure": 22.374632120132446
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 306.2668719291687,
+      "environment_id": "25031e68-2bf5-440a-a9ec-382ddbdee5b8",
+      "steps_timing": {
+        "environment_creation": 19.405238151550293,
+        "environment_ready": 215.3528609275818,
+        "public_url_retrieval": 1.9073486328125e-05,
+        "total_workflow_iterations": 69.50628972053528,
+        "average_iteration_time": 23.168763240178425,
+        "environment_closure": 27.446125268936157
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 314.25404620170593,
+      "environment_id": "f492617f-c0d0-4c4d-b47f-68afdac439fa",
+      "steps_timing": {
+        "environment_creation": 24.901107788085938,
+        "environment_ready": 212.39179110527039,
+        "public_url_retrieval": 1.5974044799804688e-05,
+        "total_workflow_iterations": 74.95871758460999,
+        "average_iteration_time": 24.986239194869995,
+        "environment_closure": 25.984342098236084
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 287.53687620162964,
+      "environment_id": "499b7bd5-464e-4600-b6d2-cc892c89356d",
+      "steps_timing": {
+        "environment_creation": 13.641693115234375,
+        "environment_ready": 213.95817017555237,
+        "public_url_retrieval": 1.0013580322265625e-05,
+        "total_workflow_iterations": 57.93469738960266,
+        "average_iteration_time": 19.31156579653422,
+        "environment_closure": 32.979275703430176
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 322.8625249862671,
+      "environment_id": "20fa2aa8-67d0-46eb-b367-e725bff96d23",
+      "steps_timing": {
+        "environment_creation": 15.486700057983398,
+        "environment_ready": 227.30004405975342,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "total_workflow_iterations": 78.07373070716858,
+        "average_iteration_time": 26.024576902389526,
+        "environment_closure": 21.46178102493286
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 272.1057689189911,
+      "environment_id": "5baaf4af-e508-450e-9e8a-24ff831dff3b",
+      "steps_timing": {
+        "environment_creation": 14.639878988265991,
+        "environment_ready": 211.03738927841187,
+        "public_url_retrieval": 7.867813110351562e-06,
+        "total_workflow_iterations": 44.42682886123657,
+        "average_iteration_time": 14.808942953745523,
+        "environment_closure": 31.63898229598999
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 328.47267508506775,
+      "environment_id": "524288e9-f4b5-48f2-bd2f-2a037e088504",
+      "steps_timing": {
+        "environment_creation": 14.587743997573853,
+        "environment_ready": 234.27540922164917,
+        "public_url_retrieval": 3.814697265625e-06,
+        "total_workflow_iterations": 77.60706281661987,
+        "average_iteration_time": 25.86902093887329,
+        "environment_closure": 17.50780701637268
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 321.6607491970062,
+      "environment_id": "7bf51d5f-d13d-4b5e-a448-69e9df7a7eb0",
+      "steps_timing": {
+        "environment_creation": 23.10218596458435,
+        "environment_ready": 217.93170189857483,
+        "public_url_retrieval": 1.4066696166992188e-05,
+        "total_workflow_iterations": 78.62431740760803,
+        "average_iteration_time": 26.20810580253601,
+        "environment_closure": 22.46367597579956
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 295.4118621349335,
+      "environment_id": "de940a8c-55e1-4014-8d7d-0a2a984b3c61",
+      "steps_timing": {
+        "environment_creation": 16.04098105430603,
+        "environment_ready": 213.9817521572113,
+        "public_url_retrieval": 2.3126602172851562e-05,
+        "total_workflow_iterations": 63.38668084144592,
+        "average_iteration_time": 21.128893613815308,
+        "environment_closure": 31.318522214889526
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 351.19274377822876,
+      "environment_id": "7dd22370-016f-497a-bdb4-5e7d69df63e6",
+      "steps_timing": {
+        "environment_creation": 27.94749689102173,
+        "environment_ready": 252.45771288871765,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "total_workflow_iterations": 68.7850878238678,
+        "average_iteration_time": 22.928362607955933,
+        "environment_closure": 5.242303133010864
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 321.44482707977295,
+      "environment_id": "65ac108e-eb7a-46b6-9bd4-e8f2f5698c55",
+      "steps_timing": {
+        "environment_creation": 14.368430137634277,
+        "environment_ready": 229.91435408592224,
+        "public_url_retrieval": 8.106231689453125e-06,
+        "total_workflow_iterations": 75.15961980819702,
+        "average_iteration_time": 25.05320660273234,
+        "environment_closure": 22.556188821792603
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 310.29252219200134,
+      "environment_id": "a933d6a9-5c1b-498b-8fc5-51b598f87364",
+      "steps_timing": {
+        "environment_creation": 15.856529951095581,
+        "environment_ready": 220.1337547302246,
+        "public_url_retrieval": 1.4781951904296875e-05,
+        "total_workflow_iterations": 72.30060338973999,
+        "average_iteration_time": 24.10020112991333,
+        "environment_closure": 27.627293825149536
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 309.23454785346985,
+      "environment_id": "47759190-4a39-49a4-bd37-7645daec6bdc",
+      "steps_timing": {
+        "environment_creation": 16.762632846832275,
+        "environment_ready": 219.63961791992188,
+        "public_url_retrieval": 1.0967254638671875e-05,
+        "total_workflow_iterations": 70.83068227767944,
+        "average_iteration_time": 23.610227425893147,
+        "environment_closure": 28.266544103622437
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 312.32398414611816,
+      "environment_id": "fddddfb1-64e2-4cd5-8cb1-3f70145e0813",
+      "steps_timing": {
+        "environment_creation": 27.70873713493347,
+        "environment_ready": 210.8653519153595,
+        "public_url_retrieval": 1.5020370483398438e-05,
+        "total_workflow_iterations": 71.74803805351257,
+        "average_iteration_time": 23.916012684504192,
+        "environment_closure": 26.902986764907837
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 315.0948350429535,
+      "environment_id": "c9edf6b0-2054-4922-ba1c-c1e6af2a4674",
+      "steps_timing": {
+        "environment_creation": 15.207226037979126,
+        "environment_ready": 223.92407894134521,
+        "public_url_retrieval": 1.1682510375976562e-05,
+        "total_workflow_iterations": 73.96189498901367,
+        "average_iteration_time": 24.65396499633789,
+        "environment_closure": 25.795382976531982
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 312.36754989624023,
+      "environment_id": "9e827351-5c0a-4d58-a340-3b33dda41dab",
+      "steps_timing": {
+        "environment_creation": 14.892590999603271,
+        "environment_ready": 222.96591901779175,
+        "public_url_retrieval": 1.7881393432617188e-05,
+        "total_workflow_iterations": 72.50632834434509,
+        "average_iteration_time": 24.168776114781696,
+        "environment_closure": 26.950334072113037
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 326.1978449821472,
+      "environment_id": "1e810e15-28e9-4ba2-8a09-4ec4a457ddaf",
+      "steps_timing": {
+        "environment_creation": 31.363011837005615,
+        "environment_ready": 215.62542486190796,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 77.2076506614685,
+        "average_iteration_time": 25.735883553822834,
+        "environment_closure": 18.883913040161133
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 341.7452988624573,
+      "environment_id": "424355ae-7c95-4cbd-bb8e-456eb6b726bc",
+      "steps_timing": {
+        "environment_creation": 28.230068922042847,
+        "environment_ready": 232.74972867965698,
+        "public_url_retrieval": 1.9311904907226562e-05,
+        "total_workflow_iterations": 78.76393961906433,
+        "average_iteration_time": 26.25464653968811,
+        "environment_closure": 9.417598962783813
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 294.6161711215973,
+      "environment_id": "49316667-a30c-4194-bcf1-49bf868f7eac",
+      "steps_timing": {
+        "environment_creation": 15.0867440700531,
+        "environment_ready": 215.3620798587799,
+        "public_url_retrieval": 1.8835067749023438e-05,
+        "total_workflow_iterations": 62.16678261756897,
+        "average_iteration_time": 20.72226087252299,
+        "environment_closure": 31.830559015274048
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 297.1385090351105,
+      "environment_id": "a81dd26d-f1e9-47ac-a50e-e5963ef91cc6",
+      "steps_timing": {
+        "environment_creation": 14.715352058410645,
+        "environment_ready": 217.62685322761536,
+        "public_url_retrieval": 1.2159347534179688e-05,
+        "total_workflow_iterations": 62.79370927810669,
+        "average_iteration_time": 20.931236426035564,
+        "environment_closure": 30.16298818588257
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 298.70569109916687,
+      "environment_id": "ee1df6b4-be24-4512-9819-18c9f121af5c",
+      "steps_timing": {
+        "environment_creation": 24.689608097076416,
+        "environment_ready": 207.17380094528198,
+        "public_url_retrieval": 4.291534423828125e-06,
+        "total_workflow_iterations": 64.8395791053772,
+        "average_iteration_time": 21.613193035125732,
+        "environment_closure": 29.574671983718872
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 294.03509497642517,
+      "environment_id": "7e4236d3-35b3-44f3-8930-29729d59c4be",
+      "steps_timing": {
+        "environment_creation": 15.454720973968506,
+        "environment_ready": 214.21818494796753,
+        "public_url_retrieval": 1.5020370483398438e-05,
+        "total_workflow_iterations": 62.35986304283142,
+        "average_iteration_time": 20.78662101427714,
+        "environment_closure": 32.05816197395325
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 332.68377923965454,
+      "environment_id": "821d1382-7d10-4c79-93fd-b8fc5851996e",
+      "steps_timing": {
+        "environment_creation": 33.0999321937561,
+        "environment_ready": 218.4926929473877,
+        "public_url_retrieval": 1.6927719116210938e-05,
+        "total_workflow_iterations": 79.08973264694214,
+        "average_iteration_time": 26.36324421564738,
+        "environment_closure": 15.23655080795288
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 301.1467020511627,
+      "environment_id": "5e7a59fb-abd9-4c38-829c-f706f928f369",
+      "steps_timing": {
+        "environment_creation": 27.244350910186768,
+        "environment_ready": 221.47362184524536,
+        "public_url_retrieval": 1.71661376953125e-05,
+        "total_workflow_iterations": 50.42650008201599,
+        "average_iteration_time": 16.808833360671997,
+        "environment_closure": 30.033961057662964
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 309.21075797080994,
+      "environment_id": "2117c860-b90b-4368-81c5-7e6e25e7cf2d",
+      "steps_timing": {
+        "environment_creation": 15.997413158416748,
+        "environment_ready": 219.2958869934082,
+        "public_url_retrieval": 1.7881393432617188e-05,
+        "total_workflow_iterations": 71.9157304763794,
+        "average_iteration_time": 23.971910158793133,
+        "environment_closure": 28.27867603302002
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 338.47123885154724,
+      "environment_id": "1c7eca3e-4040-4069-bc46-57444b1ab082",
+      "steps_timing": {
+        "environment_creation": 30.467313766479492,
+        "environment_ready": 228.68014979362488,
+        "public_url_retrieval": 1.811981201171875e-05,
+        "total_workflow_iterations": 77.3215880393982,
+        "average_iteration_time": 25.773862679799397,
+        "environment_closure": 12.694517135620117
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 296.8670039176941,
+      "environment_id": "83c7843a-8897-4fd8-a30d-a6fc983dde7b",
+      "steps_timing": {
+        "environment_creation": 16.604009866714478,
+        "environment_ready": 214.47838187217712,
+        "public_url_retrieval": 1.4066696166992188e-05,
+        "total_workflow_iterations": 63.78214502334595,
+        "average_iteration_time": 21.260715007781982,
+        "environment_closure": 30.249045848846436
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 324.859925031662,
+      "environment_id": "150386bf-3d87-46d1-b51e-1de9729b736e",
+      "steps_timing": {
+        "environment_creation": 32.018348932266235,
+        "environment_ready": 214.64485812187195,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 76.19438886642456,
+        "average_iteration_time": 25.39812962214152,
+        "environment_closure": 19.94759488105774
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 304.49911189079285,
+      "environment_id": "c65666b5-f3d8-4369-b2b9-50416d4c7e8a",
+      "steps_timing": {
+        "environment_creation": 22.18510603904724,
+        "environment_ready": 211.52412605285645,
+        "public_url_retrieval": 5.0067901611328125e-06,
+        "total_workflow_iterations": 68.78812956809998,
+        "average_iteration_time": 22.929376522699993,
+        "environment_closure": 28.104355096817017
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 321.8287150859833,
+      "environment_id": "7fdfa0f4-d5a6-4741-96ab-542ba615f3ef",
+      "steps_timing": {
+        "environment_creation": 20.620245933532715,
+        "environment_ready": 222.44483089447021,
+        "public_url_retrieval": 5.7220458984375e-06,
+        "total_workflow_iterations": 76.7626097202301,
+        "average_iteration_time": 25.587536573410034,
+        "environment_closure": 22.44728183746338
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 330.38703632354736,
+      "environment_id": "1e24d6bc-f283-44cf-af45-b0ca471d4f7e",
+      "steps_timing": {
+        "environment_creation": 26.62669539451599,
+        "environment_ready": 223.91892886161804,
+        "public_url_retrieval": 1.9073486328125e-05,
+        "total_workflow_iterations": 77.83873105049133,
+        "average_iteration_time": 25.946243683497112,
+        "environment_closure": 15.973729133605957
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 323.5572097301483,
+      "environment_id": "3510a378-4018-477b-a385-a515983d4e2f",
+      "steps_timing": {
+        "environment_creation": 17.566895723342896,
+        "environment_ready": 227.8217430114746,
+        "public_url_retrieval": 1.621246337890625e-05,
+        "total_workflow_iterations": 76.16622805595398,
+        "average_iteration_time": 25.388742685317993,
+        "environment_closure": 20.93515682220459
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 323.86419582366943,
+      "environment_id": "980d786b-113e-41b5-9d28-152d61da2641",
+      "steps_timing": {
+        "environment_creation": 17.367615938186646,
+        "environment_ready": 228.97560715675354,
+        "public_url_retrieval": 2.3126602172851562e-05,
+        "total_workflow_iterations": 75.51852583885193,
+        "average_iteration_time": 25.172841946283977,
+        "environment_closure": 20.705899000167847
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 291.9055380821228,
+      "environment_id": "ee44ef9e-c101-497b-969c-00082b257c3c",
+      "steps_timing": {
+        "environment_creation": 16.038139820098877,
+        "environment_ready": 213.42508172988892,
+        "public_url_retrieval": 1.3828277587890625e-05,
+        "total_workflow_iterations": 60.44063997268677,
+        "average_iteration_time": 20.146879990895588,
+        "environment_closure": 32.968505859375
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 342.87821412086487,
+      "environment_id": "0ee6d9ac-4bff-4392-91c6-74083f52fcf1",
+      "steps_timing": {
+        "environment_creation": 28.15608310699463,
+        "environment_ready": 233.04772686958313,
+        "public_url_retrieval": 0.0007040500640869141,
+        "total_workflow_iterations": 79.67220878601074,
+        "average_iteration_time": 26.557402928670246,
+        "environment_closure": 8.318457126617432
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 347.28922510147095,
+      "environment_id": "24f15a52-d1e5-495b-ab96-54d2cd04ca16",
+      "steps_timing": {
+        "environment_creation": 33.18533205986023,
+        "environment_ready": 237.85679626464844,
+        "public_url_retrieval": 4.76837158203125e-06,
+        "total_workflow_iterations": 74.24519920349121,
+        "average_iteration_time": 24.74839973449707,
+        "environment_closure": 5.247421979904175
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 298.11303901672363,
+      "environment_id": "343b2415-13f8-4a4d-be52-51b9bd939a89",
+      "steps_timing": {
+        "environment_creation": 16.993484020233154,
+        "environment_ready": 214.84525299072266,
+        "public_url_retrieval": 1.9788742065429688e-05,
+        "total_workflow_iterations": 64.27336168289185,
+        "average_iteration_time": 21.424453894297283,
+        "environment_closure": 29.651620149612427
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 309.0001919269562,
+      "environment_id": "56e713a3-97ae-4cd2-b87a-c1fcf2b4cd4c",
+      "steps_timing": {
+        "environment_creation": 17.26473116874695,
+        "environment_ready": 219.28334188461304,
+        "public_url_retrieval": 1.8835067749023438e-05,
+        "total_workflow_iterations": 70.45051956176758,
+        "average_iteration_time": 23.48350652058919,
+        "environment_closure": 28.591517210006714
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 294.83341884613037,
+      "environment_id": "a4b930a4-7999-463f-a7e2-b3aa7e358f66",
+      "steps_timing": {
+        "environment_creation": 25.31788992881775,
+        "environment_ready": 204.5547640323639,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 62.959038734436035,
+        "average_iteration_time": 20.98634624481201,
+        "environment_closure": 31.586839199066162
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 309.72343492507935,
+      "environment_id": "ed18c728-7930-4166-ae7b-f64e45ab230e",
+      "steps_timing": {
+        "environment_creation": 21.002866983413696,
+        "environment_ready": 214.83294105529785,
+        "public_url_retrieval": 1.3828277587890625e-05,
+        "total_workflow_iterations": 71.88514018058777,
+        "average_iteration_time": 23.961713393529255,
+        "environment_closure": 27.92510676383972
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 311.1786062717438,
+      "environment_id": "31c830d7-0ffa-4947-bbe4-f158cc1ed8a4",
+      "steps_timing": {
+        "environment_creation": 16.782821893692017,
+        "environment_ready": 220.9142677783966,
+        "public_url_retrieval": 2.002716064453125e-05,
+        "total_workflow_iterations": 71.47901177406311,
+        "average_iteration_time": 23.826337258021038,
+        "environment_closure": 27.142839908599854
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 299.8923342227936,
+      "environment_id": "5bd1e988-e6f0-4c76-b530-a65a0be6e068",
+      "steps_timing": {
+        "environment_creation": 23.21433115005493,
+        "environment_ready": 208.9564950466156,
+        "public_url_retrieval": 1.3828277587890625e-05,
+        "total_workflow_iterations": 65.7202353477478,
+        "average_iteration_time": 21.906745115915935,
+        "environment_closure": 29.974010229110718
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 307.09840202331543,
+      "environment_id": "14672921-1368-434a-82e5-5856814c2923",
+      "steps_timing": {
+        "environment_creation": 17.01378583908081,
+        "environment_ready": 218.41502499580383,
+        "public_url_retrieval": 1.811981201171875e-05,
+        "total_workflow_iterations": 69.66714692115784,
+        "average_iteration_time": 23.222382307052612,
+        "environment_closure": 28.82468581199646
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 311.09540581703186,
+      "environment_id": "c6bae2ec-eb52-4812-b2fd-9d91f248e87b",
+      "steps_timing": {
+        "environment_creation": 17.115912914276123,
+        "environment_ready": 220.37936210632324,
+        "public_url_retrieval": 2.09808349609375e-05,
+        "total_workflow_iterations": 71.59819793701172,
+        "average_iteration_time": 23.866065979003906,
+        "environment_closure": 27.027560234069824
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 343.813236951828,
+      "environment_id": "ae644ed1-1d72-4769-a98c-c82b5225a66b",
+      "steps_timing": {
+        "environment_creation": 18.107790231704712,
+        "environment_ready": 246.5713129043579,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 77.13233184814453,
+        "average_iteration_time": 25.710777282714844,
+        "environment_closure": 7.403364896774292
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 310.1558871269226,
+      "environment_id": "186be378-cdbe-48d9-845c-c8f0bc184814",
+      "steps_timing": {
+        "environment_creation": 30.02169704437256,
+        "environment_ready": 208.05911922454834,
+        "public_url_retrieval": 1.0967254638671875e-05,
+        "total_workflow_iterations": 70.07280445098877,
+        "average_iteration_time": 23.357601483662922,
+        "environment_closure": 27.5818088054657
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 338.90733218193054,
+      "environment_id": "a09303ae-48d3-47e6-9fc9-0d3ab1d2db35",
+      "steps_timing": {
+        "environment_creation": 20.279004096984863,
+        "environment_ready": 237.92943906784058,
+        "public_url_retrieval": 2.09808349609375e-05,
+        "total_workflow_iterations": 78.69684982299805,
+        "average_iteration_time": 26.232283274332683,
+        "environment_closure": 12.251261949539185
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 310.8630938529968,
+      "environment_id": "727a23e5-2554-4d1f-b09e-e04e0e1d5308",
+      "steps_timing": {
+        "environment_creation": 17.400156021118164,
+        "environment_ready": 220.96749591827393,
+        "public_url_retrieval": 1.5974044799804688e-05,
+        "total_workflow_iterations": 70.49328827857971,
+        "average_iteration_time": 23.49776275952657,
+        "environment_closure": 27.29484510421753
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 310.61257696151733,
+      "environment_id": "e24c3dce-5415-4919-ba55-1b7c8b779811",
+      "steps_timing": {
+        "environment_creation": 18.297188758850098,
+        "environment_ready": 219.60859203338623,
+        "public_url_retrieval": 4.76837158203125e-06,
+        "total_workflow_iterations": 70.70401215553284,
+        "average_iteration_time": 23.56800405184428,
+        "environment_closure": 27.392859935760498
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 315.2582721710205,
+      "environment_id": "838fcd71-a397-4bfc-bd49-269d222e743c",
+      "steps_timing": {
+        "environment_creation": 17.728564023971558,
+        "environment_ready": 222.68079686164856,
+        "public_url_retrieval": 1.3113021850585938e-05,
+        "total_workflow_iterations": 72.84680414199829,
+        "average_iteration_time": 24.282268047332764,
+        "environment_closure": 25.719660997390747
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 289.56453585624695,
+      "environment_id": "590a4799-0416-457f-a8b5-6750b6ce03a5",
+      "steps_timing": {
+        "environment_creation": 19.192058086395264,
+        "environment_ready": 209.10211205482483,
+        "public_url_retrieval": 2.002716064453125e-05,
+        "total_workflow_iterations": 59.26779913902283,
+        "average_iteration_time": 19.755933046340942,
+        "environment_closure": 32.75950002670288
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 331.8138680458069,
+      "environment_id": "8367d3a4-b98e-4e7d-bc83-a2a42c32ca74",
+      "steps_timing": {
+        "environment_creation": 23.321197032928467,
+        "environment_ready": 227.63340592384338,
+        "public_url_retrieval": 1.6689300537109375e-05,
+        "total_workflow_iterations": 78.85679912567139,
+        "average_iteration_time": 26.28559970855713,
+        "environment_closure": 14.881793022155762
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 313.8550798892975,
+      "environment_id": "1bba0278-1719-40c5-8aed-73337caa8fea",
+      "steps_timing": {
+        "environment_creation": 27.656580209732056,
+        "environment_ready": 211.4905560016632,
+        "public_url_retrieval": 1.71661376953125e-05,
+        "total_workflow_iterations": 72.70675802230835,
+        "average_iteration_time": 24.235586007436115,
+        "environment_closure": 25.854969024658203
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 341.44640827178955,
+      "environment_id": "f3adb5fc-8dae-4b36-bf3a-efadf62b42ff",
+      "steps_timing": {
+        "environment_creation": 30.891326189041138,
+        "environment_ready": 231.02051186561584,
+        "public_url_retrieval": 1.9073486328125e-05,
+        "total_workflow_iterations": 77.53213691711426,
+        "average_iteration_time": 25.844045639038086,
+        "environment_closure": 9.73517394065857
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 321.0085530281067,
+      "environment_id": "1b295bfe-a4c9-4953-a9e2-db2348bf8135",
+      "steps_timing": {
+        "environment_creation": 17.90550184249878,
+        "environment_ready": 226.58565402030945,
+        "public_url_retrieval": 3.814697265625e-06,
+        "total_workflow_iterations": 74.51559805870056,
+        "average_iteration_time": 24.83853268623352,
+        "environment_closure": 22.70684790611267
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 309.89599800109863,
+      "environment_id": "fe056a9a-533a-4f9a-b920-0e6d1b0b5515",
+      "steps_timing": {
+        "environment_creation": 19.661247968673706,
+        "environment_ready": 217.108824968338,
+        "public_url_retrieval": 2.7179718017578125e-05,
+        "total_workflow_iterations": 71.12497973442078,
+        "average_iteration_time": 23.70832657814026,
+        "environment_closure": 27.807586908340454
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 306.49401092529297,
+      "environment_id": "9d077e17-e98a-4fbe-9ecb-e84e74a7ee1c",
+      "steps_timing": {
+        "environment_creation": 19.97500705718994,
+        "environment_ready": 215.00088787078857,
+        "public_url_retrieval": 1.52587890625e-05,
+        "total_workflow_iterations": 69.51537990570068,
+        "average_iteration_time": 23.171793301900227,
+        "environment_closure": 27.848148107528687
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 335.57760286331177,
+      "environment_id": "1f43021f-c966-465f-82b0-24d573c8a821",
+      "steps_timing": {
+        "environment_creation": 22.805140018463135,
+        "environment_ready": 233.3882658481598,
+        "public_url_retrieval": 1.2874603271484375e-05,
+        "total_workflow_iterations": 77.38180017471313,
+        "average_iteration_time": 25.793933391571045,
+        "environment_closure": 13.924857139587402
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 343.06237959861755,
+      "environment_id": "a3f6ffe2-6fd8-47ee-a223-bd4b79c362f7",
+      "steps_timing": {
+        "environment_creation": 28.216866731643677,
+        "environment_ready": 233.28435492515564,
+        "public_url_retrieval": 8.821487426757812e-06,
+        "total_workflow_iterations": 79.55880689620972,
+        "average_iteration_time": 26.519602298736572,
+        "environment_closure": 7.488354206085205
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 314.872496843338,
+      "environment_id": "7e7330c0-1547-4882-8280-92f177aad42f",
+      "steps_timing": {
+        "environment_creation": 17.936049938201904,
+        "environment_ready": 220.52208375930786,
+        "public_url_retrieval": 2.2172927856445312e-05,
+        "total_workflow_iterations": 74.41332983970642,
+        "average_iteration_time": 24.80444327990214,
+        "environment_closure": 25.847095012664795
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 297.937490940094,
+      "environment_id": "952684c4-4934-4245-908d-65b368d34064",
+      "steps_timing": {
+        "environment_creation": 18.741424798965454,
+        "environment_ready": 213.0629379749298,
+        "public_url_retrieval": 1.4066696166992188e-05,
+        "total_workflow_iterations": 64.13156008720398,
+        "average_iteration_time": 21.37718669573466,
+        "environment_closure": 29.766618967056274
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 337.4946970939636,
+      "environment_id": "83e50313-cdc5-4ad8-ba44-43ae04c57000",
+      "steps_timing": {
+        "environment_creation": 31.069996118545532,
+        "environment_ready": 225.98686385154724,
+        "public_url_retrieval": 1.4066696166992188e-05,
+        "total_workflow_iterations": 78.43570280075073,
+        "average_iteration_time": 26.145234266916912,
+        "environment_closure": 13.165180921554565
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 304.3309669494629,
+      "environment_id": "bb99f7fe-7bb1-48ff-81c0-ab1ff6597fdc",
+      "steps_timing": {
+        "environment_creation": 18.103850841522217,
+        "environment_ready": 216.10000824928284,
+        "public_url_retrieval": 1.3113021850585938e-05,
+        "total_workflow_iterations": 68.12460708618164,
+        "average_iteration_time": 22.708202362060547,
+        "environment_closure": 28.102073192596436
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 336.1317517757416,
+      "environment_id": "7c04f069-6ae3-4cf8-87e8-a8c62ac11fcc",
+      "steps_timing": {
+        "environment_creation": 19.408653020858765,
+        "environment_ready": 234.9795069694519,
+        "public_url_retrieval": 1.71661376953125e-05,
+        "total_workflow_iterations": 79.74195718765259,
+        "average_iteration_time": 26.580652395884197,
+        "environment_closure": 13.368262767791748
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 342.5524549484253,
+      "environment_id": "3861cf76-9857-48d9-91ea-f063772c33b7",
+      "steps_timing": {
+        "environment_creation": 18.34683609008789,
+        "environment_ready": 242.08630394935608,
+        "public_url_retrieval": 1.1920928955078125e-05,
+        "total_workflow_iterations": 80.11674499511719,
+        "average_iteration_time": 26.705581665039062,
+        "environment_closure": 7.951411962509155
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 288.9606308937073,
+      "environment_id": "df57f595-727c-40ed-bd45-45ea3fd8d8cd",
+      "steps_timing": {
+        "environment_creation": 20.038086891174316,
+        "environment_ready": 209.21955728530884,
+        "public_url_retrieval": 2.193450927734375e-05,
+        "total_workflow_iterations": 57.701213359832764,
+        "average_iteration_time": 19.23373778661092,
+        "environment_closure": 32.64097595214844
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 351.009357213974,
+      "environment_id": "98fb071a-1619-4aa4-a3a7-4d61537517d2",
+      "steps_timing": {
+        "environment_creation": 20.26159691810608,
+        "environment_ready": 251.54011988639832,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 77.20593166351318,
+        "average_iteration_time": 25.735310554504395,
+        "environment_closure": 5.257332801818848
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 311.5921051502228,
+      "environment_id": "b1773039-dc00-4eaa-8903-5fe24dfd7bc7",
+      "steps_timing": {
+        "environment_creation": 24.60622525215149,
+        "environment_ready": 214.81574296951294,
+        "public_url_retrieval": 2.002716064453125e-05,
+        "total_workflow_iterations": 70.16708993911743,
+        "average_iteration_time": 23.38902997970581,
+        "environment_closure": 27.221869945526123
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 333.10589504241943,
+      "environment_id": "97b0cb82-1dfe-49cf-929e-87a923a39318",
+      "steps_timing": {
+        "environment_creation": 27.136081218719482,
+        "environment_ready": 225.2828872203827,
+        "public_url_retrieval": 1.4066696166992188e-05,
+        "total_workflow_iterations": 78.68517780303955,
+        "average_iteration_time": 26.228392601013184,
+        "environment_closure": 15.133634805679321
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 320.27848982810974,
+      "environment_id": "7a29188e-25a5-455d-800e-28423d671d2a",
+      "steps_timing": {
+        "environment_creation": 27.935659170150757,
+        "environment_ready": 215.42999386787415,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 74.90999412536621,
+        "average_iteration_time": 24.969998041788738,
+        "environment_closure": 22.968330144882202
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 331.8911917209625,
+      "environment_id": "7a255bac-7241-4cfe-897f-2ee5ea5e1819",
+      "steps_timing": {
+        "environment_creation": 20.522836923599243,
+        "environment_ready": 229.525780916214,
+        "public_url_retrieval": 1.2874603271484375e-05,
+        "total_workflow_iterations": 79.84015011787415,
+        "average_iteration_time": 26.613383372624714,
+        "environment_closure": 14.935519218444824
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 323.99005603790283,
+      "environment_id": "9688218c-1d8b-4082-b051-ebd651073d59",
+      "steps_timing": {
+        "environment_creation": 24.957149028778076,
+        "environment_ready": 220.70912194252014,
+        "public_url_retrieval": 2.288818359375e-05,
+        "total_workflow_iterations": 76.32153820991516,
+        "average_iteration_time": 25.440512736638386,
+        "environment_closure": 20.481670141220093
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 332.6363959312439,
+      "environment_id": "73328a06-9e3a-4d1b-ada6-1a97667ac1b9",
+      "steps_timing": {
+        "environment_creation": 21.866719961166382,
+        "environment_ready": 230.33158779144287,
+        "public_url_retrieval": 1.5020370483398438e-05,
+        "total_workflow_iterations": 78.4356849193573,
+        "average_iteration_time": 26.145228306452434,
+        "environment_closure": 15.343564987182617
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 314.8280167579651,
+      "environment_id": "e483189b-6bb8-4a9b-a027-9de092553756",
+      "steps_timing": {
+        "environment_creation": 29.698514938354492,
+        "environment_ready": 210.03258609771729,
+        "public_url_retrieval": 1.3113021850585938e-05,
+        "total_workflow_iterations": 73.09502410888672,
+        "average_iteration_time": 24.365008036295574,
+        "environment_closure": 25.82594394683838
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 322.93605184555054,
+      "environment_id": "4b314941-d380-488a-b925-1929d82c1786",
+      "steps_timing": {
+        "environment_creation": 25.6957688331604,
+        "environment_ready": 218.21075701713562,
+        "public_url_retrieval": 1.0728836059570312e-05,
+        "total_workflow_iterations": 77.02707934379578,
+        "average_iteration_time": 25.67569311459859,
+        "environment_closure": 21.452569007873535
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 337.993371963501,
+      "environment_id": "97c3da73-815f-43bc-be41-092af4be24c9",
+      "steps_timing": {
+        "environment_creation": 20.485255002975464,
+        "environment_ready": 235.62529706954956,
+        "public_url_retrieval": 1.4781951904296875e-05,
+        "total_workflow_iterations": 79.88027739524841,
+        "average_iteration_time": 26.62675913174947,
+        "environment_closure": 13.143025875091553
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 337.1301429271698,
+      "environment_id": "d3d0fd65-d58f-4745-ac95-3d5be35da82b",
+      "steps_timing": {
+        "environment_creation": 31.615216970443726,
+        "environment_ready": 227.12191700935364,
+        "public_url_retrieval": 1.5974044799804688e-05,
+        "total_workflow_iterations": 76.39079976081848,
+        "average_iteration_time": 25.463599920272827,
+        "environment_closure": 13.099457025527954
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 335.0337200164795,
+      "environment_id": "f6521c11-abef-4ace-b898-602f026ca2c1",
+      "steps_timing": {
+        "environment_creation": 27.462633848190308,
+        "environment_ready": 228.95701909065247,
+        "public_url_retrieval": 1.9311904907226562e-05,
+        "total_workflow_iterations": 76.61172890663147,
+        "average_iteration_time": 25.537242968877155,
+        "environment_closure": 13.874855995178223
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 326.2103810310364,
+      "environment_id": "793caa3a-295f-4fef-8f03-ff4b3702168b",
+      "steps_timing": {
+        "environment_creation": 20.046240091323853,
+        "environment_ready": 228.42707204818726,
+        "public_url_retrieval": 5.7220458984375e-06,
+        "total_workflow_iterations": 75.73542857170105,
+        "average_iteration_time": 25.245142857233684,
+        "environment_closure": 18.998685836791992
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 333.04005002975464,
+      "environment_id": "4ca4dfd3-030a-4db2-b282-cdbb2138d2cf",
+      "steps_timing": {
+        "environment_creation": 21.857033014297485,
+        "environment_ready": 230.8472900390625,
+        "public_url_retrieval": 8.821487426757812e-06,
+        "total_workflow_iterations": 78.33301329612732,
+        "average_iteration_time": 26.11100443204244,
+        "environment_closure": 15.007277011871338
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 320.96277809143066,
+      "environment_id": "de54cabe-70a5-4b06-8689-ec3652189faf",
+      "steps_timing": {
+        "environment_creation": 31.231974840164185,
+        "environment_ready": 209.38136291503906,
+        "public_url_retrieval": 3.814697265625e-06,
+        "total_workflow_iterations": 78.34643483161926,
+        "average_iteration_time": 26.11547827720642,
+        "environment_closure": 22.902392864227295
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 311.8523590564728,
+      "environment_id": "5ff5bc80-69e0-40fb-9092-f47f8682aeb7",
+      "steps_timing": {
+        "environment_creation": 21.263748168945312,
+        "environment_ready": 217.03831505775452,
+        "public_url_retrieval": 1.9073486328125e-05,
+        "total_workflow_iterations": 71.5481789112091,
+        "average_iteration_time": 23.849392970403034,
+        "environment_closure": 27.35648798942566
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 333.0792729854584,
+      "environment_id": "251dec32-9b65-4209-9110-7a872eb361f8",
+      "steps_timing": {
+        "environment_creation": 29.495421886444092,
+        "environment_ready": 224.5210223197937,
+        "public_url_retrieval": 1.2874603271484375e-05,
+        "total_workflow_iterations": 77.0614230632782,
+        "average_iteration_time": 25.68714102109273,
+        "environment_closure": 15.063220977783203
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 323.59667921066284,
+      "environment_id": "9fc2c20c-7eea-4288-bd0f-cf718216488e",
+      "steps_timing": {
+        "environment_creation": 21.5456440448761,
+        "environment_ready": 224.15688300132751,
+        "public_url_retrieval": 9.059906005859375e-06,
+        "total_workflow_iterations": 75.89182901382446,
+        "average_iteration_time": 25.297276337941486,
+        "environment_closure": 20.810611963272095
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 344.606005191803,
+      "environment_id": "659308cc-44a2-4c73-8404-3e09b61909a8",
+      "steps_timing": {
+        "environment_creation": 31.29016900062561,
+        "environment_ready": 231.87556505203247,
+        "public_url_retrieval": 1.5974044799804688e-05,
+        "total_workflow_iterations": 79.43748903274536,
+        "average_iteration_time": 26.47916301091512,
+        "environment_closure": 6.655081033706665
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 332.18288111686707,
+      "environment_id": "6c023d0d-10ea-4951-acf6-1e324f84a03a",
+      "steps_timing": {
+        "environment_creation": 29.48467779159546,
+        "environment_ready": 221.4603762626648,
+        "public_url_retrieval": 1.1920928955078125e-05,
+        "total_workflow_iterations": 79.23702502250671,
+        "average_iteration_time": 26.412341674168903,
+        "environment_closure": 15.532884120941162
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 322.6854889392853,
+      "environment_id": "11a2cbac-9bc7-4d63-9acf-fbe6fec786c8",
+      "steps_timing": {
+        "environment_creation": 22.4421169757843,
+        "environment_ready": 223.16509318351746,
+        "public_url_retrieval": 1.1682510375976562e-05,
+        "total_workflow_iterations": 75.07645988464355,
+        "average_iteration_time": 25.02548662821452,
+        "environment_closure": 21.679826021194458
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 338.4315710067749,
+      "environment_id": "07018fc8-a66a-4c75-bcad-977f865b3e58",
+      "steps_timing": {
+        "environment_creation": 24.514578104019165,
+        "environment_ready": 234.33288598060608,
+        "public_url_retrieval": 1.71661376953125e-05,
+        "total_workflow_iterations": 77.58154678344727,
+        "average_iteration_time": 25.860515594482422,
+        "environment_closure": 12.687632083892822
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 337.39220094680786,
+      "environment_id": "0141e81f-675f-4b62-830f-c63a7b64c88f",
+      "steps_timing": {
+        "environment_creation": 21.544597864151,
+        "environment_ready": 236.26561498641968,
+        "public_url_retrieval": 1.6927719116210938e-05,
+        "total_workflow_iterations": 77.57947659492493,
+        "average_iteration_time": 25.859825531641643,
+        "environment_closure": 13.09892201423645
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 351.5763478279114,
+      "environment_id": "68dcf1f9-1acc-4225-bb0e-69cc26f65810",
+      "steps_timing": {
+        "environment_creation": 31.608519792556763,
+        "environment_ready": 247.84281182289124,
+        "public_url_retrieval": 1.3828277587890625e-05,
+        "total_workflow_iterations": 70.12241220474243,
+        "average_iteration_time": 23.37413740158081,
+        "environment_closure": 5.2254180908203125
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 334.93869709968567,
+      "environment_id": "3dcfd4f6-cd53-4fb7-beaf-c85bc0f58238",
+      "steps_timing": {
+        "environment_creation": 27.121657848358154,
+        "environment_ready": 228.01761102676392,
+        "public_url_retrieval": 1.3113021850585938e-05,
+        "total_workflow_iterations": 77.79604172706604,
+        "average_iteration_time": 25.932013909022015,
+        "environment_closure": 13.861203908920288
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 314.02295207977295,
+      "environment_id": "fe18fa5f-2eb1-4b2d-9e5a-2dc009b6df00",
+      "steps_timing": {
+        "environment_creation": 21.724783897399902,
+        "environment_ready": 217.5540008544922,
+        "public_url_retrieval": 1.7881393432617188e-05,
+        "total_workflow_iterations": 72.741703748703,
+        "average_iteration_time": 24.247234582901,
+        "environment_closure": 26.19721484184265
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 326.47241711616516,
+      "environment_id": "d61fe602-5923-4135-a34f-1af39e941d92",
+      "steps_timing": {
+        "environment_creation": 30.92479681968689,
+        "environment_ready": 217.8989131450653,
+        "public_url_retrieval": 5.1975250244140625e-05,
+        "total_workflow_iterations": 75.6466326713562,
+        "average_iteration_time": 25.2155442237854,
+        "environment_closure": 18.73377513885498
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 320.44540905952454,
+      "environment_id": "a72b4a1f-1012-4529-bba3-08be112ec19a",
+      "steps_timing": {
+        "environment_creation": 23.09692406654358,
+        "environment_ready": 217.69325280189514,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 77.65321397781372,
+        "average_iteration_time": 25.88440465927124,
+        "environment_closure": 23.332627773284912
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 335.4727931022644,
+      "environment_id": "80112d59-2271-467a-9846-4fc4b7c460b7",
+      "steps_timing": {
+        "environment_creation": 22.65665292739868,
+        "environment_ready": 231.6779432296753,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "total_workflow_iterations": 79.1358253955841,
+        "average_iteration_time": 26.378608465194702,
+        "environment_closure": 13.78296709060669
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 326.2419798374176,
+      "environment_id": "49c85e3d-ea5a-4d6e-98b5-0540811d9f40",
+      "steps_timing": {
+        "environment_creation": 23.56061291694641,
+        "environment_ready": 224.72151923179626,
+        "public_url_retrieval": 1.0967254638671875e-05,
+        "total_workflow_iterations": 75.95923972129822,
+        "average_iteration_time": 25.31974657376607,
+        "environment_closure": 18.977397918701172
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 322.30523228645325,
+      "environment_id": "e674a8e8-93c1-4e4a-8e28-e74f4884770c",
+      "steps_timing": {
+        "environment_creation": 22.61211633682251,
+        "environment_ready": 220.0176923274994,
+        "public_url_retrieval": 7.867813110351562e-06,
+        "total_workflow_iterations": 77.67306923866272,
+        "average_iteration_time": 25.89102307955424,
+        "environment_closure": 21.9546480178833
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 349.7606258392334,
+      "environment_id": "f68472ae-00ad-4d9f-8019-4a3c1a2e8848",
+      "steps_timing": {
+        "environment_creation": 33.69443082809448,
+        "environment_ready": 238.67948484420776,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "total_workflow_iterations": 75.38377141952515,
+        "average_iteration_time": 25.12792380650838,
+        "environment_closure": 5.231520175933838
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 319.92581725120544,
+      "environment_id": "dc0295f0-e0c4-4951-b131-1136ba96c836",
+      "steps_timing": {
+        "environment_creation": 23.09375023841858,
+        "environment_ready": 219.48083305358887,
+        "public_url_retrieval": 2.2172927856445312e-05,
+        "total_workflow_iterations": 75.34986329078674,
+        "average_iteration_time": 25.116621096928913,
+        "environment_closure": 23.317276000976562
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 314.63776898384094,
+      "environment_id": "3b4cd14a-f22d-4461-a0d1-e68876aa1567",
+      "steps_timing": {
+        "environment_creation": 22.553997039794922,
+        "environment_ready": 217.32614517211914,
+        "public_url_retrieval": 1.811981201171875e-05,
+        "total_workflow_iterations": 72.75548601150513,
+        "average_iteration_time": 24.25182867050171,
+        "environment_closure": 25.892699241638184
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 315.62556409835815,
+      "environment_id": "85cd8d0a-5995-49a4-9aa7-2dae627e13eb",
+      "steps_timing": {
+        "environment_creation": 23.329817056655884,
+        "environment_ready": 217.65347933769226,
+        "public_url_retrieval": 2.3126602172851562e-05,
+        "total_workflow_iterations": 72.64047074317932,
+        "average_iteration_time": 24.21349024772644,
+        "environment_closure": 25.31546401977539
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 333.99235105514526,
+      "environment_id": "fea3f667-fbad-4db5-a5de-9a250e5fff3b",
+      "steps_timing": {
+        "environment_creation": 30.077378749847412,
+        "environment_ready": 224.65844702720642,
+        "public_url_retrieval": 1.7881393432617188e-05,
+        "total_workflow_iterations": 77.2550060749054,
+        "average_iteration_time": 25.751668691635132,
+        "environment_closure": 14.383574962615967
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 324.5970711708069,
+      "environment_id": "fab793fd-9a8d-4d51-a779-3288d485b8b3",
+      "steps_timing": {
+        "environment_creation": 24.684835195541382,
+        "environment_ready": 221.60579705238342,
+        "public_url_retrieval": 1.0967254638671875e-05,
+        "total_workflow_iterations": 76.30450201034546,
+        "average_iteration_time": 25.434834003448486,
+        "environment_closure": 20.13675093650818
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 331.3326749801636,
+      "environment_id": "2ab7bec1-fdc4-4cba-be43-964d8d1f90e4",
+      "steps_timing": {
+        "environment_creation": 22.776956796646118,
+        "environment_ready": 228.45575380325317,
+        "public_url_retrieval": 0.0001690387725830078,
+        "total_workflow_iterations": 78.09761691093445,
+        "average_iteration_time": 26.03253897031148,
+        "environment_closure": 15.065089225769043
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 347.4510042667389,
+      "environment_id": "9b438adb-9404-4b54-8ca3-c00944bf0996",
+      "steps_timing": {
+        "environment_creation": 28.68760323524475,
+        "environment_ready": 240.3202292919159,
+        "public_url_retrieval": 9.059906005859375e-06,
+        "total_workflow_iterations": 76.44071292877197,
+        "average_iteration_time": 25.480237642923992,
+        "environment_closure": 5.258996963500977
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 328.2695288658142,
+      "environment_id": "70f81955-0fa0-4225-ba58-3524fcfdcc95",
+      "steps_timing": {
+        "environment_creation": 28.239431858062744,
+        "environment_ready": 220.48434901237488,
+        "public_url_retrieval": 1.6927719116210938e-05,
+        "total_workflow_iterations": 77.54401111602783,
+        "average_iteration_time": 25.84800370534261,
+        "environment_closure": 17.550879955291748
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 320.34270572662354,
+      "environment_id": "acd8b827-231d-4f94-81ea-09d99c965248",
+      "steps_timing": {
+        "environment_creation": 24.883492708206177,
+        "environment_ready": 218.0235149860382,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 75.4341893196106,
+        "average_iteration_time": 25.144729773203533,
+        "environment_closure": 23.19112515449524
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 335.52783584594727,
+      "environment_id": "09a8fe5f-3315-42a8-b583-a70798c4d6de",
+      "steps_timing": {
+        "environment_creation": 26.837499856948853,
+        "environment_ready": 228.5652232170105,
+        "public_url_retrieval": 1.621246337890625e-05,
+        "total_workflow_iterations": 78.12360787391663,
+        "average_iteration_time": 26.041202624638874,
+        "environment_closure": 13.605547904968262
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 321.2822599411011,
+      "environment_id": "688ce6ef-c09c-462f-ae0f-8197adf3000b",
+      "steps_timing": {
+        "environment_creation": 24.596529960632324,
+        "environment_ready": 217.98152375221252,
+        "public_url_retrieval": 1.7881393432617188e-05,
+        "total_workflow_iterations": 76.70194602012634,
+        "average_iteration_time": 25.567315340042114,
+        "environment_closure": 22.60294508934021
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 329.1159369945526,
+      "environment_id": "0982a81f-8747-4faf-980b-1eb3bed22d5a",
+      "steps_timing": {
+        "environment_creation": 25.679216146469116,
+        "environment_ready": 223.4934480190277,
+        "public_url_retrieval": 1.8835067749023438e-05,
+        "total_workflow_iterations": 77.94061613082886,
+        "average_iteration_time": 25.98020537694295,
+        "environment_closure": 17.088911056518555
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 335.2584421634674,
+      "environment_id": "a20c8f74-c489-489c-89b0-787ca629013c",
+      "steps_timing": {
+        "environment_creation": 30.58471918106079,
+        "environment_ready": 225.51069808006287,
+        "public_url_retrieval": 1.5974044799804688e-05,
+        "total_workflow_iterations": 77.16231393814087,
+        "average_iteration_time": 25.720771312713623,
+        "environment_closure": 13.560588836669922
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 322.9611520767212,
+      "environment_id": "731ba086-54c7-4701-a9b1-2d75e7dcb533",
+      "steps_timing": {
+        "environment_creation": 23.02408504486084,
+        "environment_ready": 220.58504819869995,
+        "public_url_retrieval": 1.0013580322265625e-05,
+        "total_workflow_iterations": 77.34949159622192,
+        "average_iteration_time": 25.783163865407307,
+        "environment_closure": 21.351207971572876
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 330.76697993278503,
+      "environment_id": "14202fd4-007f-49b1-bc91-0391bd971949",
+      "steps_timing": {
+        "environment_creation": 31.36985206604004,
+        "environment_ready": 219.78524923324585,
+        "public_url_retrieval": 1.6927719116210938e-05,
+        "total_workflow_iterations": 77.61032199859619,
+        "average_iteration_time": 25.8701073328654,
+        "environment_closure": 15.514916181564331
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 336.98451590538025,
+      "environment_id": "e07b887f-db2c-4f12-9a8d-cd7575109fc1",
+      "steps_timing": {
+        "environment_creation": 25.234131813049316,
+        "environment_ready": 233.59700918197632,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "total_workflow_iterations": 76.15091180801392,
+        "average_iteration_time": 25.38363726933797,
+        "environment_closure": 12.343278169631958
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 331.53134512901306,
+      "environment_id": "fd5b024e-bc5d-418b-9727-ff4f561a083f",
+      "steps_timing": {
+        "environment_creation": 28.175490856170654,
+        "environment_ready": 222.11460399627686,
+        "public_url_retrieval": 2.002716064453125e-05,
+        "total_workflow_iterations": 79.23966693878174,
+        "average_iteration_time": 26.413222312927246,
+        "environment_closure": 14.855607032775879
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 339.06656289100647,
+      "environment_id": "c0d67ba7-bdb8-4a4a-bc05-a07576b0120d",
+      "steps_timing": {
+        "environment_creation": 23.956730842590332,
+        "environment_ready": 234.74915385246277,
+        "public_url_retrieval": 5.0067901611328125e-06,
+        "total_workflow_iterations": 78.35906028747559,
+        "average_iteration_time": 26.119686762491863,
+        "environment_closure": 12.103954076766968
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 348.91659688949585,
+      "environment_id": "e7771f7a-7cfe-40f7-a58a-265b83eafca5",
+      "steps_timing": {
+        "environment_creation": 36.54081702232361,
+        "environment_ready": 234.94524383544922,
+        "public_url_retrieval": 1.6927719116210938e-05,
+        "total_workflow_iterations": 75.42805504798889,
+        "average_iteration_time": 25.142685015996296,
+        "environment_closure": 5.250360012054443
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 325.8834421634674,
+      "environment_id": "216fc1d6-783c-4e56-9ea9-3bce6bd16b62",
+      "steps_timing": {
+        "environment_creation": 30.00939416885376,
+        "environment_ready": 217.78520011901855,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 76.08634805679321,
+        "average_iteration_time": 25.362116018931072,
+        "environment_closure": 19.102664947509766
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 322.05777382850647,
+      "environment_id": "03cad09f-a89a-44e0-9bd0-b2adb139a92a",
+      "steps_timing": {
+        "environment_creation": 24.772887229919434,
+        "environment_ready": 220.01792788505554,
+        "public_url_retrieval": 1.5020370483398438e-05,
+        "total_workflow_iterations": 75.26477670669556,
+        "average_iteration_time": 25.088258902231853,
+        "environment_closure": 22.230038166046143
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 325.3747169971466,
+      "environment_id": "5b59fb6a-73c0-4d83-91aa-c01659f5dadb",
+      "steps_timing": {
+        "environment_creation": 25.904897928237915,
+        "environment_ready": 220.7178978919983,
+        "public_url_retrieval": 1.5974044799804688e-05,
+        "total_workflow_iterations": 76.7500422000885,
+        "average_iteration_time": 25.5833474000295,
+        "environment_closure": 19.597180366516113
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 338.19072008132935,
+      "environment_id": "1f88f69f-3046-4ce9-8ae4-0be6abd042ab",
+      "steps_timing": {
+        "environment_creation": 29.200306177139282,
+        "environment_ready": 227.11934685707092,
+        "public_url_retrieval": 1.4781951904296875e-05,
+        "total_workflow_iterations": 79.86867833137512,
+        "average_iteration_time": 26.622892777125042,
+        "environment_closure": 12.268702983856201
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 313.7294180393219,
+      "environment_id": "3925d215-9790-47b9-bb62-4bd9ade85587",
+      "steps_timing": {
+        "environment_creation": 29.841928958892822,
+        "environment_ready": 209.89715719223022,
+        "public_url_retrieval": 5.0067901611328125e-06,
+        "total_workflow_iterations": 71.98791170120239,
+        "average_iteration_time": 23.995970567067463,
+        "environment_closure": 25.97464871406555
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 335.38962984085083,
+      "environment_id": "c86c80a8-bfd0-46ef-8b45-b869785bcd9c",
+      "steps_timing": {
+        "environment_creation": 26.881145000457764,
+        "environment_ready": 229.59792709350586,
+        "public_url_retrieval": 1.5974044799804688e-05,
+        "total_workflow_iterations": 76.90819096565247,
+        "average_iteration_time": 25.636063655217487,
+        "environment_closure": 13.589492082595825
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 344.7311680316925,
+      "environment_id": "9324f9f6-21ae-4921-8e17-b9b0e51a3379",
+      "steps_timing": {
+        "environment_creation": 25.299084186553955,
+        "environment_ready": 240.72667908668518,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 76.70507979393005,
+        "average_iteration_time": 25.568359931310017,
+        "environment_closure": 6.5567381381988525
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 332.35485100746155,
+      "environment_id": "bbc5cd12-8a31-4cd0-b8fc-56141988f713",
+      "steps_timing": {
+        "environment_creation": 30.21649718284607,
+        "environment_ready": 219.8386209011078,
+        "public_url_retrieval": 1.9788742065429688e-05,
+        "total_workflow_iterations": 80.29759120941162,
+        "average_iteration_time": 26.76586373647054,
+        "environment_closure": 15.514807224273682
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 343.6849820613861,
+      "environment_id": "1da8e984-3fc1-4412-b7e5-0c5296dcd16b",
+      "steps_timing": {
+        "environment_creation": 28.768096923828125,
+        "environment_ready": 236.54521799087524,
+        "public_url_retrieval": 2.86102294921875e-06,
+        "total_workflow_iterations": 76.36921668052673,
+        "average_iteration_time": 25.45640556017558,
+        "environment_closure": 7.527523756027222
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 331.84842824935913,
+      "environment_id": "e3993459-cd47-4ce3-b9be-9a2ae83426be",
+      "steps_timing": {
+        "environment_creation": 25.774619340896606,
+        "environment_ready": 224.5597860813141,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "total_workflow_iterations": 79.51180410385132,
+        "average_iteration_time": 26.50393470128377,
+        "environment_closure": 14.859259128570557
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 346.25209498405457,
+      "environment_id": "e8c16e9c-1ab0-4568-bbc7-c88e08c97b4d",
+      "steps_timing": {
+        "environment_creation": 30.522321939468384,
+        "environment_ready": 237.6084418296814,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "total_workflow_iterations": 76.11950707435608,
+        "average_iteration_time": 25.37316902478536,
+        "environment_closure": 5.20805025100708
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 339.70272493362427,
+      "environment_id": "bbd36998-a63d-4d61-bd3e-f6ad524ba935",
+      "steps_timing": {
+        "environment_creation": 27.95892310142517,
+        "environment_ready": 232.96500611305237,
+        "public_url_retrieval": 5.7220458984375e-06,
+        "total_workflow_iterations": 76.7765760421753,
+        "average_iteration_time": 25.59219201405843,
+        "environment_closure": 11.45778512954712
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 317.05104994773865,
+      "environment_id": "4c41b0eb-c2f3-4870-bb73-20dcd037e2fa",
+      "steps_timing": {
+        "environment_creation": 25.60728693008423,
+        "environment_ready": 215.17067694664001,
+        "public_url_retrieval": 1.1920928955078125e-05,
+        "total_workflow_iterations": 74.27053928375244,
+        "average_iteration_time": 24.75684642791748,
+        "environment_closure": 25.293556928634644
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 320.15994811058044,
+      "environment_id": "615c4227-e8a1-4335-b861-bc0cdeae11ea",
+      "steps_timing": {
+        "environment_creation": 25.671046257019043,
+        "environment_ready": 216.7429530620575,
+        "public_url_retrieval": 1.5974044799804688e-05,
+        "total_workflow_iterations": 75.74409008026123,
+        "average_iteration_time": 25.248030026753742,
+        "environment_closure": 23.176265001296997
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 323.27428579330444,
+      "environment_id": "80f8bf08-6fd5-410f-b4d8-a607fba24e1f",
+      "steps_timing": {
+        "environment_creation": 27.944333791732788,
+        "environment_ready": 217.24978303909302,
+        "public_url_retrieval": 1.5020370483398438e-05,
+        "total_workflow_iterations": 76.07777714729309,
+        "average_iteration_time": 25.359259049097698,
+        "environment_closure": 21.22341012954712
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 337.56449794769287,
+      "environment_id": "3354f3f5-a940-4b2e-9490-e67d751f3118",
+      "steps_timing": {
+        "environment_creation": 29.50452208518982,
+        "environment_ready": 230.5910038948059,
+        "public_url_retrieval": 1.9311904907226562e-05,
+        "total_workflow_iterations": 75.46647715568542,
+        "average_iteration_time": 25.155492385228474,
+        "environment_closure": 13.369221925735474
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 344.81985211372375,
+      "environment_id": "20434e75-dc6e-45be-8d6a-3e601687b472",
+      "steps_timing": {
+        "environment_creation": 29.485305070877075,
+        "environment_ready": 235.20334005355835,
+        "public_url_retrieval": 7.867813110351562e-06,
+        "total_workflow_iterations": 78.12898874282837,
+        "average_iteration_time": 26.042996247609455,
+        "environment_closure": 6.4775071144104
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 334.34011602401733,
+      "environment_id": "7c44a405-b9a1-4f97-b95a-80c98b360e12",
+      "steps_timing": {
+        "environment_creation": 26.96676206588745,
+        "environment_ready": 226.2487711906433,
+        "public_url_retrieval": 1.6927719116210938e-05,
+        "total_workflow_iterations": 79.12333989143372,
+        "average_iteration_time": 26.374446630477905,
+        "environment_closure": 14.418913125991821
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 337.92160391807556,
+      "environment_id": "0c4caca5-b167-47bb-9516-c3cedd84e9b4",
+      "steps_timing": {
+        "environment_creation": 32.63077187538147,
+        "environment_ready": 224.0501799583435,
+        "public_url_retrieval": 5.316734313964844e-05,
+        "total_workflow_iterations": 79.23950147628784,
+        "average_iteration_time": 26.413167158762615,
+        "environment_closure": 13.21576189994812
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 349.39330410957336,
+      "environment_id": "10b12d6d-a87c-4370-9863-d0931f853a52",
+      "steps_timing": {
+        "environment_creation": 29.189658880233765,
+        "environment_ready": 241.6312220096588,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "total_workflow_iterations": 76.57023906707764,
+        "average_iteration_time": 25.52341302235921,
+        "environment_closure": 5.316545724868774
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 335.0521912574768,
+      "environment_id": "712a11e4-98a3-4af1-b7ed-8b45da55e6ce",
+      "steps_timing": {
+        "environment_creation": 35.640918016433716,
+        "environment_ready": 219.7772569656372,
+        "public_url_retrieval": 2.6226043701171875e-05,
+        "total_workflow_iterations": 77.63171744346619,
+        "average_iteration_time": 25.877239147822063,
+        "environment_closure": 13.786478042602539
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 332.12924695014954,
+      "environment_id": "5700e363-df27-476a-8168-f2c48874e400",
+      "steps_timing": {
+        "environment_creation": 31.337915897369385,
+        "environment_ready": 220.46678185462952,
+        "public_url_retrieval": 1.9073486328125e-05,
+        "total_workflow_iterations": 78.32382392883301,
+        "average_iteration_time": 26.107941309611004,
+        "environment_closure": 15.45501184463501
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 345.9091010093689,
+      "environment_id": "f9b89f52-2370-4436-b9e0-aee8033b938f",
+      "steps_timing": {
+        "environment_creation": 28.318655967712402,
+        "environment_ready": 240.06595993041992,
+        "public_url_retrieval": 1.3113021850585938e-05,
+        "total_workflow_iterations": 75.5220742225647,
+        "average_iteration_time": 25.1740247408549,
+        "environment_closure": 5.43167781829834
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 326.7967450618744,
+      "environment_id": "517dce95-2e4d-483f-9413-dc20dc2e220e",
+      "steps_timing": {
+        "environment_creation": 27.4744770526886,
+        "environment_ready": 221.41382122039795,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 75.90676784515381,
+        "average_iteration_time": 25.3022559483846,
+        "environment_closure": 18.404890060424805
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 347.3202521800995,
+      "environment_id": "63ed1bc9-621a-4381-ad2b-f23f18cf4c96",
+      "steps_timing": {
+        "environment_creation": 34.66050624847412,
+        "environment_ready": 234.88648867607117,
+        "public_url_retrieval": 2.86102294921875e-06,
+        "total_workflow_iterations": 75.77129530906677,
+        "average_iteration_time": 25.25709843635559,
+        "environment_closure": 5.277688980102539
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 327.00780391693115,
+      "environment_id": "09cea57a-875f-4c36-adf8-79b0910c47de",
+      "steps_timing": {
+        "environment_creation": 27.80139183998108,
+        "environment_ready": 221.6037209033966,
+        "public_url_retrieval": 7.867813110351562e-06,
+        "total_workflow_iterations": 75.60010743141174,
+        "average_iteration_time": 25.20003581047058,
+        "environment_closure": 18.182677030563354
+      },
+      "error": null
+    }
+  ]
+}

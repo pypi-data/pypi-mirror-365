@@ -1,0 +1,3880 @@
+{
+  "test_type": "espocrm_login",
+  "total_tests": 300,
+  "concurrent_tests": 300,
+  "successful_tests": 248,
+  "failed_tests": 52,
+  "total_duration": 334.56909799575806,
+  "tests_per_second": 0.8966757593488316,
+  "success_rate": 82.66666666666667,
+  "step_averages": {
+    "environment_creation": {
+      "average": 16.63999531730529,
+      "min": 3.0991051197052,
+      "max": 34.1821608543396
+    },
+    "environment_ready": {
+      "average": 220.57550357714777,
+      "min": 198.24816989898682,
+      "max": 249.04705691337585
+    },
+    "total_workflow_iterations": {
+      "average": 57.372317167059066,
+      "min": 29.98346972465515,
+      "max": 71.02144432067871
+    },
+    "average_iteration_time": {
+      "average": 19.124105722353026,
+      "min": 9.994489908218384,
+      "max": 23.67381477355957
+    },
+    "environment_closure": {
+      "average": 18.082163769391276,
+      "min": 5.207409143447876,
+      "max": 26.258429288864136
+    },
+    "public_url_retrieval": {
+      "average": 1.4854054297170332e-05,
+      "min": 1.6689300537109375e-06,
+      "max": 0.000225067138671875
+    }
+  },
+  "individual_test_metrics": [
+    {
+      "success": true,
+      "total_duration": 274.22657585144043,
+      "environment_id": "bec546d3-7a35-44d4-a7fd-459dac767866",
+      "steps_timing": {
+        "environment_creation": 3.099702835083008,
+        "environment_ready": 221.70102334022522,
+        "public_url_retrieval": 2.6941299438476562e-05,
+        "total_workflow_iterations": 47.42386436462402,
+        "average_iteration_time": 15.807954788208008,
+        "environment_closure": 24.517926931381226
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 258.819531917572,
+      "environment_id": "e39263bf-1e0f-4693-954d-330d1d4c985a",
+      "steps_timing": {
+        "environment_creation": 6.92072319984436,
+        "environment_ready": 212.07711791992188,
+        "public_url_retrieval": 2.3126602172851562e-05,
+        "total_workflow_iterations": 37.81950259208679,
+        "average_iteration_time": 12.60650086402893,
+        "environment_closure": 22.663084030151367
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 317.6991021633148,
+      "environment_id": "ea77e35d-22e0-4fd9-9902-efac2392a963",
+      "steps_timing": {
+        "environment_creation": 13.053406000137329,
+        "environment_ready": 236.13116431236267,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 66.51194930076599,
+        "average_iteration_time": 22.170649766921997,
+        "environment_closure": 11.326971769332886
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 276.8638389110565,
+      "environment_id": "7c61ac76-5ab4-4489-ae7e-4fc7864e33f9",
+      "steps_timing": {
+        "environment_creation": 5.577717304229736,
+        "environment_ready": 219.6563000679016,
+        "public_url_retrieval": 2.3126602172851562e-05,
+        "total_workflow_iterations": 49.627811908721924,
+        "average_iteration_time": 16.542603969573975,
+        "environment_closure": 23.74347496032715
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 293.4780373573303,
+      "environment_id": "dd3f9677-8b0b-4cf4-ac6f-fa934e8987b8",
+      "steps_timing": {
+        "environment_creation": 17.98737621307373,
+        "environment_ready": 212.76687002182007,
+        "public_url_retrieval": 2.86102294921875e-06,
+        "total_workflow_iterations": 60.721603870391846,
+        "average_iteration_time": 20.240534623463947,
+        "environment_closure": 21.82088804244995
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 293.4789340496063,
+      "environment_id": "d4609106-18b4-4d70-9cab-63fe8997b849",
+      "steps_timing": {
+        "environment_creation": 5.83984899520874,
+        "environment_ready": 224.95213389396667,
+        "public_url_retrieval": 1.6689300537109375e-06,
+        "total_workflow_iterations": 60.68602919578552,
+        "average_iteration_time": 20.228676398595173,
+        "environment_closure": 22.030081033706665
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 260.61908984184265,
+      "environment_id": "2ecf13f5-14f9-4aaf-a06b-a8a6ff0ad534",
+      "steps_timing": {
+        "environment_creation": 5.809507846832275,
+        "environment_ready": 213.28943610191345,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 39.517677307128906,
+        "average_iteration_time": 13.172559102376303,
+        "environment_closure": 23.236442804336548
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 15.292516231536865,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 274.45434498786926,
+      "environment_id": "8f0bca7b-cfa8-4f14-9850-35f3c7c0cc7e",
+      "steps_timing": {
+        "environment_creation": 12.88575792312622,
+        "environment_ready": 212.2574269771576,
+        "public_url_retrieval": 1.8835067749023438e-05,
+        "total_workflow_iterations": 47.30924606323242,
+        "average_iteration_time": 15.76974868774414,
+        "environment_closure": 24.99831509590149
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 259.3977220058441,
+      "environment_id": "b0b1d74a-720e-42b0-b900-1a426e6cec38",
+      "steps_timing": {
+        "environment_creation": 11.858122110366821,
+        "environment_ready": 206.84050297737122,
+        "public_url_retrieval": 1.5020370483398438e-05,
+        "total_workflow_iterations": 38.69775438308716,
+        "average_iteration_time": 12.899251461029053,
+        "environment_closure": 22.96753191947937
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 288.25179409980774,
+      "environment_id": "4330b6d4-53ae-40b8-8b64-e914bd2d7cc6",
+      "steps_timing": {
+        "environment_creation": 13.436259031295776,
+        "environment_ready": 215.64327812194824,
+        "public_url_retrieval": 2.193450927734375e-05,
+        "total_workflow_iterations": 57.16970705986023,
+        "average_iteration_time": 19.05656901995341,
+        "environment_closure": 23.58836007118225
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 285.4404442310333,
+      "environment_id": "ee7acf41-41b9-4d07-b7b1-630f5a414e77",
+      "steps_timing": {
+        "environment_creation": 11.116160154342651,
+        "environment_ready": 216.15118098258972,
+        "public_url_retrieval": 1.7881393432617188e-05,
+        "total_workflow_iterations": 56.17089533805847,
+        "average_iteration_time": 18.723631779352825,
+        "environment_closure": 25.75443696975708
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 16.8895161151886,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 272.54249596595764,
+      "environment_id": "f10e9909-0a4a-4401-8295-7de07b22959c",
+      "steps_timing": {
+        "environment_creation": 5.619261980056763,
+        "environment_ready": 218.75988793373108,
+        "public_url_retrieval": 1.3113021850585938e-05,
+        "total_workflow_iterations": 46.162611961364746,
+        "average_iteration_time": 15.387537320454916,
+        "environment_closure": 24.217278242111206
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 302.17811465263367,
+      "environment_id": "6c6fa1f6-9d1c-4791-980a-1e59868dc06c",
+      "steps_timing": {
+        "environment_creation": 7.389614820480347,
+        "environment_ready": 230.36044478416443,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 62.42572093009949,
+        "average_iteration_time": 20.808573643366497,
+        "environment_closure": 18.982407331466675
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 262.89177107810974,
+      "environment_id": "f09f6389-2663-4044-9512-48ca53009582",
+      "steps_timing": {
+        "environment_creation": 6.7875072956085205,
+        "environment_ready": 213.58228302001953,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "total_workflow_iterations": 40.51950478553772,
+        "average_iteration_time": 13.50650159517924,
+        "environment_closure": 23.35484504699707
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 275.5720500946045,
+      "environment_id": "27b44306-d229-4e35-a84b-5099efde45fd",
+      "steps_timing": {
+        "environment_creation": 12.0207998752594,
+        "environment_ready": 213.13827681541443,
+        "public_url_retrieval": 1.0967254638671875e-05,
+        "total_workflow_iterations": 48.41153526306152,
+        "average_iteration_time": 16.137178421020508,
+        "environment_closure": 24.38913583755493
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 293.6615972518921,
+      "environment_id": "3c708323-d5fa-46db-9f9f-349e95cffb67",
+      "steps_timing": {
+        "environment_creation": 18.499016284942627,
+        "environment_ready": 213.39671397209167,
+        "public_url_retrieval": 7.867813110351562e-06,
+        "total_workflow_iterations": 59.764403104782104,
+        "average_iteration_time": 19.921467701594036,
+        "environment_closure": 22.406755924224854
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 305.63643980026245,
+      "environment_id": "07005a5e-7c45-499c-bbdb-b3dbadf9eddc",
+      "steps_timing": {
+        "environment_creation": 8.118123769760132,
+        "environment_ready": 232.0219452381134,
+        "public_url_retrieval": 5.0067901611328125e-06,
+        "total_workflow_iterations": 63.494099140167236,
+        "average_iteration_time": 21.16469971338908,
+        "environment_closure": 17.091625213623047
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 308.43413829803467,
+      "environment_id": "0d64fc95-abfe-4dd6-bd7d-ec31d5d229a1",
+      "steps_timing": {
+        "environment_creation": 5.834930181503296,
+        "environment_ready": 229.5763602256775,
+        "public_url_retrieval": 4.76837158203125e-06,
+        "total_workflow_iterations": 71.02144432067871,
+        "average_iteration_time": 23.67381477355957,
+        "environment_closure": 16.180753707885742
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 258.03373098373413,
+      "environment_id": "19942b4e-b369-418d-8552-c0dd8f109287",
+      "steps_timing": {
+        "environment_creation": 5.491564989089966,
+        "environment_ready": 211.49161410331726,
+        "public_url_retrieval": 8.106231689453125e-06,
+        "total_workflow_iterations": 39.048853397369385,
+        "average_iteration_time": 13.016284465789795,
+        "environment_closure": 22.835628986358643
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 317.1772789955139,
+      "environment_id": "84f4ea44-22b5-4762-b8e3-a2bc6b2779ec",
+      "steps_timing": {
+        "environment_creation": 9.794311046600342,
+        "environment_ready": 237.66330981254578,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 67.71744632720947,
+        "average_iteration_time": 22.572482109069824,
+        "environment_closure": 11.668020009994507
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 299.88657116889954,
+      "environment_id": "e97b9dd8-fc60-49d1-a58e-9bea51d8cd72",
+      "steps_timing": {
+        "environment_creation": 11.86938214302063,
+        "environment_ready": 222.82723307609558,
+        "public_url_retrieval": 1.811981201171875e-05,
+        "total_workflow_iterations": 63.18760800361633,
+        "average_iteration_time": 21.062536001205444,
+        "environment_closure": 18.850888967514038
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 18.664670944213867,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 267.42517709732056,
+      "environment_id": "32eecd75-e55d-4d9f-869d-6e2643dd1a5c",
+      "steps_timing": {
+        "environment_creation": 3.0991051197052,
+        "environment_ready": 218.9085340499878,
+        "public_url_retrieval": 2.9087066650390625e-05,
+        "total_workflow_iterations": 43.41517233848572,
+        "average_iteration_time": 14.471724112828573,
+        "environment_closure": 23.419445991516113
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 258.02608489990234,
+      "environment_id": "b66db741-98df-4d5b-ab65-fc50fe40227b",
+      "steps_timing": {
+        "environment_creation": 11.234180688858032,
+        "environment_ready": 206.74384999275208,
+        "public_url_retrieval": 6.198883056640625e-06,
+        "total_workflow_iterations": 38.04711079597473,
+        "average_iteration_time": 12.682370265324911,
+        "environment_closure": 22.839087963104248
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 262.1416711807251,
+      "environment_id": "17576752-ae22-4228-97cc-3c66ba6b6c78",
+      "steps_timing": {
+        "environment_creation": 9.36750602722168,
+        "environment_ready": 211.79740476608276,
+        "public_url_retrieval": 5.0067901611328125e-06,
+        "total_workflow_iterations": 38.976179122924805,
+        "average_iteration_time": 12.992059707641602,
+        "environment_closure": 23.1141676902771
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 263.2164731025696,
+      "environment_id": "4469e8cb-0e17-4393-b010-06a841aa9b8c",
+      "steps_timing": {
+        "environment_creation": 11.161282062530518,
+        "environment_ready": 209.44563627243042,
+        "public_url_retrieval": 5.245208740234375e-06,
+        "total_workflow_iterations": 40.60799956321716,
+        "average_iteration_time": 13.535999854405722,
+        "environment_closure": 23.897505044937134
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 294.6683189868927,
+      "environment_id": "67535367-5cea-4a99-a832-81d46a0e6772",
+      "steps_timing": {
+        "environment_creation": 18.501477241516113,
+        "environment_ready": 214.51945805549622,
+        "public_url_retrieval": 1.0013580322265625e-05,
+        "total_workflow_iterations": 59.64594912528992,
+        "average_iteration_time": 19.881983041763306,
+        "environment_closure": 22.453639030456543
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 278.6029050350189,
+      "environment_id": "d6e290fc-5718-4e54-a710-e1e1e76ebc9e",
+      "steps_timing": {
+        "environment_creation": 9.360126972198486,
+        "environment_ready": 217.049418926239,
+        "public_url_retrieval": 1.4066696166992188e-05,
+        "total_workflow_iterations": 50.19163274765015,
+        "average_iteration_time": 16.730544249216717,
+        "environment_closure": 24.045575857162476
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 284.21855878829956,
+      "environment_id": "b3c2f916-ca0d-4c8d-ac99-3a4c3af84f2a",
+      "steps_timing": {
+        "environment_creation": 12.79991888999939,
+        "environment_ready": 215.70885682106018,
+        "public_url_retrieval": 2.09808349609375e-05,
+        "total_workflow_iterations": 53.70803952217102,
+        "average_iteration_time": 17.902679840723675,
+        "environment_closure": 26.056604146957397
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 272.9290859699249,
+      "environment_id": "f24b8dea-f39f-4332-82f3-a7e48f0c3084",
+      "steps_timing": {
+        "environment_creation": 11.393775224685669,
+        "environment_ready": 214.19844889640808,
+        "public_url_retrieval": 1.811981201171875e-05,
+        "total_workflow_iterations": 45.335856914520264,
+        "average_iteration_time": 15.111952304840088,
+        "environment_closure": 24.126728057861328
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 312.1504981517792,
+      "environment_id": "f6672179-d0d7-420c-a233-86e031da48dc",
+      "steps_timing": {
+        "environment_creation": 11.159577131271362,
+        "environment_ready": 232.99135303497314,
+        "public_url_retrieval": 9.059906005859375e-06,
+        "total_workflow_iterations": 65.99919509887695,
+        "average_iteration_time": 21.999731699625652,
+        "environment_closure": 15.504014015197754
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 320.0215542316437,
+      "environment_id": "e18f64e9-1db9-498f-90e9-08fbe99317f2",
+      "steps_timing": {
+        "environment_creation": 6.096614122390747,
+        "environment_ready": 245.47949719429016,
+        "public_url_retrieval": 5.0067901611328125e-06,
+        "total_workflow_iterations": 66.44304394721985,
+        "average_iteration_time": 22.14768131573995,
+        "environment_closure": 9.223089933395386
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 256.8727819919586,
+      "environment_id": "ebdb6740-f456-4fb5-bcd4-0ed0542a28f2",
+      "steps_timing": {
+        "environment_creation": 5.825608015060425,
+        "environment_ready": 211.81538891792297,
+        "public_url_retrieval": 1.2874603271484375e-05,
+        "total_workflow_iterations": 37.23038125038147,
+        "average_iteration_time": 12.41012708346049,
+        "environment_closure": 22.841127395629883
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 279.78683495521545,
+      "environment_id": "e28276e7-2869-4b2e-af7d-dd866e800284",
+      "steps_timing": {
+        "environment_creation": 11.410610914230347,
+        "environment_ready": 215.34547305107117,
+        "public_url_retrieval": 1.4781951904296875e-05,
+        "total_workflow_iterations": 51.029223918914795,
+        "average_iteration_time": 17.00974130630493,
+        "environment_closure": 25.243387937545776
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 269.75059938430786,
+      "environment_id": "74349dbf-02ea-4c4f-b776-06bc05ef7090",
+      "steps_timing": {
+        "environment_creation": 6.986593246459961,
+        "environment_ready": 215.87920498847961,
+        "public_url_retrieval": 4.76837158203125e-06,
+        "total_workflow_iterations": 44.883198261260986,
+        "average_iteration_time": 14.961066087086996,
+        "environment_closure": 23.90134906768799
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 267.18955302238464,
+      "environment_id": "d80e4d8d-a88b-4e30-8903-708726ecf87b",
+      "steps_timing": {
+        "environment_creation": 13.18992805480957,
+        "environment_ready": 209.5028121471405,
+        "public_url_retrieval": 1.6927719116210938e-05,
+        "total_workflow_iterations": 42.49549889564514,
+        "average_iteration_time": 14.16516629854838,
+        "environment_closure": 23.599374055862427
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 277.5601191520691,
+      "environment_id": "eb8443d6-798c-4615-9fa3-2d545fec276e",
+      "steps_timing": {
+        "environment_creation": 9.754394769668579,
+        "environment_ready": 216.3540358543396,
+        "public_url_retrieval": 1.2874603271484375e-05,
+        "total_workflow_iterations": 49.44873237609863,
+        "average_iteration_time": 16.48291079203288,
+        "environment_closure": 24.35134792327881
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 293.5294270515442,
+      "environment_id": "12f9766a-c7df-46bc-b60a-b1c29f96c670",
+      "steps_timing": {
+        "environment_creation": 9.348225116729736,
+        "environment_ready": 223.5696041584015,
+        "public_url_retrieval": 3.814697265625e-06,
+        "total_workflow_iterations": 58.60951232910156,
+        "average_iteration_time": 19.53650410970052,
+        "environment_closure": 22.108290910720825
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 12.031893014907837,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 258.3416209220886,
+      "environment_id": "e61e69da-11d4-4de0-ab08-d6680136317c",
+      "steps_timing": {
+        "environment_creation": 7.594590902328491,
+        "environment_ready": 210.06171584129333,
+        "public_url_retrieval": 1.3113021850585938e-05,
+        "total_workflow_iterations": 38.68396973609924,
+        "average_iteration_time": 12.894656578699747,
+        "environment_closure": 22.76102304458618
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 262.9748389720917,
+      "environment_id": "38dbfb77-a68e-446e-9f0d-473908e68b41",
+      "steps_timing": {
+        "environment_creation": 22.627968788146973,
+        "environment_ready": 198.24816989898682,
+        "public_url_retrieval": 5.7220458984375e-06,
+        "total_workflow_iterations": 40.09724712371826,
+        "average_iteration_time": 13.36574904123942,
+        "environment_closure": 23.112364053726196
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 288.4713978767395,
+      "environment_id": "0c05c41e-6e46-4edb-9e13-56cf725d234e",
+      "steps_timing": {
+        "environment_creation": 9.202451944351196,
+        "environment_ready": 220.5373020172119,
+        "public_url_retrieval": 1.7881393432617188e-05,
+        "total_workflow_iterations": 56.72966170310974,
+        "average_iteration_time": 18.909887234369915,
+        "environment_closure": 23.443206787109375
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 18.666490077972412,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 280.8873677253723,
+      "environment_id": "f5bb2094-6534-47f0-b19e-8bed4f9f746e",
+      "steps_timing": {
+        "environment_creation": 6.066351890563965,
+        "environment_ready": 220.0431878566742,
+        "public_url_retrieval": 5.7220458984375e-06,
+        "total_workflow_iterations": 52.77536082267761,
+        "average_iteration_time": 17.591786940892536,
+        "environment_closure": 25.071803092956543
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 16.006406784057617,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 265.69146704673767,
+      "environment_id": "7791aefc-dcac-42e2-aa29-dffa0347c62a",
+      "steps_timing": {
+        "environment_creation": 6.739174842834473,
+        "environment_ready": 216.21083188056946,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 40.74021005630493,
+        "average_iteration_time": 13.58007001876831,
+        "environment_closure": 23.53104066848755
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 280.5896170139313,
+      "environment_id": "cd31a56f-a483-4b60-917a-d5949c25bb02",
+      "steps_timing": {
+        "environment_creation": 11.430826187133789,
+        "environment_ready": 217.02706289291382,
+        "public_url_retrieval": 6.413459777832031e-05,
+        "total_workflow_iterations": 50.13007378578186,
+        "average_iteration_time": 16.71002459526062,
+        "environment_closure": 24.775513172149658
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 261.33857893943787,
+      "environment_id": "525e6cda-4e3a-4ee2-96fd-52ec3dd784e0",
+      "steps_timing": {
+        "environment_creation": 10.19899296760559,
+        "environment_ready": 211.52214002609253,
+        "public_url_retrieval": 7.152557373046875e-06,
+        "total_workflow_iterations": 37.60069227218628,
+        "average_iteration_time": 12.53356409072876,
+        "environment_closure": 23.508384943008423
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 18.66610312461853,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": false,
+      "total_duration": 16.48160219192505,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 298.78872990608215,
+      "environment_id": "61dec1f9-1b59-4993-a270-a675fb4f091f",
+      "steps_timing": {
+        "environment_creation": 11.313766956329346,
+        "environment_ready": 223.60996913909912,
+        "public_url_retrieval": 5.0067901611328125e-06,
+        "total_workflow_iterations": 61.86246871948242,
+        "average_iteration_time": 20.62082290649414,
+        "environment_closure": 19.692100048065186
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 310.41204595565796,
+      "environment_id": "bba9c03d-fdc9-46bf-9e91-f1e2a5ad26d9",
+      "steps_timing": {
+        "environment_creation": 12.072656869888306,
+        "environment_ready": 231.29545998573303,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "total_workflow_iterations": 65.04279613494873,
+        "average_iteration_time": 21.68093204498291,
+        "environment_closure": 15.319465160369873
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 279.896831035614,
+      "environment_id": "e04d22cb-f2af-4c95-855c-0bd0f5820262",
+      "steps_timing": {
+        "environment_creation": 11.389410257339478,
+        "environment_ready": 215.23306107521057,
+        "public_url_retrieval": 2.4080276489257812e-05,
+        "total_workflow_iterations": 51.27221965789795,
+        "average_iteration_time": 17.090739885965984,
+        "environment_closure": 25.132898092269897
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 275.5504059791565,
+      "environment_id": "43ff68a9-0776-43f8-9bff-7470736a1732",
+      "steps_timing": {
+        "environment_creation": 12.88180685043335,
+        "environment_ready": 211.87062191963196,
+        "public_url_retrieval": 1.52587890625e-05,
+        "total_workflow_iterations": 48.79697895050049,
+        "average_iteration_time": 16.26565965016683,
+        "environment_closure": 24.109248161315918
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 325.0001380443573,
+      "environment_id": "e9d3b4a9-99d4-42e0-9891-a2f138df7879",
+      "steps_timing": {
+        "environment_creation": 9.428055047988892,
+        "environment_ready": 249.04705691337585,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 64.52331829071045,
+        "average_iteration_time": 21.50777276357015,
+        "environment_closure": 5.2223732471466064
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 265.83933115005493,
+      "environment_id": "831817c4-6506-426e-a537-79e871389f0b",
+      "steps_timing": {
+        "environment_creation": 9.426175117492676,
+        "environment_ready": 213.1476674079895,
+        "public_url_retrieval": 1.0967254638671875e-05,
+        "total_workflow_iterations": 41.26402711868286,
+        "average_iteration_time": 13.754675706227621,
+        "environment_closure": 23.57627296447754
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 270.02851819992065,
+      "environment_id": "78befcff-17f9-479e-8d61-7dd5c9465326",
+      "steps_timing": {
+        "environment_creation": 11.858062028884888,
+        "environment_ready": 211.58618807792664,
+        "public_url_retrieval": 1.5974044799804688e-05,
+        "total_workflow_iterations": 44.58342099189758,
+        "average_iteration_time": 14.861140330632528,
+        "environment_closure": 23.919368982315063
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 290.0045828819275,
+      "environment_id": "41939dc6-0c44-459b-bc8a-c59d33f29831",
+      "steps_timing": {
+        "environment_creation": 12.880604028701782,
+        "environment_ready": 216.73636031150818,
+        "public_url_retrieval": 2.09808349609375e-05,
+        "total_workflow_iterations": 58.38558793067932,
+        "average_iteration_time": 19.461862643559773,
+        "environment_closure": 22.471646785736084
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 286.2896890640259,
+      "environment_id": "255b4458-742a-4623-a437-1d81a23f4fc0",
+      "steps_timing": {
+        "environment_creation": 11.15906572341919,
+        "environment_ready": 217.51683902740479,
+        "public_url_retrieval": 1.6927719116210938e-05,
+        "total_workflow_iterations": 55.61219620704651,
+        "average_iteration_time": 18.53739873568217,
+        "environment_closure": 25.22048306465149
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 279.00129318237305,
+      "environment_id": "77e7e408-6781-4d67-97f4-fd717c95df65",
+      "steps_timing": {
+        "environment_creation": 16.000662088394165,
+        "environment_ready": 210.25350189208984,
+        "public_url_retrieval": 1.71661376953125e-05,
+        "total_workflow_iterations": 50.745145320892334,
+        "average_iteration_time": 16.915048440297443,
+        "environment_closure": 24.90330481529236
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 271.3190281391144,
+      "environment_id": "5f001f5f-a0fc-4a72-be85-905d8ff4d8d2",
+      "steps_timing": {
+        "environment_creation": 9.991198062896729,
+        "environment_ready": 214.71480703353882,
+        "public_url_retrieval": 1.5735626220703125e-05,
+        "total_workflow_iterations": 44.611451148986816,
+        "average_iteration_time": 14.87048371632894,
+        "environment_closure": 23.681565046310425
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 298.454626083374,
+      "environment_id": "15506835-105d-41f8-891c-c6fc92cd1b6c",
+      "steps_timing": {
+        "environment_creation": 12.882949829101562,
+        "environment_ready": 221.5888111591339,
+        "public_url_retrieval": 2.5033950805664062e-05,
+        "total_workflow_iterations": 61.98111271858215,
+        "average_iteration_time": 20.66037090619405,
+        "environment_closure": 19.97831702232361
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 320.8765299320221,
+      "environment_id": "7c32cb66-247d-46d4-ac2b-38ec39c68437",
+      "steps_timing": {
+        "environment_creation": 11.408740758895874,
+        "environment_ready": 241.70427012443542,
+        "public_url_retrieval": 5.7220458984375e-06,
+        "total_workflow_iterations": 65.76146006584167,
+        "average_iteration_time": 21.92048668861389,
+        "environment_closure": 8.600943088531494
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 19.184376001358032,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 269.38590908050537,
+      "environment_id": "34c0ec31-9f71-41dd-a58d-f03af3b06355",
+      "steps_timing": {
+        "environment_creation": 13.79163908958435,
+        "environment_ready": 210.5715868473053,
+        "public_url_retrieval": 1.2159347534179688e-05,
+        "total_workflow_iterations": 43.02118945121765,
+        "average_iteration_time": 14.340396483739218,
+        "environment_closure": 23.911694288253784
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 263.32121205329895,
+      "environment_id": "ed634b80-2a16-41ed-82ab-e003e1f70b1a",
+      "steps_timing": {
+        "environment_creation": 12.78633189201355,
+        "environment_ready": 209.07985520362854,
+        "public_url_retrieval": 7.867813110351562e-06,
+        "total_workflow_iterations": 39.452965259552,
+        "average_iteration_time": 13.150988419850668,
+        "environment_closure": 23.906713008880615
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 16.40132784843445,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 288.60458993911743,
+      "environment_id": "a8433713-6ea8-4ae7-bb98-c2475d8efcfb",
+      "steps_timing": {
+        "environment_creation": 16.189964771270752,
+        "environment_ready": 213.3211178779602,
+        "public_url_retrieval": 4.76837158203125e-06,
+        "total_workflow_iterations": 57.09169054031372,
+        "average_iteration_time": 19.030563513437908,
+        "environment_closure": 23.434693098068237
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 287.88634610176086,
+      "environment_id": "84d92584-d0d5-41e8-8287-77afa235b3d4",
+      "steps_timing": {
+        "environment_creation": 11.207825899124146,
+        "environment_ready": 217.88316202163696,
+        "public_url_retrieval": 2.09808349609375e-05,
+        "total_workflow_iterations": 56.793269634246826,
+        "average_iteration_time": 18.931089878082275,
+        "environment_closure": 23.87705111503601
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 277.93056988716125,
+      "environment_id": "77a398d5-9fcd-43a7-af1e-e7b5c23461a6",
+      "steps_timing": {
+        "environment_creation": 8.184093952178955,
+        "environment_ready": 217.26444792747498,
+        "public_url_retrieval": 1.9073486328125e-05,
+        "total_workflow_iterations": 50.48021674156189,
+        "average_iteration_time": 16.826738913853962,
+        "environment_closure": 24.32806086540222
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 300.6240246295929,
+      "environment_id": "6cbf2da5-103d-4026-9544-e7921501c179",
+      "steps_timing": {
+        "environment_creation": 6.736598968505859,
+        "environment_ready": 227.7335081100464,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "total_workflow_iterations": 64.15280270576477,
+        "average_iteration_time": 21.384267568588257,
+        "environment_closure": 19.738969087600708
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 267.21663999557495,
+      "environment_id": "c0e496ec-0fec-417f-a2a3-529a1814c3b5",
+      "steps_timing": {
+        "environment_creation": 12.166866302490234,
+        "environment_ready": 209.85705494880676,
+        "public_url_retrieval": 7.152557373046875e-06,
+        "total_workflow_iterations": 43.19032025337219,
+        "average_iteration_time": 14.396773417790731,
+        "environment_closure": 23.62666416168213
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 268.8952498435974,
+      "environment_id": "78eb627e-7010-4f73-8581-b29fa9c9664e",
+      "steps_timing": {
+        "environment_creation": 7.10184121131897,
+        "environment_ready": 216.08702993392944,
+        "public_url_retrieval": 3.981590270996094e-05,
+        "total_workflow_iterations": 43.70439100265503,
+        "average_iteration_time": 14.568130334218344,
+        "environment_closure": 24.35136103630066
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 293.6922881603241,
+      "environment_id": "2b465ddd-35fb-4e2c-a05c-a058c15e8453",
+      "steps_timing": {
+        "environment_creation": 17.420987129211426,
+        "environment_ready": 214.4701931476593,
+        "public_url_retrieval": 1.3828277587890625e-05,
+        "total_workflow_iterations": 59.79998016357422,
+        "average_iteration_time": 19.933326721191406,
+        "environment_closure": 22.52163600921631
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 270.28506326675415,
+      "environment_id": "f074adbd-2b87-4296-b8f2-9c0a7293baa2",
+      "steps_timing": {
+        "environment_creation": 5.822873115539551,
+        "environment_ready": 217.62954998016357,
+        "public_url_retrieval": 7.867813110351562e-06,
+        "total_workflow_iterations": 44.83148217201233,
+        "average_iteration_time": 14.943827390670776,
+        "environment_closure": 24.1781268119812
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 277.6701738834381,
+      "environment_id": "5b2407b3-0ec4-4006-aee8-6c843b59956d",
+      "steps_timing": {
+        "environment_creation": 5.8206682205200195,
+        "environment_ready": 220.16339802742004,
+        "public_url_retrieval": 1.811981201171875e-05,
+        "total_workflow_iterations": 49.684627294540405,
+        "average_iteration_time": 16.56154243151347,
+        "environment_closure": 24.358898162841797
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 285.54427576065063,
+      "environment_id": "510b2ea6-a0f3-4028-8a31-349c9587311e",
+      "steps_timing": {
+        "environment_creation": 12.553384780883789,
+        "environment_ready": 214.68132090568542,
+        "public_url_retrieval": 2.5033950805664062e-05,
+        "total_workflow_iterations": 56.30800914764404,
+        "average_iteration_time": 18.769336382548016,
+        "environment_closure": 25.654622793197632
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 285.5254261493683,
+      "environment_id": "953554dd-a174-4362-9d66-0ee128c5f983",
+      "steps_timing": {
+        "environment_creation": 7.115375995635986,
+        "environment_ready": 220.873694896698,
+        "public_url_retrieval": 1.2874603271484375e-05,
+        "total_workflow_iterations": 55.535183906555176,
+        "average_iteration_time": 18.511727968851726,
+        "environment_closure": 25.648878812789917
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 274.4048638343811,
+      "environment_id": "6d267540-3a93-4c24-b2db-d5b5caccb07e",
+      "steps_timing": {
+        "environment_creation": 8.120041847229004,
+        "environment_ready": 216.94365191459656,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 47.33958911895752,
+        "average_iteration_time": 15.779863039652506,
+        "environment_closure": 25.018419981002808
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 306.13394498825073,
+      "environment_id": "bb251eff-db3b-43a3-8419-e19d874c399e",
+      "steps_timing": {
+        "environment_creation": 7.739259958267212,
+        "environment_ready": 232.5343041419983,
+        "public_url_retrieval": 1.1205673217773438e-05,
+        "total_workflow_iterations": 63.858275413513184,
+        "average_iteration_time": 21.286091804504395,
+        "environment_closure": 16.871365070343018
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 290.73140597343445,
+      "environment_id": "e8b72540-f4ed-42e0-8a36-5f624b41ef9d",
+      "steps_timing": {
+        "environment_creation": 11.855908870697021,
+        "environment_ready": 217.75433802604675,
+        "public_url_retrieval": 3.814697265625e-06,
+        "total_workflow_iterations": 59.119521141052246,
+        "average_iteration_time": 19.706507047017414,
+        "environment_closure": 22.473451852798462
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 281.6163022518158,
+      "environment_id": "bcc4f03b-9b2c-4353-a408-c8431fe6dc74",
+      "steps_timing": {
+        "environment_creation": 12.090996026992798,
+        "environment_ready": 214.75995302200317,
+        "public_url_retrieval": 1.9311904907226562e-05,
+        "total_workflow_iterations": 52.76390480995178,
+        "average_iteration_time": 17.58796826998393,
+        "environment_closure": 25.04023504257202
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 269.40407514572144,
+      "environment_id": "c7c97675-cc4b-49ff-a3e1-aa1e215f383c",
+      "steps_timing": {
+        "environment_creation": 11.15762186050415,
+        "environment_ready": 211.43834400177002,
+        "public_url_retrieval": 1.3113021850585938e-05,
+        "total_workflow_iterations": 44.805384159088135,
+        "average_iteration_time": 14.935128053029379,
+        "environment_closure": 23.922717094421387
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 313.2431423664093,
+      "environment_id": "560795d2-7698-4907-8b57-681be66f7429",
+      "steps_timing": {
+        "environment_creation": 6.980034112930298,
+        "environment_ready": 238.3970730304718,
+        "public_url_retrieval": 1.1920928955078125e-05,
+        "total_workflow_iterations": 65.86360216140747,
+        "average_iteration_time": 21.95453405380249,
+        "environment_closure": 15.11107587814331
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 293.59864711761475,
+      "environment_id": "e11148ad-749a-41fb-8ebc-f576c1838487",
+      "steps_timing": {
+        "environment_creation": 6.246912956237793,
+        "environment_ready": 225.4079692363739,
+        "public_url_retrieval": 1.0013580322265625e-05,
+        "total_workflow_iterations": 59.94294476509094,
+        "average_iteration_time": 19.980981588363647,
+        "environment_closure": 22.265570878982544
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 262.9928340911865,
+      "environment_id": "be49218d-073c-4da0-95dc-be85bb195784",
+      "steps_timing": {
+        "environment_creation": 12.069496154785156,
+        "environment_ready": 209.05715322494507,
+        "public_url_retrieval": 4.76837158203125e-06,
+        "total_workflow_iterations": 39.863754749298096,
+        "average_iteration_time": 13.287918249766031,
+        "environment_closure": 23.5787410736084
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 267.9350130558014,
+      "environment_id": "0c8b002e-9499-4173-ae29-7a6e384ac334",
+      "steps_timing": {
+        "environment_creation": 6.7664172649383545,
+        "environment_ready": 216.27137994766235,
+        "public_url_retrieval": 1.9073486328125e-05,
+        "total_workflow_iterations": 42.89385628700256,
+        "average_iteration_time": 14.29795209566752,
+        "environment_closure": 23.72140884399414
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 299.6026632785797,
+      "environment_id": "4d7f2122-3cc2-41ea-bf15-351bc7325cdb",
+      "steps_timing": {
+        "environment_creation": 11.156654119491577,
+        "environment_ready": 220.68312215805054,
+        "public_url_retrieval": 1.811981201171875e-05,
+        "total_workflow_iterations": 65.76115131378174,
+        "average_iteration_time": 21.92038377126058,
+        "environment_closure": 18.99360680580139
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 267.54664611816406,
+      "environment_id": "6d759c95-fe47-4425-a92c-2124965cce4b",
+      "steps_timing": {
+        "environment_creation": 6.332617998123169,
+        "environment_ready": 216.59257912635803,
+        "public_url_retrieval": 1.3113021850585938e-05,
+        "total_workflow_iterations": 42.61922907829285,
+        "average_iteration_time": 14.206409692764282,
+        "environment_closure": 23.528034210205078
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 322.92668890953064,
+      "environment_id": "fe79b87b-c995-4e84-824c-781586804fe9",
+      "steps_timing": {
+        "environment_creation": 16.18430471420288,
+        "environment_ready": 240.95682001113892,
+        "public_url_retrieval": 4.76837158203125e-06,
+        "total_workflow_iterations": 63.783019065856934,
+        "average_iteration_time": 21.261006355285645,
+        "environment_closure": 6.591052770614624
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 266.56990218162537,
+      "environment_id": "c263b3c2-0da5-40d6-bfee-0832af210bcf",
+      "steps_timing": {
+        "environment_creation": 9.763803243637085,
+        "environment_ready": 213.43065810203552,
+        "public_url_retrieval": 1.6689300537109375e-05,
+        "total_workflow_iterations": 41.373368978500366,
+        "average_iteration_time": 13.791122992833456,
+        "environment_closure": 5.282629013061523
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 311.69286608695984,
+      "environment_id": "84c2ba91-c2e1-4a05-92d3-3c3757deb604",
+      "steps_timing": {
+        "environment_creation": 12.882053136825562,
+        "environment_ready": 232.94466495513916,
+        "public_url_retrieval": 4.291534423828125e-06,
+        "total_workflow_iterations": 63.86442446708679,
+        "average_iteration_time": 21.28814148902893,
+        "environment_closure": 15.342772960662842
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 19.903043746948242,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 288.8010938167572,
+      "environment_id": "567ec7ff-0590-4ddb-874b-30c7e8bc6083",
+      "steps_timing": {
+        "environment_creation": 17.974831104278564,
+        "environment_ready": 211.63560009002686,
+        "public_url_retrieval": 1.6927719116210938e-05,
+        "total_workflow_iterations": 57.1880578994751,
+        "average_iteration_time": 19.0626859664917,
+        "environment_closure": 23.264238119125366
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 248.21075892448425,
+      "environment_id": "67785222-61c6-4765-94c3-41620306c453",
+      "steps_timing": {
+        "environment_creation": 6.209017753601074,
+        "environment_ready": 210.0165660381317,
+        "public_url_retrieval": 1.5020370483398438e-05,
+        "total_workflow_iterations": 29.98346972465515,
+        "average_iteration_time": 9.994489908218384,
+        "environment_closure": 19.699732065200806
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 258.01114797592163,
+      "environment_id": "713347cf-e569-413d-a336-0fa3ca8aabdd",
+      "steps_timing": {
+        "environment_creation": 6.154207944869995,
+        "environment_ready": 211.40406489372253,
+        "public_url_retrieval": 9.059906005859375e-06,
+        "total_workflow_iterations": 38.45174980163574,
+        "average_iteration_time": 12.81724993387858,
+        "environment_closure": 22.796951055526733
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 281.97422528266907,
+      "environment_id": "0e72d95a-3a3c-47b3-97e2-27f91d5989d2",
+      "steps_timing": {
+        "environment_creation": 11.9816153049469,
+        "environment_ready": 215.7327709197998,
+        "public_url_retrieval": 1.5735626220703125e-05,
+        "total_workflow_iterations": 52.25762701034546,
+        "average_iteration_time": 17.419209003448486,
+        "environment_closure": 25.4135320186615
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 295.4481158256531,
+      "environment_id": "598fbdf9-b92e-4cfb-838c-a7ec57c69df8",
+      "steps_timing": {
+        "environment_creation": 8.761541843414307,
+        "environment_ready": 224.25245809555054,
+        "public_url_retrieval": 2.193450927734375e-05,
+        "total_workflow_iterations": 60.432652711868286,
+        "average_iteration_time": 20.14421757062276,
+        "environment_closure": 22.06543493270874
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 260.9866590499878,
+      "environment_id": "15624b3b-41fa-44ac-bfb1-54207f4794bf",
+      "steps_timing": {
+        "environment_creation": 11.400149822235107,
+        "environment_ready": 209.14624691009521,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 38.43844509124756,
+        "average_iteration_time": 12.812815030415853,
+        "environment_closure": 23.202640771865845
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 251.56434106826782,
+      "environment_id": "a66dd61c-f242-4f4e-aed5-ce3ff21e2265",
+      "steps_timing": {
+        "environment_creation": 6.972394704818726,
+        "environment_ready": 207.60403084754944,
+        "public_url_retrieval": 1.0013580322265625e-05,
+        "total_workflow_iterations": 34.987218379974365,
+        "average_iteration_time": 11.662406126658121,
+        "environment_closure": 19.220802068710327
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 265.5505950450897,
+      "environment_id": "d7900f1b-806e-49e3-b60d-03947837bbfb",
+      "steps_timing": {
+        "environment_creation": 7.800229072570801,
+        "environment_ready": 214.52947402000427,
+        "public_url_retrieval": 3.3855438232421875e-05,
+        "total_workflow_iterations": 41.21984815597534,
+        "average_iteration_time": 13.739949385325113,
+        "environment_closure": 23.605008125305176
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 265.9133291244507,
+      "environment_id": "59f37673-baa2-4a04-b5f0-0b0aa7f80e4a",
+      "steps_timing": {
+        "environment_creation": 12.93531322479248,
+        "environment_ready": 211.12146520614624,
+        "public_url_retrieval": 1.621246337890625e-05,
+        "total_workflow_iterations": 39.8549268245697,
+        "average_iteration_time": 13.284975608189901,
+        "environment_closure": 23.6317880153656
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 274.53972005844116,
+      "environment_id": "83d60aa8-50da-43eb-a2ca-b90fabc3a3d3",
+      "steps_timing": {
+        "environment_creation": 8.556859016418457,
+        "environment_ready": 217.33537006378174,
+        "public_url_retrieval": 2.09808349609375e-05,
+        "total_workflow_iterations": 46.64571809768677,
+        "average_iteration_time": 15.548572699228922,
+        "environment_closure": 25.13935685157776
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 292.3177397251129,
+      "environment_id": "9db9b59e-fe4d-4b6a-8456-f8f783ab52f9",
+      "steps_timing": {
+        "environment_creation": 11.928218841552734,
+        "environment_ready": 219.21404576301575,
+        "public_url_retrieval": 9.059906005859375e-06,
+        "total_workflow_iterations": 59.17456650733948,
+        "average_iteration_time": 19.72485550244649,
+        "environment_closure": 22.231564044952393
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 285.7155590057373,
+      "environment_id": "1e1fc594-25d4-4ee7-9659-d2cecf10d19b",
+      "steps_timing": {
+        "environment_creation": 8.269793033599854,
+        "environment_ready": 220.7270951271057,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 54.71715497970581,
+        "average_iteration_time": 18.239051659901936,
+        "environment_closure": 25.695400953292847
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 274.5198540687561,
+      "environment_id": "bcf7f6d0-95b9-44eb-aa35-926dbaa8a89e",
+      "steps_timing": {
+        "environment_creation": 8.264795780181885,
+        "environment_ready": 217.68532299995422,
+        "public_url_retrieval": 1.6927719116210938e-05,
+        "total_workflow_iterations": 46.56779074668884,
+        "average_iteration_time": 15.522596915562948,
+        "environment_closure": 25.148370265960693
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 15.990183115005493,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": false,
+      "total_duration": 15.05335783958435,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 283.26274824142456,
+      "environment_id": "89e0a883-dd7c-405d-93ab-b1a0a8a77d6c",
+      "steps_timing": {
+        "environment_creation": 8.28268313407898,
+        "environment_ready": 218.76045107841492,
+        "public_url_retrieval": 0.00016188621520996094,
+        "total_workflow_iterations": 54.21071100234985,
+        "average_iteration_time": 18.070237000783283,
+        "environment_closure": 26.258429288864136
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 282.6313169002533,
+      "environment_id": "372bc280-d7aa-4189-ac52-22425deb21a6",
+      "steps_timing": {
+        "environment_creation": 9.294480085372925,
+        "environment_ready": 217.53464484214783,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 53.80038571357727,
+        "average_iteration_time": 17.933461904525757,
+        "environment_closure": 24.90148401260376
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 261.7896659374237,
+      "environment_id": "c8914bbf-c4ce-43de-befc-8c4006724306",
+      "steps_timing": {
+        "environment_creation": 9.344590902328491,
+        "environment_ready": 211.71749591827393,
+        "public_url_retrieval": 6.198883056640625e-06,
+        "total_workflow_iterations": 38.725730657577515,
+        "average_iteration_time": 12.908576885859171,
+        "environment_closure": 23.265958309173584
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 293.67693996429443,
+      "environment_id": "1f40d061-13cf-46d5-85c4-6676180b05f3",
+      "steps_timing": {
+        "environment_creation": 8.599995136260986,
+        "environment_ready": 221.60654997825623,
+        "public_url_retrieval": 1.3113021850585938e-05,
+        "total_workflow_iterations": 61.46836805343628,
+        "average_iteration_time": 20.489456017812092,
+        "environment_closure": 22.532472133636475
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 17.98023009300232,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": false,
+      "total_duration": 14.58541989326477,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 315.18137884140015,
+      "environment_id": "f9629f7a-53d5-4f1b-8c7e-55b87c3033a2",
+      "steps_timing": {
+        "environment_creation": 15.380470752716064,
+        "environment_ready": 233.18581700325012,
+        "public_url_retrieval": 5.7220458984375e-06,
+        "total_workflow_iterations": 64.61306357383728,
+        "average_iteration_time": 21.53768785794576,
+        "environment_closure": 13.248822927474976
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 14.705281019210815,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 293.858069896698,
+      "environment_id": "38fbd2d1-2bd2-4477-921d-05cda2ccfcb5",
+      "steps_timing": {
+        "environment_creation": 15.191657066345215,
+        "environment_ready": 215.95042896270752,
+        "public_url_retrieval": 1.1920928955078125e-05,
+        "total_workflow_iterations": 60.71374726295471,
+        "average_iteration_time": 20.237915754318237,
+        "environment_closure": 22.570847988128662
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 283.9887001514435,
+      "environment_id": "8ad86740-f50a-48ce-ad47-941cfae2850b",
+      "steps_timing": {
+        "environment_creation": 13.316323041915894,
+        "environment_ready": 213.5777769088745,
+        "public_url_retrieval": 2.7894973754882812e-05,
+        "total_workflow_iterations": 55.09005808830261,
+        "average_iteration_time": 18.363352696100872,
+        "environment_closure": 25.772544860839844
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 279.2791602611542,
+      "environment_id": "89214eaa-5ec3-45e4-8b69-66c9e97a8f5f",
+      "steps_timing": {
+        "environment_creation": 10.515864133834839,
+        "environment_ready": 216.88694286346436,
+        "public_url_retrieval": 1.0967254638671875e-05,
+        "total_workflow_iterations": 49.874791622161865,
+        "average_iteration_time": 16.624930540720623,
+        "environment_closure": 25.128243923187256
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 20.4874050617218,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": false,
+      "total_duration": 18.962926149368286,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": false,
+      "total_duration": 14.453291893005371,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 302.4298701286316,
+      "environment_id": "d00d09f2-cf7f-4c14-b775-8d59f9789d4f",
+      "steps_timing": {
+        "environment_creation": 14.428407192230225,
+        "environment_ready": 222.1733410358429,
+        "public_url_retrieval": 2.288818359375e-05,
+        "total_workflow_iterations": 63.826316833496094,
+        "average_iteration_time": 21.2754389444987,
+        "environment_closure": 19.02619504928589
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 317.33062505722046,
+      "environment_id": "6c2bdf8a-2a46-4737-8a8b-f012f534396a",
+      "steps_timing": {
+        "environment_creation": 12.946705341339111,
+        "environment_ready": 234.94656682014465,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 67.43515181541443,
+        "average_iteration_time": 22.478383938471477,
+        "environment_closure": 11.469206094741821
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 17.810395002365112,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 307.02108097076416,
+      "environment_id": "d54dfd5b-27c8-4992-a8ba-97c3207619cd",
+      "steps_timing": {
+        "environment_creation": 18.4653799533844,
+        "environment_ready": 223.58143877983093,
+        "public_url_retrieval": 1.3113021850585938e-05,
+        "total_workflow_iterations": 62.97220802307129,
+        "average_iteration_time": 20.99073600769043,
+        "environment_closure": 16.79057002067566
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 307.45106267929077,
+      "environment_id": "32a936f9-a0f0-4904-9794-c6175c5cd54e",
+      "steps_timing": {
+        "environment_creation": 12.766283750534058,
+        "environment_ready": 229.44090795516968,
+        "public_url_retrieval": 1.2874603271484375e-05,
+        "total_workflow_iterations": 63.24249267578125,
+        "average_iteration_time": 21.080830891927082,
+        "environment_closure": 16.417168140411377
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 16.329039096832275,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 297.6563618183136,
+      "environment_id": "9f84ccac-3e55-422d-8dac-1adb3e50711b",
+      "steps_timing": {
+        "environment_creation": 14.525673866271973,
+        "environment_ready": 220.68829011917114,
+        "public_url_retrieval": 1.4066696166992188e-05,
+        "total_workflow_iterations": 60.44005107879639,
+        "average_iteration_time": 20.14668369293213,
+        "environment_closure": 20.45420002937317
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 16.50555419921875,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 289.95266675949097,
+      "environment_id": "db2271b3-68bc-484c-82ec-b05e10c2cbda",
+      "steps_timing": {
+        "environment_creation": 16.17239284515381,
+        "environment_ready": 213.48267793655396,
+        "public_url_retrieval": 2.2172927856445312e-05,
+        "total_workflow_iterations": 58.29540801048279,
+        "average_iteration_time": 19.43180267016093,
+        "environment_closure": 22.451217889785767
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 272.3561899662018,
+      "environment_id": "733f9f5b-8421-4477-98e6-f4c5f5cae6f1",
+      "steps_timing": {
+        "environment_creation": 18.515998125076294,
+        "environment_ready": 206.20249891281128,
+        "public_url_retrieval": 4.76837158203125e-06,
+        "total_workflow_iterations": 45.6353120803833,
+        "average_iteration_time": 15.2117706934611,
+        "environment_closure": 23.834564208984375
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 297.1496012210846,
+      "environment_id": "ead5218d-88ad-4eaa-86f1-da8f9c405cdc",
+      "steps_timing": {
+        "environment_creation": 13.105691194534302,
+        "environment_ready": 222.49154996871948,
+        "public_url_retrieval": 1.4066696166992188e-05,
+        "total_workflow_iterations": 59.55082559585571,
+        "average_iteration_time": 19.850275198618572,
+        "environment_closure": 20.81268000602722
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 20.871471881866455,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 287.9978141784668,
+      "environment_id": "33a05cc2-23e3-4231-a2c8-61351af4a4a2",
+      "steps_timing": {
+        "environment_creation": 14.544551134109497,
+        "environment_ready": 215.4873149394989,
+        "public_url_retrieval": 4.792213439941406e-05,
+        "total_workflow_iterations": 55.9637291431427,
+        "average_iteration_time": 18.654576381047566,
+        "environment_closure": 23.745682954788208
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 290.41750502586365,
+      "environment_id": "3c14a732-d015-4143-bd60-796ecc2f629e",
+      "steps_timing": {
+        "environment_creation": 32.28913688659668,
+        "environment_ready": 198.48200297355652,
+        "public_url_retrieval": 2.002716064453125e-05,
+        "total_workflow_iterations": 57.64399480819702,
+        "average_iteration_time": 19.214664936065674,
+        "environment_closure": 22.43371605873108
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 290.0491359233856,
+      "environment_id": "cbd336cf-9a0c-4ebb-8abf-f97fce1a8065",
+      "steps_timing": {
+        "environment_creation": 11.817849159240723,
+        "environment_ready": 217.9933340549469,
+        "public_url_retrieval": 1.0967254638671875e-05,
+        "total_workflow_iterations": 58.23669624328613,
+        "average_iteration_time": 19.41223208109538,
+        "environment_closure": 22.45851230621338
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 310.5727119445801,
+      "environment_id": "da1a2f54-cd91-44e4-aed9-fbdb5a81cb49",
+      "steps_timing": {
+        "environment_creation": 13.160093784332275,
+        "environment_ready": 229.84980702400208,
+        "public_url_retrieval": 4.291534423828125e-06,
+        "total_workflow_iterations": 65.56100940704346,
+        "average_iteration_time": 21.85366980234782,
+        "environment_closure": 15.226441144943237
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 302.6733229160309,
+      "environment_id": "2ce7b0ac-6699-43f6-b332-b66773e3a673",
+      "steps_timing": {
+        "environment_creation": 11.293843269348145,
+        "environment_ready": 226.85033226013184,
+        "public_url_retrieval": 1.0013580322265625e-05,
+        "total_workflow_iterations": 62.52711772918701,
+        "average_iteration_time": 20.84237257639567,
+        "environment_closure": 18.9265079498291
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 281.7361710071564,
+      "environment_id": "e6ccc6e0-8c6e-4227-89ae-414769e32238",
+      "steps_timing": {
+        "environment_creation": 14.590344905853271,
+        "environment_ready": 217.48805403709412,
+        "public_url_retrieval": 1.8835067749023438e-05,
+        "total_workflow_iterations": 47.65494394302368,
+        "average_iteration_time": 15.884981314341227,
+        "environment_closure": 5.9325621128082275
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 269.7332627773285,
+      "environment_id": "effa8e31-24bc-47b5-b4f7-ff4222b983a9",
+      "steps_timing": {
+        "environment_creation": 18.465418100357056,
+        "environment_ready": 204.98677706718445,
+        "public_url_retrieval": 4.76837158203125e-06,
+        "total_workflow_iterations": 44.27959632873535,
+        "average_iteration_time": 14.759865442911783,
+        "environment_closure": 23.80825924873352
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 21.500481128692627,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 292.2881019115448,
+      "environment_id": "cb59ee8b-b220-4fb4-9f9f-51eb68f39dba",
+      "steps_timing": {
+        "environment_creation": 14.108314037322998,
+        "environment_ready": 217.54269099235535,
+        "public_url_retrieval": 1.6927719116210938e-05,
+        "total_workflow_iterations": 58.63542127609253,
+        "average_iteration_time": 19.545140425364178,
+        "environment_closure": 21.881525993347168
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 289.21991205215454,
+      "environment_id": "2de9791a-edec-4497-9811-52f6b0cac61c",
+      "steps_timing": {
+        "environment_creation": 11.968516111373901,
+        "environment_ready": 218.13903617858887,
+        "public_url_retrieval": 1.4066696166992188e-05,
+        "total_workflow_iterations": 57.10988116264343,
+        "average_iteration_time": 19.036627054214478,
+        "environment_closure": 23.00328016281128
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 296.72194814682007,
+      "environment_id": "30a950b8-1a66-4322-b325-2cda8e8f838a",
+      "steps_timing": {
+        "environment_creation": 20.662386178970337,
+        "environment_ready": 214.74307799339294,
+        "public_url_retrieval": 7.867813110351562e-06,
+        "total_workflow_iterations": 59.31377625465393,
+        "average_iteration_time": 19.77125875155131,
+        "environment_closure": 21.23853302001953
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 291.68201208114624,
+      "environment_id": "8686e872-d0b0-4327-9536-aa70374fbf5c",
+      "steps_timing": {
+        "environment_creation": 13.133060932159424,
+        "environment_ready": 217.5236611366272,
+        "public_url_retrieval": 1.5735626220703125e-05,
+        "total_workflow_iterations": 59.023759603500366,
+        "average_iteration_time": 19.674586534500122,
+        "environment_closure": 21.99752688407898
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 294.8631281852722,
+      "environment_id": "204fecd3-6be5-4105-9b96-c506d4563c7b",
+      "steps_timing": {
+        "environment_creation": 14.571845769882202,
+        "environment_ready": 217.0915288925171,
+        "public_url_retrieval": 1.71661376953125e-05,
+        "total_workflow_iterations": 61.19744873046875,
+        "average_iteration_time": 20.399149576822918,
+        "environment_closure": 22.463018894195557
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 280.8515648841858,
+      "environment_id": "9c00e7f3-5e7d-4870-bc2c-3baa44a344c7",
+      "steps_timing": {
+        "environment_creation": 17.471691846847534,
+        "environment_ready": 209.1850380897522,
+        "public_url_retrieval": 7.867813110351562e-06,
+        "total_workflow_iterations": 52.19263815879822,
+        "average_iteration_time": 17.39754605293274,
+        "environment_closure": 25.062105894088745
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 21.695802927017212,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 301.947233915329,
+      "environment_id": "dfa4ff9a-044f-4c7c-9988-8e4fbfe254a1",
+      "steps_timing": {
+        "environment_creation": 14.234800100326538,
+        "environment_ready": 223.43048071861267,
+        "public_url_retrieval": 7.867813110351562e-06,
+        "total_workflow_iterations": 62.27947402000427,
+        "average_iteration_time": 20.75982467333476,
+        "environment_closure": 19.20463490486145
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 307.20398211479187,
+      "environment_id": "ec7c013d-2b0b-4652-a3bc-1fbd06234501",
+      "steps_timing": {
+        "environment_creation": 17.7046160697937,
+        "environment_ready": 224.6471049785614,
+        "public_url_retrieval": 2.2172927856445312e-05,
+        "total_workflow_iterations": 62.85039710998535,
+        "average_iteration_time": 20.950132369995117,
+        "environment_closure": 16.681339025497437
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 20.87482190132141,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 281.89973187446594,
+      "environment_id": "c0063629-2c6a-4bbf-92bb-fe22a0191998",
+      "steps_timing": {
+        "environment_creation": 15.981806755065918,
+        "environment_ready": 217.65711212158203,
+        "public_url_retrieval": 6.29425048828125e-05,
+        "total_workflow_iterations": 46.259835958480835,
+        "average_iteration_time": 15.419945319493612,
+        "environment_closure": 25.349934816360474
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 18.704802989959717,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": false,
+      "total_duration": 18.511785984039307,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 322.71758699417114,
+      "environment_id": "2345d6e3-92b1-470d-9fdf-8ad5323e0d52",
+      "steps_timing": {
+        "environment_creation": 15.380674839019775,
+        "environment_ready": 239.6727170944214,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 65.66190910339355,
+        "average_iteration_time": 21.88730303446452,
+        "environment_closure": 6.600851774215698
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 303.3183958530426,
+      "environment_id": "1bc69a95-2731-4ba5-8d26-ace622824e20",
+      "steps_timing": {
+        "environment_creation": 17.32766580581665,
+        "environment_ready": 221.60577297210693,
+        "public_url_retrieval": 2.09808349609375e-05,
+        "total_workflow_iterations": 62.38255286216736,
+        "average_iteration_time": 20.79418428738912,
+        "environment_closure": 18.529228925704956
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 324.97046995162964,
+      "environment_id": "ac545434-24f4-4633-9d12-d814851cfcff",
+      "steps_timing": {
+        "environment_creation": 24.879017114639282,
+        "environment_ready": 235.35106015205383,
+        "public_url_retrieval": 8.821487426757812e-06,
+        "total_workflow_iterations": 62.738213777542114,
+        "average_iteration_time": 20.91273792584737,
+        "environment_closure": 5.223719120025635
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 22.20963215827942,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 306.43398904800415,
+      "environment_id": "a7b6792e-e355-4541-aa62-17d2da0235c7",
+      "steps_timing": {
+        "environment_creation": 14.971078872680664,
+        "environment_ready": 225.1691858768463,
+        "public_url_retrieval": 1.6927719116210938e-05,
+        "total_workflow_iterations": 64.29103636741638,
+        "average_iteration_time": 21.430345455805462,
+        "environment_closure": 16.874167919158936
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 320.01040625572205,
+      "environment_id": "1f3e953f-2466-4186-a096-21a0efa907aa",
+      "steps_timing": {
+        "environment_creation": 16.097235202789307,
+        "environment_ready": 236.67658615112305,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 65.23414993286133,
+        "average_iteration_time": 21.74471664428711,
+        "environment_closure": 9.242441892623901
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 15.9913489818573,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 289.5949649810791,
+      "environment_id": "1f8fe617-9f68-484a-b1c4-4b7cd9b26b42",
+      "steps_timing": {
+        "environment_creation": 15.240381956100464,
+        "environment_ready": 214.78965997695923,
+        "public_url_retrieval": 8.106231689453125e-06,
+        "total_workflow_iterations": 57.5630145072937,
+        "average_iteration_time": 19.187671502431233,
+        "environment_closure": 22.68671989440918
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 297.26535511016846,
+      "environment_id": "864ba80d-206a-41b7-ab47-8e0de8b0d9f0",
+      "steps_timing": {
+        "environment_creation": 17.03066611289978,
+        "environment_ready": 217.48129081726074,
+        "public_url_retrieval": 1.6927719116210938e-05,
+        "total_workflow_iterations": 60.75246500968933,
+        "average_iteration_time": 20.250821669896443,
+        "environment_closure": 20.860193967819214
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 293.8415858745575,
+      "environment_id": "5360f6dd-645d-4816-ac6e-5f0fb8766ddb",
+      "steps_timing": {
+        "environment_creation": 21.00040078163147,
+        "environment_ready": 212.21434426307678,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 58.62561535835266,
+        "average_iteration_time": 19.541871786117554,
+        "environment_closure": 22.639655828475952
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 18.407315015792847,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": false,
+      "total_duration": 22.124109029769897,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 296.2762632369995,
+      "environment_id": "796cf687-eb8e-40cb-8722-9e6bb8c56264",
+      "steps_timing": {
+        "environment_creation": 20.41372513771057,
+        "environment_ready": 213.83690190315247,
+        "public_url_retrieval": 1.6927719116210938e-05,
+        "total_workflow_iterations": 60.023194313049316,
+        "average_iteration_time": 20.007731437683105,
+        "environment_closure": 21.56101894378662
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 289.58137822151184,
+      "environment_id": "fb0e5069-b42d-4b69-a96b-99183e68586f",
+      "steps_timing": {
+        "environment_creation": 15.608356237411499,
+        "environment_ready": 214.5326850414276,
+        "public_url_retrieval": 1.6927719116210938e-05,
+        "total_workflow_iterations": 57.43795323371887,
+        "average_iteration_time": 19.145984411239624,
+        "environment_closure": 22.703218936920166
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 304.3381280899048,
+      "environment_id": "9511b66c-cdcd-4a90-9d8e-d99e7983c049",
+      "steps_timing": {
+        "environment_creation": 16.291283130645752,
+        "environment_ready": 222.59148788452148,
+        "public_url_retrieval": 5.030632019042969e-05,
+        "total_workflow_iterations": 63.45287799835205,
+        "average_iteration_time": 21.150959332784016,
+        "environment_closure": 17.49329376220703
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 288.07047390937805,
+      "environment_id": "e8ca3bb4-9ce5-4c43-b0cf-789fc4e641b2",
+      "steps_timing": {
+        "environment_creation": 16.026478052139282,
+        "environment_ready": 213.15453577041626,
+        "public_url_retrieval": 3.790855407714844e-05,
+        "total_workflow_iterations": 56.88783884048462,
+        "average_iteration_time": 18.962612946828205,
+        "environment_closure": 23.71525001525879
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 23.03982377052307,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 305.65038800239563,
+      "environment_id": "ab5c4d55-31c9-4828-ac9b-90767a0d33a4",
+      "steps_timing": {
+        "environment_creation": 16.347182035446167,
+        "environment_ready": 224.04352498054504,
+        "public_url_retrieval": 5.0067901611328125e-06,
+        "total_workflow_iterations": 63.258098125457764,
+        "average_iteration_time": 21.08603270848592,
+        "environment_closure": 17.09156894683838
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 286.18229603767395,
+      "environment_id": "8bb96c13-d4bb-4870-9650-b15fd63ea456",
+      "steps_timing": {
+        "environment_creation": 16.359295129776,
+        "environment_ready": 211.60167622566223,
+        "public_url_retrieval": 1.3113021850585938e-05,
+        "total_workflow_iterations": 56.21968126296997,
+        "average_iteration_time": 18.739893754323322,
+        "environment_closure": 25.322366952896118
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 19.73600196838379,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 317.49660181999207,
+      "environment_id": "9c4c85ad-c70e-481a-8344-a7d3003154cf",
+      "steps_timing": {
+        "environment_creation": 26.00929594039917,
+        "environment_ready": 222.65480494499207,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 66.8304455280304,
+        "average_iteration_time": 22.276815176010132,
+        "environment_closure": 11.364237070083618
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 20.841468334197998,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 311.41752886772156,
+      "environment_id": "cd49c600-5a4d-4f32-9838-c1c4cd3ad215",
+      "steps_timing": {
+        "environment_creation": 17.601480960845947,
+        "environment_ready": 225.95392417907715,
+        "public_url_retrieval": 1.4781951904296875e-05,
+        "total_workflow_iterations": 65.85946702957153,
+        "average_iteration_time": 21.953155676523846,
+        "environment_closure": 14.97111701965332
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 23.95545482635498,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": false,
+      "total_duration": 16.498961925506592,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": false,
+      "total_duration": 20.234182834625244,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": false,
+      "total_duration": 19.466182947158813,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 285.73036909103394,
+      "environment_id": "d227c60f-551f-4c94-ac9b-dbbc62b4afab",
+      "steps_timing": {
+        "environment_creation": 26.21660089492798,
+        "environment_ready": 202.31869792938232,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 55.193432569503784,
+        "average_iteration_time": 18.397810856501263,
+        "environment_closure": 25.750804901123047
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 292.63611698150635,
+      "environment_id": "302166e0-8eca-42fa-8f46-d0ad99922bbf",
+      "steps_timing": {
+        "environment_creation": 15.59200382232666,
+        "environment_ready": 216.1533272266388,
+        "public_url_retrieval": 1.7881393432617188e-05,
+        "total_workflow_iterations": 58.888386964797974,
+        "average_iteration_time": 19.629462321599323,
+        "environment_closure": 21.9598228931427
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 22.270879983901978,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 278.3356511592865,
+      "environment_id": "b3910c46-0a8b-481b-9f0b-98b5953ad78b",
+      "steps_timing": {
+        "environment_creation": 27.794708251953125,
+        "environment_ready": 200.50581526756287,
+        "public_url_retrieval": 1.621246337890625e-05,
+        "total_workflow_iterations": 48.03339505195618,
+        "average_iteration_time": 16.011131683985393,
+        "environment_closure": 24.135526180267334
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 296.92301988601685,
+      "environment_id": "acb4d677-9dd1-4ded-9abc-fe0a7dd22668",
+      "steps_timing": {
+        "environment_creation": 25.854562044143677,
+        "environment_ready": 210.59628200531006,
+        "public_url_retrieval": 5.0067901611328125e-06,
+        "total_workflow_iterations": 58.46957802772522,
+        "average_iteration_time": 19.489859342575073,
+        "environment_closure": 21.024194955825806
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 328.44562888145447,
+      "environment_id": "6cf6fea8-5048-4fd4-b922-50b589e3c0df",
+      "steps_timing": {
+        "environment_creation": 28.02982807159424,
+        "environment_ready": 237.04168701171875,
+        "public_url_retrieval": 1.4781951904296875e-05,
+        "total_workflow_iterations": 61.37124228477478,
+        "average_iteration_time": 20.457080761591595,
+        "environment_closure": 5.221869230270386
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 22.528584003448486,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 300.97552394866943,
+      "environment_id": "eaa7a24d-615a-4c88-b226-813ceb61eeeb",
+      "steps_timing": {
+        "environment_creation": 21.721091985702515,
+        "environment_ready": 216.02032685279846,
+        "public_url_retrieval": 1.9073486328125e-05,
+        "total_workflow_iterations": 61.231433153152466,
+        "average_iteration_time": 20.410477717717487,
+        "environment_closure": 19.6296489238739
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 308.2119998931885,
+      "environment_id": "ed577578-7421-4e55-bbe0-cf30eaa383c4",
+      "steps_timing": {
+        "environment_creation": 18.652626276016235,
+        "environment_ready": 224.31222915649414,
+        "public_url_retrieval": 1.0967254638671875e-05,
+        "total_workflow_iterations": 63.245481967926025,
+        "average_iteration_time": 21.08182732264201,
+        "environment_closure": 16.119094848632812
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 325.23987793922424,
+      "environment_id": "929b1bf0-316f-4add-adcd-7447dd39a435",
+      "steps_timing": {
+        "environment_creation": 18.116129875183105,
+        "environment_ready": 241.07795405387878,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 64.0414810180664,
+        "average_iteration_time": 21.34716033935547,
+        "environment_closure": 5.226438999176025
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 315.8262257575989,
+      "environment_id": "e42b9386-f333-4719-8c75-6e3766399594",
+      "steps_timing": {
+        "environment_creation": 18.23435068130493,
+        "environment_ready": 228.16828870773315,
+        "public_url_retrieval": 1.0013580322265625e-05,
+        "total_workflow_iterations": 67.420823097229,
+        "average_iteration_time": 22.473607699076336,
+        "environment_closure": 12.482983112335205
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 20.65901803970337,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": false,
+      "total_duration": 17.98754906654358,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 316.20646119117737,
+      "environment_id": "48b5caeb-2ddc-4a29-945c-f868baf216d5",
+      "steps_timing": {
+        "environment_creation": 15.805968046188354,
+        "environment_ready": 231.8360950946808,
+        "public_url_retrieval": 7.152557373046875e-06,
+        "total_workflow_iterations": 66.56184220314026,
+        "average_iteration_time": 22.187280734380085,
+        "environment_closure": 12.396651983261108
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 308.94852924346924,
+      "environment_id": "49a89de9-ebf2-407a-87f7-0bae56637519",
+      "steps_timing": {
+        "environment_creation": 16.059333324432373,
+        "environment_ready": 226.9708650112152,
+        "public_url_retrieval": 3.814697265625e-06,
+        "total_workflow_iterations": 63.91668438911438,
+        "average_iteration_time": 21.305561463038128,
+        "environment_closure": 16.29309916496277
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 304.59272503852844,
+      "environment_id": "462a452f-0abc-491c-9900-27adcc14509d",
+      "steps_timing": {
+        "environment_creation": 18.9494469165802,
+        "environment_ready": 221.12210988998413,
+        "public_url_retrieval": 1.6927719116210938e-05,
+        "total_workflow_iterations": 62.51941132545471,
+        "average_iteration_time": 20.83980377515157,
+        "environment_closure": 17.852436065673828
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 324.2915530204773,
+      "environment_id": "35567675-de20-4154-860d-552bd776c0d3",
+      "steps_timing": {
+        "environment_creation": 27.74851131439209,
+        "environment_ready": 230.1586570739746,
+        "public_url_retrieval": 7.867813110351562e-06,
+        "total_workflow_iterations": 64.38259387016296,
+        "average_iteration_time": 21.460864623387653,
+        "environment_closure": 5.338038206100464
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 298.62815284729004,
+      "environment_id": "ae5b6137-d70d-4f67-8f7e-9ebf1b1a29ef",
+      "steps_timing": {
+        "environment_creation": 16.744911909103394,
+        "environment_ready": 222.13864707946777,
+        "public_url_retrieval": 8.821487426757812e-06,
+        "total_workflow_iterations": 57.74316191673279,
+        "average_iteration_time": 19.24772063891093,
+        "environment_closure": 19.833756923675537
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 327.8265872001648,
+      "environment_id": "73d80972-29f5-4697-8e8c-2b9d922a1aff",
+      "steps_timing": {
+        "environment_creation": 28.482516288757324,
+        "environment_ready": 235.30081605911255,
+        "public_url_retrieval": 2.2649765014648438e-05,
+        "total_workflow_iterations": 62.04064989089966,
+        "average_iteration_time": 20.680216630299885,
+        "environment_closure": 5.2553160190582275
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 305.6274399757385,
+      "environment_id": "f59d582f-8405-4cc5-adcf-9126d9b22319",
+      "steps_timing": {
+        "environment_creation": 26.73762011528015,
+        "environment_ready": 212.8640170097351,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 64.02373623847961,
+        "average_iteration_time": 21.341245412826538,
+        "environment_closure": 17.10129714012146
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 319.4884331226349,
+      "environment_id": "db8f536d-97eb-4563-99a2-c3834d33dee6",
+      "steps_timing": {
+        "environment_creation": 16.85426902770996,
+        "environment_ready": 234.9747669696808,
+        "public_url_retrieval": 1.0013580322265625e-05,
+        "total_workflow_iterations": 65.6568124294281,
+        "average_iteration_time": 21.8856041431427,
+        "environment_closure": 9.720293045043945
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 311.6514859199524,
+      "environment_id": "d6e3a0fe-d89b-43fb-9930-b64440554757",
+      "steps_timing": {
+        "environment_creation": 17.64219379425049,
+        "environment_ready": 225.96529483795166,
+        "public_url_retrieval": 5.0067901611328125e-06,
+        "total_workflow_iterations": 66.04281306266785,
+        "average_iteration_time": 22.014271020889282,
+        "environment_closure": 15.217219114303589
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 24.958680152893066,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 294.4136440753937,
+      "environment_id": "7fb668f9-2224-47d8-b278-aba7369761ee",
+      "steps_timing": {
+        "environment_creation": 22.00453805923462,
+        "environment_ready": 212.3637888431549,
+        "public_url_retrieval": 1.9788742065429688e-05,
+        "total_workflow_iterations": 58.04434823989868,
+        "average_iteration_time": 19.34811607996623,
+        "environment_closure": 22.533339977264404
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 304.543998003006,
+      "environment_id": "0324fc3c-760f-4991-bedc-d3a93980cc7c",
+      "steps_timing": {
+        "environment_creation": 21.867486000061035,
+        "environment_ready": 216.81760478019714,
+        "public_url_retrieval": 0.00014472007751464844,
+        "total_workflow_iterations": 63.856483459472656,
+        "average_iteration_time": 21.285494486490887,
+        "environment_closure": 17.617709159851074
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 300.76350498199463,
+      "environment_id": "947465c8-de59-4e91-93f9-b9074750185f",
+      "steps_timing": {
+        "environment_creation": 17.77458691596985,
+        "environment_ready": 220.07432508468628,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 60.912296295166016,
+        "average_iteration_time": 20.30409876505534,
+        "environment_closure": 19.639889240264893
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 310.6994309425354,
+      "environment_id": "fa500a41-b8c2-4130-bf6c-a136002c2b4e",
+      "steps_timing": {
+        "environment_creation": 21.70501184463501,
+        "environment_ready": 222.7417459487915,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 64.2519142627716,
+        "average_iteration_time": 21.417304754257202,
+        "environment_closure": 15.682980060577393
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 297.0933561325073,
+      "environment_id": "c248d94f-ceb1-460c-ae35-e6d442273605",
+      "steps_timing": {
+        "environment_creation": 19.677136182785034,
+        "environment_ready": 216.58635807037354,
+        "public_url_retrieval": 1.0967254638671875e-05,
+        "total_workflow_iterations": 58.82830286026001,
+        "average_iteration_time": 19.609434286753338,
+        "environment_closure": 20.91650104522705
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 23.272470951080322,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 291.4274070262909,
+      "environment_id": "e333be2a-da2f-4031-99b3-b02339b5191c",
+      "steps_timing": {
+        "environment_creation": 18.083064079284668,
+        "environment_ready": 212.15051198005676,
+        "public_url_retrieval": 2.09808349609375e-05,
+        "total_workflow_iterations": 59.19070076942444,
+        "average_iteration_time": 19.730233589808147,
+        "environment_closure": 22.047621250152588
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 23.50972294807434,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 326.1097137928009,
+      "environment_id": "cebe1437-ed7e-48c2-9c2b-12059f2e9312",
+      "steps_timing": {
+        "environment_creation": 21.107836961746216,
+        "environment_ready": 239.36328196525574,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 63.63602805137634,
+        "average_iteration_time": 21.212009350458782,
+        "environment_closure": 5.207409143447876
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 311.9433319568634,
+      "environment_id": "5977e9ca-5b23-43b1-8302-50b7cda5df69",
+      "steps_timing": {
+        "environment_creation": 24.29085421562195,
+        "environment_ready": 220.7644600868225,
+        "public_url_retrieval": 5.0067901611328125e-06,
+        "total_workflow_iterations": 64.88548064231873,
+        "average_iteration_time": 21.628493547439575,
+        "environment_closure": 15.464872121810913
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 305.9611020088196,
+      "environment_id": "a300c43f-7346-45ef-8215-a767802fd395",
+      "steps_timing": {
+        "environment_creation": 18.25540590286255,
+        "environment_ready": 222.91918897628784,
+        "public_url_retrieval": 0.000225067138671875,
+        "total_workflow_iterations": 62.782681941986084,
+        "average_iteration_time": 20.927560647328693,
+        "environment_closure": 16.834995985031128
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 317.4813721179962,
+      "environment_id": "9df19de4-a63f-450b-8a37-ccd5f54c36c6",
+      "steps_timing": {
+        "environment_creation": 27.06686305999756,
+        "environment_ready": 220.7126340866089,
+        "public_url_retrieval": 2.86102294921875e-06,
+        "total_workflow_iterations": 67.70070195198059,
+        "average_iteration_time": 22.566900650660198,
+        "environment_closure": 11.345313787460327
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 23.517823219299316,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 327.21569895744324,
+      "environment_id": "6dbd55f6-4959-47e1-a523-92c4d44494fe",
+      "steps_timing": {
+        "environment_creation": 18.28376579284668,
+        "environment_ready": 246.52595686912537,
+        "public_url_retrieval": 1.7881393432617188e-05,
+        "total_workflow_iterations": 60.40366291999817,
+        "average_iteration_time": 20.134554306666057,
+        "environment_closure": 5.228195905685425
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 306.9238269329071,
+      "environment_id": "3fbb690e-877c-4e46-b2c7-01c7277be5d2",
+      "steps_timing": {
+        "environment_creation": 18.523592948913574,
+        "environment_ready": 222.58257484436035,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 63.816258907318115,
+        "average_iteration_time": 21.272086302439373,
+        "environment_closure": 16.4900119304657
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 319.6287269592285,
+      "environment_id": "20bf67fa-f13d-4b1e-aec4-0c374c58a35a",
+      "steps_timing": {
+        "environment_creation": 26.012008905410767,
+        "environment_ready": 225.92726016044617,
+        "public_url_retrieval": 7.867813110351562e-06,
+        "total_workflow_iterations": 65.68780016899109,
+        "average_iteration_time": 21.895933389663696,
+        "environment_closure": 9.583789110183716
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 310.0625829696655,
+      "environment_id": "e8ee4f1f-35d7-4b7b-b985-3ae2267dceaa",
+      "steps_timing": {
+        "environment_creation": 19.88889980316162,
+        "environment_ready": 223.6501019001007,
+        "public_url_retrieval": 3.814697265625e-06,
+        "total_workflow_iterations": 64.52113747596741,
+        "average_iteration_time": 21.507045825322468,
+        "environment_closure": 15.645023107528687
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 309.44896507263184,
+      "environment_id": "4de420c1-2917-432f-b031-3cde890571a0",
+      "steps_timing": {
+        "environment_creation": 19.00262188911438,
+        "environment_ready": 224.7216351032257,
+        "public_url_retrieval": 3.814697265625e-06,
+        "total_workflow_iterations": 63.722291707992554,
+        "average_iteration_time": 21.240763902664185,
+        "environment_closure": 16.027853965759277
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 323.53438115119934,
+      "environment_id": "fb015831-c889-45ee-82d6-1e4a87a6de82",
+      "steps_timing": {
+        "environment_creation": 24.822175979614258,
+        "environment_ready": 230.5384702682495,
+        "public_url_retrieval": 7.867813110351562e-06,
+        "total_workflow_iterations": 66.17117619514465,
+        "average_iteration_time": 22.057058731714886,
+        "environment_closure": 5.9999589920043945
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 306.2607910633087,
+      "environment_id": "0ca3b6cf-3724-414d-b59d-cce96972defc",
+      "steps_timing": {
+        "environment_creation": 23.750877141952515,
+        "environment_ready": 218.19785404205322,
+        "public_url_retrieval": 1.2159347534179688e-05,
+        "total_workflow_iterations": 62.30971622467041,
+        "average_iteration_time": 20.76990540822347,
+        "environment_closure": 16.94474506378174
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 313.4212369918823,
+      "environment_id": "e2e8675d-71e0-4bee-84ac-8a803755d9e3",
+      "steps_timing": {
+        "environment_creation": 20.1354660987854,
+        "environment_ready": 226.3552429676056,
+        "public_url_retrieval": 1.7881393432617188e-05,
+        "total_workflow_iterations": 64.927814245224,
+        "average_iteration_time": 21.642604748408,
+        "environment_closure": 14.612882852554321
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 24.464745044708252,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 325.28676414489746,
+      "environment_id": "16630043-106c-4e7c-b6eb-d12d9481fb0a",
+      "steps_timing": {
+        "environment_creation": 19.282002925872803,
+        "environment_ready": 241.73000192642212,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 62.2727255821228,
+        "average_iteration_time": 20.757575194040935,
+        "environment_closure": 5.229299783706665
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 307.02548599243164,
+      "environment_id": "2345c3ba-12fd-4f7d-a936-b22c30ac57fa",
+      "steps_timing": {
+        "environment_creation": 19.96611714363098,
+        "environment_ready": 222.84043884277344,
+        "public_url_retrieval": 9.059906005859375e-06,
+        "total_workflow_iterations": 62.21744990348816,
+        "average_iteration_time": 20.739149967829388,
+        "environment_closure": 16.769320964813232
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 308.80908608436584,
+      "environment_id": "ae315db0-fab4-43f0-bc0a-b7dcec409ebc",
+      "steps_timing": {
+        "environment_creation": 29.573487043380737,
+        "environment_ready": 214.25969004631042,
+        "public_url_retrieval": 7.867813110351562e-06,
+        "total_workflow_iterations": 62.97503709793091,
+        "average_iteration_time": 20.991679032643635,
+        "environment_closure": 16.305495977401733
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 307.9140269756317,
+      "environment_id": "ae94d92e-9f4d-4424-a09d-8267e68896bf",
+      "steps_timing": {
+        "environment_creation": 19.715514659881592,
+        "environment_ready": 223.01349687576294,
+        "public_url_retrieval": 1.7881393432617188e-05,
+        "total_workflow_iterations": 63.18427085876465,
+        "average_iteration_time": 21.061423619588215,
+        "environment_closure": 16.354312896728516
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 306.83577013015747,
+      "environment_id": "88f3d109-bc47-40cd-9300-fa3022ccae7d",
+      "steps_timing": {
+        "environment_creation": 20.863112926483154,
+        "environment_ready": 222.1801517009735,
+        "public_url_retrieval": 1.5020370483398438e-05,
+        "total_workflow_iterations": 61.79048466682434,
+        "average_iteration_time": 20.59682822227478,
+        "environment_closure": 16.563354969024658
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 320.45026421546936,
+      "environment_id": "560de7f8-3cde-4fec-8937-51288a9c8b5b",
+      "steps_timing": {
+        "environment_creation": 23.32475185394287,
+        "environment_ready": 230.1427457332611,
+        "public_url_retrieval": 8.106231689453125e-06,
+        "total_workflow_iterations": 64.98107075691223,
+        "average_iteration_time": 21.660356918970745,
+        "environment_closure": 8.95901894569397
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 320.3144829273224,
+      "environment_id": "4e2f1065-db63-4195-8ff9-8dcf44667b43",
+      "steps_timing": {
+        "environment_creation": 23.819432020187378,
+        "environment_ready": 229.3162281513214,
+        "public_url_retrieval": 8.106231689453125e-06,
+        "total_workflow_iterations": 65.17677688598633,
+        "average_iteration_time": 21.725592295328777,
+        "environment_closure": 8.980664014816284
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 308.51998496055603,
+      "environment_id": "8d73110d-3cf1-4c29-af61-9fa889a7d54e",
+      "steps_timing": {
+        "environment_creation": 23.170089960098267,
+        "environment_ready": 219.65952396392822,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 63.68784713745117,
+        "average_iteration_time": 21.22928237915039,
+        "environment_closure": 16.183836936950684
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 311.51247787475586,
+      "environment_id": "6fc1cf4d-f69e-4fde-8bd0-f4cf82af05d3",
+      "steps_timing": {
+        "environment_creation": 21.242905139923096,
+        "environment_ready": 223.83852100372314,
+        "public_url_retrieval": 1.4066696166992188e-05,
+        "total_workflow_iterations": 64.42920303344727,
+        "average_iteration_time": 21.47640101114909,
+        "environment_closure": 15.166352272033691
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 296.1874210834503,
+      "environment_id": "7013b6e8-0490-4359-89f9-828b3f968440",
+      "steps_timing": {
+        "environment_creation": 20.287232160568237,
+        "environment_ready": 214.1148931980133,
+        "public_url_retrieval": 2.09808349609375e-05,
+        "total_workflow_iterations": 59.78271198272705,
+        "average_iteration_time": 19.927570660909016,
+        "environment_closure": 5.4343791007995605
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 291.806706905365,
+      "environment_id": "0e81e87e-c588-4ee0-b2dc-39f1eb071b3f",
+      "steps_timing": {
+        "environment_creation": 18.845924139022827,
+        "environment_ready": 212.41876912117004,
+        "public_url_retrieval": 1.6927719116210938e-05,
+        "total_workflow_iterations": 58.54058265686035,
+        "average_iteration_time": 19.513527552286785,
+        "environment_closure": 22.08337116241455
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 324.8185489177704,
+      "environment_id": "fa8adbca-80f3-4ed4-84a0-fc006837aecb",
+      "steps_timing": {
+        "environment_creation": 29.646036863327026,
+        "environment_ready": 228.48162603378296,
+        "public_url_retrieval": 7.152557373046875e-06,
+        "total_workflow_iterations": 64.68907427787781,
+        "average_iteration_time": 21.563024759292603,
+        "environment_closure": 5.289057016372681
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 301.8776948451996,
+      "environment_id": "5954afb2-ed08-435e-a5a3-d343b22661ae",
+      "steps_timing": {
+        "environment_creation": 19.64132285118103,
+        "environment_ready": 218.71568512916565,
+        "public_url_retrieval": 1.6927719116210938e-05,
+        "total_workflow_iterations": 61.51820921897888,
+        "average_iteration_time": 20.506069739659626,
+        "environment_closure": 19.237098932266235
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 300.2315399646759,
+      "environment_id": "1b5867fb-f9d6-45cd-8e9d-15af750d063f",
+      "steps_timing": {
+        "environment_creation": 19.17764186859131,
+        "environment_ready": 220.85383105278015,
+        "public_url_retrieval": 1.5735626220703125e-05,
+        "total_workflow_iterations": 58.19717597961426,
+        "average_iteration_time": 19.399058659871418,
+        "environment_closure": 18.91827893257141
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 293.52450466156006,
+      "environment_id": "68acb141-8755-436e-90c3-29179f5fb66f",
+      "steps_timing": {
+        "environment_creation": 25.698530912399292,
+        "environment_ready": 207.69867205619812,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 58.124762296676636,
+        "average_iteration_time": 19.37492076555888,
+        "environment_closure": 22.337620973587036
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 320.10890102386475,
+      "environment_id": "935b5680-c3aa-4ef2-9e99-3369d7a764bc",
+      "steps_timing": {
+        "environment_creation": 20.411494970321655,
+        "environment_ready": 231.83568406105042,
+        "public_url_retrieval": 7.152557373046875e-06,
+        "total_workflow_iterations": 65.8599841594696,
+        "average_iteration_time": 21.953328053156536,
+        "environment_closure": 9.163629055023193
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 298.60892701148987,
+      "environment_id": "0e5a14b5-93a9-43c1-bb8b-584207957f66",
+      "steps_timing": {
+        "environment_creation": 20.871334075927734,
+        "environment_ready": 214.53096914291382,
+        "public_url_retrieval": 1.4066696166992188e-05,
+        "total_workflow_iterations": 61.2041289806366,
+        "average_iteration_time": 20.401376326878864,
+        "environment_closure": 19.893954038619995
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 305.4105079174042,
+      "environment_id": "398d5a00-6c62-4a5b-b1c3-dfaa2e868bd1",
+      "steps_timing": {
+        "environment_creation": 28.463399171829224,
+        "environment_ready": 211.36838603019714,
+        "public_url_retrieval": 1.8358230590820312e-05,
+        "total_workflow_iterations": 63.575806856155396,
+        "average_iteration_time": 21.191935618718464,
+        "environment_closure": 17.183175802230835
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 296.529757976532,
+      "environment_id": "ac1f7938-fb23-41af-a340-1e178f0c6773",
+      "steps_timing": {
+        "environment_creation": 22.119548797607422,
+        "environment_ready": 214.17481184005737,
+        "public_url_retrieval": 1.3113021850585938e-05,
+        "total_workflow_iterations": 58.23311400413513,
+        "average_iteration_time": 19.411038001378376,
+        "environment_closure": 21.27804398536682
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 294.688827753067,
+      "environment_id": "4b5a74fa-9242-449b-9a58-937851960f06",
+      "steps_timing": {
+        "environment_creation": 21.48176407814026,
+        "environment_ready": 211.64685106277466,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 59.55785012245178,
+        "average_iteration_time": 19.85261670748393,
+        "environment_closure": 22.723543167114258
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 290.6864318847656,
+      "environment_id": "67b59dbf-85b5-4a05-972b-f699cd3352fd",
+      "steps_timing": {
+        "environment_creation": 20.88346219062805,
+        "environment_ready": 210.13897609710693,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 57.662062644958496,
+        "average_iteration_time": 19.2206875483195,
+        "environment_closure": 22.461416959762573
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 329.05331897735596,
+      "environment_id": "24f2a1f6-45c3-45dc-b9be-c357742daca5",
+      "steps_timing": {
+        "environment_creation": 34.1821608543396,
+        "environment_ready": 232.96932911872864,
+        "public_url_retrieval": 1.5735626220703125e-05,
+        "total_workflow_iterations": 59.899561405181885,
+        "average_iteration_time": 19.966520468393963,
+        "environment_closure": 5.237476825714111
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 306.7782521247864,
+      "environment_id": "379d6927-e7e2-4a9f-946a-773dcd8e81d0",
+      "steps_timing": {
+        "environment_creation": 21.1628360748291,
+        "environment_ready": 222.09663105010986,
+        "public_url_retrieval": 4.935264587402344e-05,
+        "total_workflow_iterations": 61.516193866729736,
+        "average_iteration_time": 20.50539795557658,
+        "environment_closure": 16.55006718635559
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 302.6619689464569,
+      "environment_id": "78fee62b-eeee-4ee1-8763-8fccebf37cc0",
+      "steps_timing": {
+        "environment_creation": 26.770226001739502,
+        "environment_ready": 212.4778859615326,
+        "public_url_retrieval": 1.811981201171875e-05,
+        "total_workflow_iterations": 61.41188979148865,
+        "average_iteration_time": 20.470629930496216,
+        "environment_closure": 18.97260594367981
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 319.07657504081726,
+      "environment_id": "6d87b935-4db4-47c0-a9b2-60ae96eec0e1",
+      "steps_timing": {
+        "environment_creation": 22.298949241638184,
+        "environment_ready": 231.06723499298096,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 63.70798444747925,
+        "average_iteration_time": 21.235994815826416,
+        "environment_closure": 9.942764043807983
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 327.3754549026489,
+      "environment_id": "46d36671-c479-4ab7-a166-9a77e177607c",
+      "steps_timing": {
+        "environment_creation": 26.206419229507446,
+        "environment_ready": 235.50133514404297,
+        "public_url_retrieval": 1.0967254638671875e-05,
+        "total_workflow_iterations": 63.66570258140564,
+        "average_iteration_time": 21.221900860468548,
+        "environment_closure": 5.218246221542358
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 314.13326501846313,
+      "environment_id": "e02acb8f-88fb-4c91-a6d0-34cc09b7514a",
+      "steps_timing": {
+        "environment_creation": 20.681729078292847,
+        "environment_ready": 224.91875529289246,
+        "public_url_retrieval": 9.059906005859375e-06,
+        "total_workflow_iterations": 66.53087830543518,
+        "average_iteration_time": 22.17695943514506,
+        "environment_closure": 14.060484886169434
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 311.5515441894531,
+      "environment_id": "1f304ecf-862a-41bc-b118-94bb411559e3",
+      "steps_timing": {
+        "environment_creation": 25.986818075180054,
+        "environment_ready": 220.1102180480957,
+        "public_url_retrieval": 1.8835067749023438e-05,
+        "total_workflow_iterations": 63.45242238044739,
+        "average_iteration_time": 21.150807460149128,
+        "environment_closure": 15.26981782913208
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 327.4653651714325,
+      "environment_id": "98fd1955-34d1-4628-a1cc-a8b4bc705a2b",
+      "steps_timing": {
+        "environment_creation": 28.66658902168274,
+        "environment_ready": 233.21219301223755,
+        "public_url_retrieval": 1.0967254638671875e-05,
+        "total_workflow_iterations": 63.58461403846741,
+        "average_iteration_time": 21.194871346155804,
+        "environment_closure": 5.233630895614624
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 305.051322221756,
+      "environment_id": "b823d4f5-44da-4932-a700-e977c68fba6d",
+      "steps_timing": {
+        "environment_creation": 21.918720960617065,
+        "environment_ready": 219.39983487129211,
+        "public_url_retrieval": 1.5974044799804688e-05,
+        "total_workflow_iterations": 61.731170892715454,
+        "average_iteration_time": 20.577056964238484,
+        "environment_closure": 17.308882236480713
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 24.329434156417847,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 293.78055119514465,
+      "environment_id": "fa9a0e9c-a3b6-4247-a655-00042b510a71",
+      "steps_timing": {
+        "environment_creation": 23.07909321784973,
+        "environment_ready": 209.7048761844635,
+        "public_url_retrieval": 1.0967254638671875e-05,
+        "total_workflow_iterations": 58.99461007118225,
+        "average_iteration_time": 19.664870023727417,
+        "environment_closure": 22.65992283821106
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 311.81418800354004,
+      "environment_id": "33d4a897-5c35-4162-bf99-693d1c093415",
+      "steps_timing": {
+        "environment_creation": 21.54900884628296,
+        "environment_ready": 223.66675209999084,
+        "public_url_retrieval": 5.245208740234375e-06,
+        "total_workflow_iterations": 64.5968849658966,
+        "average_iteration_time": 21.532294988632202,
+        "environment_closure": 15.277330875396729
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 306.1801640987396,
+      "environment_id": "8e8b9920-0297-4a74-8e67-8d2de32d7edb",
+      "steps_timing": {
+        "environment_creation": 21.831781148910522,
+        "environment_ready": 218.24394392967224,
+        "public_url_retrieval": 1.7881393432617188e-05,
+        "total_workflow_iterations": 64.10325074195862,
+        "average_iteration_time": 21.367750247319538,
+        "environment_closure": 16.848111867904663
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 306.8246681690216,
+      "environment_id": "dc3c7745-3d55-4434-9d48-7c405dbe92eb",
+      "steps_timing": {
+        "environment_creation": 28.594845056533813,
+        "environment_ready": 213.25636410713196,
+        "public_url_retrieval": 1.9073486328125e-05,
+        "total_workflow_iterations": 62.97109389305115,
+        "average_iteration_time": 20.990364631017048,
+        "environment_closure": 16.543454885482788
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 307.7015640735626,
+      "environment_id": "00dd2ee1-a984-47ec-b9f7-7b201629418c",
+      "steps_timing": {
+        "environment_creation": 20.865034103393555,
+        "environment_ready": 221.86417889595032,
+        "public_url_retrieval": 1.6927719116210938e-05,
+        "total_workflow_iterations": 62.97020149230957,
+        "average_iteration_time": 20.99006716410319,
+        "environment_closure": 16.285032987594604
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 323.1432602405548,
+      "environment_id": "5196cc09-be83-4e3a-a888-ef7fa7b8f21b",
+      "steps_timing": {
+        "environment_creation": 23.046015977859497,
+        "environment_ready": 237.2699909210205,
+        "public_url_retrieval": 3.814697265625e-06,
+        "total_workflow_iterations": 60.82434797286987,
+        "average_iteration_time": 20.27478265762329,
+        "environment_closure": 6.327704668045044
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 24.837242126464844,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 306.12059807777405,
+      "environment_id": "f4bbbacf-b522-43fc-b5b8-5d3a540a1e02",
+      "steps_timing": {
+        "environment_creation": 22.51787304878235,
+        "environment_ready": 220.11451888084412,
+        "public_url_retrieval": 1.5974044799804688e-05,
+        "total_workflow_iterations": 61.486201763153076,
+        "average_iteration_time": 20.495400587717693,
+        "environment_closure": 16.802870988845825
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 310.6359100341797,
+      "environment_id": "e8492964-b031-4aa6-930e-e559a4f9ee56",
+      "steps_timing": {
+        "environment_creation": 26.71387004852295,
+        "environment_ready": 217.39283108711243,
+        "public_url_retrieval": 2.6226043701171875e-06,
+        "total_workflow_iterations": 64.528076171875,
+        "average_iteration_time": 21.509358723958332,
+        "environment_closure": 15.471543788909912
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 323.687522649765,
+      "environment_id": "a0e4d99f-fa0f-4bb5-91f0-1ff08308270e",
+      "steps_timing": {
+        "environment_creation": 27.061412811279297,
+        "environment_ready": 229.86098098754883,
+        "public_url_retrieval": 5.7220458984375e-06,
+        "total_workflow_iterations": 64.76265525817871,
+        "average_iteration_time": 21.587551752726238,
+        "environment_closure": 5.825001239776611
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 309.28690004348755,
+      "environment_id": "8b8079da-75da-4d21-a45c-acd9a1866893",
+      "steps_timing": {
+        "environment_creation": 22.666908264160156,
+        "environment_ready": 222.4124608039856,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 62.205357789993286,
+        "average_iteration_time": 20.735119263331097,
+        "environment_closure": 16.04291605949402
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 326.93219017982483,
+      "environment_id": "e360cb43-dda9-43ac-9ceb-3f12d409f91e",
+      "steps_timing": {
+        "environment_creation": 31.66089701652527,
+        "environment_ready": 230.71967220306396,
+        "public_url_retrieval": 1.3828277587890625e-05,
+        "total_workflow_iterations": 62.54891395568848,
+        "average_iteration_time": 20.849637985229492,
+        "environment_closure": 5.223619222640991
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 24.85938310623169,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 294.63323998451233,
+      "environment_id": "fff2396a-9afc-4029-8204-ad41af374661",
+      "steps_timing": {
+        "environment_creation": 23.22697901725769,
+        "environment_ready": 211.652241230011,
+        "public_url_retrieval": 1.4066696166992188e-05,
+        "total_workflow_iterations": 57.752066135406494,
+        "average_iteration_time": 19.250688711802166,
+        "environment_closure": 22.494990825653076
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 323.15226697921753,
+      "environment_id": "a9785bf0-04a9-4760-9035-fa308dcfa5c0",
+      "steps_timing": {
+        "environment_creation": 29.27234411239624,
+        "environment_ready": 228.96589994430542,
+        "public_url_retrieval": 5.7220458984375e-06,
+        "total_workflow_iterations": 62.91175198554993,
+        "average_iteration_time": 20.970583995183308,
+        "environment_closure": 6.322131395339966
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 322.4865357875824,
+      "environment_id": "1478826e-edb8-4072-be05-b0ee96baf75b",
+      "steps_timing": {
+        "environment_creation": 27.497910737991333,
+        "environment_ready": 227.2893350124359,
+        "public_url_retrieval": 6.198883056640625e-06,
+        "total_workflow_iterations": 65.69769334793091,
+        "average_iteration_time": 21.89923111597697,
+        "environment_closure": 6.941212892532349
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 322.91406083106995,
+      "environment_id": "89465ebb-9332-4d0d-8d3b-509587ece277",
+      "steps_timing": {
+        "environment_creation": 22.288023710250854,
+        "environment_ready": 232.79854702949524,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 65.8256528377533,
+        "average_iteration_time": 21.9418842792511,
+        "environment_closure": 6.654517889022827
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 316.5269351005554,
+      "environment_id": "03bd3642-515f-4e66-9552-e40e6180f592",
+      "steps_timing": {
+        "environment_creation": 23.197015047073364,
+        "environment_ready": 226.21543502807617,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 65.11229586601257,
+        "average_iteration_time": 21.704098622004192,
+        "environment_closure": 11.854603052139282
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 313.095755815506,
+      "environment_id": "07e2f2c8-8bb3-4377-8c2c-dd10e086b186",
+      "steps_timing": {
+        "environment_creation": 25.848106861114502,
+        "environment_ready": 222.04040122032166,
+        "public_url_retrieval": 1.4781951904296875e-05,
+        "total_workflow_iterations": 63.204920291900635,
+        "average_iteration_time": 21.068306763966877,
+        "environment_closure": 14.838701963424683
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 306.25195384025574,
+      "environment_id": "a758712f-0a94-485f-8773-3693965180da",
+      "steps_timing": {
+        "environment_creation": 21.29575490951538,
+        "environment_ready": 218.39058208465576,
+        "public_url_retrieval": 1.7881393432617188e-05,
+        "total_workflow_iterations": 64.5636534690857,
+        "average_iteration_time": 21.521217823028564,
+        "environment_closure": 16.91545605659485
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 310.81482315063477,
+      "environment_id": "d0edf0d7-5553-4a86-b628-7f8572080b27",
+      "steps_timing": {
+        "environment_creation": 23.631897926330566,
+        "environment_ready": 220.69663000106812,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 64.48475003242493,
+        "average_iteration_time": 21.494916677474976,
+        "environment_closure": 15.591156959533691
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 312.92733812332153,
+      "environment_id": "26a2ee63-1c3d-4d48-a78f-bf7dd60407f1",
+      "steps_timing": {
+        "environment_creation": 23.946665048599243,
+        "environment_ready": 221.6734480857849,
+        "public_url_retrieval": 6.079673767089844e-05,
+        "total_workflow_iterations": 65.30529308319092,
+        "average_iteration_time": 21.768431027730305,
+        "environment_closure": 14.930998086929321
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 325.143581867218,
+      "environment_id": "4f97a144-e369-4604-b8cc-1cf9faecae57",
+      "steps_timing": {
+        "environment_creation": 23.051318168640137,
+        "environment_ready": 237.58568334579468,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 62.50461006164551,
+        "average_iteration_time": 20.834870020548504,
+        "environment_closure": 5.249865770339966
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 320.58686113357544,
+      "environment_id": "5fad3624-0a4e-4532-bd4a-37e5a10becec",
+      "steps_timing": {
+        "environment_creation": 23.62820315361023,
+        "environment_ready": 231.21072006225586,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "total_workflow_iterations": 63.745752811431885,
+        "average_iteration_time": 21.248584270477295,
+        "environment_closure": 8.886198997497559
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 24.874485969543457,
+      "environment_id": null,
+      "steps_timing": {},
+      "error": "429, message='Too Many Requests', url='https://plato.so/api/env/make2'"
+    },
+    {
+      "success": true,
+      "total_duration": 324.41837430000305,
+      "environment_id": "6c7ba93f-7f23-4b54-bfea-8ccfa8bc55df",
+      "steps_timing": {
+        "environment_creation": 23.947858095169067,
+        "environment_ready": 235.42452192306519,
+        "public_url_retrieval": 7.152557373046875e-06,
+        "total_workflow_iterations": 63.04340124130249,
+        "average_iteration_time": 21.014467080434162,
+        "environment_closure": 5.214131116867065
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 306.6227939128876,
+      "environment_id": "0ef558c5-b67f-4952-bac8-794c4f739a25",
+      "steps_timing": {
+        "environment_creation": 23.101955890655518,
+        "environment_ready": 219.66666293144226,
+        "public_url_retrieval": 1.4066696166992188e-05,
+        "total_workflow_iterations": 61.8517382144928,
+        "average_iteration_time": 20.6172460714976,
+        "environment_closure": 16.71527886390686
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 318.6966931819916,
+      "environment_id": "3f7abd3a-3632-470c-a85e-f9d76c1c35b8",
+      "steps_timing": {
+        "environment_creation": 28.33877205848694,
+        "environment_ready": 223.8923361301422,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "total_workflow_iterations": 64.46382403373718,
+        "average_iteration_time": 21.48794134457906,
+        "environment_closure": 10.322304010391235
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 309.1945171356201,
+      "environment_id": "940a3e04-d2be-4622-a8e2-35358ea75bd0",
+      "steps_timing": {
+        "environment_creation": 25.396098136901855,
+        "environment_ready": 218.87181878089905,
+        "public_url_retrieval": 1.9788742065429688e-05,
+        "total_workflow_iterations": 62.925182819366455,
+        "average_iteration_time": 20.97506093978882,
+        "environment_closure": 16.054736852645874
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 308.625116109848,
+      "environment_id": "ad4b5aee-e969-44ff-8a7c-beadeee3239b",
+      "steps_timing": {
+        "environment_creation": 26.729758262634277,
+        "environment_ready": 216.5181200504303,
+        "public_url_retrieval": 6.198883056640625e-06,
+        "total_workflow_iterations": 63.37480616569519,
+        "average_iteration_time": 21.124935388565063,
+        "environment_closure": 16.388017892837524
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 326.7810409069061,
+      "environment_id": "52dffee5-adea-4154-ba9c-ce4380ae9a37",
+      "steps_timing": {
+        "environment_creation": 32.28644514083862,
+        "environment_ready": 229.49082279205322,
+        "public_url_retrieval": 1.3113021850585938e-05,
+        "total_workflow_iterations": 63.00125813484192,
+        "average_iteration_time": 21.00041937828064,
+        "environment_closure": 5.233751058578491
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 327.24274826049805,
+      "environment_id": "263f0ced-a091-4f25-b65f-a4bb983b7e95",
+      "steps_timing": {
+        "environment_creation": 23.578431129455566,
+        "environment_ready": 239.13692903518677,
+        "public_url_retrieval": 1.0013580322265625e-05,
+        "total_workflow_iterations": 62.52488970756531,
+        "average_iteration_time": 20.84162990252177,
+        "environment_closure": 5.222532033920288
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 308.74549102783203,
+      "environment_id": "6f247ddd-5f00-489a-82cb-ab49ff1acac8",
+      "steps_timing": {
+        "environment_creation": 23.167364835739136,
+        "environment_ready": 220.54115295410156,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 63.03558301925659,
+        "average_iteration_time": 21.011861006418865,
+        "environment_closure": 16.288010835647583
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 319.4653217792511,
+      "environment_id": "8b42fde5-cb90-484f-8de5-b9aef0871ae4",
+      "steps_timing": {
+        "environment_creation": 23.507341623306274,
+        "environment_ready": 228.13932514190674,
+        "public_url_retrieval": 8.106231689453125e-06,
+        "total_workflow_iterations": 65.81664562225342,
+        "average_iteration_time": 21.938881874084473,
+        "environment_closure": 9.697899103164673
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 317.6917209625244,
+      "environment_id": "ee0e670b-6593-465c-96a7-5db7cd9894f7",
+      "steps_timing": {
+        "environment_creation": 22.663021087646484,
+        "environment_ready": 225.92735981941223,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 67.09733510017395,
+        "average_iteration_time": 22.36577836672465,
+        "environment_closure": 11.19414234161377
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 305.6991910934448,
+      "environment_id": "a5f265ee-4826-4043-ae4e-f7cd73b5add9",
+      "steps_timing": {
+        "environment_creation": 23.821386098861694,
+        "environment_ready": 216.79752111434937,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 63.078564167022705,
+        "average_iteration_time": 21.026188055674236,
+        "environment_closure": 17.061320781707764
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 322.90708088874817,
+      "environment_id": "ddd7abb8-684e-46e0-a9c8-1d15672bf26b",
+      "steps_timing": {
+        "environment_creation": 29.54510188102722,
+        "environment_ready": 225.9927418231964,
+        "public_url_retrieval": 8.106231689453125e-06,
+        "total_workflow_iterations": 65.36734962463379,
+        "average_iteration_time": 21.789116541544598,
+        "environment_closure": 6.564419984817505
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 315.41873121261597,
+      "environment_id": "92de8734-2fce-42d6-9265-ae47c286a228",
+      "steps_timing": {
+        "environment_creation": 28.56657099723816,
+        "environment_ready": 217.5131130218506,
+        "public_url_retrieval": 5.7220458984375e-06,
+        "total_workflow_iterations": 67.33714580535889,
+        "average_iteration_time": 22.44571526845296,
+        "environment_closure": 13.159221887588501
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 326.60006499290466,
+      "environment_id": "b67133d8-b87f-42c6-818a-72a208d6526b",
+      "steps_timing": {
+        "environment_creation": 24.9711697101593,
+        "environment_ready": 237.8178849220276,
+        "public_url_retrieval": 1.8835067749023438e-05,
+        "total_workflow_iterations": 61.809836864471436,
+        "average_iteration_time": 20.60327895482381,
+        "environment_closure": 5.2282257080078125
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 293.5595669746399,
+      "environment_id": "743457fd-29a8-4d59-abc9-78743784e575",
+      "steps_timing": {
+        "environment_creation": 23.638028144836426,
+        "environment_ready": 211.34100198745728,
+        "public_url_retrieval": 3.0040740966796875e-05,
+        "total_workflow_iterations": 56.57893180847168,
+        "average_iteration_time": 18.859643936157227,
+        "environment_closure": 22.3530752658844
+      },
+      "error": null
+    }
+  ]
+}

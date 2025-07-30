@@ -1,0 +1,1398 @@
+{
+  "test_type": "espocrm_login",
+  "total_tests": 100,
+  "concurrent_tests": 100,
+  "successful_tests": 77,
+  "failed_tests": 23,
+  "total_duration": 351.2387549877167,
+  "tests_per_second": 0.28470662357147103,
+  "success_rate": 77.0,
+  "step_averages": {
+    "environment_creation": {
+      "average": 8.61006165742874,
+      "min": 3.9697508811950684,
+      "max": 17.700770139694214
+    },
+    "environment_ready": {
+      "average": 215.72312715768814,
+      "min": 200.15981912612915,
+      "max": 239.62664604187012
+    },
+    "total_workflow_iterations": {
+      "average": 91.06647596730815,
+      "min": 70.33288359642029,
+      "max": 107.7928261756897
+    },
+    "average_iteration_time": {
+      "average": 30.355491989102717,
+      "min": 23.444294532140095,
+      "max": 35.93094205856323
+    },
+    "environment_closure": {
+      "average": 5.293151166439056,
+      "min": 5.207086801528931,
+      "max": 6.983530044555664
+    },
+    "public_url_retrieval": {
+      "average": 8.26120376586914e-06,
+      "min": 2.86102294921875e-06,
+      "max": 5.1975250244140625e-05
+    }
+  },
+  "individual_test_metrics": [
+    {
+      "success": false,
+      "total_duration": 309.7115089893341,
+      "environment_id": "37f8eeb0-4566-4fac-9cc4-7f9b5cc2940b",
+      "steps_timing": {
+        "environment_creation": 3.9697508811950684,
+        "environment_ready": 217.13462901115417,
+        "public_url_retrieval": 8.106231689453125e-06,
+        "environment_closure": 5.2354230880737305
+      },
+      "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://37f8eeb0-4566-4fac-9cc4-7f9b5cc2940b.staging.sims.plato.so/\", waiting until \"load\"\n"
+    },
+    {
+      "success": true,
+      "total_duration": 322.67431688308716,
+      "environment_id": "b79a2bc8-94d5-4d6f-8c66-dd02e2d9f565",
+      "steps_timing": {
+        "environment_creation": 12.487131834030151,
+        "environment_ready": 216.07495498657227,
+        "public_url_retrieval": 2.002716064453125e-05,
+        "total_workflow_iterations": 92.11167192459106,
+        "average_iteration_time": 30.703890641530354,
+        "environment_closure": 5.281131982803345
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 288.14761304855347,
+      "environment_id": "9d6263fe-eb7a-45e4-8990-f866dd3082ad",
+      "steps_timing": {
+        "environment_creation": 7.689898252487183,
+        "environment_ready": 208.12247514724731,
+        "public_url_retrieval": 7.152557373046875e-06,
+        "total_workflow_iterations": 70.33288359642029,
+        "average_iteration_time": 23.444294532140095,
+        "environment_closure": 5.24392294883728
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 323.86460423469543,
+      "environment_id": "bc2fbb76-48c0-4830-873a-b27df6072802",
+      "steps_timing": {
+        "environment_creation": 9.575862169265747,
+        "environment_ready": 214.1526300907135,
+        "public_url_retrieval": 2.86102294921875e-06,
+        "total_workflow_iterations": 98.13496971130371,
+        "average_iteration_time": 32.71165657043457,
+        "environment_closure": 5.270464897155762
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 273.01721119880676,
+      "environment_id": "8d055891-a499-4055-9118-c6d3cf3e94f3",
+      "steps_timing": {
+        "environment_creation": 5.919027328491211,
+        "environment_ready": 225.3671863079071,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "environment_closure": 5.27022910118103
+      },
+      "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://8d055891-a499-4055-9118-c6d3cf3e94f3.staging.sims.plato.so/\", waiting until \"load\"\n"
+    },
+    {
+      "success": false,
+      "total_duration": 303.8294050693512,
+      "environment_id": "c81bb4fb-d629-4e96-9b44-8de6e7e6cec9",
+      "steps_timing": {
+        "environment_creation": 7.197616100311279,
+        "environment_ready": 214.8830749988556,
+        "public_url_retrieval": 1.0013580322265625e-05,
+        "environment_closure": 5.249731779098511
+      },
+      "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://c81bb4fb-d629-4e96-9b44-8de6e7e6cec9.staging.sims.plato.so/\", waiting until \"load\"\n"
+    },
+    {
+      "success": true,
+      "total_duration": 327.54757618904114,
+      "environment_id": "82228650-55b6-48f2-842e-df1653e52268",
+      "steps_timing": {
+        "environment_creation": 8.445865154266357,
+        "environment_ready": 219.14688277244568,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 97.95241570472717,
+        "average_iteration_time": 32.65080523490906,
+        "environment_closure": 5.207086801528931
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 329.9510610103607,
+      "environment_id": "e10a4664-d30b-4937-af38-0fd8af9311b8",
+      "steps_timing": {
+        "environment_creation": 11.072923183441162,
+        "environment_ready": 224.33149003982544,
+        "public_url_retrieval": 2.86102294921875e-06,
+        "total_workflow_iterations": 92.54497957229614,
+        "average_iteration_time": 30.848326524098713,
+        "environment_closure": 5.317638158798218
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 304.6867938041687,
+      "environment_id": "5608dbd8-c2c9-41e0-ab16-0b004f342adc",
+      "steps_timing": {
+        "environment_creation": 6.902673006057739,
+        "environment_ready": 207.95943880081177,
+        "public_url_retrieval": 1.4066696166992188e-05,
+        "total_workflow_iterations": 87.82251596450806,
+        "average_iteration_time": 29.274171988169353,
+        "environment_closure": 5.451717853546143
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 330.3445928096771,
+      "environment_id": "82b44695-0da6-43bc-8de5-cc29c324e1d2",
+      "steps_timing": {
+        "environment_creation": 4.318655967712402,
+        "environment_ready": 218.80973100662231,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 105.21395707130432,
+        "average_iteration_time": 35.071319023768105,
+        "environment_closure": 5.2638609409332275
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 328.7963469028473,
+      "environment_id": "07f79aa5-ac26-4cdb-bb95-2d50eb87cf1d",
+      "steps_timing": {
+        "environment_creation": 6.670764684677124,
+        "environment_ready": 219.74144196510315,
+        "public_url_retrieval": 4.76837158203125e-06,
+        "total_workflow_iterations": 100.38201594352722,
+        "average_iteration_time": 33.46067198117574,
+        "environment_closure": 5.2368690967559814
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 302.74131870269775,
+      "environment_id": "fab8b65e-b289-411b-8884-8a5f766856d6",
+      "steps_timing": {
+        "environment_creation": 6.220844030380249,
+        "environment_ready": 212.13105487823486,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 82.38779497146606,
+        "average_iteration_time": 27.46259832382202,
+        "environment_closure": 5.39350700378418
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 328.9011881351471,
+      "environment_id": "c1fa073b-14fc-4b31-b0cb-7aa986d58810",
+      "steps_timing": {
+        "environment_creation": 8.778146982192993,
+        "environment_ready": 215.76973509788513,
+        "public_url_retrieval": 6.198883056640625e-06,
+        "total_workflow_iterations": 102.35228180885315,
+        "average_iteration_time": 34.117427269617714,
+        "environment_closure": 5.242334842681885
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 319.24518394470215,
+      "environment_id": "e7538b51-8a7d-4806-bd6d-13f2e20da30c",
+      "steps_timing": {
+        "environment_creation": 10.582068920135498,
+        "environment_ready": 217.60733079910278,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 89.05447387695312,
+        "average_iteration_time": 29.684824625651043,
+        "environment_closure": 5.2379279136657715
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 316.9284269809723,
+      "environment_id": "867175d0-98c9-4a95-a374-55c5ebecac69",
+      "steps_timing": {
+        "environment_creation": 9.496918201446533,
+        "environment_ready": 214.4864592552185,
+        "public_url_retrieval": 8.106231689453125e-06,
+        "total_workflow_iterations": 90.94366502761841,
+        "average_iteration_time": 30.314555009206135,
+        "environment_closure": 6.983530044555664
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 290.8707377910614,
+      "environment_id": "63fdb108-8835-4e46-9d45-5931375b668f",
+      "steps_timing": {
+        "environment_creation": 11.073404788970947,
+        "environment_ready": 205.44284009933472,
+        "public_url_retrieval": 1.0013580322265625e-05,
+        "total_workflow_iterations": 72.35270404815674,
+        "average_iteration_time": 24.117568016052246,
+        "environment_closure": 5.2563841342926025
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 328.2820417881012,
+      "environment_id": "c036fed2-abe5-415a-aed9-4c3587d8b432",
+      "steps_timing": {
+        "environment_creation": 7.7512359619140625,
+        "environment_ready": 216.56572890281677,
+        "public_url_retrieval": 2.86102294921875e-06,
+        "total_workflow_iterations": 101.96368265151978,
+        "average_iteration_time": 33.987894217173256,
+        "environment_closure": 5.224658966064453
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 310.3199989795685,
+      "environment_id": "cdcd8cd2-9091-4ba0-bb9a-62fb928fa16b",
+      "steps_timing": {
+        "environment_creation": 4.766510009765625,
+        "environment_ready": 213.38521909713745,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "total_workflow_iterations": 90.16679286956787,
+        "average_iteration_time": 30.05559762318929,
+        "environment_closure": 5.23837685585022
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 313.4100317955017,
+      "environment_id": "955814d9-c884-4ab8-8161-852c294dc3fc",
+      "steps_timing": {
+        "environment_creation": 7.120413780212402,
+        "environment_ready": 221.55691289901733,
+        "public_url_retrieval": 5.245208740234375e-06,
+        "environment_closure": 5.250684976577759
+      },
+      "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://955814d9-c884-4ab8-8161-852c294dc3fc.staging.sims.plato.so/\", waiting until \"load\"\n"
+    },
+    {
+      "success": true,
+      "total_duration": 295.4094409942627,
+      "environment_id": "0dc22ca2-6168-424e-a958-4bb411973064",
+      "steps_timing": {
+        "environment_creation": 6.588536024093628,
+        "environment_ready": 211.10737299919128,
+        "public_url_retrieval": 6.198883056640625e-06,
+        "total_workflow_iterations": 75.71241664886475,
+        "average_iteration_time": 25.23747221628825,
+        "environment_closure": 5.528324842453003
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 326.65343284606934,
+      "environment_id": "c70119ba-2c65-4993-9b18-16fab33773c4",
+      "steps_timing": {
+        "environment_creation": 7.458022832870483,
+        "environment_ready": 226.92115306854248,
+        "public_url_retrieval": 5.0067901611328125e-06,
+        "total_workflow_iterations": 90.27283525466919,
+        "average_iteration_time": 30.09094508488973,
+        "environment_closure": 5.252068042755127
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 345.774827003479,
+      "environment_id": "92b45b8f-faf5-4282-ab40-ae38c3e2920e",
+      "steps_timing": {
+        "environment_creation": 8.447796821594238,
+        "environment_ready": 227.77477288246155,
+        "public_url_retrieval": 5.1975250244140625e-05,
+        "total_workflow_iterations": 107.55025005340576,
+        "average_iteration_time": 35.850083351135254,
+        "environment_closure": 5.237263917922974
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 309.71352195739746,
+      "environment_id": "8a1d059e-12b0-4e8c-a8b2-f9118c16356b",
+      "steps_timing": {
+        "environment_creation": 7.775674819946289,
+        "environment_ready": 215.6606330871582,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 84.27596306800842,
+        "average_iteration_time": 28.09198768933614,
+        "environment_closure": 5.240163087844849
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 317.84938192367554,
+      "environment_id": "b91778b2-1618-43db-9409-1d0eb2ce7f14",
+      "steps_timing": {
+        "environment_creation": 7.7884979248046875,
+        "environment_ready": 216.34483814239502,
+        "public_url_retrieval": 1.0967254638671875e-05,
+        "total_workflow_iterations": 91.71496748924255,
+        "average_iteration_time": 30.571655829747517,
+        "environment_closure": 5.2660980224609375
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 265.9560990333557,
+      "environment_id": "366acebe-0ef2-4a9e-9683-32178e3c6078",
+      "steps_timing": {
+        "environment_creation": 7.64616584777832,
+        "environment_ready": 215.52483987808228,
+        "public_url_retrieval": 9.059906005859375e-06,
+        "environment_closure": 5.279531002044678
+      },
+      "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://366acebe-0ef2-4a9e-9683-32178e3c6078.staging.sims.plato.so/\", waiting until \"load\"\n"
+    },
+    {
+      "success": true,
+      "total_duration": 325.75485730171204,
+      "environment_id": "4be8bb80-40b4-4b83-9299-6543a18f9ab6",
+      "steps_timing": {
+        "environment_creation": 6.19415807723999,
+        "environment_ready": 221.25209593772888,
+        "public_url_retrieval": 8.106231689453125e-06,
+        "total_workflow_iterations": 96.30672979354858,
+        "average_iteration_time": 32.1022432645162,
+        "environment_closure": 5.244377851486206
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 306.48097014427185,
+      "environment_id": "2c23b9c5-ee53-4176-b9c8-a38f5b18d44b",
+      "steps_timing": {
+        "environment_creation": 13.370572805404663,
+        "environment_ready": 212.57493209838867,
+        "public_url_retrieval": 7.152557373046875e-06,
+        "total_workflow_iterations": 78.5335431098938,
+        "average_iteration_time": 26.17784770329793,
+        "environment_closure": 5.226781845092773
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 312.2247211933136,
+      "environment_id": "e067ab34-4906-41b7-843d-fd89192c3e68",
+      "steps_timing": {
+        "environment_creation": 11.782354831695557,
+        "environment_ready": 218.76229405403137,
+        "public_url_retrieval": 9.059906005859375e-06,
+        "total_workflow_iterations": 79.66911387443542,
+        "average_iteration_time": 26.556371291478474,
+        "environment_closure": 5.291358947753906
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 311.63436007499695,
+      "environment_id": "226f6e10-08da-42d4-9ec9-ed5350576ba5",
+      "steps_timing": {
+        "environment_creation": 8.113370180130005,
+        "environment_ready": 220.63224911689758,
+        "public_url_retrieval": 6.67572021484375e-06,
+        "total_workflow_iterations": 80.88664841651917,
+        "average_iteration_time": 26.96221613883972,
+        "environment_closure": 5.220326900482178
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 329.14945101737976,
+      "environment_id": "6c31ce2f-52bb-45ba-ac24-0ee6b1647bab",
+      "steps_timing": {
+        "environment_creation": 7.724530935287476,
+        "environment_ready": 221.22723197937012,
+        "public_url_retrieval": 7.867813110351562e-06,
+        "total_workflow_iterations": 98.1969780921936,
+        "average_iteration_time": 32.7323260307312,
+        "environment_closure": 5.2930896282196045
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 311.17472791671753,
+      "environment_id": "f1001397-06a0-4e37-b5c8-43d49677bf1d",
+      "steps_timing": {
+        "environment_creation": 9.84027910232544,
+        "environment_ready": 210.08378505706787,
+        "public_url_retrieval": 1.1920928955078125e-05,
+        "total_workflow_iterations": 89.24855303764343,
+        "average_iteration_time": 29.749517679214478,
+        "environment_closure": 5.257015943527222
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 325.47945284843445,
+      "environment_id": "22f95890-ebec-49fd-be85-7d055d6e65aa",
+      "steps_timing": {
+        "environment_creation": 6.539083003997803,
+        "environment_ready": 209.82363533973694,
+        "public_url_retrieval": 1.0967254638671875e-05,
+        "total_workflow_iterations": 107.11609411239624,
+        "average_iteration_time": 35.70536470413208,
+        "environment_closure": 5.231093168258667
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 323.1513421535492,
+      "environment_id": "cfd2acec-8899-4064-b1b2-b37d88ed92bb",
+      "steps_timing": {
+        "environment_creation": 10.956315040588379,
+        "environment_ready": 222.5801019668579,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "total_workflow_iterations": 87.61306881904602,
+        "average_iteration_time": 29.20435627301534,
+        "environment_closure": 5.250674724578857
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 278.345162153244,
+      "environment_id": "33fc921c-492f-4594-a1a0-dae22f12a046",
+      "steps_timing": {
+        "environment_creation": 6.541971206665039,
+        "environment_ready": 210.12447714805603,
+        "public_url_retrieval": 8.106231689453125e-06,
+        "environment_closure": 5.25770902633667
+      },
+      "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://33fc921c-492f-4594-a1a0-dae22f12a046.staging.sims.plato.so/\", waiting until \"load\"\n"
+    },
+    {
+      "success": false,
+      "total_duration": 291.23964071273804,
+      "environment_id": "8a7f0f24-d814-46e8-928b-096f5a0183ea",
+      "steps_timing": {
+        "environment_creation": 9.49703598022461,
+        "environment_ready": 239.62664604187012,
+        "public_url_retrieval": 8.821487426757812e-06,
+        "environment_closure": 5.300824165344238
+      },
+      "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://8a7f0f24-d814-46e8-928b-096f5a0183ea.staging.sims.plato.so/\", waiting until \"load\"\n"
+    },
+    {
+      "success": false,
+      "total_duration": 282.9079341888428,
+      "environment_id": "47082239-f025-4ac0-8e95-f39fc729f8e8",
+      "steps_timing": {
+        "environment_creation": 17.700770139694214,
+        "environment_ready": 200.15981912612915,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "environment_closure": 5.241270065307617
+      },
+      "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://47082239-f025-4ac0-8e95-f39fc729f8e8.staging.sims.plato.so/\", waiting until \"load\"\n"
+    },
+    {
+      "success": true,
+      "total_duration": 327.14794087409973,
+      "environment_id": "82a8f605-1996-4a5a-b709-bb0c6c2c6c99",
+      "steps_timing": {
+        "environment_creation": 6.929931640625,
+        "environment_ready": 215.1357879638672,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 103.08020496368408,
+        "average_iteration_time": 34.36006832122803,
+        "environment_closure": 5.221282958984375
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 304.662232875824,
+      "environment_id": "ca790d1a-e44e-45fc-b2eb-09c2c8507bf6",
+      "steps_timing": {
+        "environment_creation": 11.274863004684448,
+        "environment_ready": 207.20743703842163,
+        "public_url_retrieval": 7.867813110351562e-06,
+        "total_workflow_iterations": 84.1787633895874,
+        "average_iteration_time": 28.059587796529133,
+        "environment_closure": 5.252938985824585
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 319.97523617744446,
+      "environment_id": "914dd23e-6dd2-4b13-a2ba-18ad596ff722",
+      "steps_timing": {
+        "environment_creation": 7.3978188037872314,
+        "environment_ready": 210.9253032207489,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 99.64792704582214,
+        "average_iteration_time": 33.21597568194071,
+        "environment_closure": 5.258774042129517
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 338.88657093048096,
+      "environment_id": "f1558a18-ad58-4a54-81ad-98d2906211d0",
+      "steps_timing": {
+        "environment_creation": 9.573404788970947,
+        "environment_ready": 232.79569172859192,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 94.5151150226593,
+        "average_iteration_time": 31.505038340886433,
+        "environment_closure": 5.2637341022491455
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 331.26189517974854,
+      "environment_id": "aa44300e-2666-45bc-a380-f8b1d465ebbf",
+      "steps_timing": {
+        "environment_creation": 11.07359504699707,
+        "environment_ready": 214.09369897842407,
+        "public_url_retrieval": 1.5974044799804688e-05,
+        "total_workflow_iterations": 104.09254026412964,
+        "average_iteration_time": 34.69751342137655,
+        "environment_closure": 5.224620819091797
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 317.73120307922363,
+      "environment_id": "06df588c-ae4e-42bf-a651-e579c26a1913",
+      "steps_timing": {
+        "environment_creation": 7.2547430992126465,
+        "environment_ready": 220.43566608428955,
+        "public_url_retrieval": 4.696846008300781e-05,
+        "environment_closure": 5.248938083648682
+      },
+      "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://06df588c-ae4e-42bf-a651-e579c26a1913.staging.sims.plato.so/\", waiting until \"load\"\n"
+    },
+    {
+      "success": false,
+      "total_duration": 308.52043199539185,
+      "environment_id": "1f4e371c-bdc6-41ae-9432-a4dc6be01b9d",
+      "steps_timing": {
+        "environment_creation": 7.396981954574585,
+        "environment_ready": 218.17146801948547,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "environment_closure": 5.250192880630493
+      },
+      "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://1f4e371c-bdc6-41ae-9432-a4dc6be01b9d.staging.sims.plato.so/\", waiting until \"load\"\n"
+    },
+    {
+      "success": false,
+      "total_duration": 266.8928689956665,
+      "environment_id": "b849f206-8a3b-48c7-8c19-c434680ee767",
+      "steps_timing": {
+        "environment_creation": 5.886114120483398,
+        "environment_ready": 218.32142519950867,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "environment_closure": 5.240958213806152
+      },
+      "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://b849f206-8a3b-48c7-8c19-c434680ee767.staging.sims.plato.so/\", waiting until \"load\"\n"
+    },
+    {
+      "success": false,
+      "total_duration": 264.8865029811859,
+      "environment_id": "13bfd7e4-4356-4043-bd84-107d65172cbb",
+      "steps_timing": {
+        "environment_creation": 6.006366014480591,
+        "environment_ready": 216.42674684524536,
+        "public_url_retrieval": 1.0967254638671875e-05,
+        "environment_closure": 5.237468004226685
+      },
+      "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://13bfd7e4-4356-4043-bd84-107d65172cbb.staging.sims.plato.so/\", waiting until \"load\"\n"
+    },
+    {
+      "success": true,
+      "total_duration": 334.985310792923,
+      "environment_id": "bf9e1168-0ec9-4ee9-bbb2-a3fb40d8d47d",
+      "steps_timing": {
+        "environment_creation": 8.14175796508789,
+        "environment_ready": 222.6561679840088,
+        "public_url_retrieval": 2.86102294921875e-06,
+        "total_workflow_iterations": 102.18663191795349,
+        "average_iteration_time": 34.06221063931783,
+        "environment_closure": 5.233297824859619
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 270.12332916259766,
+      "environment_id": "340d59de-c9f3-4c1a-b71c-a9c5920834ca",
+      "steps_timing": {
+        "environment_creation": 6.682959318161011,
+        "environment_ready": 220.6903109550476,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "environment_closure": 5.3078999519348145
+      },
+      "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://340d59de-c9f3-4c1a-b71c-a9c5920834ca.staging.sims.plato.so/\", waiting until \"load\"\n"
+    },
+    {
+      "success": false,
+      "total_duration": 267.9778838157654,
+      "environment_id": "77667250-091e-4ffd-8521-5b6c59370300",
+      "steps_timing": {
+        "environment_creation": 9.757889032363892,
+        "environment_ready": 215.73919892311096,
+        "public_url_retrieval": 8.821487426757812e-06,
+        "environment_closure": 5.531296968460083
+      },
+      "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://77667250-091e-4ffd-8521-5b6c59370300.staging.sims.plato.so/\", waiting until \"load\"\n"
+    },
+    {
+      "success": true,
+      "total_duration": 294.887149810791,
+      "environment_id": "6bcd9295-0fd2-47d8-8a67-8b10ee551536",
+      "steps_timing": {
+        "environment_creation": 11.397440910339355,
+        "environment_ready": 208.72603678703308,
+        "public_url_retrieval": 7.867813110351562e-06,
+        "total_workflow_iterations": 72.76164317131042,
+        "average_iteration_time": 24.253881057103474,
+        "environment_closure": 5.2723681926727295
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 327.86264991760254,
+      "environment_id": "d4a9f113-6fa6-4e8a-9c81-fd41ff901ed6",
+      "steps_timing": {
+        "environment_creation": 13.480829954147339,
+        "environment_ready": 210.40561723709106,
+        "public_url_retrieval": 2.86102294921875e-06,
+        "total_workflow_iterations": 101.97465515136719,
+        "average_iteration_time": 33.9915517171224,
+        "environment_closure": 5.249673128128052
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 324.0047209262848,
+      "environment_id": "bc150333-1b8a-432e-924f-15f2fc8335c5",
+      "steps_timing": {
+        "environment_creation": 12.313313722610474,
+        "environment_ready": 212.94899201393127,
+        "public_url_retrieval": 5.0067901611328125e-06,
+        "total_workflow_iterations": 96.737717628479,
+        "average_iteration_time": 32.24590587615967,
+        "environment_closure": 5.220340967178345
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 319.98214197158813,
+      "environment_id": "0f5d6a11-fc0d-45dc-a81b-3fbe9d8d84db",
+      "steps_timing": {
+        "environment_creation": 7.807008981704712,
+        "environment_ready": 217.72815203666687,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 92.44533109664917,
+        "average_iteration_time": 30.815110365549724,
+        "environment_closure": 5.247278928756714
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 292.712739944458,
+      "environment_id": "3efb3fed-9457-46da-9d84-cf06f87e0c09",
+      "steps_timing": {
+        "environment_creation": 11.591415166854858,
+        "environment_ready": 206.61253881454468,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 72.50726914405823,
+        "average_iteration_time": 24.169089714686077,
+        "environment_closure": 5.299116134643555
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 322.0815088748932,
+      "environment_id": "ca337ce0-dbc7-4868-a582-1612071c7b9a",
+      "steps_timing": {
+        "environment_creation": 7.0620269775390625,
+        "environment_ready": 212.5531461238861,
+        "public_url_retrieval": 6.198883056640625e-06,
+        "total_workflow_iterations": 100.46472597122192,
+        "average_iteration_time": 33.48824199040731,
+        "environment_closure": 5.259561061859131
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 322.74160408973694,
+      "environment_id": "47366deb-ba9b-4503-b584-c4510611c84b",
+      "steps_timing": {
+        "environment_creation": 5.904036045074463,
+        "environment_ready": 219.81100583076477,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 95.02529287338257,
+        "average_iteration_time": 31.675097624460857,
+        "environment_closure": 5.295600175857544
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 264.4984791278839,
+      "environment_id": "3a18effb-33a6-4aad-b44b-78e7b6d64a11",
+      "steps_timing": {
+        "environment_creation": 12.642061948776245,
+        "environment_ready": 208.76126170158386,
+        "public_url_retrieval": 7.152557373046875e-06,
+        "environment_closure": 5.541392087936401
+      },
+      "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://3a18effb-33a6-4aad-b44b-78e7b6d64a11.staging.sims.plato.so/\", waiting until \"load\"\n"
+    },
+    {
+      "success": true,
+      "total_duration": 312.33406591415405,
+      "environment_id": "54f2d060-2a38-452e-9fea-1219e05cb223",
+      "steps_timing": {
+        "environment_creation": 12.843236207962036,
+        "environment_ready": 208.9684190750122,
+        "public_url_retrieval": 1.0967254638671875e-05,
+        "total_workflow_iterations": 88.52122950553894,
+        "average_iteration_time": 29.507076501846313,
+        "environment_closure": 5.284222364425659
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 290.3611350059509,
+      "environment_id": "50237747-2c66-49be-9674-b8bde3b1197a",
+      "steps_timing": {
+        "environment_creation": 6.5415198802948,
+        "environment_ready": 211.03089094161987,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 70.7866780757904,
+        "average_iteration_time": 23.5955593585968,
+        "environment_closure": 5.235505104064941
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 308.9689447879791,
+      "environment_id": "f4aa380b-434b-485d-b267-4b692eb9242e",
+      "steps_timing": {
+        "environment_creation": 7.462384939193726,
+        "environment_ready": 214.78459692001343,
+        "public_url_retrieval": 7.152557373046875e-06,
+        "total_workflow_iterations": 84.72035312652588,
+        "average_iteration_time": 28.24011770884196,
+        "environment_closure": 5.297001123428345
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 321.0778751373291,
+      "environment_id": "697e6dad-ebb8-4a52-bcc3-012303d28914",
+      "steps_timing": {
+        "environment_creation": 6.882560968399048,
+        "environment_ready": 210.0550661087036,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "total_workflow_iterations": 102.13884806632996,
+        "average_iteration_time": 34.04628268877665,
+        "environment_closure": 5.255915880203247
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 331.433522939682,
+      "environment_id": "617638b1-d412-45a9-b5af-feb9fd4ddf20",
+      "steps_timing": {
+        "environment_creation": 7.9474451541900635,
+        "environment_ready": 213.69264721870422,
+        "public_url_retrieval": 2.86102294921875e-06,
+        "total_workflow_iterations": 107.7928261756897,
+        "average_iteration_time": 35.93094205856323,
+        "environment_closure": 5.246703147888184
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 315.0316400527954,
+      "environment_id": "1fabbaa5-42a4-4d35-8fe4-4179006f140a",
+      "steps_timing": {
+        "environment_creation": 7.820337295532227,
+        "environment_ready": 210.93241906166077,
+        "public_url_retrieval": 1.0967254638671875e-05,
+        "total_workflow_iterations": 94.27727508544922,
+        "average_iteration_time": 31.425758361816406,
+        "environment_closure": 5.473124265670776
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 308.41575503349304,
+      "environment_id": "440570ce-9ade-407b-82de-84bbf1610dcc",
+      "steps_timing": {
+        "environment_creation": 10.77864384651184,
+        "environment_ready": 210.81767988204956,
+        "public_url_retrieval": 6.198883056640625e-06,
+        "environment_closure": 5.240381956100464
+      },
+      "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://440570ce-9ade-407b-82de-84bbf1610dcc.staging.sims.plato.so/\", waiting until \"load\"\n"
+    },
+    {
+      "success": false,
+      "total_duration": 265.9270830154419,
+      "environment_id": "dfdf0b16-f3e1-4b5a-8cbb-0f4d939e0a92",
+      "steps_timing": {
+        "environment_creation": 9.495501041412354,
+        "environment_ready": 213.37922620773315,
+        "public_url_retrieval": 8.821487426757812e-06,
+        "environment_closure": 5.677604913711548
+      },
+      "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://dfdf0b16-f3e1-4b5a-8cbb-0f4d939e0a92.staging.sims.plato.so/\", waiting until \"load\"\n"
+    },
+    {
+      "success": true,
+      "total_duration": 293.4810380935669,
+      "environment_id": "0994394b-3578-4bd9-b2cf-d316dcef6c58",
+      "steps_timing": {
+        "environment_creation": 11.258388042449951,
+        "environment_ready": 205.662682056427,
+        "public_url_retrieval": 5.7220458984375e-06,
+        "total_workflow_iterations": 74.55832505226135,
+        "average_iteration_time": 24.852775017420452,
+        "environment_closure": 5.26263689994812
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 312.83345794677734,
+      "environment_id": "99d425e8-2fb7-4201-8044-22180c11acd9",
+      "steps_timing": {
+        "environment_creation": 6.541616916656494,
+        "environment_ready": 219.10143208503723,
+        "public_url_retrieval": 8.106231689453125e-06,
+        "total_workflow_iterations": 85.14496922492981,
+        "average_iteration_time": 28.381656408309937,
+        "environment_closure": 5.258074045181274
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 312.44933581352234,
+      "environment_id": "21a46a8c-4350-4293-a68e-ce3ba7e6ef28",
+      "steps_timing": {
+        "environment_creation": 8.470502853393555,
+        "environment_ready": 216.96889996528625,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "total_workflow_iterations": 85.00850224494934,
+        "average_iteration_time": 28.336167414983112,
+        "environment_closure": 5.238531112670898
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 309.14359879493713,
+      "environment_id": "0b71837b-36a1-45dd-9d34-39b8fa028408",
+      "steps_timing": {
+        "environment_creation": 11.071800708770752,
+        "environment_ready": 209.6652979850769,
+        "public_url_retrieval": 1.2874603271484375e-05,
+        "total_workflow_iterations": 86.40493965148926,
+        "average_iteration_time": 28.801646550496418,
+        "environment_closure": 5.237434148788452
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 317.5263831615448,
+      "environment_id": "46dad51a-9a00-44c3-9175-909f3494d51d",
+      "steps_timing": {
+        "environment_creation": 6.926198959350586,
+        "environment_ready": 224.46212029457092,
+        "public_url_retrieval": 4.38690185546875e-05,
+        "environment_closure": 5.257755279541016
+      },
+      "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://46dad51a-9a00-44c3-9175-909f3494d51d.staging.sims.plato.so/\", waiting until \"load\"\n"
+    },
+    {
+      "success": true,
+      "total_duration": 296.14598512649536,
+      "environment_id": "f888a388-7fd2-43a2-b05d-edaae2530daf",
+      "steps_timing": {
+        "environment_creation": 6.872282028198242,
+        "environment_ready": 210.19710302352905,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 77.07521414756775,
+        "average_iteration_time": 25.69173804918925,
+        "environment_closure": 5.339886903762817
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 313.4482958316803,
+      "environment_id": "270d62ed-2ca6-416a-901b-7f0d601b5368",
+      "steps_timing": {
+        "environment_creation": 8.520947933197021,
+        "environment_ready": 218.19731831550598,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 84.72864103317261,
+        "average_iteration_time": 28.24288034439087,
+        "environment_closure": 5.213842868804932
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 329.2423930168152,
+      "environment_id": "f0c9ff32-99ff-4f16-a2e6-de2ac877eb4f",
+      "steps_timing": {
+        "environment_creation": 7.213901042938232,
+        "environment_ready": 212.40858912467957,
+        "public_url_retrieval": 3.0994415283203125e-06,
+        "total_workflow_iterations": 107.61940479278564,
+        "average_iteration_time": 35.87313493092855,
+        "environment_closure": 5.249016046524048
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 265.28701734542847,
+      "environment_id": "ab74aab2-55ff-4267-be5b-ba4966bb43d8",
+      "steps_timing": {
+        "environment_creation": 6.420780181884766,
+        "environment_ready": 216.76715898513794,
+        "public_url_retrieval": 1.0013580322265625e-05,
+        "environment_closure": 5.267529010772705
+      },
+      "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://ab74aab2-55ff-4267-be5b-ba4966bb43d8.staging.sims.plato.so/\", waiting until \"load\"\n"
+    },
+    {
+      "success": false,
+      "total_duration": 264.5987799167633,
+      "environment_id": "18142f79-fe42-49ab-9870-7a542e6b9ad0",
+      "steps_timing": {
+        "environment_creation": 11.069601058959961,
+        "environment_ready": 210.4078471660614,
+        "public_url_retrieval": 6.198883056640625e-06,
+        "environment_closure": 5.38291597366333
+      },
+      "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://18142f79-fe42-49ab-9870-7a542e6b9ad0.staging.sims.plato.so/\", waiting until \"load\"\n"
+    },
+    {
+      "success": true,
+      "total_duration": 319.6768569946289,
+      "environment_id": "23e4b49d-fbe0-4ddb-bb1d-beb351823e91",
+      "steps_timing": {
+        "environment_creation": 6.192468166351318,
+        "environment_ready": 222.48397088050842,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 88.99977731704712,
+        "average_iteration_time": 29.666592439015705,
+        "environment_closure": 5.265116930007935
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 309.39531898498535,
+      "environment_id": "2e541ee6-9c31-4569-bf83-4a4a7256ba36",
+      "steps_timing": {
+        "environment_creation": 8.313940048217773,
+        "environment_ready": 210.92659211158752,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 88.15051698684692,
+        "average_iteration_time": 29.383505662282307,
+        "environment_closure": 5.239241123199463
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 332.54934906959534,
+      "environment_id": "1af77003-a5b3-46c9-937e-4fb0a8cdbeaf",
+      "steps_timing": {
+        "environment_creation": 8.769917011260986,
+        "environment_ready": 223.1745409965515,
+        "public_url_retrieval": 4.76837158203125e-06,
+        "total_workflow_iterations": 98.60426259040833,
+        "average_iteration_time": 32.86808753013611,
+        "environment_closure": 5.238133192062378
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 304.8279027938843,
+      "environment_id": "8eb9c161-40d7-4cf1-a383-fccd943249c9",
+      "steps_timing": {
+        "environment_creation": 7.457499742507935,
+        "environment_ready": 215.37484884262085,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "environment_closure": 5.247688055038452
+      },
+      "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://8eb9c161-40d7-4cf1-a383-fccd943249c9.staging.sims.plato.so/\", waiting until \"load\"\n"
+    },
+    {
+      "success": true,
+      "total_duration": 326.46290278434753,
+      "environment_id": "6d4d2bbd-4645-4510-8b89-36ee793b6dd2",
+      "steps_timing": {
+        "environment_creation": 10.788841009140015,
+        "environment_ready": 224.5291769504547,
+        "public_url_retrieval": 3.814697265625e-06,
+        "total_workflow_iterations": 89.1443099975586,
+        "average_iteration_time": 29.7147699991862,
+        "environment_closure": 5.268728017807007
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 324.9859561920166,
+      "environment_id": "7e69c692-8f73-4cb7-83bc-4dbc84408e82",
+      "steps_timing": {
+        "environment_creation": 10.562633991241455,
+        "environment_ready": 210.55518102645874,
+        "public_url_retrieval": 1.3828277587890625e-05,
+        "total_workflow_iterations": 101.8665087223053,
+        "average_iteration_time": 33.9555029074351,
+        "environment_closure": 5.2402098178863525
+      },
+      "error": null
+    },
+    {
+      "success": false,
+      "total_duration": 270.1158027648926,
+      "environment_id": "54858508-c4ba-4dbc-8dbc-f3ceab76259a",
+      "steps_timing": {
+        "environment_creation": 6.911699056625366,
+        "environment_ready": 221.07557201385498,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "environment_closure": 5.310906887054443
+      },
+      "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://54858508-c4ba-4dbc-8dbc-f3ceab76259a.staging.sims.plato.so/\", waiting until \"load\"\n"
+    },
+    {
+      "success": false,
+      "total_duration": 266.233295917511,
+      "environment_id": "19130c7e-365c-4879-a919-3c7f34aa56a8",
+      "steps_timing": {
+        "environment_creation": 7.9191718101501465,
+        "environment_ready": 215.5935091972351,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "environment_closure": 5.235357761383057
+      },
+      "error": "Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://19130c7e-365c-4879-a919-3c7f34aa56a8.staging.sims.plato.so/\", waiting until \"load\"\n"
+    },
+    {
+      "success": true,
+      "total_duration": 293.43909311294556,
+      "environment_id": "a527feac-f57e-496e-8b83-d6a4f8d10c83",
+      "steps_timing": {
+        "environment_creation": 8.761266946792603,
+        "environment_ready": 209.8037211894989,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 72.87234210968018,
+        "average_iteration_time": 24.290780703226726,
+        "environment_closure": 5.2912917137146
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 318.54737186431885,
+      "environment_id": "cedffe16-11f5-4633-afa1-bc2044f15f91",
+      "steps_timing": {
+        "environment_creation": 11.07221794128418,
+        "environment_ready": 210.35106825828552,
+        "public_url_retrieval": 1.0013580322265625e-05,
+        "total_workflow_iterations": 95.12272119522095,
+        "average_iteration_time": 31.707573731740315,
+        "environment_closure": 5.234184980392456
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 325.8038258552551,
+      "environment_id": "90bfda23-7a27-437e-93c1-172806df16a8",
+      "steps_timing": {
+        "environment_creation": 7.664869070053101,
+        "environment_ready": 210.35717511177063,
+        "public_url_retrieval": 4.76837158203125e-06,
+        "total_workflow_iterations": 105.78046822547913,
+        "average_iteration_time": 35.260156075159706,
+        "environment_closure": 5.235588788986206
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 320.57723212242126,
+      "environment_id": "d5efa165-a341-4059-b8dd-1a9fd1ee14ce",
+      "steps_timing": {
+        "environment_creation": 10.063123941421509,
+        "environment_ready": 208.0775179862976,
+        "public_url_retrieval": 7.867813110351562e-06,
+        "total_workflow_iterations": 100.43483901023865,
+        "average_iteration_time": 33.47827967007955,
+        "environment_closure": 5.313333034515381
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 330.04894375801086,
+      "environment_id": "d17ba2bd-fc74-4ddb-8d20-7cae8edbc348",
+      "steps_timing": {
+        "environment_creation": 12.66592288017273,
+        "environment_ready": 209.4548990726471,
+        "public_url_retrieval": 5.245208740234375e-06,
+        "total_workflow_iterations": 105.92357063293457,
+        "average_iteration_time": 35.30785687764486,
+        "environment_closure": 5.246989011764526
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 325.0366611480713,
+      "environment_id": "8e8791be-6738-49d6-977c-116ab9e899ce",
+      "steps_timing": {
+        "environment_creation": 8.314451932907104,
+        "environment_ready": 217.4029769897461,
+        "public_url_retrieval": 7.867813110351562e-06,
+        "total_workflow_iterations": 97.31696438789368,
+        "average_iteration_time": 32.43898812929789,
+        "environment_closure": 5.247131824493408
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 319.54958486557007,
+      "environment_id": "af7845a1-e1d9-4292-99f7-5bf16e33c8f8",
+      "steps_timing": {
+        "environment_creation": 6.423169136047363,
+        "environment_ready": 212.1519558429718,
+        "public_url_retrieval": 5.9604644775390625e-06,
+        "total_workflow_iterations": 98.9733202457428,
+        "average_iteration_time": 32.99110674858093,
+        "environment_closure": 5.2737250328063965
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 336.33923506736755,
+      "environment_id": "f84f775e-95c2-4abd-9233-4b6fb8eb0133",
+      "steps_timing": {
+        "environment_creation": 8.714638233184814,
+        "environment_ready": 224.06222796440125,
+        "public_url_retrieval": 3.814697265625e-06,
+        "total_workflow_iterations": 101.5616204738617,
+        "average_iteration_time": 33.85387349128723,
+        "environment_closure": 5.2331459522247314
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 322.6782548427582,
+      "environment_id": "a0658f08-5ee5-47bb-bdbe-ae4fd982f547",
+      "steps_timing": {
+        "environment_creation": 10.325501918792725,
+        "environment_ready": 216.76256680488586,
+        "public_url_retrieval": 6.9141387939453125e-06,
+        "total_workflow_iterations": 93.58382511138916,
+        "average_iteration_time": 31.194608370463055,
+        "environment_closure": 5.266207933425903
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 319.5961871147156,
+      "environment_id": "81bb1de9-dffd-4ef4-8eb5-3cbf4bb444a4",
+      "steps_timing": {
+        "environment_creation": 10.2863290309906,
+        "environment_ready": 223.12039303779602,
+        "public_url_retrieval": 6.198883056640625e-06,
+        "total_workflow_iterations": 84.18818783760071,
+        "average_iteration_time": 28.062729279200237,
+        "environment_closure": 5.246233940124512
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 297.32364797592163,
+      "environment_id": "e514e608-9c45-4468-98a0-4f9e906b3edf",
+      "steps_timing": {
+        "environment_creation": 9.494194984436035,
+        "environment_ready": 210.81537079811096,
+        "public_url_retrieval": 2.09808349609375e-05,
+        "total_workflow_iterations": 75.01275300979614,
+        "average_iteration_time": 25.00425100326538,
+        "environment_closure": 5.2789671421051025
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 324.4550578594208,
+      "environment_id": "38fae386-1b5f-482e-88c2-00aaea762c7d",
+      "steps_timing": {
+        "environment_creation": 8.746581077575684,
+        "environment_ready": 211.35160994529724,
+        "public_url_retrieval": 3.814697265625e-06,
+        "total_workflow_iterations": 102.35542130470276,
+        "average_iteration_time": 34.11847376823425,
+        "environment_closure": 5.267062187194824
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 327.07732796669006,
+      "environment_id": "b6891809-ed97-4f55-8fd6-a7dcf776ac2c",
+      "steps_timing": {
+        "environment_creation": 7.714125156402588,
+        "environment_ready": 220.57838225364685,
+        "public_url_retrieval": 3.814697265625e-06,
+        "total_workflow_iterations": 96.78269481658936,
+        "average_iteration_time": 32.26089827219645,
+        "environment_closure": 5.265985012054443
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 311.430783033371,
+      "environment_id": "0f846262-f4a1-472e-9a36-c73137c43cc7",
+      "steps_timing": {
+        "environment_creation": 8.111002922058105,
+        "environment_ready": 215.59760880470276,
+        "public_url_retrieval": 2.86102294921875e-06,
+        "total_workflow_iterations": 85.72088623046875,
+        "average_iteration_time": 28.573628743489582,
+        "environment_closure": 5.247050046920776
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 316.1826000213623,
+      "environment_id": "c412cf68-43a0-4eac-a9b9-bee86098db79",
+      "steps_timing": {
+        "environment_creation": 6.540313959121704,
+        "environment_ready": 216.8211898803711,
+        "public_url_retrieval": 7.867813110351562e-06,
+        "total_workflow_iterations": 90.82008981704712,
+        "average_iteration_time": 30.27336327234904,
+        "environment_closure": 5.309101104736328
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 289.82906103134155,
+      "environment_id": "23b60856-ca09-457f-90d2-fe1d2f34e16e",
+      "steps_timing": {
+        "environment_creation": 7.723948240280151,
+        "environment_ready": 209.59555411338806,
+        "public_url_retrieval": 1.0013580322265625e-05,
+        "total_workflow_iterations": 70.50858688354492,
+        "average_iteration_time": 23.502862294514973,
+        "environment_closure": 5.254698038101196
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 324.3925189971924,
+      "environment_id": "e36dd301-2a01-409f-bca3-2a057c341374",
+      "steps_timing": {
+        "environment_creation": 7.212092161178589,
+        "environment_ready": 233.40148496627808,
+        "public_url_retrieval": 4.0531158447265625e-06,
+        "total_workflow_iterations": 81.77762627601624,
+        "average_iteration_time": 27.259208758672077,
+        "environment_closure": 5.231981039047241
+      },
+      "error": null
+    },
+    {
+      "success": true,
+      "total_duration": 304.3472423553467,
+      "environment_id": "d53206d2-df50-47c8-ac06-eb53c5f0937f",
+      "steps_timing": {
+        "environment_creation": 6.539191007614136,
+        "environment_ready": 218.39847874641418,
+        "public_url_retrieval": 3.814697265625e-06,
+        "total_workflow_iterations": 77.40836596488953,
+        "average_iteration_time": 25.802788654963177,
+        "environment_closure": 5.2787909507751465
+      },
+      "error": null
+    }
+  ]
+}
