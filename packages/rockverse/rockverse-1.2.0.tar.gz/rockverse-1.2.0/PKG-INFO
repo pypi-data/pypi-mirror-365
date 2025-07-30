@@ -1,0 +1,95 @@
+Metadata-Version: 2.4
+Name: rockverse
+Version: 1.2.0
+Summary: Python tools for Computational Petrophysics
+Author-email: "Rodolfo A. Victor" <rodolfo@rodolfovictor.com>
+Project-URL: Homepage, https://rockverse.readthedocs.io/
+Project-URL: Documentation, https://rockverse.readthedocs.io/
+Project-URL: Repository, https://github.com/rodolfovictor/rockverse
+Project-URL: Issues, https://github.com/rodolfovictor/rockverse/issues
+Project-URL: Changelog, https://github.com/rodolfovictor/rockverse/blob/main/Changelog.md
+Project-URL: Official Website, https://rockverse.readthedocs.io/
+Keywords: petrophysics,well,log,well log,digital rock
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: GPU
+Classifier: Environment :: GPU :: NVIDIA CUDA
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering
+Requires-Python: <3.13,>=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE.md
+Requires-Dist: docutils>=0.17
+Requires-Dist: ipympl
+Requires-Dist: ipython
+Requires-Dist: ipyparallel
+Requires-Dist: ipywidgets
+Requires-Dist: jupyter
+Requires-Dist: jupyterlab
+Requires-Dist: matplotlib>=3.10
+Requires-Dist: mpi4py
+Requires-Dist: myst-parser
+Requires-Dist: nbsphinx
+Requires-Dist: numba
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: pip
+Requires-Dist: pydata-sphinx-theme
+Requires-Dist: scipy<=1.13.1
+Requires-Dist: sphinx
+Requires-Dist: sphinx-copybutton
+Requires-Dist: sphinx-design
+Requires-Dist: sphinx-gallery
+Requires-Dist: tqdm
+Requires-Dist: zarr<4,>=3
+Dynamic: license-file
+
+<img src="https://raw.githubusercontent.com/rodolfovictor/rockverse/main/docs/source/_static/RockVerse_logo_model3_for_white_background_facecolor_transparent_False.png"><br>
+
+RockVerse: Python tools for Computational Petrophysics
+======================================================
+
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/rockverse)
+[![PyPI Version](https://img.shields.io/pypi/v/rockverse.svg)](https://pypi.org/project/rockverse/)
+[![conda](https://img.shields.io/conda/v/conda-forge/rockverse)](https://anaconda.org/conda-forge/rockverse)
+![Conda Platform](https://img.shields.io/conda/p/conda-forge/rockverse)
+[![License](https://img.shields.io/pypi/l/rockverse.svg)](https://github.com/rodolfovictor/rockverse/blob/main/LICENSE.md)
+
+
+
+RockVerse is an open-source Python library designed to support high-performance
+computational petrophysics workflows. It is optimized for large-scale simulations
+and memory-intensive data processing. Leveraging state-of-the-art tools, the
+library delivers optimized performance across CPU and GPU parallel computing
+environments.
+
+This project is under ongoing development as part of a post-doctoral research
+initiative, and we welcome contributions, bug reports, and feature suggestions.
+
+Documentation
+-------------
+
+Online documentation is available at [rockverse.readthedocs.io](https://rockverse.readthedocs.io),
+featuring API reference, tutorials and sample gallery.
+
+Installation
+------------
+
+Follow our online [installation guide](https://rockverse.readthedocs.io/en/latest/install.html)
+to get started.
+
+Development
+-----------
+
+RockVerse is open and hosted at Github: https://github.com/rodolfovictor/rockverse
+
+Fell free to submit bugs to the [issue tracker](https://github.com/rodolfovictor/rockverse/issues).
+Please remember to include the RockVerse version and a reproducible example demonstrating the problem.
+
+Questions
+---------
+
+For general questions consider using StackOverflow with a [rockverse tag](https://stackoverflow.com/tags/rockverse).

@@ -1,0 +1,70 @@
+[build-system]
+requires = ["setuptools>=61.0", "setuptools_scm"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+version_scheme = "only-version"  # Only use the version from the tag, as given
+
+[project]
+
+name = "rockverse"
+
+dynamic = ["version"]
+
+authors = [
+  { name="Rodolfo A. Victor", email="rodolfo@rodolfovictor.com" },
+]
+
+description = "Python tools for Computational Petrophysics"
+
+readme = "README.md"
+
+requires-python = ">=3.11,<3.13"
+
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Development Status :: 4 - Beta",
+    "Environment :: GPU",
+    "Environment :: GPU :: NVIDIA CUDA",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+]
+
+dependencies = [
+    "docutils>=0.17",
+    "ipympl",
+    "ipython",
+    "ipyparallel",
+    "ipywidgets",
+    "jupyter",
+    "jupyterlab",
+    "matplotlib>=3.10",
+    "mpi4py",
+    "myst-parser",
+    "nbsphinx",
+    "numba",
+    "numpy",
+    "pandas",
+    "pip",
+    "pydata-sphinx-theme",
+    "scipy<=1.13.1",
+    "sphinx",
+    "sphinx-copybutton",
+    "sphinx-design",
+    "sphinx-gallery",
+    "tqdm",
+    "zarr>=3,<4",
+]
+
+keywords = ["petrophysics", "well", "log", "well log", "digital rock"]
+
+[project.urls]
+Homepage = "https://rockverse.readthedocs.io/"
+Documentation = "https://rockverse.readthedocs.io/"
+Repository = "https://github.com/rodolfovictor/rockverse"
+Issues = "https://github.com/rodolfovictor/rockverse/issues"
+Changelog = "https://github.com/rodolfovictor/rockverse/blob/main/Changelog.md"
+"Official Website" = "https://rockverse.readthedocs.io/"
