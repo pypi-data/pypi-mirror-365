@@ -1,0 +1,63 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "paramus-world"
+version = "1.0.0"
+description = "Paramus World Client - API client for the Paramus World semantic knowledge graph system"
+readme = "README_PYPI.md"
+requires-python = ">=3.8"
+license = "MIT"
+authors = [
+    {name = "Thorsten Gressling", email = "gressling@paramus.ai"},
+]
+keywords = ["semantic API", "knowledge graph", "SPARQL", "JSON-RPC", "paramus", "world", "client", "api"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Internet :: WWW/HTTP :: HTTP Servers",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
+dependencies = [
+    "requests>=2.25.0",
+    "numpy>=1.20.0",
+    "scipy>=1.7.0",
+    "matplotlib>=3.3.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "black",
+    "flake8",
+    "mypy",
+]
+optimization = [
+    "cvxpy>=1.1.0",
+    "gekko>=1.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/gressling/paramus-world-client"
+Repository = "https://github.com/gressling/paramus-world-client"
+Issues = "https://github.com/gressling/paramus-world-client/issues"
+Documentation = "https://paramus-world-client.readthedocs.io/en/latest/"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["paramus*"]
+exclude = ["test*", "docs*", "examples*", "legacy*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.txt", "*.md", "*.rst", "*.cfg", "*.ini"]
