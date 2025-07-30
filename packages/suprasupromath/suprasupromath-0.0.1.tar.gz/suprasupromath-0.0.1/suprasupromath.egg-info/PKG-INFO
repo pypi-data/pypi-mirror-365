@@ -1,0 +1,31 @@
+Metadata-Version: 2.4
+Name: suprasupromath
+Version: 0.0.1
+Summary: A super simple math utility package for example purposes.
+Author-email: skeptofox <skeptofox@gmail.com>
+Project-URL: Homepage, https://github.com/skeptofox/suprasupromath
+Project-URL: Issues, https://github.com/skeptofox/suprasupromath/issues
+Keywords: math,example,tutorial
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# Super Math
+
+A super simple math utility package.
+
+## Installation
+```bash
+pip install super-math
+```
+
+## Usage
+```python
+from super_math import add
+result = add(5, 3)
+print(result) # Output: 8
+```
