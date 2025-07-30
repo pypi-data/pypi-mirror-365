@@ -1,0 +1,18 @@
+Metadata-Version: 2.4
+Name: textbasic
+Version: 0.1.5
+Summary: Text preprocessing package
+Author-email: kimyh <kim_yh663927@naver.com>
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: pandas>=2.2.0
+Requires-Dist: konlpy>=0.6.0
+Requires-Dist: emoji>=2.14.1
+Requires-Dist: pyarrow>=19.0.1
+
+# ver 0.1.5
+- 유사도 검증 extract_sim 함수 수정
