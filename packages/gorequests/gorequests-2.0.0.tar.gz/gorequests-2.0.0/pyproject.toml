@@ -1,0 +1,114 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gorequests"
+version = "2.0.0"
+description = "High-performance HTTP client library powered by Go FastHTTP"
+readme = "README.md"
+authors = [
+    {name = "GoRequests Team", email = "team@gorequests.io"}
+]
+maintainers = [
+    {name = "GoRequests Team", email = "team@gorequests.io"}
+]
+license = {text = "MIT"}
+requires-python = ">=3.7"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Networking",
+]
+keywords = [
+    "http", "requests", "client", "fasthttp", "go", "performance", 
+    "async", "web", "api", "networking", "fast", "gorequests"
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "pytest-cov>=2.0",
+    "black>=21.0",
+    "flake8>=3.8",
+    "mypy>=0.900",
+    "requests>=2.25.0",  # For comparison tests
+]
+test = [
+    "pytest>=6.0",
+    "pytest-cov>=2.0",
+    "requests>=2.25.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/coffeecms/gorequests"
+Documentation = "https://gorequests.readthedocs.io"
+Repository = "https://github.com/coffeecms/gorequests"
+"Bug Tracker" = "https://github.com/coffeecms/gorequests/issues"
+Changelog = "https://github.com/coffeecms/gorequests/blob/main/CHANGELOG.md"
+
+[tool.setuptools]
+package-dir = {"" = "."}
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["gorequests*"]
+
+[tool.setuptools.package-data]
+gorequests = ["*.dll", "*.so", "*.dylib"]
+
+[tool.black]
+line-length = 88
+target-version = ['py37', 'py38', 'py39', 'py310', 'py311']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "-ra -q --strict-markers --strict-config"
+testpaths = [
+    "tests",
+]
+python_files = [
+    "test_*.py",
+    "*_test.py",
+]
+
+[tool.mypy]
+python_version = "3.7"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
