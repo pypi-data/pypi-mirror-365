@@ -1,0 +1,26 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pyvsnr"
+version = "2.3.2"
+description = "VSNR (Variational Stationary Noise Remover) algorithm in python"
+authors = [
+    { name = "Killian Pavy", email = "killian.pavy@cea.fr" },
+    { name = "Patrick Quemere", email = "patrick.quemere@cea.fr" },
+]
+license = { file = "LICENSE" }
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "License :: OSI Approved :: GNU Affero General Public License v3",
+    "Operating System :: OS Independent",
+]
+dependencies = ["numpy", "pyfftw"]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[project.urls]
+repository = "https://github.com/CEA-MetroCarac/pyvsnr"
