@@ -1,0 +1,36 @@
+# ckb_textify
+
+**Kurdish text normalizer and number-to-text converter**
+
+ckb_textify is a Python library to normalize Kurdish (Central Kurdish - Sorani) text by converting numbers, dates, times, percentages, currencies, and decimals into fully spelled-out Kurdish text. It supports detailed Kurdish time and date expressions, handling suffixes and 12/24-hour formats.
+
+## Features
+
+- Convert integers and decimals to Kurdish words
+- Normalize dates in various formats to Kurdish text
+- Convert times (with AM/PM or Kurdish suffixes) to natural Kurdish expressions
+- Handle currencies, percentages, and decimal units
+- Clean and normalize Kurdish sentences for TTS or NLP applications
+
+## Installation
+
+```bash
+pip install ckb_textify
+```
+
+## Usage
+```bash
+from ckb_textify.sentence_normalizer import convert_all
+
+text = "ئەمە بەرواری 12/10/2023 و کاتژمێری 10:30 AM یان 22:45-ە"
+normalized_text = convert_all(text)
+
+print(normalized_text)
+```
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+## Author
+
+Razwan M. Haji — [GitHub](https://github.com/RazwanSiktany)

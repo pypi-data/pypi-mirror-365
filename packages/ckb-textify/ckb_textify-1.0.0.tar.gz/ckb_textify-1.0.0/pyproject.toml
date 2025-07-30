@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ckb_textify"
+version = "1.0.0"
+description = "Kurdish text normalizer and number-to-text converter"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "Razwan M. Haji", email = "razwan.siktany778@gmail.com"}]
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+keywords = ["kurdish", "text-normalizer", "number-to-text", "ckb"]
+
+[project.urls]
+"homepage" = "https://github.com/RazwanSiktany/ckb_textify"
+"repository" = "https://github.com/RazwanSiktany/ckb_textify"
