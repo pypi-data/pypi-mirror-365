@@ -1,0 +1,19 @@
+Metadata-Version: 2.3
+Name: zepo-external-services
+Version: 0.1.3
+Summary: A centralized library for third-party service integrations.
+Author: Eduardo.Panadero
+Author-email: eduardo.panadero@zepo.app
+Requires-Python: >=3.11,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Provides-Extra: directory
+Provides-Extra: email
+Provides-Extra: sms
+Requires-Dist: boto3 (>=1.34.117,<2.0.0) ; extra == "email"
+Requires-Dist: messagebird (>=1.4.0,<2.0.0) ; extra == "sms"
+Requires-Dist: pydantic (>=2.7.4,<3.0.0)
+Requires-Dist: twilio (>=9.1.1,<10.0.0) ; extra == "sms"
+Project-URL: Repository, https://github.com/Zepo-Awareness/zepo-external-services
