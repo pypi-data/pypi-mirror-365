@@ -1,0 +1,12 @@
+[build-system]
+requires = ['setuptools>=40.8.0']
+build-backend = 'setuptools.build_meta'
+
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "tests.settings"
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
+django_find_project = false
+pythonpath = "."
+testpaths = "tests"
+norecursedirs = ["example", "build", "dist", "*.egg"]
