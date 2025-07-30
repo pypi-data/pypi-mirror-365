@@ -1,0 +1,38 @@
+name: test_python_wrapper
+
+on:
+    push:
+        branches:
+            - master
+    pull_request:
+        branches:
+            - master
+
+jobs:
+    build:
+        runs-on: ubuntu-20.04
+        steps:
+            - name: Checkout Code
+              uses: actions/checkout@v2
+
+            - name: update submodule
+              run: git submodule update --init --depth=1
+
+            - name: Setup python
+              uses: actions/setup-python@v2
+              with:
+                  python-version: '3.7'
+
+            - name: Install apt packages
+              run: |
+                  sudo apt-get install libeigen3-dev
+
+            - name: pip install tinyfk from source
+              run: |
+                  pip install numpy pytest
+                  pip install . -v
+
+            - name: Test python wrapper
+              run: |
+                  cd python
+                  pytest
