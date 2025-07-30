@@ -1,0 +1,92 @@
+Metadata-Version: 2.1
+Name: harlequin_trino
+Version: 0.1.6
+Summary: A Harlequin adapter for Trino.
+Home-page: https://harlequin.sh
+License: MIT
+Author: Tyler Hillery
+Author-email: TylerHillery@users.noreply.github.com
+Requires-Python: >=3.10,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: google-auth (>=2.38.0,<3.0.0)
+Requires-Dist: harlequin (>=1.7,<3)
+Requires-Dist: numpy (>=2.2.4,<3.0.0)
+Requires-Dist: trino (>=0.327.0,<0.328.0)
+Project-URL: Repository, https://github.com/TylerHillery/harlequin-trino
+Description-Content-Type: text/markdown
+
+# harlequin-trino
+
+This repo provides the Harlequin adapter for Trino.
+
+## Installation
+
+`harlequin-trino` depends on `harlequin`, so installing this package will also install Harlequin.
+
+### Using pip
+
+To install this adapter into an activated virtual environment:
+```bash
+pip install harlequin-trino
+```
+
+### Using poetry
+
+```bash
+poetry add harlequin-trino
+```
+
+### Using pipx
+
+If you do not already have Harlequin installed:
+
+```bash
+pip install harlequin-trino
+```
+
+If you would like to add the Trino adapter to an existing Harlequin installation:
+
+```bash
+pipx inject harlequin harlequin-trino
+```
+
+### As an Extra
+Alternatively, you can install Harlequin with the `trino` extra:
+
+```bash
+pip install harlequin[trino]
+```
+
+```bash
+poetry add harlequin[trino]
+```
+
+```bash
+pipx install harlequin[trino]
+```
+
+## Usage and Configuration
+For a minimum connection you are going to need: 
+- host
+- port
+- user
+
+```bash
+harlequin -a trino -h localhost -p 8080 -U my_user 
+```
+
+If your trino instance requires a password you can set the `--require_auth` flag to password and use the `--password` flag for your password
+```bash
+harlequin -a trino -h localhost -p 8080 -U my_user --password my-pass --require_auth password 
+```
+
+Many more options are available; to see the full list, run:
+
+```bash
+harlequin --help
+```
+
+For more information, see the [Harlequin Docs](https://harlequin.sh/docs/trino/index).
