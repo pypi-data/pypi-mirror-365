@@ -1,0 +1,30 @@
+Metadata-Version: 2.4
+Name: surfari
+Version: 0.1.1
+Summary: Surfari: Modular browser automation with LLM
+Author-email: Yonghui Zhang <yonghui.zhang.ca@gmail.com>
+License-Expression: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: playwright>=1.51.0
+Requires-Dist: google.genai>=1.14.0
+Requires-Dist: openai>=1.77.0
+Requires-Dist: anthropic>=0.59.0
+Requires-Dist: pydantic>=2.11.4
+Requires-Dist: python-dotenv>=1.1.0
+Requires-Dist: jsonfinder>=0.4.2
+Requires-Dist: nest_asyncio>=1.6.0
+Requires-Dist: ollama>=0.4.8
+Requires-Dist: aiofiles>=24.1.0
+Requires-Dist: google_auth_oauthlib>=1.2.1
+Requires-Dist: httpx>=0.28.1
+Requires-Dist: setuptools>=80.9.0
+Requires-Dist: keyring>=24.3.0
+Requires-Dist: cryptography>=42.0.0
+Requires-Dist: pyinstaller>=6.14.2
+
+# surfari
+
+A modular Python automation and tooling library.
