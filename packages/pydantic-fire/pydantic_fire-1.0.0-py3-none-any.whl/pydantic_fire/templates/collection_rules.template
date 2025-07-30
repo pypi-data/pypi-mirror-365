@@ -1,0 +1,14 @@
+    // Rules for collection: {{ collection_name }}
+    // Document class: {{ document_class_name }}
+    match /{{ collection_path }}/{docId} {
+      // Read permissions
+      allow read: if {{ read_conditions }};
+      
+      // Write permissions (create/update)
+      allow write: if {{ write_conditions }}{{ field_validations }};
+      
+      // Delete permissions
+      allow delete: if {{ delete_conditions }};
+      
+      {{ subcollection_rules }}
+    }
