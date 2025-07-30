@@ -1,0 +1,105 @@
+Metadata-Version: 2.4
+Name: smev-agent-client
+Version: 0.3.0
+Summary: Клиент для взаимодействия с Агентом ПОДД СМЭВ
+Author: BARS Group
+Author-email: education_dev@bars-open.ru
+License: MIT
+Classifier: Intended Audience :: Developers
+Classifier: Environment :: Web Environment
+Classifier: Natural Language :: Russian
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Framework :: Django :: 2.2
+Classifier: Framework :: Django :: 3.0
+Classifier: Framework :: Django :: 3.1
+Classifier: Framework :: Django :: 3.2
+Classifier: Framework :: Django :: 4.0
+Description-Content-Type: text/markdown
+Requires-Dist: pydantic<2.0,>=1.10.17
+Requires-Dist: requests<3,>=1.1.0
+Requires-Dist: django<4.1,>=1.11
+Requires-Dist: openapi-core==0.14.5
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: summary
+
+# Клиент для взаимодействия со СМЭВ3 посредством Адаптера
+## Подключение
+settings:
+
+    INSTALLED_APPS = [
+        'smev_agent_client',
+    ]
+
+
+apps:
+
+    from django.apps import AppConfig as AppConfigBase
+
+    class AppConfig(AppConfigBase):
+    
+        name = __package__
+    
+        def __setup_agent_client(self):
+            import smev_agent_client
+    
+            smev_agent_client.set_config(
+                smev_agent_client.configuration.Config(
+                    agent_url='http://localhost:8090',
+                    system_mnemonics='MNSV03',
+                    timeout=1,
+                    request_retries=1,
+                )
+            )
+    
+        def ready(self):
+            super().ready()
+            self.__setup_agent_client()
+
+## Эмуляция
+Заменить используемый интерфейс на эмулирующий запросы:
+
+    smev_agent_client.set_config(
+        ...,
+        smev_agent_client.configuration.Config(
+            interface=(
+                'smev_agent_client.contrib.my_edu.interfaces.rest'
+                '.OpenAPIInterfaceEmulation'
+            )
+        )
+    )
+
+## Запуск тестов
+    $ tox
+
+## API
+
+### Передача сообщения
+
+    from smev_agent_client.adapters import adapter
+    from smev_agent_client.interfaces import OpenAPIRequest
+
+    class Request(OpenAPIRequest):
+
+        def get_url(self):
+            return 'http://localhost:8090/MNSV03/myedu/api/edu-upload/v1/multipart/csv'
+    
+        def get_method(self):
+            return 'post'
+    
+        def get_files(self) -> List[str]:
+            return [
+                Path('files/myedu_schools.csv').as_posix()
+            ]
+
+    result = adapter.send(Request())
