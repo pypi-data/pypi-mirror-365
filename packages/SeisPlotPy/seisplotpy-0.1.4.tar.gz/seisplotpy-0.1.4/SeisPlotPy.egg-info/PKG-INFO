@@ -1,0 +1,61 @@
+Metadata-Version: 2.4
+Name: SeisPlotPy
+Version: 0.1.4
+Summary: A GUI tool to view and export SEG-Y seismic data.
+Home-page: https://github.com/arjun-vh/SeisPlotPy
+Author: Arjun VH
+Author-email: your.email@example.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: segyio>=1.9.0
+Requires-Dist: numpy>=1.21.0
+Requires-Dist: matplotlib>=3.5.0
+Requires-Dist: pandas>=1.3.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# SeisPlotPy
+A GUI tool to generate publication quality images from SEG-Y seismic data with horizons/Faults.
+
+## Installation
+
+You can install SeisPlotPy using pip:
+
+```bash
+pip install SeisPlotPy
+```
+
+Alternatively, clone the repository and install it locally:
+
+```bash
+git clone https://github.com/arjun-vh/SeisPlotPy.git
+cd SeisPlotPy
+pip install -e .
+```
+
+## Usage
+To launch the GUI, run:
+
+```bash
+seisplotpy
+```
+
+## Citation
+
+If you use SeisPlotPy in your research or work, please acknowledge
+
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
