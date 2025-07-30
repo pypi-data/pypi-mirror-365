@@ -1,0 +1,31 @@
+[project]
+name = "sarenza-automation-core"
+version = "0.1.0.1.1"
+description = "Non regression test automation framework core"
+authors = [
+    {name = "QA Sarenza",email = "qa_srz@sarenza.com"}
+]
+readme = "README.md"
+requires-python =  ">=3.11,<4.0"
+dependencies = [
+    "selenium (==4.26.0)",
+    "appium-python-client (>=4.5.1,<5.0.0)",
+    "pydantic (==2.10.3)",
+    "allure-behave (==2.13.2)",
+    "allure-python-commons (==2.13.2)",
+    "webdriver-manager (==4.0.2)",
+    "loguru (>=0.7.3,<0.8.0)",
+    "faker (>=37.4.2,<38.0.0)",
+    "python-dotenv (>=1.1.1,<2.0.0)"
+]
+
+[tool.poetry]
+packages = [{include = "sarenza_automation_core",from = "src"}]
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.1"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
