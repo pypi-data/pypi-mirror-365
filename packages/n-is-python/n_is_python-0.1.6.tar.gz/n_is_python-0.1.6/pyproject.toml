@@ -1,0 +1,32 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "n_is_python"
+version = "0.1.6"
+authors = [
+  { name="Dear_satan", email="jakubj1406@gmail.com" },
+]
+description = "N-is is a terminal-based puzzle game that generalizes the classic Tetris concept to work with polyominos and polykings of any size from 1 to 6 blocks. Play traditional Tetris (4 blocks) or experiment with Tris (3 blocks), Dis (2 blocks), Pentis (5 blocks), or even Hexis (6 blocks)!"
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*", "LICENSE-MUSIC"]
+
+dependencies = [
+    "pygame",
+    "numpy"
+]
+
+[project.urls]
+Homepage = "https://github.com/Jakub314159265/n-is"
+Issues = "https://github.com/Jakub314159265/n-is/issues"
+
+[project.scripts]
+n_is = "n_is_python.n_is:run"
+n-is = "n_is_python.n_is:run"
