@@ -1,0 +1,20 @@
+[project]
+name = "pydll_injector"
+version = "0.1.2"
+description = "Python DLL injector for Windows."
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = []
+
+[project.scripts]
+pydll-injector = "pydll_injector.cli:main"
+
+[project.optional-dependencies]
+cli = [
+    "tomli",
+    "pydantic",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
