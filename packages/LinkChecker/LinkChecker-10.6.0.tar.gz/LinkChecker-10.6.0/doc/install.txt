@@ -1,0 +1,192 @@
+Installation
+============
+If you are upgrading from older versions of LinkChecker you should
+also read the upgrading documentation stored in upgrading.txt.
+
+Installing a LinkChecker release uses pre-built distribution packages. Building
+the distribution packages requires hatchling_ and hatch-vcs_, and for application
+translations to be compiled polib_ needs to be installed. After the sdist/wheel
+has been built polib_ can be removed. pip-run_ may be useful for this.
+
+There are several steps to resolve problems with detecting the character
+encoding of checked HTML pages:
+first ensure the web server, if used, is not returning an incorrect charset in
+the Content-Type header; second, if possible add a meta element to the HTML
+page with the correct charset; finally, check chardet_ is not installed,
+Requests >= 2.26 will install charset-normalizer_, Beautiful Soup has
+its own encoding detector but will use in order of preference cchardet_,
+chardet_ or charset-normalizer_ (Beautiful Soup >= 4.11). You might find that
+one of the other three detectors works better for your pages.
+There may already be a system copy of e.g. chardet installed;
+installing LinkChecker in a Python venv_ gives control over which packages are
+used.
+
+.. _chardet: https://pypi.org/project/chardet/
+
+.. _charset-normalizer: https://pypi.org/project/charset-normalizer/
+
+.. _pip-run: https://pypi.org/project/pip-run/
+
+.. _cchardet: https://pypi.org/project/cchardet/
+
+.. _polib: https://pypi.org/project/polib/
+
+.. _hatchling: https://pypi.org/project/hatchling/
+
+.. _hatch-vcs: https://pypi.org/project/hatch-vcs/
+
+.. _venv: https://docs.python.org/3/library/venv.html#creating-virtual-environments
+
+Setup with pip(x)
+------------------
+pip_ or pipx_ can be used to install LinkChecker on the local system.
+
+To install the latest release from PyPI:
+``pip3 install linkchecker``
+
+or:
+``pipx install linkchecker``
+
+There is no need to wait for releases, every update to LinkChecker gets a unique
+version number and is subjected to the test suite.
+You can easily install the latest source from the LinkChecker GitHub repository.
+First, if you want application translations:
+``pip3 install polib``
+
+Then:
+``pip3 install https://github.com/linkchecker/linkchecker/archive/master.tar.gz``
+
+.. _pip: https://pypi.org/project/pip/
+
+.. _pipx: https://pypi.org/project/pipx/
+
+Setup for Windows
+-----------------
+Python from the Microsoft Store does include pip_, but installing
+within Windows Subsystem for Linux (WSL) is the preferred option:
+https://docs.microsoft.com/en-us/windows/python/beginners
+
+Setup for macOS
+------------------
+Python from Homebrew includes pip_. Otherwise ``python3 -m ensurepip --upgrade`` can be
+used to install pip_ (untested):
+https://pip.pypa.io/en/stable/installation/
+
+Setup for GNU/Linux
+-------------------
+On major Linux distributions (Debian, Gentoo, Fedora, Ubuntu),
+the ``linkchecker`` package is available for installation.
+To install the latest LinkChecker pip_ will be available, often as a package
+e.g. ``python3-pip``, a pipx_ package may also be found e.g. ``pipx``.
+
+You may wish to install your distribution's copies of LinkChecker's dependencies
+before using pip to install LinkChecker. e.g. for Debian/Ubuntu:
+
+``apt install python3-bs4 python3-dnspython python3-requests``
+
+If those packages are too old pip will install newer versions.
+
+To use the dependencies from your distribution if installing LinkChecker with pipx:
+
+``pipx install --system-site-packages linkchecker``
+
+Manual setup for Unix systems
+-----------------------------
+First, install the required software.
+
+1. Python hatchling package from https://pypi.org/project/hatchling/
+
+2. Python hatch-vcs package from https://pypi.org/project/hatch-vcs/
+
+3. Python Requests package from https://pypi.org/project/requests/
+
+4. Python Beautiful Soup package from https://pypi.org/project/beautifulsoup4/
+
+5. Python dnspython package from https://pypi.org/project/dnspython/
+
+6. *Optional, build time only, for translations:*
+   Python polib package from https://pypi.org/project/polib/
+
+7. *Optional, for bash-completion:*
+   Python argcomplete package from https://pypi.org/project/argcomplete/
+
+8. *Optional, for displaying country codes:*
+   Python GeoIP package from https://pypi.org/project/GeoIP/
+
+9. *Optional, for reading PDF files:*
+   Python pdfminer.six package from https://pypi.org/project/pdfminer.six/
+
+10. *Optional, used for Virus checking:*
+    ClamAv from https://www.clamav.net/
+
+11. *Optional, to run the WSGI web interface:*
+    Apache from https://httpd.apache.org/
+    mod_wsgi from https://pypi.org/project/mod-wsgi/
+
+Note for developers: if you want to regenerate the po/linkchecker.pot template
+from the source files, you will need xgettext with Python support. This is
+available in gettext >= 0.12.
+
+Clone the LinkChecker repository:
+
+  ``git clone https://github.com/linkchecker/linkchecker.git``
+
+  ``cd linkchecker``
+
+Build the distribution wheel:
+
+  ``hatchling build``
+
+Now install the application from the wheel:
+
+  ``pip install --no-index --user dist/LinkChecker-<version>-py3-none-any.whl``
+
+  Note that you may have to adjust your PATH and PYTHONPATH environment variables,
+  eg. by adding the commands ``export PYTHONPATH=$HOME/lib/python`` and
+  ``export PATH=$PATH:$HOME/bin`` to your shell configuration file.
+
+  For more information look at the `Modifying Python's search path`_
+  documentation.
+
+  .. _Modifying Python's search path:
+     https://docs.python.org/3/install/#inst-search-path
+
+
+After installation
+------------------
+LinkChecker is now installed. Have fun!
+
+
+WSGI web interface
+-----------------------
+The included WSGI script can run LinkChecker with a nice graphical web
+interface.
+You can use and adjust the example HTML files in the lconline directory
+to run the script.
+
+1. Note that running LinkChecker requires CPU and memory resources.
+   Allowing a WSGI script to execute such a program for possibly a
+   large number of users might deplete those resources.
+   Be sure to only allow access from trusted sites to this script.
+   
+2. Copy the script lc.wsgi in the WSGI directory.
+
+3. Adjust the "action=..." parameter in lconline/lc_cgi.html
+   to point to your WSGI script.
+
+4. If you use Apache, copy config/linkchecker.apache2.conf
+   into your Apache configuration directory (eg. /etc/apache2/conf.d)
+   and enable it.
+
+5. Load the lconline/index.html file, enter an URL and click on the
+   check button.
+
+6. If something goes wrong, check the following:
+   
+   a) look in the error log of your web server
+   b) be sure that you have enabled WSGI support in your web server,
+      for example by installing mod_wsgi for Apache
+   c) be sure that you have enabled the negotiation and versioning
+      modules for Apache:
+      a2enmod version
+      a2enmod negotiation

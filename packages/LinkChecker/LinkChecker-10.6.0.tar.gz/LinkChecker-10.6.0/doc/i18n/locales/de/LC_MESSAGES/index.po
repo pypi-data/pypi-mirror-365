@@ -1,0 +1,234 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2000-2014 Bastian Kleineidam
+# This file is distributed under the same license as the LinkChecker
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: LinkChecker \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-04 19:24+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+
+#: ../../src/index.rst:6
+msgid "Check websites for broken links"
+msgstr ""
+
+#: ../../src/index.rst:9
+msgid "Introduction"
+msgstr ""
+
+#: ../../src/index.rst:10
+msgid ""
+"LinkChecker is a free, `GPL <https://www.gnu.org/licenses/old-"
+"licenses/gpl-2.0.html>`_ licensed website validator. LinkChecker checks "
+"links in web documents or full websites. It runs on Python 3 systems, "
+"requiring Python 3.9 or later."
+msgstr ""
+
+#: ../../src/index.rst:15
+msgid ""
+"Visit the project on `GitHub "
+"<https://github.com/linkchecker/linkchecker>`_."
+msgstr ""
+
+#: ../../src/index.rst:18
+msgid "Installation"
+msgstr ""
+
+#: ../../src/index.rst:24
+msgid ""
+"The version in the pip repository may be old, to find out how to get the "
+"latest code, plus platform-specific information and other advice see the "
+":doc:`installation document <install>`."
+msgstr ""
+
+#: ../../src/index.rst:29
+msgid "Basic usage"
+msgstr ""
+
+#: ../../src/index.rst:30
+msgid ""
+"To check a URL like *http://www.example.org/myhomepage/* it is enough to "
+"execute:"
+msgstr ""
+
+#: ../../src/index.rst:37
+msgid ""
+"This check will validate recursively all pages starting with "
+"*http://www.example.org/myhomepage/*. Additionally, all external links "
+"pointing outside of *www.example.org* will be checked but not recursed "
+"into."
+msgstr ""
+
+#: ../../src/index.rst:42
+msgid ""
+"Find out more from the manual pages :doc:`man/linkchecker` and "
+":doc:`man/linkcheckerrc`."
+msgstr ""
+
+#: ../../src/index.rst:46
+msgid "Features"
+msgstr ""
+
+#: ../../src/index.rst:48
+msgid "recursive and multithreaded checking and site crawling"
+msgstr ""
+
+#: ../../src/index.rst:49
+msgid ""
+"output in colored or normal text, HTML, SQL, CSV, XML or a sitemap graph "
+"in different formats"
+msgstr ""
+
+#: ../../src/index.rst:51
+msgid "HTTP/1.1, HTTPS, FTP, mailto: and local file links support"
+msgstr ""
+
+#: ../../src/index.rst:52
+msgid "restriction of link checking with regular expression filters for URLs"
+msgstr ""
+
+#: ../../src/index.rst:53
+msgid "proxy support"
+msgstr ""
+
+#: ../../src/index.rst:54
+msgid "username/password authorization for HTTP and FTP"
+msgstr ""
+
+#: ../../src/index.rst:55
+msgid "honors robots.txt exclusion protocol"
+msgstr ""
+
+#: ../../src/index.rst:56
+msgid "Cookie support"
+msgstr ""
+
+#: ../../src/index.rst:57
+msgid "HTML5 support"
+msgstr ""
+
+#: ../../src/index.rst:58
+msgid ""
+":ref:`Plugin support <man/linkchecker:PLUGINS>` allowing custom page "
+"checks"
+msgstr ""
+
+#: ../../src/index.rst:59
+msgid "Different interfaces: command line and web interface"
+msgstr ""
+
+#: ../../src/index.rst:62
+msgid "Screenshots"
+msgstr ""
+
+#: ../../src/index.rst:72
+msgid "Commandline interface"
+msgstr ""
+
+#: ../../src/index.rst:73
+msgid "WSGI web interface"
+msgstr ""
+
+#: ../../src/index.rst:76
+msgid "Test suite status"
+msgstr ""
+
+#: ../../src/index.rst:77
+msgid ""
+"Linkchecker has extensive unit tests to ensure code quality. `GitHub "
+"Actions <https://docs.github.com/en/actions/>`_ is used for continuous "
+"build and test integration."
+msgstr ""
+
+#: ../../src/index.rst:-1
+msgid "Build Status"
+msgstr ""
+
+#: ../../src/index.rst:86
+msgid "Icon"
+msgstr ""
+
+#: ../../src/index.rst:88
+msgid ""
+"The project icon is categories/applications-development-web from `Oxygen "
+"icons <https://develop.kde.org/frameworks/oxygen-icons/>`_ copyright KDE "
+"and licensed under the `GNU LGPL version 3 "
+"<https://www.gnu.org/licenses/lgpl-3.0.html>`_ or later."
+msgstr ""
+
+#~ msgid ""
+#~ "#.. image:: https://travis-"
+#~ "ci.com/linkchecker/linkchecker.png #   :alt: Build"
+#~ " Status #   :target: https://travis-"
+#~ "ci.com/linkchecker/linkchecker"
+#~ msgstr ""
+
+#~ msgid "See the :doc:`installation document <install>` for more information."
+#~ msgstr ""
+
+#~ msgid ""
+#~ ":ref:`Plugin support <man/linkchecker:PLUGINS>` "
+#~ "allowing custom page checks. Currently "
+#~ "available are HTML and CSS syntax "
+#~ "checks, Antivirus checks, and more."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "... and a lot more check options"
+#~ " documented in the :doc:`man/linkchecker` "
+#~ "manual page."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "Linkchecker has extensive unit tests to"
+#~ " ensure code quality. `Travis CI "
+#~ "<https://travis-ci.com/>`_ is used for "
+#~ "continuous build and test integration."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "LinkChecker is a free, `GPL "
+#~ "<http://www.gnu.org/licenses/gpl-2.0.html>`_ licensed "
+#~ "website validator. LinkChecker checks links"
+#~ " in web documents or full websites."
+#~ " It runs on Python 3 systems, "
+#~ "requiring Python 3.6 or later."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "LinkChecker is a free, `GPL "
+#~ "<http://www.gnu.org/licenses/gpl-2.0.html>`_ licensed "
+#~ "website validator. LinkChecker checks links"
+#~ " in web documents or full websites."
+#~ " It runs on Python 3 systems, "
+#~ "requiring Python 3.8 or later."
+#~ msgstr ""
+
+#~ msgid ""
+#~ "HTTP/1.1, HTTPS, FTP, mailto:, news:, "
+#~ "nntp:, Telnet and local file links "
+#~ "support"
+#~ msgstr ""
+
+#~ msgid "username/password authorization for HTTP and FTP and Telnet"
+#~ msgstr ""
+
+#~ msgid ""
+#~ "LinkChecker is a free, `GPL "
+#~ "<https://www.gnu.org/licenses/old-licenses/gpl-2.0.html>`_ "
+#~ "licensed website validator. LinkChecker checks"
+#~ " links in web documents or full "
+#~ "websites. It runs on Python 3 "
+#~ "systems, requiring Python 3.8 or later."
+#~ msgstr ""
+

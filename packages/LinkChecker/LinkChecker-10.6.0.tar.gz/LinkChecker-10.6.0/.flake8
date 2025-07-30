@@ -1,0 +1,47 @@
+[flake8]
+filename =
+    *.py
+extend-exclude =
+    build/
+    _LinkChecker_configdata.py
+# Derived from published packages
+    linkcheck/better_exchook2.py
+    linkcheck/colorama.py
+builtins =
+    _
+    _n
+max-line-length = 88
+per-file-ignores =
+# In several files imports intentionally cause:
+# E402: module level import not at top of file
+# F401: module imported but unused
+    doc/src/conf.py: E402,F821
+    linkcheck/__init__.py: E402,F401
+    linkcheck/checker/httpurl.py: E402
+    linkcheck/htmlutil/htmlsoup.py: E402
+    linkcheck/parser/__init__.py: E402
+    tests/__init__.py: F401
+# E501: line too long
+    linkcheck/ftpparse.py: E501
+    linkcheck/checker/unknownurl.py: E501
+    linkcheck/command/arg_parser.py: E501
+    scripts/update_iana_uri_schemes.py: E501
+    tests/test_ftpparse.py: E501
+# F821 undefined name
+# https://github.com/PyCQA/pyflakes/issues/548
+    linkcheck/logger/__init__.py: F821
+# F824 name is never assigned in scope
+    linkcheck/strformat.py: F824
+extend-ignore =
+# https://pep8.readthedocs.org/en/latest/intro.html#error-codes
+# these are ignored by default:
+# E121: continuation line under-indented for hanging indent
+# E123: closing bracket does not match indentation of opening bracket’s line
+# E126: continuation line over-indented for hanging indent
+# E133: closing bracket does not match visual indentation
+# E226: missing whitespace around arithmetic operator
+# E241: multiple spaces after ‘,’
+# E242: tab after ‘,’
+# E704: multiple statements on one line (def)
+# W503: line break before binary operator
+# W504: line break after binary operator

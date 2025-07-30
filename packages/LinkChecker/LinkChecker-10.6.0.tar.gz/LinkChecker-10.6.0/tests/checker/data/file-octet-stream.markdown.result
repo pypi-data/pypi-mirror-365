@@ -1,0 +1,42 @@
+url file://%(curdir)s/%(datadir)s/file-octet-stream.markdown
+cache key file://%(curdir)s/%(datadir)s/file-octet-stream.markdown
+real url file://%(curdir)s/%(datadir)s/file-octet-stream.markdown
+name %(datadir)s/file-octet-stream.markdown
+warning The URL with content type 'application/octet-stream' is not parseable.
+valid
+
+url http://url.example.com
+cache key http://url.example.com
+real url http://url.example.com
+error
+
+url http://url2.example.com
+cache key http://url2.example.com
+real url http://url2.example.com
+error
+
+url http://urldef1.example.com
+cache key http://urldef1.example.com
+real url http://urldef1.example.com
+error
+
+url http://urldef2.example.com
+cache key http://urldef2.example.com
+real url http://urldef2.example.com
+error
+
+url http://urllink.example.com
+cache key http://urllink.example.com
+real url http://urllink.example.com
+error
+
+url http://urllink2.example.com
+cache key http://urllink2.example.com
+real url http://urllink2.example.com
+error
+
+url http://urlimg.example.com
+cache key http://urlimg.example.com
+real url http://urlimg.example.com
+error
+
