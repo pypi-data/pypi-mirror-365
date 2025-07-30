@@ -1,0 +1,12 @@
+recursive-include icet *
+recursive-include mchammer *
+recursive-include src *
+
+include LICENSE
+include MANIFEST.in
+include README.rst
+include setup.py
+
+prune tests
+prune **/__pycache__ 
+prune **/*ipynb_checkpoints
