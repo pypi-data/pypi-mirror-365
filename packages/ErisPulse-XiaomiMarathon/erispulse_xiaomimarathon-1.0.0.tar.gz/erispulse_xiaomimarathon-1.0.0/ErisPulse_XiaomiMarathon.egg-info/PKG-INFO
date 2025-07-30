@@ -1,0 +1,111 @@
+Metadata-Version: 2.4
+Name: ErisPulse-XiaomiMarathon
+Version: 1.0.0
+Summary: 小米马拉松模拟器
+Author-email: wsu2059q <wsu2059@qq.com>
+License: Copyright 2025 wsu2059q
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+Project-URL: homepage, https://github.com/wsu2059q/ErisPulse-XiaomiMarathon
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: license-file
+
+# ErisPulse-XiaomiMarathon
+
+小米马拉松模拟器 - 体验在小米售后"跑马拉松"的刺激冒险！
+
+## 简介
+
+《小米马拉松》是一款基于真实事件改编的文字冒险游戏。在游戏中，你将扮演一位热爱刷机的发烧友，尝试在小米售后服务中"跑马拉松"——即在工程师解锁手机BootLoader后立即拔线跑路的刺激行为
+
+游戏灵感来源于网络上关于"小米解锁BL跑售后"的讨论和真实案例
+
+## 游戏特色
+- 丰富的剧情分支和结局
+- 成就系统，收集各种有趣的成就
+- 随机事件和隐藏彩蛋
+- 支持多个平台（云湖、Telegram、OneBot等）
+
+## 安装方式
+
+```bash
+# 通过ErisPulse包管理器安装
+epsdk install XiaomiMarathon
+
+# 或者使用pip安装
+pip install ErisPulse-XiaomiMarathon
+```
+
+## 游戏玩法
+
+1. 启动游戏：发送 `/开始小米马拉松` 开始游戏
+2. 选择手机型号和预约时间
+3. 根据情境做出选择，影响故事走向
+4. 尝试不同的策略来"解锁BL"
+5. 收集成就，体验多种结局
+
+### 游戏指令
+
+- `/开始小米马拉松` - 开始新游戏
+- `/重新开始` - 重新开始当前游戏
+- `/查看成就` - 查看已获得的成就
+- `/退出` - 退出游戏
+- `/帮助` - 显示帮助信息
+
+## 游戏机制
+
+### 手机选择
+游戏开始时可以选择不同的小米手机型号，每种型号可能会影响后续剧情。
+
+### 预约时间
+不同的预约时间会影响工程师状态和店面人流：
+- 上午时段：工程师精神状态不同
+- 下午时段：人流和工程师状态适中
+- 晚间时段：工程师可能疲劳但人流较少
+
+### 随机事件
+游戏中包含多种随机事件：
+- 工程师临时离开
+- 隐藏道具获取
+- 特殊分支触发
+- 不同结局条件
+
+### 成就系统
+游戏中有丰富的成就等待收集，例如：
+- 【BL战士】- 成功解锁BootLoader
+- 【闪电侠】- 成功在售后点拔线跑路
+- 【演技派】- 巧妙利用道具制造混乱
+- 等等...
+
+## 注意事项
+
+⚠️ **重要提醒**：
+本游戏纯属娱乐，基于网络段子和虚构情节创作。在现实中：
+- 请通过官方渠道申请解锁BootLoader
+- 不要模仿游戏中可能涉及违规的行为
+- 尊重售后服务人员，合理维护自身权益
+
+## 开发信息
+
+### 依赖
+- ErisPulse SDK 2.x
+- Python 3.10+
+
+## 许可证
+
+MIT License
+
+## 鸣谢
+
+- 感谢小米社区的丰富素材和讨论
+- 感谢所有参与测试的玩家
+
+---
+
+*"生活就像刷机，有时候你得冒点风险才能获得更好的体验！"*
