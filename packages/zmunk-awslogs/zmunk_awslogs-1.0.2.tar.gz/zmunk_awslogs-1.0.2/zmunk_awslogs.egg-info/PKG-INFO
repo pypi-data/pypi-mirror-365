@@ -1,0 +1,62 @@
+Metadata-Version: 2.4
+Name: zmunk-awslogs
+Version: 1.0.2
+Summary: CLI-friendly AWS log viewer
+Author-email: zmunk <ibrahim.tigrek@gmail.com>
+License: MIT License
+        
+        Copyright (c) 2018 Real Python
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Project-URL: Homepage, https://github.com/zmunk/awslogs
+Keywords: aws,boto3,logs,cloudwatch,lambda
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: boto3
+Dynamic: license-file
+
+[![PyPI](https://img.shields.io/pypi/v/zmunk-awslogs/v1.0.2)](https://pypi.org/project/zmunk-awslogs/)
+
+# AWS Logs Viewer
+
+A tool for viewing AWS CloudWatch logs nicely in the terminal.
+
+## Installation
+
+You can install it from [PyPI](https://pypi.org/project/zmunk-awslogs/):
+
+    python -m pip install zmunk-awslogs
+
+The tool is supported on Python 3.10 and above.
+
+## How to use
+
+    $ export AWS_DEFAULT_PROFILE=<your-profile>
+    $ python
+    >>> from awslogs import trail_logs
+    >>> trail_logs("/aws/lambda/your-function", "5m")
+
+You could also use it from the command line.
+
+    $ python -m awslogs /aws/lambda/your-function 5m
