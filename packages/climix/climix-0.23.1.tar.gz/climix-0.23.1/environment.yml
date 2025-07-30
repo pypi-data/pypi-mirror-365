@@ -1,0 +1,31 @@
+---
+
+name: climix
+channels:
+  - conda-forge
+
+dependencies:
+  # Climix dependencies
+  - cftime
+  - cf-units
+  - dask>=2023.1.0
+  - gordias
+  - iris>=3.0.2,<4
+  - numba
+  - numpy<2
+  - python>=3.10
+  - pyxdg
+  - pyyaml
+  - regex
+  - sparse
+  # Development dependencies
+  - black
+  - myst-parser
+  - pre-commit
+  - pydata-sphinx-theme
+  - pytest
+  - python-build
+  - sphinx
+  - sphinx-toolbox
+  - sphinx-favicon
+  - sphinx-copybutton
