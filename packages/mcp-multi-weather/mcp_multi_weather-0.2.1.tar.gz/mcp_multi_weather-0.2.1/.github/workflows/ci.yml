@@ -1,0 +1,177 @@
+name: CI
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [main]
+  push:
+    branches: [main]
+    tags: ["v*"]
+
+env:
+  LATEST_PYTHON_VERSION: "3.13"
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        python-version: ["3.12", "3.13"]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          activate-environment: true
+          enable-cache: true
+          python-version: ${{ matrix.python-version }}
+          version: "latest"
+
+      - name: Install the project
+        run: uv sync --locked --all-extras --dev
+
+      - name: Check code types
+        run: uv run --frozen pyright
+
+      - name: Check code linter
+        run: uv run --frozen ruff check
+
+      - name: Check code formatter
+        run: uv run --frozen ruff format
+
+      - name: Run tests
+        run: uv run --frozen pytest
+        env:
+          OPENWEATHER_API_KEY: dummy
+
+      - name: Upload project
+        if: matrix.python-version == env.LATEST_PYTHON_VERSION
+        uses: actions/upload-artifact@v4
+        with:
+          name: project
+          path: .
+          retention-days: 1
+
+  check-release:
+    name: Check if a new release is needed
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    needs: [test]
+    if: github.ref == 'refs/heads/main'
+    outputs:
+      should-release: ${{ steps.check.outputs.should-release }}
+      version: ${{ steps.check.outputs.version }}
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check release status
+        id: check
+        run: |
+          VERSION=$(python ./scripts/release.py get-version)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+          if python ./scripts/release.py check-release; then
+            echo "should-release=false" >> $GITHUB_OUTPUT
+          else
+            echo "should-release=true" >> $GITHUB_OUTPUT
+          fi
+
+  dxt:
+    name: Release new version
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: [test, check-release]
+    if: needs.check-release.outputs.should-release == 'true'
+    permissions:
+      contents: write
+      packages: write
+    steps:
+      - name: Download compiled project
+        uses: actions/download-artifact@v4
+        with:
+          name: project
+          path: .
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          activate-environment: true
+          enable-cache: true
+          python-version: ${{ env.LATEST_PYTHON_VERSION }}
+          version: "latest"
+
+      - name: Generate the manifest file
+        run: uv run dxt-manifest
+
+      - name: Create DXT package
+        run: npx @anthropic-ai/dxt pack
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: Release ${{ needs.check-release.outputs.version }}
+          tag_name: ${{ needs.check-release.outputs.version }}
+          files: ./mcp-multi-weather.dxt
+          body: |
+            ## MCP Weather Server ${{ needs.check-release.outputs.version }}
+
+            ### Installation Options
+
+            **Docker Image:**
+            ```bash
+            docker pull ghcr.io/igalarzab/mcp-multi-weather:${{ needs.check-release.outputs.version }}
+            ```
+
+            **DXT Package:**
+            Download the `.dxt` file from the assets below and install it using your preferred MCP client.
+
+            **Python Package:**
+            ```bash
+            pip install mcp-multi-weather==${{ needs.check-release.outputs.version }}
+            ```
+
+  docker:
+    name: Build and push Docker image
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: [test, check-release]
+    if: needs.check-release.outputs.should-release == 'true'
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Download compiled project
+        uses: actions/download-artifact@v4
+        with:
+          name: project
+          path: .
+
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          activate-environment: true
+          enable-cache: true
+          python-version: ${{ env.LATEST_PYTHON_VERSION }}
+          version: "latest"
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build docker image
+        run: make package
+
+      - name: Push docker image
+        run: make push

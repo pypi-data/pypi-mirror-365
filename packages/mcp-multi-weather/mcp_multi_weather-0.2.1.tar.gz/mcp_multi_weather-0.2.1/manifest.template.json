@@ -1,0 +1,63 @@
+{
+  "dxt_version": "0.1",
+  "name": "$APP_NAME",
+  "display_name": "Weather MCP Server",
+  "version": "$APP_VERSION",
+  "description": "$APP_DESCRIPTION",
+  "long_description": "$APP_LONG_DESCRIPTION",
+  "author": {
+    "name": "$AUTHOR_NAME",
+    "email": "$AUTHOR_EMAIL",
+    "url": "$AUTHOR_URL"
+  },
+  "server": {
+    "type": "python",
+    "entry_point": "src/mcp_multi_weather/cli/server.py",
+    "mcp_config": {
+      "command": "python3",
+      "args": [
+        "$${__dirname}/src/mcp_multi_weather/cli/server.py"
+      ],
+      "env": {
+        "MCP_TRANSPORT": "stdio",
+        "WEATHER_PROVIDER": "$${user_config.weather_provider}",
+        "OPENWEATHER_API_KEY": "$${user_config.openweather_api_key}",
+        "PYTHONPATH": "$${__dirname}/${SITE_PACKAGES_PATH}:$${__dirname}/src"
+      }
+    }
+  },
+  "tools": [
+    {
+      "name": "get_historical_weather",
+      "description": "Get historical weather data for a specific date and location"
+    }
+  ],
+  "license": "$APP_LICENSE",
+  "user_config": {
+    "weather_provider": {
+      "type": "string",
+      "title": "Weather Provider",
+      "description": "Weather provider to use (options: openweather)",
+      "default": "openweather",
+      "required": false
+    },
+    "openweather_api_key": {
+      "type": "string",
+      "title": "OpenWeather API Key",
+      "description": "API Key to access OpenWeather",
+      "required": true,
+      "sensitive": true
+    }
+  },
+  "compatibility": {
+    "claude_desktop": ">=0.10.0",
+    "platforms": [
+      "darwin",
+      "win32",
+      "linux"
+    ],
+    "runtimes": {
+      "python": "$APP_PYTHON_VERSION"
+    }
+  }
+}
