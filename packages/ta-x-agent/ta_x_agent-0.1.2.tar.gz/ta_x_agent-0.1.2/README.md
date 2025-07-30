@@ -1,0 +1,279 @@
+# TA-X-AGENT: X (Twitter) Agent Package
+
+A Python package for interacting with X (Twitter) platform using AI agents. This package provides a simple and intuitive interface to perform various Twitter operations like posting, liking, retweeting, and retrieving data.
+
+## Features
+
+- 🤖 AI-powered X (Twitter) interactions
+- 📝 Create and post content
+- ❤️ Like and unlike posts
+- 🔄 Retweet posts
+- 📊 Get trending topics
+- 👤 Get user details and tweet information
+- 🔧 Easy configuration and setup
+- 🚀 Ready for PyPI distribution
+
+## Quick Start
+
+### Installation
+
+```bash
+pip install ta-x-agent
+```
+
+### Basic Usage
+
+```python
+import asyncio
+from ta_x import setup, XAgent
+
+async def main():
+    # Setup authentication
+    setup(
+        x_auth_token="your_x_auth_token_here",
+        x_ct0="your_x_ct0_token_here", 
+        openai_api_key="your_openai_api_key_here",
+        rapid_api_key="your_rapid_api_key_here"
+    )
+    
+    # Create agent instance
+    agent = XAgent()
+    
+    # Use the agent
+    result = await agent.run("Post this: Hello X world!")
+    print(result)
+
+asyncio.run(main())
+```
+
+## Import Syntax
+
+The package supports the exact import syntax you wanted:
+
+```python
+from ta_x import XAgent
+agent = XAgent()
+agent.run(user_prompt=" ")
+```
+
+## Available Operations
+
+### 1. Create Posts
+```python
+await agent.run("Post this: Hello X world!")
+await agent.run("Create a post about AI and social media")
+```
+
+### 2. Like Posts
+```python
+await agent.run("Like the latest post")
+await agent.run("Like the latest post of elonmusk")
+await agent.run("Like the second latest post of elonmusk")
+```
+
+### 3. Unlike Posts
+```python
+await agent.run("Unlike the latest post")
+await agent.run("Unlike the latest post of elonmusk")
+```
+
+### 4. Retweet Posts
+```python
+await agent.run("Retweet the latest post")
+await agent.run("Retweet the latest post of elonmusk")
+```
+
+### 5. Get Trends
+```python
+await agent.run("What's trending on X?")
+await agent.run("Show trends")
+```
+
+### 6. Get User Details
+```python
+await agent.run("Get user details for elonmusk")
+await agent.run("Show user info for elonmusk")
+```
+
+### 7. Get Tweet Details
+```python
+await agent.run("Get tweet details for 123456789")
+```
+
+## Authentication Setup
+
+### Method 1: Using setup() function
+```python
+from ta_x import setup
+
+setup(
+    x_auth_token="your_x_auth_token",
+    x_ct0="your_x_ct0_token",
+    openai_api_key="your_openai_api_key",
+    rapid_api_key="your_rapid_api_key"
+)
+```
+
+### Method 2: Environment Variables
+```bash
+export X_AUTH_TOKEN="your_x_auth_token"
+export X_CT0="your_x_ct0_token"
+export OPENAI_API_KEY="your_openai_api_key"
+export RAPID_API_KEY="your_rapid_api_key"
+```
+
+### Method 3: .env file
+Create a `.env` file in your project root:
+```
+X_AUTH_TOKEN=your_x_auth_token
+X_CT0=your_x_ct0_token
+OPENAI_API_KEY=your_openai_api_key
+RAPID_API_KEY=your_rapid_api_key
+```
+
+## CLI Usage
+
+The package also provides a command-line interface:
+
+```bash
+# Setup authentication
+ta-x-agent setup --x-auth-token "your_token" --x-ct0 "your_ct0" --openai-key "your_key" --rapid-api-key "your_rapid_key"
+
+# Create a post
+ta-x-agent post "Hello X world!"
+
+# Like the latest post
+ta-x-agent like
+
+# Get trending topics
+ta-x-agent trends
+
+# Get user details
+ta-x-agent user-details elonmusk
+```
+
+## Advanced Usage
+
+### Using XAgent Class Directly
+```python
+from ta_x import XAgent
+
+custom_agent = XAgent(
+    auth_token="your_x_auth_token",
+    ct0="your_x_ct0_token"
+)
+
+result = await custom_agent.run("Post this: Hello world!")
+```
+
+### Using execute_x_task Function
+```python
+from ta_x import execute_x_task
+
+result = await execute_x_task("Post this: Hello world!")
+```
+
+## Error Handling
+
+```python
+try:
+    result = await agent.run("Post this: Test post")
+    print(f"Success: {result}")
+except Exception as e:
+    print(f"Error: {e}")
+    print("Make sure authentication tokens are set correctly!")
+```
+
+
+## Configuration Management
+
+### Get Current Configuration
+
+```python
+from ta_x import get_config
+
+config = get_config()
+print(f"X Auth Token: {config.x_auth_token}")
+print(f"X CT0: {config.x_ct0}")
+print(f"OpenAI API Key: {config.openai_api_key}")
+print(f"RapidAPI Key: {config.rapid_api_key}")
+```
+
+### Reset Configuration
+
+```python
+from ta_x import reset_config
+
+# Reset to default values
+reset_config()
+```
+
+## Available Operations
+
+The agent supports the following operations:
+
+1. **Create Posts**: `"Post this: [content]"` or `"Create a post with [content]"`
+2. **Like Posts**: `"Like the latest post"` or `"Like the post of [username]"`
+3. **Unlike Posts**: `"Unlike the post"` or `"Dislike the post of [username]"`
+4. **Retweet Posts**: `"Retweet the post"` or `"Retweet the post of [username]"`
+5. **Get Trends**: `"What's trending?"` or `"Show trends"`
+6. **Get Tweet Details**: `"Get tweet details for [tweet_id]"`
+7. **Get User Details**: `"Get user details for [username]"`
+
+## Error Handling
+
+The package includes comprehensive error handling:
+
+- **Missing Configuration**: Clear error messages when required tokens are not set
+- **Invalid Credentials**: Proper handling of authentication failures
+- **Network Errors**: Graceful handling of connection issues
+- **Rate Limiting**: Built-in support for X API rate limits
+
+## Development
+
+### Installing Development Dependencies
+
+```bash
+pip install -e ".[dev]"
+```
+
+### Running Tests
+
+```bash
+pytest
+```
+
+### Code Formatting
+
+```bash
+black ta_x/
+```
+
+### Type Checking
+
+```bash
+mypy ta_x/
+```
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new functionality
+5. Run the test suite
+6. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+- 📧 Email: your.email@example.com
+- 🐛 Issues: [GitHub Issues](https://github.com/Soumyajit22theagentic/ta-x/issues)
+- 📖 Documentation: [GitHub README](https://github.com/Soumyajit22theagentic/ta-x#readme)
+
+## Disclaimer
+
+This package is for educational and development purposes. Please ensure you comply with X (Twitter)'s Terms of Service and API usage guidelines when using this package. 
