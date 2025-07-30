@@ -1,0 +1,36 @@
+{% extends "nautobot/base.html" %}
+
+{% block content %}
+  <div class="container">
+    <h2>API Services</h2>
+    <a href="{% url 'add_api_service' %}" class="btn btn-success mb-3">Add New Service</a>
+    <table class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>URL</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for api_service in api_services %}
+          <tr>
+            <td>{{ api_service.id }}</td>
+            <td>{{ api_service.name }}</td>
+            <td>{{ api_service.url }}</td>
+            <td>
+              <a href="{% url 'api_service_detail' api_service.id %}" class="btn btn-info btn-sm">View</a>
+              <a href="{% url 'api_service_edit' api_service.id %}" class="btn btn-warning btn-sm">Edit</a>
+              <a href="{% url 'api_service_delete' api_service.id %}" class="btn btn-danger btn-sm">Delete</a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="4" class="text-center">No API services found.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
