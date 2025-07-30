@@ -1,0 +1,48 @@
+Metadata-Version: 2.4
+Name: hidden_selenium
+Version: 0.1.2
+Summary: A stealthy undetected browser automation tool using Selenium.
+Author: Max Base
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: undetected-chromedriver>=3.5.3
+Dynamic: author
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# `hidden_selenium` for Python
+
+A stealthy undetected browser automation tool using Selenium.
+
+### Installing
+
+```bash
+pip install hidden_selenium
+```
+
+### Using
+
+```python
+import time
+from hidden_selenium import launch_browser
+
+driver = launch_browser()
+
+url = "https://www.browserscan.net"
+driver.get(url)
+
+time.sleep(100)
+```
+
+### Test
+
+```bash
+python test.py
+```
+
+Copyright 2025, Max Base
