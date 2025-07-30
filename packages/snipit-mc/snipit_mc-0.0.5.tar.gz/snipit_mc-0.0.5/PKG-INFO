@@ -1,0 +1,437 @@
+Metadata-Version: 2.4
+Name: snipit-mc
+Version: 0.0.5
+Summary: Enhanced snipit with artistic color palettes and improved SNP visualization
+Home-page: https://github.com/hyzhou1990/snipit-multicolor
+Author: hyzhou1990
+Author-email: 
+License: GPL-3.0
+Project-URL: Bug Reports, https://github.com/hyzhou1990/snipit-multicolor/issues
+Project-URL: Source, https://github.com/hyzhou1990/snipit-multicolor
+Project-URL: Documentation, https://github.com/hyzhou1990/snipit-multicolor#readme
+Keywords: bioinformatics,snp,visualization,genomics,mutation,phylogenetics,sequence-analysis,covid,sars-cov-2,genbank
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Classifier: Topic :: Scientific/Engineering :: Visualization
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: biopython>=1.70
+Requires-Dist: matplotlib>=3.2.1
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: license-file
+Dynamic: project-url
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# snipit-multicolor
+
+[![PyPI version](https://badge.fury.io/py/snipit-mc.svg)](https://badge.fury.io/py/snipit-mc)
+[![PyPI downloads](https://img.shields.io/pypi/dm/snipit-mc.svg)](https://pypi.org/project/snipit-mc/)
+[![PyPI downloads total](https://static.pepy.tech/badge/snipit-mc)](https://pepy.tech/project/snipit-mc)
+[![PyPI downloads monthly](https://static.pepy.tech/badge/snipit-mc/month)](https://pepy.tech/project/snipit-mc)
+[![PyPI downloads weekly](https://static.pepy.tech/badge/snipit-mc/week)](https://pepy.tech/project/snipit-mc)
+[![Python versions](https://img.shields.io/pypi/pyversions/snipit-mc.svg)](https://pypi.org/project/snipit-mc/)
+[![License](https://img.shields.io/github/license/hyzhou1990/snipit-multicolor.svg)](https://github.com/hyzhou1990/snipit-multicolor/blob/master/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/hyzhou1990/snipit-multicolor.svg)](https://github.com/hyzhou1990/snipit-multicolor/stargazers)
+
+Enhanced version of snipit with artistic color palettes and improved visualization
+
+Summarise SNPs relative to a reference sequence with beautiful, publication-ready visualizations
+
+<img src="https://raw.githubusercontent.com/hyzhou1990/snipit-multicolor/master/docs/genome_graph.png" width="700">
+
+## Gallery
+
+### Color Palette Comparison
+<img src="https://raw.githubusercontent.com/hyzhou1990/snipit-multicolor/master/docs/examples/palette_comparison.png" width="800">
+
+### Example Outputs
+
+#### Nature Style - High-saturation colors for publications
+<img src="https://raw.githubusercontent.com/hyzhou1990/snipit-multicolor/master/docs/examples/nature_example.png" width="600">
+
+#### Morandi Style - Muted, sophisticated tones
+<img src="https://raw.githubusercontent.com/hyzhou1990/snipit-multicolor/master/docs/examples/morandi_example.png" width="600">
+
+#### Van Gogh Style - Vibrant, expressive colors
+<img src="https://raw.githubusercontent.com/hyzhou1990/snipit-multicolor/master/docs/examples/vangogh_example.png" width="600">
+
+### GenBank Gene Annotations
+
+#### SARS-CoV-2 Genome with Multi-color Gene Tracks
+
+**Nature Palette** - High-saturation scientific colors
+<img src="https://raw.githubusercontent.com/hyzhou1990/snipit-multicolor/master/docs/examples/sars_cov2_nature.png" width="700">
+
+**Morandi Palette** - Muted, sophisticated tones
+<img src="https://raw.githubusercontent.com/hyzhou1990/snipit-multicolor/master/docs/examples/sars_cov2_morandi.png" width="700">
+
+**Monet Palette** - Soft impressionist pastels
+<img src="https://raw.githubusercontent.com/hyzhou1990/snipit-multicolor/master/docs/examples/sars_cov2_monet.png" width="700">
+
+*Each gene (ORF1ab, S, ORF3a, E, M, N) receives its own unique color that harmonizes with the selected palette*
+
+## What's New in snipit-multicolor
+
+This enhanced version includes:
+- **Artistic color palettes** inspired by famous painters (Morandi, Van Gogh, Monet, Matisse)
+- **Enhanced visualization quality** with higher DPI, text shadows, and improved typography
+- **Cleaner aesthetics** with removed outer borders and subtle label backgrounds
+- **Better readability** with optimized font sizes and visual hierarchy
+- **GenBank gene annotations** with multi-color gene tracks showing individual genes in harmonized colors
+
+## Installation
+
+### From PyPI (Recommended)
+```bash
+pip install snipit-mc
+```
+
+### From Source
+```
+git clone https://github.com/hyzhou1990/snipit-multicolor.git
+cd snipit-multicolor
+pip install -e .
+```
+
+## Quick Start
+
+### Command Line Usage
+```bash
+# Basic nucleotide alignment visualization
+snipit alignment.fasta --output-file output
+
+# With artistic color palette
+snipit alignment.fasta --colour-palette nature --output-file nature_plot
+
+# For amino acid sequences
+snipit protein.fasta --sequence-type aa --colour-palette nature_aa --output-file protein_plot
+```
+
+### Python API Usage
+
+snipit-mc also provides a comprehensive Python API for programmatic use:
+
+```python
+from snipit import snipit_plot, SnipitConfig
+
+# Basic usage
+result = snipit_plot("alignment.fasta", colour_palette="nature")
+
+# Advanced usage with configuration
+config = SnipitConfig(
+    colour_palette="vangogh",
+    width=12,
+    height=8,
+    format="pdf",
+    genbank="reference.gb"
+)
+result = snipit_plot("alignment.fasta", config=config)
+
+# Convenience functions
+from snipit import quick_plot, publication_plot, protein_plot
+
+# Quick plot
+quick_plot("alignment.fasta", palette="nature")
+
+# Publication-ready plot
+publication_plot("alignment.fasta", palette="nature", genbank="ref.gb")
+
+# Protein analysis
+protein_plot("protein.fasta", palette="monet_aa")
+```
+
+📖 **[Complete Python API Documentation](docs/API_DOCUMENTATION.md)**
+
+## Color Palettes
+
+### Artistic Palettes
+Each artistic palette is available in three versions:
+- **Base version** for nucleotides (A, T, G, C)
+- **Extended version** for ambiguous nucleotides
+- **Amino acid version** for protein sequences
+
+#### Nature Style
+High-saturation colors suitable for Nature publications
+```bash
+snipit alignment.fasta --colour-palette nature           # Nucleotides
+snipit alignment.fasta --colour-palette nature_extended  # With ambiguous bases
+snipit protein.fasta --sequence-type aa --colour-palette nature_aa  # Amino acids
+```
+
+#### Morandi Style
+Muted, grey-toned colors inspired by Giorgio Morandi
+```bash
+snipit alignment.fasta --colour-palette morandi
+snipit alignment.fasta --colour-palette morandi_extended
+snipit protein.fasta --sequence-type aa --colour-palette morandi_aa
+```
+
+#### Van Gogh Style
+Vibrant, expressive colors inspired by Vincent van Gogh
+```bash
+snipit alignment.fasta --colour-palette vangogh
+snipit alignment.fasta --colour-palette vangogh_extended
+snipit protein.fasta --sequence-type aa --colour-palette vangogh_aa
+```
+
+#### Monet Style
+Soft impressionist pastels inspired by Claude Monet
+```bash
+snipit alignment.fasta --colour-palette monet
+snipit alignment.fasta --colour-palette monet_extended
+snipit protein.fasta --sequence-type aa --colour-palette monet_aa
+```
+
+#### Matisse Style
+Bold, pure colors inspired by Henri Matisse
+```bash
+snipit alignment.fasta --colour-palette matisse
+snipit alignment.fasta --colour-palette matisse_extended
+snipit protein.fasta --sequence-type aa --colour-palette matisse_aa
+```
+
+### Classic Palettes
+- `classic`: Traditional SNP visualization colors
+- `classic_extended`: Classic with ambiguous base support
+- `primary`: Primary colors
+- `purine-pyrimidine`: Color by base type
+- `greyscale`: Monochrome visualization
+- `wes`: Wes Anderson inspired
+- `verity`: Pink/purple theme
+- `ugene`: UGENE software colors (for amino acids)
+
+## Advanced Features
+
+### Enhanced Visualization Options
+
+```bash
+# High-quality figure with custom size
+snipit alignment.fasta \
+  --colour-palette nature \
+  --width 15 \
+  --height 10 \
+  --output-file high_quality
+
+# Sort sequences by mutation count
+snipit alignment.fasta \
+  --colour-palette vangogh \
+  --sort-by-mutation-number \
+  --output-file sorted_plot
+```
+
+### Working with Large Alignments
+
+```bash
+# Focus on specific regions
+snipit large_alignment.fasta \
+  --colour-palette monet \
+  --include-positions 100-500 \
+  --exclude-positions 250-300 \
+  --output-file region_plot
+
+# Include indels in visualization
+snipit alignment.fasta \
+  --colour-palette matisse \
+  --show-indels \
+  --output-file indel_plot
+```
+
+### Recombination Analysis
+
+```bash
+# Visualize recombination patterns
+snipit alignment.fasta \
+  --reference REF_SEQ \
+  --recombi-mode \
+  --recombi-references "PARENT1,PARENT2" \
+  --output-file recombination_plot
+```
+
+### Gene Annotations with GenBank
+
+Display beautiful gene tracks with directional arrows using GenBank files:
+
+```bash
+# Add gene annotations from GenBank file
+snipit alignment.fasta \
+  --genbank reference.gb \
+  --colour-palette nature \
+  --output-file annotated_plot
+
+# Combine with other features
+snipit alignment.fasta \
+  --genbank viral_genome.gb \
+  --colour-palette vangogh \
+  --sort-by-mutation-number \
+  --width 15 \
+  --output-file comprehensive_analysis
+
+# Real example with SARS-CoV-2
+snipit covid_sequences.fasta \
+  --genbank NC_045512.gb \
+  --colour-palette monet \
+  --output-file covid_with_genes
+```
+
+Each gene is automatically assigned a unique color that harmonizes with your chosen palette:
+- **Nature palette**: High-saturation scientific colors
+- **Morandi palette**: Muted, sophisticated tones  
+- **Van Gogh palette**: Vibrant, contrasting colors
+- **Monet palette**: Soft impressionist pastels
+- **Matisse palette**: Bold, pure colors
+
+Arrows indicate gene direction (forward/reverse strand) and gene names are displayed when space permits.
+
+## Output Formats
+
+Supported output formats:
+- `png` (default) - High-resolution raster image
+- `pdf` - Vector format for publications
+- `svg` - Editable vector format
+- `jpg` - Compressed raster image
+- `tiff` - High-quality raster for publications
+
+```bash
+snipit alignment.fasta --format pdf --output-file figure
+```
+
+## Examples
+
+### Example 1: Publication-Ready Figure
+```bash
+snipit test.fasta \
+  --colour-palette nature \
+  --width 12 \
+  --format pdf \
+  --solid-background \
+  --output-file publication_figure
+```
+
+### Example 2: Amino Acid Alignment
+```bash
+snipit aa_alignment.fasta \
+  --sequence-type aa \
+  --colour-palette monet_aa \
+  --sort-by-id \
+  --output-file protein_analysis
+```
+
+### Example 3: Custom Analysis
+```bash
+snipit alignment.fasta \
+  --colour-palette vangogh_extended \
+  --reference "Reference_Seq" \
+  --labels sample_labels.csv \
+  --ambig-mode all \
+  --flip-vertical \
+  --output-file custom_analysis
+```
+
+### Example 4: SARS-CoV-2 with Gene Annotations
+```bash
+# Download SARS-CoV-2 reference GenBank file
+curl -o NC_045512.gb "https://www.ncbi.nlm.nih.gov/sviewer/viewer.fcgi?id=NC_045512.2&db=nuccore&report=genbank&conwithfeat=on&hide-cdd=on&retmode=text"
+
+# Create visualization with gene annotations
+snipit covid_alignment.fasta \
+  --genbank NC_045512.gb \
+  --colour-palette nature \
+  --sort-by-mutation-number \
+  --width 14 \
+  --output-file covid_mutations_with_genes
+```
+
+## Full Usage
+
+```
+snipit <alignment> [options]
+
+Input options:
+  alignment             Input alignment fasta file
+  -t {nt,aa}           Input sequence type: aa or nt (default: nt)
+  -r REFERENCE         Reference sequence ID (default: first sequence)
+  -l LABELS            CSV file with sequence labels
+  --l-header           Column headers in label CSV (default: 'name,label')
+  -g, --genbank        GenBank file for gene annotations
+
+Output options:
+  -d OUTPUT_DIR        Output directory (default: current directory)
+  -o OUTPUT_FILE       Output file name stem (default: snp_plot)
+  -s, --write-snps     Write SNPs to CSV file
+  -f FORMAT            Output format: png, jpg, pdf, svg, tiff (default: png)
+
+Figure options:
+  --height HEIGHT      Figure height
+  --width WIDTH        Figure width
+  --size-option        Sizing options: expand, scale
+  --solid-background   Solid background instead of transparent
+  -c, --colour-palette Color palette selection
+  --flip-vertical      Flip plot orientation
+  --sort-by-mutation-number  Sort by SNP count
+  --sort-by-id         Sort alphabetically by ID
+  --sort-by-mutations  Sort by bases at positions (e.g., '1,2,3')
+
+SNP options:
+  --show-indels        Include indels in plot
+  --include-positions  Positions to include (e.g., '100-150')
+  --exclude-positions  Positions to exclude (e.g., '223 224')
+  --ambig-mode         Handle ambiguous bases: all, snps, exclude
+```
+
+## Download Statistics
+
+Track snipit-mc package downloads and usage statistics:
+
+### PyPI Download Statistics
+- **Total Downloads**: [![Total Downloads](https://static.pepy.tech/badge/snipit-mc)](https://pepy.tech/project/snipit-mc)
+- **Monthly Downloads**: [![Monthly Downloads](https://static.pepy.tech/badge/snipit-mc/month)](https://pepy.tech/project/snipit-mc)  
+- **Weekly Downloads**: [![Weekly Downloads](https://static.pepy.tech/badge/snipit-mc/week)](https://pepy.tech/project/snipit-mc)
+
+### Detailed Analytics
+Visit [pepy.tech/project/snipit-mc](https://pepy.tech/project/snipit-mc) for:
+- Historical download trends
+- Version-specific statistics  
+- Geographic distribution
+- Download patterns over time
+
+### Alternative Statistics
+- **PyPI Stats**: [PyPI Package Page](https://pypi.org/project/snipit-mc/)
+- **GitHub Analytics**: [Repository Insights](https://github.com/hyzhou1990/snipit-multicolor/pulse)
+
+## Citation
+
+If you use snipit-multicolor in your work, please cite:
+
+```
+Original snipit:
+Áine O'Toole, snipit (2024) GitHub repository, https://github.com/aineniamh/snipit
+
+Enhanced multicolor version:
+hyzhou1990, snipit-multicolor (2025) GitHub repository, https://github.com/hyzhou1990/snipit-multicolor
+```
+
+## Issues and Contributions
+
+Please report issues or suggest features at: https://github.com/hyzhou1990/snipit-multicolor/issues
+
+## License
+
+This project maintains the same license as the original snipit tool.
