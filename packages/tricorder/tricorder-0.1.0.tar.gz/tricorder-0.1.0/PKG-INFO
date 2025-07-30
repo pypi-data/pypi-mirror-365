@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: tricorder
+Version: 0.1.0
+Summary: A collection of small frequently used tools updated regularly, focusing on MRI and PyTorch
+License: MIT
+Author: Soumick Chatterjee, PhD
+Author-email: contact@soumick.com
+Requires-Python: >=3.11,<4.0
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Requires-Dist: nibabel (>=5.3.2,<6.0.0)
+Requires-Dist: pydicom (>=3.0.1,<4.0.0)
+Requires-Dist: pytorch-complex (>=0.2.0,<0.3.0)
+Requires-Dist: simpleitk (>=2.5.2,<3.0.0)
+Requires-Dist: torch (>=2.7.1,<3.0.0)
+Requires-Dist: torchaudio (>=2.7.1,<3.0.0)
+Requires-Dist: torchvision (>=0.22.1,<0.23.0)
+Requires-Dist: xmltodict (>=0.14.2,<0.15.0)
+Description-Content-Type: text/markdown
+
+# Tricorder
+A collection of small frequently used tools updated regularly, focusing on MRI, PyTorch, Bioinformatics, and Pythoin.
+
+The name of this project "Tricorder" was selected as a tribute to Star Trek.
+A tricorder will be a multifunction hand-held device useful for data sensing, analysis, and recording, with many specialised abilities which will make it an asset to crews aboard starships and space stations as well as on away missions.
+
