@@ -1,0 +1,17 @@
+[project]
+name = "rubigram-bot"
+version = "0.1.0"
+description = "A library to build a Rubika bot"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {text = "MIT"}
+authors = [
+  {name = "Javad", email = "Javad.Py1385@gmail.com"},
+]
+
+[project.urls]
+"Homepage" = "https://google.com"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
