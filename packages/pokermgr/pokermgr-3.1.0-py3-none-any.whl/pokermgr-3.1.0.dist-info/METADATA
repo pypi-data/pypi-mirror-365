@@ -1,0 +1,352 @@
+Metadata-Version: 2.3
+Name: pokermgr
+Version: 3.1.0
+Summary: Comprehensive Python library for managing poker games
+Keywords: poker,texas-holdem,omaha,card-games,game-evaluation
+Author: Bhadresh Dahanuwala
+Author-email: bhadresh.dahanuwala@gmail.com
+Requires-Python: >=3.10
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Games/Entertainment
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Typing :: Typed
+Provides-Extra: dev
+Requires-Dist: cardspy (>=2.0.0,<3.0.0)
+Requires-Dist: flake8 (>=7.2.0) ; extra == "dev"
+Requires-Dist: mypy (>=1.16.0) ; extra == "dev"
+Requires-Dist: pylint (>=3.3.7) ; extra == "dev"
+Requires-Dist: pytest (>=8.3.5) ; extra == "dev"
+Description-Content-Type: text/markdown
+
+# Poker Manager
+
+A comprehensive Python library for managing poker games, including Texas Hold'em variants with support for multi-board play, pot management, and hand evaluation.
+
+## Features
+
+### Game Variants
+- **Texas Hold'em**: Standard no-limit Texas Hold'em with small/big blinds
+- **Bomb Pot**: Variant where all players are automatically all-in pre-flop
+- **Multi-board Support**: Play with multiple boards simultaneously
+
+### Core Components
+
+#### Table Management
+- Manage players and seating
+- Handle player rotations and dealer button
+- Support for table limits and configurations
+
+#### Player System
+- Track player status (active, folded, all-in, sitting out)
+- Manage chip stacks and bankroll
+- Track hole cards and best possible hands
+- Calculate hand equities
+
+#### Board Management
+- Handle community cards (flop, turn, river)
+- Support for multiple concurrent boards
+- Board texture analysis
+
+#### Pot Management
+- Track main and side pots
+- Handle all-in situations
+- Support for multi-board pot splitting
+- Track winners per board
+
+#### Hand Evaluation
+- Evaluate hand strengths
+- Calculate winning hands
+- Support for various poker hand rankings
+
+## Installation
+
+### From GitHub Packages (Private Repository)
+
+```bash
+# Using Personal Access Token
+pip install pokermgr --index-url https://USERNAME:TOKEN@pypi.pkg.github.com/bhadresh-dahanuwala/simple/
+```
+
+See [INSTALL.md](INSTALL.md) for detailed installation instructions.
+
+### For Development
+
+```bash
+git clone https://github.com/bhadresh-dahanuwala/pokermgr.git
+cd pokermgr
+pip install -e .
+```
+
+## Quick Start
+
+This section provides a basic overview of how to set up and run a poker game using the Poker Manager library.
+
+### 1. Setting up Players and Table
+
+First, you need to create players and a table for them to play on.
+
+```python
+from collections import deque
+from pokermgr.player import TablePlayer, PlayerAction, PlayerStatus
+from pokermgr.table import Table
+
+# Create individual players
+player1 = TablePlayer(name="Alice", initial_stack=1000)
+player2 = TablePlayer(name="Bob", initial_stack=1000)
+player3 = TablePlayer(name="Charlie", initial_stack=1000)
+
+# Add players to a deque (order matters for seating and turns)
+players_at_table = deque([player1, player2, player3])
+
+# Create a table
+# The table code can be any unique string identifier.
+# max_players defaults to 9 if not specified.
+table = Table(code="PokerNight01", players=players_at_table, max_players=6)
+
+print(f"Table '{table.code}' created with {len(table.players)} players.")
+for p in table.players:
+    print(f"- {p.name} (Stack: {p.stack})")
+```
+
+### 2. Initializing a Game (Texas Hold'em Regular)
+
+Now, let's set up a standard Texas Hold'em game with blinds.
+
+```python
+from pokermgr.game import GameTexasHoldemRegular, GameStreet
+
+# Create a Texas Hold'em game
+# 'key' is a unique identifier for the game instance.
+# Small blind and big blind amounts are specified here.
+game_th_regular = GameTexasHoldemRegular(
+    key=1,  # Game ID
+    table=table,
+    small_blind=5,
+    big_blind=10,
+    initial_board_count=1 # Default is 1, can be more for multi-board games
+)
+
+print(f"Game {game_th_regular.key} (Texas Hold'em Regular) initialized.")
+print(f"Small Blind: {game_th_regular.small_blind}, Big Blind: {game_th_regular.big_blind}")
+print(f"Current game street: {game_th_regular.game_street.name}")
+print(f"Number of boards: {game_th_regular.board_count}")
+```
+
+### 3. Dealing Cards and Progressing Streets
+
+Here's how to deal cards through the different streets of a hand. In a real game, betting rounds would occur between these steps.
+
+```python
+from cardspy.cards import SUITS, RANKS, CARDS
+from cardspy.card import card_key_to_repr, cards_to_str_pretty
+
+# --- Pre-flop: Deal Hole Cards ---
+# The _core_deal_hole_cards method is called internally by deal_hole_cards.
+# For Texas Hold'em, each player gets 2 hole cards.
+game_th_regular.deal_hole_cards() 
+print(f"\n--- {game_th_regular.game_street.name} --- (Hole cards dealt)")
+for player in game_th_regular.table.players:
+    # Hole cards are stored as bitmasks in player.hole_cards.key
+    # We use card_key_to_repr for a human-readable string
+    hole_cards_str = cards_to_str_pretty(player.hole_cards.key)
+    print(f"{player.name} has hole cards: {hole_cards_str}")
+
+# --- Flop: Deal 3 Community Cards ---
+# Advance the game street and deal the flop
+# game_th_regular.game_street = GameStreet.FLOP # This is handled internally by deal_flop
+game_th_regular.deal_flop()
+print(f"\n--- {game_th_regular.game_street.name} --- (3 community cards)")
+# Board cards are stored as a bitmask in game.boards[0].cards
+flop_cards_str = cards_to_str_pretty(game_th_regular.boards[0].cards)
+print(f"Board 0: {flop_cards_str}")
+
+# --- Turn: Deal 1 Community Card ---
+# game_th_regular.game_street = GameStreet.TURN # Handled by deal_turn
+game_th_regular.deal_turn()
+print(f"\n--- {game_th_regular.game_street.name} --- (1 community card)")
+turn_cards_str = cards_to_str_pretty(game_th_regular.boards[0].cards)
+print(f"Board 0: {turn_cards_str}")
+
+# --- River: Deal 1 Community Card ---
+# game_th_regular.game_street = GameStreet.RIVER # Handled by deal_river
+game_th_regular.deal_river()
+print(f"\n--- {game_th_regular.game_street.name} --- (1 community card)")
+river_cards_str = cards_to_str_pretty(game_th_regular.boards[0].cards)
+print(f"Board 0: {river_cards_str}")
+
+# At this point, all cards are dealt. The next step would be showdown and pot distribution.
+# Note: The `showdown()` method is not yet fully implemented in the provided snippets.
+# print("\n--- Showdown ---")
+# winners = game_th_regular.showdown() # Placeholder for actual showdown logic
+```
+
+## Advanced Usage
+
+### 1. Multi-Board Games
+
+You can play games with multiple boards simultaneously. This is common in some poker variants where the pot is split among winners on different boards.
+
+```python
+from pokermgr.game import Game # Base Game class for multi-board
+
+# Re-use the table and players from the previous example
+# Create a game with 3 boards
+game_multi_board = Game(
+    key=2, 
+    table=table, 
+    initial_board_count=3
+)
+
+print(f"\nGame {game_multi_board.key} (Multi-Board) initialized with {game_multi_board.board_count} boards.")
+
+# Deal hole cards (specific to game type, e.g., TexasHoldem would deal 2)
+# For a generic Game, you might need to implement _core_deal_hole_cards
+# or use a game type that defines it, like GameTexasHoldem.
+# Let's assume GameTexasHoldem for dealing hole cards:
+class MyTexasHoldemMulti(GameTexasHoldemRegular):
+    pass # Inherits _core_deal_hole_cards
+
+game_multi_board_th = MyTexasHoldemMulti(
+    key=3, 
+    table=table, 
+    small_blind=0, # Blinds might not apply or be handled differently
+    big_blind=0,
+    initial_board_count=3
+)
+
+game_multi_board_th.deal_hole_cards()
+print(f"Hole cards dealt for multi-board game.")
+for player in game_multi_board_th.table.players:
+    print(f"{player.name}: {cards_to_str_pretty(player.hole_cards.key)}")
+
+# Deal community cards for each board
+# game_multi_board_th.game_street = GameStreet.FLOP # Handled by deal_flop
+game_multi_board_th.deal_flop()
+# game_multi_board_th.game_street = GameStreet.TURN # Handled by deal_turn
+game_multi_board_th.deal_turn()
+# game_multi_board_th.game_street = GameStreet.RIVER # Handled by deal_river
+game_multi_board_th.deal_river()
+
+print("\nCommunity cards dealt for all boards:")
+for i, board_instance in enumerate(game_multi_board_th.boards):
+    board_cards_str = cards_to_str_pretty(board_instance.cards)
+    print(f"Board {i}: {board_cards_str}")
+
+# You can also add boards dynamically during a game
+# game_multi_board_th.add_board()
+# print(f"\nAdded a new board. Total boards: {game_multi_board_th.board_count}")
+# The new board will copy the cards from the most recent existing board.
+```
+
+### 2. Bomb Pot Games (Texas Hold'em Variant)
+
+In a Bomb Pot, all players are typically forced all-in pre-flop for a fixed amount.
+
+```python
+from pokermgr.game import GameTexasHoldemBomb
+
+# Re-use the table and players
+# Create a Bomb Pot game where each player contributes 100 to the pot pre-flop.
+game_bomb_pot = GameTexasHoldemBomb(
+    key=4,
+    table=table,
+    blind=100,  # This is the mandatory amount each player posts
+    initial_board_count=1
+)
+
+print(f"\nGame {game_bomb_pot.key} (Bomb Pot) initialized.")
+print(f"Mandatory blind: {game_bomb_pot.blind}")
+# In a Bomb Pot, the pot is immediately built from all players' blinds.
+# The first pot (self.pots[0]) is initialized with this amount.
+print(f"Initial pot size: {game_bomb_pot.pots[0].stack}") 
+
+# Dealing proceeds as normal, but typically without betting rounds pre-flop.
+# Hole cards are dealt
+game_bomb_pot.deal_hole_cards()
+print("Hole cards dealt for Bomb Pot game.")
+
+# Community cards are dealt
+# game_bomb_pot.game_street = GameStreet.FLOP # Handled by deal_flop
+game_bomb_pot.deal_flop()
+# game_bomb_pot.game_street = GameStreet.TURN # Handled by deal_turn
+game_bomb_pot.deal_turn()
+# game_bomb_pot.game_street = GameStreet.RIVER # Handled by deal_river
+game_bomb_pot.deal_river()
+
+print("Community cards for Bomb Pot game:")
+bomb_pot_board_str = cards_to_str_pretty(game_bomb_pot.boards[0].cards)
+print(f"Board 0: {bomb_pot_board_str}")
+```
+
+### 3. Custom Hand Evaluation
+
+The `Hand` class (from `pokermgr.hand`) can be used to evaluate poker hands represented by bitmasks. The `cardspy` library is used for card representations.
+
+```python
+from pokermgr.hand import Hand
+from cardspy.deck import cards_to_mask
+from cardspy.card import extract_cards
+from pokermgr.funcs import get_cards_properties
+
+# Example: Evaluate a specific hand (e.g., a full house)
+# Use string codes for cards: 'As' = Ace of Spades, 'Kd' = King of Diamonds, etc.
+# The order of cards does not matter for evaluation.
+card_mask = cards_to_mask(['As', 'Ad', 'Ah', 'Kc', 'Kd'])
+hand = Hand(card_mask)
+
+# Display the hand in a human-readable way
+print("Hand cards:", extract_cards(card_mask))
+print("Hand type:", hand.type_name)
+print("Hand weight:", hand.weight)
+print("Hand properties (bitmask):", get_cards_properties(hand.cards))
+
+# Example: Straight Flush (Royal Flush in hearts)
+sf_mask = cards_to_mask(['Th', 'Jh', 'Qh', 'Kh', 'Ah'])
+sf_hand = Hand(sf_mask)
+print("\nStraight Flush cards:", extract_cards(sf_mask))
+print("Hand type:", sf_hand.type_name)
+print("Hand weight:", sf_hand.weight)
+# You can also check for draws if relevant
+# print("Draws:", hand.draws)
+
+
+## Project Structure
+
+```
+pokermgr/
+├── __init__.py
+├── board.py          # Board and board texture management
+├── evaluate.py       # Hand evaluation logic
+├── funcs.py          # Utility functions
+├── game.py           # Core game logic and variants
+├── hand.py           # Hand representation
+├── hole_cards.py     # Hole cards management
+├── player.py         # Player classes and logic
+├── pot.py            # Pot management
+└── table.py          # Table management
+
+tests/               # Comprehensive test suite
+```
+
+## Testing
+
+Run the test suite with pytest:
+
+```bash
+pytest tests/
+```
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
