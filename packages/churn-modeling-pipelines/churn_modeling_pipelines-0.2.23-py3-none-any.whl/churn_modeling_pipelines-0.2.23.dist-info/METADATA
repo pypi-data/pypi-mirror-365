@@ -1,0 +1,156 @@
+Metadata-Version: 2.4
+Name: churn_modeling_pipelines
+Version: 0.2.23
+Summary: Modular churn modeling pipelines.
+Author: Ebikake
+Author-email: ebikakejay@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: matplotlib
+Requires-Dist: seaborn
+Requires-Dist: scikit-learn
+Requires-Dist: scipy
+Requires-Dist: xgboost
+Requires-Dist: lightgbm
+Requires-Dist: catboost
+Requires-Dist: statsmodels
+Requires-Dist: scikeras
+Requires-Dist: tensorflow
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Churn Modeling Pipelines
+
+# Churn Modeling Pipelines
+
+[![PyPI version](https://badge.fury.io/py/churn-modeling-pipelines.svg)](https://badge.fury.io/py/churn-modeling-pipelines)
+[![Python >= 3.8](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+
+A modular, extensible, and production-ready Python package for end-to-end churn prediction and customer analytics. This package supports structured preprocessing, feature engineering, model building, evaluation, visualization, neural networks, ensemble modeling, and exploratory data analysis.
+
+---
+
+## 📦 Module Overview
+
+| Module | Description |
+|--------|-------------|
+| `ChurnPreprocessor` | Prepares and standardizes raw churn data (e.g., encoding, type fixing, imputations). |
+| `DataPreprocessor` | Utility class for transforming and cleaning structured datasets. |
+| `ChurnModelBuilder` | Builds 5 hyperparameter variants each for Logistic Regression, Decision Tree, KNN, Naive Bayes, SVM, Random Forest, XGBoost, LightGBM, CatBoost, and Keras Neural Networks. |
+| `ChurnEvaluator` | Computes evaluation metrics (Accuracy, Precision, Recall, F1, Cost), and supports confusion matrix, ROC, and model comparison. |
+| `ChurnPlotter` | Visualizes performance results, including composite scores, cost sensitivity, and radar charts for base and ensemble models. |
+| `ModelComparator` | Compares all models across cost, recall, and composite score to select best-performing variants. |
+| `EnsembleBuilder` | Builds ensemble models (Voting, Stacking, Bagging, Boosting, Blending, etc.) with 5 tuned variants per type. |
+| `CustomerJourneyClassifier` | Segments users based on tenure, support interactions, and satisfaction into customer journey stages. |
+| `EDAHelper` | Unified EDA interface that wraps profiling, visualization, and hypothesis testing. |
+| `EDAReports` | Provides data profiling reports (missing values, types, summaries). |
+| `EDAPlots` | Generates univariate, bivariate, and multivariate plots with annotations. |
+| `ChurnHypothesisTester` | Performs statistical tests to validate churn-related hypotheses. |
+| `utils.set_random_seed()` | Ensures reproducibility across NumPy, Python, and hash seed environments. |
+| `build_and_evaluate_neural_net()` | Wrapper to build and evaluate Keras neural networks using Scikit-Learn integration. |
+
+---
+
+## 🚀 Quick Start
+
+```python
+import pandas as pd
+from churn_modeling_pipelines import (
+    ChurnPreprocessor,
+    DataPreprocessor,
+    ChurnModelBuilder,
+    ChurnEvaluator,
+    ChurnPlotter,
+    EnsembleBuilder,
+    ModelComparator,
+    CustomerJourneyClassifier,
+    EDAHelper,
+    build_and_evaluate_neural_net,
+    set_random_seed
+)
+
+# Load your dataset
+df = pd.read_csv("customer_data.csv")
+
+# Step 1: Preprocess
+pre = ChurnPreprocessor(df)
+processed_df = pre.full_pipeline()
+
+# Step 2: Explore (EDA)
+eda = EDAHelper(processed_df)
+eda.reports.data_profile()
+eda.plots.univariate_numeric("RevPerMonth")
+eda.hypothesis.test_churn_hypotheses_stats()
+
+# Step 3: Train/Test Split
+from sklearn.model_selection import train_test_split
+X = processed_df.drop("Churn", axis=1)
+y = processed_df["Churn"]
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratify=y)
+
+# Step 4: Set Seed
+set_random_seed(42)
+
+# Step 5: Traditional Model Building
+builder = ChurnModelBuilder(X_train, X_test, y_train)
+svm_models = builder.build_svm()
+
+# Step 6: Evaluation
+evaluator = ChurnEvaluator()
+results = evaluator.evaluate_models(svm_models, X_test, y_test)
+
+# Step 7: Plotting
+plotter = ChurnPlotter()
+plotter.plot_model_comparison(results)
+
+# Step 8: Ensemble Models
+ensemble = EnsembleBuilder(X_train, X_test, y_train)
+voting_models = ensemble.build_voting()
+
+# Step 9: Neural Network Evaluation (New!)
+nn_results, nn_variants = build_and_evaluate_neural_net(X_train, X_test, y_train, y_test)
+
+# Step 10: Compare All
+comparator = ModelComparator()
+summary = comparator.generate_model_summary(results + nn_results + voting_models)
+
+
+
+!pip install churn-modeling-pipelines
+
+
+🧠 Requirements
+Python 3.8 or higher
+
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+xgboost
+lightgbm
+catboost
+scipy
+
+🪪 License
+MIT License © 2025
+Developed and maintained by John Ebikake
+
+💬 Contact
+For issues, suggestions, or contributions:
+
+GitHub: github.com/Ebikake/churn-modeling-pipelines
+
+Email: ebikakejay@gmail.com
