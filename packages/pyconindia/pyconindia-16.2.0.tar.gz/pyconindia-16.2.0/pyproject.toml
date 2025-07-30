@@ -1,0 +1,67 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyconindia"
+dynamic = ["version"]
+description = "The largest gathering of Pythonistas in India for the Python programming language."
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "PyCon India Team", email = "contact@in.pycon.org"}
+]
+keywords = ["python", "pycon", "conference", "india"]
+classifiers = [
+    "Environment :: Web Environment",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "License :: OSI Approved :: MIT License",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Utilities",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Shells",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "click>=8.0.0",
+    "PyYAML>=6.0",
+]
+
+[project.urls]
+Homepage = "https://in.pycon.org"
+Repository = "https://github.com/anistark/pyconindia"
+Documentation = "https://in.pycon.org"
+"Bug Tracker" = "https://github.com/anistark/pyconindia/issues"
+
+[project.scripts]
+pyconindia = "pyconindia.cli:cli"
+inpycon = "pyconindia.cli:cli"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black",
+    "flake8",
+    "mypy",
+]
+
+[tool.setuptools.dynamic]
+version = {attr = "pyconindia.__version__"}
+
+[tool.setuptools.packages.find]
+include = ["pyconindia*"]
+
+[tool.setuptools.package-data]
+pyconindia = ["data/*.yaml"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
