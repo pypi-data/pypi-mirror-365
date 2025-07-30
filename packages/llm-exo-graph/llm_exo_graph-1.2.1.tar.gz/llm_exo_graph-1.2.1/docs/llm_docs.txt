@@ -1,0 +1,305 @@
+# LLM Exo-Graph Engine Documentation
+
+## Overview
+LLM Exo-Graph is a Neo4j-based knowledge graph engine that externalizes LLM memory into persistent, searchable graph structures with semantic vector search capabilities.
+
+## Core Architecture
+
+### ExoGraphEngine (src/exo_graph/core/engine.py)
+Main engine class with configurable encoders and comprehensive processing workflow.
+
+**Initialization:**
+```python
+from llm_exo_graph import ExoGraphEngine, Neo4jConfig, OllamaConfig
+
+# Basic initialization
+engine = ExoGraphEngine()
+
+# With custom configuration
+config = {
+    "encoder_model": "all-mpnet-base-v2",           # BiEncoder for embeddings
+    "cross_encoder_model": "cross-encoder/ms-marco-MiniLM-L-12-v2"  # CrossEncoder for validation
+}
+engine = ExoGraphEngine(
+    llm_config=OllamaConfig(model="llama3.2"),
+    neo4j_config=Neo4jConfig(),
+    config=config
+)
+```
+
+**Key Methods:**
+- `process_input(items: List[InputItem])` - Process natural language into graph relationships
+- `search(query: str, search_type: SearchType, k: int)` - Natural language search with graph+vector
+- `get_node_relations(node_name: str)` - Get all relationships for entity
+- `analyze_conflicts(entity_name: str)` - Detect relationship conflicts
+- `find_paths(start_entity: str, end_entity: str)` - Find paths between entities
+
+## Data Models (src/exo_graph/models/models.py)
+
+### Core Models
+```python
+@dataclass
+class InputItem:
+    description: str
+    metadata: Dict[str, Any] = field(default_factory=dict)
+
+@dataclass 
+class GraphEdge:
+    edge_id: Optional[str]
+    subject: str
+    relationship: str
+    object: str
+    metadata: EdgeMetadata
+
+@dataclass
+class EdgeMetadata:
+    summary: str = ""
+    confidence: float = 1.0
+    source: str = ""
+    category: str = ""
+    from_date: Optional[datetime] = None
+    to_date: Optional[datetime] = None
+    obsolete: bool = False
+    status: RelationshipStatus = RelationshipStatus.ACTIVE
+```
+
+### Search Models
+```python
+@dataclass
+class SearchResult:
+    triplet: Optional[GraphTriplet]
+    score: float
+    source: str
+    explanation: str
+
+@dataclass
+class QueryResponse:
+    results: List[SearchResult]
+    total_found: int
+    query_time_ms: float
+    answer: Optional[str]
+    confidence: float
+```
+
+### Enums
+```python
+class SearchType(Enum):
+    DIRECT = "direct"      # Graph traversal search
+    SEMANTIC = "semantic"  # Vector similarity search  
+    BOTH = "both"         # Hybrid search
+
+class RelationshipStatus(Enum):
+    ACTIVE = "active"
+    OBSOLETE = "obsolete"
+    PENDING = "pending"
+```
+
+## Configuration
+
+### Neo4j Configuration (src/exo_graph/config/neo4j_config.py)
+```python
+class Neo4jConfig:
+    def __init__(self, 
+                 uri: str = "bolt://localhost:7687",
+                 username: str = "neo4j", 
+                 password: str = "password",
+                 database: str = "neo4j"):
+```
+
+**Environment Variables:**
+- NEO4J_URI, NEO4J_USERNAME, NEO4J_PASSWORD, NEO4J_DATABASE
+
+### LLM Configuration (src/exo_graph/llm/llm_config.py)
+```python
+# Base configurations
+class OpenAIConfig(LLMConfig):
+    provider: str = "openai"
+    api_key: str
+    model: str = "gpt-4o-mini"
+
+class OllamaConfig(LLMConfig):
+    provider: str = "ollama"
+    base_url: str = "http://localhost:11434"
+    model: str = "llama3.2"
+
+# Auto-detection factory
+config = LLMClientFactory.create_from_env()
+```
+
+## Storage Layer (src/exo_graph/storage/graph_db.py)
+
+### GraphDB Class
+Unified Neo4j storage for both graph and vector operations.
+
+**Key Methods:**
+```python
+# Edge operations
+add_edge(edge_data: GraphEdge) -> bool
+update_edge(edge: GraphEdge) -> bool
+delete_edge(edge_id: str) -> bool
+find_edges(subject: str, relationship: str, object: str) -> List[GraphEdge]
+
+# Vector search
+vector_search(query: str, k: int, filter_obsolete: bool) -> List[SearchResult]
+
+# Entity operations
+get_entity_relationships(entity: str, filter_obsolete: bool) -> List[GraphTriplet]
+find_relationship_paths(start_entity: str, end_entity: str, max_hops: int) -> List[Dict]
+
+# Conflict detection
+detect_relationship_conflicts(entity_name: str, relationship_type: str) -> List[Dict]
+find_duplicate_edges(edge_data: GraphEdge) -> List[GraphEdge]
+```
+
+## Processing Pipeline
+
+### Entity Extraction & Standardization
+1. **LLM Processing**: Extract entities/relationships from natural language
+2. **Standardization**: Use BiEncoder + CrossEncoder for entity/relationship normalization
+3. **Negation Detection**: Handle "no longer", "not anymore" statements
+4. **Conflict Resolution**: Temporal relationship management
+5. **Storage**: Neo4j graph + vector embeddings
+
+### Search Workflow
+1. **Direct Search**: Parse query → standardize relationships → graph traversal
+2. **Semantic Search**: Generate embeddings → vector similarity search
+3. **Hybrid Search**: Combine results → deduplicate → rank by relevance
+4. **Answer Generation**: LLM synthesis from top results
+
+## Utilities
+
+### Encoders (src/exo_graph/utils/encoders.py)
+```python
+class BiEncoder:
+    def encode_single(self, text: str) -> np.ndarray
+    def encode_batch(self, texts: List[str]) -> np.ndarray
+
+class CrossEncoder:
+    def predict(self, pairs: List[Tuple[str, str]]) -> np.ndarray
+```
+
+### Graph Standardizer (src/exo_graph/utils/graph_standardizer.py)
+```python
+class GraphStandardizer:
+    def standardize_category(self, predicate: str) -> str
+    def standardize_edge(self, category: str, proposed_edge: str) -> str
+    def process_relationships(self, extracted_info: List) -> List
+```
+
+### Date Parser (src/exo_graph/utils/date_parser.py)
+```python
+def parse_date(date_input: Any) -> Optional[datetime]
+# Handles: strings, datetime objects, ISO formats, relative dates
+```
+
+## Document Processing (src/exo_graph/document_processor.py)
+
+```python
+class DocumentProcessor:
+    def __init__(self, kg_engine: ExoGraphEngine, chunk_size: int = 500, chunk_overlap: int = 50)
+    
+    def process_pdf(self, file_path: str) -> ProcessingResult
+    def process_text_file(self, file_path: str) -> ProcessingResult
+    def process_html_file(self, file_path: str) -> ProcessingResult
+    def process_directory(self, directory_path: str) -> List[ProcessingResult]
+```
+
+## API Usage Patterns
+
+### Basic Knowledge Storage
+```python
+engine = ExoGraphEngine()
+
+# Store information
+results = engine.process_input([
+    InputItem("Alice works at Google as a software engineer"),
+    InputItem("Bob lives in San Francisco"),
+    InputItem("Alice knows Bob from college")
+])
+
+# Query information
+response = engine.search("Who works at Google?")
+print(response.answer)  # "Alice works at Google as a software engineer"
+```
+
+### Advanced Features
+```python
+# Temporal relationships
+engine.process_input([
+    InputItem("Alice no longer works at Google"),  # Obsoletes previous relationship
+    InputItem("Alice started at OpenAI in January 2024")  # New relationship
+])
+
+# Conflict analysis
+conflicts = engine.analyze_conflicts("Alice")
+
+# Path finding
+paths = engine.find_paths("Alice", "OpenAI")
+```
+
+### Configuration Examples
+```python
+# High performance (fast processing)
+fast_config = {
+    "encoder_model": "all-MiniLM-L6-v2",
+    "cross_encoder_model": "cross-encoder/ms-marco-MiniLM-L-6-v2"
+}
+
+# High accuracy (better quality)
+accurate_config = {
+    "encoder_model": "all-mpnet-base-v2",
+    "cross_encoder_model": "cross-encoder/ms-marco-MiniLM-L-12-v2"
+}
+
+# Domain-specific (scientific content)
+domain_config = {
+    "encoder_model": "sentence-transformers/allenai-specter",
+    "cross_encoder_model": "cross-encoder/ms-marco-electra-base"
+}
+```
+
+## Key Features
+
+### 1. Entity Standardization
+- BiEncoder embeddings for similarity detection
+- CrossEncoder validation for relationship merging
+- Cached embeddings for performance
+- Category-based classification
+
+### 2. Temporal Intelligence
+- Automatic conflict detection and resolution
+- Date-based relationship transitions
+- Complete history preservation
+- Negation handling ("no longer", "not anymore")
+
+### 3. Hybrid Search
+- Graph traversal (Cypher queries)
+- Vector similarity (semantic search)
+- Combined ranking and deduplication
+- LLM-powered answer generation
+
+### 4. Performance Optimizations
+- Query result caching
+- Optimized Neo4j indexes
+- Batch processing capabilities
+- 50-74% faster queries vs baseline
+
+## Error Handling
+- Graceful degradation for LLM failures
+- Fallback mechanisms for embeddings
+- Comprehensive logging
+- Transaction rollback for failed operations
+
+## Installation & Setup
+```bash
+pip install llm-exo-graph
+# Optional: pip install "llm-exo-graph[documents,dev,all]"
+
+# Environment setup
+NEO4J_URI=bolt://localhost:7687
+NEO4J_USERNAME=neo4j
+NEO4J_PASSWORD=password
+OPENAI_API_KEY=sk-xxx  # or OLLAMA_BASE_URL for local LLMs
+```
+
+This documentation covers the complete LLM Exo-Graph engine architecture, configuration options, data models, and usage patterns in a compact format suitable for LLM context windows.
