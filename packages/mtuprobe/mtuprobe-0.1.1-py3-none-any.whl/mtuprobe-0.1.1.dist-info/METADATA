@@ -1,0 +1,59 @@
+Metadata-Version: 2.3
+Name: mtuprobe
+Version: 0.1.1
+Summary: A tool to find out maximum MTU size on an IPv4 path
+License: WTFPL
+Author: Rémy Sanchez
+Author-email: remy.sanchez@hyperthese.net
+Requires-Python: >=3.8,<4.0
+Classifier: License :: Other/Proprietary License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Project-URL: Documentation, https://github.com/Xowap/mtuprobe
+Project-URL: Homepage, https://github.com/Xowap/mtuprobe
+Project-URL: Repository, https://github.com/Xowap/mtuprobe
+Description-Content-Type: text/markdown
+
+mtuprobe
+========
+
+A tool to probe the current
+[MTU](https://en.wikipedia.org/wiki/Maximum_transmission_unit) on an IPv4 path.
+
+So far it's compatible with Linux only however it can very easily be adapted
+to any other operating system.
+
+## Installation
+
+```
+pip install mtuprobe
+```
+
+## Usage
+
+The default options are sane and should give you good results. Suppose that
+you want to know the current effective MTU towards `wikipedia.org`, in a shell
+you can try:
+
+```
+% mtuprobe wikipedia.org
+Max packet size:         1464
+Expected ethernet MTU:   1492
+```
+
+You can check out `mtuprobe -h` to get the complete list of options.
+
+Values are:
+
+- **Max packet size** &mdash; Max packet size specified to `ping`, meaning the
+  size of the data segment of the ICMP packet
+- **Expected ethernet MTU** &mdash; That's what the MTU should be if you're
+  transmitting over Ethernet and the header sizes are what is expected from
+  such a setup. This should apply most of the time but surely some weird
+  network setups could violate this.
+
