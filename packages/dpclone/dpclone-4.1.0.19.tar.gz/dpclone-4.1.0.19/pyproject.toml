@@ -1,0 +1,83 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dpclone"
+version = "4.1.0.19"
+description = "DPClone"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "g1879", email = "g1879@qq.com"}
+]
+maintainers = [
+    {name = "g1879", email = "g1879@qq.com"}
+]
+keywords = ["selenium", "browser", "automation", "web", "scraping", "requests"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Internet :: WWW/HTTP :: Browsers",
+    "Topic :: Software Development :: Testing",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "requests>=2.28.0",
+    "lxml>=4.9.0",
+    "click>=8.0.0",
+    "DownloadKit>=1.0.0",
+    "websocket-client>=1.3.0",
+    "tldextract>=3.4.0",
+    "DataRecorder>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=22.0.0",
+    "flake8>=5.0.0",
+]
+windows = [
+    "pypiwin32>=223",
+]
+
+[project.urls]
+Homepage = "https://DrissionPage.cn"
+Documentation = "https://DrissionPage.cn"
+Repository = "https://github.com/g1879/DrissionPage"
+Issues = "https://github.com/g1879/DrissionPage/issues"
+
+[project.scripts]
+dpclone = "dpclone._functions.cli:main"
+
+[tool.setuptools]
+packages = {find = {}}
+include-package-data = true
+
+[tool.setuptools.package-data]
+dpclone = [
+    "_configs/*.ini",
+    "_functions/*.dat",
+    "**/*.pyi",
+]
+
+[tool.black]
+line-length = 120
+target-version = ['py38']
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]

@@ -1,0 +1,21 @@
+include README.md
+include LICENSE
+include pyproject.toml
+include MANIFEST.in
+
+# 包含配置文件
+recursive-include dpclone/_configs *.ini
+
+# 包含数据文件
+recursive-include dpclone/_functions *.dat
+
+# 包含类型提示文件
+recursive-include dpclone **/*.pyi
+
+# 排除缓存文件
+global-exclude __pycache__
+global-exclude *.py[co]
+global-exclude .DS_Store
+global-exclude *.so
+global-exclude .git*
+global-exclude .pytest_cache
