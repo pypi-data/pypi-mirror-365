@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: lim-mm-cli
+Version: 0.1.0
+Summary: CLI tool for LIM-compatible micro model project scaffolding
+Author-email: Solution Eden <solutionedencom@gmail.com>
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: typer[all]
+Requires-Dist: jsonschema
+Requires-Dist: requests
+Dynamic: license-file
+
+# LIM CLI: CLI Project to create MM
