@@ -1,0 +1,33 @@
+Metadata-Version: 2.4
+Name: vsrl
+Version: 0.0.1
+Summary: Visceral: A Framework for Verifiably Safe Reinforcement Learning
+Home-page: https://visceral.safelearning.ai
+Author: IBM Research
+Author-email: visceral@safelearning.ai
+License-File: LICENSE.txt
+Requires-Dist: scipy
+Requires-Dist: numpy
+Requires-Dist: torch
+Requires-Dist: pillow
+Requires-Dist: opencv-python-headless
+Requires-Dist: pytorch_lightning
+Requires-Dist: comet_ml
+Requires-Dist: psutil
+Requires-Dist: torchvision
+Requires-Dist: parsimonious
+Requires-Dist: matplotlib
+Requires-Dist: portion
+Requires-Dist: toml
+Requires-Dist: auto-argparse
+Requires-Dist: gym
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: pytest-cov; extra == "dev"
+Dynamic: author
+Dynamic: author-email
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: summary
