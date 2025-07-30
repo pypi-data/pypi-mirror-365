@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "GuasKDTreeFiltering"
+version = "0.1.1"
+description = "Spatial and Bilateral filtering using Gaussian KDTree data structures"
+readme = "README.md"
+authors = [
+    { name = "Manideepu Reddy Enugala", email = "enugalamanideepreddy99@gmail.com" }
+]
+license = { file = "LICENSE" }
+requires-python = ">=3.9"
+dependencies = [
+    "numpy",
+    "tqdm",
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+[project.urls]
+Homepage = "https://github.com/enugalamanideepreddy/GuassianKDTreeFiltering"
+Issues = "https://github.com/enugalamanideepreddy/GuassianKDTreeFiltering/issues"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--tb=short",
+    "--strict-markers",
+    "--disable-warnings"
+]

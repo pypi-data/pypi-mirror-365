@@ -1,0 +1,144 @@
+# GuasKDTreeFiltering
+
+[![PyPI version](https://badge.fury.io/py/GuasKDTreeFiltering.svg)](https://badge.fury.io/py/GuasKDTreeFiltering)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+
+A high-performance Python library for efficient spatial and bilateral filtering using Gaussian KDTree data structures. This implementation is based on the research paper "Gaussian KD-Trees for Fast High-Dimensional Filtering" from Stanford Graphics Lab.
+
+## 🚀 Features
+
+- **Spatial Filtering**: Efficient spatial smoothing using KDTree and Gaussian kernels
+- **Bilateral Filtering**: Edge-preserving smoothing for high-quality image processing
+- **High-Dimensional Support**: Optimized for multidimensional data processing
+- **Fast Performance**: Leverages KD-tree data structures for efficient neighborhood queries
+- **Easy Integration**: Simple API for quick integration into existing workflows
+
+## 📦 Installation
+
+### From PyPI (Recommended)
+```bash
+pip install GuasKDTreeFiltering
+```
+
+### From Source
+```bash
+git clone https://github.com/enugalamanideepreddy/GuasianKDTreeFiltering.git
+cd GuasianKDTreeFiltering
+pip install -e .
+```
+
+## 🎯 Quick Start
+
+### Basic Usage
+
+```python
+import numpy as np
+from GuasKD import BilateralFiltering
+
+# Create a bilateral filter instance
+bf = BilateralFiltering(
+    sigma_spatial=1.0,    # Spatial sigma
+    sigma_color=0.1,      # Color sigma
+    sigma_b=0.05,         # Blur sigma
+    samples=32,           # Number of samples
+    leaf_size=10          # KDTree leaf size
+)
+
+# Create test image (H, W, C format)
+image = np.random.rand(100, 100, 3).astype(np.float32)
+
+# Apply bilateral filtering
+filtered_image = bf(image, image, mode='Bilateral')
+```
+
+### Advanced Usage
+
+```python
+from GuasKD import BilateralFiltering
+import numpy as np
+
+# Create filter with custom parameters
+bf = BilateralFiltering(
+    sigma_spatial=2.0,    # Larger spatial smoothing
+    sigma_color=0.2,      # More color smoothing
+    sigma_b=0.1,          # More blur
+    samples=64,           # More samples for better quality
+    leaf_size=8,          # Smaller leaves for precision
+    fallback_mode='nearest'  # Fallback for edge cases
+)
+
+# Process different image types
+image = np.random.rand(64, 64, 3).astype(np.float32)
+
+# Bilateral filtering (preserves edges)
+bilateral_result = bf(image, image, mode='Bilateral')
+
+# Spatial filtering (smooths everything)
+spatial_result = bf(image, image, mode='Spatial')
+```
+
+## 📚 API Reference
+
+### BilateralFiltering Class
+
+#### Constructor Parameters
+
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `sigma_spatial` | float | 1.0 | Spatial smoothing parameter |
+| `sigma_color` | float | 0.1 | Color/intensity smoothing parameter |
+| `sigma_b` | float | 0.0 | Blur parameter in KDTrees High Dimensional Filtering |
+| `samples` | int | 32 | Number of samples for filtering |
+| `leaf_size` | int | 10 | KDTree leaf node size |
+| `fallback_mode` | str | 'nearest' | Fallback strategy for edge cases |
+| `min_samples` | int | 4 | Minimum samples per query |
+
+#### Methods
+
+##### `__call__(image, values, mode)`
+Main filtering method.
+
+**Parameters:**
+- `image` (np.ndarray): Input image in (H, W, C) format
+- `values` (np.ndarray): Values to filter (usually same as image)
+- `mode` (str): Either 'Bilateral' or 'Spatial'
+
+**Returns:**
+- `np.ndarray`: Filtered image with same shape as input
+
+## 🔬 Research Background
+
+This implementation is based on the research paper:
+
+**"Gaussian KD-Trees for Fast High-Dimensional Filtering"**
+- **Authors**: Stanford Graphics Lab
+- **Paper**: [https://graphics.stanford.edu/papers/gkdtrees/gkdtrees.pdf](https://graphics.stanford.edu/papers/gkdtrees/gkdtrees.pdf)
+
+The library provides an efficient implementation of the Gaussian KDTree approach for high-dimensional filtering operations, making it suitable for:
+
+- Image denoising
+- Edge-preserving smoothing
+- High-dimensional data processing
+- Real-time filtering applications
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Stanford Graphics Lab for the original research
+- The open-source community for inspiration and feedback
+
+## 📞 Support
+
+If you encounter any issues or have questions:
+
+- **Issues**: [GitHub Issues](https://github.com/enugalamanideepreddy/GuasianKDTreeFiltering/issues)
+- **Documentation**: Check the docstrings and examples above
+- **Research**: Refer to the original paper for theoretical background
+
+---
+
+**Made with ❤️ for the computer vision and image processing community** 
