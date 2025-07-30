@@ -1,0 +1,57 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "document-analysis-framework"
+dynamic = ["version"]
+description = "Text, code, and configuration file analysis framework for AI/ML data pipelines"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "AI Building Blocks", email = "wjackson@redhat.com"}
+]
+keywords = ["document", "analysis", "ai", "ml", "text-processing", "code-analysis", "configuration", "semantic-search"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Text Processing :: General",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+requires-python = ">=3.8"
+dependencies = [
+    # No external dependencies - using only Python standard library for maximum compatibility
+]
+
+[project.urls]
+Homepage = "https://github.com/rdwj/document-analysis-framework"
+Repository = "https://github.com/rdwj/document-analysis-framework"
+Issues = "https://github.com/rdwj/document-analysis-framework/issues"
+Documentation = "https://github.com/rdwj/document-analysis-framework/blob/main/README.md"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "black>=21.0",
+    "flake8>=3.8",
+    "mypy>=0.800",
+]
+docs = [
+    "sphinx>=3.0",
+    "sphinx_rtd_theme>=0.5",
+]
+
+[tool.setuptools]
+packages = ["core", "handlers", "utils"]
+package-dir = {"" = "src"}
+
+[tool.setuptools_scm]
+write_to = "src/_version.py" 
