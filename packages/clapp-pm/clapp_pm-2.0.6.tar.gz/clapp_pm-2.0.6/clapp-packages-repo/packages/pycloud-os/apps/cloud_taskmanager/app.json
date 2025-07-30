@@ -1,0 +1,55 @@
+{
+  "id": "cloud_taskmanager",
+  "name": "Cloud Task Manager",
+  "version": "2.0.0",
+  "description": "PyCloud OS için modern sistem görev yöneticisi. Çalışan uygulamalar, işlemler, thread'ler ve sistem kaynaklarını izleme ve yönetme.",
+  "entry": "main.py",
+  "exec": "python3 main.py",
+  "icon": "icon.png",
+  "category": "Sistem",
+  "developer": "PyCloud OS Team",
+  "license": "MIT",
+  "homepage": "https://pycloudos.dev/apps/cloud_taskmanager",
+  "tags": [
+    "taskmanager",
+    "system",
+    "monitor",
+    "process",
+    "threads",
+    "resources",
+    "modern",
+    "performance"
+  ],
+  "features": [
+    "Modern sekmeli arayüz (Applications, Processes, Threads, Resources)",
+    "Çalışan uygulamaların detaylı listesi (PID, bellek, CPU)",
+    "Sistem işlemleri ve process ağacı görünümü",
+    "Thread izleme ve TID bazlı görünüm",
+    "Gerçek zamanlı kaynak kullanımı grafikleri",
+    "Uygulama/işlem sonlandırma ve yönetimi",
+    "Thread dondurma (freeze) ve öldürme",
+    "Arka planda askıya alınan uygulamalar",
+    "Dark/Light tema desteği",
+    "Sistem performans metrikleri",
+    "Filtreleme ve sıralama seçenekleri",
+    "Bağlam menüleri ve klavye kısayolları"
+  ],
+  "screenshots": [
+    "screenshots/main.png",
+    "screenshots/processes.png",
+    "screenshots/threads.png",
+    "screenshots/resources.png"
+  ],
+  "requires": [
+    "python3",
+    "pyqt6",
+    "psutil"
+  ],
+  "permissions": [
+    "system",
+    "processes",
+    "memory",
+    "threads"
+  ],
+  "signature": "sha256:modern_cloud_taskmanager_v2..."
+} 

@@ -1,0 +1,21 @@
+{
+  "id": "cloud_search",
+  "name": "CloudSearch",
+  "version": "1.0.0",
+  "description": "PyCloud OS için gelişmiş dosya ve içerik arama motoru. Dosya adı, içerik, metadata ve etiket bazlı arama desteği.",
+  "entry": "main.py",
+  "exec": "python3 main.py",
+  "icon": "icon.png",
+  "category": "Sistem",
+  "developer": "PyCloud",
+  "license": "MIT",
+  "homepage": "https://pycloudos.dev/apps/cloud_search",
+  "tags": ["search", "files", "content", "indexing"],
+  "screenshots": [
+    "screenshots/1.png",
+    "screenshots/2.png"
+  ],
+  "requires": ["python3", "flet"],
+  "postinstall": "postinstall.py",
+  "signature": "cloudsearch_v1_0_0_sha256hash"
+} 
