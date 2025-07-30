@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp:*)",
+      "Bash(mkdir:*)",
+      "Bash(uv sync:*)",
+      "Bash(uv run pytest:*)",
+      "Bash(uv run:*)",
+      "Bash(uv build:*)",
+      "Bash(git add:*)",
+      "Bash(python3:*)",
+      "Bash(find:*)",
+      "Bash(git commit:*)",
+      "Bash(ls:*)",
+      "Bash(python -m pytest tests/test_unicode_superscripts.py -v)"
+    ],
+    "deny": []
+  }
+}
