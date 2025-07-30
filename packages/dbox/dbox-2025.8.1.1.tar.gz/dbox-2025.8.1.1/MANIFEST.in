@@ -1,0 +1,47 @@
+# 包含的文件
+include README.md
+include LICENSE
+include pyproject.toml
+include requirements-test.txt
+
+# 包含 dbox 包中的所有 Python 文件（排除 tests）
+include dbox/*.py
+recursive-include dbox *.py
+prune tests/
+
+# 排除的文件和目录
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude *.pyd
+global-exclude __pycache__
+global-exclude *.so
+global-exclude *.dll
+global-exclude *.dylib
+
+# 排除测试相关
+exclude pytest.ini
+exclude run_tests.bat
+exclude run_tests.sh
+exclude README_TESTS.md
+
+# 排除构建和临时文件
+exclude build/
+exclude dist/
+exclude *.egg-info/
+exclude .pytest_cache/
+exclude .git/
+exclude .vscode/
+exclude .idea/
+
+# 排除开发工具配置
+exclude .gitignore
+exclude lab.py
+exclude *.log
+exclude *.out
+exclude *.zip
+exclude *.txt
+
+# 排除批处理文件（除了必要的）
+exclude *.bat
+exclude output_to_zip.bat
+exclude release_to_laiye.bat 
