@@ -1,0 +1,39 @@
+{#
+    Copyright (C) 2024 Graz University of Technology.
+  
+    invenio-catalogue-marc21 is free software; you can redistribute it and/or
+    modify it under the terms of the MIT License; see LICENSE file for more
+    details.
+#}
+
+{% macro show_doi(doi_value, record, badge_id="record-doi-badge") %}
+  <span class="ui t small get-badge">
+    <img id='{{badge_id}}' data-target="[data-modal='{{ doi_value }}']"
+         src="{{ url_for('invenio_formatter_badges.badge', title='DOI', value=doi_value, ext='svg') }}" alt="{{ doi_value }}" />
+  </span>
+{%- endmacro %}
+
+<div class="left floated left aligned eight wide column">
+    <div class="twelve wide column">
+        <span class="ui" title="{{_('Created')}}">
+        {{ _("Created") }} {{ record.ui.created }}
+        </span>
+        <span class="label text-muted" title="{{_('Spacer')}}">
+        &nbsp;
+        </span>
+        <span class="label text-muted" title="{{_('Updated')}}">
+        {{ _("Updated") }} {{ record.ui.updated }}
+        </span>
+    </div>
+    </div>
+    <div class="right floated right aligned eight wide column">
+    {% if metadata.resource_type %}
+    <span class="ui label small neutral" title="{{ _('Resource type') }}">
+        {{ metadata.resource_type}}
+    </span>
+    {% endif %}
+    {%- set doi = record.pids.get('doi', {}).get('identifier') %}
+    {% if doi %}
+    {{ show_doi(doi, record) }}
+    {% endif %}
+</div>

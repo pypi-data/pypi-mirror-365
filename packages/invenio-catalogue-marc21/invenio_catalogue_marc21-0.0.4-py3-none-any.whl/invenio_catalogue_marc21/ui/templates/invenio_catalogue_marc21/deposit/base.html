@@ -1,0 +1,34 @@
+{#
+  Copyright (C) 2024 Graz University of Technology.
+
+  invenio-catalogue-marc21 is free software; you can redistribute it and/or
+  modify it under the terms of the MIT License; see LICENSE file for more
+  details.
+#}
+
+{%- extends config.MARC21_CATALOGUE_BASE_TEMPLATE %}
+
+
+{%- block body_inner %}
+
+  {%- block page_header %}
+    {% include config.THEME_HEADER_TEMPLATE %}
+  {%- endblock page_header %}
+
+  <main id="main">
+    <div class="marc21-catalogue-large-page">
+      {%- block page_body %}
+      {%- endblock page_body %}
+    </div>
+  </main>
+
+  {%- block page_footer %}
+    <footer id="rdm-footer-element">
+        {% include config.THEME_FOOTER_TEMPLATE %}
+      {%- block footer_bottom %}
+        {% include "invenio_app_rdm/site_footer.html" %}
+      {%- endblock footer_bottom %}
+    </footer>
+  {%- endblock page_footer %}
+
+{%- endblock body_inner %}

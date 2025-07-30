@@ -1,0 +1,75 @@
+{#
+  Copyright (C) 2024-2025 Graz University of Technology.
+
+  invenio-catalogue-marc21 is free software; you can redistribute it and/or
+  modify it under the terms of the MIT License; see LICENSE file for more
+  details.
+#}
+
+{% macro show_author(author) %}
+  {{ author.get("personal_name") }}
+{%- endmacro %}
+
+{% macro show_authors(authors, delimiter="<br>") %}
+  {% for author in authors %}
+    {% set idx = loop %}
+    {{ show_author(author) | safe }}
+
+    {% if not loop.last %}
+      {{ delimiter | safe }}
+    {% endif %}
+  {% endfor %}
+{%- endmacro %}
+
+{% set metadata = record.ui.metadata %}
+<div class="ui raised card fluid">
+  <div class="content">
+    <div class="description">
+
+    </div>
+    <div class="ui grid metadata-grid">
+      {% if "main_entry_personal_name" in metadata %}
+        <div class="label">{{_("Authors")}}:</div>
+        <div>
+          {{ show_author(metadata["main_entry_personal_name"]) }}
+          {% if "added_entry_personal_name" in metadata %}
+            <br>
+            {{ show_authors(metadata["added_entry_personal_name"]) }}
+          {% endif %}
+        </div>
+      {% endif %}
+
+      {% if "other_identifiers" in metadata %}
+        <div class="label">{{ _("Persistent Identifier") }}:</div>
+        <div>
+          <a href="https://doi.org/10.3217/978-3-85125-582-9">https://doi.org/10.3217/978-3-85125-582-9</a>
+        </div>
+      {% endif %}
+
+      {% if "description" in metadata %}
+        <div class="label">{{_("Description")}}:</div>
+        <div>1 Online-Ressource (72 Seiten)</div>
+      {% endif %}
+
+      {% if "licence" in metadata %}
+        <div class="label">{{_("Licence")}}:</div>
+        <div>CC BY-NC-ND</div>
+      {% endif %}
+
+      {% if "standard_book_number" in metadata and "standard_book_number" in metadata["standard_book_number"] %}
+        <div class="label">{{_("ISBN")}}:</div>
+        <div>{{ metadata["standard_book_number"]["standard_book_number"] }}</div>
+      {% endif %}
+
+      {% if "physical_description" in description %}
+        <div class="label">{{_("Description")}}:</div>
+        <div>{{ metadata["physical_description"].get("extent", "") }}</div>
+      {% endif %}
+
+      {% if "publication_year" in metadata %}
+        <div class="label">{{_("Publication year")}}:</div>
+        <div>{{ metadata["publication_year"] }}</div>
+      {% endif %}
+    </div>
+  </div>
+</div>

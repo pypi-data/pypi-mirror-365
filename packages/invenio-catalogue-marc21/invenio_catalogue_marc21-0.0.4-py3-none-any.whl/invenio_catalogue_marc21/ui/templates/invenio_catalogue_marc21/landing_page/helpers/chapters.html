@@ -1,0 +1,51 @@
+{#
+    Copyright (C) 2024-2025 Graz University of Technology.
+
+    invenio-catalogue-marc21 is free software; you can redistribute it and/or
+    modify it under the terms of the MIT License; see LICENSE file for more
+    details.
+#}
+
+
+{%- macro show_item(metadata, icon="file alternate", links={}, children=[]) %}
+  <div class="item">
+    <i class="icon {{ icon }}"></i>
+    <div class="content">
+      {%- if metadata %}
+        {%- if "self_html" in links %}
+          <a href="{{ links["self_html"] }}">
+        {%- endif %}
+
+        <div class="header">{{ metadata.get('title_statement', {}).get('title') }}</div>
+        {%- if "self_html" in links %}
+          </a>
+        {%- endif %}
+        <div class="description">{{ metadata.get('main_entry_personal_name', {}).get('personal_name') }}</div>
+      {% endif %}
+      {% if children %}
+        <div class="list">
+          {% for child in children %}
+            {{ show_item(metadata=child["node"]["metadata"], links=child["node"]["links"], children=child["children"]) }}
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{%- endmacro %}
+
+<div class="ui raised card fluid">
+    <div class="header center aligned">
+        <div class="ui hudge header pt-10 pb-10">
+            Chapters
+        </div>
+    </div>
+  <div class="content">
+
+    <div class="ui list">
+      {% if tree["root"]["id"] != tree["parent"]["id"] %}
+        {{ show_item(metadata=tree["root"]["metadata"], links=tree["root"]["links"], children=[]) }}
+      {% endif %}
+      {{ show_item(metadata=tree["parent"]["metadata"], icon="file", links=tree["parent"]["links"], children=tree["children"]) }}
+    </div>
+  </div>
+</div>

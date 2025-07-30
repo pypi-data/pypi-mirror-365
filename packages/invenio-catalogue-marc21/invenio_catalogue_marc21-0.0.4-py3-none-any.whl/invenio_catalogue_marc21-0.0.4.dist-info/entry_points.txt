@@ -1,0 +1,34 @@
+[flask.commands]
+catalogue = invenio_catalogue_marc21.cli:catalogue
+
+[invenio_assets.webpack]
+invenio_catalogue_marc21_theme = invenio_catalogue_marc21.ui.webpack:theme
+
+[invenio_base.api_apps]
+invenio_catalogue_marc21 = invenio_catalogue_marc21:InvenioCatalogueMarc21
+
+[invenio_base.api_blueprints]
+invenio_catalogue_marc21_alma_proxy = invenio_catalogue_marc21.views:create_alma_proxy_bp
+invenio_catalogue_marc21_catalogue = invenio_catalogue_marc21.views:create_catalogue_bp
+invenio_catalogue_marc21_record = invenio_catalogue_marc21.views:create_record_bp
+
+[invenio_base.api_finalize_app]
+invenio_catalogue_marc21 = invenio_catalogue_marc21.ext:api_finalize_app
+
+[invenio_base.apps]
+invenio_catalogue_marc21 = invenio_catalogue_marc21:InvenioCatalogueMarc21
+
+[invenio_base.blueprints]
+invenio_catalogue_marc21_ui = invenio_catalogue_marc21.ui:create_blueprint
+
+[invenio_base.finalize_app]
+invenio_catalogue_marc21 = invenio_catalogue_marc21.ext:finalize_app
+
+[invenio_celery.tasks]
+invenio_catalogue_marc21_demo = invenio_catalogue_marc21.fixtures.tasks
+
+[invenio_i18n.translations]
+messages = invenio_catalogue_marc21
+
+[invenio_jsonschemas.schemas]
+marc21-catalogue = invenio_catalogue_marc21.records.jsonschemas
