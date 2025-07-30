@@ -1,0 +1,37 @@
+[project]
+name = "science"
+version = "0.0.1" 
+readme = "README.md"
+license = {text = "LICENSE.md"}
+description = "Science" 
+keywords = ["science"]
+authors = [
+  {name = "Andy Casey", email = "andrew.casey@monash.edu"},
+]
+maintainers = [
+  {name = "Andy Casey", email = "andrew.casey@monash.edu"},
+]
+dependencies = [
+  "numpy"
+]
+requires-python = ">= 3.9"
+
+[classifiers]
+development_status = "4 - Beta"
+intended_audience = "Science/Research"
+natural_language = "English"
+programming_language = "Python :: 3"
+topic = ["Documentation :: Sphinx", "Topic :: Software Development :: Libraries  :: Python Modules"]
+
+[tool.setuptools.packages.find]
+where = ["src/"]
+include = ["science"]
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "pytest-cov",
+  "pytest-sugar",
+  "pre-commit",
+  "black",
+]
