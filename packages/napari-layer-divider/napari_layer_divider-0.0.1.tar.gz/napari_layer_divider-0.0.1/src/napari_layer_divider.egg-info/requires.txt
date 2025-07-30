@@ -1,0 +1,17 @@
+numpy
+magicgui
+qtpy
+scikit-image
+
+[all]
+napari[all]
+
+[testing]
+tox
+pytest
+pytest-cov
+pytest-qt
+napari[qt]
+
+[testing:sys_platform == "linux"]
+pytest-xvfb
