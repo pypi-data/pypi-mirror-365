@@ -1,0 +1,101 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gobeautifulsoup"
+version = "1.0.0"
+description = "A high-performance BeautifulSoup replacement powered by Go"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [
+    {name = "CoffeeCMS Team", email = "team@coffeecms.com"},
+]
+maintainers = [
+    {name = "CoffeeCMS Team", email = "team@coffeecms.com"},
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Text Processing :: Markup :: HTML",
+    "Topic :: Text Processing :: Markup :: XML",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+]
+keywords = ["html", "xml", "parsing", "beautifulsoup", "go", "performance", "web-scraping"]
+dependencies = []
+requires-python = ">=3.7"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "beautifulsoup4>=4.10.0",
+    "lxml>=4.6.0",
+    "black>=21.0.0",
+    "flake8>=3.9.0",
+    "mypy>=0.991",
+    "requests>=2.25.0",
+]
+test = [
+    "pytest>=6.0",
+    "beautifulsoup4>=4.10.0",
+    "lxml>=4.6.0",
+    "requests>=2.25.0",
+]
+benchmark = [
+    "beautifulsoup4>=4.10.0",
+    "lxml>=4.6.0",
+    "memory-profiler>=0.60.0",
+    "requests>=2.25.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/coffeecms/gobeautifulsoup"
+"Bug Reports" = "https://github.com/coffeecms/gobeautifulsoup/issues"
+"Source" = "https://github.com/coffeecms/gobeautifulsoup"
+"Documentation" = "https://gobeautifulsoup.readthedocs.io/"
+"Changelog" = "https://github.com/coffeecms/gobeautifulsoup/blob/main/CHANGELOG.md"
+"Benchmarks" = "https://github.com/coffeecms/gobeautifulsoup/tree/main/benchmarks"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["gobeautifulsoup*"]
+
+[tool.setuptools.package-data]
+gobeautifulsoup = ["libs/**/*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py37']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503"]
+
+[tool.mypy]
+python_version = "3.7"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
