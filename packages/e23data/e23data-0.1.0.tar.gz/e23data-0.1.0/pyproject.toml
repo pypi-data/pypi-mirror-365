@@ -1,0 +1,31 @@
+[project]
+name = "e23data"
+version = "0.1.0"
+authors = [
+  { name="Eduardo Capella", email="edufeq03@gmail.com" },
+]
+description = "A Python client library for the E23Data Chemical Properties API."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Chemistry",
+    "Topic :: Scientific/Engineering :: Physics",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "requests",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/edufeq03/e23data-py"
+"Bug Tracker" = "https://github.com/edufeq03/e23data-py/issues"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
