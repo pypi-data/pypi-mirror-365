@@ -1,0 +1,21 @@
+Metadata-Version: 2.4
+Name: ajenti.plugin.settings
+Version: 0.35
+Summary: Settings
+Home-page: https://ajenti.org
+Author: Ajenti project
+Author-email: e@ajenti.org
+Requires-Python: >=3
+Requires-Dist: aj
+Requires-Dist: ajenti.plugin.core
+Requires-Dist: ajenti.plugin.filesystem
+Requires-Dist: ajenti.plugin.passwd
+Dynamic: author
+Dynamic: author-email
+Dynamic: description
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+A Settings plugin for Ajenti panel
