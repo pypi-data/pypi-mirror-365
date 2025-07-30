@@ -1,0 +1,37 @@
+[build-system]
+requires = [
+    "pdm-backend",
+]
+build-backend = "pdm.backend"
+
+[project]
+name = "dlts"
+authors = [
+    { name = "Ian Zhu", email = "IanZhu@m.ldu.edu.cn" },
+]
+description = "Deep Learning Tools for Pytorch"
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = [
+    "python",
+    "tools",
+    "model",
+]
+dependencies = [
+    "torch",
+    "torchvision",
+    "model_logger_dp",
+]
+dynamic = []
+version = "0.0.2.post3"
+
+[project.license]
+text = "MIT"
+
+[project.urls]
+homepage = "https://github.com/10-4zz/model_tools"
+repository = "https://github.com/10-4zz/model_tools"
+
+[tool.pdm.version]
+source = "file"
+path = "dlts/version.py"
