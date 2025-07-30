@@ -1,0 +1,294 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installation &mdash; LAMMPSKit Documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=fc837d61"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Quick Start" href="quickstart.html" />
+    <link rel="prev" title="LAMMPSKit Documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            LAMMPSKit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-from-pypi">Install from PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#install-from-source">Install from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#docker-installation">Docker Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#verification">Verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development-setup">Development Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dependency-management">Dependency Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_formats.html">Data Formats</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.html">lammpskit package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.config.html">lammpskit.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.io.html">lammpskit.io package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.plotting.html">lammpskit.plotting package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.ecellmodel.html">lammpskit.ecellmodel package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">LAMMPSKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Installation</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/simantalahkar/lammpskit/blob/main/docs/source/installation.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
+<section id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h2>
+<p><strong>Runtime requirements (for using the package):</strong></p>
+<ul class="simple">
+<li><p>Python 3.12+</p></li>
+<li><p>numpy ≥ 2.3.1</p></li>
+<li><p>matplotlib ≥ 3.10.3</p></li>
+<li><p>ovito ≥ 3.12.4</p></li>
+</ul>
+<p><strong>Development &amp; testing requirements (for contributing, testing, or building):</strong></p>
+<ul class="simple">
+<li><p>All runtime requirements above</p></li>
+<li><p>pytest ≥ 8.4.1</p></li>
+<li><p>pytest-cov ≥ 6.2.1</p></li>
+<li><p>pytest-mpl ≥ 0.17.0</p></li>
+<li><p>sphinx ≥ 8.2.3</p></li>
+<li><p>sphinx-autodoc-typehints ≥ 3.2.0</p></li>
+<li><p>sphinx-rtd-theme ≥ 3.0.2</p></li>
+</ul>
+</section>
+<section id="install-from-pypi">
+<h2>Install from PyPI<a class="headerlink" href="#install-from-pypi" title="Link to this heading"></a></h2>
+<p>For end users (runtime):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>lammpskit
+</pre></div>
+</div>
+<p>For development and testing:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Primary method (modern pip with optional dependencies)</span>
+pip<span class="w"> </span>install<span class="w"> </span>lammpskit<span class="o">[</span>dev<span class="o">]</span>
+
+<span class="c1"># Alternative method (if above fails with older pip versions)</span>
+pip<span class="w"> </span>install<span class="w"> </span>lammpskit
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>https://raw.githubusercontent.com/simantalahkar/lammpskit/main/requirements-dev.txt
+</pre></div>
+</div>
+</section>
+<section id="install-from-source">
+<h2>Install from Source<a class="headerlink" href="#install-from-source" title="Link to this heading"></a></h2>
+<p>Clone the repository and install:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/simantalahkar/lammpskit.git
+<span class="nb">cd</span><span class="w"> </span>lammpskit
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+</pre></div>
+</div>
+<p>For development:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/simantalahkar/lammpskit.git
+<span class="nb">cd</span><span class="w"> </span>lammpskit
+
+<span class="c1"># Primary method (modern pip with optional dependencies)</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="o">[</span>dev<span class="o">]</span>
+
+<span class="c1"># Alternative method (if above fails with older pip versions)</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-dev.txt
+</pre></div>
+</div>
+</section>
+<section id="docker-installation">
+<h2>Docker Installation<a class="headerlink" href="#docker-installation" title="Link to this heading"></a></h2>
+<p>An official Docker image is available on Docker Hub:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>pull<span class="w"> </span>simantalahkar/lammpskit:latest
+</pre></div>
+</div>
+<p>Run the container with your data mounted:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker<span class="w"> </span>run<span class="w"> </span>-it<span class="w"> </span>-v<span class="w"> </span>/path/to/your/data:/data<span class="w"> </span>simantalahkar/lammpskit:latest
+</pre></div>
+</div>
+</section>
+<section id="verification">
+<h2>Verification<a class="headerlink" href="#verification" title="Link to this heading"></a></h2>
+<p>Verify your installation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">lammpskit</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">lammpskit</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+
+<span class="c1"># Test basic functionality</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">DEFAULT_COLUMNS_TO_READ</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Installation successful!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="development-setup">
+<h2>Development Setup<a class="headerlink" href="#development-setup" title="Link to this heading"></a></h2>
+<p>For contributing to LAMMPSKit:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/simantalahkar/lammpskit.git
+<span class="nb">cd</span><span class="w"> </span>lammpskit
+
+<span class="c1"># Recommended approach with automatic fallback</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="o">[</span>dev<span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">(</span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-dev.txt<span class="o">)</span>
+
+<span class="c1"># Run tests to verify setup</span>
+pytest
+</pre></div>
+</div>
+<p><strong>Alternative Installation Methods:</strong></p>
+<p>The package supports multiple dependency installation approaches for maximum compatibility:</p>
+<ol class="arabic">
+<li><p><strong>Modern approach</strong> (Python 3.8+, pip 21.2+):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="o">[</span>dev<span class="o">]</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Traditional approach</strong> (any pip version):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-dev.txt
+</pre></div>
+</div>
+</li>
+<li><p><strong>Hybrid approach</strong> (automatic fallback):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="o">[</span>dev<span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">(</span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-dev.txt<span class="o">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>The test suite includes 270+ test functions and 205 baseline images for visual regression testing.</p>
+</section>
+<section id="dependency-management">
+<h2>Dependency Management<a class="headerlink" href="#dependency-management" title="Link to this heading"></a></h2>
+<p><strong>Automatic Dependency Detection in Documentation:</strong></p>
+<p>When dependencies change in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> or <code class="docutils literal notranslate"><span class="pre">requirements-dev.txt</span></code>, documentation builds will <strong>automatically detect and use the updated dependencies</strong> because:</p>
+<ol class="arabic simple">
+<li><p><strong>CI/CD Integration</strong>: GitHub Actions workflows install dependencies from the current repository state during each build</p></li>
+<li><p><strong>Live Installation</strong>: Documentation builds use <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.[dev]</span></code> which reads the current <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code></p></li>
+<li><p><strong>Read the Docs</strong>: Automatically pulls the latest repository state and installs current dependencies</p></li>
+<li><p><strong>Version Synchronization</strong>: The <code class="docutils literal notranslate"><span class="pre">conf.py</span></code> imports the package to get the current version dynamically</p></li>
+</ol>
+<p><strong>Dependency Configuration Files:</strong></p>
+<p>The package maintains dependencies in multiple formats for compatibility:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> - Modern Python packaging standard (<code class="docutils literal notranslate"><span class="pre">[project.optional-dependencies]</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">requirements-dev.txt</span></code> - Traditional pip requirements format</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setup.py</span></code> - Legacy setuptools format (<code class="docutils literal notranslate"><span class="pre">extras_require</span></code>)</p></li>
+</ul>
+<p>Changes to any of these files are automatically reflected in the next documentation build cycle.</p>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<p><strong>Common Installation Issues:</strong></p>
+<ol class="arabic">
+<li><p><strong>“No module named sphinx” Error:</strong></p>
+<p>Use the fallback installation method:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-dev.txt
+</pre></div>
+</div>
+</li>
+<li><p><strong>Optional Dependencies Not Found:</strong></p>
+<p>Older pip versions may not support <code class="docutils literal notranslate"><span class="pre">[project.optional-dependencies]</span></code>. Use:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>--upgrade<span class="w"> </span>pip
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="o">[</span>dev<span class="o">]</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>CI/CD Build Failures:</strong></p>
+<p>GitHub Actions uses the hybrid approach automatically:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="o">[</span>dev<span class="o">]</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="o">(</span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements-dev.txt<span class="o">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p><strong>Verify Installation:</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-c<span class="w"> </span><span class="s2">&quot;import lammpskit; print(&#39;LAMMPSKit {} installed successfully&#39;.format(lammpskit.__version__))&quot;</span>
+python<span class="w"> </span>-m<span class="w"> </span>sphinx<span class="w"> </span>--version<span class="w">  </span><span class="c1"># For development installations</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="LAMMPSKit Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="quickstart.html" class="btn btn-neutral float-right" title="Quick Start" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Simanta Lahkar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

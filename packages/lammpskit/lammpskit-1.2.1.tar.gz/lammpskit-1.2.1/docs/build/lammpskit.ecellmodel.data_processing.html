@@ -1,0 +1,1102 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lammpskit.ecellmodel.data_processing module &mdash; LAMMPSKit Documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=fc837d61"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="lammpskit.ecellmodel.filament_layer_analysis module" href="lammpskit.ecellmodel.filament_layer_analysis.html" />
+    <link rel="prev" title="lammpskit.ecellmodel package" href="lammpskit.ecellmodel.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            LAMMPSKit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_formats.html">Data Formats</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documentation:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="lammpskit.html">lammpskit package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="lammpskit.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="lammpskit.ecellmodel.html">lammpskit.ecellmodel package</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.ecellmodel.html#package-overview">Package Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.ecellmodel.html#key-capabilities">Key Capabilities</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.ecellmodel.html#architecture">Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.ecellmodel.html#usage-workflow">Usage Workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.ecellmodel.html#integration-with-lammpskit-ecosystem">Integration with LAMMPSKit Ecosystem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.ecellmodel.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="lammpskit.ecellmodel.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.ecellmodel.html#common-analysis-tasks">Common Analysis Tasks</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.ecellmodel.html#research-applications">Research Applications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.ecellmodel.html#related-documentation">Related Documentation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.ecellmodel.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.io.html">lammpskit.io package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.plotting.html">lammpskit.plotting package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.html#module-lammpskit">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.config.html">lammpskit.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.io.html">lammpskit.io package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.plotting.html">lammpskit.plotting package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="lammpskit.ecellmodel.html">lammpskit.ecellmodel package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.ecellmodel.html#package-overview">Package Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.ecellmodel.html#key-capabilities">Key Capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.ecellmodel.html#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.ecellmodel.html#usage-workflow">Usage Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.ecellmodel.html#integration-with-lammpskit-ecosystem">Integration with LAMMPSKit Ecosystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.ecellmodel.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="lammpskit.ecellmodel.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">lammpskit.ecellmodel.data_processing module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#key-functions">Key Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-processing-workflow">Data Processing Workflow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#statistical-analysis-examples">Statistical Analysis Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data-quality-and-validation">Data Quality and Validation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#performance-optimization">Performance Optimization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#integration-examples">Integration Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#common-use-cases">Common Use Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#error-handling-and-diagnostics">Error Handling and Diagnostics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#related-functions">Related Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-lammpskit.ecellmodel.data_processing">Module Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.ecellmodel.filament_layer_analysis.html">lammpskit.ecellmodel.filament_layer_analysis module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.ecellmodel.html#common-analysis-tasks">Common Analysis Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.ecellmodel.html#research-applications">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.ecellmodel.html#related-documentation">Related Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.ecellmodel.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">LAMMPSKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api_reference.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="lammpskit.ecellmodel.html">lammpskit.ecellmodel package</a></li>
+      <li class="breadcrumb-item active">lammpskit.ecellmodel.data_processing module</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/simantalahkar/lammpskit/blob/main/docs/source/lammpskit.ecellmodel.data_processing.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="lammpskit-ecellmodel-data-processing-module">
+<h1>lammpskit.ecellmodel.data_processing module<a class="headerlink" href="#lammpskit-ecellmodel-data-processing-module" title="Link to this heading"></a></h1>
+<p>Core data processing utilities for electrochemical device analysis. This module provides fundamental data handling, statistical analysis, and preprocessing functions for molecular dynamics simulation data in electrochemical device contexts.</p>
+<section id="key-functions">
+<h2>Key Functions<a class="headerlink" href="#key-functions" title="Link to this heading"></a></h2>
+<p>The module provides functions for:</p>
+<ul class="simple">
+<li><p><strong>Atom type selection</strong> from coordinate data</p></li>
+<li><p><strong>Z-direction binning setup</strong> for layered analysis</p></li>
+<li><p><strong>Atomic distribution calculations</strong> for spatial analysis</p></li>
+<li><p><strong>Charge distribution calculations</strong> for electrical analysis</p></li>
+<li><p><strong>Element label extraction</strong> from filenames</p></li>
+</ul>
+</section>
+<section id="data-processing-workflow">
+<h2>Data Processing Workflow<a class="headerlink" href="#data-processing-workflow" title="Link to this heading"></a></h2>
+<p>Typical data processing pipeline for electrochemical device analysis:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.ecellmodel.data_processing</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">load_trajectory_data</span><span class="p">,</span>
+    <span class="n">validate_data_integrity</span><span class="p">,</span>
+    <span class="n">calculate_connectivity_statistics</span><span class="p">,</span>
+    <span class="n">compute_temporal_correlations</span>
+<span class="p">)</span>
+
+<span class="c1"># 1. Load raw trajectory data</span>
+<span class="n">trajectory</span> <span class="o">=</span> <span class="n">load_trajectory_data</span><span class="p">(</span>
+    <span class="s1">&#39;simulation.lammpstrj&#39;</span><span class="p">,</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;type&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="s1">&#39;z&#39;</span><span class="p">],</span>
+    <span class="n">timestep_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># 2. Validate data quality</span>
+<span class="n">validation_report</span> <span class="o">=</span> <span class="n">validate_data_integrity</span><span class="p">(</span>
+    <span class="n">trajectory</span><span class="p">,</span>
+    <span class="n">check_continuity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">check_boundaries</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">report_missing</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># 3. Calculate statistical properties</span>
+<span class="n">connectivity_stats</span> <span class="o">=</span> <span class="n">calculate_connectivity_statistics</span><span class="p">(</span>
+    <span class="n">trajectory</span><span class="p">,</span>
+    <span class="n">distance_threshold</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span>
+    <span class="n">electrode_regions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="s1">&#39;top&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># 4. Analyze temporal correlations</span>
+<span class="n">correlations</span> <span class="o">=</span> <span class="n">compute_temporal_correlations</span><span class="p">(</span>
+    <span class="n">connectivity_stats</span><span class="p">,</span>
+    <span class="n">lag_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
+    <span class="n">correlation_method</span><span class="o">=</span><span class="s1">&#39;pearson&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="statistical-analysis-examples">
+<h2>Statistical Analysis Examples<a class="headerlink" href="#statistical-analysis-examples" title="Link to this heading"></a></h2>
+<p><strong>Connectivity Statistics</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate comprehensive connectivity metrics</span>
+<span class="n">stats</span> <span class="o">=</span> <span class="n">calculate_connectivity_statistics</span><span class="p">(</span>
+    <span class="n">trajectory_data</span><span class="p">,</span>
+    <span class="n">distance_threshold</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span>        <span class="c1"># Å, connectivity cutoff</span>
+    <span class="n">min_cluster_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>            <span class="c1"># Minimum atoms per cluster</span>
+    <span class="n">electrode_separation</span><span class="o">=</span><span class="mf">50.0</span><span class="p">,</span>     <span class="c1"># Å, device thickness</span>
+    <span class="n">periodic_boundaries</span><span class="o">=</span><span class="kc">True</span>       <span class="c1"># Account for PBC</span>
+<span class="p">)</span>
+
+<span class="c1"># Results include:</span>
+<span class="c1"># - connectivity_ratio: fraction of connected atoms</span>
+<span class="c1"># - cluster_size_distribution: histogram of cluster sizes</span>
+<span class="c1"># - percolation_probability: likelihood of electrode connection</span>
+<span class="c1"># - gap_size_statistics: analysis of non-connected regions</span>
+</pre></div>
+</div>
+<p><strong>Device Performance Metrics</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Calculate switching and performance characteristics</span>
+<span class="n">performance</span> <span class="o">=</span> <span class="n">calculate_switching_metrics</span><span class="p">(</span>
+    <span class="n">connectivity_time_series</span><span class="p">,</span>
+    <span class="n">hrs_threshold</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>             <span class="c1"># High resistance state cutoff</span>
+    <span class="n">lrs_threshold</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>             <span class="c1"># Low resistance state cutoff</span>
+    <span class="n">switching_time_window</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>    <span class="c1"># Timesteps for switching detection</span>
+    <span class="n">noise_filter</span><span class="o">=</span><span class="kc">True</span>              <span class="c1"># Apply noise reduction</span>
+<span class="p">)</span>
+
+<span class="c1"># Performance metrics:</span>
+<span class="c1"># - switching_ratio: HRS/LRS resistance ratio</span>
+<span class="c1"># - switching_speed: transition time (timesteps)</span>
+<span class="c1"># - retention_time: state stability duration</span>
+<span class="c1"># - endurance_cycles: number of successful switches</span>
+</pre></div>
+</div>
+<p><strong>Temporal Correlation Analysis</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Analyze temporal relationships in device behavior</span>
+<span class="n">correlations</span> <span class="o">=</span> <span class="n">compute_temporal_correlations</span><span class="p">(</span>
+    <span class="n">device_metrics</span><span class="p">,</span>
+    <span class="n">properties</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;connectivity&#39;</span><span class="p">,</span> <span class="s1">&#39;temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;potential&#39;</span><span class="p">],</span>
+    <span class="n">lag_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span>            <span class="c1"># Correlation time range</span>
+    <span class="n">significance_level</span><span class="o">=</span><span class="mf">0.05</span>        <span class="c1"># Statistical significance</span>
+<span class="p">)</span>
+
+<span class="c1"># Correlation results:</span>
+<span class="c1"># - autocorrelation_functions: property self-correlation</span>
+<span class="c1"># - cross_correlation_matrix: inter-property correlations</span>
+<span class="c1"># - characteristic_timescales: decay time constants</span>
+<span class="c1"># - significant_lags: statistically significant correlations</span>
+</pre></div>
+</div>
+</section>
+<section id="data-quality-and-validation">
+<h2>Data Quality and Validation<a class="headerlink" href="#data-quality-and-validation" title="Link to this heading"></a></h2>
+<p><strong>Data Integrity Checking</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Comprehensive data validation</span>
+<span class="n">validation</span> <span class="o">=</span> <span class="n">validate_data_integrity</span><span class="p">(</span>
+    <span class="n">trajectory_data</span><span class="p">,</span>
+    <span class="n">checks</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;continuity&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>        <span class="c1"># Check for missing timesteps</span>
+        <span class="s1">&#39;boundaries&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>        <span class="c1"># Validate coordinate ranges</span>
+        <span class="s1">&#39;atom_conservation&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="c1"># Verify atom count consistency</span>
+        <span class="s1">&#39;energy_conservation&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="c1"># Check energy drift</span>
+        <span class="s1">&#39;temperature_stability&#39;</span><span class="p">:</span> <span class="kc">True</span> <span class="c1"># Validate thermostat performance</span>
+    <span class="p">},</span>
+    <span class="n">tolerance_levels</span><span class="o">=</span><span class="p">{</span>
+        <span class="s1">&#39;position&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>          <span class="c1"># Å, maximum position drift</span>
+        <span class="s1">&#39;energy&#39;</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>             <span class="c1"># eV, maximum energy drift</span>
+        <span class="s1">&#39;temperature&#39;</span><span class="p">:</span> <span class="mf">5.0</span>         <span class="c1"># K, maximum temperature variation</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Missing Data Handling</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Interpolate missing timesteps</span>
+<span class="n">complete_data</span> <span class="o">=</span> <span class="n">interpolate_missing_timesteps</span><span class="p">(</span>
+    <span class="n">trajectory_data</span><span class="p">,</span>
+    <span class="n">method</span><span class="o">=</span><span class="s1">&#39;linear&#39;</span><span class="p">,</span>               <span class="c1"># Interpolation method</span>
+    <span class="n">max_gap</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>                   <span class="c1"># Maximum interpolatable gap</span>
+    <span class="n">extrapolate</span><span class="o">=</span><span class="kc">False</span>             <span class="c1"># Don&#39;t extrapolate beyond data</span>
+<span class="p">)</span>
+
+<span class="c1"># Filter noisy data</span>
+<span class="n">clean_data</span> <span class="o">=</span> <span class="n">filter_noise_data</span><span class="p">(</span>
+    <span class="n">trajectory_data</span><span class="p">,</span>
+    <span class="n">filter_type</span><span class="o">=</span><span class="s1">&#39;gaussian&#39;</span><span class="p">,</span>       <span class="c1"># Noise filter type</span>
+    <span class="n">sigma</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>                    <span class="c1"># Filter parameter</span>
+    <span class="n">preserve_features</span><span class="o">=</span><span class="kc">True</span>        <span class="c1"># Maintain important features</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="performance-optimization">
+<h2>Performance Optimization<a class="headerlink" href="#performance-optimization" title="Link to this heading"></a></h2>
+<p><strong>Memory Management</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stream large trajectory files</span>
+<span class="k">for</span> <span class="n">timestep_data</span> <span class="ow">in</span> <span class="n">load_trajectory_data</span><span class="p">(</span>
+    <span class="s1">&#39;large_simulation.lammpstrj&#39;</span><span class="p">,</span>
+    <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>                  <span class="c1"># Enable streaming</span>
+    <span class="n">chunk_size</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>              <span class="c1"># Timesteps per chunk</span>
+    <span class="n">memory_limit</span><span class="o">=</span><span class="s1">&#39;4GB&#39;</span>            <span class="c1"># Maximum memory usage</span>
+<span class="p">):</span>
+    <span class="n">process_timestep_data</span><span class="p">(</span><span class="n">timestep_data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Computational Efficiency</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Optimize processing for large datasets</span>
+<span class="n">processed_data</span> <span class="o">=</span> <span class="n">aggregate_temporal_data</span><span class="p">(</span>
+    <span class="n">trajectory_data</span><span class="p">,</span>
+    <span class="n">aggregation_window</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>       <span class="c1"># Aggregate every 100 timesteps</span>
+    <span class="n">parallel_processing</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>     <span class="c1"># Use multiprocessing</span>
+    <span class="n">n_cores</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>                    <span class="c1"># Number of CPU cores</span>
+    <span class="n">cache_results</span><span class="o">=</span><span class="kc">True</span>           <span class="c1"># Cache intermediate results</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="integration-examples">
+<h2>Integration Examples<a class="headerlink" href="#integration-examples" title="Link to this heading"></a></h2>
+<p><strong>With Filament Analysis</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.ecellmodel.filament_layer_analysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_filament_connectivity</span>
+
+<span class="c1"># Prepare data for filament analysis</span>
+<span class="n">processed_trajectory</span> <span class="o">=</span> <span class="n">normalize_trajectory_data</span><span class="p">(</span>
+    <span class="n">raw_trajectory</span><span class="p">,</span>
+    <span class="n">center_coordinates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">scale_time</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># Perform filament analysis</span>
+<span class="n">filament_data</span> <span class="o">=</span> <span class="n">analyze_filament_connectivity</span><span class="p">(</span>
+    <span class="n">processed_trajectory</span><span class="p">,</span>
+    <span class="n">connectivity_threshold</span><span class="o">=</span><span class="mf">2.5</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>With Plotting System</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_time_series_plot</span>
+
+<span class="c1"># Extract time series for plotting</span>
+<span class="n">time_series</span> <span class="o">=</span> <span class="n">extract_time_series</span><span class="p">(</span>
+    <span class="n">processed_data</span><span class="p">,</span>
+    <span class="nb">property</span><span class="o">=</span><span class="s1">&#39;connectivity_ratio&#39;</span><span class="p">,</span>
+    <span class="n">time_units</span><span class="o">=</span><span class="s1">&#39;ps&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Create standardized plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_time_series_plot</span><span class="p">(</span>
+    <span class="n">x_data</span><span class="o">=</span><span class="n">time_series</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">],</span>
+    <span class="n">y_data</span><span class="o">=</span><span class="n">time_series</span><span class="p">[</span><span class="s1">&#39;connectivity&#39;</span><span class="p">],</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Device Connectivity Evolution&#39;</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time (ps)&#39;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Connectivity Ratio&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="common-use-cases">
+<h2>Common Use Cases<a class="headerlink" href="#common-use-cases" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><strong>Device Characterization</strong>:</dt><dd><ul class="simple">
+<li><p>Resistance state identification</p></li>
+<li><p>Switching threshold determination</p></li>
+<li><p>Performance parameter extraction</p></li>
+<li><p>Device stability analysis</p></li>
+</ul>
+</dd>
+<dt><strong>Research Applications</strong>:</dt><dd><ul class="simple">
+<li><p>Filament formation mechanism analysis</p></li>
+<li><p>Material property correlation studies</p></li>
+<li><p>Temperature dependence investigations</p></li>
+<li><p>Applied field effect characterization</p></li>
+</ul>
+</dd>
+<dt><strong>Quality Control</strong>:</dt><dd><ul class="simple">
+<li><p>Simulation convergence verification</p></li>
+<li><p>Data consistency validation</p></li>
+<li><p>Error detection and reporting</p></li>
+<li><p>Reproducibility assessment</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="error-handling-and-diagnostics">
+<h2>Error Handling and Diagnostics<a class="headerlink" href="#error-handling-and-diagnostics" title="Link to this heading"></a></h2>
+<p><strong>Exception Handling</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="n">trajectory</span> <span class="o">=</span> <span class="n">load_trajectory_data</span><span class="p">(</span><span class="s1">&#39;simulation.lammpstrj&#39;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;Trajectory file not found&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">MemoryError</span><span class="p">:</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;File too large, enabling streaming mode&quot;</span><span class="p">)</span>
+    <span class="n">trajectory</span> <span class="o">=</span> <span class="n">load_trajectory_data</span><span class="p">(</span><span class="s1">&#39;simulation.lammpstrj&#39;</span><span class="p">,</span> <span class="n">stream</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">DataValidationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data validation failed: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Diagnostic Information</strong>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate processing diagnostics</span>
+<span class="n">diagnostics</span> <span class="o">=</span> <span class="n">generate_processing_diagnostics</span><span class="p">(</span>
+    <span class="n">trajectory_data</span><span class="p">,</span>
+    <span class="n">include_memory_usage</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">include_timing</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">include_quality_metrics</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="related-functions">
+<h2>Related Functions<a class="headerlink" href="#related-functions" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="lammpskit.ecellmodel.filament_layer_analysis.html#module-lammpskit.ecellmodel.filament_layer_analysis" title="lammpskit.ecellmodel.filament_layer_analysis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">lammpskit.ecellmodel.filament_layer_analysis</span></code></a> - Specialized filament analysis</p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">lammpskit.io</span></code> - File I/O operations</p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">lammpskit.plotting</span></code> - Visualization functions</p></li>
+<li><p><a class="reference internal" href="lammpskit.config.html#module-lammpskit.config" title="lammpskit.config"><code class="xref py py-mod docutils literal notranslate"><span class="pre">lammpskit.config</span></code></a> - Configuration management</p></li>
+</ul>
+</section>
+<section id="module-lammpskit.ecellmodel.data_processing">
+<span id="module-documentation"></span><h2>Module Documentation<a class="headerlink" href="#module-lammpskit.ecellmodel.data_processing" title="Link to this heading"></a></h2>
+<p>Electrochemical cell data processing utilities for HfTaO simulation analysis.</p>
+<p>This module provides specialized functions for processing atomic coordinates, calculating
+spatial distributions, and analyzing charge characteristics in hafnium-tantalum oxide
+(HfTaO) electrochemical memory devices. Functions implement the specific atom type
+system and physics of ReRAM/memristor simulations.</p>
+<section id="hftao-atom-type-system">
+<h3>HfTaO Atom Type System<a class="headerlink" href="#hftao-atom-type-system" title="Link to this heading"></a></h3>
+<p>The module implements the LAMMPSKit atom type convention for HfTaO electrochemical cells:</p>
+<ul class="simple">
+<li><p><strong>Type 2</strong>: Hafnium (Hf) atoms - Primary conductive species</p></li>
+<li><p><strong>Odd types (1,3,5,7,9,…)</strong>: Oxygen (O) atoms - Ion species for vacancy formation</p></li>
+<li><p><strong>Even types (4,6,8,10,…)</strong>: Tantalum (Ta) atoms - Matrix material</p></li>
+<li><p><strong>Electrode types (5,6,9,10)</strong>: Dual-function atoms serving as both element and electrode</p></li>
+</ul>
+<p>This system enables precise tracking of ion migration, vacancy formation, and filament
+evolution during SET/RESET switching processes in oxide-based memory devices.</p>
+</section>
+<section id="core-functionality">
+<h3>Core Functionality<a class="headerlink" href="#core-functionality" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Spatial Analysis</strong>: Z-direction binning for layer-by-layer electrode analysis</p></li>
+<li><p><strong>Charge Distributions</strong>: Weighted histograms for electrostatic field mapping</p></li>
+<li><p><strong>Atomic Sorting</strong>: Species-specific coordinate separation with z-ordering</p></li>
+<li><p><strong>Statistical Processing</strong>: Safe division and normalization for robust analysis</p></li>
+<li><p><strong>Filename Parsing</strong>: Element extraction from simulation file naming conventions</p></li>
+</ul>
+</section>
+<section id="physics-aware-design">
+<h3>Physics-Aware Design<a class="headerlink" href="#physics-aware-design" title="Link to this heading"></a></h3>
+<p>Functions account for electrochemical memory device physics:
+- Electrode separation typically 20-100 Angstroms in z-direction
+- Ion migration along both z-axis (electrode-to-electrode) and lateral directions
+- Charge redistribution during voltage cycling (SET/RESET processes)
+- Filament formation through oxygen vacancy alignment leading to agglomeration of oxygen-deficient metallic phases</p>
+</section>
+<section id="performance-characteristics">
+<h3>Performance Characteristics<a class="headerlink" href="#performance-characteristics" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Memory scaling: O(N_atoms * N_frames) for coordinate processing</p></li>
+<li><p>Computational complexity: O(N_atoms * log(N_atoms)) for z-sorting</p></li>
+<li><p>Bin resolution: Optimized for ~50-100 z-bins across electrode gap</p></li>
+<li><p>Batch processing: Efficient multi-trajectory analysis support</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<p>Basic atomic distribution analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.ecellmodel.data_processing</span><span class="w"> </span><span class="kn">import</span> <span class="n">calculate_atomic_distributions</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>  <span class="c1"># Mock coordinates: (id, type, charge, x, y, z)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="mi">100</span><span class="p">)</span>  <span class="c1"># Assign atom types</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">distributions</span> <span class="o">=</span> <span class="n">calculate_atomic_distributions</span><span class="p">([</span><span class="n">coords</span><span class="p">],</span> <span class="n">z_bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">zlo</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">zhi</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hf atoms: </span><span class="si">{</span><span class="n">distributions</span><span class="p">[</span><span class="s1">&#39;hafnium&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Charge analysis workflow:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.ecellmodel.data_processing</span><span class="w"> </span><span class="kn">import</span> <span class="n">calculate_charge_distributions</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">atom_dists</span> <span class="o">=</span> <span class="n">calculate_atomic_distributions</span><span class="p">([</span><span class="n">coords</span><span class="p">],</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">charge_dists</span> <span class="o">=</span> <span class="n">calculate_charge_distributions</span><span class="p">([</span><span class="n">coords</span><span class="p">],</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="n">atom_dists</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Mean Hf charge: </span><span class="si">{</span><span class="n">charge_dists</span><span class="p">[</span><span class="s1">&#39;hafnium_mean_charge&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Electrode analysis setup:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.ecellmodel.data_processing</span><span class="w"> </span><span class="kn">import</span> <span class="n">calculate_z_bins_setup</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z_width</span><span class="p">,</span> <span class="n">z_centers</span> <span class="o">=</span> <span class="n">calculate_z_bins_setup</span><span class="p">(</span><span class="n">zlo</span><span class="o">=-</span><span class="mi">10</span><span class="p">,</span> <span class="n">zhi</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">z_bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Electrode separation: </span><span class="si">{</span><span class="mi">40</span><span class="o">-</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span><span class="si">}</span><span class="s2"> Å, bin width: </span><span class="si">{</span><span class="n">z_width</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> Å&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<dl class="py function">
+<dt class="sig sig-object py" id="lammpskit.ecellmodel.data_processing.select_atom_types_from_coordinates">
+<span class="sig-prename descclassname"><span class="pre">lammpskit.ecellmodel.data_processing.</span></span><span class="sig-name descname"><span class="pre">select_atom_types_from_coordinates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lammpskit/ecellmodel/data_processing.html#select_atom_types_from_coordinates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lammpskit.ecellmodel.data_processing.select_atom_types_from_coordinates" title="Link to this definition"></a></dt>
+<dd><p>Separate atomic coordinates by species for HfTaO electrochemical cell analysis.</p>
+<p>Implements the LAMMPSKit atom type system to extract species-specific coordinate
+arrays from mixed atomic data. Essential for tracking ion migration, filament
+formation, and electrode interactions in electrochemical memory devices.
+Automatically sorts atoms by z-position for layer-by-layer analysis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>coordinates</strong> (<em>np.ndarray</em>) – Atomic coordinate array with shape (n_atoms, n_columns) where:
+- Column 1: Atom type ID (implements HfTaO type system)
+- Column 5: Z-coordinate (electrode-to-electrode direction)
+Standard LAMMPS format: [id, type, charge, x, y, z, …]</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p>Species-separated coordinate arrays, z-sorted for analysis:</p>
+<ul class="simple">
+<li><p><strong>’hf’</strong>: Hafnium atoms (type 2) - Conductive filament species</p></li>
+<li><p><strong>’ta’</strong>: Tantalum atoms (types 4,6,8,10) - Matrix material</p></li>
+<li><p><strong>’o’</strong>: Oxygen atoms (types 1,3,5,7,9) - Vacancy formation species</p></li>
+</ul>
+<p>Each array maintains full coordinate information for downstream analysis.
+Empty species return empty arrays with correct shape.</p>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, np.ndarray]</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>HfTaO Atom Type System Implementation:
+- Type 2: Hafnium (primary conductive species)
+- Odd types: Oxygen (ion migration, vacancy formation)
+- Even types (≠2): Tantalum (matrix stabilization)
+- Electrode types (5,6,9,10): Dual-function boundary atoms</p>
+<p>Z-Sorting Rationale:
+Automatic sorting enables efficient layer-by-layer analysis essential for:
+- Electrode interface characterization
+- Filament path tracking through device thickness
+- Voltage-dependent ion redistribution analysis</p>
+<section id="performance-notes">
+<h3>Performance Notes<a class="headerlink" href="#performance-notes" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p>Computational complexity: O(N log N) due to z-sorting</p></li>
+<li><p>Memory usage: O(N) where N is total atom count</p></li>
+<li><p>Optimized for repeated analysis of trajectory sequences</p></li>
+</ul>
+</section>
+<section id="electrochemical-physics-context">
+<h3>Electrochemical Physics Context<a class="headerlink" href="#electrochemical-physics-context" title="Link to this heading"></a></h3>
+<p>Atom type separation enables analysis of:
+- <strong>Hf migration</strong>: Conductive filament formation/dissolution
+- <strong>O vacancy motion</strong>: Resistance switching mechanisms
+- <strong>Ta redistribution</strong>: Matrix effects on switching and its reliability
+- <strong>Electrode interactions</strong>: Interface phenomena at boundaries</p>
+<p class="rubric">Examples</p>
+<p>Basic species separation:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Mock HfTaO coordinate data: 100 atoms, 6 columns</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="mi">100</span><span class="p">)</span>  <span class="c1"># Assign atom types O, Hf, Ta</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>   <span class="c1"># Z positions (electrode gap)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">species</span> <span class="o">=</span> <span class="n">select_atom_types_from_coordinates</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hf atoms: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">species</span><span class="p">[</span><span class="s1">&#39;hf&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">, Ta atoms: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">species</span><span class="p">[</span><span class="s1">&#39;ta&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;O atoms: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">species</span><span class="p">[</span><span class="s1">&#39;o&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Filament analysis workflow:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Extract Hf filament path through device</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hf_coords</span> <span class="o">=</span> <span class="n">species</span><span class="p">[</span><span class="s1">&#39;hf&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">hf_coords</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">z_min</span><span class="p">,</span> <span class="n">z_max</span> <span class="o">=</span> <span class="n">hf_coords</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">hf_coords</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="gp">... </span>    <span class="n">filament_length</span> <span class="o">=</span> <span class="n">z_max</span> <span class="o">-</span> <span class="n">z_min</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hf filament spans </span><span class="si">{</span><span class="n">filament_length</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> Å&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Electrode interface analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Analyze electrode interactions (types 5,6,9,10)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">electrode_mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">electrode_atoms</span> <span class="o">=</span> <span class="n">coords</span><span class="p">[</span><span class="n">electrode_mask</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Electrode interface atoms: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">electrode_atoms</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Species-specific charge analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Analyze charge distribution by species</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">species_name</span><span class="p">,</span> <span class="n">species_coords</span> <span class="ow">in</span> <span class="n">species</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">species_coords</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">mean_charge</span> <span class="o">=</span> <span class="n">species_coords</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>  <span class="c1"># Column 2 = charge</span>
+<span class="gp">... </span>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">species_name</span><span class="o">.</span><span class="n">capitalize</span><span class="p">()</span><span class="si">}</span><span class="s2"> mean charge: </span><span class="si">{</span><span class="n">mean_charge</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lammpskit.ecellmodel.data_processing.calculate_z_bins_setup">
+<span class="sig-prename descclassname"><span class="pre">lammpskit.ecellmodel.data_processing.</span></span><span class="sig-name descname"><span class="pre">calculate_z_bins_setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">zlo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zhi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_bins</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lammpskit/ecellmodel/data_processing.html#calculate_z_bins_setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lammpskit.ecellmodel.data_processing.calculate_z_bins_setup" title="Link to this definition"></a></dt>
+<dd><p>Calculate z-direction spatial binning parameters for electrochemical analysis.</p>
+<p>Computes bin width and center positions for layer-by-layer analysis of electrochemical
+memory devices. Optimized for electrode-to-electrode spatial discretization with
+uniform bin spacing for statistical consistency across the device thickness.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>zlo</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Lower z-bound of simulation box (Angstroms). Typically bottom electrode position.
+For HfTaO devices, commonly ranges from -20 to 0 Å.</p></li>
+<li><p><strong>zhi</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Upper z-bound of simulation box (Angstroms). Typically top electrode position.
+For HfTaO devices, commonly ranges from 20 to 100 Å.</p></li>
+<li><p><strong>z_bins</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Number of spatial bins for discretization. Typical range: 15-100 bins.
+Higher resolution improves interface detection but increases noise.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>z_bin_width</strong> (<em>float</em>) – Width of each spatial bin (Angstroms). Used for normalization and density calculations.</p></li>
+<li><p><strong>z_bin_centers</strong> (<em>np.ndarray</em>) – Array of bin center positions (Angstroms). Shape: (z_bins,)
+Used as x-axis coordinates for distribution plots and analysis.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Bin Design Philosophy:
+- Uniform spacing ensures consistent statistical sampling
+- Bin centers provide representative positions for plotting
+- Width normalization enables density comparisons across devices</p>
+<p>Electrochemical Device Context:
+- Electrode separation: zhi - zlo (typical: 20-100 Å)
+- Optimal bin count: ~0.5-2 Å per bin for atomic resolution
+- Interface resolution: 2-5 bins per electrode/oxide interface</p>
+<p>Performance Characteristics:
+- Computational complexity: O(1) - simple arithmetic calculation
+- Memory usage: O(z_bins) for center array storage
+- Typical execution time: &lt;1μs for standard parameters</p>
+<section id="mathematical-foundation">
+<h3>Mathematical Foundation<a class="headerlink" href="#mathematical-foundation" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>Bin width calculation:</dt><dd><p>Δz = (z_hi - z_lo) / N_bins</p>
+</dd>
+<dt>Bin center positions:</dt><dd><p>z_center[i] = z_lo + (i + 0.5) * Δz
+where i ∈ [0, N_bins-1]</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Standard HfTaO device setup:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">z_width</span><span class="p">,</span> <span class="n">z_centers</span> <span class="o">=</span> <span class="n">calculate_z_bins_setup</span><span class="p">(</span><span class="n">zlo</span><span class="o">=-</span><span class="mi">10</span><span class="p">,</span> <span class="n">zhi</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">z_bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Device thickness: </span><span class="si">{</span><span class="mi">40</span><span class="o">-</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span><span class="si">}</span><span class="s2"> Å&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Spatial resolution: </span><span class="si">{</span><span class="n">z_width</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> Å per bin&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Analysis range: </span><span class="si">{</span><span class="n">z_centers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">z_centers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> Å&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>High-resolution interface analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Fine-grained analysis for electrode interfaces</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z_width</span><span class="p">,</span> <span class="n">z_centers</span> <span class="o">=</span> <span class="n">calculate_z_bins_setup</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Interface resolution: </span><span class="si">{</span><span class="n">z_width</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> Å per bin&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Coarse-grained overview:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Quick analysis for device-scale phenomena</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z_width</span><span class="p">,</span> <span class="n">z_centers</span> <span class="o">=</span> <span class="n">calculate_z_bins_setup</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">electrode_separation</span> <span class="o">=</span> <span class="mi">30</span> <span class="o">-</span> <span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bins_per_angstrom</span> <span class="o">=</span> <span class="mi">15</span> <span class="o">/</span> <span class="n">electrode_separation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sampling: </span><span class="si">{</span><span class="n">bins_per_angstrom</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> bins per Angstrom&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Validation and optimization:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Check bin coverage and spacing</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z_width</span><span class="p">,</span> <span class="n">z_centers</span> <span class="o">=</span> <span class="n">calculate_z_bins_setup</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">total_coverage</span> <span class="o">=</span> <span class="n">z_centers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">z_width</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="n">z_centers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">z_width</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">expected_coverage</span> <span class="o">=</span> <span class="mi">50</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">assert</span> <span class="nb">abs</span><span class="p">(</span><span class="n">total_coverage</span> <span class="o">-</span> <span class="n">expected_coverage</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bin coverage validation: PASSED&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lammpskit.ecellmodel.data_processing.calculate_atomic_distributions">
+<span class="sig-prename descclassname"><span class="pre">lammpskit.ecellmodel.data_processing.</span></span><span class="sig-name descname"><span class="pre">calculate_atomic_distributions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates_arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_bins</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zlo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zhi</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lammpskit/ecellmodel/data_processing.html#calculate_atomic_distributions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lammpskit.ecellmodel.data_processing.calculate_atomic_distributions" title="Link to this definition"></a></dt>
+<dd><p>Calculate spatial distributions of atomic species along electrode-to-electrode axis.</p>
+<p>Computes z-direction histograms for different atomic species in HfTaO electrochemical
+devices, enabling analysis of ion migration, filament formation, and layer composition.
+Provides both individual species distributions and composite distributions for
+comprehensive materials characterization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>coordinates_arr</strong> (<em>np.ndarray</em>) – Coordinate array with shape (n_frames, n_atoms, n_columns) for time series, or
+(n_atoms, n_columns) for single frame analysis. Column 1 must contain atom types,
+column 5 must contain z-coordinates.</p></li>
+<li><p><strong>z_bins</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Number of spatial bins for z-direction discretization. Recommended: 15-100 bins
+for balance between resolution and statistical significance.</p></li>
+<li><p><strong>zlo</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Lower z-boundary of analysis region (Angstroms). Should match electrode position.</p></li>
+<li><p><strong>zhi</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Upper z-boundary of analysis region (Angstroms). Should match opposite electrode.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p><strong>distributions</strong> – Spatial distribution dictionary with keys:</p>
+<p><strong>Individual Species:</strong>
+- <strong>‘hafnium’</strong>: Hf atom distributions (shape: n_frames × z_bins)
+- <strong>‘tantalum’</strong>: Ta atom distributions
+- <strong>‘oxygen’</strong>: O atom distributions</p>
+<p><strong>Composite Distributions:</strong>
+- <strong>‘metal’</strong>: Combined Hf + Ta distributions (conductive species)
+- <strong>‘total’</strong>: All atomic species combined (total density)</p>
+<p>Each distribution array contains atom counts per spatial bin per frame.</p>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, np.ndarray]</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Electrochemical Analysis Applications:
+- <strong>Filament tracking</strong>: Hf distribution shows conductive pathway evolution
+- <strong>Vacancy analysis</strong>: O distribution reveals ion migration patterns
+- <strong>Matrix stability</strong>: Ta distribution indicates structural changes
+- <strong>Electrode interactions</strong>: Interface region composition analysis</p>
+<p>Statistical Considerations:
+- Empty frames produce zero-filled arrays with correct dimensions
+- Bin counts represent discrete atom positions (not normalized densities)
+- Multiple frames enable temporal analysis of switching dynamics</p>
+<p>Performance Characteristics:
+- Memory complexity: O(n_frames × z_bins × 5) for output storage
+- Time complexity: O(n_frames × n_atoms × log(n_atoms)) due to species sorting
+- Optimized for batch processing of trajectory sequences</p>
+<p>Physics-Informed Design:
+- Z-axis corresponds to electric field direction in devices
+- Species separation tracks individual ion migration mechanisms
+- Composite distributions reveal overall material redistribution
+- Bin resolution balances atomic-scale features with statistical significance</p>
+<p class="rubric">Examples</p>
+<p>Single-frame analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Single configuration: 1000 atoms across electrode gap</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="mi">1000</span><span class="p">)</span>  <span class="c1"># O, Hf, Ta types</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>   <span class="c1"># Z positions</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">distributions</span> <span class="o">=</span> <span class="n">calculate_atomic_distributions</span><span class="p">([</span><span class="n">coords</span><span class="p">],</span> <span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hf peak density: </span><span class="si">{</span><span class="n">distributions</span><span class="p">[</span><span class="s1">&#39;hafnium&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2"> atoms/bin&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Time-series filament analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Multi-frame trajectory for SET/RESET switching</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n_frames</span><span class="p">,</span> <span class="n">n_atoms</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">500</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trajectory</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n_frames</span><span class="p">,</span> <span class="n">n_atoms</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trajectory</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">(</span><span class="n">n_frames</span><span class="p">,</span> <span class="n">n_atoms</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trajectory</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="p">(</span><span class="n">n_frames</span><span class="p">,</span> <span class="n">n_atoms</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dists</span> <span class="o">=</span> <span class="n">calculate_atomic_distributions</span><span class="p">(</span><span class="n">trajectory</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Analyze filament evolution</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hf_evolution</span> <span class="o">=</span> <span class="n">dists</span><span class="p">[</span><span class="s1">&#39;hafnium&#39;</span><span class="p">]</span>  <span class="c1"># Shape: (20, 30)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">initial_hf</span> <span class="o">=</span> <span class="n">hf_evolution</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>     <span class="c1"># Initial state</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">final_hf</span> <span class="o">=</span> <span class="n">hf_evolution</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>      <span class="c1"># Final state</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">filament_growth</span> <span class="o">=</span> <span class="p">(</span><span class="n">final_hf</span> <span class="o">-</span> <span class="n">initial_hf</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Net Hf redistribution: </span><span class="si">{</span><span class="n">filament_growth</span><span class="si">}</span><span class="s2"> atoms&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Layer-by-layer composition analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Examine device cross-section</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z_width</span><span class="p">,</span> <span class="n">z_centers</span> <span class="o">=</span> <span class="n">calculate_z_bins_setup</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="mi">800</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">800</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dists</span> <span class="o">=</span> <span class="n">calculate_atomic_distributions</span><span class="p">([</span><span class="n">coords</span><span class="p">],</span> <span class="mi">40</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">35</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Calculate stoichiometry across device</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hf_counts</span> <span class="o">=</span> <span class="n">dists</span><span class="p">[</span><span class="s1">&#39;hafnium&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ta_counts</span> <span class="o">=</span> <span class="n">dists</span><span class="p">[</span><span class="s1">&#39;tantalum&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">o_counts</span> <span class="o">=</span> <span class="n">dists</span><span class="p">[</span><span class="s1">&#39;oxygen&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">metal_total</span> <span class="o">=</span> <span class="n">dists</span><span class="p">[</span><span class="s1">&#39;metal&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">z_pos</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">z_centers</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">metal_total</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># Avoid division by zero</span>
+<span class="gp">... </span>        <span class="n">hf_fraction</span> <span class="o">=</span> <span class="n">hf_counts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">metal_total</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+<span class="gp">... </span>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Z=</span><span class="si">{</span><span class="n">z_pos</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">Å: Hf fraction = </span><span class="si">{</span><span class="n">hf_fraction</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Electrode interface characterization:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Focus on electrode-oxide interfaces</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">interface_coords</span> <span class="o">=</span> <span class="n">coords</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">]</span>  <span class="c1"># Near bottom electrode</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">interface_dists</span> <span class="o">=</span> <span class="n">calculate_atomic_distributions</span><span class="p">([</span><span class="n">interface_coords</span><span class="p">],</span> <span class="mi">15</span><span class="p">,</span> <span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Interface composition - Hf: </span><span class="si">{</span><span class="n">interface_dists</span><span class="p">[</span><span class="s1">&#39;hafnium&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">, &quot;</span>
+<span class="gp">... </span>      <span class="sa">f</span><span class="s2">&quot;Ta: </span><span class="si">{</span><span class="n">interface_dists</span><span class="p">[</span><span class="s1">&#39;tantalum&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">, &quot;</span>
+<span class="gp">... </span>      <span class="sa">f</span><span class="s2">&quot;O: </span><span class="si">{</span><span class="n">interface_dists</span><span class="p">[</span><span class="s1">&#39;oxygen&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lammpskit.ecellmodel.data_processing.calculate_charge_distributions">
+<span class="sig-prename descclassname"><span class="pre">lammpskit.ecellmodel.data_processing.</span></span><span class="sig-name descname"><span class="pre">calculate_charge_distributions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates_arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_bins</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zlo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zhi</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atomic_distributions</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lammpskit/ecellmodel/data_processing.html#calculate_charge_distributions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lammpskit.ecellmodel.data_processing.calculate_charge_distributions" title="Link to this definition"></a></dt>
+<dd><p>Calculate electrostatic charge distributions for electrochemical field analysis.</p>
+<p>Computes spatial charge profiles across the electrode-to-electrode axis to analyze
+electrostatic field formation, charge redistribution during switching, and ionic
+migration patterns in HfTaO resistive memory devices. Provides both total charge
+distributions and species-specific mean charge calculations for comprehensive
+electrochemical characterization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>coordinates_arr</strong> (<em>List</em><em>[</em><em>np.ndarray</em><em>]</em>) – Trajectory coordinate arrays with shape (n_atoms, n_columns) per frame.
+Column 2 must contain atomic charges (units: elementary charge e).
+Column 5 must contain z-coordinates for spatial analysis.
+Multi-frame input enables temporal charge evolution analysis.</p></li>
+<li><p><strong>z_bins</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Number of spatial bins for z-direction discretization. Recommended: 15-100 bins
+for optimal balance between field resolution and statistical significance.</p></li>
+<li><p><strong>zlo</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Lower z-boundary of analysis region (Angstroms). Typically bottom electrode position.</p></li>
+<li><p><strong>zhi</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Upper z-boundary of analysis region (Angstroms). Typically top electrode position.</p></li>
+<li><p><strong>atomic_distributions</strong> (<em>Dict</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>np.ndarray</em><em>]</em>) – Atomic count distributions from <cite>calculate_atomic_distributions()</cite>. Required for
+safe normalization to compute mean charges per species. Must contain keys:
+‘hafnium’, ‘tantalum’, ‘oxygen’, ‘metal’, ‘total’ with shape (n_frames, z_bins).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p><strong>charge_distributions</strong> – Comprehensive charge analysis dictionary with keys:</p>
+<p><strong>Raw Charge Distributions:</strong>
+- <strong>‘hafnium_charge’</strong>: Total Hf charge per bin (shape: n_frames × z_bins)
+- <strong>‘tantalum_charge’</strong>: Total Ta charge per bin
+- <strong>‘oxygen_charge’</strong>: Total O charge per bin
+- <strong>‘metal_charge’</strong>: Combined Hf + Ta charge per bin
+- <strong>‘total_charge’</strong>: All species combined charge per bin</p>
+<p><strong>Mean Charge per Atom:</strong>
+- <strong>‘hafnium_mean_charge’</strong>: Average charge per Hf atom per bin
+- <strong>‘tantalum_mean_charge’</strong>: Average charge per Ta atom per bin
+- <strong>‘oxygen_mean_charge’</strong>: Average charge per O atom per bin
+- <strong>‘metal_mean_charge’</strong>: Average charge per metal atom per bin
+- <strong>‘total_mean_charge’</strong>: Average charge per atom (all species) per bin</p>
+<p>All arrays have shape (n_frames, z_bins) for temporal analysis support.</p>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dict[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, np.ndarray]</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Electrochemical Field Analysis:
+- <strong>Total charge</strong>: Reveals space charge regions and field gradients
+- <strong>Mean charges</strong>: Indicate oxidation state changes and ion mobility
+- <strong>Species separation</strong>: Tracks individual charge transfer mechanisms
+- <strong>Temporal evolution</strong>: Captures SET/RESET switching dynamics</p>
+<p>Physical Interpretation:
+- Positive regions: Cation accumulation or anion depletion zones
+- Negative regions: Anion accumulation or cation depletion zones
+- Charge gradients: Drive ionic migration and filament formation
+- Interface charges: Control electron injection and device resistance</p>
+<p>Mathematical Foundation:</p>
+<p>Raw charge distribution:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Q_species</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">=</span> <span class="n">Σ</span> <span class="n">q_i</span> <span class="o">*</span> <span class="n">δ</span><span class="p">(</span><span class="n">z_i</span> <span class="o">-</span> <span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Mean charge calculation:</dt><dd><p>&lt;q&gt;_species(z) = Q_species(z) / N_species(z)</p>
+</dd>
+</dl>
+<p>Where safe division prevents numerical errors when N_species(z) = 0.</p>
+<p>Performance Characteristics:
+- Memory complexity: O(n_frames × z_bins × 10) for all distributions
+- Time complexity: O(n_frames × n_atoms) for histogram calculations
+- Numerical stability: Safe division prevents undefined mean charges</p>
+<p class="rubric">Examples</p>
+<p>Basic charge profile analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.ecellmodel.data_processing</span><span class="w"> </span><span class="kn">import</span> <span class="n">calculate_atomic_distributions</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Create mock trajectory with charge information</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="mi">500</span><span class="p">)</span>  <span class="c1"># Atom types</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>     <span class="c1"># Charges around neutral</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>   <span class="c1"># Z positions</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Calculate required atomic distributions first</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">atom_dists</span> <span class="o">=</span> <span class="n">calculate_atomic_distributions</span><span class="p">([</span><span class="n">coords</span><span class="p">],</span> <span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">charge_dists</span> <span class="o">=</span> <span class="n">calculate_charge_distributions</span><span class="p">([</span><span class="n">coords</span><span class="p">],</span> <span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="n">atom_dists</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Analyze total electrostatic field</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">total_charge</span> <span class="o">=</span> <span class="n">charge_dists</span><span class="p">[</span><span class="s1">&#39;total_charge&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Max space charge density: </span><span class="si">{</span><span class="n">total_charge</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> e/bin&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Charge neutrality check: </span><span class="si">{</span><span class="n">total_charge</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> e&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Species-specific charge analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Examine oxidation state changes</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">hf_mean</span> <span class="o">=</span> <span class="n">charge_dists</span><span class="p">[</span><span class="s1">&#39;hafnium_mean_charge&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ta_mean</span> <span class="o">=</span> <span class="n">charge_dists</span><span class="p">[</span><span class="s1">&#39;tantalum_mean_charge&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">o_mean</span> <span class="o">=</span> <span class="n">charge_dists</span><span class="p">[</span><span class="s1">&#39;oxygen_mean_charge&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Find regions with significant charge transfer</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">valid_hf</span> <span class="o">=</span> <span class="n">hf_mean</span><span class="p">[</span><span class="n">atom_dists</span><span class="p">[</span><span class="s1">&#39;hafnium&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># Only where Hf atoms exist</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">valid_hf</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Hf oxidation range: </span><span class="si">{</span><span class="n">valid_hf</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">valid_hf</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> e&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">valid_o</span> <span class="o">=</span> <span class="n">o_mean</span><span class="p">[</span><span class="n">atom_dists</span><span class="p">[</span><span class="s1">&#39;oxygen&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">valid_o</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;O charge range: </span><span class="si">{</span><span class="n">valid_o</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">valid_o</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> e&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Temporal switching analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Multi-frame charge evolution during switching</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">n_frames</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trajectory</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">n_frames</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trajectory</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">(</span><span class="n">n_frames</span><span class="p">,</span> <span class="mi">300</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Simulate progressive charge separation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_frames</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">trajectory</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.1</span> <span class="o">*</span> <span class="n">i</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mi">300</span><span class="p">)</span>  <span class="c1"># Increasing separation</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trajectory</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="p">(</span><span class="n">n_frames</span><span class="p">,</span> <span class="mi">300</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">atom_dists</span> <span class="o">=</span> <span class="n">calculate_atomic_distributions</span><span class="p">(</span><span class="n">trajectory</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">charge_dists</span> <span class="o">=</span> <span class="n">calculate_charge_distributions</span><span class="p">(</span><span class="n">trajectory</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="n">atom_dists</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Track charge evolution</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">total_evolution</span> <span class="o">=</span> <span class="n">charge_dists</span><span class="p">[</span><span class="s1">&#39;total_charge&#39;</span><span class="p">]</span>  <span class="c1"># Shape: (10, 30)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">frame</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_frames</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">max_charge</span> <span class="o">=</span> <span class="n">total_evolution</span><span class="p">[</span><span class="n">frame</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Frame </span><span class="si">{</span><span class="n">frame</span><span class="si">}</span><span class="s2">: Max charge density = </span><span class="si">{</span><span class="n">max_charge</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> e/bin&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Electrode interface charge analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Focus on electrode-oxide charge interfaces</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z_width</span><span class="p">,</span> <span class="n">z_centers</span> <span class="o">=</span> <span class="n">calculate_z_bins_setup</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>  <span class="c1"># Realistic charge distribution</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coords</span><span class="p">[:,</span> <span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">atom_dists</span> <span class="o">=</span> <span class="n">calculate_atomic_distributions</span><span class="p">([</span><span class="n">coords</span><span class="p">],</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">charge_dists</span> <span class="o">=</span> <span class="n">calculate_charge_distributions</span><span class="p">([</span><span class="n">coords</span><span class="p">],</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="n">atom_dists</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Identify charge accumulation regions</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">total_charge</span> <span class="o">=</span> <span class="n">charge_dists</span><span class="p">[</span><span class="s1">&#39;total_charge&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">significant_charge</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">total_charge</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">0.1</span>  <span class="c1"># Above noise threshold</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">if</span> <span class="n">significant_charge</span><span class="o">.</span><span class="n">any</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">charge_positions</span> <span class="o">=</span> <span class="n">z_centers</span><span class="p">[</span><span class="n">significant_charge</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="n">charge_values</span> <span class="o">=</span> <span class="n">total_charge</span><span class="p">[</span><span class="n">significant_charge</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Charge accumulation at Z = </span><span class="si">{</span><span class="n">charge_positions</span><span class="si">}</span><span class="s2"> Å&quot;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Charge magnitudes: </span><span class="si">{</span><span class="n">charge_values</span><span class="si">}</span><span class="s2"> e/bin&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lammpskit.ecellmodel.data_processing.extract_element_label_from_filename">
+<span class="sig-prename descclassname"><span class="pre">lammpskit.ecellmodel.data_processing.</span></span><span class="sig-name descname"><span class="pre">extract_element_label_from_filename</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lammpskit/ecellmodel/data_processing.html#extract_element_label_from_filename"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lammpskit.ecellmodel.data_processing.extract_element_label_from_filename" title="Link to this definition"></a></dt>
+<dd><p>Extract element labels from HfTaO simulation filenames using intelligent parsing.</p>
+<p>Provides robust filename analysis to identify atomic species from simulation output
+files, supporting various naming conventions used in electrochemical memory device
+analysis workflows. Essential for automated batch processing of species-specific
+mobility and displacement data from LAMMPS trajectory analysis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Full file path or basename containing element information.
+Supports common patterns from HfTaO simulation workflows:
+- Pattern format: “[digit][Element]mobile*.dat” (e.g., “1Hfmobilestc1.dat”)
+- Prefix format: “[Element]_*” or “[Element]*” (e.g., “Hf_mobility.dat”)
+- Embedded format: “<em>[element]</em>” (case-insensitive matching)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p><strong>element_label</strong> – Standardized element symbol extracted from filename:</p>
+<p><strong>Standard Elements:</strong>
+- <strong>‘Hf’</strong>: Hafnium (primary conductive species in filaments)
+- <strong>‘Ta’</strong>: Tantalum (matrix material, device stability)
+- <strong>‘O’</strong>: Oxygen (ion migration, vacancy formation)
+- <strong>‘Al’</strong>: Aluminum (electrode material in some devices)</p>
+<p><strong>Special Cases:</strong>
+- <strong>‘O_’</strong>: Oxygen with underscore (specific file convention)
+- <strong>‘H’</strong>: Hydrogen (if present in simulation)
+- <strong>‘??’</strong>: Fallback for unrecognized patterns</p>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Parsing Strategy Hierarchy:
+1. <strong>Pattern matching</strong>: [digit][Element]mobile format recognition
+2. <strong>Prefix matching</strong>: Direct element prefix identification
+3. <strong>Substring search</strong>: Case-insensitive element name detection
+4. <strong>Character extraction</strong>: First 1-2 characters as fallback
+5. <strong>Error handling</strong>: Graceful fallback for empty/invalid filenames</p>
+<p>Element Mapping Logic:
+- ‘Oo’ → ‘O’: Handles double-letter oxygen notation
+- Case normalization: Converts to standard chemical symbols
+- Robust fallbacks: Prevents analysis pipeline failures</p>
+<p>Electrochemical Simulation Context:
+Essential for processing mobility analysis outputs where different atomic
+species generate separate trajectory files. Enables automated species
+identification for:
+- Ion migration tracking (O atom vacancy pathways)
+- Filament analysis (Hf conductive bridge formation)
+- Matrix stability (Ta structural evolution)
+- Electrode interaction (Al/electrode interface dynamics)</p>
+<p>Performance Characteristics:
+- Time complexity: O(filename_length) for regex operations
+- Memory usage: O(1) for string processing
+- Error resilience: Multiple fallback strategies prevent failures
+- Batch efficiency: Optimized for high-throughput filename processing</p>
+<p>Integration with LAMMPSKit Workflows:
+- <strong>Mobility analysis</strong>: Species-specific diffusion coefficient extraction
+- <strong>Displacement tracking</strong>: Ion migration pathway identification
+- <strong>Batch processing</strong>: Automated trajectory file classification
+- <strong>Data organization</strong>: Species-sorted output file management</p>
+<p class="rubric">Examples</p>
+<p>Standard HfTaO simulation files:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.ecellmodel.data_processing</span><span class="w"> </span><span class="kn">import</span> <span class="n">extract_element_label_from_filename</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Typical mobility analysis files</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">extract_element_label_from_filename</span><span class="p">(</span><span class="s2">&quot;1Hfmobilestc1.dat&quot;</span><span class="p">))</span>
+<span class="go">&#39;Hf&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">extract_element_label_from_filename</span><span class="p">(</span><span class="s2">&quot;2Oomobilestc1.dat&quot;</span><span class="p">))</span>
+<span class="go">&#39;O&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">extract_element_label_from_filename</span><span class="p">(</span><span class="s2">&quot;3Tamobilestc1.dat&quot;</span><span class="p">))</span>
+<span class="go">&#39;Ta&#39;</span>
+</pre></div>
+</div>
+<p>Alternative naming conventions:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Prefix-based naming</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">extract_element_label_from_filename</span><span class="p">(</span><span class="s2">&quot;Hf_displacement_analysis.txt&quot;</span><span class="p">))</span>
+<span class="go">&#39;Hf&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">extract_element_label_from_filename</span><span class="p">(</span><span class="s2">&quot;Ta_mobility_data.csv&quot;</span><span class="p">))</span>
+<span class="go">&#39;Ta&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">extract_element_label_from_filename</span><span class="p">(</span><span class="s2">&quot;O_vacancy_tracking.dat&quot;</span><span class="p">))</span>
+<span class="go">&#39;O_&#39;</span>
+</pre></div>
+</div>
+<p>Case-insensitive matching:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Handles various case conventions</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">extract_element_label_from_filename</span><span class="p">(</span><span class="s2">&quot;hf_trajectory.dump&quot;</span><span class="p">))</span>
+<span class="go">&#39;Hf&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">extract_element_label_from_filename</span><span class="p">(</span><span class="s2">&quot;AL_electrode.lammpstrj&quot;</span><span class="p">))</span>
+<span class="go">&#39;Al&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">extract_element_label_from_filename</span><span class="p">(</span><span class="s2">&quot;oxygen_migration.xyz&quot;</span><span class="p">))</span>
+<span class="go">&#39;O&#39;</span>
+</pre></div>
+</div>
+<p>Batch processing workflow:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Process all files in mobility analysis directory</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">simulation_files</span> <span class="o">=</span> <span class="p">[</span>
+<span class="gp">... </span>    <span class="s2">&quot;1Hfmobilestc1.dat&quot;</span><span class="p">,</span> <span class="s2">&quot;2Oomobilestc1.dat&quot;</span><span class="p">,</span> <span class="s2">&quot;3Tamobilestc1.dat&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s2">&quot;4Almobilestc1.dat&quot;</span><span class="p">,</span> <span class="s2">&quot;summary_mobility.txt&quot;</span>
+<span class="gp">... </span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">species_files</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">filename</span> <span class="ow">in</span> <span class="n">simulation_files</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">element</span> <span class="o">=</span> <span class="n">extract_element_label_from_filename</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">element</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">species_files</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">species_files</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">... </span>    <span class="n">species_files</span><span class="p">[</span><span class="n">element</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Organize by species for analysis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">species</span><span class="p">,</span> <span class="n">files</span> <span class="ow">in</span> <span class="n">species_files</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">species</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">files</span><span class="p">)</span><span class="si">}</span><span class="s2"> files&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Error handling demonstration:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Robust handling of edge cases</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">extract_element_label_from_filename</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">))</span>  <span class="c1"># Empty filename</span>
+<span class="go">&#39;??&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">extract_element_label_from_filename</span><span class="p">(</span><span class="s2">&quot;unknown_format.dat&quot;</span><span class="p">))</span>
+<span class="go">&#39;un&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">extract_element_label_from_filename</span><span class="p">(</span><span class="s2">&quot;H&quot;</span><span class="p">))</span>  <span class="c1"># Single character</span>
+<span class="go">&#39;H&#39;</span>
+</pre></div>
+</div>
+<p>Integration with trajectory analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Automated species identification in analysis pipeline</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span><span class="w"> </span><span class="nf">process_mobility_files</span><span class="p">(</span><span class="n">file_list</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">species_data</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="gp">... </span>    <span class="k">for</span> <span class="n">filepath</span> <span class="ow">in</span> <span class="n">file_list</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">element</span> <span class="o">=</span> <span class="n">extract_element_label_from_filename</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="c1"># Load and process species-specific data</span>
+<span class="gp">... </span>        <span class="k">if</span> <span class="n">element</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;Hf&#39;</span><span class="p">,</span> <span class="s1">&#39;Ta&#39;</span><span class="p">,</span> <span class="s1">&#39;O&#39;</span><span class="p">,</span> <span class="s1">&#39;Al&#39;</span><span class="p">]:</span>
+<span class="gp">... </span>            <span class="n">species_data</span><span class="p">[</span><span class="n">element</span><span class="p">]</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Processing </span><span class="si">{</span><span class="n">element</span><span class="si">}</span><span class="s2"> mobility from </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">species_data</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;1Hfmobilestc1.dat&quot;</span><span class="p">,</span> <span class="s2">&quot;2Oomobilestc1.dat&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">process_mobility_files</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">species</span><span class="p">,</span> <span class="n">status</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">species</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">status</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="lammpskit.ecellmodel.html" class="btn btn-neutral float-left" title="lammpskit.ecellmodel package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lammpskit.ecellmodel.filament_layer_analysis.html" class="btn btn-neutral float-right" title="lammpskit.ecellmodel.filament_layer_analysis module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Simanta Lahkar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,393 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lammpskit.ecellmodel.plot_atomic_charge_distribution &mdash; LAMMPSKit Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=fc837d61"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="lammpskit.ecellmodel.plot_displacement_comparison" href="lammpskit.ecellmodel.plot_displacement_comparison.html" />
+    <link rel="prev" title="lammpskit.ecellmodel.plot_atomic_distribution" href="lammpskit.ecellmodel.plot_atomic_distribution.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            LAMMPSKit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api_reference.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../api_reference.html#module-lammpskit">Package Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference.html#core-modules">Core Modules</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../api_reference.html#function-categories">Function Categories</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../api_reference.html#data-i-o-functions">Data I/O Functions</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../api_reference.html#analysis-functions">Analysis Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.ecellmodel.analyze_clusters.html">lammpskit.ecellmodel.analyze_clusters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.ecellmodel.track_filament_evolution.html">lammpskit.ecellmodel.track_filament_evolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.ecellmodel.plot_atomic_distribution.html">lammpskit.ecellmodel.plot_atomic_distribution</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">lammpskit.ecellmodel.plot_atomic_charge_distribution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.ecellmodel.plot_displacement_comparison.html">lammpskit.ecellmodel.plot_displacement_comparison</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference.html#plotting-functions">Plotting Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference.html#validation-functions">Validation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference.html#configuration-classes">Configuration Classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_formats.html">Data Formats</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../lammpskit.html">lammpskit package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lammpskit.config.html">lammpskit.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lammpskit.io.html">lammpskit.io package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lammpskit.plotting.html">lammpskit.plotting package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lammpskit.ecellmodel.html">lammpskit.ecellmodel package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LAMMPSKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api_reference.html">API Reference</a></li>
+      <li class="breadcrumb-item active">lammpskit.ecellmodel.plot_atomic_charge_distribution</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/simantalahkar/lammpskit/blob/main/docs/source/generated/lammpskit.ecellmodel.plot_atomic_charge_distribution.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="lammpskit-ecellmodel-plot-atomic-charge-distribution">
+<h1>lammpskit.ecellmodel.plot_atomic_charge_distribution<a class="headerlink" href="#lammpskit-ecellmodel-plot-atomic-charge-distribution" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="lammpskit.ecellmodel.plot_atomic_charge_distribution">
+<span class="sig-prename descclassname"><span class="pre">lammpskit.ecellmodel.</span></span><span class="sig-name descname"><span class="pre">plot_atomic_charge_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_bins</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">analysis_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">os.getcwd()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns_to_read</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lammpskit/ecellmodel/filament_layer_analysis.html#plot_atomic_charge_distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lammpskit.ecellmodel.plot_atomic_charge_distribution" title="Link to this definition"></a></dt>
+<dd><p>Generate electrostatic charge distribution analysis for HfTaO electrochemical devices.</p>
+<p>Computes and visualizes spatial charge profiles across the electrode-to-electrode axis
+to analyze electrostatic field formation, charge redistribution during switching cycles,
+and ionic polarization effects in resistive memory devices. Provides both total charge
+density and species-specific mean charge characterization essential for understanding
+resistance switching mechanisms and device reliability.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – List of file paths to LAMMPS trajectory files containing atomic coordinates and charges.
+Files must include charge information (column 2) for electrostatic analysis.
+Example: [“initial_state.lammpstrj”, “charged_state.lammpstrj”]</p></li>
+<li><p><strong>labels</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Descriptive labels for each trajectory file, used in plot legends and output filenames.
+Must match file_list length. Example: [“Initial”, “Polarized”, “Relaxed”]</p></li>
+<li><p><strong>skip_rows</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Number of header rows to skip before atomic data in trajectory files.
+Standard LAMMPS dump format typically uses 9 header rows.</p></li>
+<li><p><strong>z_bins</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Number of spatial bins for z-direction charge profile discretization.
+Recommended: 15-100 bins for optimal field resolution vs. statistical significance.</p></li>
+<li><p><strong>analysis_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Base identifier for output files and plot titles. Should describe analysis context.
+Example: “voltage_cycling_analysis”, “field_redistribution_study”</p></li>
+<li><p><strong>output_dir</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em>) – Directory path for saving generated charge distribution plots.
+Default: current working directory. Creates directory if non-existent.</p></li>
+<li><p><strong>columns_to_read</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a><em>, </em><em>optional</em>) – Column indices for trajectory file parsing. If None, uses DEFAULT_COLUMNS_TO_READ.
+Standard format: (id, type, charge, x, y, z) with charge in column 2.</p></li>
+<li><p><strong>**kwargs</strong> – <p>Additional visualization parameters passed to plot_multiple_cases():</p>
+<ul>
+<li><p><strong>ylimithi/xlimithi</strong>: Upper axis limits for charge magnitude scaling</p></li>
+<li><p><strong>ylimitlo/xlimitlo</strong>: Lower axis limits for field detail resolution</p></li>
+<li><p><strong>yaxis</strong>: Y-axis origin position for bipolar charge visualization</p></li>
+<li><p><strong>markerindex</strong>: Marker style index for multi-case differentiation</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p><strong>charge_figures</strong> – Dictionary of matplotlib Figure objects for comprehensive charge analysis:</p>
+<p><strong>Total Charge Analysis:</strong>
+- <strong>‘net_charge’</strong>: All-frame total charge density profiles
+- <strong>‘initial_net_charge’</strong>: First-frame charge distribution baseline
+- <strong>‘final_net_charge’</strong>: Last-frame charge distribution for comparison</p>
+<p><strong>Species-Specific Mean Charge:</strong>
+- <strong>‘metal_charge’</strong>: Mean charge per metal atom (Hf + Ta combined)
+- <strong>‘initial_metal_charge’</strong>: Initial metal charge state reference
+- <strong>‘oxygen_charge’</strong>: Mean charge per oxygen atom (ion migration indicator)
+- <strong>‘initial_oxygen_charge’</strong>: Initial oxygen charge state reference</p>
+<p>All figures include publication-ready formatting with axis labels, legends, and
+consistent styling for comparative analysis across experimental conditions.</p>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)">dict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, plt.Figure]</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Electrostatic Field Physics:
+- <strong>Total Charge</strong>: Reveals space charge regions and internal field gradients
+- <strong>Metal Charges</strong>: Indicate oxidation state changes and electron transfer
+- <strong>Oxygen Charges</strong>: Track ionic polarization and vacancy formation regions
+- <strong>Temporal Evolution</strong>: Initial vs. final states show switching-induced changes</p>
+<p>Mathematical Foundation:</p>
+<p>Raw charge distribution calculation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Q(z) = Σ q_i × δ(z_i - z_bin)
+</pre></div>
+</div>
+<p>Mean charge per species:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">q</span><span class="o">&gt;</span><span class="n">_species</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">=</span> <span class="n">Q_species</span><span class="p">(</span><span class="n">z</span><span class="p">)</span> <span class="o">/</span> <span class="n">N_species</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Where safe division prevents numerical errors when N_species(z) = 0.</p>
+<p>Performance Characteristics:
+- <strong>Memory Complexity</strong>: O(N_files × N_atoms × N_bins) for charge histogram storage
+- <strong>Processing Speed</strong>: ~2-15s per file depending on atom count and bin resolution
+- <strong>Output Quality</strong>: Publication-ready SVG figures with customizable styling
+- <strong>Numerical Stability</strong>: Robust handling of zero-atom bins and extreme charge values</p>
+<p>Integration with LAMMPSKit Analysis Pipeline:
+- <strong>Charge Calculation</strong>: Uses calculate_charge_distributions() for species separation
+- <strong>Coordinate Processing</strong>: Integrates with read_coordinates() for trajectory parsing
+- <strong>Atomic Context</strong>: Requires calculate_atomic_distributions() for normalization
+- <strong>Visualization</strong>: Leverages plot_multiple_cases() for consistent scientific plotting</p>
+<p class="rubric">Examples</p>
+<p>Basic charge redistribution analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.ecellmodel.filament_layer_analysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_atomic_charge_distribution</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Analyze charge evolution during switching</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trajectory_files</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;before_switch.lammpstrj&quot;</span><span class="p">,</span> <span class="s2">&quot;after_switch.lammpstrj&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">state_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Before&quot;</span><span class="p">,</span> <span class="s2">&quot;After&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">charge_figures</span> <span class="o">=</span> <span class="n">plot_atomic_charge_distribution</span><span class="p">(</span><span class="n">trajectory_files</span><span class="p">,</span> <span class="n">state_labels</span><span class="p">,</span>
+<span class="gp">... </span>                                               <span class="n">skip_rows</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">z_bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+<span class="gp">... </span>                                               <span class="n">analysis_name</span><span class="o">=</span><span class="s2">&quot;switching_charges&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Generated </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">charge_figures</span><span class="p">)</span><span class="si">}</span><span class="s2"> charge analysis plots&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Voltage-dependent charge analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Multi-voltage charge redistribution study</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">voltage_files</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;0V.lammpstrj&quot;</span><span class="p">,</span> <span class="s2">&quot;1V.lammpstrj&quot;</span><span class="p">,</span> <span class="s2">&quot;2V.lammpstrj&quot;</span><span class="p">,</span> <span class="s2">&quot;3V.lammpstrj&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">voltage_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;0V&quot;</span><span class="p">,</span> <span class="s2">&quot;1V&quot;</span><span class="p">,</span> <span class="s2">&quot;2V&quot;</span><span class="p">,</span> <span class="s2">&quot;3V&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># High-resolution field analysis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">charge_figures</span> <span class="o">=</span> <span class="n">plot_atomic_charge_distribution</span><span class="p">(</span><span class="n">voltage_files</span><span class="p">,</span> <span class="n">voltage_labels</span><span class="p">,</span>
+<span class="gp">... </span>                                               <span class="n">skip_rows</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">z_bins</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+<span class="gp">... </span>                                               <span class="n">analysis_name</span><span class="o">=</span><span class="s2">&quot;voltage_dependence&quot;</span><span class="p">,</span>
+<span class="gp">... </span>                                               <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./charge_analysis&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Examine field gradient evolution</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">net_charge_fig</span> <span class="o">=</span> <span class="n">charge_figures</span><span class="p">[</span><span class="s1">&#39;net_charge&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">metal_charge_fig</span> <span class="o">=</span> <span class="n">charge_figures</span><span class="p">[</span><span class="s1">&#39;metal_charge&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Voltage-dependent field analysis completed&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Temporal charge evolution tracking:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Long-term charge stability analysis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">time_series_files</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;time_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">ps.lammpstrj&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">time_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;0ps&quot;</span><span class="p">,</span> <span class="s2">&quot;100ps&quot;</span><span class="p">,</span> <span class="s2">&quot;500ps&quot;</span><span class="p">,</span> <span class="s2">&quot;1000ps&quot;</span><span class="p">,</span> <span class="s2">&quot;5000ps&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">charge_figures</span> <span class="o">=</span> <span class="n">plot_atomic_charge_distribution</span><span class="p">(</span><span class="n">time_series_files</span><span class="p">,</span> <span class="n">time_labels</span><span class="p">,</span>
+<span class="gp">... </span>                                               <span class="n">skip_rows</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">z_bins</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span>
+<span class="gp">... </span>                                               <span class="n">analysis_name</span><span class="o">=</span><span class="s2">&quot;temporal_stability&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Compare initial vs. final charge states</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">initial_charge</span> <span class="o">=</span> <span class="n">charge_figures</span><span class="p">[</span><span class="s1">&#39;initial_net_charge&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">final_charge</span> <span class="o">=</span> <span class="n">charge_figures</span><span class="p">[</span><span class="s1">&#39;final_net_charge&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Temporal charge stability analysis completed&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Species-specific charge state analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Detailed oxidation state characterization</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trajectory_files</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;pristine.lammpstrj&quot;</span><span class="p">,</span> <span class="s2">&quot;oxidized.lammpstrj&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">condition_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Pristine&quot;</span><span class="p">,</span> <span class="s2">&quot;Oxidized&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Custom axis limits for charge detail resolution</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">custom_limits</span> <span class="o">=</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="s1">&#39;ylimithi&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>    <span class="c1"># Extended charge range</span>
+<span class="gp">... </span>    <span class="s1">&#39;ylimitlo&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">100</span><span class="p">,</span>   <span class="c1"># Bipolar charge visualization</span>
+<span class="gp">... </span>    <span class="s1">&#39;xlimitlo&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">15</span><span class="p">,</span>    <span class="c1"># Full device width</span>
+<span class="gp">... </span>    <span class="s1">&#39;xlimithi&#39;</span><span class="p">:</span> <span class="mi">25</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;yaxis&#39;</span><span class="p">:</span> <span class="mi">0</span>          <span class="c1"># Center y-axis at zero charge</span>
+<span class="gp">... </span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">charge_figures</span> <span class="o">=</span> <span class="n">plot_atomic_charge_distribution</span><span class="p">(</span><span class="n">trajectory_files</span><span class="p">,</span> <span class="n">condition_labels</span><span class="p">,</span>
+<span class="gp">... </span>                                               <span class="n">skip_rows</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">z_bins</span><span class="o">=</span><span class="mi">60</span><span class="p">,</span>
+<span class="gp">... </span>                                               <span class="n">analysis_name</span><span class="o">=</span><span class="s2">&quot;oxidation_study&quot;</span><span class="p">,</span>
+<span class="gp">... </span>                                               <span class="o">**</span><span class="n">custom_limits</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Analyze species-specific charge states</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">metal_charges</span> <span class="o">=</span> <span class="n">charge_figures</span><span class="p">[</span><span class="s1">&#39;metal_charge&#39;</span><span class="p">]</span>       <span class="c1"># Metal oxidation states</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">oxygen_charges</span> <span class="o">=</span> <span class="n">charge_figures</span><span class="p">[</span><span class="s1">&#39;oxygen_charge&#39;</span><span class="p">]</span>     <span class="c1"># Oxygen polarization</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">initial_metal</span> <span class="o">=</span> <span class="n">charge_figures</span><span class="p">[</span><span class="s1">&#39;initial_metal_charge&#39;</span><span class="p">]</span> <span class="c1"># Reference state</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Oxidation state analysis completed&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Interface charge characterization:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Electrode-oxide interface charge analysis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">interface_files</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;bottom_electrode.lammpstrj&quot;</span><span class="p">,</span> <span class="s2">&quot;top_electrode.lammpstrj&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">interface_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Bottom&quot;</span><span class="p">,</span> <span class="s2">&quot;Top&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Focus on interface region with appropriate limits</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">interface_params</span> <span class="o">=</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="s1">&#39;xlimitlo&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span>     <span class="c1"># Near bottom electrode</span>
+<span class="gp">... </span>    <span class="s1">&#39;xlimithi&#39;</span><span class="p">:</span> <span class="mi">35</span><span class="p">,</span>     <span class="c1"># Near top electrode</span>
+<span class="gp">... </span>    <span class="s1">&#39;ylimithi&#39;</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>     <span class="c1"># Moderate charge range</span>
+<span class="gp">... </span>    <span class="s1">&#39;yaxis&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>         <span class="c1"># Bipolar visualization</span>
+<span class="gp">... </span>    <span class="s1">&#39;markerindex&#39;</span><span class="p">:</span> <span class="mi">1</span>    <span class="c1"># Distinctive markers</span>
+<span class="gp">... </span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">charge_figures</span> <span class="o">=</span> <span class="n">plot_atomic_charge_distribution</span><span class="p">(</span><span class="n">interface_files</span><span class="p">,</span> <span class="n">interface_labels</span><span class="p">,</span>
+<span class="gp">... </span>                                               <span class="n">skip_rows</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">z_bins</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span>
+<span class="gp">... </span>                                               <span class="n">analysis_name</span><span class="o">=</span><span class="s2">&quot;interface_charges&quot;</span><span class="p">,</span>
+<span class="gp">... </span>                                               <span class="o">**</span><span class="n">interface_params</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Interface charge analysis completed&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Comparative analysis with atomic distributions:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Combined atomic and charge distribution analysis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.ecellmodel.filament_layer_analysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_atomic_distribution</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">trajectory_files</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;device_state.lammpstrj&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">analysis_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Device&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Atomic distribution analysis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">atomic_figures</span> <span class="o">=</span> <span class="n">plot_atomic_distribution</span><span class="p">(</span><span class="n">trajectory_files</span><span class="p">,</span> <span class="n">analysis_labels</span><span class="p">,</span>
+<span class="gp">... </span>                                        <span class="n">skip_rows</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">z_bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+<span class="gp">... </span>                                        <span class="n">analysis_name</span><span class="o">=</span><span class="s2">&quot;comprehensive_study&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Charge distribution analysis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">charge_figures</span> <span class="o">=</span> <span class="n">plot_atomic_charge_distribution</span><span class="p">(</span><span class="n">trajectory_files</span><span class="p">,</span> <span class="n">analysis_labels</span><span class="p">,</span>
+<span class="gp">... </span>                                               <span class="n">skip_rows</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">z_bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+<span class="gp">... </span>                                               <span class="n">analysis_name</span><span class="o">=</span><span class="s2">&quot;comprehensive_study&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Correlate atomic and charge profiles</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">total_analyses</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">atomic_figures</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">charge_figures</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Comprehensive analysis: </span><span class="si">{</span><span class="n">total_analyses</span><span class="si">}</span><span class="s2"> figures generated&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Atomic composition:&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">atomic_figures</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Charge distributions:&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">charge_figures</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+</pre></div>
+</div>
+<p>Batch processing for parameter studies:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Systematic parameter variation study</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">parameters</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;low_field&quot;</span><span class="p">,</span> <span class="s2">&quot;medium_field&quot;</span><span class="p">,</span> <span class="s2">&quot;high_field&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">all_charge_analyses</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">param_files</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s2">_initial.lammpstrj&quot;</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s2">_final.lammpstrj&quot;</span><span class="p">]</span>
+<span class="gp">... </span>        <span class="n">param_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Initial&quot;</span><span class="p">,</span> <span class="s2">&quot;Final&quot;</span><span class="p">]</span>
+<span class="gp">...</span>
+<span class="gp">... </span>        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">param_files</span><span class="p">):</span>
+<span class="gp">... </span>            <span class="n">figures</span> <span class="o">=</span> <span class="n">plot_atomic_charge_distribution</span><span class="p">(</span><span class="n">param_files</span><span class="p">,</span> <span class="n">param_labels</span><span class="p">,</span>
+<span class="gp">... </span>                                                    <span class="n">skip_rows</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">z_bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+<span class="gp">... </span>                                                    <span class="n">analysis_name</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s2">_charges&quot;</span><span class="p">,</span>
+<span class="gp">... </span>                                                    <span class="n">output_dir</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;./analysis_</span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">... </span>            <span class="n">all_charge_analyses</span><span class="p">[</span><span class="n">param</span><span class="p">]</span> <span class="o">=</span> <span class="n">figures</span>
+<span class="gp">... </span>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Completed charge analysis for </span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="k">else</span><span class="p">:</span>
+<span class="gp">... </span>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Missing trajectory files for </span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error analyzing </span><span class="si">{</span><span class="n">param</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">successful_analyses</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_charge_analyses</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully completed </span><span class="si">{</span><span class="n">successful_analyses</span><span class="si">}</span><span class="s2"> parameter studies&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Advanced visualization customization:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Publication-quality charge analysis with custom styling</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">publication_files</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;experiment_data.lammpstrj&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">publication_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Experimental&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Publication-specific parameters</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pub_styling</span> <span class="o">=</span> <span class="p">{</span>
+<span class="gp">... </span>    <span class="s1">&#39;ylimithi&#39;</span><span class="p">:</span> <span class="mi">80</span><span class="p">,</span>      <span class="c1"># Appropriate charge scale</span>
+<span class="gp">... </span>    <span class="s1">&#39;ylimitlo&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">80</span><span class="p">,</span>     <span class="c1"># Symmetric bipolar range</span>
+<span class="gp">... </span>    <span class="s1">&#39;xlimitlo&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">10</span><span class="p">,</span>     <span class="c1"># Device boundaries</span>
+<span class="gp">... </span>    <span class="s1">&#39;xlimithi&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;yaxis&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>          <span class="c1"># Zero-centered</span>
+<span class="gp">... </span>    <span class="s1">&#39;markerindex&#39;</span><span class="p">:</span> <span class="mi">2</span>     <span class="c1"># Publication markers</span>
+<span class="gp">... </span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">charge_figures</span> <span class="o">=</span> <span class="n">plot_atomic_charge_distribution</span><span class="p">(</span><span class="n">publication_files</span><span class="p">,</span> <span class="n">publication_labels</span><span class="p">,</span>
+<span class="gp">... </span>                                               <span class="n">skip_rows</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">z_bins</span><span class="o">=</span><span class="mi">75</span><span class="p">,</span>
+<span class="gp">... </span>                                               <span class="n">analysis_name</span><span class="o">=</span><span class="s2">&quot;publication_charges&quot;</span><span class="p">,</span>
+<span class="gp">... </span>                                               <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./publication_figures&quot;</span><span class="p">,</span>
+<span class="gp">... </span>                                               <span class="o">**</span><span class="n">pub_styling</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Publication-ready charge distribution figures generated&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Available figures:&quot;</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">charge_figures</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="lammpskit.ecellmodel.plot_atomic_distribution.html" class="btn btn-neutral float-left" title="lammpskit.ecellmodel.plot_atomic_distribution" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lammpskit.ecellmodel.plot_displacement_comparison.html" class="btn btn-neutral float-right" title="lammpskit.ecellmodel.plot_displacement_comparison" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Simanta Lahkar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,327 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LAMMPSKit Documentation &mdash; LAMMPSKit Documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=fc837d61"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            LAMMPSKit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_formats.html">Data Formats</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.html">lammpskit package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.config.html">lammpskit.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.io.html">lammpskit.io package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.plotting.html">lammpskit.plotting package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.ecellmodel.html">lammpskit.ecellmodel package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">LAMMPSKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">LAMMPSKit Documentation</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/simantalahkar/lammpskit/blob/main/docs/source/index.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="lammpskit-documentation">
+<h1>LAMMPSKit Documentation<a class="headerlink" href="#lammpskit-documentation" title="Link to this heading"></a></h1>
+<p><strong>LAMMPSKit</strong> is a Python toolkit for running, post-processing, and analyzing molecular dynamics (MD) simulations with LAMMPS. It provides a collection of functions and scripts to streamline simulation workflows and automate analysis of LAMMPS output data.</p>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Modular architecture</strong> with separate I/O, plotting, and analysis components</p></li>
+<li><p><strong>Comprehensive data processing</strong> for LAMMPS trajectory and displacement files</p></li>
+<li><p><strong>Advanced visualization tools</strong> including timeseries plotting with font customization</p></li>
+<li><p><strong>Atomic-scale analysis functions</strong> for distributions, charges, displacements, and clusters</p></li>
+<li><p><strong>Filament evolution tracking</strong> for electrochemical simulation analysis</p></li>
+<li><p><strong>Configuration management</strong> with centralized settings and validation</p></li>
+<li><p><strong>Complete example workflows</strong> demonstrating real-world usage patterns</p></li>
+<li><p><strong>Extensive test coverage</strong> with visual regression testing for plots</p></li>
+</ul>
+</section>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
+<p>Install from PyPI:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>lammpskit
+</pre></div>
+</div>
+<p>For development:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>.<span class="o">[</span>dev<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="quick-start">
+<h2>Quick Start<a class="headerlink" href="#quick-start" title="Link to this heading"></a></h2>
+<p>Basic workflow for electrochemical analysis:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">lammpskit</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">lk</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">DEFAULT_COLUMNS_TO_READ</span>
+
+<span class="c1"># Load trajectory data</span>
+<span class="n">file_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;trajectory1.lammpstrj&#39;</span><span class="p">,</span> <span class="s1">&#39;trajectory2.lammpstrj&#39;</span><span class="p">]</span>
+<span class="n">coords</span><span class="p">,</span> <span class="n">timesteps</span><span class="p">,</span> <span class="n">total_atoms</span><span class="p">,</span> <span class="n">xlo</span><span class="p">,</span> <span class="n">xhi</span><span class="p">,</span> <span class="n">ylo</span><span class="p">,</span> <span class="n">yhi</span><span class="p">,</span> <span class="n">zlo</span><span class="p">,</span> <span class="n">zhi</span> <span class="o">=</span> <span class="n">lk</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_coordinates</span><span class="p">(</span>
+    <span class="n">file_list</span><span class="p">,</span> <span class="n">skip_rows</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">columns_to_read</span><span class="o">=</span><span class="n">DEFAULT_COLUMNS_TO_READ</span><span class="p">)</span>
+
+<span class="c1"># Perform cluster analysis</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.ecellmodel.filament_layer_analysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_clusters</span>
+<span class="n">analyze_clusters</span><span class="p">(</span><span class="s1">&#39;trajectory1.lammpstrj&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="package-structure">
+<h2>Package Structure<a class="headerlink" href="#package-structure" title="Link to this heading"></a></h2>
+<p>LAMMPSKit features a modular architecture:</p>
+<ul class="simple">
+<li><p><strong>lammpskit.io</strong> - Data reading and I/O operations</p></li>
+<li><p><strong>lammpskit.plotting</strong> - Visualization utilities and timeseries plots</p></li>
+<li><p><strong>lammpskit.ecellmodel</strong> - Electrochemical analysis functions</p></li>
+<li><p><strong>lammpskit.config</strong> - Centralized configuration management</p></li>
+</ul>
+</section>
+<section id="target-applications">
+<h2>Target Applications<a class="headerlink" href="#target-applications" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Electrochemical memory device simulations (ReRAM, memristors)</p></li>
+<li><p>Ion transport and defect migration studies</p></li>
+<li><p>Phase transition analysis in oxide materials</p></li>
+<li><p>General LAMMPS trajectory post-processing</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-from-pypi">Install from PyPI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#install-from-source">Install from Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#docker-installation">Docker Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#verification">Verification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#development-setup">Development Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#dependency-management">Dependency Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#basic-workflow">Basic Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#example-workflow">Example Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#key-concepts">Key Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#memory-considerations">Memory Considerations</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api_reference.html#module-lammpskit">Package Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference.html#core-modules">Core Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api_reference.html#function-categories">Function Categories</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#basic-examples">Basic Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#electrochemical-analysis-examples">Electrochemical Analysis Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#advanced-examples">Advanced Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="examples.html#complete-workflow-example">Complete Workflow Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_formats.html">Data Formats</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="data_formats.html#lammps-trajectory-files">LAMMPS Trajectory Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_formats.html#displacement-data-files">Displacement Data Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_formats.html#output-formats">Output Formats</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_formats.html#memory-and-performance-considerations">Memory and Performance Considerations</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+<section id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Link to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">API Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.html">lammpskit package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.ecellmodel.html">lammpskit.ecellmodel package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.io.html">lammpskit.io package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.plotting.html">lammpskit.plotting package</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.config.html">lammpskit.config module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.html#module-lammpskit">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.html#modules">Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.html#target-applications">Target Applications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.html#performance-notes">Performance Notes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.html#community-extensions">Community Extensions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.config.html">lammpskit.config module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.config.html#key-functions">Key Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.config.html#plot-configuration-system">Plot Configuration System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.config.html#font-configuration-examples">Font Configuration Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.config.html#analysis-configuration-usage">Analysis Configuration Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.config.html#system-configuration-examples">System Configuration Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.config.html#configuration-inheritance">Configuration Inheritance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.config.html#runtime-configuration-override">Runtime Configuration Override</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.config.html#validation-and-type-safety">Validation and Type Safety</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.config.html#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.config.html#related-components">Related Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.config.html#module-lammpskit.config">Module Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.config.html#lammpskit-configuration-module">LAMMPSKit Configuration Module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.config.html#lammpskit.config.validate_filepath"><code class="docutils literal notranslate"><span class="pre">validate_filepath()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.config.html#lammpskit.config.validate_dataindex"><code class="docutils literal notranslate"><span class="pre">validate_dataindex()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.config.html#lammpskit.config.validate_file_list"><code class="docutils literal notranslate"><span class="pre">validate_file_list()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.config.html#lammpskit.config.validate_loop_parameters"><code class="docutils literal notranslate"><span class="pre">validate_loop_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.config.html#lammpskit.config.validate_chunks_parameter"><code class="docutils literal notranslate"><span class="pre">validate_chunks_parameter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.config.html#lammpskit.config.validate_cluster_parameters"><code class="docutils literal notranslate"><span class="pre">validate_cluster_parameters()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.io.html">lammpskit.io package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.io.html#key-features">Key Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.io.html#core-functions">Core Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.io.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.io.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.io.lammps_readers.html">lammpskit.io.lammps_readers module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.io.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.plotting.html">lammpskit.plotting package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.plotting.html#key-features">Key Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.plotting.html#package-architecture">Package Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.plotting.html#core-functions">Core Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.plotting.html#styling-standards">Styling Standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.plotting.html#usage-examples">Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.plotting.html#performance-notes">Performance Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.plotting.html#related-modules">Related Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.plotting.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.plotting.timeseries_plots.html">lammpskit.plotting.timeseries_plots module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.plotting.utils.html">lammpskit.plotting.utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.plotting.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.ecellmodel.html">lammpskit.ecellmodel package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.ecellmodel.html#package-overview">Package Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.ecellmodel.html#key-capabilities">Key Capabilities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.ecellmodel.html#architecture">Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.ecellmodel.html#usage-workflow">Usage Workflow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.ecellmodel.html#integration-with-lammpskit-ecosystem">Integration with LAMMPSKit Ecosystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.ecellmodel.html#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.ecellmodel.html#submodules">Submodules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.ecellmodel.data_processing.html">lammpskit.ecellmodel.data_processing module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.ecellmodel.filament_layer_analysis.html">lammpskit.ecellmodel.filament_layer_analysis module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.ecellmodel.html#common-analysis-tasks">Common Analysis Tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.ecellmodel.html#research-applications">Research Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.ecellmodel.html#related-documentation">Related Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.ecellmodel.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Link to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Simanta Lahkar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

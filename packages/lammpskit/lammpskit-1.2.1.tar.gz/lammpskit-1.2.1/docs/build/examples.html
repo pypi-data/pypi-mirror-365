@@ -1,0 +1,459 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Examples &mdash; LAMMPSKit Documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=fc837d61"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Data Formats" href="data_formats.html" />
+    <link rel="prev" title="lammpskit.plotting.DualAxisPlotConfig" href="generated/lammpskit.plotting.DualAxisPlotConfig.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            LAMMPSKit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#basic-examples">Basic Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#reading-trajectory-files">Reading Trajectory Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#loading-coordinate-data">Loading Coordinate Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#general-plotting">General Plotting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#electrochemical-analysis-examples">Electrochemical Analysis Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#atomic-distribution-analysis">Atomic Distribution Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#charge-distribution-analysis">Charge Distribution Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filament-evolution-tracking">Filament Evolution Tracking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cluster-analysis">Cluster Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#displacement-analysis">Displacement Analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#advanced-examples">Advanced Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#time-series-plotting">Time Series Plotting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#memory-efficient-processing">Memory-Efficient Processing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#complete-workflow-example">Complete Workflow Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="data_formats.html">Data Formats</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.html">lammpskit package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.config.html">lammpskit.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.io.html">lammpskit.io package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.plotting.html">lammpskit.plotting package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.ecellmodel.html">lammpskit.ecellmodel package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">LAMMPSKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Examples</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/simantalahkar/lammpskit/blob/main/docs/source/examples.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h1>
+<p>This section provides practical examples demonstrating LAMMPSKit capabilities for various analysis workflows.</p>
+<section id="basic-examples">
+<h2>Basic Examples<a class="headerlink" href="#basic-examples" title="Link to this heading"></a></h2>
+<section id="reading-trajectory-files">
+<h3>Reading Trajectory Files<a class="headerlink" href="#reading-trajectory-files" title="Link to this heading"></a></h3>
+<p>Extract simulation metadata from a single trajectory file:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_structure_info</span>
+
+<span class="c1"># Read basic simulation parameters</span>
+<span class="n">timestep</span><span class="p">,</span> <span class="n">total_atoms</span><span class="p">,</span> <span class="n">xlo</span><span class="p">,</span> <span class="n">xhi</span><span class="p">,</span> <span class="n">ylo</span><span class="p">,</span> <span class="n">yhi</span><span class="p">,</span> <span class="n">zlo</span><span class="p">,</span> <span class="n">zhi</span> <span class="o">=</span> <span class="n">read_structure_info</span><span class="p">(</span><span class="s1">&#39;dump.lammpstrj&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Timestep: </span><span class="si">{</span><span class="n">timestep</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of atoms: </span><span class="si">{</span><span class="n">total_atoms</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Box dimensions: X=[</span><span class="si">{</span><span class="n">xlo</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">xhi</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">], Y=[</span><span class="si">{</span><span class="n">ylo</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">yhi</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">], Z=[</span><span class="si">{</span><span class="n">zlo</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">zhi</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">]&quot;</span><span class="p">)</span>
+
+<span class="c1"># Calculate electrode separation for electrochemical cells</span>
+<span class="n">electrode_separation</span> <span class="o">=</span> <span class="n">zhi</span> <span class="o">-</span> <span class="n">zlo</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Electrode separation: </span><span class="si">{</span><span class="n">electrode_separation</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> Å&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="loading-coordinate-data">
+<h3>Loading Coordinate Data<a class="headerlink" href="#loading-coordinate-data" title="Link to this heading"></a></h3>
+<p>Load atomic coordinates from multiple trajectory files:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_coordinates</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">DEFAULT_COLUMNS_TO_READ</span>
+
+<span class="c1"># Get sorted list of trajectory files</span>
+<span class="n">files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;dump.*.lammpstrj&#39;</span><span class="p">))</span>
+
+<span class="c1"># Load coordinates with standard column configuration</span>
+<span class="n">coords</span><span class="p">,</span> <span class="n">timesteps</span><span class="p">,</span> <span class="n">total_atoms</span><span class="p">,</span> <span class="n">xlo</span><span class="p">,</span> <span class="n">xhi</span><span class="p">,</span> <span class="n">ylo</span><span class="p">,</span> <span class="n">yhi</span><span class="p">,</span> <span class="n">zlo</span><span class="p">,</span> <span class="n">zhi</span> <span class="o">=</span> <span class="n">read_coordinates</span><span class="p">(</span>
+    <span class="n">files</span><span class="p">,</span> <span class="n">skip_rows</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">columns_to_read</span><span class="o">=</span><span class="n">DEFAULT_COLUMNS_TO_READ</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loaded </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">files</span><span class="p">)</span><span class="si">}</span><span class="s2"> files with </span><span class="si">{</span><span class="n">coords</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Timestep range: </span><span class="si">{</span><span class="n">timesteps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">timesteps</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Coordinate array shape: </span><span class="si">{</span><span class="n">coords</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>  <span class="c1"># (n_files, n_atoms, n_columns)</span>
+</pre></div>
+</div>
+</section>
+<section id="general-plotting">
+<h3>General Plotting<a class="headerlink" href="#general-plotting" title="Link to this heading"></a></h3>
+<p>Create comparative plots for multiple datasets:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_multiple_cases</span>
+
+<span class="c1"># Generate sample data - atomic distributions along z-axis</span>
+<span class="n">z_positions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">hf_distribution_set</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>      <span class="c1"># Hafnium atoms in SET state</span>
+<span class="n">hf_distribution_reset</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>     <span class="c1"># Hafnium atoms in RESET state</span>
+
+<span class="c1"># Combine data for multi-case plotting</span>
+<span class="n">distributions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">hf_distribution_set</span><span class="p">,</span> <span class="n">hf_distribution_reset</span><span class="p">])</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SET state&#39;</span><span class="p">,</span> <span class="s1">&#39;RESET state&#39;</span><span class="p">]</span>
+
+<span class="c1"># Create comparative plot</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">plot_multiple_cases</span><span class="p">(</span>
+    <span class="n">distributions</span><span class="p">,</span> <span class="n">z_positions</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span>
+    <span class="s1">&#39;Hf atom count&#39;</span><span class="p">,</span> <span class="s1">&#39;Z position (Å)&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;hafnium_distribution&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="n">output_dir</span><span class="o">=</span><span class="s1">&#39;./plots&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="electrochemical-analysis-examples">
+<h2>Electrochemical Analysis Examples<a class="headerlink" href="#electrochemical-analysis-examples" title="Link to this heading"></a></h2>
+<section id="atomic-distribution-analysis">
+<h3>Atomic Distribution Analysis<a class="headerlink" href="#atomic-distribution-analysis" title="Link to this heading"></a></h3>
+<p>Analyze spatial distributions of different atom types:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.ecellmodel.filament_layer_analysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_atomic_distribution</span>
+
+<span class="c1"># Define analysis parameters</span>
+<span class="n">file_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;set_state.lammpstrj&#39;</span><span class="p">,</span> <span class="s1">&#39;reset_state.lammpstrj&#39;</span><span class="p">]</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;SET&#39;</span><span class="p">,</span> <span class="s1">&#39;RESET&#39;</span><span class="p">]</span>
+<span class="n">z_bins</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">60</span><span class="p">]</span>  <span class="c1"># [z_min, z_max, n_bins]</span>
+
+<span class="c1"># Perform atomic distribution analysis</span>
+<span class="n">plot_atomic_distribution</span><span class="p">(</span>
+    <span class="n">file_list</span><span class="o">=</span><span class="n">file_list</span><span class="p">,</span>
+    <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>
+    <span class="n">skip_rows</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+    <span class="n">z_bins</span><span class="o">=</span><span class="n">z_bins</span><span class="p">,</span>
+    <span class="n">analysis_name</span><span class="o">=</span><span class="s1">&#39;voltage_comparison&#39;</span><span class="p">,</span>
+    <span class="n">output_dir</span><span class="o">=</span><span class="s1">&#39;./analysis_output&#39;</span><span class="p">,</span>
+    <span class="n">columns_to_read</span><span class="o">=</span><span class="n">DEFAULT_COLUMNS_TO_READ</span>
+<span class="p">)</span>
+
+<span class="c1"># This generates plots for:</span>
+<span class="c1"># - Hafnium (Hf) distribution</span>
+<span class="c1"># - Oxygen (O) distribution</span>
+<span class="c1"># - Tantalum (Ta) distribution</span>
+<span class="c1"># - Metal atom distribution</span>
+<span class="c1"># - Stoichiometry analysis</span>
+</pre></div>
+</div>
+</section>
+<section id="charge-distribution-analysis">
+<h3>Charge Distribution Analysis<a class="headerlink" href="#charge-distribution-analysis" title="Link to this heading"></a></h3>
+<p>Analyze atomic charge distributions across the electrochemical cell:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.ecellmodel.filament_layer_analysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_atomic_charge_distribution</span>
+
+<span class="c1"># Charge distribution analysis with custom parameters</span>
+<span class="n">plot_atomic_charge_distribution</span><span class="p">(</span>
+    <span class="n">file_list</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;trajectory_1.lammpstrj&#39;</span><span class="p">,</span> <span class="s1">&#39;trajectory_2.lammpstrj&#39;</span><span class="p">],</span>
+    <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;0.5V&#39;</span><span class="p">,</span> <span class="s1">&#39;1.0V&#39;</span><span class="p">],</span>
+    <span class="n">skip_rows</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+    <span class="n">z_bins</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">80</span><span class="p">],</span>  <span class="c1"># Higher resolution binning</span>
+    <span class="n">analysis_name</span><span class="o">=</span><span class="s1">&#39;charge_evolution&#39;</span><span class="p">,</span>
+    <span class="n">output_dir</span><span class="o">=</span><span class="s1">&#39;./charge_analysis&#39;</span><span class="p">,</span>
+    <span class="n">columns_to_read</span><span class="o">=</span><span class="n">EXTENDED_COLUMNS_TO_READ</span>  <span class="c1"># Include charge data</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="filament-evolution-tracking">
+<h3>Filament Evolution Tracking<a class="headerlink" href="#filament-evolution-tracking" title="Link to this heading"></a></h3>
+<p>Track filament connectivity and structural evolution over time:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.ecellmodel.filament_layer_analysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">track_filament_evolution</span>
+
+<span class="c1"># Time series analysis parameters</span>
+<span class="n">trajectory_files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;evolution_*.lammpstrj&#39;</span><span class="p">))</span>
+<span class="n">TIME_STEP</span> <span class="o">=</span> <span class="mf">0.001</span>  <span class="c1"># ps per MD step</span>
+<span class="n">DUMP_INTERVAL_STEPS</span> <span class="o">=</span> <span class="mi">500</span>  <span class="c1"># steps between trajectory dumps</span>
+
+<span class="c1"># Track filament properties over time</span>
+<span class="n">track_filament_evolution</span><span class="p">(</span>
+    <span class="n">file_list</span><span class="o">=</span><span class="n">trajectory_files</span><span class="p">,</span>
+    <span class="n">analysis_name</span><span class="o">=</span><span class="s1">&#39;filament_evolution&#39;</span><span class="p">,</span>
+    <span class="n">time_step</span><span class="o">=</span><span class="n">TIME_STEP</span><span class="p">,</span>
+    <span class="n">dump_interval_steps</span><span class="o">=</span><span class="n">DUMP_INTERVAL_STEPS</span><span class="p">,</span>
+    <span class="n">output_dir</span><span class="o">=</span><span class="s1">&#39;./evolution_analysis&#39;</span><span class="p">,</span>
+    <span class="n">columns_to_read</span><span class="o">=</span><span class="n">DEFAULT_COLUMNS_TO_READ</span>
+<span class="p">)</span>
+
+<span class="c1"># Generates plots for:</span>
+<span class="c1"># - Connectivity state over time</span>
+<span class="c1"># - Filament gap distance evolution</span>
+<span class="c1"># - Filament separation changes</span>
+<span class="c1"># - Cluster size distribution</span>
+</pre></div>
+</div>
+</section>
+<section id="cluster-analysis">
+<h3>Cluster Analysis<a class="headerlink" href="#cluster-analysis" title="Link to this heading"></a></h3>
+<p>Perform OVITO-based cluster analysis for filament characterization:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.ecellmodel.filament_layer_analysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">analyze_clusters</span>
+
+<span class="c1"># Single-file cluster analysis</span>
+<span class="n">cluster_results</span> <span class="o">=</span> <span class="n">analyze_clusters</span><span class="p">(</span><span class="s1">&#39;filament_snapshot.lammpstrj&#39;</span><span class="p">)</span>
+
+<span class="c1"># The function automatically:</span>
+<span class="c1"># - Identifies metallic atom clusters</span>
+<span class="c1"># - Calculates connectivity across electrodes</span>
+<span class="c1"># - Determines filament gap distances</span>
+<span class="c1"># - Analyzes cluster size distributions</span>
+<span class="c1"># - Saves visualization images</span>
+</pre></div>
+</div>
+</section>
+<section id="displacement-analysis">
+<h3>Displacement Analysis<a class="headerlink" href="#displacement-analysis" title="Link to this heading"></a></h3>
+<p>Compare atomic displacements between different simulation conditions:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.ecellmodel.filament_layer_analysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">plot_displacement_comparison</span>
+
+<span class="c1"># Displacement data files (processed LAMMPS output)</span>
+<span class="n">displacement_files</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">&#39;displacement_low_temp.dat&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;displacement_high_temp.dat&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;displacement_medium_temp.dat&#39;</span>
+<span class="p">]</span>
+
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;300K&#39;</span><span class="p">,</span> <span class="s1">&#39;600K&#39;</span><span class="p">,</span> <span class="s1">&#39;450K&#39;</span><span class="p">]</span>
+
+<span class="c1"># Compare displacement profiles</span>
+<span class="n">plot_displacement_comparison</span><span class="p">(</span>
+    <span class="n">file_list</span><span class="o">=</span><span class="n">displacement_files</span><span class="p">,</span>
+    <span class="n">loop_start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">loop_end</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>
+    <span class="n">analysis_name</span><span class="o">=</span><span class="s1">&#39;temperature_comparison&#39;</span><span class="p">,</span>
+    <span class="n">repeat_count</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>  <span class="c1"># Number of repeated measurements</span>
+    <span class="n">output_dir</span><span class="o">=</span><span class="s1">&#39;./displacement_analysis&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="advanced-examples">
+<h2>Advanced Examples<a class="headerlink" href="#advanced-examples" title="Link to this heading"></a></h2>
+<section id="time-series-plotting">
+<h3>Time Series Plotting<a class="headerlink" href="#time-series-plotting" title="Link to this heading"></a></h3>
+<p>Create customized time series plots with dual axes:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_dual_axis_plot</span><span class="p">,</span> <span class="n">DualAxisPlotConfig</span>
+
+<span class="c1"># Generate sample time series data</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>  <span class="c1"># Time in ps</span>
+<span class="n">connectivity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>  <span class="c1"># Connectivity percentage</span>
+<span class="n">temperature</span> <span class="o">=</span> <span class="mi">300</span> <span class="o">+</span> <span class="mi">50</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">time</span> <span class="o">/</span> <span class="mi">20</span><span class="p">)</span>  <span class="c1"># Temperature oscillation</span>
+
+<span class="c1"># Configure dual-axis plot</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">DualAxisPlotConfig</span><span class="p">(</span>
+    <span class="n">primary_color</span><span class="o">=</span><span class="s1">&#39;tab:red&#39;</span><span class="p">,</span>
+    <span class="n">secondary_color</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span>
+<span class="p">)</span>
+
+<span class="c1"># Create dual-axis plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span> <span class="o">=</span> <span class="n">create_dual_axis_plot</span><span class="p">(</span>
+    <span class="n">x_data</span><span class="o">=</span><span class="n">time</span><span class="p">,</span>
+    <span class="n">primary_y_data</span><span class="o">=</span><span class="n">connectivity</span><span class="p">,</span>
+    <span class="n">secondary_y_data</span><span class="o">=</span><span class="n">temperature</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Filament Evolution vs Temperature&#39;</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time (ps)&#39;</span><span class="p">,</span>
+    <span class="n">primary_ylabel</span><span class="o">=</span><span class="s1">&#39;Connectivity (%)&#39;</span><span class="p">,</span>
+    <span class="n">secondary_ylabel</span><span class="o">=</span><span class="s1">&#39;Temperature (K)&#39;</span><span class="p">,</span>
+    <span class="n">primary_stats_label</span><span class="o">=</span><span class="s1">&#39;Connectivity: Mean=45.2%, Std=12.1%&#39;</span><span class="p">,</span>
+    <span class="n">secondary_stats_label</span><span class="o">=</span><span class="s1">&#39;Temperature: Mean=315.4K, Std=25.8K&#39;</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="n">config</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="memory-efficient-processing">
+<h3>Memory-Efficient Processing<a class="headerlink" href="#memory-efficient-processing" title="Link to this heading"></a></h3>
+<p>Handle large datasets with memory optimization:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">DEFAULT_COLUMNS_TO_READ</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.io</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_coordinates</span>
+
+<span class="c1"># For very large trajectory sets, process in batches</span>
+<span class="n">all_files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;large_trajectory_*.lammpstrj&#39;</span><span class="p">))</span>
+<span class="n">batch_size</span> <span class="o">=</span> <span class="mi">10</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">all_files</span><span class="p">),</span> <span class="n">batch_size</span><span class="p">):</span>
+    <span class="n">batch_files</span> <span class="o">=</span> <span class="n">all_files</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">batch_size</span><span class="p">]</span>
+
+    <span class="c1"># Use core columns only to reduce memory usage</span>
+    <span class="n">core_columns</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>  <span class="c1"># id, type, charge, x, y, z</span>
+
+    <span class="n">coords</span><span class="p">,</span> <span class="n">timesteps</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="o">*</span><span class="n">box</span> <span class="o">=</span> <span class="n">read_coordinates</span><span class="p">(</span>
+        <span class="n">batch_files</span><span class="p">,</span> <span class="n">skip_rows</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">columns_to_read</span><span class="o">=</span><span class="n">core_columns</span><span class="p">)</span>
+
+    <span class="c1"># Process this batch</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processed batch </span><span class="si">{</span><span class="n">i</span><span class="o">//</span><span class="n">batch_size</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">coords</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Perform analysis on this batch...</span>
+    <span class="c1"># analyze_batch(coords, timesteps, atoms, box)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="complete-workflow-example">
+<h2>Complete Workflow Example<a class="headerlink" href="#complete-workflow-example" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">usage/ecellmodel/run_analysis.py</span></code> script demonstrates a comprehensive analysis workflow:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Complete LAMMPSKit analysis workflow example.</span>
+
+<span class="sd">This script demonstrates:</span>
+<span class="sd">1. Filament evolution tracking</span>
+<span class="sd">2. Displacement analysis</span>
+<span class="sd">3. Charge distribution analysis</span>
+<span class="sd">4. Atomic distribution analysis</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="c1"># Add package to path if running from repository</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">repo_root</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">parent</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">repo_root</span><span class="p">))</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.ecellmodel.filament_layer_analysis</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">track_filament_evolution</span><span class="p">,</span>
+    <span class="n">plot_atomic_distribution</span><span class="p">,</span>
+    <span class="n">plot_atomic_charge_distribution</span><span class="p">,</span>
+    <span class="n">plot_displacement_comparison</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">EXTENDED_COLUMNS_TO_READ</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Main analysis workflow.&quot;&quot;&quot;</span>
+    <span class="n">output_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;usage&quot;</span><span class="p">,</span> <span class="s2">&quot;ecellmodel&quot;</span><span class="p">,</span> <span class="s2">&quot;output&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Analysis Block 1: Filament Evolution Tracking</span>
+    <span class="n">TIME_STEP</span> <span class="o">=</span> <span class="mf">0.001</span>
+    <span class="n">DUMP_INTERVAL_STEPS</span> <span class="o">=</span> <span class="mi">500</span>
+
+    <span class="n">data_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">,</span> <span class="s2">&quot;usage&quot;</span><span class="p">,</span> <span class="s2">&quot;ecellmodel&quot;</span><span class="p">,</span> <span class="s2">&quot;data&quot;</span><span class="p">,</span> <span class="s2">&quot;trajectory_series&quot;</span><span class="p">,</span> <span class="s2">&quot;*.lammpstrj&quot;</span><span class="p">)</span>
+    <span class="n">file_list</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">data_path</span><span class="p">))</span>
+
+    <span class="k">if</span> <span class="n">file_list</span><span class="p">:</span>
+        <span class="n">track_filament_evolution</span><span class="p">(</span>
+            <span class="n">file_list</span><span class="o">=</span><span class="n">file_list</span><span class="p">,</span>
+            <span class="n">analysis_name</span><span class="o">=</span><span class="s1">&#39;evolution_tracking&#39;</span><span class="p">,</span>
+            <span class="n">time_step</span><span class="o">=</span><span class="n">TIME_STEP</span><span class="p">,</span>
+            <span class="n">dump_interval_steps</span><span class="o">=</span><span class="n">DUMP_INTERVAL_STEPS</span><span class="p">,</span>
+            <span class="n">output_dir</span><span class="o">=</span><span class="n">output_dir</span><span class="p">,</span>
+            <span class="n">columns_to_read</span><span class="o">=</span><span class="n">EXTENDED_COLUMNS_TO_READ</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Additional analysis blocks for displacement, charge, and atomic distributions...</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This example demonstrates how to structure a complete analysis pipeline using LAMMPSKit’s modular architecture.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="generated/lammpskit.plotting.DualAxisPlotConfig.html" class="btn btn-neutral float-left" title="lammpskit.plotting.DualAxisPlotConfig" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="data_formats.html" class="btn btn-neutral float-right" title="Data Formats" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Simanta Lahkar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,446 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lammpskit.io.lammps_readers &mdash; LAMMPSKit 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            LAMMPSKit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_formats.html">Data Formats</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../lammpskit.html">lammpskit package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lammpskit.config.html">lammpskit.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lammpskit.io.html">lammpskit.io package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lammpskit.plotting.html">lammpskit.plotting package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lammpskit.ecellmodel.html">lammpskit.ecellmodel package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">LAMMPSKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">lammpskit.io.lammps_readers</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for lammpskit.io.lammps_readers</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">LAMMPS trajectory file readers for molecular dynamics analysis.</span>
+
+<span class="sd">This module provides robust I/O functionality for parsing LAMMPS dump files and extracting</span>
+<span class="sd">simulation metadata. Functions are designed for general-purpose use across different MD</span>
+<span class="sd">analysis workflows, with particular emphasis on electrochemical cell simulations.</span>
+
+<span class="sd">Key Features</span>
+<span class="sd">------------</span>
+<span class="sd">- Automatic LAMMPS dump format detection and parsing</span>
+<span class="sd">- Robust error handling for malformed or incomplete files</span>
+<span class="sd">- Memory-efficient coordinate loading with column selection</span>
+<span class="sd">- Batch processing capabilities for multi-trajectory analysis</span>
+<span class="sd">- Simulation box parameter extraction for spatial analysis</span>
+
+<span class="sd">File Format Support</span>
+<span class="sd">-------------------</span>
+<span class="sd">Supports standard LAMMPS dump format with headers:</span>
+<span class="sd">- ITEM: TIMESTEP</span>
+<span class="sd">- ITEM: NUMBER OF ATOMS</span>
+<span class="sd">- ITEM: BOX BOUNDS [units]</span>
+<span class="sd">- ITEM: ATOMS [column headers]</span>
+
+<span class="sd">Performance Notes</span>
+<span class="sd">-----------------</span>
+<span class="sd">Memory usage: O(N * M * C) where N=atoms, M=files, C=columns</span>
+<span class="sd">For large trajectories (&gt;10^6 atoms), use column selection to minimize memory footprint.</span>
+<span class="sd">Batch processing is optimized for time-series analysis workflows.</span>
+
+<span class="sd">Error Handling Philosophy</span>
+<span class="sd">-------------------------</span>
+<span class="sd">Functions use fail-fast approach with descriptive error messages to catch file format</span>
+<span class="sd">issues early. Validation ensures data consistency across multi-file analysis workflows.</span>
+
+<span class="sd">Examples</span>
+<span class="sd">--------</span>
+<span class="sd">Extract simulation metadata:</span>
+
+<span class="sd">&gt;&gt;&gt; timestep, atoms, xlo, xhi, ylo, yhi, zlo, zhi = read_structure_info(&#39;dump.lammpstrj&#39;)</span>
+
+<span class="sd">Load coordinates for analysis:</span>
+
+<span class="sd">&gt;&gt;&gt; from lammpskit.config import DEFAULT_COLUMNS_TO_READ</span>
+<span class="sd">&gt;&gt;&gt; coords, timesteps, atoms, xlo, xhi, ylo, yhi, zlo, zhi = read_coordinates(</span>
+<span class="sd">...     [&#39;dump1.lammpstrj&#39;, &#39;dump2.lammpstrj&#39;], skip_rows=9,</span>
+<span class="sd">...     columns_to_read=DEFAULT_COLUMNS_TO_READ)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tuple</span>
+
+<span class="c1"># Import validation functions from config</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..config</span><span class="w"> </span><span class="kn">import</span> <span class="n">validate_file_list</span>
+
+
+<div class="viewcode-block" id="read_structure_info">
+<a class="viewcode-back" href="../../../lammpskit.io.lammps_readers.html#lammpskit.io.read_structure_info">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_structure_info</span><span class="p">(</span><span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extract simulation metadata from LAMMPS trajectory file header.</span>
+
+<span class="sd">    Parses LAMMPS dump file to extract timestep, atom count, and simulation box dimensions.</span>
+<span class="sd">    Essential for setting up analysis workflows and validating trajectory consistency.</span>
+<span class="sd">    Robust to common file format variations and provides detailed error diagnostics.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filepath : str</span>
+<span class="sd">        Path to LAMMPS trajectory file (.lammpstrj or .dump format).</span>
+<span class="sd">        Supports both absolute and relative paths.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    timestep : int</span>
+<span class="sd">        Simulation timestep number. Used for temporal analysis and file sequencing.</span>
+<span class="sd">    total_atoms : int</span>
+<span class="sd">        Total number of atoms in simulation. Critical for memory allocation and validation.</span>
+<span class="sd">    xlo, xhi : float</span>
+<span class="sd">        Lower and upper x-bounds of simulation box (Angstroms).</span>
+<span class="sd">        Defines spatial domain for analysis.</span>
+<span class="sd">    ylo, yhi : float</span>
+<span class="sd">        Lower and upper y-bounds of simulation box (Angstroms).</span>
+<span class="sd">        Used for periodic boundary condition handling.</span>
+<span class="sd">    zlo, zhi : float</span>
+<span class="sd">        Lower and upper z-bounds of simulation box (Angstroms).</span>
+<span class="sd">        Essential for layer analysis in electrochemical cells.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    FileNotFoundError</span>
+<span class="sd">        If trajectory file doesn&#39;t exist at specified path.</span>
+<span class="sd">    EOFError</span>
+<span class="sd">        If file is truncated or missing required header sections.</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If header data is malformed or non-numeric values found.</span>
+<span class="sd">    OSError</span>
+<span class="sd">        If file permissions or disk I/O errors occur.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Function expects standard LAMMPS dump format with fixed header structure.</span>
+<span class="sd">    Box bounds are returned in simulation units (typically Angstroms for MD).</span>
+<span class="sd">    For triclinic cells, only orthogonal bounds are extracted.</span>
+
+<span class="sd">    Performance</span>
+<span class="sd">    -----------</span>
+<span class="sd">    Computational complexity: O(1) - reads only file header</span>
+<span class="sd">    Memory usage: O(1) - minimal memory footprint</span>
+<span class="sd">    Typical execution time: &lt;1ms for standard trajectory files</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Extract metadata for single trajectory:</span>
+
+<span class="sd">    &gt;&gt;&gt; timestep, atoms, xlo, xhi, ylo, yhi, zlo, zhi = read_structure_info(&#39;dump.100000.lammpstrj&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; box_size_z = zhi - zlo  # Calculate electrode separation</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;Timestep {timestep}: {atoms} atoms, box height {box_size_z:.2f} Å&quot;)</span>
+
+<span class="sd">    Validate trajectory sequence:</span>
+
+<span class="sd">    &gt;&gt;&gt; import glob</span>
+<span class="sd">    &gt;&gt;&gt; files = sorted(glob.glob(&#39;dump.*.lammpstrj&#39;))</span>
+<span class="sd">    &gt;&gt;&gt; for f in files:</span>
+<span class="sd">    ...     ts, atoms, *box = read_structure_info(f)</span>
+<span class="sd">    ...     print(f&quot;File {f}: timestep {ts}, {atoms} atoms&quot;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">skip</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="c1"># Skip header lines before timestep</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">skip</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="nb">next</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">StopIteration</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File is empty: </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="c1"># Read timestep</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">line</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">EOFError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Missing data for Timestep: </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">c0</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\s+|\s|, |,&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">ele</span> <span class="k">for</span> <span class="n">ele</span> <span class="ow">in</span> <span class="n">c0</span> <span class="k">if</span> <span class="n">ele</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">timestep</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">except</span> <span class="p">(</span><span class="ne">IndexError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Malformed timestep line in file: </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2"> (got: </span><span class="si">{</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Skip header lines before total atoms</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">skip</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="nb">next</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">StopIteration</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Missing section for total atoms: </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">line</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">EOFError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Missing data for total atoms: </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">c0</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\s+|\s|, |,&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">ele</span> <span class="k">for</span> <span class="n">ele</span> <span class="ow">in</span> <span class="n">c0</span> <span class="k">if</span> <span class="n">ele</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">total_atoms</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="k">except</span> <span class="p">(</span><span class="ne">IndexError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Malformed total atoms line in file: </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2"> (got: </span><span class="si">{</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Skip header lines before box bounds</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">skip</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="nb">next</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+                    <span class="k">raise</span> <span class="ne">StopIteration</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Missing section for box bounds: </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="c1"># Read x bounds</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">line</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">EOFError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Missing data for x bounds: </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">c0</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\s+|\s|, |,&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">ele</span> <span class="k">for</span> <span class="n">ele</span> <span class="ow">in</span> <span class="n">c0</span> <span class="k">if</span> <span class="n">ele</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">xlo</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">xhi</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">except</span> <span class="p">(</span><span class="ne">IndexError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Malformed x bounds line in file: </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2"> (got: </span><span class="si">{</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Read y bounds</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">line</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">EOFError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Missing data for y bounds: </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">c0</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\s+|\s|, |,&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">ele</span> <span class="k">for</span> <span class="n">ele</span> <span class="ow">in</span> <span class="n">c0</span> <span class="k">if</span> <span class="n">ele</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">ylo</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">yhi</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">except</span> <span class="p">(</span><span class="ne">IndexError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Malformed y bounds line in file: </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2"> (got: </span><span class="si">{</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Read z bounds</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">line</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">EOFError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Missing data for z bounds: </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">c0</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\s+|\s|, |,&quot;</span><span class="p">,</span> <span class="n">line</span><span class="p">)</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="n">ele</span> <span class="k">for</span> <span class="n">ele</span> <span class="ow">in</span> <span class="n">c0</span> <span class="k">if</span> <span class="n">ele</span><span class="o">.</span><span class="n">strip</span><span class="p">()]</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">zlo</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+                <span class="n">zhi</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="k">except</span> <span class="p">(</span><span class="ne">IndexError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Malformed z bounds line in file: </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2"> (got: </span><span class="si">{</span><span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">timestep</span><span class="p">,</span> <span class="n">total_atoms</span><span class="p">,</span> <span class="n">xlo</span><span class="p">,</span> <span class="n">xhi</span><span class="p">,</span> <span class="n">ylo</span><span class="p">,</span> <span class="n">yhi</span><span class="p">,</span> <span class="n">zlo</span><span class="p">,</span> <span class="n">zhi</span>
+    <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File not found: </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error opening file </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="read_coordinates">
+<a class="viewcode-back" href="../../../lammpskit.io.lammps_readers.html#lammpskit.io.read_coordinates">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">read_coordinates</span><span class="p">(</span>
+    <span class="n">file_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">skip_rows</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">columns_to_read</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load atomic coordinates and metadata from multiple LAMMPS trajectory files.</span>
+
+<span class="sd">    Efficiently reads trajectory sequences for time-series analysis, extracting atomic</span>
+<span class="sd">    coordinates and simulation parameters. Optimized for batch processing in electrochemical</span>
+<span class="sd">    cell analysis workflows. Provides comprehensive validation and memory-efficient loading</span>
+<span class="sd">    with selective column reading.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file_list : list of str</span>
+<span class="sd">        Trajectory files in temporal order. Typically generated from glob patterns</span>
+<span class="sd">        like &#39;dump.*.lammpstrj&#39; or timestep sequences.</span>
+<span class="sd">    skip_rows : int</span>
+<span class="sd">        Header lines to skip before atomic data section. Standard LAMMPS format uses 9.</span>
+<span class="sd">        Accounts for TIMESTEP, NUMBER OF ATOMS, BOX BOUNDS, and ATOMS header lines.</span>
+<span class="sd">    columns_to_read : tuple of int</span>
+<span class="sd">        Column indices for atomic properties. Standard LAMMPS format:</span>
+<span class="sd">        (0=id, 1=type, 2=charge, 3=x, 4=y, 5=z, 6=vx, 7=vy, 8=vz, ...)</span>
+<span class="sd">        Use DEFAULT_COLUMNS_TO_READ or EXTENDED_COLUMNS_TO_READ from config.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    coordinates : np.ndarray, shape (n_files, n_atoms, n_columns)</span>
+<span class="sd">        Atomic coordinate arrays for all files. First dimension indexes files,</span>
+<span class="sd">        second dimension indexes atoms, third dimension indexes properties.</span>
+<span class="sd">    timestep_arr : np.ndarray, shape (n_files,)</span>
+<span class="sd">        Simulation timesteps corresponding to each file. Used for temporal analysis.</span>
+<span class="sd">    total_atoms : int</span>
+<span class="sd">        Number of atoms per file. Validated for consistency across all files.</span>
+<span class="sd">    xlo, xhi : float</span>
+<span class="sd">        Simulation box x-bounds in Angstroms. Used for periodic boundary calculations.</span>
+<span class="sd">    ylo, yhi : float</span>
+<span class="sd">        Simulation box y-bounds in Angstroms. Essential for spatial analysis setup.</span>
+<span class="sd">    zlo, zhi : float</span>
+<span class="sd">        Simulation box z-bounds in Angstroms. Critical for electrode separation in</span>
+<span class="sd">        electrochemical cell analysis.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If file_list is empty, column indices are invalid, or atomic data is malformed.</span>
+<span class="sd">    EOFError</span>
+<span class="sd">        If any file has fewer atomic lines than expected from header.</span>
+<span class="sd">    FileNotFoundError</span>
+<span class="sd">        If any file in file_list doesn&#39;t exist (raised by validate_file_list).</span>
+
+<span class="sd">    Performance Notes</span>
+<span class="sd">    -----------------</span>
+<span class="sd">    Memory complexity: O(F * N * C) where F=files, N=atoms, C=columns</span>
+<span class="sd">    Time complexity: O(F * N) for coordinate loading</span>
+<span class="sd">    Memory optimization: Use column selection to reduce memory footprint by ~70%</span>
+
+<span class="sd">    For large datasets (&gt;1GB):</span>
+<span class="sd">    - Use DEFAULT_COLUMNS_TO_READ instead of EXTENDED_COLUMNS_TO_READ</span>
+<span class="sd">    - Process files in smaller batches if memory constraints exist</span>
+<span class="sd">    - Consider chunked reading for very large trajectories</span>
+
+<span class="sd">    Electrochemical Cell Applications</span>
+<span class="sd">    ---------------------------------</span>
+<span class="sd">    Typical usage patterns for HfTaO electrochemical analysis:</span>
+<span class="sd">    - Electrode separation: zhi - zlo (typically 20-100 Angstroms)</span>
+<span class="sd">    - Atom types: 2=Hf, odd=O, even(≠2)=Ta, {5,6,9,10}=electrodes</span>
+<span class="sd">    - Time series: Multiple files representing voltage cycling or SET/RESET processes</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Load coordinate sequence for filament analysis:</span>
+
+<span class="sd">    &gt;&gt;&gt; import glob</span>
+<span class="sd">    &gt;&gt;&gt; from lammpskit.config import DEFAULT_COLUMNS_TO_READ</span>
+<span class="sd">    &gt;&gt;&gt; files = sorted(glob.glob(&#39;trajectory_*.lammpstrj&#39;))</span>
+<span class="sd">    &gt;&gt;&gt; coords, timesteps, atoms, xlo, xhi, ylo, yhi, zlo, zhi = read_coordinates(</span>
+<span class="sd">    ...     files, skip_rows=9, columns_to_read=DEFAULT_COLUMNS_TO_READ)</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;Loaded {len(files)} files: {coords.shape}&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; electrode_separation = zhi - zlo</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;Electrode separation: {electrode_separation:.1f} Å&quot;)</span>
+
+<span class="sd">    Memory-efficient loading for large trajectories:</span>
+
+<span class="sd">    &gt;&gt;&gt; # Use core columns only: id, type, charge, x, y, z</span>
+<span class="sd">    &gt;&gt;&gt; core_columns = (0, 1, 2, 3, 4, 5)</span>
+<span class="sd">    &gt;&gt;&gt; coords, timesteps, atoms, *box = read_coordinates(</span>
+<span class="sd">    ...     files[:10], skip_rows=9, columns_to_read=core_columns)  # First 10 files only</span>
+
+<span class="sd">    Validate trajectory consistency:</span>
+
+<span class="sd">    &gt;&gt;&gt; coords, timesteps, atoms, *box = read_coordinates(files, 9, DEFAULT_COLUMNS_TO_READ)</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;Trajectory spans timesteps {timesteps[0]} to {timesteps[-1]}&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;Consistent atom count: {atoms} across {len(files)} files&quot;)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">file_list</span><span class="p">)</span>
+    <span class="c1"># Validate input parameters using centralized functions</span>
+    <span class="n">validate_file_list</span><span class="p">(</span><span class="n">file_list</span><span class="p">)</span>
+
+    <span class="n">timestep_arr</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">coordinates</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">filepath</span> <span class="ow">in</span> <span class="n">file_list</span><span class="p">:</span>
+        <span class="c1"># Extract simulation parameters from each file</span>
+        <span class="n">timestep</span><span class="p">,</span> <span class="n">total_atoms</span><span class="p">,</span> <span class="n">xlo</span><span class="p">,</span> <span class="n">xhi</span><span class="p">,</span> <span class="n">ylo</span><span class="p">,</span> <span class="n">yhi</span><span class="p">,</span> <span class="n">zlo</span><span class="p">,</span> <span class="n">zhi</span> <span class="o">=</span> <span class="n">read_structure_info</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+        <span class="n">timestep_arr</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">timestep</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Read atomic coordinates</span>
+            <span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span>
+                <span class="n">filepath</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">comments</span><span class="o">=</span><span class="s2">&quot;#&quot;</span><span class="p">,</span> <span class="n">skiprows</span><span class="o">=</span><span class="n">skip_rows</span><span class="p">,</span> <span class="n">max_rows</span><span class="o">=</span><span class="n">total_atoms</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="n">columns_to_read</span>
+            <span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Column index out of range or Non-float atomic data in file: </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2"> (error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">)</span><span class="se">\n</span><span class="s2"> (column indices provided to read = </span><span class="si">{</span><span class="n">columns_to_read</span><span class="si">}</span><span class="s2">)&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">coords</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">!=</span> <span class="n">total_atoms</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">EOFError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2"> has fewer atom lines (</span><span class="si">{</span><span class="n">coords</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">) than expected (</span><span class="si">{</span><span class="n">total_atoms</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+        <span class="n">coordinates</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span>
+    <span class="c1"># Return arrays and simulation parameters</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">coordinates</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">timestep_arr</span><span class="p">),</span> <span class="n">total_atoms</span><span class="p">,</span> <span class="n">xlo</span><span class="p">,</span> <span class="n">xhi</span><span class="p">,</span> <span class="n">ylo</span><span class="p">,</span> <span class="n">yhi</span><span class="p">,</span> <span class="n">zlo</span><span class="p">,</span> <span class="n">zhi</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Simanta Lahkar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

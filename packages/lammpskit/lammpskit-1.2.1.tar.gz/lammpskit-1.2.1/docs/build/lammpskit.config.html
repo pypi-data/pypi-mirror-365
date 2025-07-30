@@ -1,0 +1,683 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lammpskit.config module &mdash; LAMMPSKit Documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=fc837d61"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="lammpskit.ecellmodel package" href="lammpskit.ecellmodel.html" />
+    <link rel="prev" title="lammpskit.plotting.utils module" href="lammpskit.plotting.utils.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            LAMMPSKit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_formats.html">Data Formats</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documentation:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="lammpskit.html">lammpskit package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.html#subpackages">Subpackages</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="lammpskit.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">lammpskit.config module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#key-functions">Key Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plot-configuration-system">Plot Configuration System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#font-configuration-examples">Font Configuration Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#analysis-configuration-usage">Analysis Configuration Usage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#system-configuration-examples">System Configuration Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuration-inheritance">Configuration Inheritance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#runtime-configuration-override">Runtime Configuration Override</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#validation-and-type-safety">Validation and Type Safety</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#best-practices">Best Practices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#related-components">Related Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-lammpskit.config">Module Documentation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.html#module-lammpskit">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">lammpskit.config module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#key-functions">Key Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#plot-configuration-system">Plot Configuration System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#font-configuration-examples">Font Configuration Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#analysis-configuration-usage">Analysis Configuration Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#system-configuration-examples">System Configuration Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration-inheritance">Configuration Inheritance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#runtime-configuration-override">Runtime Configuration Override</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#validation-and-type-safety">Validation and Type Safety</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#best-practices">Best Practices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#related-components">Related Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-lammpskit.config">Module Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lammpskit-configuration-module">LAMMPSKit Configuration Module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#architecture-design">Architecture Design</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#key-components">Key Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#validation-philosophy">Validation Philosophy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#performance-considerations">Performance Considerations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#lammpskit.config.validate_filepath"><code class="docutils literal notranslate"><span class="pre">validate_filepath()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lammpskit.config.validate_dataindex"><code class="docutils literal notranslate"><span class="pre">validate_dataindex()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lammpskit.config.validate_file_list"><code class="docutils literal notranslate"><span class="pre">validate_file_list()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lammpskit.config.validate_loop_parameters"><code class="docutils literal notranslate"><span class="pre">validate_loop_parameters()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lammpskit.config.validate_chunks_parameter"><code class="docutils literal notranslate"><span class="pre">validate_chunks_parameter()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lammpskit.config.validate_cluster_parameters"><code class="docutils literal notranslate"><span class="pre">validate_cluster_parameters()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.io.html">lammpskit.io package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.plotting.html">lammpskit.plotting package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.ecellmodel.html">lammpskit.ecellmodel package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">LAMMPSKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api_reference.html">API Reference</a></li>
+      <li class="breadcrumb-item active">lammpskit.config module</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/simantalahkar/lammpskit/blob/main/docs/source/lammpskit.config.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="lammpskit-config-module">
+<h1>lammpskit.config module<a class="headerlink" href="#lammpskit-config-module" title="Link to this heading"></a></h1>
+<p>The configuration module provides essential validation functions and constants for robust LAMMPS trajectory analysis. These functions ensure input validation, parameter checking, and standardized constants used across LAMMPSKit analysis workflows.</p>
+<section id="key-functions">
+<h2>Key Functions<a class="headerlink" href="#key-functions" title="Link to this heading"></a></h2>
+<p>The module includes validation functions for:</p>
+<ul class="simple">
+<li><p><strong>File path validation</strong> with existence checking</p></li>
+<li><p><strong>Data index validation</strong> with range checking</p></li>
+<li><p><strong>File list validation</strong> for batch processing</p></li>
+<li><p><strong>Loop parameter validation</strong> for iteration control</p></li>
+<li><p><strong>Chunk parameter validation</strong> for parallel processing</p></li>
+<li><p><strong>Cluster parameter validation</strong> for analysis configuration</p></li>
+</ul>
+</section>
+<section id="plot-configuration-system">
+<h2>Plot Configuration System<a class="headerlink" href="#plot-configuration-system" title="Link to this heading"></a></h2>
+<p><strong>PlotConfig (Base Class)</strong></p>
+<p>The foundation for all plotting configurations, providing:</p>
+<ul class="simple">
+<li><p>Typography control (title, labels, ticks, legend fonts)</p></li>
+<li><p>Color scheme management</p></li>
+<li><p>Figure size and DPI settings</p></li>
+<li><p>Output format specifications</p></li>
+</ul>
+<dl class="simple">
+<dt>Default Typography Settings:</dt><dd><ul class="simple">
+<li><p>Title: 12pt (emphasis without overwhelming)</p></li>
+<li><p>Labels: 10pt (clear readability)</p></li>
+<li><p>Ticks: 8pt (compact but legible)</p></li>
+<li><p>Legend: 9pt (balanced information density)</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>ScatterPlotConfig</strong></p>
+<p>Extends PlotConfig for scatter plot specific parameters:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ScatterPlotConfig</span><span class="p">(</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>          <span class="c1"># Semi-transparency for overlap visualization</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>         <span class="c1"># Circular markers for universal recognition</span>
+    <span class="n">markersize</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>      <span class="c1"># Large enough for pattern recognition</span>
+    <span class="n">colormap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="c1"># Perceptually uniform colormap</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;pdf&#39;</span>        <span class="c1"># Vector output for publications</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>HistogramConfig</strong></p>
+<p>Specialized for histogram and distribution plots:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">HistogramConfig</span><span class="p">(</span>
+    <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>            <span class="c1"># Balanced between detail and noise</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>          <span class="c1"># Slight transparency for overlays</span>
+    <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>       <span class="c1"># Normalized distributions</span>
+    <span class="n">color</span><span class="o">=</span><span class="s1">&#39;skyblue&#39;</span><span class="p">,</span>    <span class="c1"># Professional, non-aggressive color</span>
+    <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;black&#39;</span>   <span class="c1"># Clear bin boundaries</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>TimeSeriesPlotConfig</strong></p>
+<p>Optimized for temporal data visualization:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">TimeSeriesPlotConfig</span><span class="p">(</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.55</span><span class="p">,</span>         <span class="c1"># Transparency for overlay analysis</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>      <span class="c1"># Thin lines for dense time series</span>
+    <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>       <span class="c1"># Readable without overcrowding</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;^&#39;</span><span class="p">,</span>         <span class="c1"># Distinctive triangular markers</span>
+    <span class="n">include_line</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Show trend lines</span>
+    <span class="n">include_scatter</span><span class="o">=</span><span class="kc">True</span> <span class="c1"># Show individual data points</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="font-configuration-examples">
+<h2>Font Configuration Examples<a class="headerlink" href="#font-configuration-examples" title="Link to this heading"></a></h2>
+<p>Centralized font control:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">CentralizedFontConfig</span>
+
+<span class="c1"># Professional presentation configuration</span>
+<span class="n">presentation_fonts</span> <span class="o">=</span> <span class="n">CentralizedFontConfig</span><span class="p">(</span>
+    <span class="n">title_size</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+    <span class="n">label_size</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>
+    <span class="n">tick_size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+    <span class="n">legend_size</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span>
+    <span class="n">family</span><span class="o">=</span><span class="s1">&#39;serif&#39;</span>  <span class="c1"># Traditional academic style</span>
+<span class="p">)</span>
+
+<span class="c1"># Apply to any plot configuration</span>
+<span class="n">plot_config</span> <span class="o">=</span> <span class="n">TimeSeriesPlotConfig</span><span class="p">(</span><span class="n">font_config</span><span class="o">=</span><span class="n">presentation_fonts</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Individual font overrides:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Override specific font sizes while keeping others at defaults</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">PlotConfig</span><span class="p">(</span>
+    <span class="n">fontsize_title</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>    <span class="c1"># Larger title only</span>
+    <span class="n">fontsize_labels</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>   <span class="c1"># Keep default label size</span>
+    <span class="c1"># Other fonts inherit from defaults</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="analysis-configuration-usage">
+<h2>Analysis Configuration Usage<a class="headerlink" href="#analysis-configuration-usage" title="Link to this heading"></a></h2>
+<p><strong>FilamentAnalysisConfig</strong></p>
+<p>Configure filament connectivity analysis:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">FilamentAnalysisConfig</span>
+
+<span class="c1"># Electrochemical filament analysis</span>
+<span class="n">ecell_config</span> <span class="o">=</span> <span class="n">FilamentAnalysisConfig</span><span class="p">(</span>
+    <span class="n">connectivity_threshold</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span>  <span class="c1"># Ångström cutoff distance</span>
+    <span class="n">min_cluster_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>          <span class="c1"># Minimum atoms per cluster</span>
+    <span class="n">gap_analysis</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>           <span class="c1"># Include gap size analysis</span>
+    <span class="n">temporal_tracking</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>      <span class="c1"># Track evolution over time</span>
+    <span class="n">statistical_analysis</span><span class="o">=</span><span class="kc">True</span>   <span class="c1"># Include mean/std calculations</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>ConnectivityAnalysisConfig</strong></p>
+<p>Network analysis parameters:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConnectivityAnalysisConfig</span>
+
+<span class="c1"># Network connectivity analysis</span>
+<span class="n">network_config</span> <span class="o">=</span> <span class="n">ConnectivityAnalysisConfig</span><span class="p">(</span>
+    <span class="n">distance_cutoff</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span>         <span class="c1"># Maximum connection distance</span>
+    <span class="n">periodic_boundaries</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>    <span class="c1"># Account for PBC</span>
+    <span class="n">cluster_algorithm</span><span class="o">=</span><span class="s1">&#39;DBSCAN&#39;</span><span class="p">,</span>  <span class="c1"># Clustering method</span>
+    <span class="n">min_samples</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>               <span class="c1"># DBSCAN parameter</span>
+    <span class="n">connectivity_metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span>  <span class="c1"># Distance calculation</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="system-configuration-examples">
+<h2>System Configuration Examples<a class="headerlink" href="#system-configuration-examples" title="Link to this heading"></a></h2>
+<p><strong>SystemParameters</strong></p>
+<p>Define system-wide analysis parameters:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">SystemParameters</span>
+
+<span class="c1"># Molecular dynamics system configuration</span>
+<span class="n">md_system</span> <span class="o">=</span> <span class="n">SystemParameters</span><span class="p">(</span>
+    <span class="n">box_dimensions</span><span class="o">=</span><span class="p">[</span><span class="mf">50.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">],</span>  <span class="c1"># Simulation box size (Å)</span>
+    <span class="n">periodic_boundaries</span><span class="o">=</span><span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span>  <span class="c1"># PBC in x,y,z</span>
+    <span class="n">temperature</span><span class="o">=</span><span class="mf">300.0</span><span class="p">,</span>    <span class="c1"># Target temperature (K)</span>
+    <span class="n">pressure</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>         <span class="c1"># Target pressure (atm)</span>
+    <span class="n">timestep</span><span class="o">=</span><span class="mf">0.001</span>       <span class="c1"># Integration timestep (ps)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>MaterialProperties</strong></p>
+<p>Physical material parameters:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">MaterialProperties</span>
+
+<span class="c1"># Electrochemical device materials</span>
+<span class="n">device_materials</span> <span class="o">=</span> <span class="n">MaterialProperties</span><span class="p">(</span>
+    <span class="n">electrode_material</span><span class="o">=</span><span class="s1">&#39;Ag&#39;</span><span class="p">,</span>
+    <span class="n">electrolyte</span><span class="o">=</span><span class="s1">&#39;TiO2&#39;</span><span class="p">,</span>
+    <span class="n">electrode_density</span><span class="o">=</span><span class="mf">10.49</span><span class="p">,</span>     <span class="c1"># g/cm³</span>
+    <span class="n">electrolyte_density</span><span class="o">=</span><span class="mf">4.23</span><span class="p">,</span>    <span class="c1"># g/cm³</span>
+    <span class="n">contact_resistance</span><span class="o">=</span><span class="mf">100.0</span><span class="p">,</span>    <span class="c1"># Ohm·cm²</span>
+    <span class="n">formation_energy</span><span class="o">=</span><span class="mf">1.2</span>        <span class="c1"># eV</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="configuration-inheritance">
+<h2>Configuration Inheritance<a class="headerlink" href="#configuration-inheritance" title="Link to this heading"></a></h2>
+<p>Configuration classes support inheritance for specialized applications:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Base configuration for all electrochemical plots</span>
+<span class="n">base_ecell_config</span> <span class="o">=</span> <span class="n">PlotConfig</span><span class="p">(</span>
+    <span class="n">fontsize_title</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+    <span class="n">fontsize_labels</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;pdf&#39;</span><span class="p">,</span>
+    <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span>
+<span class="p">)</span>
+
+<span class="c1"># Specialized configuration for presentations</span>
+<span class="n">presentation_config</span> <span class="o">=</span> <span class="n">PlotConfig</span><span class="p">(</span>
+    <span class="o">**</span><span class="n">base_ecell_config</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">,</span>  <span class="c1"># Inherit base settings</span>
+    <span class="n">fontsize_title</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>             <span class="c1"># Override title size</span>
+    <span class="n">fontsize_labels</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>            <span class="c1"># Override label size</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;svg&#39;</span>                   <span class="c1"># Override format</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="runtime-configuration-override">
+<h2>Runtime Configuration Override<a class="headerlink" href="#runtime-configuration-override" title="Link to this heading"></a></h2>
+<p>Dynamic parameter modification:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start with default configuration</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">TimeSeriesPlotConfig</span><span class="p">()</span>
+
+<span class="c1"># Override specific parameters for current analysis</span>
+<span class="n">config</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.8</span>              <span class="c1"># Increase opacity</span>
+<span class="n">config</span><span class="o">.</span><span class="n">markersize</span> <span class="o">=</span> <span class="mi">8</span>           <span class="c1"># Larger markers</span>
+<span class="n">config</span><span class="o">.</span><span class="n">include_line</span> <span class="o">=</span> <span class="kc">False</span>     <span class="c1"># Remove connecting lines</span>
+
+<span class="c1"># Use modified configuration</span>
+<span class="n">create_time_series_plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="validation-and-type-safety">
+<h2>Validation and Type Safety<a class="headerlink" href="#validation-and-type-safety" title="Link to this heading"></a></h2>
+<p>Configuration classes include automatic validation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Type checking prevents common errors</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">PlotConfig</span><span class="p">(</span>
+    <span class="n">fontsize_title</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>    <span class="c1"># ✓ Valid integer</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>           <span class="c1"># ✓ Valid float [0,1]</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;pdf&#39;</span>         <span class="c1"># ✓ Valid output format</span>
+<span class="p">)</span>
+
+<span class="c1"># Invalid configurations raise errors at runtime</span>
+<span class="n">invalid_config</span> <span class="o">=</span> <span class="n">PlotConfig</span><span class="p">(</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>           <span class="c1"># ✗ Invalid: alpha &gt; 1.0</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;doc&#39;</span>         <span class="c1"># ✗ Invalid: unsupported format</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="best-practices">
+<h2>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><strong>Configuration Organization</strong>:</dt><dd><ul class="simple">
+<li><p>Create base configurations for project-wide consistency</p></li>
+<li><p>Use inheritance for specialized requirements</p></li>
+<li><p>Document custom configurations with usage examples</p></li>
+</ul>
+</dd>
+<dt><strong>Parameter Selection</strong>:</dt><dd><ul class="simple">
+<li><p>Test font sizes at target output resolution</p></li>
+<li><p>Validate color schemes for colorblind accessibility</p></li>
+<li><p>Consider output medium (screen vs. print) when setting DPI</p></li>
+</ul>
+</dd>
+<dt><strong>Performance Optimization</strong>:</dt><dd><ul class="simple">
+<li><p>Use lower alpha values sparingly (impact rendering speed)</p></li>
+<li><p>Select appropriate marker sizes for data density</p></li>
+<li><p>Choose vector formats for scalable graphics</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="related-components">
+<h2>Related Components<a class="headerlink" href="#related-components" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><strong>Configuration Users</strong>:</dt><dd><ul class="simple">
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">lammpskit.plotting</span></code> - All plotting functions accept config objects</p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">lammpskit.ecellmodel</span></code> - Analysis functions use configuration classes</p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">lammpskit.io</span></code> - Output formatting respects configuration settings</p></li>
+</ul>
+</dd>
+<dt><strong>Configuration Extensions</strong>:</dt><dd><ul class="simple">
+<li><p>Custom configuration classes can extend base classes</p></li>
+<li><p>User-specific defaults can override package defaults</p></li>
+<li><p>Plugin modules can define specialized configurations</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="module-lammpskit.config">
+<span id="module-documentation"></span><h2>Module Documentation<a class="headerlink" href="#module-lammpskit.config" title="Link to this heading"></a></h2>
+<section id="lammpskit-configuration-module">
+<h3>LAMMPSKit Configuration Module<a class="headerlink" href="#lammpskit-configuration-module" title="Link to this heading"></a></h3>
+<p>Essential validation functions and constants for robust LAMMPS trajectory analysis.
+This module provides infrastructure for input validation, parameter checking, and
+standardized constants used across LAMMPSKit analysis workflows.</p>
+<section id="architecture-design">
+<h4>Architecture Design<a class="headerlink" href="#architecture-design" title="Link to this heading"></a></h4>
+<p>The configuration module follows a functional approach rather than class-based
+configuration objects, prioritizing simplicity and direct validation at point-of-use.
+This design reduces coupling while ensuring consistent parameter validation across
+all analysis modules.</p>
+</section>
+<section id="key-components">
+<h4>Key Components<a class="headerlink" href="#key-components" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p>Column mapping constants for LAMMPS dump file parsing</p></li>
+<li><p>Data type labels for displacement and property analysis</p></li>
+<li><p>Input validation functions with domain-specific error messages</p></li>
+<li><p>Parameter range checking with physics-aware warnings</p></li>
+</ul>
+</section>
+<section id="validation-philosophy">
+<h4>Validation Philosophy<a class="headerlink" href="#validation-philosophy" title="Link to this heading"></a></h4>
+<p>Validation functions use a “fail-fast” approach with informative error messages
+to catch configuration issues early in analysis workflows. Physics-aware warnings
+help identify potential coordinate system or unit scale problems common in MD
+simulations.</p>
+</section>
+<section id="performance-considerations">
+<h4>Performance Considerations<a class="headerlink" href="#performance-considerations" title="Link to this heading"></a></h4>
+<p>Validation overhead is O(1) for most functions, O(n) for file list validation.
+Pre-validate parameters once at workflow start rather than per-timestep for
+optimal performance in long trajectory analysis.</p>
+</section>
+</section>
+<dl class="py function">
+<dt class="sig sig-object py" id="lammpskit.config.validate_filepath">
+<span class="sig-prename descclassname"><span class="pre">lammpskit.config.</span></span><span class="sig-name descname"><span class="pre">validate_filepath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_existence</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lammpskit/config.html#validate_filepath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lammpskit.config.validate_filepath" title="Link to this definition"></a></dt>
+<dd><p>Validate file path for LAMMPS trajectory and output files.</p>
+<p>Ensures filepath is a valid string and optionally verifies file existence.
+Essential for preventing downstream failures in trajectory reading and
+analysis output generation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Path to file for validation. Supports both absolute and relative paths.</p></li>
+<li><p><strong>check_existence</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether to verify file exists on disk (default: True).
+Set False for output file validation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.13)"><strong>TypeError</strong></a> – If filepath is not a string.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.13)"><strong>ValueError</strong></a> – If filepath is empty string.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#FileNotFoundError" title="(in Python v3.13)"><strong>FileNotFoundError</strong></a> – If file doesn’t exist and check_existence=True.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Validate input trajectory file:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">validate_filepath</span><span class="p">(</span><span class="s1">&#39;trajectory.lammpstrj&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Validate output path without existence check:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">validate_filepath</span><span class="p">(</span><span class="s1">&#39;output/analysis.pdf&#39;</span><span class="p">,</span> <span class="n">check_existence</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lammpskit.config.validate_dataindex">
+<span class="sig-prename descclassname"><span class="pre">lammpskit.config.</span></span><span class="sig-name descname"><span class="pre">validate_dataindex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataindex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lammpskit/config.html#validate_dataindex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lammpskit.config.validate_dataindex" title="Link to this definition"></a></dt>
+<dd><p>Validate array index for displacement data and property arrays.</p>
+<p>Ensures safe array indexing with support for Python negative indexing.
+Primarily used for accessing DISPLACEMENT_DATA_LABELS and trajectory
+property arrays.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataindex</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Index to validate. Supports negative indexing (e.g., -1 for last element).</p></li>
+<li><p><strong>max_index</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>optional</em>) – Maximum allowed index. If None, uses DISPLACEMENT_DATA_LABELS length.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.13)"><strong>ValueError</strong></a> – If dataindex is not integer or out of valid range.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Negative indexing follows Python conventions: -1 = last element,
+-n = first element for array of length n.</p>
+<p class="rubric">Examples</p>
+<p>Validate index for displacement data:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">validate_dataindex</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># Access &#39;temp (K)&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">validate_dataindex</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Access last element</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lammpskit.config.validate_file_list">
+<span class="sig-prename descclassname"><span class="pre">lammpskit.config.</span></span><span class="sig-name descname"><span class="pre">validate_file_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lammpskit/config.html#validate_file_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lammpskit.config.validate_file_list" title="Link to this definition"></a></dt>
+<dd><p>Validate list of trajectory files for batch processing.</p>
+<p>Ensures all files exist and are accessible before starting computationally
+expensive analysis workflows. Prevents partial analysis completion due to
+missing files in multi-trajectory studies.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file_list</strong> (<em>List</em><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>]</em>) – List of file paths to validate. Commonly used for time series analysis
+across multiple LAMMPS dump files.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.13)"><strong>ValueError</strong></a> – If file_list is not a list/tuple, is empty, or contains non-string elements.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#FileNotFoundError" title="(in Python v3.13)"><strong>FileNotFoundError</strong></a> – If any files don’t exist. Reports all missing files simultaneously
+    for efficient error handling.</p></li>
+<li><p><strong>Performance Notes</strong> – </p></li>
+<li><p><strong>-----------------</strong> – </p></li>
+<li><p><strong>Complexity</strong> – O(n) where n is number of files.:</p></li>
+<li><p><strong>For large file lists</strong><strong> (</strong><strong>&gt;1000</strong><strong>)</strong><strong>, </strong><strong>consider validating in chunks.</strong> – </p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+<p>Validate trajectory sequence:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">files</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;step_0.lammpstrj&#39;</span><span class="p">,</span> <span class="s1">&#39;step_1000.lammpstrj&#39;</span><span class="p">,</span> <span class="s1">&#39;step_2000.lammpstrj&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">validate_file_list</span><span class="p">(</span><span class="n">files</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lammpskit.config.validate_loop_parameters">
+<span class="sig-prename descclassname"><span class="pre">lammpskit.config.</span></span><span class="sig-name descname"><span class="pre">validate_loop_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">loop_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop_end</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lammpskit/config.html#validate_loop_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lammpskit.config.validate_loop_parameters" title="Link to this definition"></a></dt>
+<dd><p>Validate timestep range parameters for trajectory analysis loops.</p>
+<p>Ensures valid timestep iteration bounds for LAMMPS trajectory processing.
+Critical for preventing infinite loops or invalid memory access in
+temporal analysis functions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>loop_start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Starting timestep index (inclusive). Must be non-negative.</p></li>
+<li><p><strong>loop_end</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Ending timestep index (inclusive). Must be &gt;= loop_start.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.13)"><strong>ValueError</strong></a> – If parameters are not integers, negative, or loop_start &gt; loop_end.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Both indices are inclusive: range [loop_start, loop_end].
+For trajectory with N timesteps, valid range is [0, N-1].</p>
+<p class="rubric">Examples</p>
+<p>Validate analysis range:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">validate_loop_parameters</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>  <span class="c1"># Analyze first 1001 timesteps</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">validate_loop_parameters</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">1500</span><span class="p">)</span>  <span class="c1"># Analyze middle portion</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lammpskit.config.validate_chunks_parameter">
+<span class="sig-prename descclassname"><span class="pre">lammpskit.config.</span></span><span class="sig-name descname"><span class="pre">validate_chunks_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nchunks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_chunks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_chunks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1000</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lammpskit/config.html#validate_chunks_parameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lammpskit.config.validate_chunks_parameter" title="Link to this definition"></a></dt>
+<dd><p>Validate spatial binning parameters for density and distribution analysis.</p>
+<p>Ensures appropriate bin count for spatial discretization in electrochemical
+cell analysis. Balances statistical significance with computational efficiency.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nchunks</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Number of spatial bins/chunks for discretization.</p></li>
+<li><p><strong>min_chunks</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>optional</em>) – Minimum allowed bins (default: 1). Must be positive.</p></li>
+<li><p><strong>max_chunks</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>optional</em>) – Maximum allowed bins (default: 1000). Prevents excessive memory usage.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.13)"><strong>ValueError</strong></a> – If nchunks is not integer or outside [min_chunks, max_chunks] range.</p></li>
+<li><p><strong>Performance Notes</strong> – </p></li>
+<li><p><strong>-----------------</strong> – </p></li>
+<li><p><strong>Memory usage</strong> – O(nchunks) per property per timestep.:</p></li>
+<li><p><strong>Computation time</strong> – O(N * nchunks) where N is atom count.:</p></li>
+<li><p><strong>Optimal range</strong> – 10-100 chunks for most electrochemical systems.:</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Validate binning for layer analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">validate_chunks_parameter</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>  <span class="c1"># 50 z-direction layers</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">validate_chunks_parameter</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">min_chunks</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">max_chunks</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lammpskit.config.validate_cluster_parameters">
+<span class="sig-prename descclassname"><span class="pre">lammpskit.config.</span></span><span class="sig-name descname"><span class="pre">validate_cluster_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z_filament_lower_limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z_filament_upper_limit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">thickness</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lammpskit/config.html#validate_cluster_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lammpskit.config.validate_cluster_parameters" title="Link to this definition"></a></dt>
+<dd><p>Validate geometric parameters for filament connectivity analysis.</p>
+<p>Ensures physically meaningful parameters for OVITO-based cluster analysis
+in electrochemical cell simulations. Validates filament detection geometry
+and provides physics-aware warnings for common coordinate system issues.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>z_filament_lower_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Lower z-coordinate bound for filament connectivity (Angstroms).
+Typically electrode surface position.</p></li>
+<li><p><strong>z_filament_upper_limit</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Upper z-coordinate bound for filament connectivity (Angstroms).
+Typically opposite electrode surface position.</p></li>
+<li><p><strong>thickness</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Filament thickness parameter for cluster detection (Angstroms).
+Controls sensitivity of connectivity algorithm.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.13)"><strong>TypeError</strong></a> – If parameters are not numeric (int or float).</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.13)"><strong>ValueError</strong></a> – If z_lower &gt;= z_upper or thickness &lt;= 0.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Warns<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>UserWarning</strong> – If negative z-coordinates detected (potential coordinate system issue).
+If large z-values detected (potential unit scale issue).</p></li>
+<li><p><strong>Physics Notes</strong></p></li>
+<li><p><strong>————-</strong></p></li>
+<li><p><strong>Typical electrochemical cell dimensions</strong> (<em>20-100 Å electrode separation.</em>)</p></li>
+<li><p><strong>Filament thickness</strong> (<em>2-10 Å depending on atom size and connectivity criteria.</em>)</p></li>
+<li><p><strong>Z-coordinates should span electrode-to-electrode distance.</strong></p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Validate HfTaO cell parameters:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">validate_cluster_parameters</span><span class="p">(</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">)</span>  <span class="c1"># 60 Å cell, 3.5 Å thickness</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">validate_cluster_parameters</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>    <span class="c1"># 30 Å cell, 2.0 Å thickness</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="lammpskit.plotting.utils.html" class="btn btn-neutral float-left" title="lammpskit.plotting.utils module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lammpskit.ecellmodel.html" class="btn btn-neutral float-right" title="lammpskit.ecellmodel package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Simanta Lahkar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

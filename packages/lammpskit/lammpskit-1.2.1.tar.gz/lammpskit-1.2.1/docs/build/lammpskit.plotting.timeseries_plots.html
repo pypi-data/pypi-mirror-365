@@ -1,0 +1,1586 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lammpskit.plotting.timeseries_plots module &mdash; LAMMPSKit Documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=fc837d61"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="lammpskit.plotting.utils module" href="lammpskit.plotting.utils.html" />
+    <link rel="prev" title="lammpskit.plotting package" href="lammpskit.plotting.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            LAMMPSKit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="data_formats.html">Data Formats</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documentation:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="lammpskit.html">lammpskit package</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="lammpskit.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.ecellmodel.html">lammpskit.ecellmodel package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.io.html">lammpskit.io package</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="lammpskit.plotting.html">lammpskit.plotting package</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.plotting.html#key-features">Key Features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.plotting.html#package-architecture">Package Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.plotting.html#core-functions">Core Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.plotting.html#styling-standards">Styling Standards</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.plotting.html#usage-examples">Usage Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.plotting.html#performance-notes">Performance Notes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.plotting.html#related-modules">Related Modules</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="lammpskit.plotting.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.plotting.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.html#module-lammpskit">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.config.html">lammpskit.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.io.html">lammpskit.io package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="lammpskit.plotting.html">lammpskit.plotting package</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.plotting.html#key-features">Key Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.plotting.html#package-architecture">Package Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.plotting.html#core-functions">Core Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.plotting.html#styling-standards">Styling Standards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.plotting.html#usage-examples">Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.plotting.html#performance-notes">Performance Notes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.plotting.html#related-modules">Related Modules</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="lammpskit.plotting.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">lammpskit.plotting.timeseries_plots module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#key-functions">Key Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuration-system">Configuration System</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#usage-examples">Usage Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#font-control-examples">Font Control Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#common-applications">Common Applications</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#related-functions">Related Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-lammpskit.plotting.timeseries_plots">Module Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lammpskit.plotting.utils.html">lammpskit.plotting.utils module</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lammpskit.plotting.html#module-contents">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lammpskit.ecellmodel.html">lammpskit.ecellmodel package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">LAMMPSKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="api_reference.html">API Reference</a></li>
+          <li class="breadcrumb-item"><a href="lammpskit.plotting.html">lammpskit.plotting package</a></li>
+      <li class="breadcrumb-item active">lammpskit.plotting.timeseries_plots module</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/simantalahkar/lammpskit/blob/main/docs/source/lammpskit.plotting.timeseries_plots.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="lammpskit-plotting-timeseries-plots-module">
+<h1>lammpskit.plotting.timeseries_plots module<a class="headerlink" href="#lammpskit-plotting-timeseries-plots-module" title="Link to this heading"></a></h1>
+<p>Centralized plotting functions for time series analysis. This module provides reusable plotting functions for creating standardized time series and dual-axis plots with consistent styling and configuration management.</p>
+<section id="key-functions">
+<h2>Key Functions<a class="headerlink" href="#key-functions" title="Link to this heading"></a></h2>
+<p>The module provides functions for:</p>
+<ul class="simple">
+<li><p><strong>Time series plot creation</strong> with publication-ready defaults</p></li>
+<li><p><strong>Dual-axis plotting</strong> for correlating different physical quantities</p></li>
+<li><p><strong>Figure management</strong> with save and close functionality</p></li>
+<li><p><strong>Statistical labeling</strong> for data summary integration</p></li>
+<li><p><strong>Configuration classes</strong> for consistent plot styling</p></li>
+</ul>
+</section>
+<section id="configuration-system">
+<h2>Configuration System<a class="headerlink" href="#configuration-system" title="Link to this heading"></a></h2>
+<p>The module uses dataclasses for centralized plot configuration:</p>
+<dl class="simple">
+<dt><strong>TimeSeriesPlotConfig</strong></dt><dd><p>Controls single-axis time series plots with options for line/scatter combinations, transparency, and typography.</p>
+</dd>
+<dt><strong>DualAxisPlotConfig</strong></dt><dd><p>Extends time series configuration for dual-axis plots with independent color schemes and legend positioning.</p>
+</dd>
+</dl>
+<section id="default-configuration-values">
+<h3>Default Configuration Values<a class="headerlink" href="#default-configuration-values" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Standard time series plot defaults</span>
+<span class="n">TimeSeriesPlotConfig</span><span class="p">(</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.55</span><span class="p">,</span>           <span class="c1"># Semi-transparent for overlay visualization</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>        <span class="c1"># Thin lines for dense time series</span>
+    <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>         <span class="c1"># Readable markers without overcrowding</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;^&#39;</span><span class="p">,</span>           <span class="c1"># Triangle markers for distinctiveness</span>
+    <span class="n">include_line</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>    <span class="c1"># Show trend lines</span>
+    <span class="n">include_scatter</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="c1"># Show data points</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;pdf&#39;</span>          <span class="c1"># Vector output for publications</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="usage-examples">
+<h2>Usage Examples<a class="headerlink" href="#usage-examples" title="Link to this heading"></a></h2>
+<p>Basic time series plot:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_time_series_plot</span><span class="p">,</span> <span class="n">TimeSeriesPlotConfig</span>
+
+<span class="c1"># Generate temporal data</span>
+<span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>  <span class="c1"># Time in picoseconds</span>
+<span class="n">connectivity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>  <span class="c1"># Connectivity percentage</span>
+
+<span class="c1"># Create standardized plot</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_time_series_plot</span><span class="p">(</span>
+    <span class="n">x_data</span><span class="o">=</span><span class="n">time</span><span class="p">,</span>
+    <span class="n">y_data</span><span class="o">=</span><span class="n">connectivity</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Filament Connectivity Evolution&#39;</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time (ps)&#39;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Connectivity (%)&#39;</span><span class="p">,</span>
+    <span class="n">stats_label</span><span class="o">=</span><span class="s1">&#39;Mean: 45.2%, Std: 12.1%&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Customized time series with configuration:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Custom configuration for presentation</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">TimeSeriesPlotConfig</span><span class="p">(</span>
+    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+    <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+    <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;svg&#39;</span>
+<span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_time_series_plot</span><span class="p">(</span>
+    <span class="n">x_data</span><span class="o">=</span><span class="n">time</span><span class="p">,</span>
+    <span class="n">y_data</span><span class="o">=</span><span class="n">temperature</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Temperature Evolution&#39;</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time (ps)&#39;</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Temperature (K)&#39;</span><span class="p">,</span>
+    <span class="n">stats_label</span><span class="o">=</span><span class="s1">&#39;Mean: 315.4K, Std: 25.8K&#39;</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="n">config</span><span class="p">,</span>
+    <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">280</span><span class="p">,</span> <span class="mi">350</span><span class="p">)</span>  <span class="c1"># Custom axis limits</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Dual-axis comparative analysis:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_dual_axis_plot</span><span class="p">,</span> <span class="n">DualAxisPlotConfig</span>
+
+<span class="c1"># Configure dual-axis plot</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">DualAxisPlotConfig</span><span class="p">(</span>
+    <span class="n">primary_color</span><span class="o">=</span><span class="s1">&#39;tab:red&#39;</span><span class="p">,</span>
+    <span class="n">secondary_color</span><span class="o">=</span><span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span>
+    <span class="n">primary_legend_loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">,</span>
+    <span class="n">secondary_legend_loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Create dual-axis plot for correlation analysis</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span> <span class="o">=</span> <span class="n">create_dual_axis_plot</span><span class="p">(</span>
+    <span class="n">x_data</span><span class="o">=</span><span class="n">time</span><span class="p">,</span>
+    <span class="n">primary_y_data</span><span class="o">=</span><span class="n">connectivity</span><span class="p">,</span>
+    <span class="n">secondary_y_data</span><span class="o">=</span><span class="n">temperature</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Connectivity vs Temperature Evolution&#39;</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time (ps)&#39;</span><span class="p">,</span>
+    <span class="n">primary_ylabel</span><span class="o">=</span><span class="s1">&#39;Connectivity (%)&#39;</span><span class="p">,</span>
+    <span class="n">secondary_ylabel</span><span class="o">=</span><span class="s1">&#39;Temperature (K)&#39;</span><span class="p">,</span>
+    <span class="n">primary_stats_label</span><span class="o">=</span><span class="s1">&#39;Connectivity: 45.2±12.1%&#39;</span><span class="p">,</span>
+    <span class="n">secondary_stats_label</span><span class="o">=</span><span class="s1">&#39;Temperature: 315.4±25.8K&#39;</span><span class="p">,</span>
+    <span class="n">config</span><span class="o">=</span><span class="n">config</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Statistical label generation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">calculate_mean_std_label</span><span class="p">,</span> <span class="n">calculate_frequency_label</span>
+
+<span class="c1"># Automatic statistical labeling</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">stats_label</span> <span class="o">=</span> <span class="n">calculate_mean_std_label</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;Connectivity&#39;</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">stats_label</span><span class="p">)</span>  <span class="c1"># &quot;Connectivity: Mean=50.1%, Std=9.8%&quot;</span>
+
+<span class="c1"># Frequency analysis labeling</span>
+<span class="n">binary_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">])</span>
+<span class="n">freq_label</span> <span class="o">=</span> <span class="n">calculate_frequency_label</span><span class="p">(</span>
+    <span class="n">binary_data</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;Connected: </span><span class="si">{frequency:.1f}</span><span class="s1">%&#39;</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">freq_label</span><span class="p">)</span>  <span class="c1"># &quot;Connected: 70.2%&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="font-control-examples">
+<h2>Font Control Examples<a class="headerlink" href="#font-control-examples" title="Link to this heading"></a></h2>
+<p>Individual font size control:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_time_series_plot</span><span class="p">(</span>
+    <span class="n">x_data</span><span class="o">=</span><span class="n">time</span><span class="p">,</span> <span class="n">y_data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">&#39;Custom Typography&#39;</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="o">=</span><span class="s1">&#39;Time&#39;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s1">&#39;Value&#39;</span><span class="p">,</span>
+    <span class="n">stats_label</span><span class="o">=</span><span class="s1">&#39;Statistics&#39;</span><span class="p">,</span>
+    <span class="n">fontsize_title</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>    <span class="c1"># Larger title</span>
+    <span class="n">fontsize_labels</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>   <span class="c1"># Medium labels</span>
+    <span class="n">fontsize_ticks</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>     <span class="c1"># Small tick labels</span>
+    <span class="n">fontsize_legend</span><span class="o">=</span><span class="mi">9</span>     <span class="c1"># Medium legend</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Configuration-based font control:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">config</span> <span class="o">=</span> <span class="n">TimeSeriesPlotConfig</span><span class="p">(</span>
+    <span class="n">fontsize_title</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>
+    <span class="n">fontsize_labels</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+    <span class="n">fontsize_ticks</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">fontsize_legend</span><span class="o">=</span><span class="mi">11</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="performance-considerations">
+<h2>Performance Considerations<a class="headerlink" href="#performance-considerations" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><strong>Rendering Performance</strong>:</dt><dd><ul class="simple">
+<li><p>Transparent plots (alpha &lt; 1.0) may slow rendering for large datasets</p></li>
+<li><p>Vector formats maintain quality but increase file size</p></li>
+<li><p>Line+scatter combination doubles rendering operations</p></li>
+</ul>
+</dd>
+<dt><strong>Memory Management</strong>:</dt><dd><ul class="simple">
+<li><p>Use <code class="xref py py-func docutils literal notranslate"><span class="pre">save_and_close_figure()</span></code> for automatic memory cleanup</p></li>
+<li><p>Figure objects are returned for additional customization before saving</p></li>
+<li><p>Large time series (&gt;10⁴ points) benefit from reduced marker density</p></li>
+</ul>
+</dd>
+<dt><strong>Optimization Strategies</strong>:</dt><dd><ul class="simple">
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">include_line=False</span></code> for pure scatter analysis</p></li>
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">include_scatter=False</span></code> for smooth trend visualization</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">alpha=1.0</span></code> for faster rendering of simple plots</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="common-applications">
+<h2>Common Applications<a class="headerlink" href="#common-applications" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><strong>Filament Evolution Analysis</strong>:</dt><dd><ul class="simple">
+<li><p>Connectivity state over time</p></li>
+<li><p>Gap distance evolution</p></li>
+<li><p>Cluster size distribution temporal changes</p></li>
+</ul>
+</dd>
+<dt><strong>Electrochemical Device Analysis</strong>:</dt><dd><ul class="simple">
+<li><p>Current vs. voltage temporal relationships</p></li>
+<li><p>Temperature vs. resistance correlations</p></li>
+<li><p>Ion mobility temporal patterns</p></li>
+</ul>
+</dd>
+<dt><strong>General MD Analysis</strong>:</dt><dd><ul class="simple">
+<li><p>Property evolution during equilibration</p></li>
+<li><p>Temperature/pressure control validation</p></li>
+<li><p>Energy conservation monitoring</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="related-functions">
+<h2>Related Functions<a class="headerlink" href="#related-functions" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">lammpskit.plotting.plot_multiple_cases()</span></code> - General comparative plotting</p></li>
+<li><p><a class="reference internal" href="lammpskit.ecellmodel.filament_layer_analysis.html#lammpskit.ecellmodel.filament_layer_analysis.track_filament_evolution" title="lammpskit.ecellmodel.filament_layer_analysis.track_filament_evolution"><code class="xref py py-func docutils literal notranslate"><span class="pre">lammpskit.ecellmodel.filament_layer_analysis.track_filament_evolution()</span></code></a> - Main application</p></li>
+<li><p><a class="reference internal" href="lammpskit.ecellmodel.filament_layer_analysis.html#lammpskit.ecellmodel.filament_layer_analysis.plot_displacement_timeseries" title="lammpskit.ecellmodel.filament_layer_analysis.plot_displacement_timeseries"><code class="xref py py-func docutils literal notranslate"><span class="pre">lammpskit.ecellmodel.filament_layer_analysis.plot_displacement_timeseries()</span></code></a> - Displacement-specific application</p></li>
+</ul>
+</section>
+<section id="module-lammpskit.plotting.timeseries_plots">
+<span id="module-documentation"></span><h2>Module Documentation<a class="headerlink" href="#module-lammpskit.plotting.timeseries_plots" title="Link to this heading"></a></h2>
+<p>Centralized plotting functions for time series analysis.</p>
+<p>This module provides reusable plotting functions for creating standardized
+time series and dual-axis plots with consistent styling and configuration.
+These functions are general-purpose and can be used for any time series data,
+not just filament analysis.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lammpskit.plotting.timeseries_plots.</span></span><span class="sig-name descname"><span class="pre">TimeSeriesPlotConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.55</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linewidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">markersize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'^'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_line</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_scatter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_ticks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lammpskit/plotting/timeseries_plots.html#TimeSeriesPlotConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Configuration class for standardized time series plotting with publication-ready defaults.</p>
+<p>Provides centralized control over plot styling, elements, and output formatting for
+consistent scientific visualization across LAMMPSKit analysis workflows. Supports
+both line plots and scatter plots with flexible element combination.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig.alpha">
+<span class="sig-name descname"><span class="pre">alpha</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig.alpha" title="Link to this definition"></a></dt>
+<dd><p>Transparency level for plot elements. Range [0.0, 1.0] where 0.0 is fully
+transparent and 1.0 is fully opaque. Balanced for overlay visualization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a>, default=0.55</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig.linewidth">
+<span class="sig-name descname"><span class="pre">linewidth</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig.linewidth" title="Link to this definition"></a></dt>
+<dd><p>Line thickness for connected plots. Thin lines prevent visual clutter in
+dense time series data. Use higher values (0.5-2.0) for presentation plots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a>, default=0.1</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig.markersize">
+<span class="sig-name descname"><span class="pre">markersize</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig.markersize" title="Link to this definition"></a></dt>
+<dd><p>Size of scatter plot markers. Optimized for readability without overcrowding.
+Scale proportionally for different figure sizes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a>, default=5</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig.marker">
+<span class="sig-name descname"><span class="pre">marker</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig.marker" title="Link to this definition"></a></dt>
+<dd><p>Matplotlib marker style for scatter plots. Options: ‘o’ (circle), ‘s’ (square),
+‘^’ (triangle), ‘*’ (star), ‘+’ (plus), ‘x’ (cross), ‘D’ (diamond).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, default=’^’</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig.include_line">
+<span class="sig-name descname"><span class="pre">include_line</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig.include_line" title="Link to this definition"></a></dt>
+<dd><p>Whether to draw connecting lines between data points. Useful for trend
+visualization in temporal data. Disable for pure scatter analysis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a>, default=True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig.include_scatter">
+<span class="sig-name descname"><span class="pre">include_scatter</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig.include_scatter" title="Link to this definition"></a></dt>
+<dd><p>Whether to draw individual data point markers. Essential for discrete data
+visualization. Disable for smooth trend-only plots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a>, default=True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig.format">
+<span class="sig-name descname"><span class="pre">format</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig.format" title="Link to this definition"></a></dt>
+<dd><p>Output file format for saved figures. Options: ‘pdf’ (vector, publication),
+‘svg’ (web-compatible vector), ‘png’ (raster), ‘eps’ (LaTeX-compatible).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, default=’pdf’</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig.fontsize_title">
+<span class="sig-name descname"><span class="pre">fontsize_title</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig.fontsize_title" title="Link to this definition"></a></dt>
+<dd><p>Font size for plot titles in points. Optimized for compact scientific layout.
+Use None to disable title font control.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>, default=8</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig.fontsize_labels">
+<span class="sig-name descname"><span class="pre">fontsize_labels</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig.fontsize_labels" title="Link to this definition"></a></dt>
+<dd><p>Font size for axis labels in points. Consistent with scientific journal standards.
+Use None to use matplotlib defaults.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>, default=8</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig.fontsize_ticks">
+<span class="sig-name descname"><span class="pre">fontsize_ticks</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig.fontsize_ticks" title="Link to this definition"></a></dt>
+<dd><p>Font size for axis tick labels in points. Maintains readability at small sizes.
+Use None to use matplotlib defaults.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>, default=8</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig.fontsize_legend">
+<span class="sig-name descname"><span class="pre">fontsize_legend</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig.fontsize_legend" title="Link to this definition"></a></dt>
+<dd><p>Font size for legend text in points. Balanced for information density.
+Use None to use matplotlib defaults.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>, default=8</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Notes</p>
+<p>Configuration Design Philosophy:
+- Publication-ready defaults minimize post-processing
+- Centralized font control ensures consistency across figures
+- Flexible element control (line/scatter) supports diverse data types
+- Conservative styling prevents visual clutter in complex analyses</p>
+<p>Performance Considerations:
+- Transparent plots (alpha &lt; 1.0) may slow rendering for large datasets
+- Vector formats (PDF/SVG) maintain quality but increase file size
+- Font rendering overhead is minimal for typical scientific plots</p>
+<p class="rubric">Examples</p>
+<p>Default configuration for temporal analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="n">TimeSeriesPlotConfig</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using marker: </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">marker</span><span class="si">}</span><span class="s2">, alpha: </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">alpha</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Custom configuration for presentation plots:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="n">TimeSeriesPlotConfig</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">fontsize_title</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">fontsize_labels</span><span class="o">=</span><span class="mi">10</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Scatter-only configuration for statistical analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="n">TimeSeriesPlotConfig</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">include_line</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">include_scatter</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">markersize</span><span class="o">=</span><span class="mi">3</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>High-contrast configuration for printing:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="n">TimeSeriesPlotConfig</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;eps&#39;</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>alpha</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>)</p></li>
+<li><p><strong>linewidth</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>)</p></li>
+<li><p><strong>markersize</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>)</p></li>
+<li><p><strong>marker</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>)</p></li>
+<li><p><strong>include_line</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>)</p></li>
+<li><p><strong>include_scatter</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>)</p></li>
+<li><p><strong>format</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>)</p></li>
+<li><p><strong>fontsize_title</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>)</p></li>
+<li><p><strong>fontsize_labels</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>)</p></li>
+<li><p><strong>fontsize_ticks</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>)</p></li>
+<li><p><strong>fontsize_legend</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-name descname"><span class="pre">alpha</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.55</span></em><a class="headerlink" href="#id0" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">linewidth</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.1</span></em><a class="headerlink" href="#id1" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">markersize</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#id2" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">marker</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'^'</span></em><a class="headerlink" href="#id3" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">include_line</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#id4" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">include_scatter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#id5" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-name descname"><span class="pre">format</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'pdf'</span></em><a class="headerlink" href="#id6" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-name descname"><span class="pre">fontsize_title</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#id7" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id8">
+<span class="sig-name descname"><span class="pre">fontsize_labels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#id8" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id9">
+<span class="sig-name descname"><span class="pre">fontsize_ticks</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#id9" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id10">
+<span class="sig-name descname"><span class="pre">fontsize_legend</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#id10" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.55</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linewidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">markersize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'^'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_line</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_scatter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_ticks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>alpha</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>)</p></li>
+<li><p><strong>linewidth</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>)</p></li>
+<li><p><strong>markersize</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>)</p></li>
+<li><p><strong>marker</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>)</p></li>
+<li><p><strong>include_line</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>)</p></li>
+<li><p><strong>include_scatter</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>)</p></li>
+<li><p><strong>format</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>)</p></li>
+<li><p><strong>fontsize_title</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>)</p></li>
+<li><p><strong>fontsize_labels</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>)</p></li>
+<li><p><strong>fontsize_ticks</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>)</p></li>
+<li><p><strong>fontsize_legend</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.DualAxisPlotConfig">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">lammpskit.plotting.timeseries_plots.</span></span><span class="sig-name descname"><span class="pre">DualAxisPlotConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.55</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linewidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">markersize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'^'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">primary_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tab:red'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secondary_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tab:blue'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">primary_legend_loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'upper</span> <span class="pre">right'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secondary_legend_loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lower</span> <span class="pre">right'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_framealpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.75</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tight_layout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_ticks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lammpskit/plotting/timeseries_plots.html#DualAxisPlotConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.DualAxisPlotConfig" title="Link to this definition"></a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Configuration class for dual-axis plots supporting simultaneous visualization of two data series.</p>
+<p>Enables comparison of time series data with different units or scales on a single figure.
+Essential for correlating physical quantities like temperature-displacement or
+connectivity-time relationships in scientific analysis. Provides independent color
+control and legend positioning for clear data interpretation.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.alpha">
+<span class="sig-name descname"><span class="pre">alpha</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.alpha" title="Link to this definition"></a></dt>
+<dd><p>Transparency level for both data series. Range [0.0, 1.0]. Moderate transparency
+allows underlying grid and axis lines to remain visible.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a>, default=0.55</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.linewidth">
+<span class="sig-name descname"><span class="pre">linewidth</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.linewidth" title="Link to this definition"></a></dt>
+<dd><p>Line thickness for both axes data. Thin lines prevent visual dominance of
+either dataset. Increase for presentation or when clarity is critical.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a>, default=0.1</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.markersize">
+<span class="sig-name descname"><span class="pre">markersize</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.markersize" title="Link to this definition"></a></dt>
+<dd><p>Marker size for scatter points on both axes. Consistent sizing maintains
+visual balance between primary and secondary data series.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a>, default=5</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.marker">
+<span class="sig-name descname"><span class="pre">marker</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.marker" title="Link to this definition"></a></dt>
+<dd><p>Marker style for secondary axis (right). Primary axis uses default scatter
+markers. Options: ‘o’, ‘s’, ‘^’, ‘*’, ‘+’, ‘x’, ‘D’, ‘v’, ‘&lt;’, ‘&gt;’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, default=’^’</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.primary_color">
+<span class="sig-name descname"><span class="pre">primary_color</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.primary_color" title="Link to this definition"></a></dt>
+<dd><p>Color for primary (left) y-axis data and axis labels. Matplotlib tab colors
+provide good contrast. Options: ‘tab:blue’, ‘tab:orange’, ‘tab:green’, etc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, default=’tab:red’</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.secondary_color">
+<span class="sig-name descname"><span class="pre">secondary_color</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.secondary_color" title="Link to this definition"></a></dt>
+<dd><p>Color for secondary (right) y-axis data and axis labels. Should contrast
+with primary_color for clear visual separation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, default=’tab:blue’</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.format">
+<span class="sig-name descname"><span class="pre">format</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.format" title="Link to this definition"></a></dt>
+<dd><p>Output file format. Dual-axis plots benefit from vector formats to maintain
+text and line clarity at different scales.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, default=’pdf’</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.primary_legend_loc">
+<span class="sig-name descname"><span class="pre">primary_legend_loc</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.primary_legend_loc" title="Link to this definition"></a></dt>
+<dd><p>Legend position for primary axis data. Standard matplotlib locations:
+‘upper/lower/center’ + ‘left/right/center’, or ‘best’ for automatic.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, default=’upper right’</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.secondary_legend_loc">
+<span class="sig-name descname"><span class="pre">secondary_legend_loc</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.secondary_legend_loc" title="Link to this definition"></a></dt>
+<dd><p>Legend position for secondary axis data. Should not overlap with primary
+legend. Consider ‘upper left’, ‘lower left’, or ‘center left’.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a>, default=’lower right’</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.legend_framealpha">
+<span class="sig-name descname"><span class="pre">legend_framealpha</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.legend_framealpha" title="Link to this definition"></a></dt>
+<dd><p>Background transparency for legend boxes. Range [0.0, 1.0]. Semi-transparent
+frames prevent complete data occlusion while maintaining readability.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)">float</a>, default=0.75</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.tight_layout">
+<span class="sig-name descname"><span class="pre">tight_layout</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.tight_layout" title="Link to this definition"></a></dt>
+<dd><p>Whether to apply matplotlib tight_layout for automatic spacing adjustment.
+Prevents axis label cutoff in dual-axis configurations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)">bool</a>, default=True</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.fontsize_title">
+<span class="sig-name descname"><span class="pre">fontsize_title</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.fontsize_title" title="Link to this definition"></a></dt>
+<dd><p>Font size for plot title. Centered above both axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>, default=8</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.fontsize_labels">
+<span class="sig-name descname"><span class="pre">fontsize_labels</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.fontsize_labels" title="Link to this definition"></a></dt>
+<dd><p>Font size for both primary and secondary axis labels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>, default=8</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.fontsize_ticks">
+<span class="sig-name descname"><span class="pre">fontsize_ticks</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.fontsize_ticks" title="Link to this definition"></a></dt>
+<dd><p>Font size for tick labels on both axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>, default=8</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.fontsize_legend">
+<span class="sig-name descname"><span class="pre">fontsize_legend</span></span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.fontsize_legend" title="Link to this definition"></a></dt>
+<dd><p>Font size for both legend boxes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)">int</a>, default=8</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Notes</p>
+<p>Dual-Axis Design Principles:
+- Color coding clearly distinguishes data series and corresponding axes
+- Legend positioning prevents data occlusion while maintaining clarity
+- Consistent marker sizing maintains visual balance between series
+- Semi-transparent legends allow underlying data visibility</p>
+<p>Common Use Cases:
+- Temperature vs. displacement over time
+- Connectivity percentage vs. cluster size evolution
+- Voltage vs. current relationships in device characterization
+- Statistical metrics vs. physical properties correlation</p>
+<p>Performance Considerations:
+- Dual-axis rendering requires additional matplotlib operations
+- Legend placement calculations may slow complex figures
+- Vector output formats recommended for text clarity</p>
+<p class="rubric">Examples</p>
+<p>Default configuration for scientific analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="n">DualAxisPlotConfig</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Colors: </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">primary_color</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">config</span><span class="o">.</span><span class="n">secondary_color</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Custom color scheme for publication:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="n">DualAxisPlotConfig</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">primary_color</span><span class="o">=</span><span class="s1">&#39;tab:green&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">secondary_color</span><span class="o">=</span><span class="s1">&#39;tab:purple&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">primary_legend_loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">secondary_legend_loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>High-contrast configuration for presentations:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="n">DualAxisPlotConfig</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">legend_framealpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">fontsize_title</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">fontsize_labels</span><span class="o">=</span><span class="mi">10</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Minimal styling for technical reports:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="n">DualAxisPlotConfig</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">primary_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">secondary_color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">tight_layout</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;eps&#39;</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>alpha</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>)</p></li>
+<li><p><strong>linewidth</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>)</p></li>
+<li><p><strong>markersize</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>)</p></li>
+<li><p><strong>marker</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>)</p></li>
+<li><p><strong>primary_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>)</p></li>
+<li><p><strong>secondary_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>)</p></li>
+<li><p><strong>format</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>)</p></li>
+<li><p><strong>primary_legend_loc</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>)</p></li>
+<li><p><strong>secondary_legend_loc</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>)</p></li>
+<li><p><strong>legend_framealpha</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>)</p></li>
+<li><p><strong>tight_layout</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>)</p></li>
+<li><p><strong>fontsize_title</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>)</p></li>
+<li><p><strong>fontsize_labels</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>)</p></li>
+<li><p><strong>fontsize_ticks</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>)</p></li>
+<li><p><strong>fontsize_legend</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id11">
+<span class="sig-name descname"><span class="pre">alpha</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.55</span></em><a class="headerlink" href="#id11" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id12">
+<span class="sig-name descname"><span class="pre">linewidth</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.1</span></em><a class="headerlink" href="#id12" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id13">
+<span class="sig-name descname"><span class="pre">markersize</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#id13" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id14">
+<span class="sig-name descname"><span class="pre">marker</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'^'</span></em><a class="headerlink" href="#id14" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id15">
+<span class="sig-name descname"><span class="pre">primary_color</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'tab:red'</span></em><a class="headerlink" href="#id15" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id16">
+<span class="sig-name descname"><span class="pre">secondary_color</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'tab:blue'</span></em><a class="headerlink" href="#id16" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id17">
+<span class="sig-name descname"><span class="pre">format</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'pdf'</span></em><a class="headerlink" href="#id17" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id18">
+<span class="sig-name descname"><span class="pre">primary_legend_loc</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'upper</span> <span class="pre">right'</span></em><a class="headerlink" href="#id18" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id19">
+<span class="sig-name descname"><span class="pre">secondary_legend_loc</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'lower</span> <span class="pre">right'</span></em><a class="headerlink" href="#id19" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id20">
+<span class="sig-name descname"><span class="pre">legend_framealpha</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.75</span></em><a class="headerlink" href="#id20" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id21">
+<span class="sig-name descname"><span class="pre">tight_layout</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></em><a class="headerlink" href="#id21" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id22">
+<span class="sig-name descname"><span class="pre">fontsize_title</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#id22" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id23">
+<span class="sig-name descname"><span class="pre">fontsize_labels</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#id23" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id24">
+<span class="sig-name descname"><span class="pre">fontsize_ticks</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#id24" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id25">
+<span class="sig-name descname"><span class="pre">fontsize_legend</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a><span class="pre">[</span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a><span class="pre">]</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#id25" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.55</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linewidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">markersize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">marker</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'^'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">primary_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tab:red'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secondary_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'tab:blue'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">primary_legend_loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'upper</span> <span class="pre">right'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secondary_legend_loc</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'lower</span> <span class="pre">right'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">legend_framealpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.75</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tight_layout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_ticks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.DualAxisPlotConfig.__init__" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>alpha</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>)</p></li>
+<li><p><strong>linewidth</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>)</p></li>
+<li><p><strong>markersize</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>)</p></li>
+<li><p><strong>marker</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>)</p></li>
+<li><p><strong>primary_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>)</p></li>
+<li><p><strong>secondary_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>)</p></li>
+<li><p><strong>format</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>)</p></li>
+<li><p><strong>primary_legend_loc</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>)</p></li>
+<li><p><strong>secondary_legend_loc</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>)</p></li>
+<li><p><strong>legend_framealpha</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>)</p></li>
+<li><p><strong>tight_layout</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>)</p></li>
+<li><p><strong>fontsize_title</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>)</p></li>
+<li><p><strong>fontsize_labels</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>)</p></li>
+<li><p><strong>fontsize_ticks</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>)</p></li>
+<li><p><strong>fontsize_legend</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.create_time_series_plot">
+<span class="sig-prename descclassname"><span class="pre">lammpskit.plotting.timeseries_plots.</span></span><span class="sig-name descname"><span class="pre">create_time_series_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stats_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_ticks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lammpskit/plotting/timeseries_plots.html#create_time_series_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.create_time_series_plot" title="Link to this definition"></a></dt>
+<dd><p>Create standardized time series plots with flexible line and scatter element control.</p>
+<p>Generates publication-ready time series visualizations with configurable styling and
+centralized font management. Supports pure line plots, pure scatter plots, or combined
+visualizations based on configuration. Essential for temporal analysis workflows including
+filament evolution tracking, statistical time series, and experimental data visualization.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_data</strong> (<em>np.ndarray</em>) – X-axis values, typically representing time or sequential measurements.
+Shape: (n_points,). Units depend on analysis context (e.g., timesteps, seconds, frames).</p></li>
+<li><p><strong>y_data</strong> (<em>np.ndarray</em>) – Y-axis values for plotting. Shape: (n_points,). Must match x_data length.
+Examples: displacement values, connectivity percentages, statistical measures.</p></li>
+<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Plot title displayed above the figure. Include units and context for clarity.
+Example: ‘Filament Evolution Over Time’, ‘Temperature vs. Timestep’</p></li>
+<li><p><strong>xlabel</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – X-axis label with units. Standard format: ‘Property (units)’.
+Examples: ‘Time (ps)’, ‘Timestep’, ‘Frame Number’, ‘Voltage Cycle’</p></li>
+<li><p><strong>ylabel</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Y-axis label with units. Standard format: ‘Property (units)’.
+Examples: ‘Displacement (Å)’, ‘Connectivity (%)’, ‘Temperature (K)’</p></li>
+<li><p><strong>stats_label</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Statistical summary or description for legend entry. Often includes computed
+metrics like mean, standard deviation, or frequency. Example: ‘Mean: 2.34 ± 0.15’</p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="#lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig" title="lammpskit.plotting.timeseries_plots.TimeSeriesPlotConfig"><em>TimeSeriesPlotConfig</em></a><em>, </em><em>optional</em>) – Plot configuration object controlling styling, elements, and output format.
+If None, uses default configuration optimized for scientific visualization.</p></li>
+<li><p><strong>ylim</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>, </em><em>optional</em>) – Y-axis limits as (ymin, ymax). Useful for consistent scaling across multiple
+related plots or for focusing on specific data ranges.</p></li>
+<li><p><strong>fontsize_title</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>optional</em>) – Override configuration title font size. Useful for presentation adaptation
+without modifying the base configuration object.</p></li>
+<li><p><strong>fontsize_labels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>optional</em>) – Override configuration axis label font size. Maintains consistency while
+allowing figure-specific adjustments.</p></li>
+<li><p><strong>fontsize_ticks</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>optional</em>) – Override configuration tick label font size. Important for readability
+when figures are scaled for different contexts.</p></li>
+<li><p><strong>fontsize_legend</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>optional</em>) – Override configuration legend font size. Critical for maintaining legend
+readability in complex multi-series plots.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="(in Matplotlib v3.10.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></a>, <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes" title="(in Matplotlib v3.10.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Axes</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>fig</strong> (<em>plt.Figure</em>) – Matplotlib figure object containing the plot. Can be further customized,
+saved, or displayed using standard matplotlib operations.</p></li>
+<li><p><strong>ax</strong> (<em>plt.Axes</em>) – Matplotlib axes object for the plot. Provides access for additional
+annotations, reference lines, or styling modifications.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.13)"><strong>ValueError</strong></a> – If x_data and y_data have mismatched lengths or contain invalid values.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.13)"><strong>TypeError</strong></a> – If data arrays are not numpy arrays or convertible to arrays.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Plot Element Control:
+- include_line=True, include_scatter=True: Connected scatter plot (default)
+- include_line=True, include_scatter=False: Pure line plot for trends
+- include_line=False, include_scatter=True: Pure scatter plot for discrete data
+- include_line=False, include_scatter=False: Empty plot (not recommended)</p>
+<p>Performance Characteristics:
+- Memory usage: O(n_points) for data storage, minimal for plot objects
+- Rendering time: O(n_points) for line plots, O(n_points) for scatter plots
+- File size: Vector formats scale with data complexity, raster formats are fixed</p>
+<p>Statistical Integration:
+- Use calculate_mean_std_label() for automated statistical summaries
+- Use calculate_frequency_label() for discrete event analysis
+- Legend automatically includes stats_label for quantitative context</p>
+<p class="rubric">Examples</p>
+<p>Basic time series plot with default configuration:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.plotting.timeseries_plots</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_time_series_plot</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">displacement</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_time_series_plot</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">time</span><span class="p">,</span> <span class="n">displacement</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Atomic Displacement Evolution&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Time (ps)&#39;</span><span class="p">,</span> <span class="s1">&#39;Displacement (Å)&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Mean: 2.0 ± 0.5 Å&#39;</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Custom configuration for presentation:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.plotting.timeseries_plots</span><span class="w"> </span><span class="kn">import</span> <span class="n">TimeSeriesPlotConfig</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="n">TimeSeriesPlotConfig</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">linewidth</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;png&#39;</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_time_series_plot</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">time</span><span class="p">,</span> <span class="n">displacement</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;High-Visibility Displacement Plot&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Time (ps)&#39;</span><span class="p">,</span> <span class="s1">&#39;Displacement (Å)&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;N=100 points&#39;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Scatter-only plot for statistical analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="n">TimeSeriesPlotConfig</span><span class="p">(</span><span class="n">include_line</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_time_series_plot</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">time</span><span class="p">,</span> <span class="n">displacement</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Discrete Displacement Measurements&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Time (ps)&#39;</span><span class="p">,</span> <span class="s1">&#39;Displacement (Å)&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;σ = 0.5 Å&#39;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Controlled y-axis range for comparison plots:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_time_series_plot</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">time</span><span class="p">,</span> <span class="n">displacement</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Constrained Range Analysis&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Time (ps)&#39;</span><span class="p">,</span> <span class="s1">&#39;Displacement (Å)&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Range: 0-5 Å&#39;</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Font size override for manuscript figures:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">create_time_series_plot</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">time</span><span class="p">,</span> <span class="n">displacement</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Publication Figure&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Time (ps)&#39;</span><span class="p">,</span> <span class="s1">&#39;Displacement (Å)&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Experimental data&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">fontsize_title</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontsize_labels</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">fontsize_legend</span><span class="o">=</span><span class="mi">10</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.create_dual_axis_plot">
+<span class="sig-prename descclassname"><span class="pre">lammpskit.plotting.timeseries_plots.</span></span><span class="sig-name descname"><span class="pre">create_dual_axis_plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">primary_y_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secondary_y_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">primary_ylabel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secondary_ylabel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">primary_stats_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secondary_stats_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">primary_ylim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secondary_ylim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_title</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_ticks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fontsize_legend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lammpskit/plotting/timeseries_plots.html#create_dual_axis_plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.create_dual_axis_plot" title="Link to this definition"></a></dt>
+<dd><p>Create dual-axis plots for simultaneous visualization of two correlated data series.</p>
+<p>Generates publication-ready figures with independent y-axes supporting different units,
+scales, or physical quantities. Essential for comparative analysis of time-dependent
+properties where direct correlation visualization is critical. Features automatic
+color coordination, independent axis control, and optimized legend positioning.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x_data</strong> (<em>np.ndarray</em>) – Shared x-axis values for both data series. Shape: (n_points,). Typically
+represents time, voltage cycles, or sequential measurements.</p></li>
+<li><p><strong>primary_y_data</strong> (<em>np.ndarray</em>) – Left y-axis data series. Shape: (n_points,). Must match x_data length.
+Examples: displacement values, temperature measurements, primary properties.</p></li>
+<li><p><strong>secondary_y_data</strong> (<em>np.ndarray</em>) – Right y-axis data series. Shape: (n_points,). Must match x_data length.
+Examples: connectivity percentages, statistical measures, derived properties.</p></li>
+<li><p><strong>title</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Plot title displayed above both axes. Should indicate the relationship
+being explored. Example: ‘Temperature vs Connectivity Evolution’</p></li>
+<li><p><strong>xlabel</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Shared x-axis label with units. Standard format: ‘Property (units)’.
+Examples: ‘Time (ps)’, ‘Voltage Cycle’, ‘Timestep Number’</p></li>
+<li><p><strong>primary_ylabel</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Left y-axis label with units. Standard format: ‘Property (units)’.
+Color-coded to match primary_color in configuration.</p></li>
+<li><p><strong>secondary_ylabel</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Right y-axis label with units. Standard format: ‘Property (units)’.
+Color-coded to match secondary_color in configuration.</p></li>
+<li><p><strong>primary_stats_label</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Statistical summary for primary data legend entry. Often includes mean,
+standard deviation, or characteristic values. Example: ‘Temp: 300 ± 50 K’</p></li>
+<li><p><strong>secondary_stats_label</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Statistical summary for secondary data legend entry. Should complement
+primary statistics. Example: ‘Connected: 23.4% of time’</p></li>
+<li><p><strong>config</strong> (<a class="reference internal" href="#lammpskit.plotting.timeseries_plots.DualAxisPlotConfig" title="lammpskit.plotting.timeseries_plots.DualAxisPlotConfig"><em>DualAxisPlotConfig</em></a><em>, </em><em>optional</em>) – Dual-axis configuration controlling colors, legend positioning, and styling.
+If None, uses default configuration optimized for scientific visualization.</p></li>
+<li><p><strong>primary_ylim</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>, </em><em>optional</em>) – Primary (left) y-axis limits as (ymin, ymax). Useful for consistent scaling
+across multiple related plots or for highlighting specific data ranges.</p></li>
+<li><p><strong>secondary_ylim</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a><em>, </em><em>optional</em>) – Secondary (right) y-axis limits as (ymin, ymax). Independent control enables
+optimal visualization of secondary data regardless of primary axis scaling.</p></li>
+<li><p><strong>fontsize_title</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>optional</em>) – Override configuration title font size. Useful for presentation adaptation
+without modifying the base configuration object.</p></li>
+<li><p><strong>fontsize_labels</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>optional</em>) – Override configuration axis label font size. Applies to both primary and
+secondary axis labels simultaneously.</p></li>
+<li><p><strong>fontsize_ticks</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>optional</em>) – Override configuration tick label font size. Affects both axes tick labels
+for consistent appearance.</p></li>
+<li><p><strong>fontsize_legend</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>optional</em>) – Override configuration legend font size. Applies to both legend boxes.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="(in Matplotlib v3.10.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Figure</span></code></a>, <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes" title="(in Matplotlib v3.10.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Axes</span></code></a>, <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes" title="(in Matplotlib v3.10.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Axes</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>fig</strong> (<em>plt.Figure</em>) – Matplotlib figure object containing the dual-axis plot. Can be further
+customized, saved, or displayed using standard matplotlib operations.</p></li>
+<li><p><strong>ax1</strong> (<em>plt.Axes</em>) – Primary (left) y-axis axes object. Provides access for additional
+annotations, reference lines, or primary data modifications.</p></li>
+<li><p><strong>ax2</strong> (<em>plt.Axes</em>) – Secondary (right) y-axis axes object. Enables independent secondary axis
+customization, additional data series, or specialized annotations.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.13)"><strong>ValueError</strong></a> – If data arrays have mismatched lengths or contain invalid values.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.13)"><strong>TypeError</strong></a> – If data arrays are not numpy arrays or convertible to arrays.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Dual-Axis Design Principles:
+- Color coordination ensures clear association between data and corresponding axes
+- Independent axis scaling optimizes visualization of disparate data ranges
+- Legend positioning minimizes data occlusion while maintaining readability
+- Automatic tight layout prevents axis label cutoff in complex configurations</p>
+<p>Visual Hierarchy:
+- Primary data (left axis) uses warm colors (red) for visual prominence
+- Secondary data (right axis) uses cool colors (blue) for complementary contrast
+- Legend transparency allows underlying data visibility
+- Consistent marker sizing maintains visual balance</p>
+<p>Performance Considerations:
+- Dual-axis rendering requires additional matplotlib twinx() operations
+- Legend placement calculations may impact rendering time for complex data
+- Vector output formats recommended for maintaining text and line clarity
+- Memory usage: O(n_points) for data, minimal overhead for dual axes</p>
+<p>Common Applications:
+- Process parameter correlation (temperature vs. pressure over time)
+- Statistical trend analysis (mean vs. variance evolution)
+- Performance monitoring (throughput vs. error rate)
+- Multi-scale temporal analysis (short-term vs. long-term trends)</p>
+<p class="rubric">Examples</p>
+<p>Basic dual-axis plot with default configuration:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.plotting.timeseries_plots</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_dual_axis_plot</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">time</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">temperature</span> <span class="o">=</span> <span class="mi">300</span> <span class="o">+</span> <span class="mi">50</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">time</span> <span class="o">*</span> <span class="mf">0.1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">connectivity</span> <span class="o">=</span> <span class="mi">50</span> <span class="o">+</span> <span class="mi">30</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">time</span> <span class="o">*</span> <span class="mf">0.05</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span> <span class="o">=</span> <span class="n">create_dual_axis_plot</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">time</span><span class="p">,</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">connectivity</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Temperature-Connectivity Correlation&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Time (ps)&#39;</span><span class="p">,</span> <span class="s1">&#39;Temperature (K)&#39;</span><span class="p">,</span> <span class="s1">&#39;Connectivity (%)&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;T = 300 ± 50 K&#39;</span><span class="p">,</span> <span class="s1">&#39;C = 50 ± 30%&#39;</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Custom configuration for presentation:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.plotting.timeseries_plots</span><span class="w"> </span><span class="kn">import</span> <span class="n">DualAxisPlotConfig</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="n">DualAxisPlotConfig</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">primary_color</span><span class="o">=</span><span class="s1">&#39;tab:green&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">secondary_color</span><span class="o">=</span><span class="s1">&#39;tab:purple&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">primary_legend_loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">secondary_legend_loc</span><span class="o">=</span><span class="s1">&#39;lower right&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span> <span class="o">=</span> <span class="n">create_dual_axis_plot</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">time</span><span class="p">,</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">connectivity</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Custom Color Analysis&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Time (ps)&#39;</span><span class="p">,</span> <span class="s1">&#39;Property A&#39;</span><span class="p">,</span> <span class="s1">&#39;Property B&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Series A&#39;</span><span class="p">,</span> <span class="s1">&#39;Series B&#39;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Controlled axis ranges for comparison:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span> <span class="o">=</span> <span class="n">create_dual_axis_plot</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">time</span><span class="p">,</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">connectivity</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Fixed Range Comparison&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Time (ps)&#39;</span><span class="p">,</span> <span class="s1">&#39;Temperature (K)&#39;</span><span class="p">,</span> <span class="s1">&#39;Connectivity (%)&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Controlled range&#39;</span><span class="p">,</span> <span class="s1">&#39;Fixed scale&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">primary_ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">250</span><span class="p">,</span> <span class="mi">350</span><span class="p">),</span> <span class="n">secondary_ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>High-contrast configuration for printing:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="n">DualAxisPlotConfig</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">primary_color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">secondary_color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">legend_framealpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;eps&#39;</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span> <span class="o">=</span> <span class="n">create_dual_axis_plot</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">time</span><span class="p">,</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">connectivity</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Print-Optimized Dual Plot&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Time (ps)&#39;</span><span class="p">,</span> <span class="s1">&#39;Primary&#39;</span><span class="p">,</span> <span class="s1">&#39;Secondary&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Data A&#39;</span><span class="p">,</span> <span class="s1">&#39;Data B&#39;</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">config</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Font override for manuscript figures:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span> <span class="o">=</span> <span class="n">create_dual_axis_plot</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">time</span><span class="p">,</span> <span class="n">temperature</span><span class="p">,</span> <span class="n">connectivity</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Publication Figure&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Time (ps)&#39;</span><span class="p">,</span> <span class="s1">&#39;Temperature (K)&#39;</span><span class="p">,</span> <span class="s1">&#39;Connectivity (%)&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s1">&#39;Experimental&#39;</span><span class="p">,</span> <span class="s1">&#39;Calculated&#39;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">fontsize_title</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontsize_labels</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">fontsize_legend</span><span class="o">=</span><span class="mi">12</span>
+<span class="gp">... </span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.save_and_close_figure">
+<span class="sig-prename descclassname"><span class="pre">lammpskit.plotting.timeseries_plots.</span></span><span class="sig-name descname"><span class="pre">save_and_close_figure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fig</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_format</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'pdf'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lammpskit/plotting/timeseries_plots.html#save_and_close_figure"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.save_and_close_figure" title="Link to this definition"></a></dt>
+<dd><p>Save matplotlib figure to disk with automatic directory creation and memory cleanup.</p>
+<p>Provides standardized figure output handling for scientific visualization workflows.
+Automatically creates output directories, handles filename formatting, and closes
+figures to prevent memory accumulation during batch processing. Essential for
+automated analysis pipelines generating multiple plots.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fig</strong> (<em>plt.Figure</em>) – Matplotlib figure object to save. Can be any figure created with plt.figure(),
+plt.subplots(), or plotting functions returning figure objects.</p></li>
+<li><p><strong>output_dir</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Target directory for saved figure. Created automatically if it doesn’t exist.
+Supports both absolute and relative paths. Use ‘.’ for current directory.</p></li>
+<li><p><strong>filename</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Base filename without extension. Extension is added automatically based on
+file_format parameter. Should be descriptive of plot content for organization.</p></li>
+<li><p><strong>file_format</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a><em>, </em><em>optional</em><em>, </em><em>default='pdf'</em>) – Output file format determining quality and compatibility:
+- ‘pdf’: Vector format, publication-ready, scalable
+- ‘svg’: Web-compatible vector format, editable
+- ‘png’: Raster format, good for web display
+- ‘eps’: LaTeX-compatible vector format
+- ‘jpg’/’jpeg’: Compressed raster, smaller files</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#OSError" title="(in Python v3.13)"><strong>OSError</strong></a> – If output directory cannot be created due to permissions or disk space.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.13)"><strong>ValueError</strong></a> – If file_format is not supported by matplotlib backend.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a></span></p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Memory Management:
+- Automatically closes figure after saving to prevent memory leaks
+- Critical for batch processing workflows generating many plots
+- Use plt.show() before calling this function if display is also needed</p>
+<p>Directory Handling:
+- Creates nested directory structures automatically
+- Preserves existing directories and files
+- No error if output_dir already exists</p>
+<p>Performance Considerations:
+- Vector formats (PDF, SVG, EPS) maintain quality but may be larger
+- Raster formats (PNG, JPG) have fixed resolution but smaller files
+- PDF recommended for scientific publications and presentations
+- PNG recommended for web display and documentation</p>
+<p class="rubric">Examples</p>
+<p>Save figure with automatic directory creation:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">save_and_close_figure</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="s1">&#39;output/plots&#39;</span><span class="p">,</span> <span class="s1">&#39;sine_wave&#39;</span><span class="p">)</span>
+<span class="go"># Saves as &#39;output/plots/sine_wave.pdf&#39;</span>
+</pre></div>
+</div>
+<p>Save in different formats for various uses:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">save_and_close_figure</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="s1">&#39;manuscript/figures&#39;</span><span class="p">,</span> <span class="s1">&#39;analysis&#39;</span><span class="p">,</span> <span class="s1">&#39;eps&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">save_and_close_figure</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="s1">&#39;web/images&#39;</span><span class="p">,</span> <span class="s1">&#39;analysis&#39;</span><span class="p">,</span> <span class="s1">&#39;png&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">save_and_close_figure</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="s1">&#39;presentations&#39;</span><span class="p">,</span> <span class="s1">&#39;analysis&#39;</span><span class="p">,</span> <span class="s1">&#39;svg&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Organized output structure:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">base_dir</span> <span class="o">=</span> <span class="s1">&#39;results/experiment_2024&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">save_and_close_figure</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">base_dir</span><span class="si">}</span><span class="s1">/temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;temp_vs_time&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">save_and_close_figure</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">base_dir</span><span class="si">}</span><span class="s1">/displacement&#39;</span><span class="p">,</span> <span class="s1">&#39;disp_evolution&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Current directory output:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">save_and_close_figure</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;quick_analysis&#39;</span><span class="p">,</span> <span class="s1">&#39;png&#39;</span><span class="p">)</span>
+<span class="go"># Saves as &#39;./quick_analysis.png&#39;</span>
+</pre></div>
+</div>
+<p>Batch processing workflow:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">figures</span> <span class="o">=</span> <span class="p">[</span><span class="n">fig1</span><span class="p">,</span> <span class="n">fig2</span><span class="p">,</span> <span class="n">fig3</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;pressure&#39;</span><span class="p">,</span> <span class="s1">&#39;density&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">fig</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">figures</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">save_and_close_figure</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="s1">&#39;output/timeseries&#39;</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.calculate_mean_std_label">
+<span class="sig-prename descclassname"><span class="pre">lammpskit.plotting.timeseries_plots.</span></span><span class="sig-name descname"><span class="pre">calculate_mean_std_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_prefix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lammpskit/plotting/timeseries_plots.html#calculate_mean_std_label"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.calculate_mean_std_label" title="Link to this definition"></a></dt>
+<dd><p>Generate standardized statistical summary labels for plot legends and annotations.</p>
+<p>Computes mean and standard deviation of input data and formats as publication-ready
+label string. Essential for automated legend generation in scientific plots where
+quantitative summaries enhance data interpretation. Supports flexible precision
+control for different measurement scales and reporting requirements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>np.ndarray</em>) – Input data array for statistical calculation. Shape: (n_points,).
+Supports any numeric data type. NaN values are handled by numpy functions.</p></li>
+<li><p><strong>label_prefix</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Descriptive text preceding the statistical values. Should include property
+name and units for clarity. Example: ‘Temperature (K)’, ‘Displacement (Å)’</p></li>
+<li><p><strong>precision</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>optional</em><em>, </em><em>default=2</em>) – Number of decimal places for formatting statistical values. Range: 0-15.
+Use 0-1 for large values, 2-4 for typical scientific measurements,
+5+ for high-precision requirements.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Formatted label string in standard “prefix = mean ± std” format.
+Uses Unicode ± symbol for professional appearance. Compatible with
+matplotlib legend and annotation functions.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.13)"><strong>ValueError</strong></a> – If precision is negative or data array is empty.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.13)"><strong>TypeError</strong></a> – If data is not array-like or label_prefix is not string.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Statistical Calculations:
+- Mean: Arithmetic average computed with np.mean()
+- Standard deviation: Sample standard deviation with np.std() (N-1 denominator)
+- NaN handling: Follows numpy conventions (NaN propagation)</p>
+<p>Formatting Standards:
+- Uses Unicode ± (U+00B1) for professional appearance
+- Precision applies to both mean and standard deviation
+- No scientific notation; adjust precision for extreme values</p>
+<p>Performance Characteristics:
+- Computational complexity: O(n) for statistical calculations
+- Memory usage: O(1) additional memory beyond input array
+- String formatting: Minimal overhead for typical legend use</p>
+<p>Applications:
+- Time series analysis summary statistics
+- Experimental data characterization
+- Model validation metrics
+- Comparative analysis legend entries</p>
+<p class="rubric">Examples</p>
+<p>Basic temperature data summarization:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">temperatures</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">298.2</span><span class="p">,</span> <span class="mf">301.5</span><span class="p">,</span> <span class="mf">299.8</span><span class="p">,</span> <span class="mf">300.1</span><span class="p">,</span> <span class="mf">302.3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">label</span> <span class="o">=</span> <span class="n">calculate_mean_std_label</span><span class="p">(</span><span class="n">temperatures</span><span class="p">,</span> <span class="s1">&#39;Temperature (K)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+<span class="go">&#39;Temperature (K) = 300.38 ± 1.52&#39;</span>
+</pre></div>
+</div>
+<p>Displacement analysis with high precision:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">displacements</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">2.345</span><span class="p">,</span> <span class="mf">0.123</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">label</span> <span class="o">=</span> <span class="n">calculate_mean_std_label</span><span class="p">(</span><span class="n">displacements</span><span class="p">,</span> <span class="s1">&#39;Displacement (Å)&#39;</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+<span class="go">&#39;Displacement (Å) = 2.3451 ± 0.1234&#39;</span>
+</pre></div>
+</div>
+<p>Large-scale data with low precision:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">particle_counts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">poisson</span><span class="p">(</span><span class="mf">1e6</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">label</span> <span class="o">=</span> <span class="n">calculate_mean_std_label</span><span class="p">(</span><span class="n">particle_counts</span><span class="p">,</span> <span class="s1">&#39;Count&#39;</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+<span class="go">&#39;Count = 1000023 ± 1000&#39;</span>
+</pre></div>
+</div>
+<p>Percentage data with appropriate precision:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">percentages</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">23.45</span><span class="p">,</span> <span class="mf">24.12</span><span class="p">,</span> <span class="mf">22.89</span><span class="p">,</span> <span class="mf">23.78</span><span class="p">,</span> <span class="mf">24.56</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">label</span> <span class="o">=</span> <span class="n">calculate_mean_std_label</span><span class="p">(</span><span class="n">percentages</span><span class="p">,</span> <span class="s1">&#39;Connectivity (%)&#39;</span><span class="p">,</span> <span class="n">precision</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+<span class="go">&#39;Connectivity (%) = 23.8 ± 0.6&#39;</span>
+</pre></div>
+</div>
+<p>Integration with plotting workflows:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">temperatures</span><span class="p">)),</span> <span class="n">temperatures</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">label</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>  <span class="c1"># Automatically uses formatted statistical label</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="lammpskit.plotting.timeseries_plots.calculate_frequency_label">
+<span class="sig-prename descclassname"><span class="pre">lammpskit.plotting.timeseries_plots.</span></span><span class="sig-name descname"><span class="pre">calculate_frequency_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_template</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lammpskit/plotting/timeseries_plots.html#calculate_frequency_label"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lammpskit.plotting.timeseries_plots.calculate_frequency_label" title="Link to this definition"></a></dt>
+<dd><p>Calculate occurrence frequency of specific values and generate formatted labels.</p>
+<p>Computes percentage frequency of target value occurrence in data arrays and formats
+using customizable template strings. Essential for binary state analysis, event
+detection summaries, and categorical data visualization. Supports flexible label
+formatting for diverse scientific reporting contexts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>np.ndarray</em>) – Input data array for frequency analysis. Shape: (n_points,).
+Supports any data type that supports equality comparison (int, float, bool, str).</p></li>
+<li><p><strong>target_value</strong> (<em>any</em>) – Specific value to count occurrences of. Must be comparable to data elements
+using == operator. Examples: 1, 0, True, ‘connected’, specific float values.</p></li>
+<li><p><strong>label_template</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Format string template with {frequency} placeholder for percentage insertion.
+Supports all Python string formatting options. Example: ‘Active {frequency:.1f}% of time’</p></li>
+<li><p><strong>precision</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>optional</em><em>, </em><em>default=2</em>) – Decimal places for frequency percentage formatting. Range: 0-10.
+Note: This parameter is currently unused; precision controlled by template format specifiers.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Formatted label string with frequency percentage substituted into template.
+Percentage calculated as (occurrences / total_points) * 100.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)">str</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.13)"><strong>ValueError</strong></a> – If data array is empty or label_template missing {frequency} placeholder.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.13)"><strong>TypeError</strong></a> – If target_value type incompatible with data elements for comparison.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.13)"><strong>KeyError</strong></a> – If label_template contains invalid format specifications.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Frequency Calculation:
+- Uses element-wise equality (==) for counting matches
+- Percentage = (matches / total_elements) * 100
+- Range: 0.0% (no matches) to 100.0% (all matches)
+- Floating-point precision handled by template format specifiers</p>
+<p>Template Formatting:
+- Supports all Python str.format() capabilities
+- Use {frequency:.1f} for 1 decimal place, {frequency:.0f} for integers
+- Can include additional text, units, and formatting
+- Multiple {frequency} references allowed in single template</p>
+<p>Performance Characteristics:
+- Computational complexity: O(n) for equality comparison
+- Memory usage: O(1) additional memory beyond input array
+- Boolean array creation for comparison may temporarily double memory</p>
+<p>Common Applications:
+- Binary state analysis (connected/disconnected, active/inactive)
+- Event detection (threshold crossings, state changes)
+- Categorical data summaries (phase classification, state distribution)
+- Time-based occurrence rates (duty cycles, sampling frequencies)</p>
+<p class="rubric">Examples</p>
+<p>Binary connectivity analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">connectivity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">label</span> <span class="o">=</span> <span class="n">calculate_frequency_label</span><span class="p">(</span><span class="n">connectivity</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Connected </span><span class="si">{frequency:.1f}% o</span><span class="s2">f time&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+<span class="go">&#39;Connected 70.0% of time&#39;</span>
+</pre></div>
+</div>
+<p>Boolean state analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">active_states</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">label</span> <span class="o">=</span> <span class="n">calculate_frequency_label</span><span class="p">(</span><span class="n">active_states</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;Active: </span><span class="si">{frequency:.0f}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+<span class="go">&#39;Active: 60%&#39;</span>
+</pre></div>
+</div>
+<p>Threshold crossing analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">temperatures</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">298</span><span class="p">,</span> <span class="mi">305</span><span class="p">,</span> <span class="mi">310</span><span class="p">,</span> <span class="mi">295</span><span class="p">,</span> <span class="mi">307</span><span class="p">,</span> <span class="mi">312</span><span class="p">,</span> <span class="mi">290</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">over_threshold</span> <span class="o">=</span> <span class="n">temperatures</span> <span class="o">&gt;</span> <span class="mi">300</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">label</span> <span class="o">=</span> <span class="n">calculate_frequency_label</span><span class="p">(</span><span class="n">over_threshold</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;Above 300K: </span><span class="si">{frequency:.1f}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+<span class="go">&#39;Above 300K: 57.1%&#39;</span>
+</pre></div>
+</div>
+<p>Categorical state distribution:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">phases</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">label_A</span> <span class="o">=</span> <span class="n">calculate_frequency_label</span><span class="p">(</span><span class="n">phases</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s2">&quot;Phase A: </span><span class="si">{frequency:.1f}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">label_B</span> <span class="o">=</span> <span class="n">calculate_frequency_label</span><span class="p">(</span><span class="n">phases</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s2">&quot;Phase B: </span><span class="si">{frequency:.1f}</span><span class="s2">%&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">label_A</span><span class="p">,</span> <span class="s1">&#39;|&#39;</span><span class="p">,</span> <span class="n">label_B</span><span class="p">)</span>
+<span class="go">&#39;Phase A: 57.1%&#39; | &#39;Phase B: 28.6%&#39;</span>
+</pre></div>
+</div>
+<p>Multiple format references:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">successes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">label</span> <span class="o">=</span> <span class="n">calculate_frequency_label</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">successes</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="s2">&quot;Success rate: </span><span class="si">{frequency:.1f}</span><span class="s2">% (</span><span class="si">{frequency:.2f}</span><span class="s2">% precise)&quot;</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+<span class="go">&#39;Success rate: 60.0% (60.00% precise)&#39;</span>
+</pre></div>
+</div>
+<p>Integration with time series plotting:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">connectivity_data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">p</span><span class="o">=</span><span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">stats_label</span> <span class="o">=</span> <span class="n">calculate_frequency_label</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">connectivity_data</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;Connected </span><span class="si">{frequency:.1f}% o</span><span class="s2">f simulation&quot;</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Use stats_label in create_time_series_plot() for automatic legend generation</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="lammpskit.plotting.html" class="btn btn-neutral float-left" title="lammpskit.plotting package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lammpskit.plotting.utils.html" class="btn btn-neutral float-right" title="lammpskit.plotting.utils module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Simanta Lahkar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

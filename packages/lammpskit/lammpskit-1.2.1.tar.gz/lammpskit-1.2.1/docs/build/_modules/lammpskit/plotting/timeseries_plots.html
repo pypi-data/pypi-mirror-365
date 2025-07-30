@@ -1,0 +1,1174 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lammpskit.plotting.timeseries_plots &mdash; LAMMPSKit 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            LAMMPSKit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_formats.html">Data Formats</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../lammpskit.html">lammpskit package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lammpskit.config.html">lammpskit.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lammpskit.io.html">lammpskit.io package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lammpskit.plotting.html">lammpskit.plotting package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../lammpskit.ecellmodel.html">lammpskit.ecellmodel package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">LAMMPSKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">lammpskit.plotting.timeseries_plots</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for lammpskit.plotting.timeseries_plots</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Centralized plotting functions for time series analysis.</span>
+
+<span class="sd">This module provides reusable plotting functions for creating standardized</span>
+<span class="sd">time series and dual-axis plots with consistent styling and configuration.</span>
+<span class="sd">These functions are general-purpose and can be used for any time series data,</span>
+<span class="sd">not just filament analysis.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Tuple</span>
+
+
+<div class="viewcode-block" id="TimeSeriesPlotConfig">
+<a class="viewcode-back" href="../../../lammpskit.plotting.timeseries_plots.html#lammpskit.plotting.TimeSeriesPlotConfig">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TimeSeriesPlotConfig</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Configuration class for standardized time series plotting with publication-ready defaults.</span>
+
+<span class="sd">    Provides centralized control over plot styling, elements, and output formatting for</span>
+<span class="sd">    consistent scientific visualization across LAMMPSKit analysis workflows. Supports</span>
+<span class="sd">    both line plots and scatter plots with flexible element combination.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    alpha : float, default=0.55</span>
+<span class="sd">        Transparency level for plot elements. Range [0.0, 1.0] where 0.0 is fully</span>
+<span class="sd">        transparent and 1.0 is fully opaque. Balanced for overlay visualization.</span>
+<span class="sd">    linewidth : float, default=0.1</span>
+<span class="sd">        Line thickness for connected plots. Thin lines prevent visual clutter in</span>
+<span class="sd">        dense time series data. Use higher values (0.5-2.0) for presentation plots.</span>
+<span class="sd">    markersize : float, default=5</span>
+<span class="sd">        Size of scatter plot markers. Optimized for readability without overcrowding.</span>
+<span class="sd">        Scale proportionally for different figure sizes.</span>
+<span class="sd">    marker : str, default=&#39;^&#39;</span>
+<span class="sd">        Matplotlib marker style for scatter plots. Options: &#39;o&#39; (circle), &#39;s&#39; (square),</span>
+<span class="sd">        &#39;^&#39; (triangle), &#39;*&#39; (star), &#39;+&#39; (plus), &#39;x&#39; (cross), &#39;D&#39; (diamond).</span>
+<span class="sd">    include_line : bool, default=True</span>
+<span class="sd">        Whether to draw connecting lines between data points. Useful for trend</span>
+<span class="sd">        visualization in temporal data. Disable for pure scatter analysis.</span>
+<span class="sd">    include_scatter : bool, default=True</span>
+<span class="sd">        Whether to draw individual data point markers. Essential for discrete data</span>
+<span class="sd">        visualization. Disable for smooth trend-only plots.</span>
+<span class="sd">    format : str, default=&#39;pdf&#39;</span>
+<span class="sd">        Output file format for saved figures. Options: &#39;pdf&#39; (vector, publication),</span>
+<span class="sd">        &#39;svg&#39; (web-compatible vector), &#39;png&#39; (raster), &#39;eps&#39; (LaTeX-compatible).</span>
+<span class="sd">    fontsize_title : int, default=8</span>
+<span class="sd">        Font size for plot titles in points. Optimized for compact scientific layout.</span>
+<span class="sd">        Use None to disable title font control.</span>
+<span class="sd">    fontsize_labels : int, default=8</span>
+<span class="sd">        Font size for axis labels in points. Consistent with scientific journal standards.</span>
+<span class="sd">        Use None to use matplotlib defaults.</span>
+<span class="sd">    fontsize_ticks : int, default=8</span>
+<span class="sd">        Font size for axis tick labels in points. Maintains readability at small sizes.</span>
+<span class="sd">        Use None to use matplotlib defaults.</span>
+<span class="sd">    fontsize_legend : int, default=8</span>
+<span class="sd">        Font size for legend text in points. Balanced for information density.</span>
+<span class="sd">        Use None to use matplotlib defaults.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Configuration Design Philosophy:</span>
+<span class="sd">    - Publication-ready defaults minimize post-processing</span>
+<span class="sd">    - Centralized font control ensures consistency across figures</span>
+<span class="sd">    - Flexible element control (line/scatter) supports diverse data types</span>
+<span class="sd">    - Conservative styling prevents visual clutter in complex analyses</span>
+
+<span class="sd">    Performance Considerations:</span>
+<span class="sd">    - Transparent plots (alpha &lt; 1.0) may slow rendering for large datasets</span>
+<span class="sd">    - Vector formats (PDF/SVG) maintain quality but increase file size</span>
+<span class="sd">    - Font rendering overhead is minimal for typical scientific plots</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Default configuration for temporal analysis:</span>
+
+<span class="sd">    &gt;&gt;&gt; config = TimeSeriesPlotConfig()</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;Using marker: {config.marker}, alpha: {config.alpha}&quot;)</span>
+
+<span class="sd">    Custom configuration for presentation plots:</span>
+
+<span class="sd">    &gt;&gt;&gt; config = TimeSeriesPlotConfig(</span>
+<span class="sd">    ...     linewidth=1.0,</span>
+<span class="sd">    ...     markersize=8,</span>
+<span class="sd">    ...     alpha=0.8,</span>
+<span class="sd">    ...     fontsize_title=12,</span>
+<span class="sd">    ...     fontsize_labels=10</span>
+<span class="sd">    ... )</span>
+
+<span class="sd">    Scatter-only configuration for statistical analysis:</span>
+
+<span class="sd">    &gt;&gt;&gt; config = TimeSeriesPlotConfig(</span>
+<span class="sd">    ...     include_line=False,</span>
+<span class="sd">    ...     include_scatter=True,</span>
+<span class="sd">    ...     marker=&#39;o&#39;,</span>
+<span class="sd">    ...     markersize=3</span>
+<span class="sd">    ... )</span>
+
+<span class="sd">    High-contrast configuration for printing:</span>
+
+<span class="sd">    &gt;&gt;&gt; config = TimeSeriesPlotConfig(</span>
+<span class="sd">    ...     alpha=1.0,</span>
+<span class="sd">    ...     linewidth=0.8,</span>
+<span class="sd">    ...     format=&#39;eps&#39;</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Plot styling</span>
+    <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.55</span>
+    <span class="n">linewidth</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span>
+    <span class="n">markersize</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">marker</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;^&quot;</span>
+
+    <span class="c1"># Plot elements to include</span>
+    <span class="n">include_line</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">include_scatter</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="c1"># File output</span>
+    <span class="nb">format</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;pdf&quot;</span>
+
+    <span class="c1"># Text and font sizes (centrally controlled)</span>
+    <span class="n">fontsize_title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">fontsize_labels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">fontsize_ticks</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">fontsize_legend</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span></div>
+
+
+
+<div class="viewcode-block" id="DualAxisPlotConfig">
+<a class="viewcode-back" href="../../../lammpskit.plotting.timeseries_plots.html#lammpskit.plotting.DualAxisPlotConfig">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DualAxisPlotConfig</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Configuration class for dual-axis plots supporting simultaneous visualization of two data series.</span>
+
+<span class="sd">    Enables comparison of time series data with different units or scales on a single figure.</span>
+<span class="sd">    Essential for correlating physical quantities like temperature-displacement or</span>
+<span class="sd">    connectivity-time relationships in scientific analysis. Provides independent color</span>
+<span class="sd">    control and legend positioning for clear data interpretation.</span>
+
+<span class="sd">    Attributes</span>
+<span class="sd">    ----------</span>
+<span class="sd">    alpha : float, default=0.55</span>
+<span class="sd">        Transparency level for both data series. Range [0.0, 1.0]. Moderate transparency</span>
+<span class="sd">        allows underlying grid and axis lines to remain visible.</span>
+<span class="sd">    linewidth : float, default=0.1</span>
+<span class="sd">        Line thickness for both axes data. Thin lines prevent visual dominance of</span>
+<span class="sd">        either dataset. Increase for presentation or when clarity is critical.</span>
+<span class="sd">    markersize : float, default=5</span>
+<span class="sd">        Marker size for scatter points on both axes. Consistent sizing maintains</span>
+<span class="sd">        visual balance between primary and secondary data series.</span>
+<span class="sd">    marker : str, default=&#39;^&#39;</span>
+<span class="sd">        Marker style for secondary axis (right). Primary axis uses default scatter</span>
+<span class="sd">        markers. Options: &#39;o&#39;, &#39;s&#39;, &#39;^&#39;, &#39;*&#39;, &#39;+&#39;, &#39;x&#39;, &#39;D&#39;, &#39;v&#39;, &#39;&lt;&#39;, &#39;&gt;&#39;.</span>
+<span class="sd">    primary_color : str, default=&#39;tab:red&#39;</span>
+<span class="sd">        Color for primary (left) y-axis data and axis labels. Matplotlib tab colors</span>
+<span class="sd">        provide good contrast. Options: &#39;tab:blue&#39;, &#39;tab:orange&#39;, &#39;tab:green&#39;, etc.</span>
+<span class="sd">    secondary_color : str, default=&#39;tab:blue&#39;</span>
+<span class="sd">        Color for secondary (right) y-axis data and axis labels. Should contrast</span>
+<span class="sd">        with primary_color for clear visual separation.</span>
+<span class="sd">    format : str, default=&#39;pdf&#39;</span>
+<span class="sd">        Output file format. Dual-axis plots benefit from vector formats to maintain</span>
+<span class="sd">        text and line clarity at different scales.</span>
+<span class="sd">    primary_legend_loc : str, default=&#39;upper right&#39;</span>
+<span class="sd">        Legend position for primary axis data. Standard matplotlib locations:</span>
+<span class="sd">        &#39;upper/lower/center&#39; + &#39;left/right/center&#39;, or &#39;best&#39; for automatic.</span>
+<span class="sd">    secondary_legend_loc : str, default=&#39;lower right&#39;</span>
+<span class="sd">        Legend position for secondary axis data. Should not overlap with primary</span>
+<span class="sd">        legend. Consider &#39;upper left&#39;, &#39;lower left&#39;, or &#39;center left&#39;.</span>
+<span class="sd">    legend_framealpha : float, default=0.75</span>
+<span class="sd">        Background transparency for legend boxes. Range [0.0, 1.0]. Semi-transparent</span>
+<span class="sd">        frames prevent complete data occlusion while maintaining readability.</span>
+<span class="sd">    tight_layout : bool, default=True</span>
+<span class="sd">        Whether to apply matplotlib tight_layout for automatic spacing adjustment.</span>
+<span class="sd">        Prevents axis label cutoff in dual-axis configurations.</span>
+<span class="sd">    fontsize_title : int, default=8</span>
+<span class="sd">        Font size for plot title. Centered above both axes.</span>
+<span class="sd">    fontsize_labels : int, default=8</span>
+<span class="sd">        Font size for both primary and secondary axis labels.</span>
+<span class="sd">    fontsize_ticks : int, default=8</span>
+<span class="sd">        Font size for tick labels on both axes.</span>
+<span class="sd">    fontsize_legend : int, default=8</span>
+<span class="sd">        Font size for both legend boxes.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Dual-Axis Design Principles:</span>
+<span class="sd">    - Color coding clearly distinguishes data series and corresponding axes</span>
+<span class="sd">    - Legend positioning prevents data occlusion while maintaining clarity</span>
+<span class="sd">    - Consistent marker sizing maintains visual balance between series</span>
+<span class="sd">    - Semi-transparent legends allow underlying data visibility</span>
+
+<span class="sd">    Common Use Cases:</span>
+<span class="sd">    - Temperature vs. displacement over time</span>
+<span class="sd">    - Connectivity percentage vs. cluster size evolution</span>
+<span class="sd">    - Voltage vs. current relationships in device characterization</span>
+<span class="sd">    - Statistical metrics vs. physical properties correlation</span>
+
+<span class="sd">    Performance Considerations:</span>
+<span class="sd">    - Dual-axis rendering requires additional matplotlib operations</span>
+<span class="sd">    - Legend placement calculations may slow complex figures</span>
+<span class="sd">    - Vector output formats recommended for text clarity</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Default configuration for scientific analysis:</span>
+
+<span class="sd">    &gt;&gt;&gt; config = DualAxisPlotConfig()</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;Colors: {config.primary_color}, {config.secondary_color}&quot;)</span>
+
+<span class="sd">    Custom color scheme for publication:</span>
+
+<span class="sd">    &gt;&gt;&gt; config = DualAxisPlotConfig(</span>
+<span class="sd">    ...     primary_color=&#39;tab:green&#39;,</span>
+<span class="sd">    ...     secondary_color=&#39;tab:purple&#39;,</span>
+<span class="sd">    ...     primary_legend_loc=&#39;upper left&#39;,</span>
+<span class="sd">    ...     secondary_legend_loc=&#39;upper right&#39;</span>
+<span class="sd">    ... )</span>
+
+<span class="sd">    High-contrast configuration for presentations:</span>
+
+<span class="sd">    &gt;&gt;&gt; config = DualAxisPlotConfig(</span>
+<span class="sd">    ...     alpha=0.9,</span>
+<span class="sd">    ...     linewidth=0.5,</span>
+<span class="sd">    ...     markersize=8,</span>
+<span class="sd">    ...     legend_framealpha=0.9,</span>
+<span class="sd">    ...     fontsize_title=12,</span>
+<span class="sd">    ...     fontsize_labels=10</span>
+<span class="sd">    ... )</span>
+
+<span class="sd">    Minimal styling for technical reports:</span>
+
+<span class="sd">    &gt;&gt;&gt; config = DualAxisPlotConfig(</span>
+<span class="sd">    ...     primary_color=&#39;black&#39;,</span>
+<span class="sd">    ...     secondary_color=&#39;gray&#39;,</span>
+<span class="sd">    ...     tight_layout=True,</span>
+<span class="sd">    ...     format=&#39;eps&#39;</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Plot styling</span>
+    <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.55</span>
+    <span class="n">linewidth</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span>
+    <span class="n">markersize</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="n">marker</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;^&quot;</span>
+
+    <span class="c1"># Colors for dual axes</span>
+    <span class="n">primary_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;tab:red&quot;</span>
+    <span class="n">secondary_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;tab:blue&quot;</span>
+
+    <span class="c1"># File output</span>
+    <span class="nb">format</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;pdf&quot;</span>
+
+    <span class="c1"># Legend and layout</span>
+    <span class="n">primary_legend_loc</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;upper right&quot;</span>
+    <span class="n">secondary_legend_loc</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;lower right&quot;</span>
+    <span class="n">legend_framealpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.75</span>
+    <span class="n">tight_layout</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+
+    <span class="c1"># Text and font sizes (centrally controlled)</span>
+    <span class="n">fontsize_title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">fontsize_labels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">fontsize_ticks</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">fontsize_legend</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="mi">8</span></div>
+
+
+
+<div class="viewcode-block" id="create_time_series_plot">
+<a class="viewcode-back" href="../../../lammpskit.plotting.timeseries_plots.html#lammpskit.plotting.create_time_series_plot">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_time_series_plot</span><span class="p">(</span>
+    <span class="n">x_data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">y_data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">stats_label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TimeSeriesPlotConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">ylim</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="c1"># Font size overrides (individual parameter control)</span>
+    <span class="n">fontsize_title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">fontsize_labels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">fontsize_ticks</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">fontsize_legend</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Figure</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create standardized time series plots with flexible line and scatter element control.</span>
+
+<span class="sd">    Generates publication-ready time series visualizations with configurable styling and</span>
+<span class="sd">    centralized font management. Supports pure line plots, pure scatter plots, or combined</span>
+<span class="sd">    visualizations based on configuration. Essential for temporal analysis workflows including</span>
+<span class="sd">    filament evolution tracking, statistical time series, and experimental data visualization.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x_data : np.ndarray</span>
+<span class="sd">        X-axis values, typically representing time or sequential measurements.</span>
+<span class="sd">        Shape: (n_points,). Units depend on analysis context (e.g., timesteps, seconds, frames).</span>
+<span class="sd">    y_data : np.ndarray</span>
+<span class="sd">        Y-axis values for plotting. Shape: (n_points,). Must match x_data length.</span>
+<span class="sd">        Examples: displacement values, connectivity percentages, statistical measures.</span>
+<span class="sd">    title : str</span>
+<span class="sd">        Plot title displayed above the figure. Include units and context for clarity.</span>
+<span class="sd">        Example: &#39;Filament Evolution Over Time&#39;, &#39;Temperature vs. Timestep&#39;</span>
+<span class="sd">    xlabel : str</span>
+<span class="sd">        X-axis label with units. Standard format: &#39;Property (units)&#39;.</span>
+<span class="sd">        Examples: &#39;Time (ps)&#39;, &#39;Timestep&#39;, &#39;Frame Number&#39;, &#39;Voltage Cycle&#39;</span>
+<span class="sd">    ylabel : str</span>
+<span class="sd">        Y-axis label with units. Standard format: &#39;Property (units)&#39;.</span>
+<span class="sd">        Examples: &#39;Displacement (Å)&#39;, &#39;Connectivity (%)&#39;, &#39;Temperature (K)&#39;</span>
+<span class="sd">    stats_label : str</span>
+<span class="sd">        Statistical summary or description for legend entry. Often includes computed</span>
+<span class="sd">        metrics like mean, standard deviation, or frequency. Example: &#39;Mean: 2.34 ± 0.15&#39;</span>
+<span class="sd">    config : TimeSeriesPlotConfig, optional</span>
+<span class="sd">        Plot configuration object controlling styling, elements, and output format.</span>
+<span class="sd">        If None, uses default configuration optimized for scientific visualization.</span>
+<span class="sd">    ylim : tuple of float, optional</span>
+<span class="sd">        Y-axis limits as (ymin, ymax). Useful for consistent scaling across multiple</span>
+<span class="sd">        related plots or for focusing on specific data ranges.</span>
+<span class="sd">    fontsize_title : int, optional</span>
+<span class="sd">        Override configuration title font size. Useful for presentation adaptation</span>
+<span class="sd">        without modifying the base configuration object.</span>
+<span class="sd">    fontsize_labels : int, optional</span>
+<span class="sd">        Override configuration axis label font size. Maintains consistency while</span>
+<span class="sd">        allowing figure-specific adjustments.</span>
+<span class="sd">    fontsize_ticks : int, optional</span>
+<span class="sd">        Override configuration tick label font size. Important for readability</span>
+<span class="sd">        when figures are scaled for different contexts.</span>
+<span class="sd">    fontsize_legend : int, optional</span>
+<span class="sd">        Override configuration legend font size. Critical for maintaining legend</span>
+<span class="sd">        readability in complex multi-series plots.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    fig : plt.Figure</span>
+<span class="sd">        Matplotlib figure object containing the plot. Can be further customized,</span>
+<span class="sd">        saved, or displayed using standard matplotlib operations.</span>
+<span class="sd">    ax : plt.Axes</span>
+<span class="sd">        Matplotlib axes object for the plot. Provides access for additional</span>
+<span class="sd">        annotations, reference lines, or styling modifications.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If x_data and y_data have mismatched lengths or contain invalid values.</span>
+<span class="sd">    TypeError</span>
+<span class="sd">        If data arrays are not numpy arrays or convertible to arrays.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Plot Element Control:</span>
+<span class="sd">    - include_line=True, include_scatter=True: Connected scatter plot (default)</span>
+<span class="sd">    - include_line=True, include_scatter=False: Pure line plot for trends</span>
+<span class="sd">    - include_line=False, include_scatter=True: Pure scatter plot for discrete data</span>
+<span class="sd">    - include_line=False, include_scatter=False: Empty plot (not recommended)</span>
+
+<span class="sd">    Performance Characteristics:</span>
+<span class="sd">    - Memory usage: O(n_points) for data storage, minimal for plot objects</span>
+<span class="sd">    - Rendering time: O(n_points) for line plots, O(n_points) for scatter plots</span>
+<span class="sd">    - File size: Vector formats scale with data complexity, raster formats are fixed</span>
+
+<span class="sd">    Statistical Integration:</span>
+<span class="sd">    - Use calculate_mean_std_label() for automated statistical summaries</span>
+<span class="sd">    - Use calculate_frequency_label() for discrete event analysis</span>
+<span class="sd">    - Legend automatically includes stats_label for quantitative context</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Basic time series plot with default configuration:</span>
+
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from lammpskit.plotting.timeseries_plots import create_time_series_plot</span>
+<span class="sd">    &gt;&gt;&gt; time = np.arange(0, 100, 1)</span>
+<span class="sd">    &gt;&gt;&gt; displacement = np.random.normal(2.0, 0.5, 100)</span>
+<span class="sd">    &gt;&gt;&gt; fig, ax = create_time_series_plot(</span>
+<span class="sd">    ...     time, displacement,</span>
+<span class="sd">    ...     &#39;Atomic Displacement Evolution&#39;,</span>
+<span class="sd">    ...     &#39;Time (ps)&#39;, &#39;Displacement (Å)&#39;,</span>
+<span class="sd">    ...     &#39;Mean: 2.0 ± 0.5 Å&#39;</span>
+<span class="sd">    ... )</span>
+
+<span class="sd">    Custom configuration for presentation:</span>
+
+<span class="sd">    &gt;&gt;&gt; from lammpskit.plotting.timeseries_plots import TimeSeriesPlotConfig</span>
+<span class="sd">    &gt;&gt;&gt; config = TimeSeriesPlotConfig(</span>
+<span class="sd">    ...     linewidth=1.0, markersize=8, alpha=0.8, format=&#39;png&#39;</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; fig, ax = create_time_series_plot(</span>
+<span class="sd">    ...     time, displacement,</span>
+<span class="sd">    ...     &#39;High-Visibility Displacement Plot&#39;,</span>
+<span class="sd">    ...     &#39;Time (ps)&#39;, &#39;Displacement (Å)&#39;,</span>
+<span class="sd">    ...     &#39;N=100 points&#39;, config=config</span>
+<span class="sd">    ... )</span>
+
+<span class="sd">    Scatter-only plot for statistical analysis:</span>
+
+<span class="sd">    &gt;&gt;&gt; config = TimeSeriesPlotConfig(include_line=False, marker=&#39;o&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; fig, ax = create_time_series_plot(</span>
+<span class="sd">    ...     time, displacement,</span>
+<span class="sd">    ...     &#39;Discrete Displacement Measurements&#39;,</span>
+<span class="sd">    ...     &#39;Time (ps)&#39;, &#39;Displacement (Å)&#39;,</span>
+<span class="sd">    ...     &#39;σ = 0.5 Å&#39;, config=config</span>
+<span class="sd">    ... )</span>
+
+<span class="sd">    Controlled y-axis range for comparison plots:</span>
+
+<span class="sd">    &gt;&gt;&gt; fig, ax = create_time_series_plot(</span>
+<span class="sd">    ...     time, displacement,</span>
+<span class="sd">    ...     &#39;Constrained Range Analysis&#39;,</span>
+<span class="sd">    ...     &#39;Time (ps)&#39;, &#39;Displacement (Å)&#39;,</span>
+<span class="sd">    ...     &#39;Range: 0-5 Å&#39;, ylim=(0, 5)</span>
+<span class="sd">    ... )</span>
+
+<span class="sd">    Font size override for manuscript figures:</span>
+
+<span class="sd">    &gt;&gt;&gt; fig, ax = create_time_series_plot(</span>
+<span class="sd">    ...     time, displacement,</span>
+<span class="sd">    ...     &#39;Publication Figure&#39;,</span>
+<span class="sd">    ...     &#39;Time (ps)&#39;, &#39;Displacement (Å)&#39;,</span>
+<span class="sd">    ...     &#39;Experimental data&#39;,</span>
+<span class="sd">    ...     fontsize_title=14, fontsize_labels=12, fontsize_legend=10</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">TimeSeriesPlotConfig</span><span class="p">()</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+    <span class="c1"># Add line plot if configured</span>
+    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">include_line</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x_data</span><span class="p">,</span> <span class="n">y_data</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">linewidth</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">markersize</span><span class="p">)</span>
+
+    <span class="c1"># Add scatter plot if configured</span>
+    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">include_scatter</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+            <span class="n">x_data</span><span class="p">,</span>
+            <span class="n">y_data</span><span class="p">,</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span>
+            <span class="n">linewidth</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">linewidth</span><span class="p">,</span>
+            <span class="n">s</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">markersize</span><span class="p">,</span>
+            <span class="n">marker</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">marker</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="n">stats_label</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="c1"># Set labels and title with centralized font size control</span>
+    <span class="n">title_fontsize</span> <span class="o">=</span> <span class="n">fontsize_title</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">fontsize_title</span>
+    <span class="n">labels_fontsize</span> <span class="o">=</span> <span class="n">fontsize_labels</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">fontsize_labels</span>
+    <span class="n">ticks_fontsize</span> <span class="o">=</span> <span class="n">fontsize_ticks</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">fontsize_ticks</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">labels_fontsize</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">ylabel</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">labels_fontsize</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">title_fontsize</span><span class="p">)</span>
+
+    <span class="c1"># Set tick label sizes</span>
+    <span class="k">if</span> <span class="n">ticks_fontsize</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;both&quot;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s2">&quot;major&quot;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="n">ticks_fontsize</span><span class="p">)</span>
+
+    <span class="c1"># Set y-limits if provided</span>
+    <span class="k">if</span> <span class="n">ylim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+
+    <span class="c1"># Add legend with centralized font size control</span>
+    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">include_scatter</span><span class="p">:</span>  <span class="c1"># Only show legend if there&#39;s a label</span>
+        <span class="n">legend_fontsize_final</span> <span class="o">=</span> <span class="n">fontsize_legend</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">fontsize_legend</span>
+        <span class="k">if</span> <span class="n">legend_fontsize_final</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">fontsize</span><span class="o">=</span><span class="n">legend_fontsize_final</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span></div>
+
+
+
+<div class="viewcode-block" id="create_dual_axis_plot">
+<a class="viewcode-back" href="../../../lammpskit.plotting.timeseries_plots.html#lammpskit.plotting.create_dual_axis_plot">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">create_dual_axis_plot</span><span class="p">(</span>
+    <span class="n">x_data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">primary_y_data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">secondary_y_data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">xlabel</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">primary_ylabel</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">secondary_ylabel</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">primary_stats_label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">secondary_stats_label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DualAxisPlotConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">primary_ylim</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">secondary_ylim</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="c1"># Font size overrides (individual parameter control)</span>
+    <span class="n">fontsize_title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">fontsize_labels</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">fontsize_ticks</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">fontsize_legend</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">plt</span><span class="o">.</span><span class="n">Figure</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">,</span> <span class="n">plt</span><span class="o">.</span><span class="n">Axes</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create dual-axis plots for simultaneous visualization of two correlated data series.</span>
+
+<span class="sd">    Generates publication-ready figures with independent y-axes supporting different units,</span>
+<span class="sd">    scales, or physical quantities. Essential for comparative analysis of time-dependent</span>
+<span class="sd">    properties where direct correlation visualization is critical. Features automatic</span>
+<span class="sd">    color coordination, independent axis control, and optimized legend positioning.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    x_data : np.ndarray</span>
+<span class="sd">        Shared x-axis values for both data series. Shape: (n_points,). Typically</span>
+<span class="sd">        represents time, voltage cycles, or sequential measurements.</span>
+<span class="sd">    primary_y_data : np.ndarray</span>
+<span class="sd">        Left y-axis data series. Shape: (n_points,). Must match x_data length.</span>
+<span class="sd">        Examples: displacement values, temperature measurements, primary properties.</span>
+<span class="sd">    secondary_y_data : np.ndarray</span>
+<span class="sd">        Right y-axis data series. Shape: (n_points,). Must match x_data length.</span>
+<span class="sd">        Examples: connectivity percentages, statistical measures, derived properties.</span>
+<span class="sd">    title : str</span>
+<span class="sd">        Plot title displayed above both axes. Should indicate the relationship</span>
+<span class="sd">        being explored. Example: &#39;Temperature vs Connectivity Evolution&#39;</span>
+<span class="sd">    xlabel : str</span>
+<span class="sd">        Shared x-axis label with units. Standard format: &#39;Property (units)&#39;.</span>
+<span class="sd">        Examples: &#39;Time (ps)&#39;, &#39;Voltage Cycle&#39;, &#39;Timestep Number&#39;</span>
+<span class="sd">    primary_ylabel : str</span>
+<span class="sd">        Left y-axis label with units. Standard format: &#39;Property (units)&#39;.</span>
+<span class="sd">        Color-coded to match primary_color in configuration.</span>
+<span class="sd">    secondary_ylabel : str</span>
+<span class="sd">        Right y-axis label with units. Standard format: &#39;Property (units)&#39;.</span>
+<span class="sd">        Color-coded to match secondary_color in configuration.</span>
+<span class="sd">    primary_stats_label : str</span>
+<span class="sd">        Statistical summary for primary data legend entry. Often includes mean,</span>
+<span class="sd">        standard deviation, or characteristic values. Example: &#39;Temp: 300 ± 50 K&#39;</span>
+<span class="sd">    secondary_stats_label : str</span>
+<span class="sd">        Statistical summary for secondary data legend entry. Should complement</span>
+<span class="sd">        primary statistics. Example: &#39;Connected: 23.4% of time&#39;</span>
+<span class="sd">    config : DualAxisPlotConfig, optional</span>
+<span class="sd">        Dual-axis configuration controlling colors, legend positioning, and styling.</span>
+<span class="sd">        If None, uses default configuration optimized for scientific visualization.</span>
+<span class="sd">    primary_ylim : tuple of float, optional</span>
+<span class="sd">        Primary (left) y-axis limits as (ymin, ymax). Useful for consistent scaling</span>
+<span class="sd">        across multiple related plots or for highlighting specific data ranges.</span>
+<span class="sd">    secondary_ylim : tuple of float, optional</span>
+<span class="sd">        Secondary (right) y-axis limits as (ymin, ymax). Independent control enables</span>
+<span class="sd">        optimal visualization of secondary data regardless of primary axis scaling.</span>
+<span class="sd">    fontsize_title : int, optional</span>
+<span class="sd">        Override configuration title font size. Useful for presentation adaptation</span>
+<span class="sd">        without modifying the base configuration object.</span>
+<span class="sd">    fontsize_labels : int, optional</span>
+<span class="sd">        Override configuration axis label font size. Applies to both primary and</span>
+<span class="sd">        secondary axis labels simultaneously.</span>
+<span class="sd">    fontsize_ticks : int, optional</span>
+<span class="sd">        Override configuration tick label font size. Affects both axes tick labels</span>
+<span class="sd">        for consistent appearance.</span>
+<span class="sd">    fontsize_legend : int, optional</span>
+<span class="sd">        Override configuration legend font size. Applies to both legend boxes.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    fig : plt.Figure</span>
+<span class="sd">        Matplotlib figure object containing the dual-axis plot. Can be further</span>
+<span class="sd">        customized, saved, or displayed using standard matplotlib operations.</span>
+<span class="sd">    ax1 : plt.Axes</span>
+<span class="sd">        Primary (left) y-axis axes object. Provides access for additional</span>
+<span class="sd">        annotations, reference lines, or primary data modifications.</span>
+<span class="sd">    ax2 : plt.Axes</span>
+<span class="sd">        Secondary (right) y-axis axes object. Enables independent secondary axis</span>
+<span class="sd">        customization, additional data series, or specialized annotations.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If data arrays have mismatched lengths or contain invalid values.</span>
+<span class="sd">    TypeError</span>
+<span class="sd">        If data arrays are not numpy arrays or convertible to arrays.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Dual-Axis Design Principles:</span>
+<span class="sd">    - Color coordination ensures clear association between data and corresponding axes</span>
+<span class="sd">    - Independent axis scaling optimizes visualization of disparate data ranges</span>
+<span class="sd">    - Legend positioning minimizes data occlusion while maintaining readability</span>
+<span class="sd">    - Automatic tight layout prevents axis label cutoff in complex configurations</span>
+
+<span class="sd">    Visual Hierarchy:</span>
+<span class="sd">    - Primary data (left axis) uses warm colors (red) for visual prominence</span>
+<span class="sd">    - Secondary data (right axis) uses cool colors (blue) for complementary contrast</span>
+<span class="sd">    - Legend transparency allows underlying data visibility</span>
+<span class="sd">    - Consistent marker sizing maintains visual balance</span>
+
+<span class="sd">    Performance Considerations:</span>
+<span class="sd">    - Dual-axis rendering requires additional matplotlib twinx() operations</span>
+<span class="sd">    - Legend placement calculations may impact rendering time for complex data</span>
+<span class="sd">    - Vector output formats recommended for maintaining text and line clarity</span>
+<span class="sd">    - Memory usage: O(n_points) for data, minimal overhead for dual axes</span>
+
+<span class="sd">    Common Applications:</span>
+<span class="sd">    - Process parameter correlation (temperature vs. pressure over time)</span>
+<span class="sd">    - Statistical trend analysis (mean vs. variance evolution)</span>
+<span class="sd">    - Performance monitoring (throughput vs. error rate)</span>
+<span class="sd">    - Multi-scale temporal analysis (short-term vs. long-term trends)</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Basic dual-axis plot with default configuration:</span>
+
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; from lammpskit.plotting.timeseries_plots import create_dual_axis_plot</span>
+<span class="sd">    &gt;&gt;&gt; time = np.arange(0, 100, 1)</span>
+<span class="sd">    &gt;&gt;&gt; temperature = 300 + 50 * np.sin(time * 0.1)</span>
+<span class="sd">    &gt;&gt;&gt; connectivity = 50 + 30 * np.cos(time * 0.05)</span>
+<span class="sd">    &gt;&gt;&gt; fig, ax1, ax2 = create_dual_axis_plot(</span>
+<span class="sd">    ...     time, temperature, connectivity,</span>
+<span class="sd">    ...     &#39;Temperature-Connectivity Correlation&#39;,</span>
+<span class="sd">    ...     &#39;Time (ps)&#39;, &#39;Temperature (K)&#39;, &#39;Connectivity (%)&#39;,</span>
+<span class="sd">    ...     &#39;T = 300 ± 50 K&#39;, &#39;C = 50 ± 30%&#39;</span>
+<span class="sd">    ... )</span>
+
+<span class="sd">    Custom configuration for presentation:</span>
+
+<span class="sd">    &gt;&gt;&gt; from lammpskit.plotting.timeseries_plots import DualAxisPlotConfig</span>
+<span class="sd">    &gt;&gt;&gt; config = DualAxisPlotConfig(</span>
+<span class="sd">    ...     primary_color=&#39;tab:green&#39;,</span>
+<span class="sd">    ...     secondary_color=&#39;tab:purple&#39;,</span>
+<span class="sd">    ...     primary_legend_loc=&#39;upper left&#39;,</span>
+<span class="sd">    ...     secondary_legend_loc=&#39;lower right&#39;,</span>
+<span class="sd">    ...     alpha=0.8</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; fig, ax1, ax2 = create_dual_axis_plot(</span>
+<span class="sd">    ...     time, temperature, connectivity,</span>
+<span class="sd">    ...     &#39;Custom Color Analysis&#39;,</span>
+<span class="sd">    ...     &#39;Time (ps)&#39;, &#39;Property A&#39;, &#39;Property B&#39;,</span>
+<span class="sd">    ...     &#39;Series A&#39;, &#39;Series B&#39;, config=config</span>
+<span class="sd">    ... )</span>
+
+<span class="sd">    Controlled axis ranges for comparison:</span>
+
+<span class="sd">    &gt;&gt;&gt; fig, ax1, ax2 = create_dual_axis_plot(</span>
+<span class="sd">    ...     time, temperature, connectivity,</span>
+<span class="sd">    ...     &#39;Fixed Range Comparison&#39;,</span>
+<span class="sd">    ...     &#39;Time (ps)&#39;, &#39;Temperature (K)&#39;, &#39;Connectivity (%)&#39;,</span>
+<span class="sd">    ...     &#39;Controlled range&#39;, &#39;Fixed scale&#39;,</span>
+<span class="sd">    ...     primary_ylim=(250, 350), secondary_ylim=(0, 100)</span>
+<span class="sd">    ... )</span>
+
+<span class="sd">    High-contrast configuration for printing:</span>
+
+<span class="sd">    &gt;&gt;&gt; config = DualAxisPlotConfig(</span>
+<span class="sd">    ...     primary_color=&#39;black&#39;,</span>
+<span class="sd">    ...     secondary_color=&#39;gray&#39;,</span>
+<span class="sd">    ...     alpha=1.0,</span>
+<span class="sd">    ...     legend_framealpha=1.0,</span>
+<span class="sd">    ...     format=&#39;eps&#39;</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; fig, ax1, ax2 = create_dual_axis_plot(</span>
+<span class="sd">    ...     time, temperature, connectivity,</span>
+<span class="sd">    ...     &#39;Print-Optimized Dual Plot&#39;,</span>
+<span class="sd">    ...     &#39;Time (ps)&#39;, &#39;Primary&#39;, &#39;Secondary&#39;,</span>
+<span class="sd">    ...     &#39;Data A&#39;, &#39;Data B&#39;, config=config</span>
+<span class="sd">    ... )</span>
+
+<span class="sd">    Font override for manuscript figures:</span>
+
+<span class="sd">    &gt;&gt;&gt; fig, ax1, ax2 = create_dual_axis_plot(</span>
+<span class="sd">    ...     time, temperature, connectivity,</span>
+<span class="sd">    ...     &#39;Publication Figure&#39;,</span>
+<span class="sd">    ...     &#39;Time (ps)&#39;, &#39;Temperature (K)&#39;, &#39;Connectivity (%)&#39;,</span>
+<span class="sd">    ...     &#39;Experimental&#39;, &#39;Calculated&#39;,</span>
+<span class="sd">    ...     fontsize_title=16, fontsize_labels=14, fontsize_legend=12</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">config</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">DualAxisPlotConfig</span><span class="p">()</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+
+    <span class="c1"># Get font sizes with override capability</span>
+    <span class="n">title_fontsize</span> <span class="o">=</span> <span class="n">fontsize_title</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">fontsize_title</span>
+    <span class="n">labels_fontsize</span> <span class="o">=</span> <span class="n">fontsize_labels</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">fontsize_labels</span>
+    <span class="n">ticks_fontsize</span> <span class="o">=</span> <span class="n">fontsize_ticks</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">fontsize_ticks</span>
+    <span class="n">legend_fontsize_final</span> <span class="o">=</span> <span class="n">fontsize_legend</span> <span class="ow">or</span> <span class="n">config</span><span class="o">.</span><span class="n">fontsize_legend</span>
+
+    <span class="c1"># Configure primary axis (left)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="n">xlabel</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">labels_fontsize</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">primary_ylabel</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">primary_color</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">labels_fontsize</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">x_data</span><span class="p">,</span>
+        <span class="n">primary_y_data</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span>
+        <span class="n">linewidth</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">linewidth</span><span class="p">,</span>
+        <span class="n">s</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">markersize</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">primary_color</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">primary_stats_label</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">primary_color</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="n">ticks_fontsize</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;x&quot;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="n">ticks_fontsize</span><span class="p">)</span>
+
+    <span class="c1"># Set primary y-limits if provided</span>
+    <span class="k">if</span> <span class="n">primary_ylim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">primary_ylim</span><span class="p">)</span>
+
+    <span class="c1"># Create secondary axis (right)</span>
+    <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="n">secondary_ylabel</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">secondary_color</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">labels_fontsize</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+        <span class="n">x_data</span><span class="p">,</span>
+        <span class="n">secondary_y_data</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span>
+        <span class="n">linewidth</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">linewidth</span><span class="p">,</span>
+        <span class="n">s</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">markersize</span><span class="p">,</span>
+        <span class="n">marker</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">marker</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">secondary_color</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="n">secondary_stats_label</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">&quot;y&quot;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">secondary_color</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="n">ticks_fontsize</span><span class="p">)</span>
+
+    <span class="c1"># Set secondary y-limits if provided</span>
+    <span class="k">if</span> <span class="n">secondary_ylim</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">secondary_ylim</span><span class="p">)</span>
+
+    <span class="c1"># Set title with font size control</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="n">title_fontsize</span><span class="p">)</span>
+
+    <span class="c1"># Apply tight layout if configured</span>
+    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">:</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+    <span class="c1"># Add legends with font size control</span>
+    <span class="n">legend_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;framealpha&quot;</span><span class="p">:</span> <span class="n">config</span><span class="o">.</span><span class="n">legend_framealpha</span><span class="p">}</span>
+    <span class="k">if</span> <span class="n">legend_fontsize_final</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">legend_kwargs</span><span class="p">[</span><span class="s2">&quot;fontsize&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">legend_fontsize_final</span>
+
+    <span class="n">ax1</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">primary_legend_loc</span><span class="p">,</span> <span class="o">**</span><span class="n">legend_kwargs</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">secondary_legend_loc</span><span class="p">,</span> <span class="o">**</span><span class="n">legend_kwargs</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span></div>
+
+
+
+<div class="viewcode-block" id="save_and_close_figure">
+<a class="viewcode-back" href="../../../lammpskit.plotting.timeseries_plots.html#lammpskit.plotting.save_and_close_figure">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">save_and_close_figure</span><span class="p">(</span><span class="n">fig</span><span class="p">:</span> <span class="n">plt</span><span class="o">.</span><span class="n">Figure</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">file_format</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;pdf&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Save matplotlib figure to disk with automatic directory creation and memory cleanup.</span>
+
+<span class="sd">    Provides standardized figure output handling for scientific visualization workflows.</span>
+<span class="sd">    Automatically creates output directories, handles filename formatting, and closes</span>
+<span class="sd">    figures to prevent memory accumulation during batch processing. Essential for</span>
+<span class="sd">    automated analysis pipelines generating multiple plots.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    fig : plt.Figure</span>
+<span class="sd">        Matplotlib figure object to save. Can be any figure created with plt.figure(),</span>
+<span class="sd">        plt.subplots(), or plotting functions returning figure objects.</span>
+<span class="sd">    output_dir : str</span>
+<span class="sd">        Target directory for saved figure. Created automatically if it doesn&#39;t exist.</span>
+<span class="sd">        Supports both absolute and relative paths. Use &#39;.&#39; for current directory.</span>
+<span class="sd">    filename : str</span>
+<span class="sd">        Base filename without extension. Extension is added automatically based on</span>
+<span class="sd">        file_format parameter. Should be descriptive of plot content for organization.</span>
+<span class="sd">    file_format : str, optional, default=&#39;pdf&#39;</span>
+<span class="sd">        Output file format determining quality and compatibility:</span>
+<span class="sd">        - &#39;pdf&#39;: Vector format, publication-ready, scalable</span>
+<span class="sd">        - &#39;svg&#39;: Web-compatible vector format, editable</span>
+<span class="sd">        - &#39;png&#39;: Raster format, good for web display</span>
+<span class="sd">        - &#39;eps&#39;: LaTeX-compatible vector format</span>
+<span class="sd">        - &#39;jpg&#39;/&#39;jpeg&#39;: Compressed raster, smaller files</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    OSError</span>
+<span class="sd">        If output directory cannot be created due to permissions or disk space.</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If file_format is not supported by matplotlib backend.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Memory Management:</span>
+<span class="sd">    - Automatically closes figure after saving to prevent memory leaks</span>
+<span class="sd">    - Critical for batch processing workflows generating many plots</span>
+<span class="sd">    - Use plt.show() before calling this function if display is also needed</span>
+
+<span class="sd">    Directory Handling:</span>
+<span class="sd">    - Creates nested directory structures automatically</span>
+<span class="sd">    - Preserves existing directories and files</span>
+<span class="sd">    - No error if output_dir already exists</span>
+
+<span class="sd">    Performance Considerations:</span>
+<span class="sd">    - Vector formats (PDF, SVG, EPS) maintain quality but may be larger</span>
+<span class="sd">    - Raster formats (PNG, JPG) have fixed resolution but smaller files</span>
+<span class="sd">    - PDF recommended for scientific publications and presentations</span>
+<span class="sd">    - PNG recommended for web display and documentation</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Save figure with automatic directory creation:</span>
+
+<span class="sd">    &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; fig, ax = plt.subplots()</span>
+<span class="sd">    &gt;&gt;&gt; x = np.linspace(0, 10, 100)</span>
+<span class="sd">    &gt;&gt;&gt; ax.plot(x, np.sin(x))</span>
+<span class="sd">    &gt;&gt;&gt; save_and_close_figure(fig, &#39;output/plots&#39;, &#39;sine_wave&#39;)</span>
+<span class="sd">    # Saves as &#39;output/plots/sine_wave.pdf&#39;</span>
+
+<span class="sd">    Save in different formats for various uses:</span>
+
+<span class="sd">    &gt;&gt;&gt; save_and_close_figure(fig, &#39;manuscript/figures&#39;, &#39;analysis&#39;, &#39;eps&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; save_and_close_figure(fig, &#39;web/images&#39;, &#39;analysis&#39;, &#39;png&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; save_and_close_figure(fig, &#39;presentations&#39;, &#39;analysis&#39;, &#39;svg&#39;)</span>
+
+<span class="sd">    Organized output structure:</span>
+
+<span class="sd">    &gt;&gt;&gt; base_dir = &#39;results/experiment_2024&#39;</span>
+<span class="sd">    &gt;&gt;&gt; save_and_close_figure(fig, f&#39;{base_dir}/temperature&#39;, &#39;temp_vs_time&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; save_and_close_figure(fig, f&#39;{base_dir}/displacement&#39;, &#39;disp_evolution&#39;)</span>
+
+<span class="sd">    Current directory output:</span>
+
+<span class="sd">    &gt;&gt;&gt; save_and_close_figure(fig, &#39;.&#39;, &#39;quick_analysis&#39;, &#39;png&#39;)</span>
+<span class="sd">    # Saves as &#39;./quick_analysis.png&#39;</span>
+
+<span class="sd">    Batch processing workflow:</span>
+
+<span class="sd">    &gt;&gt;&gt; figures = [fig1, fig2, fig3]</span>
+<span class="sd">    &gt;&gt;&gt; names = [&#39;temperature&#39;, &#39;pressure&#39;, &#39;density&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; for fig, name in zip(figures, names):</span>
+<span class="sd">    ...     save_and_close_figure(fig, &#39;output/timeseries&#39;, name)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">output_filename</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">filename</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">file_format</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">savepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_dir</span><span class="p">,</span> <span class="n">output_filename</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">savepath</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="calculate_mean_std_label">
+<a class="viewcode-back" href="../../../lammpskit.plotting.timeseries_plots.html#lammpskit.plotting.calculate_mean_std_label">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_mean_std_label</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">label_prefix</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">precision</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Generate standardized statistical summary labels for plot legends and annotations.</span>
+
+<span class="sd">    Computes mean and standard deviation of input data and formats as publication-ready</span>
+<span class="sd">    label string. Essential for automated legend generation in scientific plots where</span>
+<span class="sd">    quantitative summaries enhance data interpretation. Supports flexible precision</span>
+<span class="sd">    control for different measurement scales and reporting requirements.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : np.ndarray</span>
+<span class="sd">        Input data array for statistical calculation. Shape: (n_points,).</span>
+<span class="sd">        Supports any numeric data type. NaN values are handled by numpy functions.</span>
+<span class="sd">    label_prefix : str</span>
+<span class="sd">        Descriptive text preceding the statistical values. Should include property</span>
+<span class="sd">        name and units for clarity. Example: &#39;Temperature (K)&#39;, &#39;Displacement (Å)&#39;</span>
+<span class="sd">    precision : int, optional, default=2</span>
+<span class="sd">        Number of decimal places for formatting statistical values. Range: 0-15.</span>
+<span class="sd">        Use 0-1 for large values, 2-4 for typical scientific measurements,</span>
+<span class="sd">        5+ for high-precision requirements.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    str</span>
+<span class="sd">        Formatted label string in standard &quot;prefix = mean ± std&quot; format.</span>
+<span class="sd">        Uses Unicode ± symbol for professional appearance. Compatible with</span>
+<span class="sd">        matplotlib legend and annotation functions.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If precision is negative or data array is empty.</span>
+<span class="sd">    TypeError</span>
+<span class="sd">        If data is not array-like or label_prefix is not string.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Statistical Calculations:</span>
+<span class="sd">    - Mean: Arithmetic average computed with np.mean()</span>
+<span class="sd">    - Standard deviation: Sample standard deviation with np.std() (N-1 denominator)</span>
+<span class="sd">    - NaN handling: Follows numpy conventions (NaN propagation)</span>
+
+<span class="sd">    Formatting Standards:</span>
+<span class="sd">    - Uses Unicode ± (U+00B1) for professional appearance</span>
+<span class="sd">    - Precision applies to both mean and standard deviation</span>
+<span class="sd">    - No scientific notation; adjust precision for extreme values</span>
+
+<span class="sd">    Performance Characteristics:</span>
+<span class="sd">    - Computational complexity: O(n) for statistical calculations</span>
+<span class="sd">    - Memory usage: O(1) additional memory beyond input array</span>
+<span class="sd">    - String formatting: Minimal overhead for typical legend use</span>
+
+<span class="sd">    Applications:</span>
+<span class="sd">    - Time series analysis summary statistics</span>
+<span class="sd">    - Experimental data characterization</span>
+<span class="sd">    - Model validation metrics</span>
+<span class="sd">    - Comparative analysis legend entries</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Basic temperature data summarization:</span>
+
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; temperatures = np.array([298.2, 301.5, 299.8, 300.1, 302.3])</span>
+<span class="sd">    &gt;&gt;&gt; label = calculate_mean_std_label(temperatures, &#39;Temperature (K)&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; print(label)</span>
+<span class="sd">    &#39;Temperature (K) = 300.38 ± 1.52&#39;</span>
+
+<span class="sd">    Displacement analysis with high precision:</span>
+
+<span class="sd">    &gt;&gt;&gt; displacements = np.random.normal(2.345, 0.123, 1000)</span>
+<span class="sd">    &gt;&gt;&gt; label = calculate_mean_std_label(displacements, &#39;Displacement (Å)&#39;, precision=4)</span>
+<span class="sd">    &gt;&gt;&gt; print(label)</span>
+<span class="sd">    &#39;Displacement (Å) = 2.3451 ± 0.1234&#39;</span>
+
+<span class="sd">    Large-scale data with low precision:</span>
+
+<span class="sd">    &gt;&gt;&gt; particle_counts = np.random.poisson(1e6, 100)</span>
+<span class="sd">    &gt;&gt;&gt; label = calculate_mean_std_label(particle_counts, &#39;Count&#39;, precision=0)</span>
+<span class="sd">    &gt;&gt;&gt; print(label)</span>
+<span class="sd">    &#39;Count = 1000023 ± 1000&#39;</span>
+
+<span class="sd">    Percentage data with appropriate precision:</span>
+
+<span class="sd">    &gt;&gt;&gt; percentages = np.array([23.45, 24.12, 22.89, 23.78, 24.56])</span>
+<span class="sd">    &gt;&gt;&gt; label = calculate_mean_std_label(percentages, &#39;Connectivity (%)&#39;, precision=1)</span>
+<span class="sd">    &gt;&gt;&gt; print(label)</span>
+<span class="sd">    &#39;Connectivity (%) = 23.8 ± 0.6&#39;</span>
+
+<span class="sd">    Integration with plotting workflows:</span>
+
+<span class="sd">    &gt;&gt;&gt; import matplotlib.pyplot as plt</span>
+<span class="sd">    &gt;&gt;&gt; fig, ax = plt.subplots()</span>
+<span class="sd">    &gt;&gt;&gt; ax.plot(range(len(temperatures)), temperatures, label=label)</span>
+<span class="sd">    &gt;&gt;&gt; ax.legend()  # Automatically uses formatted statistical label</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">mean_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">std_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">label_prefix</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">mean_val</span><span class="si">:</span><span class="s2">.</span><span class="si">{</span><span class="n">precision</span><span class="si">}</span><span class="s2">f</span><span class="si">}</span><span class="s2"> +/- </span><span class="si">{</span><span class="n">std_val</span><span class="si">:</span><span class="s2">.</span><span class="si">{</span><span class="n">precision</span><span class="si">}</span><span class="s2">f</span><span class="si">}</span><span class="s2">&quot;</span></div>
+
+
+
+<div class="viewcode-block" id="calculate_frequency_label">
+<a class="viewcode-back" href="../../../lammpskit.plotting.timeseries_plots.html#lammpskit.plotting.calculate_frequency_label">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_frequency_label</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">target_value</span><span class="p">,</span> <span class="n">label_template</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">precision</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate occurrence frequency of specific values and generate formatted labels.</span>
+
+<span class="sd">    Computes percentage frequency of target value occurrence in data arrays and formats</span>
+<span class="sd">    using customizable template strings. Essential for binary state analysis, event</span>
+<span class="sd">    detection summaries, and categorical data visualization. Supports flexible label</span>
+<span class="sd">    formatting for diverse scientific reporting contexts.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : np.ndarray</span>
+<span class="sd">        Input data array for frequency analysis. Shape: (n_points,).</span>
+<span class="sd">        Supports any data type that supports equality comparison (int, float, bool, str).</span>
+<span class="sd">    target_value : any</span>
+<span class="sd">        Specific value to count occurrences of. Must be comparable to data elements</span>
+<span class="sd">        using == operator. Examples: 1, 0, True, &#39;connected&#39;, specific float values.</span>
+<span class="sd">    label_template : str</span>
+<span class="sd">        Format string template with {frequency} placeholder for percentage insertion.</span>
+<span class="sd">        Supports all Python string formatting options. Example: &#39;Active {frequency:.1f}% of time&#39;</span>
+<span class="sd">    precision : int, optional, default=2</span>
+<span class="sd">        Decimal places for frequency percentage formatting. Range: 0-10.</span>
+<span class="sd">        Note: This parameter is currently unused; precision controlled by template format specifiers.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    str</span>
+<span class="sd">        Formatted label string with frequency percentage substituted into template.</span>
+<span class="sd">        Percentage calculated as (occurrences / total_points) * 100.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If data array is empty or label_template missing {frequency} placeholder.</span>
+<span class="sd">    TypeError</span>
+<span class="sd">        If target_value type incompatible with data elements for comparison.</span>
+<span class="sd">    KeyError</span>
+<span class="sd">        If label_template contains invalid format specifications.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Frequency Calculation:</span>
+<span class="sd">    - Uses element-wise equality (==) for counting matches</span>
+<span class="sd">    - Percentage = (matches / total_elements) * 100</span>
+<span class="sd">    - Range: 0.0% (no matches) to 100.0% (all matches)</span>
+<span class="sd">    - Floating-point precision handled by template format specifiers</span>
+
+<span class="sd">    Template Formatting:</span>
+<span class="sd">    - Supports all Python str.format() capabilities</span>
+<span class="sd">    - Use {frequency:.1f} for 1 decimal place, {frequency:.0f} for integers</span>
+<span class="sd">    - Can include additional text, units, and formatting</span>
+<span class="sd">    - Multiple {frequency} references allowed in single template</span>
+
+<span class="sd">    Performance Characteristics:</span>
+<span class="sd">    - Computational complexity: O(n) for equality comparison</span>
+<span class="sd">    - Memory usage: O(1) additional memory beyond input array</span>
+<span class="sd">    - Boolean array creation for comparison may temporarily double memory</span>
+
+<span class="sd">    Common Applications:</span>
+<span class="sd">    - Binary state analysis (connected/disconnected, active/inactive)</span>
+<span class="sd">    - Event detection (threshold crossings, state changes)</span>
+<span class="sd">    - Categorical data summaries (phase classification, state distribution)</span>
+<span class="sd">    - Time-based occurrence rates (duty cycles, sampling frequencies)</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Binary connectivity analysis:</span>
+
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; connectivity = np.array([1, 1, 0, 1, 0, 1, 1, 0, 1, 1])</span>
+<span class="sd">    &gt;&gt;&gt; label = calculate_frequency_label(connectivity, 1, &quot;Connected {frequency:.1f}% of time&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; print(label)</span>
+<span class="sd">    &#39;Connected 70.0% of time&#39;</span>
+
+<span class="sd">    Boolean state analysis:</span>
+
+<span class="sd">    &gt;&gt;&gt; active_states = np.array([True, False, True, True, False])</span>
+<span class="sd">    &gt;&gt;&gt; label = calculate_frequency_label(active_states, True, &quot;Active: {frequency:.0f}%&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; print(label)</span>
+<span class="sd">    &#39;Active: 60%&#39;</span>
+
+<span class="sd">    Threshold crossing analysis:</span>
+
+<span class="sd">    &gt;&gt;&gt; temperatures = np.array([298, 305, 310, 295, 307, 312, 290])</span>
+<span class="sd">    &gt;&gt;&gt; over_threshold = temperatures &gt; 300</span>
+<span class="sd">    &gt;&gt;&gt; label = calculate_frequency_label(over_threshold, True, &quot;Above 300K: {frequency:.1f}%&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; print(label)</span>
+<span class="sd">    &#39;Above 300K: 57.1%&#39;</span>
+
+<span class="sd">    Categorical state distribution:</span>
+
+<span class="sd">    &gt;&gt;&gt; phases = np.array([&#39;A&#39;, &#39;B&#39;, &#39;A&#39;, &#39;A&#39;, &#39;C&#39;, &#39;B&#39;, &#39;A&#39;])</span>
+<span class="sd">    &gt;&gt;&gt; label_A = calculate_frequency_label(phases, &#39;A&#39;, &quot;Phase A: {frequency:.1f}%&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; label_B = calculate_frequency_label(phases, &#39;B&#39;, &quot;Phase B: {frequency:.1f}%&quot;)</span>
+<span class="sd">    &gt;&gt;&gt; print(label_A, &#39;|&#39;, label_B)</span>
+<span class="sd">    &#39;Phase A: 57.1%&#39; | &#39;Phase B: 28.6%&#39;</span>
+
+<span class="sd">    Multiple format references:</span>
+
+<span class="sd">    &gt;&gt;&gt; successes = np.array([1, 0, 1, 1, 0])</span>
+<span class="sd">    &gt;&gt;&gt; label = calculate_frequency_label(</span>
+<span class="sd">    ...     successes, 1,</span>
+<span class="sd">    ...     &quot;Success rate: {frequency:.1f}% ({frequency:.2f}% precise)&quot;</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; print(label)</span>
+<span class="sd">    &#39;Success rate: 60.0% (60.00% precise)&#39;</span>
+
+<span class="sd">    Integration with time series plotting:</span>
+
+<span class="sd">    &gt;&gt;&gt; connectivity_data = np.random.choice([0, 1], 1000, p=[0.3, 0.7])</span>
+<span class="sd">    &gt;&gt;&gt; stats_label = calculate_frequency_label(</span>
+<span class="sd">    ...     connectivity_data, 1, &quot;Connected {frequency:.1f}% of simulation&quot;</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; # Use stats_label in create_time_series_plot() for automatic legend generation</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">frequency</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">data</span> <span class="o">==</span> <span class="n">target_value</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+    <span class="k">return</span> <span class="n">label_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="n">frequency</span><span class="p">)</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Simanta Lahkar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
