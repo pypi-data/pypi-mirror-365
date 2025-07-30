@@ -1,0 +1,28 @@
+Metadata-Version: 2.4
+Name: aspxstats
+Version: 0.5.1
+Summary: Python library for retrieving stats of Battlefield 2 and Battlefield 2142 players
+Home-page: https://github.com/cetteup/aspxstats
+Author: cetteup
+Author-email: me@cetteup.com
+License: MIT
+Project-URL: Bug Tracker, https://github.com/cetteup/aspxstats/issues
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests==2.32.4
+Requires-Dist: aiohttp==3.12.15
+Dynamic: license-file
+
+# aspxstats
+
+Python 🐍 library for retrieving stats of Battlefield 2 and Battlefield 2142 players
+
+[![ci](https://img.shields.io/github/actions/workflow/status/cetteup/aspxstats/ci.yml?label=ci)](https://github.com/cetteup/aspxstats/actions?query=workflow%3Aci)
+[![License](https://img.shields.io/github/license/cetteup/aspxstats)](/LICENSE)
+[![Last commit](https://img.shields.io/github/last-commit/cetteup/aspxstats)](https://github.com/cetteup/aspxstats/commits/main)
