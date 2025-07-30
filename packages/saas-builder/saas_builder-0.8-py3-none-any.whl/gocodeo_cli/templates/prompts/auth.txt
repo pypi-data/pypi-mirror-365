@@ -1,0 +1,82 @@
+You're now implementing the authentication system for the "{project_name}" application.
+
+Project description: {project_description}
+Tech stack: {tech_stack}
+
+# Reference Implementation
+
+Here is a successful implementation of a similar project to use as reference. Follow these patterns for structure, naming conventions, and code organization:
+
+{reference_code}
+
+
+# Current Project Structure
+The current project has the following structure:
+
+{project_structure}
+
+# AUTHENTICATION IMPLEMENTATION GUIDELINES (React + Flask + SQLite)
+
+## Step 1: UI Foundation
+- Assume all UI components (Navbar, login/register forms, etc.) are already built in the frontend (React).
+- Do NOT modify or add UI components unless explicitly required.
+
+## Step 2: Authentication Logic
+- Implement authentication using JWT cookie-based auth via Flask REST API backend.
+- Support login, logout, and registration flows.
+- Use secure HTTP-only cookies for storing JWT tokens.
+- Ensure proper error handling and user feedback (loading, error, and success states).
+- Sync authentication state globally in the React app (e.g., via context or state management).
+- Protect routes/pages that require authentication (redirect to login if not authenticated).
+- On login/register, set JWT cookie via backend response; on logout, clear the cookie.
+- On app load, check authentication status by verifying the JWT cookie with the backend.
+
+## Step 3: Security & State Management
+- Validate all form inputs and provide clear error messages.
+- Handle all API errors gracefully and show user-friendly notifications.
+- Never expose JWT tokens to JavaScript (use httpOnly cookies only).
+- Use environment variables for secrets and configuration.
+- Ensure all authentication logic is separated from UI components (use hooks/services for API calls).
+- Use TypeScript for all frontend code and Python type hints for backend code.
+
+## Folder Structure
+- frontend/ (React + Vite + TypeScript)
+  - src/
+    - components/
+    - pages/
+    - services/ (API calls for auth)
+    - contexts/ (Auth context/provider)
+    - hooks/
+- backend/ (Flask + SQLite)
+  - app/
+    - api/auth/ (Flask Blueprint for auth routes)
+    - models.py
+    - __init__.py
+    - utils/
+
+# CRITICAL IMPLEMENTATION RULES
+1. ONLY implement features that are EXPLICITLY present in the reference code above.
+2. DO NOT add any additional features, tables, or functionality not shown in the reference.
+3. Follow the EXACT same file structure and component organization.
+4. Use the SAME naming conventions for components, functions, and variables.
+5. Implement the SAME level of error handling and validation.
+6. Keep the implementation FOCUSED and MINIMAL - only what's in the reference.
+
+# EXISTING PROJECT FILES
+Here are the key files already in the project that you should reference and build upon:
+
+{existing_files}
+
+# IMPLEMENTATION OBJECTIVES
+- Implement login, logout, and registration using JWT cookie auth (Flask backend, React frontend).
+- Ensure global auth state sync and route protection in React.
+- Provide clear error handling and user feedback.
+- Use secure, real-world authentication flows.
+- Maintain a clear separation between frontend and backend code.
+
+Remember to structure your response as a proper JSON object with file paths as keys and file contents as values. Do NOT include any explanations or markdown outside the JSON object. 
+
+
+ULTRA IMPORTANT GUIDELINES -
+- Make sure all the auth related apis are properly implemented in both frontend & backend as well as integrated.
+- Never overhallucinate , Be accurate & follow the reference code.

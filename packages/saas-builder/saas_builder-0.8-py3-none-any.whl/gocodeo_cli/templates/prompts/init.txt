@@ -1,0 +1,181 @@
+Please generate a complete web application based on the following requirements:
+
+Project name: {project_name}
+Project description: {project_description}
+Tech stack: React (Vite) + Flask + SQLite
+
+# Reference Implementation
+Here is a successful implementation to use as reference:
+
+{reference_code}
+Available Tech Stacks:
+
+- React (Vite) + Flask + SQLite
+  - Modern full-stack app with RESTful backend
+  - Features: Authentication, CRUD operations, SQLite database
+  - Best for: Applications requiring flexible backend and modern frontend
+   - Includes: 
+    * Pre-configured API client for React
+     * Authentication UI components and hooks
+    * Database schema and migrations (Flask/SQLAlchemy)
+     * Protected API routes
+     * Responsive Tailwind UI components
+ 
+
+
+# Application Generation Flow
+
+## Step 1: UI/UX (Frontend Only)
+- Modern, responsive UI using React (Vite) and Tailwind CSS
+- Loading states and error boundaries
+- Toast notifications for user feedback
+- Form validation with error messages
+- Smooth transitions and animations
+- Mobile-first design approach
+- No backend integration yet (use mock data if needed)
+
+## Step 2: Authentication Integration
+- Implement login, signup, and logout using Flask REST API with JWT cookie authentication
+- Secure, real-world authentication flows
+- Global auth state management in React
+- Route protection for authenticated pages
+- Proper error handling and user feedback
+
+## Step 3: Data Persistence (CRUD)
+- Implement CRUD operations for main features/entities (e.g., products, employees, orders, etc.)
+- Use RESTful Flask API endpoints for all data operations
+- State sync between frontend and backend
+- UI feedback for all user actions (loading, success, error)
+- Error handling and validation
+
+# Project Structure
+
+- frontend/ (React + Vite + TypeScript)
+  - src/
+    - components/
+    - pages/
+    - services/ (API calls)
+    - contexts/
+    - hooks/
+    - types/
+    - assets/
+- backend/ (Flask + SQLite)
+  - app/
+    - api/ (Flask Blueprints for each entity/feature)
+    - models.py
+    - __init__.py
+    - utils/
+    - migrations/
+
+# Documentation
+1. Detailed README.md with:
+   - Project overview
+   - Setup instructions
+   - Environment variables
+   - Available scripts
+   - Deployment guide
+2. API documentation
+3. Component documentation
+4. Contributing guidelines
+
+# Development Experience
+1. ESLint and Prettier configuration
+2. Git hooks (husky)
+3. VSCode settings and extensions
+4. Debug configuration
+
+# CRITICAL REQUIREMENTS FOR ALL APPLICATION TYPES
+
+For all application types, your response MUST include:
+
+1. Complete Configuration Files:
+   - package.json (with all required dependencies)
+   - tsconfig.json (with proper configuration)
+   - tailwind.config.js (for styling)
+   - vite.config.ts (for Vite)
+   - .env.example
+   - requirements.txt (for backend)
+   - config.py (Flask config)
+
+2. Core Application Pages:
+   - Home/Main listing page
+   - Content detail page
+   - User interaction pages
+   - Action completion pages
+   - User profile/account page
+   - Authentication pages (login/signup)
+
+3. Essential UI Components:
+   - Navigation/Header with user status indicators
+   - Footer component
+   - Content card/grid components
+   - Action summary components
+   - Form components for user inputs
+   - Loading states and error handling
+
+4. Backend API:
+   - RESTful endpoints for all main features/entities
+   - JWT cookie authentication
+   - SQLAlchemy models and migrations
+   - Proper error handling and validation
+
+Please generate all necessary files and ensure:
+1. All dependencies are properly versioned
+2. Environment variables are documented
+3. TypeScript types are complete
+4. Error handling is comprehensive
+5. Security best practices are followed
+6. Code is well-commented
+7. File structure is organized
+8. Development setup is streamlined 
+
+# UI REQUIREMENTS:
+1. Main layout with responsive navigation (React Router)
+2. Landing page with key sections:
+   - Hero section
+   - Features section
+   - Pricing section (if relevant)
+   - FAQ section
+   - Contact/footer section
+
+3. Core application pages and components for the functionality described in the project description
+4. A design system with reusable UI components:
+   - Button variants
+   - Form components (inputs, checkboxes, etc.)
+   - Card components
+   - Modal/dialog components
+   - Loading states
+   - Alert/toast notifications
+
+# Backend/API REQUIREMENTS:
+- Use Flask Blueprints for modular API structure
+- Use SQLAlchemy ORM for models
+- Implement JWT cookie authentication
+- Use environment variables for secrets/config
+- Provide clear error messages and status codes
+- Validate all inputs and sanitize data
+
+# Implementation Approach
+- Step 1: Build the UI (React + Vite + Tailwind) with mock data
+- Step 2: Integrate authentication (login, signup, logout) with Flask backend
+- Step 3: Implement CRUD/data persistence for main features/entities
+
+# Response Format
+Your response MUST be a valid JSON object with file paths as keys and file contents as values. Do NOT include any explanations or markdown outside the JSON object.
+
+# Success Criteria
+- UI is modern, responsive, and production-ready
+- Authentication works securely with JWT cookies
+- Data persistence is robust and error-tolerant
+- Project structure is clean and generic for any business domain (CRM, e-commerce, marketing, etc.)
+- All code is well-typed, documented, and maintainable
+
+Ulta Important Guideline :
+-  Focus  strictly on implementating code by referencing the given source code . never try to generate too much code from your own
+- Never wrote unnecessary code , Goal is to build the product what user mentioned , Not to write too many unnecessary line of code
+
+
+ULTRA IMPORTANT GUIDELINES -
+This is the ui generation phase . Make sure to complete all the frontend related codes in this step.
+- Exactly follow provided source code . You mustn't deviate from that . 
+- Strily follow the file structure , code within it , everything , It is vital & super important.

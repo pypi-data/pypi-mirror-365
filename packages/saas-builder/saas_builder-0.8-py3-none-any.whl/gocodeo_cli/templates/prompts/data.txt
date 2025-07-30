@@ -1,0 +1,84 @@
+You're now implementing the data persistence layer for the "{project_name}" application.
+
+Project description: {project_description}
+Tech stack: {tech_stack}
+
+# Reference Implementation
+
+Here is a successful implementation of a similar project to use as reference. Follow these patterns for structure, naming conventions, and code organization:
+
+{reference_code}
+
+
+# Current Project Structure
+The current project has the following structure:
+
+{project_structure}
+
+# DATA PERSISTENCE IMPLEMENTATION GUIDELINES (React + Flask + SQLite)
+
+## Context
+- UI and authentication flows are already implemented (login, logout, protected views, etc.).
+- Your task is to implement CRUD/data persistence for the main features/entities (e.g., employees, products, orders, etc.) as shown in the sidebar or main navigation (AS PER USER USE CASE , REFER THE REFERENCE CODE).
+
+## Step 1: API Integration
+- Use RESTful API endpoints provided by the Flask backend for all data operations (create, read, update, delete).
+- Implement all API calls in the frontend using a dedicated service layer (e.g., src/services/).
+- Ensure all API requests include authentication (JWT cookie) as required.
+- Use TypeScript for all frontend code and Python type hints for backend code.
+
+## Step 2: State Management & UI Sync
+- On all user actions (add, edit, delete, etc.), update the frontend state immediately after a successful API response.
+- Show loading, success, and error states for all data operations.
+- Use toast notifications or similar UI feedback for user actions.
+- Ensure all data is fetched from the backend on page/component load and after mutations.
+- Keep UI and backend data in sync at all times.
+
+## Step 3: Error Handling & Validation
+- Validate all user inputs before sending to the backend.
+- Handle all API errors gracefully and show user-friendly notifications.
+- Ensure proper error boundaries in the UI.
+- Use environment variables for API URLs and configuration.
+
+## Folder Structure
+- frontend/ (React + Vite + TypeScript)
+  - src/
+    - components/
+    - pages/
+    - services/ (API calls for data persistence)
+    - contexts/
+    - hooks/
+- backend/ (Flask + SQLite)
+  - app/
+    - api/ (Flask Blueprints for each entity/feature)
+    - models.py
+    - __init__.py
+    - utils/
+
+# CRITICAL IMPLEMENTATION RULES
+1. ONLY implement features/entities that are EXPLICITLY present in the reference code above.
+2. DO NOT add any additional features, tables, or functionality not shown in the reference.
+3. Follow the EXACT same file structure and component organization.
+4. Use the SAME naming conventions for components, functions, and variables.
+5. Implement the SAME level of error handling and validation.
+6. Keep the implementation FOCUSED and MINIMAL - only what's in the reference.
+
+# EXISTING PROJECT FILES
+Here are the key files already in the project that you should reference and build upon:
+
+{existing_files}
+
+# IMPLEMENTATION OBJECTIVES
+- Implement CRUD/data persistence for all main features/entities using RESTful Flask API.
+- Ensure global state sync and UI feedback for all data operations.
+- Provide clear error handling and user feedback.
+- Use secure, real-world data flows.
+- Maintain a clear separation between frontend and backend code.
+
+Remember to structure your response as a proper JSON object with file paths as keys and file contents as values. Do NOT include any explanations or markdown outside the JSON object.
+
+ULTRA IMPORTANT GUIDELINES -
+This is the data persistance  phase . Make sure to complete all the frontend related codes in this step.
+
+- Make sure all these apis are properly  implemented in both frontend & backend as well as integrated.
+- Never overhallucinate , Be accurate & follow the reference code. Customized static content a bit as per user instruction & use case . Codewise follow reference code.
