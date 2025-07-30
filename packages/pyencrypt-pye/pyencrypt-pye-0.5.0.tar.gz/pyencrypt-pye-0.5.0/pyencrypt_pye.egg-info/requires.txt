@@ -1,0 +1,19 @@
+Cython>=0.29.30
+pycryptodome>=3.14.1
+click>=8.0.0
+
+[:python_version < "3.12"]
+setuptools<=60.9.0
+
+[:python_version < "3.14"]
+python-minifier>=2.6.0
+
+[:python_version >= "3.12"]
+setuptools>=66.1.0
+
+[dev]
+isort
+black
+pytest
+ipython
+flake8
