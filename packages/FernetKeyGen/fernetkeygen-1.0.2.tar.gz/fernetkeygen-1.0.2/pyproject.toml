@@ -1,0 +1,21 @@
+# pyproject.toml
+[project]
+name = "FernetKeyGen"
+version = "1.0.2"
+requires-python = ">=3.11"
+dependencies = [
+    "cffi>=1.17.1",
+    "cryptography>=45.0.5",
+    "pycparser>=2.22"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+python_classes = "Test*"
+python_functions = "test_*"
