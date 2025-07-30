@@ -1,0 +1,77 @@
+[build-system]
+requires = ["setuptools>=45", "wheel", "setuptools_scm[toml]>=6.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "goasyncio"
+version = "1.0.0"
+authors = [
+    {name = "CoffeeCMS Team", email = "support@goasyncio.dev"},
+]
+description = "High-performance async I/O library powered by Go backend"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {text = "MIT"}
+keywords = ["asyncio", "performance", "async", "io", "concurrency", "go", "backend"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: System :: Networking",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+    "Framework :: AsyncIO",
+]
+dependencies = [
+    "aiohttp>=3.8.0",
+    "asyncio-throttle>=1.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/coffeecms/goasyncio"
+Documentation = "https://github.com/coffeecms/goasyncio/docs"
+Repository = "https://github.com/coffeecms/goasyncio"
+"Bug Tracker" = "https://github.com/coffeecms/goasyncio/issues"
+Changelog = "https://github.com/coffeecms/goasyncio/blob/main/CHANGELOG.md"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
+    "black>=22.0.0",
+    "flake8>=5.0.0",
+    "mypy>=1.0.0",
+    "pre-commit>=2.20.0",
+]
+test = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-cov>=4.0.0",
+    "aioresponses>=0.7.0",
+]
+docs = [
+    "sphinx>=5.0.0",
+    "sphinx-rtd-theme>=1.0.0",
+    "myst-parser>=0.18.0",
+]
+
+[project.scripts]
+goasyncio-server = "goasyncio.server:main"
+goasyncio-benchmark = "goasyncio.utils:benchmark_main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["goasyncio*"]
+
+[tool.setuptools.package-data]
+goasyncio = ["*.txt", "*.md"]
