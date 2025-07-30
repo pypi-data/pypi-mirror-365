@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --wechat-green: #7bb32e;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "微软雅黑", "Inter", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        h1 {
+            font-size: 32px !important;
+            color: var(--wechat-green);
+            font-weight: bold;
+        }
+
+        h2 {
+            font-size: 28px !important;
+            color: var(--wechat-green);
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+
+        h3 {
+            font-size: 20px !important;
+            font-weight: bold;
+            color: var(--wechat-green);
+            margin-bottom: 8px;
+        }
+
+        p {
+            line-height: 1.5;
+        }
+
+        .btn {
+            background-color: var(--wechat-green);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #6fa029;
+        }
+
+        .card {
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 24px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #e2e8f0;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--wechat-green);
+            color: white;
+        }
+
+        /* 增大常见问题与版本更新记录之间的间距 */
+        .mb-8 {
+            margin-top: 40px;
+        }
+
+        /* 增加文字与代码块之间的间距 */
+        .card p + pre {
+            margin-top: 24px;
+        }
+
+        /* 简介部分功能卡片样式 */
+       .feature-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+       .card ul {
+            list-style-type: disc;
+            padding-left: 24px;
+            margin-top: 8px;
+            flex-grow: 1;
+        }
+
+       .card ul li {
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 768px) {
+           .feature-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <title>pytessng</title>
+</head>
+
+<body class="bg-gray-100">
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto py-4 px-6 flex justify-between items-center">
+            <h1 class="font-bold">TESSNG路网编辑工具：pytessng</h1>
+        </div>
+    </header>
+    <main class="container mx-auto py-8 px-6">
+        <section>
+            <h2 class="font-bold mb-4">简介</h2>
+            <p>pytessng是基于微观交通仿真软件TESS NG二次开发的仿真路网编辑工具，旨在为TESS NG的用户提供一个更为便捷、高效的路网编辑解决方案，其主要包括三类功能：</p>
+            <div class="feature-cards">
+                <div class="card">
+                    <h3>多源数据导入建网</h3>
+                    <ul>
+                        <li>能够快速构建高精度仿真路网，支持复杂道路拓扑结构自动解析；</li>
+                        <li>支持将 OpenDrive、Shapefile、OpenStreetMap、Excel 等格式的数据一键导入。</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>多格式路网输出</h3>
+                    <ul>
+                        <li>具备坐标系自动转换功能（WGS84），支持三维高程数据输出，满足数字孪生场景需求；</li>
+                        <li>支持将路网导出为 OpenDrive、Shapefile、GeoJSON、JSON 等多种格式。</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>智能路网优化</h3>
+                    <ul>
+                        <li>指定连接段长度打断路段、移动代码创建的路段的点位等路段级操作；</li>
+                        <li>合并相同车道路段、简化路段点位等路网级操作。</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="mb-8">
+            <h2 class="font-bold mb-4">版本更新记录</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>版本号</th>
+                        <th>日期</th>
+                        <th>更新内容</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>V1.8</td>
+                        <td>2025-07-29 12:38</td>
+                        <td>1.TESSNG版本升级到V4.0，相关功能适配；<br>2.优化shp导入中的投影识别；<br>3.删除一些过时功能；<br>4.新增开始页。</td>
+                    </tr>
+                    <tr>
+                        <td>V1.7</td>
+                        <td>2025-05-27 15:41</td>
+                        <td>1.新增导出路网地图功能；<br>2.修复轨迹数据上传kafka不是json的问题，增加无偏坐标字段；<br>3.修复导出桩号的问题；<br>4.修复延长连接段的bug；<br>5.修复涉及投影字符串的部分。</td>
+                    </tr>
+                    <tr>
+                        <td>V1.6</td>
+                        <td>2025-04-08 14:58</td>
+                        <td>1.增加设置路网最小限速；<br>2.修改导出为shp的问题；<br>3.其他优化；<br>4.部分功能虽开放但存在闪退风险（如点击合并路段、重计算路段切面）。</td>
+                    </tr>
+                    <tr>
+                        <td>V1.5</td>
+                        <td>2024-12-27 15:31</td>
+                        <td>1.更换了DLLs，解决不能识别路网proj；<br>2.导出桩号数据新增了经纬度和欧拉角；<br>3.导入shp时排除一些无效数据。</td>
+                    </tr>
+                    <tr>
+                        <td>V1.4</td>
+                        <td>2024-10-10 16:43</td>
+                        <td>合并路段新增了点击模式。</td>
+                    </tr>
+                    <tr>
+                        <td>V1.3</td>
+                        <td>2024-09-29 14:50</td>
+                        <td>新增了路段编辑-路段断点管理功能。</td>
+                    </tr>
+                    <tr>
+                        <td>V1.2</td>
+                        <td>2025-09-05 18:41</td>
+                        <td>1.修复了导出桩号数据的功能；<br>2.优化了合并路段的功能。</td>
+                    </tr>
+                    <tr>
+                        <td>V1.1</td>
+                        <td>2024-09-05 14:56</td>
+                        <td>首次自动识别更新。</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section class="mb-8">
+            <h2 class="font-bold mb-4">操作步骤</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="card">
+                    <h3 class="font-bold mb-2">步骤一：安装库（Python 3.6 版本）</h3>
+                    <p>你可以通过pip命令来安装pytessng库，在命令行中输入以下命令：</p>
+                    <pre class="bg-gray-200 p-2 rounded-md"><code>pip install pytessng</code></pre>
+                </div>
+                <div class="card">
+                    <h3 class="font-bold mb-2">步骤二：导入库</h3>
+                    <p>在Python脚本中导入pytessng库：</p>
+                    <pre class="bg-gray-200 p-2 rounded-md"><code>import pytessng</code></pre>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2 class="font-bold mb-4">常见问题</h2>
+            <div class="card">
+                <h3 class="font-bold mb-2">工具出现bug怎么办？</h3>
+                <p>请联系我们，我们将在第一时间安排人员进行修复。</p>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-white shadow-md mt-8">
+        <div class="container mx-auto py-4 px-6 text-center text-gray-600">
+            &copy; 2025 pytessng操作说明。保留所有权利。
+        </div>
+    </footer>
+</body>
+
+</html>
+    
