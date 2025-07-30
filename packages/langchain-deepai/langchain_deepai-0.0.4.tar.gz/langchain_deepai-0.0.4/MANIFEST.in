@@ -1,0 +1,16 @@
+include README.md
+include LICENSE
+include pyproject.toml
+include MANIFEST.in
+
+recursive-include langchain_deepai *.py
+recursive-include docs *.md
+recursive-include examples *.py
+recursive-include tests *.py
+
+global-exclude *.pyc
+global-exclude *.pyo
+global-exclude *.pyd
+global-exclude __pycache__
+global-exclude .git*
+global-exclude .DS_Store
