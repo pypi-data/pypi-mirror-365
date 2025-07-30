@@ -1,0 +1,36 @@
+Metadata-Version: 2.4
+Name: lin_mil
+Version: 1.0.1
+Summary: Lin-MIL: Linear Attention for Whole Slide Image Analysis
+Home-page: https://github.com/charlotterchtr/Lin-MIL
+Author: Charlotte Richter
+Author-email: richter_charlotte@t-online.de
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.7
+License-File: LICENSE
+Requires-Dist: torch>=1.9.0
+Requires-Dist: torchvision
+Requires-Dist: einops
+Requires-Dist: numpy
+Requires-Dist: scipy
+Provides-Extra: flash
+Requires-Dist: flash-attn>=2.0.0; extra == "flash"
+Requires-Dist: xformers; extra == "flash"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
