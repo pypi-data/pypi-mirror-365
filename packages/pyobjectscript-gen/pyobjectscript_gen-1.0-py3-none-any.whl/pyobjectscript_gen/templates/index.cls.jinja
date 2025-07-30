@@ -1,0 +1,7 @@
+{% with index=component %}
+{% include "docstring.cls.jinja" %}
+Index {{ index.format_name() }} On {{ index.property }}{% if not index.collation is none %} As {{ index.collation }}{% endif %}
+{% with keywords=index.keywords %}
+    {% include "keywords.cls.jinja" %}
+{% endwith %};
+{% endwith %}
