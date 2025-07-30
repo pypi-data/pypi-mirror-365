@@ -1,0 +1,16 @@
+roslibpy>=1.3.0
+typing-extensions>=4.0.0
+
+[:python_version < "3.7"]
+dataclasses>=0.6
+
+[dev]
+pytest>=6.0
+pytest-cov>=2.0
+black>=22.0
+isort>=5.0
+flake8>=3.9
+
+[docs]
+sphinx>=4.0
+sphinx-rtd-theme>=0.5
