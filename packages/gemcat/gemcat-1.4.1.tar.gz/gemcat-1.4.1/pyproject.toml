@@ -1,0 +1,93 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gemcat"
+version = "1.4.1"
+
+description = "A toolbox for gene expression-based prediction of metabolic alterations"
+keywords = ["python", "bioinformatics", "modeling", "metabolites", "omics"]
+authors = [
+    {name = "Roland Sauter", email = "roland.sauter@uit.no"}
+]
+readme = "README.md"
+
+requires-python=">=3.10"
+dependencies = [
+    "numpy==2.1.*",
+    "pandas==2.2.*",
+    "cobra==0.29.*",
+    "networkx==3.3.*",
+    "scipy==1.14.*",
+    "sympy==1.13.*",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest==8.3.*",
+  "black==24.8.*",
+  "isort==5.13.*",
+  "pylint==3.2.*",
+  "ruff==0.6.*",
+  "requests==2.32.*",
+
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.scripts]
+gemcat = "gemcat.cli:main"
+
+[tool.isort]
+profile = "black"
+
+[tool.ruff]
+select = [
+  "E", # pycodestyle
+  "F",  # Pyflakes
+  "NPY", # NumPy
+  "PL", # PyLint
+  "C901", # McCabe complexity
+]
+ignore = []
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+unfixable = []
+# Exclude a variety of commonly ignored directories. (default)
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "venv",
+]
+per-file-ignores = {}
+# Same as Black.
+line-length = 88
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+target-version = "py312"
+
+[tool.pytest.ini_options]
+markers = [
+    "slow: Slow running (usually integration) tests. Run only fast tests with '-m \"not slow\"')",
+    "serial",
+]

@@ -1,0 +1,57 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Test GEMCAT on Python versions
+
+on:
+  push:
+    branches: [ 
+      main,
+      development,
+      ]
+  pull_request:
+    branches: [ 
+      main,
+      development,
+    ]
+
+jobs:
+  tests:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [
+          "3.12",
+          "3.11",
+          "3.10"
+        ]
+        os: [
+          ubuntu-latest,
+          windows-latest,
+          ]
+
+    steps:
+    - uses: actions/checkout@v3
+      with:
+          lfs: 'true'
+    - name: Checkout LFS objects
+      run: git lfs checkout
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install .[dev]
+    - name: Formatting with isort
+      run: isort --check-only .
+    - name: Formatting with Black
+      run: black --check .
+    - name: Lint with pylint
+      run: |
+        pylint --fail-under=9.0 ./src/gemcat
+    - name: Test with pytest
+      run: |
+        pytest .
