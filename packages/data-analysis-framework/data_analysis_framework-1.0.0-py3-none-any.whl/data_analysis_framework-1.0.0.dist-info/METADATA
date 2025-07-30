@@ -1,0 +1,111 @@
+Metadata-Version: 2.4
+Name: data-analysis-framework
+Version: 1.0.0
+Summary: AI-powered analysis framework for structured data files and databases
+Home-page: https://github.com/rdwj/data-analysis-framework
+Author: Wes Jackson
+Author-email: AI Building Blocks <wjackson@redhat.com>
+License: MIT
+Project-URL: Homepage, https://github.com/rdwj/data-analysis-framework
+Project-URL: Repository, https://github.com/rdwj/data-analysis-framework
+Project-URL: Issues, https://github.com/rdwj/data-analysis-framework/issues
+Project-URL: Documentation, https://github.com/rdwj/data-analysis-framework/blob/main/README.md
+Keywords: data-analysis,ai,ml,structured-data,database,excel,csv,json,semantic-search,business-intelligence
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Database
+Classifier: Topic :: Office/Business
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pandas>=1.5.0
+Requires-Dist: numpy>=1.21.0
+Requires-Dist: openpyxl>=3.0.0
+Requires-Dist: pyarrow>=8.0.0
+Requires-Dist: sqlalchemy>=1.4.0
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: toml>=0.10.2
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0; extra == "dev"
+Requires-Dist: black>=21.0; extra == "dev"
+Requires-Dist: flake8>=3.8; extra == "dev"
+Requires-Dist: mypy>=0.800; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: sphinx>=3.0; extra == "docs"
+Requires-Dist: sphinx_rtd_theme>=0.5; extra == "docs"
+Provides-Extra: database
+Requires-Dist: psycopg2-binary>=2.9.0; extra == "database"
+Requires-Dist: pymongo>=4.0.0; extra == "database"
+Provides-Extra: advanced
+Requires-Dist: scikit-learn>=1.1.0; extra == "advanced"
+Requires-Dist: scipy>=1.8.0; extra == "advanced"
+Provides-Extra: visualization
+Requires-Dist: matplotlib>=3.5.0; extra == "visualization"
+Requires-Dist: seaborn>=0.11.0; extra == "visualization"
+Dynamic: author
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+
+# Data Analysis Framework
+
+## 📈 Purpose
+
+Specialized framework for analyzing structured data files with AI-powered pattern detection and insights.
+
+## 📦 Supported Formats
+
+### Spreadsheets & Tables
+- **Excel**: XLSX, XLS with multiple sheets
+- **CSV/TSV**: Delimiter detection and parsing
+- **Apache Parquet**: Columnar data analysis
+- **JSON**: Nested and flat structure analysis
+- **JSONL**: Line-delimited JSON streams
+
+### Configuration Data
+- **YAML**: Configuration files and data serialization
+- **TOML**: Configuration file analysis
+- **INI**: Legacy configuration parsing
+- **Environment Files**: .env variable analysis
+
+### Database Exports
+- **SQL Dumps**: Schema and data analysis
+- **SQLite**: Database file inspection
+- **Database Connection**: Live data analysis
+
+## 🤖 AI Integration Features
+
+- **Schema Detection**: Automatic column type inference
+- **Pattern Analysis**: Anomaly and trend detection
+- **Data Quality Assessment**: Missing values, duplicates, outliers
+- **Relationship Discovery**: Cross-table dependencies
+- **Business Logic Extraction**: Rules and constraints
+- **Predictive Insights**: Forecasting and recommendations
+
+## 🚀 Quick Start
+
+```python
+from data_analysis_framework import DataAnalyzer
+
+analyzer = DataAnalyzer()
+result = analyzer.analyze("sales_data.xlsx")
+
+print(f"Data Type: {result.document_type.type_name}")
+print(f"Schema: {result.analysis.schema_info}")
+print(f"Quality Score: {result.analysis.quality_metrics['overall_score']}")
+print(f"AI Insights: {result.analysis.ai_insights}")
+```
+
+## 🏗️ Status
+
+**🚧 Planned** - Architecture designed, implementation pending
