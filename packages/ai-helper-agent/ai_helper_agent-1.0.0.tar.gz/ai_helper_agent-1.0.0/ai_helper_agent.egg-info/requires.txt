@@ -1,0 +1,20 @@
+langchain-groq>=0.1.0
+langchain>=0.1.0
+langchain-community>=0.1.0
+langchain-core>=0.1.0
+structlog>=23.0.0
+
+[:python_version < "3.4"]
+pathlib2
+
+[dev]
+pytest>=6.0
+pytest-cov
+black
+flake8
+mypy
+pre-commit
+
+[test]
+pytest>=6.0
+pytest-cov

@@ -1,0 +1,452 @@
+# AI Helper Agent
+
+[![PyPI version](https://badge.fury.io/py/ai-helper-agent.svg)](https://badge.fury.io/py/ai-helper-agent)
+[![Python Support](https://img.shields.io/pypi/pyversions/ai-helper-agent.svg)](https://pypi.org/project/ai-helper-agent/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+An interactive AI assistant for code analysis, bug fixing, and development automation. Powered by advanced language models to provide intelligent code assistance.
+
+
+> **⚠️ Caution:**  
+> This tool is currently in **beta** and under **active development**. At the moment, only the **GROQ provider** is supported for CLI-based usage.  
+> Support for additional LLM providers will be added in the near future.  
+>  
+> To use the tool, generate a GROQ API key from:  
+> [https://groq.com/](https://groq.com/)  
+> [https://console.groq.com/docs/overview](https://console.groq.com/docs/overview)
+
+
+## 🚀 Features
+
+- **🔧 Code Analysis & Bug Fixing**: Analyze Python, JavaScript, TypeScript, and other code languages
+- **📁 File Operations**: Read, analyze, and modify files with intelligent suggestions
+- **🚀 Best Practices**: Follow language-specific conventions and implement proper error handling
+- **🤖 Interactive Assistant**: Conversational interface for natural code assistance
+- **⚡ Fast & Reliable**: Built with performance and accuracy in mind
+
+## 📦 Installation
+
+### From PyPI (Recommended)
+
+```bash
+pip install ai-helper-agent
+```
+
+### From Source
+
+```bash
+git clone https://github.com/yourusername/ai-helper-agent.git
+cd ai-helper-agent
+
+# Install production dependencies
+pip install -r requirements.txt
+
+# Or install in development mode with all dependencies
+pip install -r requirements-dev.txt
+pip install -e .
+```
+
+## 🎯 Quick Start
+
+### Command Line Interface
+
+After installation, you can use the CLI directly:
+
+```bash
+# Interactive programming assistant
+ai-helper-agent
+
+# Show help
+ai-helper-agent --help
+
+# Show version
+ai-helper-agent --version
+```
+
+The CLI provides an interactive session with conversation history and specialized commands:
+
+```
+AI Helper Agent CLI
+Type 'help' for commands, 'exit' to quit
+
+> help
+Available commands:
+- /analyze <file>: Analyze a code file
+- /debug <file>: Debug code issues
+- /optimize <file>: Suggest optimizations
+- /explain <concept>: Explain programming concepts
+- /history: Show conversation history
+- /clear: Clear conversation history
+- /help: Show this help
+- /exit or /quit: Exit the program
+
+> /analyze my_script.py
+[Agent analyzes your code and provides feedback]
+
+> How can I improve error handling in Python?
+[Agent provides detailed explanation with examples]
+
+> /exit
+```
+
+## ⚡ **Important: Async vs Sync Usage**
+
+**AI Helper Agent uses async methods for AI operations but provides sync alternatives:**
+
+| Method | Type | Usage |
+|--------|------|-------|
+| `agent.chat()` | ⚡ **Async** | `await agent.chat("message")` or `asyncio.run(agent.chat("message"))` |
+| `agent.analyze_code()` | ⚡ **Async** | `await agent.analyze_code(code)` or `asyncio.run(agent.analyze_code(code))` |
+| `agent.interactive_session()` | 🔄 **Sync** | `agent.interactive_session()` (handles async internally) |
+| `validate_python_code()` | 🔄 **Sync** | `validate_python_code(code)` |
+| `run_python_code()` | 🔄 **Sync** | `run_python_code(code)` |
+
+**👍 Recommended for beginners:** Use `agent.interactive_session()` - it's synchronous and handles all async operations internally!
+
+## 🛠️ Quick Start
+
+### Basic Usage
+
+#### **Option 1: Simple Interactive Session (Recommended for Beginners)**
+```python
+from ai_helper_agent import InteractiveAgent
+
+# Initialize with API key directly - no environment variables needed!
+agent = InteractiveAgent(
+    workspace_path="./my_project",
+    api_key="your_groq_api_key_here",
+    model="llama3-8b-8192"  # Optional
+)
+
+# Start interactive chat session (handles async internally)
+agent.interactive_session()
+```
+
+#### **Option 2: Programmatic Usage (Async)**
+```python
+import asyncio
+from ai_helper_agent import InteractiveAgent
+
+async def main():
+    # Initialize the agent
+    agent = InteractiveAgent(
+        workspace_path="./my_project",
+        api_key="your_groq_api_key_here"
+    )
+
+    # Analyze code
+    result = await agent.analyze_code("def hello(): print('Hello World')")
+    print(result)
+
+    # Interactive conversation
+    response = await agent.chat("Help me fix this Python function")
+    print(response)
+
+# Run the async function
+asyncio.run(main())
+```
+
+#### **Option 3: Environment Variable (Traditional)**
+```python
+import os
+from ai_helper_agent import InteractiveAgent
+
+# Set environment variable
+os.environ["GROQ_API_KEY"] = "your_groq_api_key_here"
+
+# Initialize without API key parameter
+agent = InteractiveAgent(workspace_path="./my_project")
+
+# Use interactive session
+agent.interactive_session()
+```
+
+#### **Option 4: Utility Functions (Synchronous)**
+```python
+from ai_helper_agent import validate_python_code, run_python_code
+
+# These utility functions are synchronous - no async needed
+result = validate_python_code("print('Hello World')")
+print(result)  # {'valid': True, 'error': None}
+
+output = run_python_code("print('Hello from AI!')")
+print(output)  # {'success': True, 'stdout': 'Hello from AI!\n', ...}
+```
+
+### Command Line Interface
+
+**Note:** Set your API key as environment variable first:
+```bash
+export GROQ_API_KEY="your_groq_api_key_here"  # Linux/Mac
+# or
+set GROQ_API_KEY=your_groq_api_key_here       # Windows
+```
+
+```bash
+# Start interactive session
+ai-helper
+
+# Start with specific workspace
+ai-helper --workspace ./my_project
+
+# Get help
+ai-helper --help
+```
+
+### Command Line Interface
+
+```bash
+# Start interactive session
+ai-helper
+
+# Analyze a specific file
+ai-helper analyze myfile.py
+
+# Get help
+ai-helper --help
+```
+
+## 📖 Documentation
+
+### Core Classes
+
+#### `InteractiveAgent`
+
+The main class for interacting with the AI assistant.
+
+```python
+class InteractiveAgent:
+    def __init__(self, llm=None, workspace_path=".", api_key=None, model=None):
+        """
+        Initialize the AI assistant
+        
+        Args:
+            llm: Language model instance (optional)
+            workspace_path: Path to your project workspace
+            api_key: Groq API key (optional, will use env var if not provided)
+            model: Model name to use (optional, defaults to llama3-8b-8192)
+        """
+```
+
+#### Key Methods
+
+- `async analyze_code(code: str, filename: str)` - Analyze code for issues and improvements ⚡ **Async**
+- `async chat(message: str)` - Interactive conversation with the AI ⚡ **Async**
+- `async fix_code(code: str, issues: str, filename: str)` - Fix code issues ⚡ **Async**
+- `read_file(file_path: str)` - Read files from workspace 🔄 **Sync**
+- `write_file(file_path: str, content: str)` - Write files to workspace 🔄 **Sync**
+- `interactive_session()` - Start interactive chat session 🔄 **Sync** (handles async internally)
+
+### Utility Functions
+
+```python
+from ai_helper_agent.utils import validate_python_code, run_python_code
+
+# Validate Python syntax
+result = validate_python_code("print('hello')")
+
+# Run Python code safely
+output = run_python_code("print('Hello World')")
+```
+
+## 🔧 Configuration
+
+### Environment Variables
+
+```bash
+# Required: Set your Groq API key
+export GROQ_API_KEY="your_api_key_here"
+
+# Optional: Other model API keys
+export OPENAI_API_KEY="your_openai_key"
+export ANTHROPIC_API_KEY="your_anthropic_key"
+
+# Optional: Security settings
+export FILE_ACCESS_MODE="ask"  # always, ask, never
+export CODE_EXECUTION="restricted"  # restricted, sandboxed, disabled
+
+# Optional: Set workspace path
+export AI_HELPER_WORKSPACE="/path/to/your/project"
+```
+
+### Advanced Configuration
+
+#### **Method 1: Direct Parameters (Easiest)**
+```python
+from ai_helper_agent import InteractiveAgent
+
+# Direct configuration - no imports needed
+agent = InteractiveAgent(
+    api_key="your_groq_api_key",
+    model="mixtral-8x7b-32768",  # or llama3-8b-8192, llama3-70b-8192
+    workspace_path="./my_project"
+)
+
+# Use with async
+import asyncio
+
+async def example():
+    result = await agent.chat("Help me write a function")
+    print(result)
+
+asyncio.run(example())
+```
+
+#### **Method 2: Custom LLM Configuration**
+```python
+from langchain_groq import ChatGroq
+from ai_helper_agent import InteractiveAgent
+
+# Custom LLM configuration
+llm = ChatGroq(
+    model="mixtral-8x7b-32768",
+    temperature=0.1,
+    api_key="your_api_key"
+)
+
+agent = InteractiveAgent(llm=llm, workspace_path="./")
+```
+
+#### **Method 3: Helper Function**
+```python
+from ai_helper_agent import create_agent
+
+# Quick creation with all options
+agent = create_agent(
+    api_key="your_groq_api_key",
+    model="llama3-8b-8192",
+    workspace_path="./project"
+)
+
+# Start interactive session
+agent.interactive_session()
+```
+
+## 🧪 Testing
+
+Run the test suite:
+
+```bash
+# Install test dependencies
+pip install -e ".[test]"
+
+# Run tests
+pytest
+
+# Run with coverage
+pytest --cov=ai_helper_agent
+```
+
+## 🔧 **Troubleshooting**
+
+### **Common Issues & Solutions**
+
+#### **1. "RuntimeWarning: coroutine was never awaited"**
+```python
+# ❌ Wrong - will cause warning
+result = agent.chat("hello")
+
+# ✅ Correct - Option 1: Use asyncio
+import asyncio
+result = asyncio.run(agent.chat("hello"))
+
+# ✅ Correct - Option 2: Use in async function
+async def main():
+    result = await agent.chat("hello")
+    print(result)
+asyncio.run(main())
+
+# ✅ Correct - Option 3: Use interactive session (easiest)
+agent.interactive_session()  # Handles async internally
+```
+
+#### **2. "GROQ_API_KEY not found"**
+```python
+# ✅ Solution 1: Pass API key directly (easiest)
+agent = InteractiveAgent(api_key="your_key_here")
+
+# ✅ Solution 2: Set environment variable
+import os
+os.environ["GROQ_API_KEY"] = "your_key_here"
+agent = InteractiveAgent()
+```
+
+#### **3. "Import errors" during development**
+```bash
+# Install dependencies first
+pip install -r requirements.txt
+# or for development
+pip install -r requirements-dev.txt
+```
+
+#### **4. Best Practices**
+```python
+# ✅ For beginners - use interactive session
+from ai_helper_agent import InteractiveAgent
+agent = InteractiveAgent(api_key="your_key")
+agent.interactive_session()
+
+# ✅ For advanced users - proper async handling
+import asyncio
+from ai_helper_agent import InteractiveAgent
+
+async def main():
+    agent = InteractiveAgent(api_key="your_key")
+    result = await agent.chat("Help me code")
+    print(result)
+
+if __name__ == "__main__":
+    asyncio.run(main())
+```
+
+## 🤝 Contributing
+
+We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+
+### Development Setup
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/ai-helper-agent.git
+cd ai-helper-agent
+
+# Install development dependencies
+pip install -r requirements-dev.txt
+
+# Install in development mode
+pip install -e .
+
+# Install pre-commit hooks
+pre-commit install
+
+# Run tests
+pytest
+```
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- Built with [LangChain](https://github.com/langchain-ai/langchain)
+- Powered by [Groq](https://groq.com/) language models
+- Inspired by the need for intelligent code assistance
+
+## 📞 Support
+
+- 📧 Email: support@example.com
+- 🐛 Issues: [GitHub Issues](https://github.com/yourusername/ai-helper-agent/issues)
+- 💬 Discussions: [GitHub Discussions](https://github.com/yourusername/ai-helper-agent/discussions)
+
+## 🗺️ Roadmap
+
+- [ ] Support for more programming languages
+- [ ] Integration with popular IDEs
+- [ ] Advanced code refactoring capabilities
+- [ ] Team collaboration features
+- [ ] Plugin system for extensibility
+
+---
+
+**Made with ❤️ by the AI Helper Agent team**
