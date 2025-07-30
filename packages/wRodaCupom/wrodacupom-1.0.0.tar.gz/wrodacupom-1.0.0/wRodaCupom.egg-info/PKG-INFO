@@ -1,0 +1,47 @@
+Metadata-Version: 2.4
+Name: wRodaCupom
+Version: 1.0.0
+Summary: Automação de agendamento e envio de relatórios de cupons.
+Home-page: https://github.com/seu-repositorio/wRodaCupom
+Author: Wedici Lins
+Author-email: wedici.lins@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: schedule
+Requires-Dist: pyodbc
+Requires-Dist: tk
+Requires-Dist: smtplib
+Requires-Dist: email
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# wRodaCupom
+
+Automação de agendamento e envio de relatórios de cupons.
+
+## Funcionalidades
+- Agendamento automático de tarefas.
+- Envio de relatórios por e-mail.
+- Interface gráfica para configuração e execução manual.
+
+## Requisitos
+- Python 3.6 ou superior.
+- Dependências listadas no arquivo `setup.py`.
+
+## Instalação
+1. Clone este repositório.
+2. Instale as dependências com `pip install -r requirements.txt`.
+3. Execute o aplicativo com `python auto_process.py`.
+
+## Licença
+Este projeto está licenciado sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
