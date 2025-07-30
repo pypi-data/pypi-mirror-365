@@ -1,0 +1,9 @@
+include README.md
+include LICENSE
+include requirements.txt
+include pyproject.toml
+recursive-include vector_db_sdk *.py
+recursive-exclude test *
+recursive-exclude scripts *
+global-exclude *.pyc
+global-exclude __pycache__

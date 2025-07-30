@@ -1,0 +1,400 @@
+# Vector DB SDK
+
+A unified Python SDK for vector databases supporting both pgvector and tcvector backends.
+
+## Installation
+
+```bash
+pip install vector-db-sdk
+```
+
+## Quick Start
+
+```python
+from vector_db_sdk import VectorDB, DistanceStrategy
+
+# Initialize with pgvector
+db = VectorDB(
+    connection_type="pgvector",
+    connection_info={
+        "username": "your_username",
+        "password": "your_password", 
+        "host": "localhost",
+        "port": 5432,
+        "database": "your_db",
+        "schema": "public"  # optional
+    },
+    distance=DistanceStrategy.COSINE
+)
+
+# Search for similar vectors
+results = db.similarity_search_with_score(
+    embedding=[0.1, 0.2, 0.3, ...],  # your query vector
+    table_name="your_table",
+    k=5,
+    score_threshold=0.8
+)
+```
+
+## Features
+
+- 🔄 **Unified Interface**: Single API for both pgvector and tcvector
+- 🚀 **High Performance**: Optimized for large-scale vector operations  
+- 🛡️ **Type Safety**: Full type hints support
+- 📊 **Flexible Filtering**: Advanced condition-based filtering
+- 🔍 **Multiple Distance Metrics**: Cosine, Euclidean, and more
+
+## Background for tcvector
+* `tcvector` does not have a CLI, cannot execute raw SQL queries, and does not support modifying index parameters.
+* `tcvector` does not support using the same table name on different database schema, and cannot rename tables.
+* `tcvector` does not allow `WHERE` on columns that are not marked as filters. See [VectorDB.similarity_search_with_score](#vectordbsimilarity_search_with_score) conditions.
+* To sample data for checking purposes, use [VectorDB.query](#vectordb_query) [VectorDB.row_count](#vectordbrow_count).
+
+## Testing (for maintainers)
+python -m unittest -v
+
+## Classes
+
+### vector_db.VectorDB
+
+*param* **connection_type**: *str*
+Type of connection to use for vector db. Currently only supports `pgvector` and `tcvector`.
+
+*param* **connection_info**: *Dict[str, str | int]*
+connection_info keys:
+* *required* **username**
+* *required* **password**
+* *required* **host**
+* *required* **port**
+* *required* **database**
+* *optional* **schema**
+
+*param* **distance**: *util.DistanceStrategy = DistanceStrategy.COSINE*
+Distance metric used for vector comparison. Default `cosine` (was euclidean `l2` but found `cosine` was the fastest).
+
+*param* **col_names**: *Dict[str, str] = {}*
+Dictionary used to map old sdk column names for flexibility. To map an old column name to an existing name in your table, use {"old_col_name": "new_col_name"}.
+Current old columns are:
+  * `contents` *libvector.CONTENT_COL*: Usually the textual content represented by the embedding.
+  * `embeddings` *libvector.EMBEDDING_COL*: Embedding representing the data.
+  * `metadatas` *libvector.METADATA_COL*: Dictionary of metadata.
+
+*param* **timeout**: *float = None*
+Timeout seconds for all database related operations. Applies only to `tcvector`.
+
+## Methods
+
+### VectorDB.execute
+Used to execute raw sql. Similar to native .execute(). Note that `tcvector` does not support this method.
+
+*param* **query**: *str | bytes*
+Sql query to be executed. Values can be represented in the following ways:
+`INSERT INTO table (id, value) VALUES (?, ?)`
+`INSERT INTO table (id, value) VALUES (%(id)s, %(value)s)`
+
+*param* **vars**: *Union[List[any], Dict[str, any], List[Dict[str, any]]]*
+Variables to be substituted, in the following ways:
+`[1, "some value"]`
+`{"id": 1, "value": "some value"}`
+`[{"id": 1, "value": "some value"}]`
+
+*param* **fetchall** *bool = False*
+If true, will return `List[List[any]]` result.
+
+*param* **commit** *bool = True*
+If true, will immediately commit changes to database.
+
+*returns Union[None, List[List[any]]]*
+If `fetchall` is set to `True`, will return a list of rows.
+
+### VectorDB.find_table_schemas
+List all schemas containing `table_name`.
+
+*param* **table_name** *str*
+
+*returns List[str]*
+
+### VectorDb.list_schemas
+List all schemas.
+
+*returns List[str]*
+
+### VectorDb.list_tables
+
+*param* **schema** *str = ""*
+If empty, will use schema provided by `conf`.
+
+*returns List[str]*
+
+### VectorDB.similarity_search_with_score
+Retrieve top `k` results by index's `distance` similarity >= `score_threshold` (<= `score_threshold` if using L2, or pgvector), either from table catalogue or specified table.
+
+*param* **embedding** *List[float]*
+Use `None` if using internal tc embedding model. To use internal model, you must first `vector_db.create_table` with the desired `model_name`.
+
+*param* **tags** *List[str]*
+Deprecated. Search all tables from catalogue in pgvector, matching specified tags.
+
+*param* **probes** *int = None*
+Number of pgvector probes to use. Default to be computed by sdk.
+
+*param* **k** *int = 1
+Number of results to return.
+
+*param* **score_threshold** *int = 1
+Return results less than score_threshold
+
+*param* **conditions** *List[Dict[str, any]] = []*
+List of conditions to filter by. Best performance when filters are performed on partitioned columns. Note the supported conditions are different between `tcvector` and `pgvector`
+`tcvector`
+A condition consists of:
+  * `field` *string*: Column name.
+  * `operator` *string*: Comparison operator between `field` and `values`.
+  * `values` *any*: The value to be compared against. If it is a list, the operator should be `IN`.
+Operator values:
+  * For string, `=`, `!=`, `in`, `not in`. `in` operations only apply to string to list comparison.
+  * For uint64, `>`, `!=`, `>=`, `=`, `<`, `<=`.
+  * For array, `in`, `include`, `exclude`, `include all`.
+`pgvector`
+A condition consists of:
+  * `field` *string*: Column name.
+  * `operator` *string*: Comparison operator between `field` and `values`. Some examples are `<`, `==`, `IN`.
+  * `values` *any*: The value to be compared against. If it is a list, the operator should be `IN`.
+
+*param* **operators** *List[str] = []
+Deprecated.
+
+*param* **distance** *DistanceStrategy = DistanceStrategy.EUCLIDEAN
+Deprecated.
+
+*param* **table_name** *str = ""*
+
+*param* **search_fields** *List[str] = []*
+List of column names to select and include in results.
+
+*param* **content** *str = ""*
+Provide value if using internal tc embedding model.
+
+*returns List[Dict[str, any]]*
+Results will always include the following fields, in addition to those specified in `search_fields`:
+  * `text`: From `contents` column.
+  * `metadata`: From `metadatas` column.
+  * `score`: Computed similarity score between `embeddings` column and given embedding using `distance` metric. Lower score means higher similarity.
+
+### VectorDB.similarity_search_with_score_multiple
+Retrieve top `k` results by index's `distance` similarity >= `score_threshold` (<= `score_threshold` if using L2, or pgvector), either from table catalogue or specified table.
+
+*param* **embeddings** *List[List[float]]*
+Use `None` if using internal tc embedding model. To use internal model, you must first `vector_db.create_table` with the desired `model_name`.
+
+*param* **tags** *List[str]*
+Deprecated. Search all tables from catalogue in pgvector, matching specified tags.
+
+*param* **probes** *int = None*
+Number of pgvector probes to use. Default to be computed by sdk.
+
+*param* **k** *int = 1
+Number of results to return.
+
+*param* **score_threshold** *int = 1
+Return results less than score_threshold
+
+*param* **conditions** *List[Dict[str, any]] = []*
+
+*param* **operators** *List[str] = []
+Deprecated.
+
+*param* **distance** *DistanceStrategy = DistanceStrategy.EUCLIDEAN
+Deprecated.
+
+*param* **table_name** *str = ""*
+
+*param* **search_fields** *List[str] = []*
+List of column names to select and include in results.
+
+*param* **contents** *List[str] = []*
+Provide value if using internal tc embedding model.
+
+*returns List[Dict[str, any]]*
+Results will always include the following fields, in addition to those specified in `search_fields`:
+  * `text`: From `contents` column.
+  * `metadata`: From `metadatas` column.
+  * `score`: Computed similarity score between `embeddings` column and given embedding using `distance` metric. Lower score means higher similarity.
+
+### VectorDB.reindex
+Should always be used after inserting data. Now using FLAT index. ~~`tcvector` requires that there are between [30 * `nlist`, 256 * `nlist`] rows of data.~~
+
+*param* **table_name** *str*
+
+*param* **force** *bool = False*
+
+### VectorDB.insert_custom_data_table
+Suggested method for inserting single row of data into table.
+
+*param* **table_name** *str*
+
+*param* **embedding** *List[float] | None*
+Use `None` if using internal tc embedding model. To use internal model, you must first `vector_db.create_table` with the desired `model_name`.
+
+*param* **partitions** *List[str] = []*
+List of columns that the table is partitioned by. Beneficial for search and index speed when filtering partitioned columns.
+
+*param* **filters** *List[str] = []*
+For `tcvector`. List of columns that the table can be filtered by, not used in uniqueness tests.
+
+*param* **uses_primary_key** *bool = True*
+Handles primary keys conflicts with `UPDATE` instead of `INSERT`.
+
+*param* **build_index** *bool = False*
+Add vector to index upon insertion, recommended only if inserts and updates are frequent. Default `False`.
+
+*param* **\*\*extra**
+Keyword arguments for additional columns, `..., column_name=column_value, ...`.
+
+### VectorDB.insert_custom_data_table_multiple
+Suggested method for inserting multiple rows of data into table.
+
+*param* **table_name** *str*
+
+*param* **embeddings** *List[List[float]] | None*
+Use `None` if using internal tc embedding model. To use internal model, you must first `vector_db.create_table` with the desired `model_name`. Max batch_size for tc is 20.
+
+*param* **partitions** *List[str] = []*
+List of columns that the table is partitioned by. Beneficial for search and index speed when filtering partitioned columns.
+
+*param* **filters** *List[str] = []*
+For `tcvector`. List of columns that the table can be filtered by, not used in uniqueness tests.
+
+*param* **uses_primary_key** *bool = True*
+Handles primary keys conflicts with `UPDATE` instead of `INSERT`.
+
+*param* **build_index** *bool = False*
+Add vector to index upon insertion, recommended only if inserts and updates are frequent. Default `False`.
+
+*param* **\*\*extra**
+Keyword arguments for additional columns, all values must be arrays with equal length to embeddings, `..., column_name=column_value, ...`.
+
+
+### VectorDB.from_documents
+> Deprecated. Used to insert data from langchain into table_name under general table catalogue.
+
+*param* **table_name** *str*
+
+*param* **documents** *List[langchain.docstore.document.Document]*
+List of langchain documents.
+
+*param* **embeddingModel** *List[List[float]]*
+Model used for computing embeddings.
+
+*param* **tags** *List[str]*
+List of tags to describe the table.
+
+*param* **dimensions** *int*
+Length of embedding. OpenAI ada002 embedding length is 1536.
+
+### VectorDB.from_existing_documents
+> Deprecated. Used to insert data under general table catalogue.
+
+*param* **table_name** *str*
+
+*param* **contents** *List[str]*
+List of text contents.
+
+*param* **metadatas** *Optional[List[Dict[str, any]]]*
+List of metadatas. Set `None` if not used.
+
+*param* **embeddings** *List[List[float]]*
+List of embeddings.
+
+*param* **tags** *List[str]*
+List of tags to describe the table.
+
+*param* **dimensions** *int*
+Length of embedding. OpenAI ada002 embedding length is 1536.
+
+### VectorDB.create_table
+Creates a table, only for `tcvector`.
+
+*param* **table_name** *str*
+
+*param* **indices** *Dict[str, vector_db_sdk.constants.IndexType]*
+`contents` have been included by default. A dictionary mapping of index column names to their types. Required for any column used in filtering.
+
+*param* **description** *str*
+
+*param* **vector_length** *int*
+
+*param* **num_rows** *int = 1*
+Estimated lower bound for number of rows in table, used to compute n_lists. If unsure, use a value of 1. Note that if there are less rows in the table than the specified value, index building may fail. The purpose of setting this number is to try to maximize nlists used in building the index, which will affect the query speed of bigger tables.
+
+*param* **model_name** *str = ""*
+Model name for internal tc embedding model, leave empty if using external model. See values under tcvectordb.model.enum.EmbeddingModel, suggested `BAAI/bge-m3`.
+
+### VectorDB.delete_row_by_id
+Delete single row.
+
+*param* **table_name** *str*
+
+*param* **partitions_list** *List[Dict[str, any]]*
+A list of partition key mappings of the row, of the column name to its value. Should be same length as contents.
+
+*param* **contents** *List[str]*
+The text content of the row.
+
+*param* **ids** *List[str] = []*
+The raw id of the row, for `tcvector`.
+
+*returns int*
+Affected rows.
+
+### VectorDB.delete_rows
+Delete rows following condition.
+
+*param* **table_name** *str*
+
+*param* **conditions** *List[Dict[str, any]] = []*
+List of conditions to filter by. See [VectorDB.similarity_search_with_score](#vectordbsimilarity_search_with_score) conditions.
+
+*returns int*
+Affected rows.
+
+### VectorDB.delete_table
+Delete table
+
+*param* **table_name** *str*
+
+### VectorDB.query
+Send a query for `tcvector` to receive a list of rows.
+
+*param* **table_name** *str*
+
+*param* **limit** *int = 16384*
+Limits the number of rows returned, must be within [1, 16384].
+
+*param* **offset** *int = 0*
+Number of rows to skip. To be used for retrieving rows in batches, when total number of rows exceed 16384.
+
+*param* **conditions** *List[Dict[str, any]] = []*
+List of conditions to filter by. See [VectorDB.similarity_search_with_score](#vectordbsimilarity_search_with_score) conditions.
+
+*param* **output_fields** *str = []*
+List of column names to be selected in output. If empty, will select all columns except `vector`. Note the following columns are compulsory and fixed in `tcvector`: `id`, `vector`
+
+*returns List[Dict[str, any]]*
+Every dict in the list represents 1 row of data mapping the column name to its value.
+
+### VectorDB.row_count
+Returns row count of the table, for `tcvector`
+
+*param* **table_name** *str*
+
+*returns int*
+
+### VectorDB.delete_collection
+> Deprecated. Deletes a table from catalogue.
+
+### VectorDB.retrieve_all_collection
+> Deprecated. Returns all tables and tags in catalogue.
+
+### VectorDB.custom_similarity_search
+> Deprecated.
