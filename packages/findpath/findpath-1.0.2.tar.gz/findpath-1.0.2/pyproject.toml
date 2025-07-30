@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+[project]
+name = "findpath"
+version = "1.0.2"
+authors = [
+  { name="Karthikey", email="karthikey.cse@gmail.com" },
+]
+description = "FindPath is a Python utility class designed to dynamically search for a specific file within a given directory structure."
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICENSE"]
+
+[project.urls]
+Homepage = "https://github.com/joshikarthikey/findpath"
+Issues = "https://github.com/joshikarthikey/findpath/issues"
