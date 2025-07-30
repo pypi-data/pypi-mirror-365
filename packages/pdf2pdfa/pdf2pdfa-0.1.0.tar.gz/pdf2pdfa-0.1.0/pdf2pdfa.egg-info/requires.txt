@@ -1,0 +1,11 @@
+pikepdf>=4.0.0
+fonttools>=4.0.0
+lxml>=4.0.0
+click>=7.0
+reportlab>=4.0.0
+
+[:python_version < "3.9"]
+importlib_resources
+
+[test]
+pytest>=6.0
