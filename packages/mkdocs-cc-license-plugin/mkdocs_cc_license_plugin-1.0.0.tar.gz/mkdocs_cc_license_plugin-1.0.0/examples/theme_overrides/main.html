@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <article class="md-content__inner md-typeset">
+    <!-- Add license display at the top right of each page -->
+    {% if page.meta.license %}
+      <div class="cc-license-container" style="float: right; margin-left: 1em; margin-bottom: 1em; padding: 0.7em; background-color: #f8f9fa; border: 1px solid #ddd; border-radius: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        {{ cc_license(page.meta) | safe }}
+      </div>
+    {% endif %}
+    
+    {{ page.content }}
+  </article>
+{% endblock %}

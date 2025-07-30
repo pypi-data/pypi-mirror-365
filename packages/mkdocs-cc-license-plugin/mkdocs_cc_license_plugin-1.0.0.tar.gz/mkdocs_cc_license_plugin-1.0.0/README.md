@@ -1,0 +1,235 @@
+# MkDocs Creative Commons License Plugin
+
+Un plugin MkDocs qui ajoute automatiquement les icônes et liens de licence Creative Commons basés sur la propriété `license` dans les métadonnées des pages.
+
+## Fonctionnalités
+
+- ✅ Lecture automatique de la propriété `license` dans l'en-tête YAML
+- ✅ Génération automatique des icônes Creative Commons SVG
+- ✅ Création de liens vers les pages officielles Creative Commons
+- ✅ Support de toutes les licences CC 4.0
+- ✅ Affichage sous forme de badge élégant en haut à droite des pages
+- ✅ Configuration flexible
+- ✅ Intégration facile avec les templates Jinja2
+- ✅ Compatible avec le thème Material for MkDocs
+
+## Installation
+
+### Installation depuis les sources
+
+```bash
+git clone <repository-url>
+cd mkdocs_cc_license_plugin
+pip install -e .
+```
+
+### Installation depuis PyPI (quand publié)
+
+```bash
+pip install mkdocs-cc-license-plugin
+```
+
+### Configuration rapide
+
+1. Ajoutez le plugin à votre `mkdocs.yml`
+2. Créez un dossier `theme_overrides` (optionnel)
+3. Ajoutez `license: "by-sa"` dans vos pages markdown
+4. Lancez `mkdocs serve` pour voir le résultat
+
+## Configuration
+
+Ajoutez le plugin à votre fichier `mkdocs.yml` :
+
+```yaml
+plugins:
+  - cc-license:
+      default_license: "by-sa"      # Licence par défaut si non spécifiée
+      language: "fr"                # Langue pour les liens CC (fr, en, etc.)
+      target_blank: true            # Ouvrir les liens dans un nouvel onglet
+      show_icons: true              # Afficher les icônes SVG
+
+# Thème (pour Material avec template personnalisé)
+theme:
+  name: material
+  custom_dir: theme_overrides  # Optionnel pour personnaliser l'affichage
+```
+
+## Utilisation
+
+### Dans les métadonnées de page
+
+```yaml
+---
+title: Mon exercice
+author: John Doe
+license: "by-nc-sa"  # Attribution-NonCommercial-ShareAlike
+tags:
+  - python
+  - exercice
+---
+```
+
+### Dans les templates
+
+Le plugin expose automatiquement des fonctions Jinja2 pour les templates :
+
+```html
+<!-- Affichage complet avec icônes et lien -->
+{{ cc_license(page.meta) }}
+
+<!-- Ou la fonction complète -->
+{{ build_license_html(page.meta) }}
+
+<!-- Pour obtenir juste les informations de licence -->
+{% set license_info = get_license_info(page.meta) %}
+<p>Licence: {{ license_info.full_name }}</p>
+<p>URL: {{ license_info.url }}</p>
+```
+
+### Template personnalisé (recommandé)
+
+Pour un affichage optimal, créez un template personnalisé `theme_overrides/main.html` :
+
+```html
+{% extends "base.html" %}
+
+{% block content %}
+  <article class="md-content__inner md-typeset">
+    <!-- Badge de licence en haut à droite -->
+    {% if page.meta.license %}
+      <div class="cc-license-container" style="float: right; margin-left: 1em; margin-bottom: 1em; padding: 0.8em; background: linear-gradient(135deg, #f8f9fa, #e9ecef); border: 1px solid #dee2e6; border-radius: 15px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+        {{ cc_license(page.meta) | safe }}
+      </div>
+    {% endif %}
+    
+    {{ page.content }}
+  </article>
+{% endblock %}
+```
+
+## Rendu visuel
+
+Le plugin affiche les licences Creative Commons sous forme de **badge élégant** en haut à droite de chaque page contenant une propriété `license`. Le badge inclut :
+
+- 🎨 **Design moderne** : Dégradé de couleur et ombres subtiles
+- 🔗 **Icônes SVG officielles** : Directement depuis les serveurs Creative Commons
+- 🎯 **Positionnement intelligent** : En haut à droite, n'interfère pas avec le contenu
+- 📱 **Responsive** : S'adapte à tous les écrans
+- 🖱️ **Interactif** : Lien cliquable vers la page officielle de la licence
+
+### Exemple d'affichage
+
+Pour une page avec `license: "by-nc-sa"`, vous verrez apparaître un badge contenant les icônes CC, BY, NC et SA qui pointe vers `https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr`.
+
+## Licences supportées
+
+- `by` - Attribution
+- `by-sa` - Attribution-ShareAlike
+- `by-nc` - Attribution-NonCommercial  
+- `by-nc-sa` - Attribution-NonCommercial-ShareAlike
+- `by-nd` - Attribution-NoDerivatives
+- `by-nc-nd` - Attribution-NonCommercial-NoDerivatives
+- `cc0` - CC0 Public Domain Dedication
+
+## Exemple de sortie HTML
+
+Pour `license: "by-nc-sa"`, le plugin génère :
+
+```html
+<a class="cc-license-link" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.fr" target="_blank" rel="license noopener noreferrer">
+  <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt="Creative Commons" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;">
+  <img src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt="Attribution" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;">
+  <img src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt="NonCommercial" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;">
+  <img src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt="ShareAlike" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;">
+</a>
+```
+
+## Configuration avancée
+
+### Options disponibles
+
+| Option | Type | Défaut | Description |
+|--------|------|--------|-------------|
+| `default_license` | string | `"by-sa"` | Licence utilisée si non spécifiée |
+| `language` | string | `"fr"` | Langue pour les liens CC |
+| `target_blank` | boolean | `true` | Ouvrir les liens dans un nouvel onglet |
+| `show_icons` | boolean | `true` | Afficher les icônes SVG |
+| `custom_template` | string | `None` | Template personnalisé (futur) |
+
+### Exemple de configuration complète
+
+```yaml
+plugins:
+  - cc-license:
+      default_license: "by-sa"
+      language: "en"
+      target_blank: false
+      show_icons: true
+```
+
+## Développement
+
+### Structure du projet
+
+```text
+mkdocs_cc_license_plugin/
+├── mkdocs_cc_license_plugin/  # Package Python
+│   ├── __init__.py
+│   └── plugin.py              # Plugin principal
+├── examples/                  # Exemples d'utilisation
+│   ├── mkdocs.yml
+│   ├── theme_overrides/       # Template personnalisé
+│   │   └── main.html
+│   └── docs/
+│       ├── index.md
+│       ├── with-license.md
+│       └── no-license.md
+├── tests/                     # Tests unitaires
+├── setup.py                   # Configuration d'installation
+├── pyproject.toml            # Configuration moderne
+└── README.md                 # Documentation
+```
+
+### Tests
+
+```bash
+# Tests unitaires
+python -m pytest tests/
+
+# Test manuel avec l'exemple
+cd examples
+mkdocs serve
+# Ouvrir http://127.0.0.1:8000/with-license/
+```
+
+## Dépannage
+
+### Le plugin ne se charge pas
+
+- Vérifiez que le package est bien installé : `pip list | grep mkdocs-cc-license`
+- Vérifiez la structure : les fichiers doivent être dans `mkdocs_cc_license_plugin/`
+
+### Les icônes n'apparaissent pas
+
+- Vérifiez que la propriété `license` est bien définie dans l'en-tête YAML
+- Utilisez un template personnalisé pour Material (voir section Template)
+- Vérifiez les logs : `[CC License Plugin] build_license_html called with: ...`
+
+### Style non appliqué
+
+- Redémarrez `mkdocs serve` après modification du template
+- Vérifiez que `custom_dir: theme_overrides` est configuré
+
+## Licence
+
+Ce plugin est distribué sous licence MIT.
+
+## Contribution
+
+Les contributions sont les bienvenues ! Veuillez :
+
+1. Fork le projet
+2. Créer une branche pour votre fonctionnalité
+3. Commiter vos changements
+4. Pousser vers la branche
+5. Ouvrir une Pull Request
