@@ -1,0 +1,5 @@
+{{ vars.communities_metadata|imports }}
+
+class {{ vars.communities_metadata|class_header }}:
+    __tablename__ = "{{ vars.communities_metadata.table }}"
+    __record_model__ = {{ published_record.draft_parent_record_metadata.class|base_name }}
