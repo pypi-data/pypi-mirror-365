@@ -1,0 +1,139 @@
+Metadata-Version: 2.4
+Name: collective.pdbpp
+Version: 1.0.0a8
+Summary: An addon for Plone that allow you debug your code using the pdbpp package
+Home-page: https://github.com/collective/collective.pdbpp
+Author: ale-rt
+Author-email: alessandro.pisa@gmail.com
+License: GPL version 2
+Project-URL: PyPI, https://pypi.org/project/collective.pdbpp/
+Project-URL: Source, https://github.com/collective/collective.pdbpp
+Project-URL: Tracker, https://github.com/collective/collective.pdbpp/issues
+Keywords: Python Plone CMS
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Plone
+Classifier: Framework :: Plone :: Addon
+Classifier: Framework :: Plone :: 5.2
+Classifier: Framework :: Plone :: 6.0
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE.GPL
+License-File: LICENSE.md
+Requires-Dist: setuptools
+Requires-Dist: plone.api
+Requires-Dist: pdbpp
+Requires-Dist: rich
+Provides-Extra: test
+Requires-Dist: plone.app.testing; extra == "test"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license
+Dynamic: license-file
+Dynamic: project-url
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+[![image](https://github.com/collective/collective.pdbpp/actions/workflows/plone-package.yml/badge.svg)](https://github.com/collective/collective.pdbpp/actions/workflows/plone-package.yml)
+[![Coveralls](https://coveralls.io/repos/github/collective/collective.pdbpp/badge.svg?branch=main)](https://coveralls.io/github/collective/collective.pdbpp?branch=main)
+[![image](https://codecov.io/gh/collective/collective.pdbpp/branch/master/graph/badge.svg)](https://codecov.io/gh/collective/collective.pdbpp)
+[![Latest Version](https://img.shields.io/pypi/v/collective.pdbpp.svg)](https://pypi.python.org/pypi/collective.pdbpp/)
+[![Egg Status](https://img.shields.io/pypi/status/collective.pdbpp.svg)](https://pypi.python.org/pypi/collective.pdbpp)
+![image](https://img.shields.io/pypi/pyversions/collective.pdbpp.svg?style=plastic%20%20%20:alt:%20Supported%20-%20Python%20Versions)
+[![License](https://img.shields.io/pypi/l/collective.pdbpp.svg)](https://pypi.python.org/pypi/collective.pdbpp/)
+
+# collective.pdbpp
+
+An addon for Plone that does allow you to use the [pdbpp](https://github.com/pdbpp/pdbpp) package
+
+## Installation
+
+Install `collective.pdbpp` by adding it to your buildout, e.g.:
+
+    [instance]
+    eggs +=
+        collective.pdbpp
+
+and then running `bin/buildout`.
+
+When your instance starts you can enter a pdb session by adding the path `pdb` to any URL, e.g.:
+
+- http://localhost:8080/pdb
+- http://localhost:8080/Plone/pdb
+
+
+## Authors
+
+The [Syslab.com](https://www.syslab.com) Team.
+
+## Contributors
+
+Put your name here, you deserve it!
+
+- Alessandro Pisa, [Syslab.com](https://www.syslab.com)
+
+## Contribute
+
+- Issue Tracker:
+  <https://github.com/collective/collective.pdbpp/issues>
+- Source Code: <https://github.com/collective/collective.pdbpp>
+- Documentation: <https://docs.plone.org/foo/bar>
+
+## Support
+
+If you are having issues, please let us know in the [issue tracker](https://github.com/collective/collective.pdbpp/issues).
+
+## License
+
+The project is licensed under the GPLv2.
+
+
+# Contributors
+
+
+- ale-rt, alessandro.pisa@gmail.com
+
+
+# Changelog
+
+## 1.0.0a8 (2025-07-30)
+
+- Fix another error on Startup when the DefaultConfig is not yet initialized
+
+## 1.0.0a7 (2025-07-29)
+
+- Fix error on Startup when the DefaultConfig is not yet initialized
+
+## 1.0.0a6 (2025-05-21)
+
+- Add an `ii` command
+
+## 1.0.0a5 (2025-03-28)
+
+- Do not limit rich output
+
+## 1.0.0a4 (2024-12-18)
+
+- Nothing changed yet.
+
+## 1.0.0a3 (2024-11-29)
+
+- Add features from rich to make debugging easier.
+
+## 1.0.0a2 (2023-11-27)
+
+- Initial release. [ale-rt]
