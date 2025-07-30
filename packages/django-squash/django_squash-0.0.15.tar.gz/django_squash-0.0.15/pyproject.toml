@@ -1,0 +1,195 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "django_squash"
+version = "0.0.15"
+description = "A migration squasher that doesn't care how Humpty Dumpty was put together."
+readme = "README.rst"
+keywords = ["django", "migration", "squashing", "squash"]
+authors = [
+    {name = "Javier Buzzi", email = "buzzi.javier@gmail.com"},
+]
+license = "MIT"
+classifiers = [
+    # See https://pypi.org/pypi?%3Aaction=list_classifiers
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: Developers",
+    "Framework :: Django",
+    "Framework :: Django :: 4.2",
+    "Framework :: Django :: 5.1",
+    "Framework :: Django :: 5.2",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "django>=4.2",
+]
+requires-python = ">=3.9"
+
+[project.optional-dependencies]
+lint = [
+    "pygments",
+    "restructuredtext-lint",
+    "ruff",
+    "vulture",
+    "zizmor",
+]
+test = [
+    "black",
+    "build",
+    "ipdb",
+    "libcst",
+    "psycopg2-binary",
+    "pytest-cov",
+    "pytest-django"
+]
+
+[project.urls]
+homepage = "https://github.com/kingbuzzman/django-squash"
+
+[tool.setuptools.packages.find]
+exclude = ["tests*", "docs*"]
+
+[tool.setuptools]
+zip-safe = true
+platforms = ["any"]
+
+[tool.ruff]
+exclude = ["*migrations*", ".*", "/usr/local/lib", "dist", "venv"]
+line-length = 119
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "ANN",
+    "D100",
+    "D104",
+    "D400",
+    "D203",
+    "D212",
+    "COM812",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"./tests/**" = [
+    "B011",
+    "D102",
+    "D103",
+    "D401",
+    "D101",
+    "D107",
+    "D400",
+    "D405",
+    "D412",
+    "D415",
+    "DJ008",
+    "E712",
+    "EM101",
+    "EM102",
+    "ERA001",
+    "FBT",
+    "FIX002",
+    "FURB177",
+    "N806",
+    "PLR0124",
+    "PLR0913",
+    "PLR2004",
+    "PT007",
+    "PT011",
+    "PT015",
+    "S",
+    "SIM117",
+    "SLF001",
+    "PTH",
+    "TD002",
+    "TD003",
+    "TRY002",
+    "TRY003",
+    "TRY301",
+    "UP014",
+    "LOG015",
+    "PLC1901",
+    "FURB157",
+    "PLR0917",
+]
+
+[tool.ruff.lint.isort]
+order-by-type = true
+force-sort-within-sections = true
+required-imports = [
+    "from __future__ import annotations",
+]
+section-order = [
+    "future",
+    "standard-library",
+    "third-party",
+    "first-party",
+    "local-folder",
+]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.coverage.run]
+branch = true
+relative_files = true
+parallel = true
+source = ["django_squash"]
+omit = ["*/migrations_*/*"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 90
+
+[tool.coverage.html]
+show_contexts = true
+skip_covered = false
+
+[tool.pypi]
+repository = "https://upload.pypi.org/legacy/"
+username = "kingbuzzman"
+
+[tool.vulture]
+make_whitelist = false
+min_confidence = 80
+paths = ["django_squash"]
+sort_by_size = true
+verbose = false
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "settings"
+pythonpath = "tests"
+addopts = "--pdbcls=IPython.terminal.debugger:TerminalPdb"
+python_files = ["test_*.py", "*_tests.py"]
+
+# Custom markers for pytest
+markers = [
+    "temporary_migration_module",
+    "temporary_migration_module2",
+    "temporary_migration_module3",
+    "slow: marks tests as slow",
+    "no_cover: marks tests to be excluded from coverage"
+]
+
+filterwarnings = [
+    "error",
+
+    # Internal warning to tell the user that the writer.py file has changed, and may not be compatible.
+    "ignore:Django migrations writer file has changed and may not be compatible with django-squash",
+
+    # Don't specify the exact warning (django.utils.deprecation.RemovedInDjango50Warning) as not all version of Django know it and pytest will fail
+    "ignore:The USE_L10N setting is deprecated:",
+]
