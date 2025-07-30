@@ -1,0 +1,64 @@
+Metadata-Version: 2.4
+Name: beatsynchr
+Version: 0.1.2
+Summary: A Python library for syncing images and videos with music beats
+Author: Jakub Nurkiewicz
+Author-email: Jakub Nurkiewicz <jakub.nurkiewicz.2003@gmail.com>
+Keywords: images processing,video processing,music beats
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+License-File: LICENSE_THIRD_PARTY
+Requires-Dist: librosa>=0.11.0
+Requires-Dist: numpy>=2.0.0
+Requires-Dist: moviepy>=2.0.0
+Requires-Dist: Pillow>=11.0.0
+Requires-Dist: pillow-heif>=1.0.0
+Dynamic: author
+Dynamic: license-file
+
+# beatsynchr
+Python library for syncing images and videos with music beats
+
+## 🎵 Features
+
+- Beat-based slideshow generation
+- Supports both images and video files
+- Handles `.jpg`, `.jpeg`, `.png`, `.heic`, `.mp4`, `.mov`, `.avi`, `.webm`, `.mkv`
+- Automatically matches clip duration to beat intervals
+
+---
+
+## Installation
+
+```bash
+pip install beatsynchr
+```
+## Usage
+
+```python
+from beatsynchr import generate_slideshow, generate_slideshow_video
+
+# Create slideshow from images
+generate_slideshow(
+    audio_path="soundtrack.mp3",
+    image_folder="./images",
+    output_video="slideshow.mp4",
+    sort_by="name"  # or created_asc, created_desc, modified_asc, modified_desc
+)
+
+# Create slideshow from images + videos
+generate_slideshow_video(
+    audio_path="soundtrack.mp3",
+    media_folder="./media",
+    output_video="media_slideshow.mp4",
+    sort_by="name"
+)
+```
+
+## Warning
+
+For handling videos, you must have **ffmpeg** installed and accessible in your system PATH.
+
+---
