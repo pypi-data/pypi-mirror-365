@@ -1,0 +1,33 @@
+Metadata-Version: 2.1
+Name: alliance-platform-frontend
+Version: 0.0.21
+Summary: Django integration for Frontend Bundlers & React
+Keywords: django,alliance,alliancesoftware
+Author-Email: Alliance Software <support@alliancesoftware.com.au>
+License: BSD-2-Clause
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 4.2
+Classifier: Framework :: Django :: 5.0
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Typing :: Typed
+Project-URL: issues, https://github.com/AllianceSoftware/alliance-platform-py/issues
+Project-URL: homepage, https://github.com/AllianceSoftware/alliance-platform-py/packages/ap-frontend
+Project-URL: repository, https://github.com/AllianceSoftware/alliance-platform-py
+Requires-Python: <4.0,>=3.11
+Requires-Dist: alliance-platform-codegen
+Requires-Dist: alliance-platform-core
+Requires-Dist: Django>=4.2.11
+Requires-Dist: djangorestframework
+Requires-Dist: django-allianceutils>=4.0.1
+Requires-Dist: requests
+Requires-Dist: typing-extensions>=4.5.0
+Description-Content-Type: text/markdown
+
+The documentation for this package is hosted on [readthedocs.io](https://alliance-platform.readthedocs.io/projects/frontend/latest/)
