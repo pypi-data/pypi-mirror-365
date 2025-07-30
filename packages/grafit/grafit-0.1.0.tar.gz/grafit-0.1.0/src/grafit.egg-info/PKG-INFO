@@ -1,0 +1,20 @@
+Metadata-Version: 2.4
+Name: grafit
+Version: 0.1.0
+Summary: Import Garmin FIT files into SQLite database and visualize with Grafana
+Author-email: nbr23 <max@23.tf>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/nbr23/grafit
+Project-URL: Repository, https://github.com/nbr23/grafit
+Project-URL: Issues, https://github.com/nbr23/grafit/issues
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: python-fitparse>=2.0.4
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0; extra == "dev"
+Requires-Dist: black>=23.0; extra == "dev"
+Requires-Dist: ruff>=0.1.0; extra == "dev"
+
+# GraFIT
+
+Visualize your FIT files in Grafana

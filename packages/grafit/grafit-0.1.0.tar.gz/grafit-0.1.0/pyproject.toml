@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "grafit"
+version = "0.1.0"
+description = "Import Garmin FIT files into SQLite database and visualize with Grafana"
+readme = "README.md"
+authors = [
+    {name = "nbr23", email = "max@23.tf"}
+]
+license = "MIT"
+requires-python = ">=3.11"
+dependencies = [
+    "python-fitparse>=2.0.4",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "black>=23.0",
+    "ruff>=0.1.0",
+]
+
+[project.scripts]
+grafit = "grafit.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/nbr23/grafit"
+Repository = "https://github.com/nbr23/grafit"
+Issues = "https://github.com/nbr23/grafit/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.black]
+line-length = 100
+target-version = ["py38"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"
