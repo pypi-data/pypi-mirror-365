@@ -1,0 +1,511 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lammpskit.config &mdash; LAMMPSKit 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            LAMMPSKit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api_reference.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_formats.html">Data Formats</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../lammpskit.html">lammpskit package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lammpskit.config.html">lammpskit.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lammpskit.io.html">lammpskit.io package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lammpskit.plotting.html">lammpskit.plotting package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../lammpskit.ecellmodel.html">lammpskit.ecellmodel package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">LAMMPSKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">lammpskit.config</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for lammpskit.config</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">LAMMPSKit Configuration Module</span>
+<span class="sd">==============================</span>
+
+<span class="sd">Essential validation functions and constants for robust LAMMPS trajectory analysis.</span>
+<span class="sd">This module provides infrastructure for input validation, parameter checking, and</span>
+<span class="sd">standardized constants used across LAMMPSKit analysis workflows.</span>
+
+<span class="sd">Architecture Design</span>
+<span class="sd">-------------------</span>
+<span class="sd">The configuration module follows a functional approach rather than class-based</span>
+<span class="sd">configuration objects, prioritizing simplicity and direct validation at point-of-use.</span>
+<span class="sd">This design reduces coupling while ensuring consistent parameter validation across</span>
+<span class="sd">all analysis modules.</span>
+
+<span class="sd">Key Components</span>
+<span class="sd">--------------</span>
+<span class="sd">- Column mapping constants for LAMMPS dump file parsing</span>
+<span class="sd">- Data type labels for displacement and property analysis</span>
+<span class="sd">- Input validation functions with domain-specific error messages</span>
+<span class="sd">- Parameter range checking with physics-aware warnings</span>
+
+<span class="sd">Validation Philosophy</span>
+<span class="sd">---------------------</span>
+<span class="sd">Validation functions use a &quot;fail-fast&quot; approach with informative error messages</span>
+<span class="sd">to catch configuration issues early in analysis workflows. Physics-aware warnings</span>
+<span class="sd">help identify potential coordinate system or unit scale problems common in MD</span>
+<span class="sd">simulations.</span>
+
+<span class="sd">Performance Considerations</span>
+<span class="sd">--------------------------</span>
+<span class="sd">Validation overhead is O(1) for most functions, O(n) for file list validation.</span>
+<span class="sd">Pre-validate parameters once at workflow start rather than per-timestep for</span>
+<span class="sd">optimal performance in long trajectory analysis.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+
+<span class="c1"># =============================================================================</span>
+<span class="c1"># LAMMPS DATA STRUCTURE CONSTANTS</span>
+<span class="c1"># =============================================================================</span>
+
+<span class="c1"># Data type labels for displacement analysis and statistical reporting</span>
+<span class="c1"># Used by plotting functions and test validation to ensure consistent labeling</span>
+<span class="n">DISPLACEMENT_DATA_LABELS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;abs total disp&quot;</span><span class="p">,</span>  <span class="c1"># Total displacement magnitude (Angstroms)</span>
+    <span class="s2">&quot;density - mass&quot;</span><span class="p">,</span>  <span class="c1"># Mass density (g/cm³)</span>
+    <span class="s2">&quot;temp (K)&quot;</span><span class="p">,</span>  <span class="c1"># Temperature (Kelvin)</span>
+    <span class="s2">&quot;z disp (A)&quot;</span><span class="p">,</span>  <span class="c1"># Vertical displacement component (Angstroms)</span>
+    <span class="s2">&quot;lateral disp (A)&quot;</span><span class="p">,</span>  <span class="c1"># Horizontal displacement magnitude (Angstroms)</span>
+    <span class="s2">&quot;outward disp vector (A)&quot;</span><span class="p">,</span>  <span class="c1"># Radial displacement component (Angstroms)</span>
+<span class="p">]</span>
+
+<span class="c1"># LAMMPS dump file column mappings for trajectory parsing</span>
+<span class="c1"># Standard format: id type charge x y z vx vy vz fx fy fz</span>
+<span class="c1"># Indices correspond to: (id, type, charge, x, y, z, vx, vy, vz, fx, fy, fz)</span>
+<span class="n">DEFAULT_COLUMNS_TO_READ</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>  <span class="c1"># Core analysis columns</span>
+<span class="n">EXTENDED_COLUMNS_TO_READ</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>  <span class="c1"># Full property set</span>
+
+
+<span class="c1"># =============================================================================</span>
+<span class="c1"># VALIDATION FUNCTIONS</span>
+<span class="c1"># =============================================================================</span>
+
+
+<div class="viewcode-block" id="validate_filepath">
+<a class="viewcode-back" href="../../lammpskit.config.html#lammpskit.config.validate_filepath">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">validate_filepath</span><span class="p">(</span><span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">check_existence</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Validate file path for LAMMPS trajectory and output files.</span>
+
+<span class="sd">    Ensures filepath is a valid string and optionally verifies file existence.</span>
+<span class="sd">    Essential for preventing downstream failures in trajectory reading and</span>
+<span class="sd">    analysis output generation.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filepath : str</span>
+<span class="sd">        Path to file for validation. Supports both absolute and relative paths.</span>
+<span class="sd">    check_existence : bool, optional</span>
+<span class="sd">        Whether to verify file exists on disk (default: True).</span>
+<span class="sd">        Set False for output file validation.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    TypeError</span>
+<span class="sd">        If filepath is not a string.</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If filepath is empty string.</span>
+<span class="sd">    FileNotFoundError</span>
+<span class="sd">        If file doesn&#39;t exist and check_existence=True.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Validate input trajectory file:</span>
+
+<span class="sd">    &gt;&gt;&gt; validate_filepath(&#39;trajectory.lammpstrj&#39;)</span>
+
+<span class="sd">    Validate output path without existence check:</span>
+
+<span class="sd">    &gt;&gt;&gt; validate_filepath(&#39;output/analysis.pdf&#39;, check_existence=False)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;filepath must be a string&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">filepath</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;filepath cannot be empty&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">check_existence</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File not found: </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="validate_dataindex">
+<a class="viewcode-back" href="../../lammpskit.config.html#lammpskit.config.validate_dataindex">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">validate_dataindex</span><span class="p">(</span><span class="n">dataindex</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">max_index</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Validate array index for displacement data and property arrays.</span>
+
+<span class="sd">    Ensures safe array indexing with support for Python negative indexing.</span>
+<span class="sd">    Primarily used for accessing DISPLACEMENT_DATA_LABELS and trajectory</span>
+<span class="sd">    property arrays.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    dataindex : int</span>
+<span class="sd">        Index to validate. Supports negative indexing (e.g., -1 for last element).</span>
+<span class="sd">    max_index : int, optional</span>
+<span class="sd">        Maximum allowed index. If None, uses DISPLACEMENT_DATA_LABELS length.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If dataindex is not integer or out of valid range.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Negative indexing follows Python conventions: -1 = last element,</span>
+<span class="sd">    -n = first element for array of length n.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Validate index for displacement data:</span>
+
+<span class="sd">    &gt;&gt;&gt; validate_dataindex(2)  # Access &#39;temp (K)&#39;</span>
+<span class="sd">    &gt;&gt;&gt; validate_dataindex(-1)  # Access last element</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataindex</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;dataindex must be an integer&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Allow negative indexing (common in Python)</span>
+    <span class="k">if</span> <span class="n">max_index</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">dataindex</span> <span class="o">&gt;=</span> <span class="n">max_index</span> <span class="ow">or</span> <span class="n">dataindex</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">max_index</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dataindex </span><span class="si">{</span><span class="n">dataindex</span><span class="si">}</span><span class="s2"> is out of range for max_index </span><span class="si">{</span><span class="n">max_index</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Use the DISPLACEMENT_DATA_LABELS length for validation like the original</span>
+        <span class="n">total_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">DISPLACEMENT_DATA_LABELS</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">dataindex</span> <span class="o">&lt;</span> <span class="o">-</span><span class="n">total_length</span> <span class="ow">or</span> <span class="n">dataindex</span> <span class="o">&gt;=</span> <span class="n">total_length</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;dataindex </span><span class="si">{</span><span class="n">dataindex</span><span class="si">}</span><span class="s2"> is out of range&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="validate_file_list">
+<a class="viewcode-back" href="../../lammpskit.config.html#lammpskit.config.validate_file_list">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">validate_file_list</span><span class="p">(</span><span class="n">file_list</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Validate list of trajectory files for batch processing.</span>
+
+<span class="sd">    Ensures all files exist and are accessible before starting computationally</span>
+<span class="sd">    expensive analysis workflows. Prevents partial analysis completion due to</span>
+<span class="sd">    missing files in multi-trajectory studies.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    file_list : List[str]</span>
+<span class="sd">        List of file paths to validate. Commonly used for time series analysis</span>
+<span class="sd">        across multiple LAMMPS dump files.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If file_list is not a list/tuple, is empty, or contains non-string elements.</span>
+<span class="sd">    FileNotFoundError</span>
+<span class="sd">        If any files don&#39;t exist. Reports all missing files simultaneously</span>
+<span class="sd">        for efficient error handling.</span>
+
+<span class="sd">    Performance Notes</span>
+<span class="sd">    -----------------</span>
+<span class="sd">    Complexity: O(n) where n is number of files.</span>
+<span class="sd">    For large file lists (&gt;1000), consider validating in chunks.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Validate trajectory sequence:</span>
+
+<span class="sd">    &gt;&gt;&gt; files = [&#39;step_0.lammpstrj&#39;, &#39;step_1000.lammpstrj&#39;, &#39;step_2000.lammpstrj&#39;]</span>
+<span class="sd">    &gt;&gt;&gt; validate_file_list(files)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">file_list</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;file_list must be a list&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">file_list</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;file_list cannot be empty&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Collect all missing files to report them together (like original)</span>
+    <span class="n">missing_files</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">filepath</span> <span class="ow">in</span> <span class="n">file_list</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;All file paths must be strings&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+            <span class="n">missing_files</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">missing_files</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The following files were not found: </span><span class="si">{</span><span class="n">missing_files</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="validate_loop_parameters">
+<a class="viewcode-back" href="../../lammpskit.config.html#lammpskit.config.validate_loop_parameters">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">validate_loop_parameters</span><span class="p">(</span><span class="n">loop_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">loop_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Validate timestep range parameters for trajectory analysis loops.</span>
+
+<span class="sd">    Ensures valid timestep iteration bounds for LAMMPS trajectory processing.</span>
+<span class="sd">    Critical for preventing infinite loops or invalid memory access in</span>
+<span class="sd">    temporal analysis functions.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    loop_start : int</span>
+<span class="sd">        Starting timestep index (inclusive). Must be non-negative.</span>
+<span class="sd">    loop_end : int</span>
+<span class="sd">        Ending timestep index (inclusive). Must be &gt;= loop_start.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If parameters are not integers, negative, or loop_start &gt; loop_end.</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+<span class="sd">    Both indices are inclusive: range [loop_start, loop_end].</span>
+<span class="sd">    For trajectory with N timesteps, valid range is [0, N-1].</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Validate analysis range:</span>
+
+<span class="sd">    &gt;&gt;&gt; validate_loop_parameters(0, 1000)  # Analyze first 1001 timesteps</span>
+<span class="sd">    &gt;&gt;&gt; validate_loop_parameters(500, 1500)  # Analyze middle portion</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">loop_start</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">loop_end</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;loop_start and loop_end must be integers&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">loop_start</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;loop_start must be non-negative&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">loop_end</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;loop_end must be non-negative&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">loop_start</span> <span class="o">&gt;</span> <span class="n">loop_end</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;loop_start (</span><span class="si">{</span><span class="n">loop_start</span><span class="si">}</span><span class="s2">) must be less than or equal to loop_end (</span><span class="si">{</span><span class="n">loop_end</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="validate_chunks_parameter">
+<a class="viewcode-back" href="../../lammpskit.config.html#lammpskit.config.validate_chunks_parameter">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">validate_chunks_parameter</span><span class="p">(</span><span class="n">nchunks</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">min_chunks</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">max_chunks</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Validate spatial binning parameters for density and distribution analysis.</span>
+
+<span class="sd">    Ensures appropriate bin count for spatial discretization in electrochemical</span>
+<span class="sd">    cell analysis. Balances statistical significance with computational efficiency.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    nchunks : int</span>
+<span class="sd">        Number of spatial bins/chunks for discretization.</span>
+<span class="sd">    min_chunks : int, optional</span>
+<span class="sd">        Minimum allowed bins (default: 1). Must be positive.</span>
+<span class="sd">    max_chunks : int, optional</span>
+<span class="sd">        Maximum allowed bins (default: 1000). Prevents excessive memory usage.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If nchunks is not integer or outside [min_chunks, max_chunks] range.</span>
+
+<span class="sd">    Performance Notes</span>
+<span class="sd">    -----------------</span>
+<span class="sd">    Memory usage: O(nchunks) per property per timestep.</span>
+<span class="sd">    Computation time: O(N * nchunks) where N is atom count.</span>
+<span class="sd">    Optimal range: 10-100 chunks for most electrochemical systems.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Validate binning for layer analysis:</span>
+
+<span class="sd">    &gt;&gt;&gt; validate_chunks_parameter(50)  # 50 z-direction layers</span>
+<span class="sd">    &gt;&gt;&gt; validate_chunks_parameter(10, min_chunks=5, max_chunks=20)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">nchunks</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;nchunks must be an integer&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Provide more specific error messages like the original</span>
+    <span class="k">if</span> <span class="n">nchunks</span> <span class="o">&lt;</span> <span class="n">min_chunks</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;nchunks must be at least </span><span class="si">{</span><span class="n">min_chunks</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">nchunks</span> <span class="o">&gt;</span> <span class="n">max_chunks</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;nchunks cannot exceed </span><span class="si">{</span><span class="n">max_chunks</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="validate_cluster_parameters">
+<a class="viewcode-back" href="../../lammpskit.config.html#lammpskit.config.validate_cluster_parameters">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">validate_cluster_parameters</span><span class="p">(</span><span class="n">z_filament_lower_limit</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">z_filament_upper_limit</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">thickness</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Validate geometric parameters for filament connectivity analysis.</span>
+
+<span class="sd">    Ensures physically meaningful parameters for OVITO-based cluster analysis</span>
+<span class="sd">    in electrochemical cell simulations. Validates filament detection geometry</span>
+<span class="sd">    and provides physics-aware warnings for common coordinate system issues.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    z_filament_lower_limit : float</span>
+<span class="sd">        Lower z-coordinate bound for filament connectivity (Angstroms).</span>
+<span class="sd">        Typically electrode surface position.</span>
+<span class="sd">    z_filament_upper_limit : float</span>
+<span class="sd">        Upper z-coordinate bound for filament connectivity (Angstroms).</span>
+<span class="sd">        Typically opposite electrode surface position.</span>
+<span class="sd">    thickness : float</span>
+<span class="sd">        Filament thickness parameter for cluster detection (Angstroms).</span>
+<span class="sd">        Controls sensitivity of connectivity algorithm.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    TypeError</span>
+<span class="sd">        If parameters are not numeric (int or float).</span>
+<span class="sd">    ValueError</span>
+<span class="sd">        If z_lower &gt;= z_upper or thickness &lt;= 0.</span>
+
+<span class="sd">    Warns</span>
+<span class="sd">    -----</span>
+<span class="sd">    UserWarning</span>
+<span class="sd">        If negative z-coordinates detected (potential coordinate system issue).</span>
+<span class="sd">        If large z-values detected (potential unit scale issue).</span>
+
+<span class="sd">    Physics Notes</span>
+<span class="sd">    -------------</span>
+<span class="sd">    Typical electrochemical cell dimensions: 20-100 Å electrode separation.</span>
+<span class="sd">    Filament thickness: 2-10 Å depending on atom size and connectivity criteria.</span>
+<span class="sd">    Z-coordinates should span electrode-to-electrode distance.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Validate HfTaO cell parameters:</span>
+
+<span class="sd">    &gt;&gt;&gt; validate_cluster_parameters(-10.0, 50.0, 3.5)  # 60 Å cell, 3.5 Å thickness</span>
+<span class="sd">    &gt;&gt;&gt; validate_cluster_parameters(0.0, 30.0, 2.0)    # 30 Å cell, 2.0 Å thickness</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+
+    <span class="c1"># Parameter type validation</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">z_filament_lower_limit</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;z_filament_lower_limit must be numeric (int or float)&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">z_filament_upper_limit</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;z_filament_upper_limit must be numeric (int or float)&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">thickness</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;thickness must be numeric (int or float)&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Parameter range validation (errors)</span>
+    <span class="k">if</span> <span class="n">z_filament_lower_limit</span> <span class="o">&gt;=</span> <span class="n">z_filament_upper_limit</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;z_filament_lower_limit (</span><span class="si">{</span><span class="n">z_filament_lower_limit</span><span class="si">}</span><span class="s2">) must be less than z_filament_upper_limit (</span><span class="si">{</span><span class="n">z_filament_upper_limit</span><span class="si">}</span><span class="s2">)&quot;</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">thickness</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;thickness (</span><span class="si">{</span><span class="n">thickness</span><span class="si">}</span><span class="s2">) must be positive&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Parameter range validation (warnings)</span>
+    <span class="k">if</span> <span class="n">z_filament_lower_limit</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;z_filament_lower_limit (</span><span class="si">{</span><span class="n">z_filament_lower_limit</span><span class="si">}</span><span class="s2">) is negative, which might indicate coordinate system issues&quot;</span><span class="p">,</span>
+            <span class="ne">UserWarning</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z_filament_lower_limit</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1000</span> <span class="ow">or</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z_filament_upper_limit</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1000</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Large z-coordinate values detected (z_lower=</span><span class="si">{</span><span class="n">z_filament_lower_limit</span><span class="si">}</span><span class="s2">, z_upper=</span><span class="si">{</span><span class="n">z_filament_upper_limit</span><span class="si">}</span><span class="s2">), which might indicate unit scale issues&quot;</span><span class="p">,</span>
+            <span class="ne">UserWarning</span><span class="p">,</span>
+        <span class="p">)</span></div>
+
+
+
+<span class="c1"># Legacy alias for backward compatibility (in case any tests use it)</span>
+<span class="n">extract_element_label_from_filename</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># Will be imported from data_processing module</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Simanta Lahkar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

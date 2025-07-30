@@ -1,0 +1,225 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lammpskit.io.read_coordinates &mdash; LAMMPSKit Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=fc837d61"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="lammpskit.ecellmodel.read_displacement_data" href="lammpskit.ecellmodel.read_displacement_data.html" />
+    <link rel="prev" title="lammpskit.io.read_structure_info" href="lammpskit.io.read_structure_info.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            LAMMPSKit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api_reference.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../api_reference.html#module-lammpskit">Package Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference.html#core-modules">Core Modules</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../api_reference.html#function-categories">Function Categories</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../api_reference.html#data-i-o-functions">Data I/O Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.io.read_structure_info.html">lammpskit.io.read_structure_info</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">lammpskit.io.read_coordinates</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.ecellmodel.read_displacement_data.html">lammpskit.ecellmodel.read_displacement_data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference.html#analysis-functions">Analysis Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference.html#plotting-functions">Plotting Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference.html#validation-functions">Validation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference.html#configuration-classes">Configuration Classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_formats.html">Data Formats</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../lammpskit.html">lammpskit package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lammpskit.config.html">lammpskit.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lammpskit.io.html">lammpskit.io package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lammpskit.plotting.html">lammpskit.plotting package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lammpskit.ecellmodel.html">lammpskit.ecellmodel package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LAMMPSKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api_reference.html">API Reference</a></li>
+      <li class="breadcrumb-item active">lammpskit.io.read_coordinates</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/simantalahkar/lammpskit/blob/main/docs/source/generated/lammpskit.io.read_coordinates.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="lammpskit-io-read-coordinates">
+<h1>lammpskit.io.read_coordinates<a class="headerlink" href="#lammpskit-io-read-coordinates" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="lammpskit.io.read_coordinates">
+<span class="sig-prename descclassname"><span class="pre">lammpskit.io.</span></span><span class="sig-name descname"><span class="pre">read_coordinates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skip_rows</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">columns_to_read</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lammpskit/io/lammps_readers.html#read_coordinates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lammpskit.io.read_coordinates" title="Link to this definition"></a></dt>
+<dd><p>Load atomic coordinates and metadata from multiple LAMMPS trajectory files.</p>
+<p>Efficiently reads trajectory sequences for time-series analysis, extracting atomic
+coordinates and simulation parameters. Optimized for batch processing in electrochemical
+cell analysis workflows. Provides comprehensive validation and memory-efficient loading
+with selective column reading.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>file_list</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)"><em>list</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Trajectory files in temporal order. Typically generated from glob patterns
+like ‘dump.*.lammpstrj’ or timestep sequences.</p></li>
+<li><p><strong>skip_rows</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Header lines to skip before atomic data section. Standard LAMMPS format uses 9.
+Accounts for TIMESTEP, NUMBER OF ATOMS, BOX BOUNDS, and ATOMS header lines.</p></li>
+<li><p><strong>columns_to_read</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.13)"><em>tuple</em></a><em> of </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Column indices for atomic properties. Standard LAMMPS format:
+(0=id, 1=type, 2=charge, 3=x, 4=y, 5=z, 6=vx, 7=vy, 8=vz, …)
+Use DEFAULT_COLUMNS_TO_READ or EXTENDED_COLUMNS_TO_READ from config.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Tuple" title="(in Python v3.13)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tuple</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><strong>coordinates</strong> (<em>np.ndarray, shape (n_files, n_atoms, n_columns)</em>) – Atomic coordinate arrays for all files. First dimension indexes files,
+second dimension indexes atoms, third dimension indexes properties.</p></li>
+<li><p><strong>timestep_arr</strong> (<em>np.ndarray, shape (n_files,)</em>) – Simulation timesteps corresponding to each file. Used for temporal analysis.</p></li>
+<li><p><strong>total_atoms</strong> (<em>int</em>) – Number of atoms per file. Validated for consistency across all files.</p></li>
+<li><p><strong>xlo, xhi</strong> (<em>float</em>) – Simulation box x-bounds in Angstroms. Used for periodic boundary calculations.</p></li>
+<li><p><strong>ylo, yhi</strong> (<em>float</em>) – Simulation box y-bounds in Angstroms. Essential for spatial analysis setup.</p></li>
+<li><p><strong>zlo, zhi</strong> (<em>float</em>) – Simulation box z-bounds in Angstroms. Critical for electrode separation in
+electrochemical cell analysis.</p></li>
+</ul>
+</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.13)"><strong>ValueError</strong></a> – If file_list is empty, column indices are invalid, or atomic data is malformed.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#EOFError" title="(in Python v3.13)"><strong>EOFError</strong></a> – If any file has fewer atomic lines than expected from header.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#FileNotFoundError" title="(in Python v3.13)"><strong>FileNotFoundError</strong></a> – If any file in file_list doesn’t exist (raised by validate_file_list).</p></li>
+<li><p><strong>Performance Notes</strong> – </p></li>
+<li><p><strong>-----------------</strong> – </p></li>
+<li><p><strong>Memory complexity</strong> – O(F * N * C) where F=files, N=atoms, C=columns:</p></li>
+<li><p><strong>Time complexity</strong> – O(F * N) for coordinate loading:</p></li>
+<li><p><strong>Memory optimization</strong> – Use column selection to reduce memory footprint by ~70%:</p></li>
+<li><p><strong>For large datasets</strong><strong> (</strong><strong>&gt;1GB</strong><strong>)</strong><strong>:</strong> – </p></li>
+<li><p><strong>- Use DEFAULT_COLUMNS_TO_READ instead</strong><strong> of </strong><strong>EXTENDED_COLUMNS_TO_READ</strong> – </p></li>
+<li><p><strong>- Process files in smaller batches if memory constraints exist</strong> – </p></li>
+<li><p><strong>- Consider chunked reading for very large trajectories</strong> – </p></li>
+<li><p><strong>Electrochemical Cell Applications</strong> – </p></li>
+<li><p><strong>---------------------------------</strong> – </p></li>
+<li><p><strong>Typical usage patterns for HfTaO electrochemical analysis:</strong> – </p></li>
+<li><p><strong>- Electrode separation</strong> – zhi - zlo (typically 20-100 Angstroms):</p></li>
+<li><p><strong>- Atom types</strong> – 2=Hf, odd=O, even(≠2)=Ta, {5,6,9,10}=electrodes:</p></li>
+<li><p><strong>- Time series</strong> – Multiple files representing voltage cycling or SET/RESET processes:</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Load coordinate sequence for filament analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">glob</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">DEFAULT_COLUMNS_TO_READ</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">files</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s1">&#39;trajectory_*.lammpstrj&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coords</span><span class="p">,</span> <span class="n">timesteps</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">xlo</span><span class="p">,</span> <span class="n">xhi</span><span class="p">,</span> <span class="n">ylo</span><span class="p">,</span> <span class="n">yhi</span><span class="p">,</span> <span class="n">zlo</span><span class="p">,</span> <span class="n">zhi</span> <span class="o">=</span> <span class="n">read_coordinates</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">files</span><span class="p">,</span> <span class="n">skip_rows</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">columns_to_read</span><span class="o">=</span><span class="n">DEFAULT_COLUMNS_TO_READ</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loaded </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">files</span><span class="p">)</span><span class="si">}</span><span class="s2"> files: </span><span class="si">{</span><span class="n">coords</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">electrode_separation</span> <span class="o">=</span> <span class="n">zhi</span> <span class="o">-</span> <span class="n">zlo</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Electrode separation: </span><span class="si">{</span><span class="n">electrode_separation</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> Å&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Memory-efficient loading for large trajectories:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Use core columns only: id, type, charge, x, y, z</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">core_columns</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coords</span><span class="p">,</span> <span class="n">timesteps</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="o">*</span><span class="n">box</span> <span class="o">=</span> <span class="n">read_coordinates</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">files</span><span class="p">[:</span><span class="mi">10</span><span class="p">],</span> <span class="n">skip_rows</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">columns_to_read</span><span class="o">=</span><span class="n">core_columns</span><span class="p">)</span>  <span class="c1"># First 10 files only</span>
+</pre></div>
+</div>
+<p>Validate trajectory consistency:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">coords</span><span class="p">,</span> <span class="n">timesteps</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="o">*</span><span class="n">box</span> <span class="o">=</span> <span class="n">read_coordinates</span><span class="p">(</span><span class="n">files</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="n">DEFAULT_COLUMNS_TO_READ</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Trajectory spans timesteps </span><span class="si">{</span><span class="n">timesteps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">timesteps</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Consistent atom count: </span><span class="si">{</span><span class="n">atoms</span><span class="si">}</span><span class="s2"> across </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">files</span><span class="p">)</span><span class="si">}</span><span class="s2"> files&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="lammpskit.io.read_structure_info.html" class="btn btn-neutral float-left" title="lammpskit.io.read_structure_info" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lammpskit.ecellmodel.read_displacement_data.html" class="btn btn-neutral float-right" title="lammpskit.ecellmodel.read_displacement_data" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Simanta Lahkar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

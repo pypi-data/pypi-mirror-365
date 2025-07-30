@@ -1,0 +1,294 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>lammpskit.ecellmodel.read_displacement_data &mdash; LAMMPSKit Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=fc837d61"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="lammpskit.ecellmodel.analyze_clusters" href="lammpskit.ecellmodel.analyze_clusters.html" />
+    <link rel="prev" title="lammpskit.io.read_coordinates" href="lammpskit.io.read_coordinates.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            LAMMPSKit
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api_reference.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../api_reference.html#module-lammpskit">Package Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api_reference.html#core-modules">Core Modules</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../api_reference.html#function-categories">Function Categories</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../api_reference.html#data-i-o-functions">Data I/O Functions</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.io.read_structure_info.html">lammpskit.io.read_structure_info</a></li>
+<li class="toctree-l4"><a class="reference internal" href="lammpskit.io.read_coordinates.html">lammpskit.io.read_coordinates</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">lammpskit.ecellmodel.read_displacement_data</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference.html#analysis-functions">Analysis Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference.html#plotting-functions">Plotting Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference.html#validation-functions">Validation Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../api_reference.html#configuration-classes">Configuration Classes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_formats.html">Data Formats</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../lammpskit.html">lammpskit package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lammpskit.config.html">lammpskit.config module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lammpskit.io.html">lammpskit.io package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lammpskit.plotting.html">lammpskit.plotting package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../lammpskit.ecellmodel.html">lammpskit.ecellmodel package</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">LAMMPSKit</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../api_reference.html">API Reference</a></li>
+      <li class="breadcrumb-item active">lammpskit.ecellmodel.read_displacement_data</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/simantalahkar/lammpskit/blob/main/docs/source/generated/lammpskit.ecellmodel.read_displacement_data.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="lammpskit-ecellmodel-read-displacement-data">
+<h1>lammpskit.ecellmodel.read_displacement_data<a class="headerlink" href="#lammpskit-ecellmodel-read-displacement-data" title="Link to this heading"></a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="lammpskit.ecellmodel.read_displacement_data">
+<span class="sig-prename descclassname"><span class="pre">lammpskit.ecellmodel.</span></span><span class="sig-name descname"><span class="pre">read_displacement_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">loop_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repeat_count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/lammpskit/ecellmodel/filament_layer_analysis.html#read_displacement_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lammpskit.ecellmodel.read_displacement_data" title="Link to this definition"></a></dt>
+<dd><p>Read spatially-binned displacement data from LAMMPS thermodynamic output files.</p>
+<p>Parses binwise averaged displacement and mobility analysis data generated by LAMMPS
+simulations, extracting loop-specific datasets for temporal analysis of ion migration,
+atomic redistribution, and electrochemical switching dynamics in HfTaO memory devices.
+Handles multi-loop data structures with automatic chunk detection and validation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – Path to LAMMPS thermodynamic output file containing binwise averaged data.
+Expected format: Header lines (3) + Nchunks line + loop data blocks.
+Common files: “Hf_mobility.dat”, “O_mobility.dat”, “temperature.dat”</p></li>
+<li><p><strong>loop_start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Starting loop index (inclusive) for data extraction. Corresponds to simulation
+timestep ranges or voltage cycle iterations. Minimum value: 0.</p></li>
+<li><p><strong>loop_end</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a>) – Ending loop index (inclusive) for data extraction. Must be ≥ loop_start.
+Determines the temporal range of analysis.</p></li>
+<li><p><strong>repeat_count</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.13)"><em>int</em></a><em>, </em><em>optional</em>) – Number of times the first timestep is repeated in the data file structure.
+Used for correcting file parsing when initial conditions are duplicated.
+Default: 0 (no repetition correction applied).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><p><strong>thermo</strong> – List of displacement data arrays, one per requested loop. Each array has shape
+(Nchunks, N_columns) where:</p>
+<ul class="simple">
+<li><p><strong>Nchunks</strong>: Number of spatial bins along analysis direction (typically z-axis)</p></li>
+<li><p><strong>N_columns</strong>: Data columns per bin (typically 6-8 columns)</p></li>
+</ul>
+<p><strong>Standard Column Structure:</strong>
+- Column 0: Chunk/bin ID number
+- Column 1: Spatial position (Angstroms)
+- Column 2: Atom count per bin
+- Column 3: Total displacement magnitude (Angstroms)
+- Column 4: Z-direction displacement (Angstroms)
+- Column 5: Lateral displacement (Angstroms)
+- Column 6: Outward displacement vector (Angstroms)
+- Column 7: Temperature or density (context-dependent)</p>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.13)">list</a> of np.ndarray</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#FileNotFoundError" title="(in Python v3.13)"><strong>FileNotFoundError</strong></a> – If the specified filepath does not exist or is not accessible.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.13)"><strong>ValueError</strong></a> – If loop_start &gt; loop_end or if file contains invalid data structure.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#EOFError" title="(in Python v3.13)"><strong>EOFError</strong></a> – If expected loop data is missing, truncated, or has insufficient rows.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.13)"><strong>TypeError</strong></a> – If Nchunks header line cannot be parsed as integer or is malformed.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>File Format Requirements:
+- <strong>Header Structure</strong>: 3 comment lines (starting with #) followed by Nchunks line
+- <strong>Nchunks Line</strong>: Format “# &lt;unused&gt; &lt;Nchunks&gt;” where Nchunks = spatial bins
+- <strong>Loop Blocks</strong>: Each loop contains Nchunks data rows + 4 separator lines
+- <strong>Data Validation</strong>: Automatic verification of chunk count consistency</p>
+<p>Performance Characteristics:
+- <strong>Memory Usage</strong>: O(N_loops × Nchunks × N_columns) for output storage
+- <strong>I/O Efficiency</strong>: Streaming read with selective row extraction
+- <strong>Error Resilience</strong>: Comprehensive validation with descriptive error messages
+- <strong>Typical Speed</strong>: ~1-10 MB/s depending on file size and chunk count</p>
+<p>Electrochemical Analysis Context:
+Essential for processing mobility analysis outputs where spatial discretization
+enables tracking of:
+- <strong>Ion Migration</strong>: Species-specific displacement patterns along electric field
+- <strong>Thermal Effects</strong>: Temperature-dependent mobility and diffusion coefficients
+- <strong>Interface Dynamics</strong>: Electrode-oxide boundary phenomena and charge injection
+- <strong>Temporal Evolution</strong>: Loop-by-loop analysis of switching cycle progression</p>
+<p>Integration with LAMMPSKit Workflow:
+- <strong>Input Generation</strong>: LAMMPS compute ave/chunk commands generate compatible files
+- <strong>Species Processing</strong>: Combine with extract_element_label_from_filename() for automation
+- <strong>Visualization</strong>: Output arrays integrate with plot_displacement_timeseries()
+- <strong>Analysis Pipelines</strong>: Essential component of plot_displacement_comparison() workflow</p>
+<p class="rubric">Examples</p>
+<p>Basic displacement data loading:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">lammpskit.ecellmodel.filament_layer_analysis</span><span class="w"> </span><span class="kn">import</span> <span class="n">read_displacement_data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Load mobility data for 100 simulation loops</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">displacement_data</span> <span class="o">=</span> <span class="n">read_displacement_data</span><span class="p">(</span><span class="s2">&quot;Hf_mobility.dat&quot;</span><span class="p">,</span>
+<span class="gp">... </span>                                          <span class="n">loop_start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">loop_end</span><span class="o">=</span><span class="mi">99</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Loaded </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">displacement_data</span><span class="p">)</span><span class="si">}</span><span class="s2"> loops&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Each loop contains </span><span class="si">{</span><span class="n">displacement_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> spatial bins&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data columns per bin: </span><span class="si">{</span><span class="n">displacement_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Temporal analysis workflow:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Analyze displacement evolution across switching cycles</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">early_loops</span> <span class="o">=</span> <span class="n">read_displacement_data</span><span class="p">(</span><span class="s2">&quot;O_mobility.dat&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">49</span><span class="p">)</span>      <span class="c1"># First 50 loops</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">late_loops</span> <span class="o">=</span> <span class="n">read_displacement_data</span><span class="p">(</span><span class="s2">&quot;O_mobility.dat&quot;</span><span class="p">,</span> <span class="mi">950</span><span class="p">,</span> <span class="mi">999</span><span class="p">)</span>    <span class="c1"># Last 50 loops</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Compare initial vs final displacement profiles</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">early_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">loop</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">]</span> <span class="k">for</span> <span class="n">loop</span> <span class="ow">in</span> <span class="n">early_loops</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Z-displacement</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">late_avg</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">([</span><span class="n">loop</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">]</span> <span class="k">for</span> <span class="n">loop</span> <span class="ow">in</span> <span class="n">late_loops</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">displacement_change</span> <span class="o">=</span> <span class="n">late_avg</span> <span class="o">-</span> <span class="n">early_avg</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Max displacement change: </span><span class="si">{</span><span class="n">displacement_change</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> Å&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Error handling and validation:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Robust file processing with error handling</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">data</span> <span class="o">=</span> <span class="n">read_displacement_data</span><span class="p">(</span><span class="s2">&quot;temperature.dat&quot;</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully loaded temperature data: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2"> loops&quot;</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Temperature file not found - skipping thermal analysis&quot;</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">except</span> <span class="ne">EOFError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Incomplete data file: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">... </span><span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;File format error: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Batch processing integration:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Process multiple species files in automated workflow</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">mobility_files</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Hf_mobility.dat&quot;</span><span class="p">,</span> <span class="s2">&quot;Ta_mobility.dat&quot;</span><span class="p">,</span> <span class="s2">&quot;O_mobility.dat&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">species_labels</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Hf&quot;</span><span class="p">,</span> <span class="s2">&quot;Ta&quot;</span><span class="p">,</span> <span class="s2">&quot;O&quot;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">loop_range</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">all_displacement_data</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">filename</span><span class="p">,</span> <span class="n">species</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">mobility_files</span><span class="p">,</span> <span class="n">species_labels</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">try</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">data</span> <span class="o">=</span> <span class="n">read_displacement_data</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="o">*</span><span class="n">loop_range</span><span class="p">)</span>
+<span class="gp">... </span>        <span class="n">all_displacement_data</span><span class="p">[</span><span class="n">species</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+<span class="gp">... </span>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">species</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="si">}</span><span class="s2"> loops, </span><span class="si">{</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2"> bins&quot;</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Failed to process </span><span class="si">{</span><span class="n">species</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Data structure analysis:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Examine file structure and spatial binning</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">read_displacement_data</span><span class="p">(</span><span class="s2">&quot;Hf_mobility.dat&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># Single loop</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">loop_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">spatial_positions</span> <span class="o">=</span> <span class="n">loop_data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># Bin center positions</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bin_spacing</span> <span class="o">=</span> <span class="n">spatial_positions</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">spatial_positions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">analysis_range</span> <span class="o">=</span> <span class="n">spatial_positions</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">spatial_positions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Spatial resolution: </span><span class="si">{</span><span class="n">bin_spacing</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> Å per bin&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Analysis range: </span><span class="si">{</span><span class="n">analysis_range</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> Å&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Electrode separation: ~</span><span class="si">{</span><span class="n">analysis_range</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> Å&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Integration with time series plotting:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># Prepare data for displacement time series visualization</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">loop_data</span> <span class="o">=</span> <span class="n">read_displacement_data</span><span class="p">(</span><span class="s2">&quot;O_mobility.dat&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">z_displacements</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">loop</span><span class="p">[:,</span> <span class="mi">4</span><span class="p">]</span> <span class="k">for</span> <span class="n">loop</span> <span class="ow">in</span> <span class="n">loop_data</span><span class="p">])</span>  <span class="c1"># Shape: (51, Nbins)</span>
+<span class="gp">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Extract time evolution for specific spatial bin (e.g., center of device)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">center_bin</span> <span class="o">=</span> <span class="n">z_displacements</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">//</span> <span class="mi">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">center_evolution</span> <span class="o">=</span> <span class="n">z_displacements</span><span class="p">[:,</span> <span class="n">center_bin</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Center bin displacement range: </span><span class="si">{</span><span class="n">center_evolution</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">center_evolution</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> Å&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="lammpskit.io.read_coordinates.html" class="btn btn-neutral float-left" title="lammpskit.io.read_coordinates" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="lammpskit.ecellmodel.analyze_clusters.html" class="btn btn-neutral float-right" title="lammpskit.ecellmodel.analyze_clusters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Simanta Lahkar.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
