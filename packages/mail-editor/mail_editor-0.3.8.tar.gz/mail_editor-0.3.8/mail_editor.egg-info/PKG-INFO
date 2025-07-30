@@ -1,0 +1,300 @@
+Metadata-Version: 2.4
+Name: mail_editor
+Version: 0.3.8
+Summary: A Django package for email template editing
+Author-email: Maykin Media <support@maykinmedia.nl>
+License: Copyright (c) Maykin Media and individual contributors.
+        All rights reserved.
+        
+        Redistribution and use in source and binary forms, with or without
+        modification,
+        are permitted provided that the following conditions are met:
+        
+             1. Redistributions of source code must retain the above copyright
+        notice,
+                this list of conditions and the following disclaimer.
+        
+             2. Redistributions in binary form must reproduce the above copyright
+                notice, this list of conditions and the following disclaimer in the
+                documentation and/or other materials provided with the distribution.
+        
+             3. Neither the name of Django nor the names of its contributors may
+        be used
+                to endorse or promote products derived from this software without
+                specific prior written permission.
+        
+        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
+        IS" AND
+        ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+        IMPLIED
+        WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+        DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+        LIABLE FOR
+        ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+        DAMAGES
+        (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+        LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+        AND ON
+        ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+        (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+        THIS
+        SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+        
+Project-URL: Homepage, https://github.com/maykinmedia/mail-editor
+Project-URL: Documentation, https://github.com/maykinmedia/mail-editor
+Project-URL: Bug Tracker, https://github.com/maykinmedia/mail-editor/issues
+Project-URL: Source Code, https://github.com/maykinmedia/mail-editor
+Keywords: TODO
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Framework :: Django :: 3.2
+Classifier: Framework :: Django :: 4.2
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: Unix
+Classifier: Operating System :: MacOS
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.10
+Description-Content-Type: text/x-rst
+License-File: LICENSE
+Requires-Dist: django>=3.2
+Requires-Dist: django-choices
+Requires-Dist: django-ckeditor
+Requires-Dist: requests
+Requires-Dist: lxml
+Requires-Dist: css_inline
+Provides-Extra: tests
+Requires-Dist: pytest; extra == "tests"
+Requires-Dist: pytest-django; extra == "tests"
+Requires-Dist: tox; extra == "tests"
+Requires-Dist: isort; extra == "tests"
+Requires-Dist: black; extra == "tests"
+Requires-Dist: flake8; extra == "tests"
+Requires-Dist: autoflake; extra == "tests"
+Requires-Dist: django_webtest; extra == "tests"
+Provides-Extra: coverage
+Requires-Dist: pytest-cov; extra == "coverage"
+Provides-Extra: release
+Requires-Dist: bump-my-version; extra == "release"
+Requires-Dist: twine; extra == "release"
+Dynamic: license-file
+
+MailEditor
+==========
+
+.. image:: https://codecov.io/gh/maykinmedia/mail-editor/branch/develop/graph/badge.svg
+    :target: https://codecov.io/gh/maykinmedia/mail-editor
+    :alt: Coverage
+.. image:: https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg
+   :target: https://codeclimate.com/github/codeclimate/codeclimate
+   :alt: Code Climate
+
+
+Django e-mail templates!
+
+Many projects have a well defined set of events that trigger an outgoing e-mail,
+and the sensible thing is to template these out.
+
+However, doing code updates and deployments for small template tweaks are a bit
+cumbersome and annoying.
+
+This project aims to solve that - define the types of templates in the code,
+and edit the actual templates in the front-end. Templates are validated on
+syntax *and* required/optional content.
+
+This project also aims to solve the HTML email template problems that you can have when
+supporting all email clients. This was also used by
+`foundation for email`_. Foundation for email is a good way to build your initial email
+template on development mode. It will generate a separate html file and css file.
+
+For e-mail sending and logging, we recommend using a solution such as `Django Yubin`_.
+
+This is only tested on a postgres database.
+
+Supported are:
+
+- python 3.10, 3.11, 3.12
+- Django 3.2, 4.2
+- PostgreSQL
+
+Warning
+-------
+
+This project is currently in development and not stable.
+
+
+Installation
+------------
+
+Install with pip:
+
+.. code:: shell
+
+    pip install mail_editor
+
+Add *'mail_editor'* to the installed apps:
+
+.. code:: python
+
+    # settings.py
+
+    INSTALLED_APPS = [
+        ...
+        'mail_editor',
+        'ckeditor',
+        ...
+    ]
+
+Add the urls:
+
+.. code:: python
+
+    # urls.py
+
+    url(r'^mail-editor/', include('mail_editor.urls', namespace='mail_editor')),
+
+
+Using the template
+--------------------
+
+There are 2 templates that you can use.
+
+The *_base.html*, this template can not be edited by the user. This will only be
+rendered when the email is send.
+
+The *_outer_table.html*, this template can be edited by the user and will be loaded
+in the editor in the admin. This template will be saved in the database with the
+modifications.
+
+You can use the templates in some different ways. The shortest way is:
+
+.. code:: python
+
+    from mail_editor.helpers import find_template
+
+    def email_stuff():
+        template = find_template('activation')
+
+        context = {
+            'name': 'Test Person',
+            'site_name': 'This site',
+            'activation_link': 'https://github.com/maykinmedia/mail-editor',
+        }
+
+        template.send_email('test@example.com', context)
+
+Settings
+--------
+
+The following settings are an example:
+
+.. code:: python
+
+    MAIL_EDITOR_CONF = {
+        'activation': {
+            'name': gettext_noop('Activation Email'),
+            'description': gettext_noop('This email is used when people need to activate their account.'),
+            'subject_default': 'Activeer uw account voor {{site_name}}',
+            'body_default': """
+                <h1>Hallo {{ name }},</h1>
+
+                <p>Welkom! Je hebt je geregistreerd voor een {{ site_name }} account.</p>
+
+                <p>{{ activation_link }}</p>
+            """,
+            'subject': [{
+                'name': 'site_name',
+                'description': gettext_noop('This is the name of the site. From the sites'),
+                'example': gettext_noop('Example site'),
+            }],
+            'body': [{
+                'name': 'name',
+                'description': gettext_noop('This is the name of the user'),
+                'example': gettext_noop('Jane Doe'),
+            }, {
+                'name': 'site_name',
+                'description': gettext_noop('This is the name of the site. From the sites'),
+                'example': gettext_noop('Example site'),
+            }, {
+                'name': 'activation_link',
+                'description': gettext_noop('This is the link to activate their account.'),
+                'example': gettext_noop('/'),
+            }]
+        },
+        ...
+    }
+
+These settings are usefull to add:
+
+.. code:: python
+
+    # These settings make sure that CKEDITOR does not strip any html tags. like <center></center>
+    CKEDITOR_CONFIGS = {
+        'mail_editor': {
+            'allowedContent': True,
+            'contentsCss': ['/static/css/email.css'], # Enter the css file used to style the email.
+            'height': 600,  # This is optional
+            'entities': False, # This is added because CKEDITOR escapes the ' when you do an if statement
+        }
+    }
+
+You can set template variables to all of the mail templates in the following fashion.
+
+.. code:: python
+
+    # static dictionary
+    MAIL_EDITOR_BASE_CONTEXT = {
+        'url': 'http://www.maykinmedia.nl',
+    }
+
+    # import path to callable that returns a dictionary
+    MAIL_EDITOR_DYNAMIC_CONTEXT = "dotted.path.to.callable"
+
+
+Installation
+------------
+
+Install with pip:
+
+.. code:: shell
+
+    pip install mail_editor
+
+
+Local development
+-----------------
+
+To install and develop the library locally, use::
+
+.. code-block:: bash
+
+    pip install -e .[tests,coverage,release]
+
+When running management commands via ``django-admin``, make sure to add the root
+directory to the python path (or use ``python -m django <command>``):
+
+.. code-block:: bash
+
+    export PYTHONPATH=. DJANGO_SETTINGS_MODULE=testapp.settings
+    django-admin check
+    # or other commands like:
+    django-admin migrate
+    django-admin createsuperuser
+    django-admin runserver
+    # django-admin makemessages -l nl
+
+
+.. _Django Yubin: https://github.com/APSL/django-yubin
+.. _Sergei Maertens: https://github.com/sergei-maertens
+.. _langerak-gkv: https://github.com/sergei-maertens/langerak-gkv/blob/master/src/langerak_gkv/mailing/mail_template.py
+.. _foundation for email: http://foundation.zurb.com/emails.html
+.. role:: python(code)
+    :language: python
