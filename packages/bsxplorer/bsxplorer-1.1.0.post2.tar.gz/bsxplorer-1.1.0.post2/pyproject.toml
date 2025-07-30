@@ -1,0 +1,121 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "bsxplorer"
+readme = "README.md"
+version = "1.1.0.post2"
+authors = [
+  { name="Konstantin Y", email="kyudytskiy@gmail.com" },
+]
+keywords = ['bismark', 'methylation', 'plot', 'bs-seq']
+license = {text="MIT License"}
+
+description = "Analytical framework for BS-seq data comparison and visualization"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Python :: 3.10",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+
+requires-python = ">=3.10"
+dependencies = [
+    "Bio==1.6.*",
+    "biopython==1.*",
+    "dynamicTreeCut==0.*",
+    "fastcluster==1.2.*",
+    "func_timeout==4.*",
+    "Jinja2==3.1.*",
+    "matplotlib~=3.8",
+    "numba==0.*",
+    "numpy==1.*",
+    "packaging==23.*",
+    "pandas==2.2.*",
+    "plotly==5.*",
+    "polars==0.20",
+    "progress==1.*",
+    "pyarrow==14.*",
+    "pyreadr>=0.4",
+    "scikit_learn==1.4.*",
+    "scipy==1.14.*",
+    "seaborn==0.*",
+    "pysam==0.22.*",
+    "psutil==5.*",
+]
+# dynamic = ["version", "description"]
+
+[project.urls]
+Homepage = "https://github.com/shitohana/BSXplorer"
+Repository = "https://github.com/shitohana/BSXplorer"
+Documentation = "https://shitohana.github.io/BSXplorer/"
+Issues = "https://github.com/shitohana/BSXplorer/issues"
+
+[tool.hatch.build]
+exclude = ["/venv", "/dist", "/test", "/docs"]
+
+#[tool.hatch.build.targets.wheel]
+#packages = ["src/bsxplorer"]
+
+[project.scripts]
+bsxplorer-metagene = "bsxplorer.cons_master:metagene"
+bsxplorer-category = "bsxplorer.cons_master:category"
+bsxplorer-chr = "bsxplorer.cons_master:chr_levels"
+bsxplorer-bam = "bsxplorer.cons_master:bam"
+
+[tool.uv.pip]
+python = "^3.9"
+
+[tool.ruff]
+# Exclude a variety of commonly ignored directories.
+exclude = [
+    ".bzr",
+    ".direnv",
+    ".eggs",
+    ".git",
+    ".git-rewrite",
+    ".hg",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".nox",
+    ".pants.d",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".svn",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+line-length = 88
+indent-width = 4
+target-version = "py311"
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F"]
+ignore = []
+[lint.per-file-ignores]
+"__init__.py" = ["E402"]
+"**/{tests,docs,tools}/*" = ["E402"]
+fixable = ["ALL"]
+unfixable = []
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+docstring-code-format = false
+docstring-code-line-length = "dynamic"
