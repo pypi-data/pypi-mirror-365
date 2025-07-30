@@ -1,0 +1,17 @@
+{
+  "id": "clapp_ui_legacy",
+  "name": "Clapp Store (Legacy)",
+  "version": "1.0.0",
+  "description": "PyCloud OS için eski Clapp tabanlı App Store. Uygulama keşfetme, yükleme ve yönetim arayüzü.",
+  "entry": "main.py",
+  "exec": "python3 main.py",
+  "icon": "icon.png",
+  "category": "Sistem",
+  "developer": "PyCloud OS Team",
+  "license": "MIT",
+  "homepage": "https://pycloudos.dev/apps/clapp_ui",
+  "tags": ["appstore", "package", "manager", "clapp", "legacy"],
+  "requires": ["python3", "pyqt6", "requests"],
+  "permissions": ["system", "internet", "filesystem"],
+  "signature": "sha256:d4e5f6a7b8c9..."
+} 
