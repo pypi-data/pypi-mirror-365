@@ -1,0 +1,19 @@
+[project]
+name = "fabric-lite"
+version = "0.1.0"
+description = "Fabric Lite это простой cli интерфейс для взаимодействия с LLM, вдохновленный Fabric."
+authors = [
+    {name = "Forwall100",email = "hezeri546@gmail.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "requests (>=2.32.4,<3.0.0)",
+    "click (>=8.2.1,<9.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
