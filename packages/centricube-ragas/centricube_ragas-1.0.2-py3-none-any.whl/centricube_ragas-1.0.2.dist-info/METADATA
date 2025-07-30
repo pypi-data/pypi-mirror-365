@@ -1,0 +1,82 @@
+Metadata-Version: 2.4
+Name: centricube_ragas
+Version: 1.0.2
+Summary: centricube ragas modules
+Home-page: https://github.com/cicit/centricube
+Author: CICIT
+Author-email: jweelee@qq.com
+License: Apache 2.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+Requires-Dist: langchain==0.3.*
+Requires-Dist: datasets==2.19.1
+Requires-Dist: setuptools==80.9.0
+Requires-Dist: httpx==0.27.2
+Requires-Dist: openai==1.91.0
+Requires-Dist: dataclasses==0.6
+Requires-Dist: tenacity==8.3.0
+Requires-Dist: tqdm==4.67.1
+Requires-Dist: numpy==1.26.4
+Requires-Dist: pysbd==0.3.4
+Requires-Dist: pandas==2.3.0
+Requires-Dist: langsmith==0.4.1
+Requires-Dist: pydantic==2.11.7
+Requires-Dist: requests==2.31.0
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+## What is centricube-langchain?
+
+centricube-ragas is an open-source rag extending library built to power building LLM application.
+centricube-ragas provides more components to support Chinese LLMs and and Chinese based token environments for prompt engineering and ICL template.
+
+
+The project is a sub-module of [centricube](https://github.com/cicit/centricube).
+
+
+## Key features
+
+- Retrival Enhancement components, like ESIndex, DBIndex, GraphIndex 
+- Supporting Open LLMs and embeddings models 
+- High performance QAs Chains
+- High Semanticly Chinese token processing
+
+
+## Quick start
+
+### Start with Centricube Platform.
+
+We provide a open cloud service for easily use. See [free trial](https://www.centricube.cn/).
+
+
+### Install centricube-ragas
+
+- Install from pip: `pip install centricube-ragas`
+- [Quick Start Guide](https://scn3v8ba0o9m.feishu.cn/wiki/XTRVw4tUHi4ZQ2kDQpXc0l47nLg)
+
+
+## Documentation
+
+For guidance on installation, development, deployment, and administration, 
+check out [centricube-ragas Dev Docs](https://scn3v8ba0o9m.feishu.cn/wiki/XTRVw4tUHi4ZQ2kDQpXc0l47nLg). 
+
+
+## Acknowledgments
+
+centricube-ragas adopts dependencies from the following:
+
