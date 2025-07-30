@@ -1,0 +1,104 @@
+{
+  "project": {
+    "name": "{{ project_name }}",
+    "description": "{{ description }}",
+    "author": "{{ author }}",
+    "created": "{{ date }}",
+    "template": "ai-forge-starter",
+    "version": "1.1.0"
+  },
+  "claude": {
+    "permissions": {
+      "allowed": [
+{% for permission in claude_permissions %}
+        "{{ permission }}"{% if not loop.last %},{% endif %}
+{% endfor %}
+      ],
+      "denied": [
+        "Execute",
+        "Network",
+        "SystemAccess",
+        "FileSystem"
+      ]
+    },
+    "safety": {
+      "enable_sandboxing": true,
+      "validate_inputs": true,
+      "restrict_dangerous_operations": true,
+      "audit_log_enabled": false
+    },
+    "workflow": {
+      "auto_format": {{ format_on_save | lower }},
+      "git_integration": {{ git_enabled | lower }},
+      "backup_enabled": false,
+      "session_timeout": 3600
+    }
+  },
+  "editor": {
+    "primary": "{{ editor }}",
+    "settings": {
+      "tab_size": 4,
+      "insert_final_newline": true,
+      "trim_trailing_whitespace": true,
+      "charset": "utf-8",
+      "line_endings": "auto"
+    },
+    "extensions": {
+      "claude_code": {
+        "enabled": true,
+        "auto_suggestions": true,
+        "inline_help": true,
+        "error_highlighting": true
+      }
+    }
+  },
+  "development": {
+    "environment": "development",
+    "debug_mode": false,
+    "verbose_logging": false,
+    "performance_monitoring": false
+  },
+  "hooks": {
+    "format_on_save": {
+      "enabled": {{ format_on_save | lower }},
+      "script": ".claude/hooks/format-on-save.sh",
+      "timeout": 30,
+      "ignore_errors": false
+    },
+    "pre_commit": {
+      "enabled": false,
+      "script": null,
+      "timeout": 60
+    },
+    "post_save": {
+      "enabled": false,
+      "script": null,
+      "timeout": 10
+    }
+  },
+  "security": {
+    "enable_file_validation": true,
+    "allowed_file_types": [
+      "text/*",
+      "application/json",
+      "application/yaml",
+      "application/xml"
+    ],
+    "max_file_size": "10MB",
+    "scan_for_secrets": true,
+    "prevent_data_exfiltration": true
+  },
+  "paths": {
+    "project_root": ".",
+    "config_dir": ".claude",
+    "hooks_dir": ".claude/hooks",
+    "temp_dir": ".claude/tmp",
+    "logs_dir": ".claude/logs"
+  },
+  "metadata": {
+    "ai_forge_version": "1.1.0",
+    "template_version": "1.1.0",
+    "last_updated": "{{ date }}",
+    "schema_version": "1.0"
+  }
+}

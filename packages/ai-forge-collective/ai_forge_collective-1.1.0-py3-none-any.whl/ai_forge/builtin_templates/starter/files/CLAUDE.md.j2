@@ -1,0 +1,77 @@
+# {{ project_name }}
+
+{{ description }}
+
+**Created:** {{ date }}  
+**Author:** {{ author }}  
+**Template:** AI Forge Starter
+
+## Project Overview
+
+This project was initialized using AI Forge's universal starter template. It includes basic Claude Code configuration and development workflow setup.
+
+## Development Guidelines
+
+### Code Quality
+- Write clean, readable, and maintainable code
+- Follow language-specific best practices and conventions
+- Include appropriate documentation and comments
+- Use consistent formatting and style
+
+### Development Workflow
+- Make small, focused commits with descriptive messages
+- Test changes before committing
+- Use meaningful branch names and PR descriptions
+{% if format_on_save %}
+- Code formatting is automated via format-on-save hook
+{% endif %}
+
+### Claude Code Configuration
+
+This project is configured with minimal but secure Claude Code permissions:
+{% for permission in claude_permissions %}
+- {{ permission }}
+{% endfor %}
+
+Additional permissions can be granted on a case-by-case basis by modifying `.claude/settings.json`.
+
+## Project Structure
+
+```
+{{ project_name }}/
+├── .claude/                 # Claude Code configuration
+│   ├── settings.json       # Permission and tool settings
+│   └── hooks/              # Development workflow hooks
+│       └── format-on-save.sh
+├── CLAUDE.md               # This file - project instructions
+└── README.md               # Project documentation (if applicable)
+```
+
+## Getting Started
+
+1. **Review Configuration**: Check `.claude/settings.json` for current permissions and settings
+2. **Set Up Development Environment**: Install necessary tools and dependencies for your project
+3. **Configure Formatting**: Ensure your editor is set up to use the format-on-save hook if enabled
+4. **Start Coding**: Begin implementing your project following the established guidelines
+
+## Security Notes
+
+- This template uses minimal Claude Code permissions for security
+- The format-on-save hook is sandboxed and safe
+- No network access or sensitive operations are performed automatically
+- Review and approve any suggested permission changes carefully
+
+## Customization
+
+Feel free to customize this configuration:
+- Add project-specific development guidelines
+- Configure additional tools and hooks
+- Extend Claude Code permissions as needed for your workflow
+- Add language-specific linting and formatting rules
+
+## Support
+
+For issues with the AI Forge template system or Claude Code configuration:
+- Check the AI Forge documentation
+- Review Claude Code best practices
+- Consult your team's development guidelines

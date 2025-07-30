@@ -1,0 +1,54 @@
+# Universal Starter Template for AI Forge
+# A language-agnostic template that provides basic Claude Code configuration
+# and development workflow setup for any project type.
+
+name: "starter"
+description: "Universal starter template for any project type with Claude Code configuration"
+version: "1.1.0"
+language: "universal"
+author: "AI Forge Team"
+license: "MIT"
+min_ai_forge_version: "1.1.0"
+
+tags:
+  - "starter"
+  - "universal" 
+  - "claude-code"
+  - "development"
+
+# Template variables definition
+variables:
+  required:
+    - "project_name"
+    - "description"
+    - "author"
+  optional:
+    date: "{{ now.strftime('%Y-%m-%d') }}"
+    editor: "vscode"
+    git_enabled: true
+    format_on_save: true
+    claude_permissions:
+      - "Edit"
+      - "Write" 
+      - "Read"
+
+# Files to be generated from templates
+files:
+  "files/CLAUDE.md.j2": "CLAUDE.md"
+  "files/settings.json.j2": ".claude/settings.json"
+  "files/format-on-save.sh.j2": ".claude/hooks/format-on-save.sh"
+
+# Dependencies (other templates this template depends on)
+dependencies: []
+
+# Template-specific metadata
+metadata:
+  cross_platform: true
+  security_level: "safe"
+  generated_files:
+    - "CLAUDE.md"
+    - ".claude/settings.json"
+    - ".claude/hooks/format-on-save.sh"
+  directories_created:
+    - ".claude"
+    - ".claude/hooks"
