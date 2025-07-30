@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "django-export-edit-import"
+version = "1.0.2"
+description = "Reusable Django app that enables export, edit and import (Excel) workflow."
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [{name = "Daniil Pevzner"}]
+license = {text = "MIT"}
+classifiers = [
+  "Framework :: Django",
+  "Framework :: Django :: 4",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+  "Django>=4.2",
+  "pandas>=2.0",
+  "openpyxl>=3.1",
+]
+
+[project.urls]
+Source = "https://github.com/PevznerDanill/django-export-edit-import-package"
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "pytest-django",
+  "black",
+  "isort",
+  "flake8",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["export_edit_import*"] 
