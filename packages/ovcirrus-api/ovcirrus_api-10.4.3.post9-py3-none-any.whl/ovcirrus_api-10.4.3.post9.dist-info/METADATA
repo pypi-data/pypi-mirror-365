@@ -1,0 +1,188 @@
+Metadata-Version: 2.4
+Name: ovcirrus_api
+Version: 10.4.3.post9
+Summary: OmniVista Cirrus RestFul API library for Python
+Author-email: Samuel Yip <kahyean.yip@gmail.com>
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: httpx>=0.24.1
+Requires-Dist: requests>=2.31.0
+Requires-Dist: pydantic>=2.0
+Requires-Dist: pybreaker>=0.7.0
+Requires-Dist: backoff>=2.2.1
+
+
+# OmniVista Cirrus API Library for Python - **OVCirrusApi**
+
+**OVCirrusApi** is a lightweight python library that enables developers to interact seamlessly with the OmniVista Cirrus RESTful API.
+
+---
+
+## ✨ Supported APIs
+
+The full API documentation is available at: [OmniVista Cirrus API Docs](https://eu.manage.ovcirrus.com/apidoc/apidoc.html)
+
+- Authentication API
+- User API
+- Organization API
+- Site API
+- Device API
+
+---
+
+## 🛠️ Built With
+
+- **python 3.8**
+
+```python
+    dependencies = [
+        "httpx>=0.24.1",
+        "requests>=2.31.0",
+        "pydantic>=2.0",
+        "pybreaker>=0.7.0",
+        "backoff>=2.2.1"
+    ]
+```
+
+## 🚀 Installation
+
+
+1. pip install ovcirrus-api
+
+---
+
+## 📦 Usage Guide
+
+### Step 1: Create a global instance of Authenticator object in auth_instance.py
+
+
+```python
+    # auth_instance.py
+    from aos8_api.api_client import Authenticator
+    auth = (
+        Authenticator()
+        .setURL("https://api.example.com/auth")
+        .setCredentials("your@email.com", "your_password")
+        .setApp("your_app_id", "your_app_secret")
+        .build()
+    )
+```
+
+### Step 2: Import the auth instance and apiClient library in your .py application
+
+```python
+
+    from auth_instance import auth  # auth_instance.py
+    from api_client import OVCirrusApiClient
+    
+    apiClient = OVCirrusApiClient(base_url=API_BASE_URL, auth=auth)
+    userProfile = await apiClient.user.getUserProfile()
+    if userProfile is None:
+        print("Failed to retrieve profile.")
+        return
+    else:
+        print(userProfile.firstname)
+
+    await apiClient.close()
+
+```
+## 🧪 Give it a try - example_usage.py
+
+1. Fill in the API credentials in the .env file
+
+```
+API_BASE_URL = "https://<base_url>/"
+AUTH_URL = API_BASE_URL + "api/ov/v1/applications/authenticate"
+
+EMAIL = "<email>"
+PASSWORD = "<password>"
+APP_ID = "<appId>"
+APP_SECRET = "<appSecret>"
+```
+
+2. Run the script, python .\example_usage.py
+
+---
+
+## 📚 Available Methods
+
+User API:
+- getUserProfile
+- UpdateUserProfile
+
+Organization API:
+- createAnOrganization
+- getAllUserOrganizations
+- getOrganizationBasicSettings
+- getOrganization
+- updateOrganization
+- deleteOrganization
+
+Site API
+- createSite
+- getOrganizationSites
+- getOrganizationSitesBuildingsFloors
+- getSite
+- updateSite
+- deleteSite
+
+Device API
+- createDevice
+- getAllDevices
+- createRemoteAP
+- getAllDevicesFromOrganization
+- getDevice
+- getDeviceDetails
+- updateDevice
+- deleteDevice
+- updateRemoteAP
+- saveToRunning
+- reboot
+
+SSID API
+- getAllSsids
+- createSSID
+
+
+---
+
+## 📦 Releases
+
+| Version          | Date       | Notes                       |
+|------------------|------------|-----------------------------|
+| v10.4.3          | 2025-04-16 | Initial release             |
+| v10.4.3post2     | 2025-04-16 | Authentication API          |
+| v10.4.3post3     | 2025-04-18 | Profile API added           |
+| v10.4.3post4     | 2025-04-18 | Organization API added      |
+| v10.4.3post5     | 2025-04-18 | Sites API added             |
+| v10.4.3post6     | 2025-04-18 | Device API added            |
+| v10.4.3post7     | 2025-04-18 | SSID API added              | 
+| v10.4.3post7     | 2025-04-18 | Bugs fixes                  | 
+
+
+
+
+
+Visit the [Releases](https://github.com/Samuelyip74/OVCirrusApiPython/releases/tag/10.4.3) page to download `.zip` packages.
+
+---
+
+## 📄 License
+
+```
+Copyright (c) Samuel Yip Kah Yean <2025>
+
+This software is licensed for personal, non-commercial use only.
+
+You are NOT permitted to:
+- Use this software for any commercial purposes.
+- Modify, adapt, reverse-engineer, or create derivative works.
+- Distribute, sublicense, or share this software.
+
+All rights are reserved by the author.
+
+For commercial licensing or permission inquiries, please contact:
+kahyean.yip@gmail.com
+```
+
+
