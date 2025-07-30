@@ -1,0 +1,13 @@
+{
+  "servers": {
+    "openmarkets-dev": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        ".",
+        "run",
+        "openmarkets"
+      ]
+    }
+  }
+}
