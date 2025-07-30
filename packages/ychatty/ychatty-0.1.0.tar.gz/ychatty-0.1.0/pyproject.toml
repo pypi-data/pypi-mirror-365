@@ -1,0 +1,41 @@
+[project]
+name = "ychatty"
+version = "0.1.0"
+description = "A simple and friendly command-line chat interface with colorful output"
+readme = "README.md"
+authors = [
+    { name = "zokrezyl", email = "zokrezyl@gmail.com" }
+]
+requires-python = ">=3.8"
+dependencies = [
+    "rich>=13.0.0",
+    "click>=8.0.0",
+]
+keywords = ["cli", "chat", "terminal", "colorful", "interactive"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Terminals",
+    "Topic :: Utilities",
+]
+
+[project.urls]
+Homepage = "https://github.com/zokrezyl/chatty"
+Repository = "https://github.com/zokrezyl/chatty.git"
+Issues = "https://github.com/zokrezyl/chatty/issues"
+
+[project.scripts]
+ychatty = "ychatty:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

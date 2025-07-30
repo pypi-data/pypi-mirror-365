@@ -1,0 +1,140 @@
+# 🎉 chatty
+
+A simple and friendly command-line chat interface with colorful output! 
+
+chatty is a delightful CLI tool that provides an interactive chat-like experience with beautiful colors, emojis, and a friendly bot companion.
+
+## ✨ Features
+
+- 🤖 **Friendly AI-like responses** - Chat with a cheerful bot
+- 🌈 **Beautiful colors** - Rich, colorful terminal output
+- 😊 **Emoji support** - Fun emojis throughout the interface
+- 📜 **Conversation history** - Keep track of your chat
+- ⏰ **Time queries** - Ask for the current time
+- 😄 **Jokes** - Request jokes for entertainment
+- 🎨 **Rich formatting** - Tables, panels, and beautiful layouts
+- 🚀 **Fast and lightweight** - Minimal dependencies
+
+## 🚀 Installation
+
+Install chatty directly from PyPI:
+
+```bash
+pip install chatty
+```
+
+Or install with uv:
+
+```bash
+uv add chatty
+```
+
+## 💬 Usage
+
+### Basic Usage
+
+Simply run chatty to start an interactive chat session:
+
+```bash
+chatty
+```
+
+### With Options
+
+```bash
+# Start with your name for a personalized experience
+chatty --name "Alice"
+
+# Start in quiet mode (no welcome message)
+chatty --quiet
+
+# Get help
+chatty --help
+```
+
+### Example Conversation
+
+```
+🎉 Welcome to chatty! 🎉
+
+💬 Type anything to chat with me!
+🚪 Type 'bye', 'exit', or 'quit' to leave
+📜 Type 'history' to see our conversation
+❓ Type 'help' for more commands
+
+You: Hello!
+chatty: Hey! Great to see you! 😊
+
+You: What time is it?
+chatty: The current time is 14:30:25! ⏰
+
+You: Tell me a joke
+chatty: Why don't scientists trust atoms? Because they make up everything! 😄
+
+You: bye
+chatty: Goodbye! It was great chatting! 👋
+```
+
+## 🎮 Commands
+
+- **General chat**: Just type anything to chat!
+- **Time**: Ask "what time is it?" to get the current time
+- **Jokes**: Say "tell me a joke" for a random joke
+- **History**: Type "history" to see conversation history
+- **Help**: Type "help" for command information
+- **Exit**: Type "bye", "exit", or "quit" to leave
+
+## 🛠️ Development
+
+### Requirements
+
+- Python 3.8+
+- rich >= 13.0.0
+- click >= 8.0.0
+
+### Local Development
+
+1. Clone the repository:
+```bash
+git clone https://github.com/zokrezyl/chatty.git
+cd chatty
+```
+
+2. Install with uv:
+```bash
+uv sync
+```
+
+3. Run in development mode:
+```bash
+uv run chatty
+```
+
+### Building
+
+Build the package:
+```bash
+uv build
+```
+
+## 📝 License
+
+MIT License - see LICENSE file for details.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 🐛 Issues
+
+Found a bug or have a feature request? Please open an issue on GitHub.
+
+## 🌟 Why chatty?
+
+chatty was created to bring a bit of joy and color to the command line. Sometimes you just want to have a friendly conversation with your terminal! 
+
+Whether you're taking a break from coding, testing terminal colors, or just want to chat with a friendly bot, chatty is here to brighten your day! ✨
+
+---
+
+Made with ❤️ by zokrezyl
