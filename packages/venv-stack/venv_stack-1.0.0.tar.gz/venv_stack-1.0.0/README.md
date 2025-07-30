@@ -1,0 +1,116 @@
+# venv-stack
+
+`venv-stack` is a lightweight PEP 668–compliant tool for *layered* Python virtual environments.  
+It lets you assemble project-specific venvs by linking multiple "base" environments,  
+so heavy dependencies (e.g. PyTorch) live in a shared base instead of being re-installed per-project.
+
+## Features
+
+- **Layered Environments**  
+  Create project virtual environments that symlink into one or more named base venvs  
+  (no redundant copies of large packages).
+
+- **PEP 668 Compliance**  
+  Never require `--break-system-packages`—you stay safe from system-wide pip installs.
+
+- **Simple CLI**  
+  - `venv-stack base <name>`: create a named base env  
+  - `venv-stack project [path] <bases>`: create a project env in `path/.venv`  
+  - `venv-stack link <base> <project>`: add another base to an existing project  
+  - `venv-stack list`: list all known venvs  
+  - `venv-stack activate <name>`: activate a base virtual environment. If no name is given, activate the current project environment.
+  - `venv-stack export [project_path] [output_file]`: export installed packages to a file
+  - `venv-stack sync <requirements_file> [project_path]`: install packages from a `requirements.txt` into the project venv
+  - `venv-stack list-packages [name]`: list installed packages in a specific venv or all venvs if no name is given.
+
+
+
+
+## Installation
+
+```bash
+pip install venv-stack
+```
+(Alternatively, clone and pip install ..)
+
+## Usage
+
+```bash
+# 1. Create shared bases
+venv-stack base common   # e.g. numpy, pandas, scipy
+venv-stack base ml       # e.g. torch, tensorflow
+
+# 2 Activate the base venv, install packages
+venv-stack activate common
+pip install numpy pandas scipy torch tensorflow
+
+# 3. Create a project venv that layers both
+cd my-project
+venv-stack project . common,ml
+
+# 4. Activate
+venv-stack activate # activates the current project if no name is given
+
+# 5. Install project‑specific deps
+pip install fastapi uvicorn
+
+# 6. Export installed packages
+venv-stack export [project_path] [output_file]
+# e.g. venv-stack export . requirements.txt
+
+# 7. Sync from a requirements file
+venv-stack sync [requirements.txt] [project_path]
+# e.g. venv-stack sync requirements.txt .
+
+# 8 List all virtual environments
+venv-stack list
+
+# 9 List all installed packages in a venv
+venv-stack list-packages [name]
+
+# 10 List all packages installed in all virtual environments
+venv-stack list-packages
+```
+
+## Commands
+
+| Command                                              | Description                                                                   |
+| ---------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `venv-stack base <name>`                             | Create a named base environment                                               |
+| `venv-stack project [path] <bases>`                  | Create a stacked project env at `path/.venv`                                  |
+| `venv-stack link <base> <project>`                   | Add a base to an existing project venv                                        |
+| `venv-stack list`                                    | List all known base & project virtual environments                            |
+| `venv-stack activate <name>`                         | Activate the given base environment `<name>`                                  |
+| `venv-stack export [project_path] [output_file]`     | Export the stacked project venv’s installed packages (`pip freeze`) to a file |
+| `venv-stack sync <requirements_file> [project_path]` | Install packages from a `requirements.txt` into the project venv              |
+| `venv-stack list-packages [name]`                    | List installed packages in a specific venv or all venvs if no name is given   |
+
+
+
+## Activate not working with your terminal?
+You can update the shells.py file to add your shell:
+```python
+# needed in order for the activate command to work properly. 
+# If you are using a different shell, you may need to adjust the candidates accordingly.
+shells = {
+    "bash": {
+        "flags": lambda tmp_profile_path: ["--rcfile", f"{tmp_profile_path}", "-i"],
+        "rc": [".bashrc", ".bash_profile", ".profile"]
+    },
+    "zsh": {
+        "env": lambda tmp_profile_path: f"ZDOTDIR={tmp_profile_path.parent}",
+        "flags": ["-i"],
+        "rc": [".zshrc", ".zprofile"]
+    },
+}
+```
+
+## Contributing
+
+1. Fork the repo
+
+2. Create a feature branch (git checkout -b feature/foo)
+
+3. Commit your changes (git commit -am 'Add foo')
+
+4. Push and open a PR

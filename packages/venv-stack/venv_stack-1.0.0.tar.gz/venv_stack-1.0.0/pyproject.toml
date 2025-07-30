@@ -1,0 +1,21 @@
+[project]
+name = "venv_stack"
+version = "1.0.0"
+description = "A layered virtual environment manager compatible with PEP 668"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {text = "MIT"}
+authors = [{ name = "Ata Hakçıl", email = "ignis@ignis.wtf" }]
+keywords = ["virtualenv", "venv", "python", "PEP 668", "environment management"]
+
+[project.urls]
+Homepage = "https://github.com/ignis-sec/venv-stack"
+Repository = "https://github.com/ignis-sec/venv-stack"
+Issues = "https://github.com/ignis-sec/venv-stack/issues"
+
+[project.scripts]
+venv-stack = "venv_stack.__main__:main"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
