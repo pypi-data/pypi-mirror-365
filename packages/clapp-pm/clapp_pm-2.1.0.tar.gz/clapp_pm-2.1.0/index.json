@@ -1,0 +1,89 @@
+[
+  {
+    "name": "clapp-store",
+    "version": "1.0.0",
+    "language": "python",
+    "description": "Clapp paket yöneticisinin grafiksel kullanıcı arayüzü",
+    "entry": "main.py",
+    "dependencies": [
+      "flet",
+      "requests"
+    ],
+    "folder": "clapp-store",
+    "repo_url": "https://github.com/mburakmmm/clapp-packages",
+    "subdir": "clapp-store"
+  },
+  {
+    "name": "cloud-notepad",
+    "version": "1.0.0",
+    "language": "python",
+    "description": "Modern ve gelişmiş cloud destekli notepad uygulaması. PyQt6 ile geliştirilmiş, syntax highlighting, tema desteği, çoklu sekme ve cloud senkronizasyon özellikleri ile Notepad++ benzeri deneyim sunar.",
+    "entry": "main.py",
+    "dependencies": [
+      "PyQt6==6.6.1",
+      "PyQt6-Qt6==6.6.1",
+      "PyQt6-sip==13.6.0",
+      "pygments==2.17.2",
+      "requests==2.31.0",
+      "cryptography==41.0.8"
+    ],
+    "folder": "cloud-notepad",
+    "repo_url": "https://github.com/mburakmmm/clapp-packages",
+    "subdir": "cloud-notepad"
+  },
+  {
+    "name": "cloud-system",
+    "version": "1.0.0",
+    "language": "python",
+    "description": "Modern sistem yöneticisi ve görev yöneticisi uygulaması",
+    "entry": "main.py",
+    "dependencies": [
+      "flet",
+      "psutil"
+    ],
+    "folder": "cloud-system",
+    "repo_url": "https://github.com/mburakmmm/clapp-packages",
+    "subdir": "cloud-system"
+  },
+  {
+    "name": "pycloud-os",
+    "version": "1.0.0",
+    "language": "python",
+    "description": "Modern, Python tabanlı, macOS benzeri işletim sistemi. Modüler mimarisi, güçlü GUI sistemi ve kapsamlı uygulama ekosistemine sahiptir.",
+    "entry": "main.py",
+    "dependencies": [
+      "PyQt6",
+      "PyQt6-WebEngine",
+      "Pillow",
+      "psutil",
+      "requests",
+      "pyserial",
+      "Flask",
+      "pytest",
+      "pytest-cov",
+      "pytest-mock",
+      "black",
+      "flake8",
+      "isort",
+      "mypy",
+      "types-requests",
+      "types-setuptools",
+      "sphinx",
+      "sphinx-rtd-theme",
+      "sphinx-autodoc-typehints",
+      "wheel",
+      "setuptools",
+      "build",
+      "ipython",
+      "jupyterlab",
+      "memory-profiler",
+      "line-profiler",
+      "bandit",
+      "safety",
+      "pre-commit"
+    ],
+    "folder": "pycloud-os",
+    "repo_url": "https://github.com/mburakmmm/clapp-packages",
+    "subdir": "pycloud-os"
+  }
+]

@@ -1,0 +1,45 @@
+{
+  "id": "cloud_files",
+  "name": "Cloud Files",
+  "version": "2.0.0",
+  "description": "PyCloud OS için modern dosya yöneticisi. Finder benzeri grafik tabanlı dosya yönetimi, etiket sistemi, sekmeli gezinme ve gelişmiş özellikler.",
+  "entry": "main.py",
+  "exec": "python3 main.py",
+  "icon": "icon.png",
+  "category": "Sistem",
+  "developer": "PyCloud OS Team",
+  "license": "MIT",
+  "homepage": "https://pycloudos.dev/apps/cloud_files",
+  "tags": ["files", "manager", "finder", "filesystem", "modern", "tags", "tabs"],
+  "features": [
+    "Modern UI tasarımı",
+    "Liste, Izgara ve Detaylı görünüm modları",
+    "Sekmeli gezinme",
+    "Etiket sistemi",
+    "Sürükle-bırak desteği",
+    "Gelişmiş arama",
+    "Klavye kısayolları",
+    "Dosya önizleme",
+    "Bağlam menüleri"
+  ],
+  "screenshots": [
+    "screenshots/main.png",
+    "screenshots/grid_view.png",
+    "screenshots/tags.png",
+    "screenshots/tabs.png"
+  ],
+  "requires": [
+    "python3", 
+    "pyqt6",
+    "core.fs",
+    "core.config",
+    "core.events"
+  ],
+  "permissions": {
+    "fs.read": true,
+    "fs.write": true,
+    "clipboard": true
+  },
+  "postinstall": "postinstall.py",
+  "signature": "sha256:modernized_cloud_files_v2..."
+} 

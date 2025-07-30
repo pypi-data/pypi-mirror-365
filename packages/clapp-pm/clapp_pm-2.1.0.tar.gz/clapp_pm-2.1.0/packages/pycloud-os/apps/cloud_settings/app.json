@@ -1,0 +1,52 @@
+{
+  "id": "cloud_settings",
+  "name": "Cloud Settings",
+  "version": "2.0.0",
+  "description": "PyCloud OS için modern sistem ayarları ve konfigürasyon yönetimi. Canlı önizleme, widget yönetimi, tema özelleştirme ve gelişmiş ayar sistemi.",
+  "entry": "main.py",
+  "exec": "python3 main.py",
+  "icon": "icon.png",
+  "category": "Sistem",
+  "developer": "PyCloud OS Team",
+  "license": "MIT",
+  "homepage": "https://pycloudos.dev/apps/cloud_settings",
+  "tags": [
+    "settings",
+    "config",
+    "system",
+    "preferences",
+    "modern",
+    "themes",
+    "widgets",
+    "live-preview",
+    "customization"
+  ],
+  "features": [
+    "Modern macOS tarzı arayüz",
+    "Canlı önizleme sistemi",
+    "Widget görünürlüğü ve sıralama",
+    "Gelişmiş tema özelleştirme",
+    "Ayar geçmişi ve geri alma",
+    "Arama ve filtre özelliği",
+    "Responsive tasarım",
+    "JSON tabanlı ayar sistemi",
+    "Sistem entegrasyonu"
+  ],
+  "screenshots": [
+    "screenshots/main.png",
+    "screenshots/appearance.png",
+    "screenshots/widgets.png",
+    "screenshots/live_preview.png"
+  ],
+  "requires": [
+    "python3",
+    "pyqt6"
+  ],
+  "permissions": [
+    "system",
+    "filesystem",
+    "config",
+    "ui"
+  ],
+  "signature": "sha256:modern_cloud_settings_v2..."
+} 
