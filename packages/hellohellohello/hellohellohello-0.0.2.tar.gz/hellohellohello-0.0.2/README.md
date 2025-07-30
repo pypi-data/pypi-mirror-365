@@ -1,0 +1,17 @@
+# hellohellohello
+
+A simple Python CLI app inspired by the Beatles' "Hello, Goodbye". Responds to user input with lyric-inspired opposites (e.g., 'yes' → 'no', 'stop' → 'go, go, go').
+
+## Usage
+
+Run the script and enter a word or phrase. The app will reply with a lyric-inspired opposite.
+
+## Example
+
+```
+hellohellohello
+Enter something: yes
+no
+```
+
+## No third-party packages required.
