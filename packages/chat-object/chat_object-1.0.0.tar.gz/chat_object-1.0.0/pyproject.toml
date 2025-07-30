@@ -1,0 +1,20 @@
+[project]
+name = "chat-object"
+version = "1.0.0"
+description = "A simple library for creating and manipulating chat and message objects for LLM applications"
+authors = [
+    { name = "fresh-milkshake" }
+]
+license = { text = "MIT License" }
+readme = "README.md"
+requires-python = ">=3.10"
+
+[project.optional-dependencies]
+dev = [
+    "ruff",
+    "rich"
+]
+
+[tool.ruff]
+fix = true
+target-version = "py313"
