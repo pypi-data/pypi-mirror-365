@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "code-exec-hz"
+version = "1.1.0"
+description = ""
+authors = ["zhushiqi <zhushiqi@haizhi.com>"]
+readme = "README.md"
+packages = [{ include = "code_exec" }]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[[tool.poetry.source]]
+name = "tuna"
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true
+
+[tool.poetry.scripts]
+code-exec = "code_exec.controller.api:run"
