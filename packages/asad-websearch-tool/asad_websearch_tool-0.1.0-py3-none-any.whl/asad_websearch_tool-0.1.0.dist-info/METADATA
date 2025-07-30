@@ -1,0 +1,26 @@
+Metadata-Version: 2.4
+Name: asad-websearch-tool
+Version: 0.1.0
+Summary: A simple DuckDuckGo web search tool using ddgs and OpenAI Agents SDK.
+Home-page: https://pypi.org/project/asad-websearch/
+Author: Asad Shabir
+License: MIT
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: ddgs>=1.0.7
+Requires-Dist: agents-sdk>=0.1.0
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+
+# asad-websearch
+
+A DuckDuckGo-based web search tool you can use in OpenAI Agents SDK.
+
+## Usage
+
+```python
+from asad_websearch import duckduckgo_search
+result = await duckduckgo_search("latest news")
+print(result)
