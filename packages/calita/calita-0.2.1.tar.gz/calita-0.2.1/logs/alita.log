@@ -1,0 +1,391 @@
+2025-07-30 14:07:58,275 - root - INFO - Logging setup complete with level INFO and output file logs/alita.log
+2025-07-30 14:07:58,276 - root - WARNING - attempting to use LiteLLM client
+2025-07-30 14:07:58,277 - root - INFO - ResearchAgent initialized with model: openai/qwen-plus
+2025-07-30 14:07:58,278 - root - INFO - Loaded MCP servers: ['mcpServers']
+2025-07-30 14:07:58,279 - root - INFO - Starting retrieval for query: video clipping
+2025-07-30 14:07:58,385 - httpx - INFO - HTTP Request: GET http://localhost:47070/sse "HTTP/1.1 200 OK"
+2025-07-30 14:07:58,391 - httpx - INFO - HTTP Request: POST http://localhost:47070/messages/?session_id=b38a366b4b754e758a77e81c76222ae7 "HTTP/1.1 202 Accepted"
+2025-07-30 14:07:58,399 - httpx - INFO - HTTP Request: POST http://localhost:47070/messages/?session_id=b38a366b4b754e758a77e81c76222ae7 "HTTP/1.1 202 Accepted"
+2025-07-30 14:07:58,402 - httpx - INFO - HTTP Request: POST http://localhost:47070/messages/?session_id=b38a366b4b754e758a77e81c76222ae7 "HTTP/1.1 202 Accepted"
+2025-07-30 14:07:59,428 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 14:07:59,428 - mcp.client.streamable_http - INFO - Received session ID: 3c8ecbc3-a877-431b-bebb-c951bcd151ba
+2025-07-30 14:07:59,429 - mcp.client.streamable_http - INFO - Negotiated protocol version: 2025-03-26
+2025-07-30 14:07:59,724 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 202 Accepted"
+2025-07-30 14:08:00,564 - httpx - INFO - HTTP Request: GET https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 14:08:00,633 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 14:08:01,557 - httpx - INFO - HTTP Request: DELETE https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 14:08:01,755 - root - INFO - Available MCP tools: ['web_search_exa', 'company_research_exa', 'crawling_exa', 'linkedin_search_exa', 'deep_researcher_start', 'deep_researcher_check', 'add_comment_to_pending_review', 'add_issue_comment', 'add_sub_issue', 'assign_copilot_to_issue', 'cancel_workflow_run', 'create_and_submit_pull_request_review', 'create_branch', 'create_issue', 'create_or_update_file', 'create_pending_pull_request_review', 'create_pull_request', 'create_pull_request_with_copilot', 'create_repository', 'delete_file', 'delete_pending_pull_request_review', 'delete_workflow_run_logs', 'dismiss_notification', 'download_workflow_run_artifact', 'fork_repository', 'get_code_scanning_alert', 'get_commit', 'get_dependabot_alert', 'get_discussion', 'get_discussion_comments', 'get_file_contents', 'get_issue', 'get_issue_comments', 'get_job_logs', 'get_me', 'get_notification_details', 'get_pull_request', 'get_pull_request_comments', 'get_pull_request_diff', 'get_pull_request_files', 'get_pull_request_reviews', 'get_pull_request_status', 'get_secret_scanning_alert', 'get_tag', 'get_workflow_run', 'get_workflow_run_logs', 'get_workflow_run_usage', 'list_branches', 'list_code_scanning_alerts', 'list_commits', 'list_dependabot_alerts', 'list_discussion_categories', 'list_discussions', 'list_issues', 'list_notifications', 'list_pull_requests', 'list_secret_scanning_alerts', 'list_sub_issues', 'list_tags', 'list_workflow_jobs', 'list_workflow_run_artifacts', 'list_workflow_runs', 'list_workflows', 'manage_notification_subscription', 'manage_repository_notification_subscription', 'mark_all_notifications_read', 'merge_pull_request', 'push_files', 'remove_sub_issue', 'reprioritize_sub_issue', 'request_copilot_review', 'rerun_failed_jobs', 'rerun_workflow_run', 'run_workflow', 'search_code', 'search_issues', 'search_orgs', 'search_pull_requests', 'search_repositories', 'search_users', 'submit_pending_pull_request_review', 'update_issue', 'update_pull_request', 'update_pull_request_branch']
+2025-07-30 14:08:01,800 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 14:08:04,101 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 14:08:04,137 - root - INFO - Decomposed query 'video clipping' into 4 sub-queries
+2025-07-30 14:08:04,138 - root - INFO - ====== Decomposed query result: ======:
+['What is video clipping and how is it used in video editing?', 'Are there any popular GitHub repositories that provide video clipping implementations?', 'What Python libraries or packages are commonly used for video clipping tasks?', 'Can you find tutorials or best practices for efficient video clipping techniques?']
+====== end ======
+2025-07-30 14:08:04,141 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 14:08:08,801 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 14:08:08,807 - root - INFO - Created retrieval plan with 12 steps
+2025-07-30 14:08:08,807 - root - INFO - ====== Created retrieval plan result: ======:
+['1. **web_search_exa**', 'Query: "What is video clipping and how is it used in video editing?"', 'Expected: General explanation and use cases of video clipping in video editing', '2. **search_repositories**', 'Query: "video clipping implementations"', 'Expected: List of popular GitHub repositories with video clipping tools or projects', '3. **search_packages**', 'Query: "video clipping python"', 'Expected: Python libraries or packages available on PyPI for video clipping tasks', '4. **web_search_exa**', 'Query: "tutorials best practices video clipping techniques"', 'Expected: Tutorials, articles, or guides on efficient video clipping techniques']
+====== end ======
+2025-07-30 14:08:17,909 - root - INFO - Added 1 web result to retrieved_info
+2025-07-30 14:08:17,914 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 14:08:18,868 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 14:08:18,874 - root - INFO - Sufficiency evaluation: SUFFICIENT (total items: 1, iterations: 1)
+2025-07-30 14:08:18,878 - root - INFO - Formatted retrieval results: 1 web, 0 github, 0 pypi
+2025-07-30 14:08:18,881 - root - INFO - Retrieval completed successfully for query: video clipping
+2025-07-30 14:12:43,472 - root - INFO - Logging setup complete with level INFO and output file logs/alita.log
+2025-07-30 14:12:43,474 - root - WARNING - attempting to use LiteLLM client
+2025-07-30 14:12:43,476 - root - INFO - ResearchAgent initialized with model: openai/qwen-plus
+2025-07-30 14:12:43,476 - root - INFO - Loaded MCP servers: ['mcpServers']
+2025-07-30 14:12:43,477 - root - INFO - Starting retrieval for query: video clipping
+2025-07-30 14:12:43,593 - httpx - INFO - HTTP Request: GET http://localhost:47070/sse "HTTP/1.1 200 OK"
+2025-07-30 14:12:43,601 - httpx - INFO - HTTP Request: POST http://localhost:47070/messages/?session_id=73f3e93daea742cf9e7e0ce55e83617f "HTTP/1.1 202 Accepted"
+2025-07-30 14:12:43,611 - httpx - INFO - HTTP Request: POST http://localhost:47070/messages/?session_id=73f3e93daea742cf9e7e0ce55e83617f "HTTP/1.1 202 Accepted"
+2025-07-30 14:12:43,614 - httpx - INFO - HTTP Request: POST http://localhost:47070/messages/?session_id=73f3e93daea742cf9e7e0ce55e83617f "HTTP/1.1 202 Accepted"
+2025-07-30 14:12:45,076 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 14:12:45,077 - mcp.client.streamable_http - INFO - Received session ID: 0453bab3-27fb-432a-8274-90d852866aad
+2025-07-30 14:12:45,078 - mcp.client.streamable_http - INFO - Negotiated protocol version: 2025-03-26
+2025-07-30 14:12:45,449 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 202 Accepted"
+2025-07-30 14:12:46,285 - httpx - INFO - HTTP Request: GET https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 14:12:46,331 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 14:12:46,950 - httpx - INFO - HTTP Request: DELETE https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 14:12:46,980 - root - INFO - Available MCP tools: ['web_search_exa', 'company_research_exa', 'crawling_exa', 'linkedin_search_exa', 'deep_researcher_start', 'deep_researcher_check', 'add_comment_to_pending_review', 'add_issue_comment', 'add_sub_issue', 'assign_copilot_to_issue', 'cancel_workflow_run', 'create_and_submit_pull_request_review', 'create_branch', 'create_issue', 'create_or_update_file', 'create_pending_pull_request_review', 'create_pull_request', 'create_pull_request_with_copilot', 'create_repository', 'delete_file', 'delete_pending_pull_request_review', 'delete_workflow_run_logs', 'dismiss_notification', 'download_workflow_run_artifact', 'fork_repository', 'get_code_scanning_alert', 'get_commit', 'get_dependabot_alert', 'get_discussion', 'get_discussion_comments', 'get_file_contents', 'get_issue', 'get_issue_comments', 'get_job_logs', 'get_me', 'get_notification_details', 'get_pull_request', 'get_pull_request_comments', 'get_pull_request_diff', 'get_pull_request_files', 'get_pull_request_reviews', 'get_pull_request_status', 'get_secret_scanning_alert', 'get_tag', 'get_workflow_run', 'get_workflow_run_logs', 'get_workflow_run_usage', 'list_branches', 'list_code_scanning_alerts', 'list_commits', 'list_dependabot_alerts', 'list_discussion_categories', 'list_discussions', 'list_issues', 'list_notifications', 'list_pull_requests', 'list_secret_scanning_alerts', 'list_sub_issues', 'list_tags', 'list_workflow_jobs', 'list_workflow_run_artifacts', 'list_workflow_runs', 'list_workflows', 'manage_notification_subscription', 'manage_repository_notification_subscription', 'mark_all_notifications_read', 'merge_pull_request', 'push_files', 'remove_sub_issue', 'reprioritize_sub_issue', 'request_copilot_review', 'rerun_failed_jobs', 'rerun_workflow_run', 'run_workflow', 'search_code', 'search_issues', 'search_orgs', 'search_pull_requests', 'search_repositories', 'search_users', 'submit_pending_pull_request_review', 'update_issue', 'update_pull_request', 'update_pull_request_branch']
+2025-07-30 14:12:47,065 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 14:12:50,870 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 14:12:50,980 - root - INFO - Decomposed query 'video clipping' into 4 sub-queries
+2025-07-30 14:12:50,980 - root - INFO - ====== Decomposed query result: ======:
+['What is video clipping and how is it used in video editing?', 'Are there any popular GitHub repositories that provide video clipping implementations?', 'What Python libraries or packages are commonly used for video clipping tasks?', 'Where can I find tutorials or best practices for implementing video clipping in software applications?']
+====== end ======
+2025-07-30 14:12:50,984 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 14:12:53,655 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 14:12:53,667 - root - INFO - Created retrieval plan with 4 steps
+2025-07-30 14:12:53,667 - root - INFO - ====== Created retrieval plan result: ======:
+['1. **web_search_exa** - "What is video clipping and how is it used in video editing?" - Explanation and use cases of video clipping in video editing', '2. **search_repositories** - "video clipping GitHub repositories" - Code repositories providing video clipping implementations', '3. **search_packages** - "Python libraries for video clipping" - Python packages commonly used for video clipping tasks', '4. **web_search_exa** - "tutorials and best practices for implementing video clipping" - Guides and best practices for integrating video clipping in software applications']
+====== end ======
+2025-07-30 14:23:15,977 - root - INFO - Added 1 web result to retrieved_info
+2025-07-30 14:23:15,983 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 14:23:16,565 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 14:23:16,576 - root - INFO - Sufficiency evaluation: SUFFICIENT (total items: 1, iterations: 1)
+2025-07-30 14:23:16,581 - root - INFO - Formatted retrieval results: 1 web, 0 github, 0 pypi
+2025-07-30 14:23:16,584 - root - INFO - Retrieval completed successfully for query: video clipping
+2025-07-30 14:25:17,836 - root - INFO - Logging setup complete with level INFO and output file logs/alita.log
+2025-07-30 14:25:17,836 - root - WARNING - attempting to use LiteLLM client
+2025-07-30 14:25:17,837 - root - INFO - ResearchAgent initialized with model: openai/qwen-plus
+2025-07-30 14:25:17,838 - root - INFO - Loaded MCP servers: ['mcpServers']
+2025-07-30 14:25:17,838 - root - INFO - Starting retrieval for query: video clipping
+2025-07-30 14:25:17,925 - httpx - INFO - HTTP Request: GET http://localhost:47070/sse "HTTP/1.1 200 OK"
+2025-07-30 14:25:17,930 - httpx - INFO - HTTP Request: POST http://localhost:47070/messages/?session_id=93be037c0c094d71b9cd8a31883886c1 "HTTP/1.1 202 Accepted"
+2025-07-30 14:25:17,934 - httpx - INFO - HTTP Request: POST http://localhost:47070/messages/?session_id=93be037c0c094d71b9cd8a31883886c1 "HTTP/1.1 202 Accepted"
+2025-07-30 14:25:17,936 - httpx - INFO - HTTP Request: POST http://localhost:47070/messages/?session_id=93be037c0c094d71b9cd8a31883886c1 "HTTP/1.1 202 Accepted"
+2025-07-30 14:25:18,935 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 14:25:18,935 - mcp.client.streamable_http - INFO - Received session ID: 112b2d76-5517-4cc1-bb57-5e20c4bc829b
+2025-07-30 14:25:18,935 - mcp.client.streamable_http - INFO - Negotiated protocol version: 2025-03-26
+2025-07-30 14:25:19,267 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 202 Accepted"
+2025-07-30 14:25:20,005 - httpx - INFO - HTTP Request: GET https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 14:25:20,133 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 14:25:20,989 - httpx - INFO - HTTP Request: DELETE https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 14:25:20,995 - root - INFO - Available MCP tools: ['web_search_exa', 'company_research_exa', 'crawling_exa', 'linkedin_search_exa', 'deep_researcher_start', 'deep_researcher_check', 'add_comment_to_pending_review', 'add_issue_comment', 'add_sub_issue', 'assign_copilot_to_issue', 'cancel_workflow_run', 'create_and_submit_pull_request_review', 'create_branch', 'create_issue', 'create_or_update_file', 'create_pending_pull_request_review', 'create_pull_request', 'create_pull_request_with_copilot', 'create_repository', 'delete_file', 'delete_pending_pull_request_review', 'delete_workflow_run_logs', 'dismiss_notification', 'download_workflow_run_artifact', 'fork_repository', 'get_code_scanning_alert', 'get_commit', 'get_dependabot_alert', 'get_discussion', 'get_discussion_comments', 'get_file_contents', 'get_issue', 'get_issue_comments', 'get_job_logs', 'get_me', 'get_notification_details', 'get_pull_request', 'get_pull_request_comments', 'get_pull_request_diff', 'get_pull_request_files', 'get_pull_request_reviews', 'get_pull_request_status', 'get_secret_scanning_alert', 'get_tag', 'get_workflow_run', 'get_workflow_run_logs', 'get_workflow_run_usage', 'list_branches', 'list_code_scanning_alerts', 'list_commits', 'list_dependabot_alerts', 'list_discussion_categories', 'list_discussions', 'list_issues', 'list_notifications', 'list_pull_requests', 'list_secret_scanning_alerts', 'list_sub_issues', 'list_tags', 'list_workflow_jobs', 'list_workflow_run_artifacts', 'list_workflow_runs', 'list_workflows', 'manage_notification_subscription', 'manage_repository_notification_subscription', 'mark_all_notifications_read', 'merge_pull_request', 'push_files', 'remove_sub_issue', 'reprioritize_sub_issue', 'request_copilot_review', 'rerun_failed_jobs', 'rerun_workflow_run', 'run_workflow', 'search_code', 'search_issues', 'search_orgs', 'search_pull_requests', 'search_repositories', 'search_users', 'submit_pending_pull_request_review', 'update_issue', 'update_pull_request', 'update_pull_request_branch']
+2025-07-30 14:25:21,051 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 14:25:24,227 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 14:25:24,271 - root - INFO - Decomposed query 'video clipping' into 4 sub-queries
+2025-07-30 14:25:24,271 - root - INFO - ====== Decomposed query result: ======:
+['What is video clipping and how is it used in video editing?', 'Are there any popular GitHub repositories that provide video clipping implementations?', 'What Python libraries or packages are commonly used for video clipping tasks?', 'Are there any tutorials or best practices for performing video clipping efficiently?']
+====== end ======
+2025-07-30 14:25:24,274 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 14:25:28,261 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 14:25:28,265 - root - INFO - Created retrieval plan with 4 steps
+2025-07-30 14:25:28,265 - root - INFO - ====== Created retrieval plan result: ======:
+['1. **web_search_exa** - "What is video clipping and how is it used in video editing?" - Expected: General explanation and use cases of video clipping in editing', '2. **search_repositories** - "video clipping GitHub repositories" - Expected: List of popular GitHub repositories with video clipping implementations', '3. **search_packages** - "Python libraries for video clipping" - Expected: List of commonly used Python packages for video clipping tasks', '4. **web_search_exa** - "tutorials and best practices for efficient video clipping" - Expected: Guides, tutorials, and recommended practices for video clipping']
+====== end ======
+2025-07-30 14:25:38,956 - root - INFO - Added 1 web result to retrieved_info
+2025-07-30 14:25:38,960 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 14:25:39,627 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 14:25:39,633 - root - INFO - Sufficiency evaluation: SUFFICIENT (total items: 1, iterations: 1)
+2025-07-30 14:25:39,637 - root - INFO - Formatted retrieval results: 1 web, 0 github, 0 pypi
+2025-07-30 14:25:39,639 - root - INFO - Retrieval completed successfully for query: video clipping
+2025-07-30 14:53:09,920 - root - INFO - Logging setup complete with level INFO and output file logs/alita.log
+2025-07-30 14:53:09,921 - root - WARNING - attempting to use LiteLLM client
+2025-07-30 14:53:09,922 - root - INFO - ResearchAgent initialized with model: openai/qwen-plus
+2025-07-30 14:53:09,922 - root - INFO - Loaded MCP servers: ['mcpServers']
+2025-07-30 14:53:09,923 - root - INFO - Starting retrieval for query: video clipping
+2025-07-30 14:53:10,014 - httpx - INFO - HTTP Request: GET http://localhost:47070/sse "HTTP/1.1 200 OK"
+2025-07-30 14:53:10,020 - httpx - INFO - HTTP Request: POST http://localhost:47070/messages/?session_id=1171e1f4c268426f9c0a50d5c66a6072 "HTTP/1.1 202 Accepted"
+2025-07-30 14:53:10,025 - httpx - INFO - HTTP Request: POST http://localhost:47070/messages/?session_id=1171e1f4c268426f9c0a50d5c66a6072 "HTTP/1.1 202 Accepted"
+2025-07-30 14:53:10,028 - httpx - INFO - HTTP Request: POST http://localhost:47070/messages/?session_id=1171e1f4c268426f9c0a50d5c66a6072 "HTTP/1.1 202 Accepted"
+2025-07-30 14:53:11,253 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 14:53:11,253 - mcp.client.streamable_http - INFO - Received session ID: f6f01a7b-b54b-4a5f-8212-62d97a62cfc5
+2025-07-30 14:53:11,254 - mcp.client.streamable_http - INFO - Negotiated protocol version: 2025-03-26
+2025-07-30 14:53:12,338 - httpx - INFO - HTTP Request: GET https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 14:53:13,659 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 202 Accepted"
+2025-07-30 14:53:17,530 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 14:53:18,009 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 202 Accepted"
+2025-07-30 14:53:20,514 - httpx - INFO - HTTP Request: DELETE https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 14:53:20,519 - root - INFO - Available MCP tools: ['web_search_exa', 'company_research_exa', 'crawling_exa', 'linkedin_search_exa', 'deep_researcher_start', 'deep_researcher_check', 'add_comment_to_pending_review', 'add_issue_comment', 'add_sub_issue', 'assign_copilot_to_issue', 'cancel_workflow_run', 'create_and_submit_pull_request_review', 'create_branch', 'create_issue', 'create_or_update_file', 'create_pending_pull_request_review', 'create_pull_request', 'create_pull_request_with_copilot', 'create_repository', 'delete_file', 'delete_pending_pull_request_review', 'delete_workflow_run_logs', 'dismiss_notification', 'download_workflow_run_artifact', 'fork_repository', 'get_code_scanning_alert', 'get_commit', 'get_dependabot_alert', 'get_discussion', 'get_discussion_comments', 'get_file_contents', 'get_issue', 'get_issue_comments', 'get_job_logs', 'get_me', 'get_notification_details', 'get_pull_request', 'get_pull_request_comments', 'get_pull_request_diff', 'get_pull_request_files', 'get_pull_request_reviews', 'get_pull_request_status', 'get_secret_scanning_alert', 'get_tag', 'get_workflow_run', 'get_workflow_run_logs', 'get_workflow_run_usage', 'list_branches', 'list_code_scanning_alerts', 'list_commits', 'list_dependabot_alerts', 'list_discussion_categories', 'list_discussions', 'list_issues', 'list_notifications', 'list_pull_requests', 'list_secret_scanning_alerts', 'list_sub_issues', 'list_tags', 'list_workflow_jobs', 'list_workflow_run_artifacts', 'list_workflow_runs', 'list_workflows', 'manage_notification_subscription', 'manage_repository_notification_subscription', 'mark_all_notifications_read', 'merge_pull_request', 'push_files', 'remove_sub_issue', 'reprioritize_sub_issue', 'request_copilot_review', 'rerun_failed_jobs', 'rerun_workflow_run', 'run_workflow', 'search_code', 'search_issues', 'search_orgs', 'search_pull_requests', 'search_repositories', 'search_users', 'submit_pending_pull_request_review', 'update_issue', 'update_pull_request', 'update_pull_request_branch']
+2025-07-30 14:53:20,561 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 14:53:22,872 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 14:53:22,915 - root - INFO - Decomposed query 'video clipping' into 4 sub-queries
+2025-07-30 14:53:22,915 - root - INFO - ====== Decomposed query result: ======:
+['What is video clipping and how is it used in video editing?', 'Are there any popular code examples or implementations for video clipping available on GitHub?', 'What libraries or packages support video clipping in Python or other programming languages?', 'What are the best practices and tutorials for performing video clipping efficiently?']
+====== end ======
+2025-07-30 14:53:22,918 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 14:53:25,330 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 14:53:25,336 - root - INFO - Created retrieval plan with 4 steps
+2025-07-30 14:53:25,336 - root - INFO - ====== Created retrieval plan result: ======:
+['1. **web_search_exa** - "What is video clipping and how is it used in video editing?" - General explanation and use cases', '2. **search_repositories** - "video clipping code examples" - GitHub repositories with implementations', '3. **search_packages** - "video clipping libraries in Python and other languages" - Package and library information', '4. **web_search_exa** - "best practices and tutorials for efficient video clipping" - Tutorials and optimization techniques']
+====== end ======
+2025-07-30 14:53:35,420 - root - INFO - Added 1 web result to retrieved_info
+2025-07-30 14:53:35,425 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 14:53:35,981 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 14:53:35,988 - root - INFO - Sufficiency evaluation: SUFFICIENT (total items: 1, iterations: 1)
+2025-07-30 14:53:35,991 - root - INFO - Formatted retrieval results: 1 web, 0 github, 0 pypi
+2025-07-30 14:53:35,994 - root - INFO - Retrieval completed successfully for query: video clipping
+2025-07-30 16:51:38,672 - root - INFO - Logging setup complete with level INFO and output file logs/alita.log
+2025-07-30 16:51:38,673 - root - WARNING - attempting to use LiteLLM client
+2025-07-30 16:51:38,674 - root - INFO - ResearchAgent initialized with model: openai/qwen-plus
+2025-07-30 16:51:38,674 - root - INFO - Loaded MCP servers: ['mcpServers']
+2025-07-30 16:51:38,674 - root - INFO - Starting retrieval for query: video clipping
+2025-07-30 16:51:40,327 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 16:51:40,327 - mcp.client.streamable_http - INFO - Received session ID: 54aa2706-721d-423e-928a-59379b9d6ff7
+2025-07-30 16:51:40,328 - mcp.client.streamable_http - INFO - Negotiated protocol version: 2025-03-26
+2025-07-30 16:51:40,641 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 202 Accepted"
+2025-07-30 16:51:41,380 - httpx - INFO - HTTP Request: GET https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 16:51:41,410 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 16:51:42,474 - httpx - INFO - HTTP Request: DELETE https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 16:51:43,233 - root - INFO - Available MCP tools: ['web_search_exa', 'search_repositories', 'pypi_search']
+2025-07-30 16:51:43,274 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 16:51:46,059 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 16:51:46,104 - root - INFO - Decomposed query 'video clipping' into 4 sub-queries
+2025-07-30 16:51:46,105 - root - INFO - ====== Decomposed query result: ======:
+['What is video clipping and how is it used in video editing?', 'Are there any popular GitHub repositories that provide video clipping implementations?', 'What Python libraries or packages are commonly used for video clipping tasks?', 'Are there tutorials or best practices for implementing video clipping in software applications?']
+====== end ======
+2025-07-30 16:51:46,108 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 16:51:49,341 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 16:51:49,345 - root - INFO - Created retrieval plan with 4 steps
+2025-07-30 16:51:49,346 - root - INFO - ====== Created retrieval plan result: ======:
+['1. **web_search_exa** - "What is video clipping and how is it used in video editing?" - Expected: General explanation and use cases of video clipping in video editing', '2. **search_repositories** - "video clipping GitHub repositories" - Expected: List of popular GitHub repositories providing video clipping implementations', '3. **search_packages** - "Python libraries for video clipping" - Expected: List of commonly used Python packages for video clipping tasks', '4. **web_search_exa** - "tutorials and best practices for implementing video clipping in software applications" - Expected: Tutorials, guides, and best practices for integrating video clipping features into software']
+====== end ======
+2025-07-30 16:51:58,079 - root - INFO - Added 1 web result to retrieved_info
+2025-07-30 16:51:58,085 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 16:51:58,862 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 16:51:58,868 - root - INFO - Sufficiency evaluation: SUFFICIENT (total items: 1, iterations: 1)
+2025-07-30 16:51:58,872 - root - INFO - Formatted retrieval results: 1 web, 0 github, 0 pypi
+2025-07-30 16:51:58,875 - root - INFO - Retrieval completed successfully for query: video clipping
+2025-07-30 17:00:41,094 - root - INFO - Logging setup complete with level INFO and output file logs/alita.log
+2025-07-30 17:00:41,094 - root - WARNING - attempting to use LiteLLM client
+2025-07-30 17:00:41,095 - root - INFO - ResearchAgent initialized with model: openai/qwen-plus
+2025-07-30 17:00:41,096 - root - INFO - Loaded MCP servers: ['mcpServers']
+2025-07-30 17:00:41,096 - root - INFO - Starting retrieval for query: video clipping
+2025-07-30 17:00:44,800 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 17:00:44,800 - mcp.client.streamable_http - INFO - Received session ID: 61428efa-9042-46e7-b478-12c0ad19b15c
+2025-07-30 17:00:44,801 - mcp.client.streamable_http - INFO - Negotiated protocol version: 2025-03-26
+2025-07-30 17:00:45,311 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 202 Accepted"
+2025-07-30 17:00:46,447 - httpx - INFO - HTTP Request: GET https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 17:00:46,630 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 17:00:47,364 - httpx - INFO - HTTP Request: DELETE https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 17:00:47,369 - root - INFO - Available MCP search tools: ['web_search_exa', 'search_repositories', 'pypi_search']
+2025-07-30 17:00:47,419 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 17:00:49,640 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 17:00:49,680 - root - INFO - Decomposed query 'video clipping' into 4 sub-queries
+2025-07-30 17:00:49,680 - root - INFO - ====== Decomposed query result: ======:
+['What is video clipping and how is it used in video editing?', 'Are there any popular code examples or implementations for video clipping?', 'What libraries or packages are commonly used for video clipping in Python?', 'What are the best practices and tutorials for performing video clipping efficiently?']
+====== end ======
+2025-07-30 17:00:49,683 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 17:00:55,820 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 17:00:55,826 - root - INFO - Created retrieval plan with 15 steps
+2025-07-30 17:00:55,826 - root - INFO - ====== Created retrieval plan result: ======:
+['1. **web_search_exa**', '- Query: "What is video clipping and how is it used in video editing?"', '- Expected: General explanation and use cases of video clipping in video editing.', '2. **web_search_exa**', '- Query: "Popular code examples or implementations for video clipping"', '- Expected: Code examples or guides demonstrating video clipping techniques.', '3. **search_repositories**', '- Query: "video clipping"', '- Expected: GitHub repositories containing implementations or tools for video clipping.', '4. **search_packages**', '- Query: "video clipping"', '- Expected: Python packages on PyPI used for video clipping tasks.', '5. **web_search_exa**', '- Query: "Best practices and tutorials for efficient video clipping"', '- Expected: Tutorials and recommended practices for performing video clipping efficiently.']
+====== end ======
+2025-07-30 17:01:01,562 - root - INFO - Added 1 text result to retrieved_info
+2025-07-30 17:01:01,566 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 17:01:02,209 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 17:01:02,215 - root - INFO - Sufficiency evaluation: SUFFICIENT (total items: 1, iterations: 1)
+2025-07-30 17:01:02,219 - root - INFO - Formatted retrieval results: 1 web, 0 github, 0 pypi
+2025-07-30 17:01:02,221 - root - INFO - Retrieval completed successfully for query: video clipping
+2025-07-30 17:09:58,659 - root - INFO - Logging setup complete with level INFO and output file logs/alita.log
+2025-07-30 17:09:58,659 - root - WARNING - attempting to use LiteLLM client
+2025-07-30 17:09:58,660 - root - INFO - ResearchAgent initialized with model: openai/qwen-plus
+2025-07-30 17:09:58,660 - root - INFO - Loaded MCP servers: ['mcpServers']
+2025-07-30 17:09:58,661 - root - INFO - Starting retrieval for query: video clipping
+2025-07-30 17:09:59,892 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 17:09:59,892 - mcp.client.streamable_http - INFO - Received session ID: ee85a58b-2bf9-4d19-b4cf-a0ce9f82435e
+2025-07-30 17:09:59,894 - mcp.client.streamable_http - INFO - Negotiated protocol version: 2025-03-26
+2025-07-30 17:10:00,394 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 202 Accepted"
+2025-07-30 17:10:01,002 - httpx - INFO - HTTP Request: GET https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 17:10:01,418 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 17:10:02,269 - httpx - INFO - HTTP Request: DELETE https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 17:10:03,379 - root - INFO - Available MCP search tools: ['web_search_exa', 'search_repositories', 'pypi_search']
+2025-07-30 17:10:03,420 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 17:10:06,284 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 17:10:06,323 - root - INFO - Decomposed query 'video clipping' into 4 sub-queries
+2025-07-30 17:10:06,323 - root - INFO - ====== Decomposed query result: ======:
+['What is video clipping and how is it used in video editing?', 'Are there any popular GitHub repositories that provide video clipping implementations?', 'What Python libraries or packages are commonly used for video clipping tasks?', 'Where can I find tutorials or best practices for performing video clipping efficiently?']
+====== end ======
+2025-07-30 17:10:06,326 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 17:10:09,111 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 17:10:09,114 - root - INFO - Created retrieval plan with 12 steps
+2025-07-30 17:10:09,115 - root - INFO - ====== Created retrieval plan result: ======:
+['1. **web_search_exa**', 'Query: "What is video clipping and how is it used in video editing?"', 'Expected: General explanation and use cases of video clipping in video editing.', '2. **search_repositories**', 'Query: "video clipping implementations"', 'Expected: List of popular GitHub repositories providing video clipping tools or examples.', '3. **search_packages**', 'Query: "video clipping Python libraries"', 'Expected: List of Python packages commonly used for video clipping tasks.', '4. **web_search_exa**', 'Query: "tutorials best practices video clipping efficient"', 'Expected: Tutorials or guides on best practices for efficient video clipping.']
+====== end ======
+2025-07-30 17:10:14,341 - root - INFO - Added 1 text result to retrieved_info
+2025-07-30 17:10:14,345 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 17:10:15,171 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 17:10:15,174 - root - INFO - Sufficiency evaluation: SUFFICIENT (total items: 1, iterations: 1)
+2025-07-30 17:10:15,176 - root - INFO - Formatted retrieval results: 1 web, 0 github, 0 pypi
+2025-07-30 17:10:15,177 - root - INFO - Retrieval completed successfully for query: video clipping
+2025-07-30 17:13:03,533 - root - INFO - Logging setup complete with level INFO and output file logs/alita.log
+2025-07-30 17:13:03,534 - root - WARNING - attempting to use LiteLLM client
+2025-07-30 17:13:03,535 - root - INFO - ResearchAgent initialized with model: openai/qwen-plus
+2025-07-30 17:13:03,536 - root - INFO - Loaded MCP servers: ['mcpServers']
+2025-07-30 17:13:03,536 - root - INFO - Starting retrieval for query: video clipping
+2025-07-30 17:13:08,239 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 17:13:08,240 - mcp.client.streamable_http - INFO - Received session ID: 8f0d428b-62ee-4b4e-ab3a-220702bc34ef
+2025-07-30 17:13:08,241 - mcp.client.streamable_http - INFO - Negotiated protocol version: 2025-03-26
+2025-07-30 17:13:09,492 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 202 Accepted"
+2025-07-30 17:13:09,646 - httpx - INFO - HTTP Request: GET https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 17:13:10,503 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 17:13:11,398 - httpx - INFO - HTTP Request: DELETE https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 17:13:12,922 - root - INFO - Available MCP search tools: ['web_search_exa', 'search_repositories', 'pypi_search']
+2025-07-30 17:13:12,956 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 17:13:15,498 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 17:13:15,541 - root - INFO - Decomposed query 'video clipping' into 4 sub-queries
+2025-07-30 17:13:15,541 - root - INFO - ====== Decomposed query result: ======:
+['What is video clipping and how is it used in video editing?', 'Are there any popular GitHub repositories that provide video clipping implementations?', 'What Python libraries or packages are commonly used for video clipping tasks?', 'Where can I find tutorials or best practices for implementing video clipping in software applications?']
+====== end ======
+2025-07-30 17:13:15,545 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 17:13:20,105 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 17:13:20,111 - root - INFO - Created retrieval plan with 12 steps
+2025-07-30 17:13:20,112 - root - INFO - ====== Created retrieval plan result: ======:
+['1. **web_search_exa**', '- Query: "What is video clipping and how is it used in video editing?"', '- Expected information: General explanation and use cases of video clipping in video editing.', '2. **search_repositories**', '- Query: "video clipping implementations"', '- Expected information: List of popular GitHub repositories providing video clipping tools or examples.', '3. **search_packages**', '- Query: "video clipping"', '- Expected information: Python libraries or packages available on PyPI for performing video clipping tasks.', '4. **web_search_exa**', '- Query: "tutorials best practices video clipping software applications"', '- Expected information: Guides, tutorials, and best practices for implementing video clipping in software.']
+====== end ======
+2025-07-30 17:13:26,188 - root - INFO - Added 1 text result to retrieved_info
+2025-07-30 17:13:26,191 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 17:13:27,070 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 17:13:27,077 - root - INFO - Sufficiency evaluation: SUFFICIENT (total items: 1, iterations: 1)
+2025-07-30 17:13:27,080 - root - INFO - Formatted retrieval results: 1 web, 0 github, 0 pypi
+2025-07-30 17:13:27,082 - root - INFO - Retrieval completed successfully for query: video clipping
+2025-07-30 17:17:15,053 - root - INFO - Logging setup complete with level INFO and output file logs/alita.log
+2025-07-30 17:17:15,054 - root - WARNING - attempting to use LiteLLM client
+2025-07-30 17:17:15,054 - root - INFO - ResearchAgent initialized with model: openai/qwen-plus
+2025-07-30 17:17:15,055 - root - INFO - Loaded MCP servers: ['mcpServers']
+2025-07-30 17:17:15,056 - root - INFO - Starting retrieval for query: video clipping
+2025-07-30 17:17:17,013 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 17:17:17,013 - mcp.client.streamable_http - INFO - Received session ID: 297e8ee6-b0cc-41d6-853c-dd4c442b8f02
+2025-07-30 17:17:17,015 - mcp.client.streamable_http - INFO - Negotiated protocol version: 2025-03-26
+2025-07-30 17:17:17,343 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 202 Accepted"
+2025-07-30 17:17:18,126 - httpx - INFO - HTTP Request: GET https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 17:17:18,204 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 17:17:19,009 - httpx - INFO - HTTP Request: DELETE https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 17:17:19,604 - root - INFO - Available MCP search tools: ['web_search_exa', 'search_repositories', 'pypi_search']
+2025-07-30 17:17:19,686 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 17:17:24,446 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 17:17:24,527 - root - INFO - Decomposed query 'video clipping' into 4 sub-queries
+2025-07-30 17:17:24,527 - root - INFO - ====== Decomposed query result: ======:
+['What is video clipping and how is it used in video editing?', 'How to perform video clipping using Python or other programming languages?', 'What are popular libraries or tools for video clipping, such as FFmpeg, MoviePy, or OpenCV?', 'What are the best practices for efficient video clipping and trimming?']
+====== end ======
+2025-07-30 17:17:24,531 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 17:17:30,806 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 17:17:30,815 - root - INFO - Created retrieval plan with 24 steps
+2025-07-30 17:17:30,816 - root - INFO - ====== Created retrieval plan result: ======:
+['1. **web_search_exa**', 'Query: "What is video clipping and how is it used in video editing?"', 'Expected: General explanation and use cases of video clipping in video editing.', '2. **web_search_exa**', 'Query: "How to perform video clipping using Python or other programming languages?"', 'Expected: Tutorials, guides, or examples demonstrating video clipping with code.', '3. **web_search_exa**', 'Query: "Popular libraries or tools for video clipping such as FFmpeg, MoviePy, or OpenCV"', 'Expected: Overview of commonly used tools and their features for video clipping.', '4. **search_packages**', 'Query: "MoviePy"', 'Expected: Information on the MoviePy Python package, including version and description.', '5. **search_packages**', 'Query: "opencv-python"', 'Expected: Information on the OpenCV Python package for video processing.', '6. **search_repositories**', 'Query: "video clipping ffmpeg"', 'Expected: GitHub repositories demonstrating video clipping using FFmpeg.', '7. **search_repositories**', 'Query: "video editing python"', 'Expected: GitHub repositories that include Python-based video editing and clipping examples.', '8. **web_search_exa**', 'Query: "Best practices for efficient video clipping and trimming"', 'Expected: Articles or guides on optimizing video clipping workflows for performance and efficiency.']
+====== end ======
+2025-07-30 17:17:36,015 - root - INFO - Added 1 text result to retrieved_info
+2025-07-30 17:17:36,020 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 17:17:36,522 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 17:17:36,533 - root - INFO - Sufficiency evaluation: SUFFICIENT (total items: 1, iterations: 1)
+2025-07-30 17:17:36,538 - root - INFO - Formatted retrieval results: 1 web, 0 github, 0 pypi
+2025-07-30 17:17:36,541 - root - INFO - Retrieval completed successfully for query: video clipping
+2025-07-30 17:34:08,520 - root - INFO - Logging setup complete with level INFO and output file logs/alita.log
+2025-07-30 17:34:08,522 - root - WARNING - attempting to use LiteLLM client
+2025-07-30 17:34:08,523 - root - INFO - ResearchAgent initialized with model: openai/qwen-plus
+2025-07-30 17:34:08,523 - root - INFO - Loaded MCP servers: ['mcpServers']
+2025-07-30 17:34:08,524 - root - INFO - Starting retrieval for query: video clipping
+2025-07-30 17:34:09,655 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 17:34:09,655 - mcp.client.streamable_http - INFO - Received session ID: 3bd4c1a9-9076-481a-b17c-9773f15efd8b
+2025-07-30 17:34:09,659 - mcp.client.streamable_http - INFO - Negotiated protocol version: 2025-03-26
+2025-07-30 17:34:10,036 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 202 Accepted"
+2025-07-30 17:34:10,832 - httpx - INFO - HTTP Request: GET https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 17:34:10,887 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 17:34:11,640 - httpx - INFO - HTTP Request: DELETE https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 17:34:14,417 - root - INFO - Available MCP search tools: ['web_search_exa', 'search_repositories', 'pypi_search']
+2025-07-30 17:34:14,456 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 17:34:16,426 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 17:34:16,457 - root - INFO - Decomposed query 'video clipping' into 4 sub-queries
+2025-07-30 17:34:16,458 - root - INFO - ====== Decomposed query result: ======:
+['What is video clipping and how is it used in video editing?', 'Are there any popular GitHub repositories that provide video clipping implementations?', 'What Python libraries or packages are commonly used for video clipping tasks?', 'Can you find tutorials or best practices for performing video clipping efficiently?']
+====== end ======
+2025-07-30 17:34:16,461 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 17:34:19,768 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 17:34:19,774 - root - INFO - Created retrieval plan with 12 steps
+2025-07-30 17:34:19,774 - root - INFO - ====== Created retrieval plan result: ======:
+['1. **web_search_exa**', 'Query: "What is video clipping and how is it used in video editing?"', 'Expected: General explanation and use cases of video clipping in video editing.', '2. **search_repositories**', 'Query: "video clipping implementations"', 'Expected: List of popular GitHub repositories that provide video clipping tools or examples.', '3. **search_packages**', 'Query: "video clipping Python libraries"', 'Expected: List of commonly used Python packages for video clipping tasks.', '4. **web_search_exa**', 'Query: "tutorials best practices video clipping efficient"', 'Expected: Tutorials or best practice guides for performing video clipping efficiently.']
+====== end ======
+2025-07-30 17:34:24,916 - root - INFO - Added 1 text result to retrieved_info
+2025-07-30 17:34:24,921 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 17:34:25,707 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 17:34:25,714 - root - INFO - Sufficiency evaluation: SUFFICIENT (total items: 1, iterations: 1)
+2025-07-30 17:34:25,717 - root - INFO - Formatted retrieval results: 1 web, 0 github, 0 pypi
+2025-07-30 17:34:25,720 - root - INFO - Retrieval completed successfully for query: video clipping
+2025-07-30 17:36:34,940 - root - INFO - Logging setup complete with level INFO and output file logs/alita.log
+2025-07-30 17:36:34,940 - root - WARNING - attempting to use LiteLLM client
+2025-07-30 17:36:34,942 - root - INFO - ResearchAgent initialized with model: openai/qwen-plus
+2025-07-30 17:36:34,942 - root - INFO - Loaded MCP servers: ['mcpServers']
+2025-07-30 17:36:34,943 - root - INFO - Starting retrieval for query: video clipping
+2025-07-30 17:36:36,366 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 17:36:36,366 - mcp.client.streamable_http - INFO - Received session ID: ec0e041e-4711-4245-861f-14b865543e89
+2025-07-30 17:36:36,367 - mcp.client.streamable_http - INFO - Negotiated protocol version: 2025-03-26
+2025-07-30 17:36:36,740 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 202 Accepted"
+2025-07-30 17:36:37,630 - httpx - INFO - HTTP Request: GET https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 17:36:38,070 - httpx - INFO - HTTP Request: POST https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 17:36:40,120 - httpx - INFO - HTTP Request: DELETE https://api.githubcopilot.com/mcp/ "HTTP/1.1 200 OK"
+2025-07-30 17:36:40,126 - root - INFO - Available MCP search tools: ['web_search_exa', 'search_repositories', 'pypi_search']
+2025-07-30 17:36:40,169 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 17:36:42,068 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 17:36:42,112 - root - INFO - Decomposed query 'video clipping' into 4 sub-queries
+2025-07-30 17:36:42,112 - root - INFO - ====== Decomposed query result: ======:
+['What is video clipping and how is it used in video editing?', 'Are there any popular Python libraries or tools for performing video clipping?', 'Can you find open-source video clipping implementations on GitHub?', 'What are the best practices for efficient video clipping using FFmpeg or similar tools?']
+====== end ======
+2025-07-30 17:36:42,116 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 17:36:46,987 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 17:36:46,993 - root - INFO - Created retrieval plan with 15 steps
+2025-07-30 17:36:46,994 - root - INFO - ====== Created retrieval plan result: ======:
+['1. **web_search_exa**', 'Query: "What is video clipping and how is it used in video editing?"', 'Expected: General explanation and use cases of video clipping in video editing workflows.', '2. **web_search_exa**', 'Query: "Popular Python libraries or tools for performing video clipping"', 'Expected: List of Python libraries with descriptions related to video clipping tasks.', '3. **search_packages**', 'Query: "video clipping"', 'Expected: Relevant Python packages on PyPI that support video clipping operations.', '4. **search_repositories**', 'Query: "video clipping"', 'Expected: Open-source GitHub repositories that implement video clipping features.', '5. **web_search_exa**', 'Query: "Best practices for efficient video clipping using FFmpeg or similar tools"', 'Expected: Articles, guides, or documentation outlining best practices for video clipping using FFmpeg or other command-line tools.']
+====== end ======
+2025-07-30 17:36:56,609 - root - INFO - Added 1 web result to retrieved_info
+2025-07-30 17:36:56,615 - LiteLLM - INFO - 
+LiteLLM completion() model= qwen-plus; provider = openai
+2025-07-30 17:36:57,298 - httpx - INFO - HTTP Request: POST https://dashscope.aliyuncs.com/compatible-mode/v1/chat/completions "HTTP/1.1 200 OK"
+2025-07-30 17:36:57,304 - root - INFO - Sufficiency evaluation: SUFFICIENT (total items: 1, iterations: 1)
+2025-07-30 17:36:57,309 - root - INFO - Formatted retrieval results: 1 web, 0 github, 0 pypi
+2025-07-30 17:36:57,312 - root - INFO - Retrieval completed successfully for query: video clipping
