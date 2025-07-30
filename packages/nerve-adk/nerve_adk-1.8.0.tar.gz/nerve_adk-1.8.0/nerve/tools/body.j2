@@ -1,0 +1,54 @@
+import os
+from typing import Any, Annotated
+
+from pydantic import Field
+from loguru import logger
+from termcolor import colored
+
+import nerve.runtime.state as state
+from nerve.tools.namespaces.shell import shell
+
+{% set func_ret_type = "Any | None" %}
+{% if tool.tool is none %}
+{% set func_ret_type = "None" %}
+{% endif %}
+
+def {{ tool.name }}({% for arg in tool.arguments %}{{ arg.name }}: Annotated[str, Field(description="""{{ arg.description }}""", examples=["""{{ arg.example }}"""])]{% if not loop.last %}, {% endif %}{% endfor %}) -> {{ func_ret_type }}:
+    """{{ tool.description }}"""
+
+{% if tool.tool is none %}
+    # tool not set, this function will simply write the arguments to the runtime
+    state.update_variables(locals())
+    ret = None
+    ok_exit_code = True
+{% else %}
+    # tool is set, interpolate and quote the arguments for shell use
+    import shlex
+    context = {k: shlex.quote(v) for k, v in locals().items() if type(v) == str}
+    command = state.interpolate(raw='''{{ tool.tool }}''', extra=context)
+    logger.debug(command)
+
+    ret = shell(command)
+    ok_exit_code = 'EXIT CODE: ' not in ret
+
+{% if tool.print %}
+    if ret and ok_exit_code:
+        print(ret)
+    elif ret:
+        logger.error(colored(ret, "red"))
+{% endif %}
+
+{% endif %}
+
+{% if tool.complete_task %}
+    if ok_exit_code:
+        # if the tool is set to complete the task, set the task as complete
+        # and set the reason as the arguments
+        reason = {
+            {% for arg in tool.arguments %}"{{ arg.name }}": {{ arg.name }}{% if not loop.last %},{% endif %}{% endfor %}
+        }
+        state.set_task_complete(reason)
+{% endif %}
+
+    # return the result of the tool call
+    return ret if ret and len(ret) > 0 else None
