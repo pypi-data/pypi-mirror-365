@@ -1,0 +1,187 @@
+Metadata-Version: 2.3
+Name: zano
+Version: 0.6.0
+Summary: Zano is a CLI bidirectional synchronizer for Linux.
+Author: Nicolas Hainaux
+Author-email: nh.techn@gmail.com
+Requires-Python: >=3.11,<4.0
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Dist: Send2Trash (>=1.8.0,<2.0.0)
+Requires-Dist: click (>=8.0.1,<9.0.0)
+Requires-Dist: microlib (>=1.10.4,<2.0.0)
+Requires-Dist: toml (>=0.10.2,<0.11.0)
+Requires-Dist: tqdm (>=4.62.3,<5.0.0)
+Description-Content-Type: text/x-rst
+
+.. role:: toml(code)
+   :language: toml
+
+.. role:: bash(code)
+   :language: bash
+
+********
+Overview
+********
+
+Zano is a bidirectional synchronizer for Linux.
+
+It may be useful if you need to synchronize two tree structures and can not or do not want to rely on an Internet connection to perform this (via a cloud storage service, for instance).
+
+.. warning::
+    Zano is not tested enough to be used in production yet. As it needs to move or rename files and directories, it may introduce some disorder in your data, hence please keep a backup of them before using Zano! Note that Zano will send to be deleted files or directories to trash. This does only partially prevent unwished deletions, as updates could wrongly replace files. Yet, Zano also offers the possibility to automatically backup data before the synchronization. Unison is an older project that performs similar functions and probably more reliable than zano.
+
+.. warning::
+    Zano is not meant to replace nor interact with VCS softwares like git. There shouldn't be repositories within the tree structures you want to synchronize. There is a partial protection for git repositories: if there are, they should be ignored.
+
+.. warning::
+    Do not rename files or directories or write new content within the tree structures during synchronization, this may have unpredictable consequences. The synchronisation timing might be short (less than 7 s to process two tree structures of ~ 20 000 nodes, where no changes occur), but depending on the number and size of files to copy from one side to the other, it may be long enough to leave you the time to change a file during synchronisation. Don't do this!
+
+
+************
+Requirements
+************
+
+- A Linux system.
+- The tree structures to synchronize should be ext4; the backups too; the replicas can be anything rsync may push to (e.g. as well ext4 as FAT32).
+- GNU Make 4.2.1 + coreutils 8.30-3ubuntu2
+
+
+***********
+Quick start
+***********
+
+First, you'll have to configure your bundle: the two tree structures names and paths, like in the minimal example below:
+
+.. code-block:: toml
+
+    [synced.side1]
+    name = 'HOME'
+    root = '/home/johndoe/work/docs/'
+
+    [synced.side2]
+    name = 'NOMAD'
+    root = '/media/johndoe/MY_USB_STICK/work/'
+
+Say, you want to name this bundle "WORK", then save this file as :bash:`~/.config/zano/WORK.toml`.
+
+The first time you will try to synchronize, zano will have no clue to distinguish new from deleted files. Hence, while trying to pair your files and directories, zano will show you if some are missing on one side compared to the other. If so, it will be possible to either abort this first attempt, or let zano copy the missing files and directories from one side to the other one.
+
+After a first successful synchronization, zano will know about new or deleted files automatically during next synchronizations.
+
+Assuming your USB stick is plugged in and mounted, always run synchronization this way: :bash:`zano sync WORK`
+
+`Source code <https://gitlab.com/nicolas.hainaux/zano>`__
+
+
+************
+More details
+************
+
+Configuration files
+===================
+
+General configuration
+---------------------
+
+Zano configuration is defined in :bash:`~/.config/zano/zano.json`.
+
+Parameters you can set are:
+
+- autocommit: if true, then the new state will be recorded in the database after each step of the synchronisation. If true, this option makes zano more resilient in case of power failure, at the cost of a slower synchronisation.
+- logging: here you can setup options for log, the log directory, log level, max_bytes (in MB, before it autorotates) and the number of rotated log files.
+
+If :bash:`~/.config/zano/zano.json` does not exist, the following default values will be used:
+
+.. code-block:: json
+
+    {
+      "autocommit": true,
+      "logging": {
+          "log_dir": "~/.local/share/zano/log",
+          "log_level": "INFO",
+          "max_bytes": "1",
+          "backup_count": 9
+      }
+    }
+
+Per bundle configuration
+------------------------
+
+More options can be set in the per-bundle configuration file. The per-bundle configuration file lives in :bash:`~/.config/zano/`, for example for the bundle WORK, it will be :bash:`~/.config/zano/WORK.toml`.
+
+Filters
+^^^^^^^
+
+The main section, :bash:`[synced]`, can contain filters. For instance:
+
+.. code-block:: toml
+
+    [synced]
+    filters = ['.~lock.*.odt#', '.~lock.*.ods#', '*/.Trash-*']
+
+The matching files and directories will be ignored during the synchronisation steps.
+Each filter is a python regular expression.
+
+Both :bash:`[synced.side1]` and :bash:`[synced.side2]` can contain their own filters, but if they are not the same, Zano's behaviour may be unexpected.
+
+Replicas
+^^^^^^^^
+
+In addition to two synced sides, there may be any number of copies, called replicas.
+Each replica is identified by its name, like BLUE_STICK, RED_STICK and YELLOW in the example below:
+
+.. code-block:: toml
+
+    [replicas.BLUE_STICK]
+    root = '/media/johndoe/WORK_BACKUP1'
+    # replicas' filters are rsync filters:
+    filters = ['original/', '/.archives/', '.Trash-*/*']
+    newdocs_path = 'SCANNED'
+
+    [replicas.RED_STICK]
+    root = '/media/johndoe/WORK_BACKUP2'
+    # replicas' filters are rsync filters:
+    filters = ['original/', '/.archives/', '.Trash-*/*']
+
+    [replicas.YELLOW]
+    root = '/media/johndoe/YELLOW/data/'
+    # replicas' filters are rsync filters:
+
+The contents of the synced sides, after synchronisation, can be pushed to replicas. This is unidirectional synchronisation.
+
+But there is a special extra feature: new documents (like scan results) will be automatically copied to both synced sides, if they are stored in the special new documents folder. The default name of this folder is NEW_DOCS, but you can set it, per replica, in the configuration file (see example for BLUE_STICK just above).
+
+An example use case is if you need sticks that are not ext4 (e.g. FAT32 or NTFS) to print pdf documents in a printer. Or to scan documents from a printer.
+
+Backups
+^^^^^^^
+
+:bash:`[synced.side1]` and :bash:`[synced.side2]` can define a backup, which will be used by the :bash:`--backup-before` and :bash:`--backup-after` options.
+
+Example:
+
+.. code-block:: toml
+
+    [synced.side1]
+    name = 'HOME'
+    root = '/home/johndoe/Documents/pro'
+    backup = '/media/johndoe/ext_hdd1/pro_backup/HOME/'
+
+    [synced.side2]
+    name = 'NOMAD'
+    root = '/media/johndoe/WORK_STICK/pro/'
+    backup = '/media/johndoe/ext_hdd1/pro_backup/NOMAD/'
+
+
+Options
+-------
+
+Command line options are:
+
+- :bash:`-B`, :bash:`--backup-before`: copy each synced side to its backup before syncing.
+- :bash:`-b`, :bash:`--backup-after`: copy each synced side to its backup after syncing.
+- :bash:`--push`: automatically push changes to replicas after synchronisation, without asking.
+
