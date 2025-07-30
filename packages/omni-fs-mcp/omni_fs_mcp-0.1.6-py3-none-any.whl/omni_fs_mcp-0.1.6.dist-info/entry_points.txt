@@ -1,0 +1,4 @@
+[console_scripts]
+omni-fs-mcp = omni_fs_mcp.mcp_server:main
+omni-fs-mcp-http = omni_fs_mcp.mcp_server:run_http
+omni-fs-mcp-stdio = omni_fs_mcp.mcp_server:run_stdio
