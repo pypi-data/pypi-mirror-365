@@ -1,0 +1,39 @@
+[project]
+name = "cakelens-v5"
+version = "0.1.2"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "click>=8.0.0",
+    "huggingface-hub>=0.33.4",
+]
+
+[project.scripts]
+cakelens = "cakelens.cli:detect"
+cakelens-v5 = "cakelens.cli:detect"
+
+[project.optional-dependencies]
+torch = [
+    "torch==2.7.0+cu128",
+    "torchvision==0.22.0+cu128",
+    "torchcodec>=0.4.0",
+]
+
+[tool.uv.sources]
+torch = [
+  { index = "pytorch-cu128" },
+]
+torchvision = [
+  { index = "pytorch-cu128" },
+]
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+]
