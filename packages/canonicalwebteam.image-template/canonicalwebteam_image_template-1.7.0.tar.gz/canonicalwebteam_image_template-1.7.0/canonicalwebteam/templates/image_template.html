@@ -1,0 +1,15 @@
+<img
+  src="{{ src }}"
+  {%- if hi_def %}
+  srcset="{{ srcset }}"
+  {%- endif %}
+  alt="{{ alt }}"
+  width="{{ width }}"
+  {%- if height %}
+  height="{{ height }}"
+  {%- endif %}
+  loading="{{ loading }}"
+  {%- for attr_name, attr_value in attrs.items() %}
+  {{ attr_name }}="{{ attr_value }}"
+  {%- endfor %}
+/>
