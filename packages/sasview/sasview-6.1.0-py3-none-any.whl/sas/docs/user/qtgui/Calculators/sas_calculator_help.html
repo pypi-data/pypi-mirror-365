@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Generic SAS Calculator Tool &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Example 1: Default Calculator Data" href="gsc_ex_default_data.html" />
+    <link rel="prev" title="Q Resolution Estimator Tool" href="resolution_calculator_help.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="gsc_ex_default_data.html" title="Example 1: Default Calculator Data"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="resolution_calculator_help.html" title="Q Resolution Estimator Tool"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../tools.html" accesskey="U">Tools &amp; Utilities</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Generic SAS Calculator Tool</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="generic-sas-calculator-tool">
+<span id="sans-calculator-tool"></span><h1>Generic SAS Calculator Tool<a class="headerlink" href="#generic-sas-calculator-tool" title="Link to this heading">¶</a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
+<p>This tool calculates the small angle scattering
+cross-section expected from a given real-space 3D shape/structure.
+The tool can handle both nuclear and magnetic contributions to the scattering.
+It is found selecting Tool&gt;Generic Scattering Calculator from the top menu.</p>
+<p>This documentation begins by briefly covering the <a class="reference internal" href="#data-structure">two main data structures</a>
+which can be used by the calculator, followed by an overview of the three different
+<a class="reference internal" href="#coordinate-systems">coordinate systems</a> used to orient the data and beamline
+parameters. For those unfamiliar with magnetic scattering a link to the
+<a class="reference internal" href="../Perspectives/Fitting/magnetism/magnetism.html#magnetism"><span class="std std-ref">Polarisation/Magnetic Scattering</span></a> documentation is also provided.</p>
+<p>Next the <a class="reference internal" href="#how-to-use-the-tool">interface to the calculator</a> is covered, with
+details of each of the settings; both the various <a class="reference internal" href="#inputs">inputs</a> to the
+calculator, and the <a class="reference internal" href="#information-panel">information panels</a>. Finally a
+description of the various <a class="reference internal" href="#file-types">file types</a> which can be used to store
+sample data is given.</p>
+<p>For those who wish to use the calculator in more advanced ways a brief overview
+of the <a class="reference internal" href="#scripting">scripting interface</a> follows, before the documentation concludes
+with links to some <a class="reference internal" href="#examples">examples</a> and the <a class="reference internal" href="#references">references</a>.</p>
+</section>
+<section id="data-structure">
+<h2>Data Structure<a class="headerlink" href="#data-structure" title="Link to this heading">¶</a></h2>
+<p>The calculator processes data with the following structure:
+either rectangular pixels (grid type data), or finite elements (element type
+data), in a variety of shapes, such as tetrahedra, cubes or hexahedra.</p>
+<p>The scattering length density (SLD) is assumed uniform for each pixel or
+element. Depending on the data format the property is either nuclear (in units
+of Å<sup>-2</sup>) (<a class="reference internal" href="#pdb-files">PDB</a> file) or
+magnetic SLDs (<a class="reference internal" href="#omf-files">OMF</a> file) or a combination of both
+(<a class="reference internal" href="#sld-files">SLD</a> and <a class="reference internal" href="#vtk-files">VTK</a> files). For magnetic neutron
+scattering, the <a class="reference internal" href="../Perspectives/Fitting/magnetism/magnetism.html#magnetism"><span class="std std-ref">Polarisation/Magnetic Scattering</span></a> documentation gives further details and
+describes how to construct the various neutron spin resolved scattering cross
+section.</p>
+<section id="grid-type-data">
+<h3>Grid Type Data<a class="headerlink" href="#grid-type-data" title="Link to this heading">¶</a></h3>
+<p>In the simplest case, a space (simulation box) with volume <span class="math notranslate nohighlight">\(V\)</span> can be
+discretized with <span class="math notranslate nohighlight">\(N\)</span> 3-dimensional rectangular pixels.</p>
+<p>The elastic scattering intensity is defined as</p>
+<div class="math notranslate nohighlight">
+\[I(\mathbf{Q}) = \frac{1}{V}\left\lvert\sum_j^Nv_j\rho_j\exp(i\mathbf{Q}\cdot\mathbf{r_j})\right\rvert^2\]</div>
+<p>where <span class="math notranslate nohighlight">\(\rho_j\)</span> and <span class="math notranslate nohighlight">\(\mathbf{r}_j\)</span> are the scattering length density and
+the position of the <span class="math notranslate nohighlight">\(j^\text{th}\)</span> pixel respectively.</p>
+<p>The total volume <span class="math notranslate nohighlight">\(V_s\)</span> of structures different than the homogenous media is
+equal to</p>
+<div class="math notranslate nohighlight">
+\[V_s = \sum_j^N v_j\]</div>
+<p>for <span class="math notranslate nohighlight">\(\rho_j \ne 0\)</span> where <span class="math notranslate nohighlight">\(v_j\)</span> is the volume of the <span class="math notranslate nohighlight">\(j^\text{th}\)</span>
+pixel or natural atomic volume (for .pdb). For atomic structures
+<span class="math notranslate nohighlight">\(v_j \rho_j \equiv b_j\)</span> is the scattering length of the <span class="math notranslate nohighlight">\(j^\text{th}\)</span> atom and
+the natural atomic volume is given by:</p>
+<blockquote>
+<div><p><span class="math notranslate nohighlight">\(\frac{\text{atomic mass}}{\text{natural molar density}\times\text{Avogadro number}}\)</span></p>
+</div></blockquote>
+<p><span class="math notranslate nohighlight">\(V_s\)</span> can be corrected by users (input parameter <em>Total volume</em>). This
+correction is useful especially for an atomic structure (such as taken from a
+PDB file) to get the right normalization.</p>
+<p>For non-magnetic, grid-type data the 1D orientationally averaged scatting intensity profile
+can also be calculated using the <em>Debye full average</em> option which uses the Debye formula:</p>
+<div class="math notranslate nohighlight">
+\[I(\left\lvert\mathbf{Q}\right\rvert) = \frac{1}{V}\sum_j^N v_j\rho_j \sum_k^N v_k\rho_k
+\frac{\sin\left(\left\lvert\mathbf{Q}\right\rvert\left\lvert\mathbf{r_j}-\mathbf{r_k}\right\rvert\right)}
+{\left\lvert\mathbf{Q}\right\rvert\left\lvert\mathbf{r_j}-\mathbf{r_k}\right\rvert}\]</div>
+<p><em>NOTE:</em> <span class="math notranslate nohighlight">\(\rho_j\)</span> <em>displayed in the GUI may be incorrect (input
+parameter</em> solvent_SLD <em>) but this will not affect the scattering computation if
+the correction of the total volume V is made.</em></p>
+</section>
+<section id="element-type-data">
+<h3>Element Type Data<a class="headerlink" href="#element-type-data" title="Link to this heading">¶</a></h3>
+<p>The simulation box can be described as collection of finite elements forming a mesh.
+For example this cube is formed of five finite elements:</p>
+<figure class="align-center">
+<img alt="../../../_images/vtk_mesh_example.png" src="../../../_images/vtk_mesh_example.png" />
+</figure>
+<p>Each element has an associated scattering length
+density (<span class="math notranslate nohighlight">\(\rho_j\)</span>) for the occupied space <span class="math notranslate nohighlight">\(V_j\)</span> and the elastic scattering
+intensity is calculated as</p>
+<div class="math notranslate nohighlight">
+\[I(\mathbf{Q}) = \frac{1}{V}\left\lvert\sum_j^N\rho_j\iiint\limits_{V_j}\exp(i\mathbf{Q}\cdot\mathbf{r_j})\text{d}V\right\rvert^2\]</div>
+<p>Note that the Fourier transform is calculated over each element - allowing
+regions of space with little variation in <span class="math notranslate nohighlight">\(\rho\)</span> to have larger finite
+elements, and regions of interest to have much smaller finite elements, and
+hence more detail.</p>
+<p>In Sasview an algorithm is implemented to calculate the Fourier transform over
+polygons utilizing the divergence theorem as described in Maranville
+<a class="footnote-reference brackets" href="#maranville1" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
+</section>
+<section id="coordinate-systems">
+<h3>Coordinate Systems<a class="headerlink" href="#coordinate-systems" title="Link to this heading">¶</a></h3>
+<p>The general scattering calculator offers 3 different coordinate systems to
+enable any orientation of the sample, the magnetic field and polarisation, as
+well as the surrounding sample environment with respect to the instrument
+reference frame:</p>
+<figure class="align-center">
+<img alt="../../../_images/gen_coords.png" src="../../../_images/gen_coords.png" />
+</figure>
+<p>The <span class="math notranslate nohighlight">\({U,V,W}\)</span> coordinates are the beamline coordinates - they define the
+coordinate system of the target and source. The Qx and Qy coordinates of the
+detector align with the <span class="math notranslate nohighlight">\(U\)</span> and <span class="math notranslate nohighlight">\(V\)</span> axes, and the <span class="math notranslate nohighlight">\(W\)</span> axis points back to the
+source.</p>
+<p>The <span class="math notranslate nohighlight">\({u,v,w}\)</span> coordinates are the environment coordinates - they define the
+coordinate system of the sample environment - such as the cryostat. In this
+coordinate system is also the neutron polarisation vector <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> located
+which is given by the applied magnetic field.
+The orientation of <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> is set with the values <em>up_theta</em> and <em>up_phi</em>,
+where <em>up_theta</em> is the polar angle from the <span class="math notranslate nohighlight">\(w\)</span> axis to the <span class="math notranslate nohighlight">\(u\)</span>-<span class="math notranslate nohighlight">\(v\)</span> plane, and
+<em>up_phi</em> is the azimuthal angle directed anticlockwise in the <span class="math notranslate nohighlight">\(u\)</span>-<span class="math notranslate nohighlight">\(v\)</span> plane from
+the positive <span class="math notranslate nohighlight">\(u\)</span> axis.</p>
+<p>The <span class="math notranslate nohighlight">\({x,y,z}\)</span> coordinates are the sample coordinates - they define the position
+vectors and magnetisation vectors of individual pixels or elements in the
+sample.</p>
+<p>Within the generic scattering calculator all three coordinate systems are
+initially aligned. By altering the yaw, pitch and roll values their relative
+rotations can be set. The environment is rotated relative to the beamline, and
+the sample is rotated relative to the environment. The rotations are carried
+out in the order yaw, pitch then roll, intrinsically. For example when rotating
+the environment coordinates relative to the beamline:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>the <span class="math notranslate nohighlight">\({u,v,w}\)</span> and <span class="math notranslate nohighlight">\({U,V,W}\)</span> coordinates are initially aligned</p></li>
+<li><p>a rotation of angle yaw about the <span class="math notranslate nohighlight">\(V\)</span> axis takes <span class="math notranslate nohighlight">\({U,V,W} \rightarrow {U',V',W'}\)</span></p></li>
+<li><p>a rotation of angle pitch about the <span class="math notranslate nohighlight">\(U'\)</span> axis takes <span class="math notranslate nohighlight">\({U',V',W'} \rightarrow {U'',V'',W''}\)</span></p></li>
+<li><p>a rotation of angle roll about the <span class="math notranslate nohighlight">\(W''\)</span> axis takes <span class="math notranslate nohighlight">\({U'',V'',W''} \rightarrow {u,v,w}\)</span></p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="magnetic-scattering">
+<h2>Magnetic Scattering<a class="headerlink" href="#magnetic-scattering" title="Link to this heading">¶</a></h2>
+<p>For more information about polarised and magnetic scattering, see
+the <a class="reference internal" href="../Perspectives/Fitting/magnetism/magnetism.html#magnetism"><span class="std std-ref">Polarisation/Magnetic Scattering</span></a> documentation.</p>
+</section>
+<section id="how-to-use-the-tool">
+<h2>How to use the Tool<a class="headerlink" href="#how-to-use-the-tool" title="Link to this heading">¶</a></h2>
+<p>Upon loading the calculator we are shown the following interface:</p>
+<figure class="align-center">
+<img alt="../../../_images/GSC_Oct282023_GUI_Index2.jpg" src="../../../_images/GSC_Oct282023_GUI_Index2.jpg" />
+</figure>
+<section id="inputs">
+<h3>Inputs<a class="headerlink" href="#inputs" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><ol class="arabic">
+<li><p>Load .sld, .pdb, .omf or .vtk datafile. Further description of each file
+type can be found <a class="reference internal" href="#file-types">here</a>. The program can hold up to two files - one to
+describe the nuclear SLDs and one for magnetic SLDs.
+The checkboxes enable or disable a loaded file.
+If both files are enabled they must describe the same pixels/elements in
+real space.
+The program can only verify that congruent data set are loaded.
+It is up to you to check that structural and magnetic data match and
+describe the same scenario.</p></li>
+<li><p>Select the default shape of a sample. Mostly interesting for testing
+purposes.</p></li>
+<li><p>Draw structure and magnetisation with arrows (not recommended for a large
+number of pixels/elements). Pixels with zero valued SLD will appear
+yellow.</p></li>
+<li><p>Variables describing the instrument setup for polarisation. These options
+are only enabled when magnetic SLDs are non-zero - otherwise they have no
+effect.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><em>up_frac_in</em> describes the neutron spin state before the sample.</p></li>
+<li><p><em>up_frac_out</em> describes the neutron spin state after the analyser.</p></li>
+</ul>
+</div></blockquote>
+<p><em>Up_frac_in</em> and <em>Up_frac_out</em> are the ratio
+<span class="math notranslate nohighlight">\(\frac{\text{spin up}}{\text{spin up} + \text{spin down}}\)</span>.
+The values of <em>up_frac_in</em> and <em>up_frac_out</em> must be in the range 0.0 to 1.0, 0
+denotes a “+” state, and 1 the opposite “-” state as defined in Moon, Riste,
+and Koehler, 1969 <a class="footnote-reference brackets" href="#mrk1969" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>. An unpolarized neutron beam is associated to a
+value of 0.5.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><em>up_theta</em> is the polar angle of the polarisation in degrees from the
+<span class="math notranslate nohighlight">\(w\)</span> axis to the <span class="math notranslate nohighlight">\(u\)</span>-<span class="math notranslate nohighlight">\(v\)</span> plane.</p></li>
+<li><p><em>up_phi</em> is the azimuthal angle of the polarisation in degrees around
+the <span class="math notranslate nohighlight">\(u\)</span>-<span class="math notranslate nohighlight">\(v\)</span> plane. The coordinate systems of the scattering calculator are
+described <a class="reference internal" href="#coordinate-systems">above</a>.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>The background intensity of the detector.</p></li>
+<li><p>A relative scaling factor for the output intensity.</p></li>
+<li><p>The SLD of the solvent for the sample.</p></li>
+<li><p>The default volume calculated from the pixel info
+(or natural density of PDB file).</p></li>
+<li><dl class="simple">
+<dt>Set the resolution of the scattering pattern.</dt><dd><ul class="simple">
+<li><p><em>No. of Qx (Qy) bins</em> determines the number of evenly spaced <span class="math notranslate nohighlight">\(Q\)</span> bins
+on each axis.</p></li>
+<li><p><em>Qx (Qy) Max</em> is the maximum momentum transfer on each axis.
+In some circumstances these textboxes will be highlighted orange, as a
+warning that with the values chosen numerical artefacts may appear due to
+the Nyquist criterion, or simulation box size.</p></li>
+<li><p>When calculating 1D data, Q values are evenly spaced in the log scale if “Log Spacing” box is checked.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</div></blockquote>
+</section>
+<section id="information-panel">
+<h3>Information Panel<a class="headerlink" href="#information-panel" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><ol class="arabic simple" start="10">
+<li><p>The number of pixels/elements loaded.</p></li>
+<li><p>The mean SLD, both nuclear SLD and all 3 components of the magnetic SLD.
+If a nuclear/magnetic file is enabled then the nuclear/magnetic SLD
+textboxes are read only. If no file is enabled then the
+respective textboxes can be edited - and the value supplied is taken to
+be a constant across all pixels/elements.</p></li>
+<li><p>Draw the pixels/atoms without magnetisation arrows.</p></li>
+<li><p>Save the current data into a SLD file. This combines the currently
+enabled files with any values altered in the GUI, and saves it to a file for
+later reuse. This functionality only works with grid type data.</p></li>
+<li><p>For grid type data these values specify the number of pixels in the <span class="math notranslate nohighlight">\(x\)</span>,
+<span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(z\)</span> directions respectively.</p></li>
+<li><p>For grid type data these values specify the spacing between pixels in
+the <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(z\)</span> directions.</p></li>
+<li><p>These variables define the yaw, pitch and roll rotation of the
+environment coordinates relative to the beamline coordinates
+(see coordinate description <a class="reference internal" href="#coordinate-systems">above</a>).</p></li>
+<li><p>These variables define the yaw, pitch and roll rotation of the sample
+coordinates relative to the environment coordinates
+(see coordinate description <a class="reference internal" href="#coordinate-systems">above</a>).</p></li>
+<li><p>The 3D display shows the relative orientation of the three different
+coordinate systems, with a grey square representing the beamline detector. When
+magnetic SLDs are present a polarisation vector <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> is also shown in
+the environment coordinates. The display can be dragged around with the mouse,
+and the mousewheel used to zoom in and out.</p></li>
+<li><p>This choice appears only for grid type data and without magnetic SLD.
+This tool allows to either compute the fully oriented 2D scattering pattern,
+or calculating the 1D orientational averaged intensity <span class="math notranslate nohighlight">\(I(Q)\)</span> by the Debye equation. One can also choose a compuation option, Debye full avg. w/ <span class="math notranslate nohighlight">\(\beta(Q)\)</span>, to calculate 1D scattering pattern together with <span class="math notranslate nohighlight">\(\beta(Q)\)</span>. <span class="math notranslate nohighlight">\(\beta(Q)\)</span> is needed when fitting scattering patterns of concentrated solutions using the inter-particle structure factor, <span class="math notranslate nohighlight">\(S(Q)\)</span>, with the static decoupling approximation.</p></li>
+<li><p>Starts the computation of the scattering pattern.</p></li>
+<li><p>Reset GUI to the initial state.</p></li>
+<li><p>If a PDB file is loaded, the radius of gyration is calculated and displayed. “Rg-MASS” is the radius of gyration based on the mass of all atoms in a molecule. “RG-SLD” is the radius of gyration based on the scattering length of all atoms.</p></li>
+<li><p>If the option, Debye full avg. w/ <span class="math notranslate nohighlight">\(\beta(Q)\)</span>, is chosen, one has the option to check the box “Export Model”. Once checked, one can input a file name in the box below. During the computation, the program then exports the calculated normalized form factor, <span class="math notranslate nohighlight">\(P(Q)\)</span>, and <span class="math notranslate nohighlight">\(\beta(Q)\)</span> into this file that automatically become a model in the “Plugin Models”. The model name is the same as the file name given in the blox below “Export Model”.</p></li>
+</ol>
+</div></blockquote>
+<p>One example is given here ( Click <a class="reference internal" href="gsc_ex_customModel_data.html#gsc-ex-custommodel-data"><span class="std std-ref">here</span></a> ) to illustrate how to calculate <span class="math notranslate nohighlight">\(P(Q)\)</span> and <span class="math notranslate nohighlight">\(\beta(Q)\)</span> using a PDB file of a protein. These are 1D functions after averaging over all orientiations of proteins. The program can generate a custom model function, which can be used to fit the 1D small angle scattering data.</p>
+<p>One other example ( Click <a class="reference internal" href="gsc_ex_default_data.html#gsc-ex-default-data"><span class="std std-ref">here</span></a> ) is a simple demonstration of
+the functionality of the Generic scattering calculator to calculate the 2D scattering pattern using the default
+starting values with no files loaded.</p>
+<p>After computation the result will appear in the
+<em>Data Explorer</em> panel and can be used further just as any data set in Sasview
+for further analysis.</p>
+<p><em>NOTE: An imaginary nuclear SLD indicates a bound neutron
+state. That means the neutron will be either absorbed by an atom (potentially
+producing some nuclear decay).
+If in any case some neutron is re-emitted, it will happen in a more or less
+arbitrary direction. This is the reason for the large incoherent neutron
+scattering background with hydrogenous materials.</em></p>
+</section>
+</section>
+<section id="file-types">
+<h2>File Types<a class="headerlink" href="#file-types" title="Link to this heading">¶</a></h2>
+<section id="sld-files">
+<h3>SLD Files<a class="headerlink" href="#sld-files" title="Link to this heading">¶</a></h3>
+<p>An SLD file is a text file format capable of storing grid type data with both
+nuclear and magnetic
+SLDs. The file format for an SLD file is as follows:</p>
+<blockquote>
+<div><ul>
+<li><p>One line of header information - this is unused by the program and can
+contain any information</p></li>
+<li><p><span class="math notranslate nohighlight">\(N\)</span> lines describing <span class="math notranslate nohighlight">\(N\)</span> pixels, of 4, 6, 7 or 8 columns, separated by
+whitespace. All lines must have the same number of columns, and the data
+in each column must be castable to a float.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>4 columns describe <em>x position</em>, <em>y position</em>, <em>z position</em>, <em>nuclear SLD</em></p></li>
+<li><p>6 columns describe <em>x position</em>, <em>y position</em>, <em>z position</em>, <em>magnetic
+SLD (x, y, z components)</em></p></li>
+<li><p>7 columns describe <em>x position</em>, <em>y position</em>, <em>z position</em>, <em>nuclear
+SLD</em>, <em>magnetic SLD (x, y, z components)</em></p></li>
+<li><p>8 columns describe <em>x position</em>, <em>y position</em>, <em>z position</em>, <em>nuclear
+SLD</em>, <em>magnetic SLD (x, y, z components)</em>, <em>pixel volume</em></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<p>The file specification does not guarantee that the pixels form a rectangular
+grid - however this is required for the output of the scattering calculator to
+be correct. The program does NOT check this.</p>
+</section>
+<section id="pdb-files">
+<h3>PDB Files<a class="headerlink" href="#pdb-files" title="Link to this heading">¶</a></h3>
+<p>A Protein Data Bank (PDB) file is a text file format which can store atomic
+structure data. The specification is given
+<a class="reference external" href="https://www.wwpdb.org/documentation/file-format">here</a>. This format is read
+as grid type data and can be used
+to create nuclear SLDs only.</p>
+<p>Note that Sasview only reads ATOM and CONECT records from these files. ATOM
+records are used to create suitable nuclear SLDs and pixel volumes using data
+from the <a class="reference external" href="https://pypi.org/project/periodictable/">periodictable</a> Python
+package. CONECT records are only used when drawing the structure.</p>
+</section>
+<section id="omf-files">
+<h3>OMF Files<a class="headerlink" href="#omf-files" title="Link to this heading">¶</a></h3>
+<p>The file format OMF is designated to store spatial magnetisation vector fields.
+The specification can be found
+<a class="reference external" href="https://math.nist.gov/oommf/doc/userguide20a2/userguide/Vector_Field_File_Format_OV.html">here</a>.
+While the OVF 2.0 format could technically also store both nuclear and magnetic
+SLD data, Sasview currently reads all OMF files as if they were OVF 1.0 or
+lower, and as such OMF files can only be used to read in data to create
+magnetic SLDs. Unlike SLD files, OMF files are expected to store the
+magnetisation vector <span class="math notranslate nohighlight">\(\mathbf{M}\)</span>, not the magnetic SLD. Sasview will calculate
+the corresponding magnetic SLD based on the magnetisation unit provided with
+the OMF file.</p>
+<p>While there is no explicit check within the program only OMF files with
+<cite>meshtype: rectangular</cite> can be read into the program  correctly. Additionally
+the data must be stored as ‘Text’ (ASCII format), Sasview cannot read in binary
+data.</p>
+</section>
+<section id="vtk-files">
+<h3>VTK Files<a class="headerlink" href="#vtk-files" title="Link to this heading">¶</a></h3>
+<p>The VTK file format is a very broad set of file formats, specifically Sasview
+currently reads in “legacy” .vtk files, up to version 3.0.
+The file specification is available <a class="reference external" href="https://vtk.org/wp-content/uploads/2015/04/file-formats.pdf">here</a>. Currently
+Sasview only reads in the ‘unstructured grid’ dataset format, and while any
+file of this form can be loaded, only files in which all cells are of the same
+type (type=10 (tetrahedron), 11 (voxel), 12 (hexahedron)) can be used to
+compute scattering patterns. While this may seem restrictive it merely requires
+that every element has the same number of faces, and every face the same number
+of vertices.</p>
+<p>VTK files are treated as element type data - and can contain magnetic and/or
+nuclear SLDs. The nuclear SLD is identified with a set of SCALAR data with one
+component. The magnetic SLD is identified with a set of SCALAR data with three
+components or as a set of VECTOR data. If the data is provided to the points of
+the mesh and not the cells, a weighted average is taken to find an estimate for
+the SLD at the centre of each element. This weighted average is given by:</p>
+<div class="math notranslate nohighlight">
+\[\bar{\rho} = \frac{\sum\limits_j^n \rho_j r_j^{\prime -2}}{\sum\limits_j^nr_j^{\prime -2}}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\bar{\rho}\)</span> is the estimated SLD for an element and <span class="math notranslate nohighlight">\(\rho_j\)</span>, <span class="math notranslate nohighlight">\(r'_j\)</span>
+are the SLDs and distances from the centre of the element of each of the <span class="math notranslate nohighlight">\(n\)</span>
+vertices of the element respectively. <span class="math notranslate nohighlight">\(r'_j\)</span> is taken as:</p>
+<div class="math notranslate nohighlight">
+\[r^\prime_j = \left\lvert \mathbf{r_j} - \frac{1}{n}\sum_k^n \mathbf{r_k}\right\rvert\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{r_k}\)</span> are the position vectors of the n vertices of the element.</p>
+</section>
+</section>
+<section id="scripting">
+<h2>Scripting<a class="headerlink" href="#scripting" title="Link to this heading">¶</a></h2>
+<p>For more advanced uses the GUI version of the scattering calculator may not
+suffice or can be very cumbersome without scripting, for example the
+orientational average of a magnetic structure, or rocking scans around specific
+sample axis.
+For full details of the Python scripting interface please see the developer
+documentation: <a class="reference internal" href="../../../dev/sasview-api/sas.sascalc.calculator.html#module-sas.sascalc.calculator.sas_gen" title="sas.sascalc.calculator.sas_gen"><code class="xref py py-meth docutils literal notranslate"><span class="pre">sas.sascalc.calculator.sas_gen()</span></code></a>.
+A short introduction is provided here to the most useful elements of the
+general scattering calculator interface.</p>
+<p>To begin a Python script we import the sas_gen module of Sasview. If the
+location of this module is unknown to python,
+it can be imported with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;filepath to sasview/src&quot;</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sas.sascalc.calculator</span><span class="w"> </span><span class="kn">import</span> <span class="n">sas_gen</span>
+</pre></div>
+</div>
+<p>If Python does know the location of the Sasview installation only the final
+line is necessary.</p>
+<p>The <cite>sas_gen</cite> module contains several useful classes for reading and processing
+data. The most important of these are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><cite>GenSAS</cite>: This class provides the actual interface to the calculation of
+scattering patterns. It stores all the required data and parameters, and
+has methods which can return scattering intensities. It will be referred
+to hereafter also as ‘the model’, since it is the overarching object
+which models the scattering.</p></li>
+<li><p><cite>MagSLD</cite>: This class stores all the data associated with a sample, such as
+scattering length densities. An instance of this class is provided to the
+model to set the sample data.</p></li>
+<li><p><cite>OMFData</cite>: This class stores sample data from OMF files. It is converted via
+an <cite>OMF2SLD</cite> object into a MagSLD object before it can be used by the
+model.</p></li>
+<li><p><cite>VTKReader</cite>: This class reads in legacy VTK files and returns a MagSLD
+object with the associated data.</p></li>
+<li><p><cite>PDBReader</cite>: This class reads in PDB files and returns a MagSLD object with
+the associated data.</p></li>
+<li><p><cite>SLDReader</cite>: This class reads in SLD files and returns a MagSLD object with
+the associated data.</p></li>
+<li><p><cite>OMFReader</cite>: This class reads in OMF files and returns a OMFData object with
+the associated data.</p></li>
+</ul>
+</div></blockquote>
+<p>The general stages in a script are:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Create a <cite>MagSLD</cite> object storing the sample data, either programmatically or
+by loading in a file.</p></li>
+<li><p>Create a <cite>GenSAS</cite> model, load in the data, and set the parameters along with
+any relevant information about the coordinate systems used.</p></li>
+<li><p>Generate the scattering intensity data from the model and
+display/process/save it.</p></li>
+</ol>
+</div></blockquote>
+<section id="data-creation">
+<h3>1) Data creation<a class="headerlink" href="#data-creation" title="Link to this heading">¶</a></h3>
+<p>Loading data from VTK, PDB or SLD files is easily done with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vtkloader</span> <span class="o">=</span> <span class="n">sas_gen</span><span class="o">.</span><span class="n">VTKReader</span><span class="p">()</span>
+<span class="n">vtkData</span> <span class="o">=</span> <span class="n">vtkloader</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;filepath to vtk file&quot;</span><span class="p">)</span> <span class="c1"># a MagSLD object</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pdbloader</span> <span class="o">=</span> <span class="n">sas_gen</span><span class="o">.</span><span class="n">PDBReader</span><span class="p">()</span>
+<span class="n">pdbData</span> <span class="o">=</span> <span class="n">pdbloader</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;filepath to pdb file&quot;</span><span class="p">)</span> <span class="c1"># a MagSLD object</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sldloader</span> <span class="o">=</span> <span class="n">sas_gen</span><span class="o">.</span><span class="n">SLDReader</span><span class="p">()</span>
+<span class="n">sldData</span> <span class="o">=</span> <span class="n">sldloader</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;filepath to sld file&quot;</span><span class="p">)</span> <span class="c1"># a MagSLD object</span>
+</pre></div>
+</div>
+<p>Loading data from OMF files requires an extra conversion step:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">omfloader</span> <span class="o">=</span> <span class="n">sas_gen</span><span class="o">.</span><span class="n">OMFReader</span><span class="p">()</span>
+<span class="n">omfIntermediateData</span> <span class="o">=</span> <span class="n">omfloader</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s2">&quot;filepath to omf file&quot;</span><span class="p">)</span> <span class="c1"># an OMFData object</span>
+<span class="n">omfConverter</span> <span class="o">=</span> <span class="n">sas_gen</span><span class="o">.</span><span class="n">OMF2SLD</span><span class="p">()</span>
+<span class="n">omfConverter</span><span class="o">.</span><span class="n">set_data</span><span class="p">(</span><span class="n">omfIntermediateData</span><span class="p">)</span>
+<span class="n">omfData</span> <span class="o">=</span> <span class="n">OMFConverter</span><span class="o">.</span><span class="n">get_output</span><span class="p">()</span> <span class="c1"># a MagSLD object</span>
+</pre></div>
+</div>
+<p>Alternatively, a <cite>MagSLD</cite> object can be directly created with custom data,
+which may have been generated programmatically.
+The <cite>MagSLD</cite> object can be created with the following constructor:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos_x</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">,</span> <span class="n">pos_z</span><span class="p">,</span> <span class="n">sld_n</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sld_mx</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sld_my</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">sld_mz</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">vol_pix</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</pre></div>
+</div>
+<p>The arguments are all 1D numpy arrays. For grid type data these should all be
+of the same length, or left as <cite>None</cite>. While element type data can be
+programatically generated and stored in a <cite>MagSLD</cite> object it is significantly
+more complicated and the details are not given here. The arguments are
+respectively:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(z\)</span> coordinates of the realspace positions of the pixels</p></li>
+<li><p>The nuclear SLD</p></li>
+<li><p>The <span class="math notranslate nohighlight">\(x\)</span>, <span class="math notranslate nohighlight">\(y\)</span> and <span class="math notranslate nohighlight">\(z\)</span> components of the magnetic SLD</p></li>
+<li><p>The volume of each pixel. Note that grid type data is expected to be on a
+regular grid - so if <em>vol_pix</em> is None the volumes are all taken to be the
+same.</p></li>
+</ul>
+</div></blockquote>
+<p>The following code recreates the default data of the scattering calculator GUI,
+a rectangular grid of 10x10x10 pixels, with each pixel being
+6x6x6Å. Each pixel has a constant
+nuclear SLD of 6.97x10<sup>-6</sup>Å<sup>-2</sup> and no
+magnetic SLD:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="n">STEPSIZE</span><span class="o">=</span><span class="mi">6</span>
+<span class="n">NODES</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">STEPSIZE</span><span class="o">*</span><span class="n">NODES</span><span class="p">,</span> <span class="n">NODES</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">pos_x</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">,</span> <span class="n">pos_z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">points</span><span class="p">)</span>
+<span class="n">pos_x</span> <span class="o">=</span> <span class="n">pos_x</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">pos_y</span> <span class="o">=</span> <span class="n">pos_y</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">pos_z</span> <span class="o">=</span> <span class="n">pos_z</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">sas_gen</span><span class="o">.</span><span class="n">MagSLD</span><span class="p">(</span><span class="n">pos_x</span><span class="p">,</span> <span class="n">pos_y</span><span class="p">,</span> <span class="n">pos_z</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">pos_x</span><span class="p">,</span> <span class="mf">6.97e-06</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="model-creation">
+<h3>2) Model creation<a class="headerlink" href="#model-creation" title="Link to this heading">¶</a></h3>
+<p>Once we have created our data, we create a <cite>GenSAS</cite> model to carry out the
+computation.
+We can simply create an instance of the <cite>GenSAS</cite> class and load in our <cite>MagSLD</cite>
+object:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">sas_gen</span><span class="o">.</span><span class="n">GenSAS</span><span class="p">()</span>
+<span class="n">model</span><span class="o">.</span><span class="n">set_sld_data</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Further, we are free to set a number of experiment parameters stored in a
+dictionary as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;Up_theta&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">90</span>
+<span class="n">model</span><span class="o">.</span><span class="n">params</span><span class="p">[</span><span class="s2">&quot;Up_phi&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">45</span>
+<span class="o">...</span>
+</pre></div>
+</div>
+<p>The parameters correspond exactly to the available input options in the GUI:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><em>scale</em></p></li>
+<li><p><em>background</em></p></li>
+<li><p><em>solvent_SLD</em></p></li>
+<li><p><em>total_volume</em></p></li>
+<li><p><em>Up_frac_in</em></p></li>
+<li><p><em>Up_frac_out</em></p></li>
+<li><p><em>Up_theta</em></p></li>
+<li><p><em>Up_phi</em></p></li>
+</ul>
+</div></blockquote>
+<p>The meanings are identical to those given in the GUI description, although the
+following should be noted:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The <em>total_volume</em> parameter will be reset to a calculated value everytime
+the <cite>GenSAS.set_sld_data()</cite> method is called.
+If volume correction is needed then the <em>total_volume</em> parameter must be
+reset.</p></li>
+<li><p><em>Up_theta</em> and <em>Up_phi</em> remain in degrees as in the GUI - the conversion to
+radians is handled within the model.</p></li>
+</ul>
+</div></blockquote>
+<p>The rotations between different coordinate systems can also be set using the
+<cite>GenSAS.set_rotations()</cite> method which takes optional arguments <em>uvw_to_UVW</em> and
+<em>xyz_to_UVW</em>, which are the rotations between the <span class="math notranslate nohighlight">\(xyz\)</span>, <span class="math notranslate nohighlight">\(uvw\)</span>, and <span class="math notranslate nohighlight">\(UVW\)</span>
+coordinates (see LINK).
+The rotation matrices are given for the COMPONENTS of the vectors - that is
+<em>xyz_to_UVW</em> transforms the components of a vector from the <span class="math notranslate nohighlight">\(xyz\)</span> to the <span class="math notranslate nohighlight">\(UVW\)</span>
+frame. This is the same rotation that transforms the basis vectors from <span class="math notranslate nohighlight">\(UVW\)</span>
+to <span class="math notranslate nohighlight">\(xyz\)</span>. The rotations are given as instances of
+<cite>scipy.spatial.transform.Rotation</cite>, and default to the identity. For example if
+we know the rotation of the sample coordinates as (intrinsic <span class="math notranslate nohighlight">\(ZYZ\)</span> convention)
+euler angles:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial.transform</span><span class="w"> </span><span class="kn">import</span> <span class="n">Rotation</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="n">theta</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mf">2.0</span>
+<span class="n">phi</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mf">2.0</span>
+<span class="n">chi</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">Rotation</span><span class="o">.</span><span class="n">from_euler</span><span class="p">(</span><span class="s2">&quot;ZYZ&quot;</span><span class="p">,</span> <span class="p">[</span><span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">chi</span><span class="p">])</span>
+<span class="n">model</span><span class="o">.</span><span class="n">set_rotations</span><span class="p">(</span><span class="n">xyz_to_UVW</span><span class="o">=</span><span class="n">r</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="intensity-calculation">
+<h3>3) Intensity calculation<a class="headerlink" href="#intensity-calculation" title="Link to this heading">¶</a></h3>
+<p>As in the GUI two different types of calculation can be carried out. A full 2D
+scattering pattern can be calculated in the <span class="math notranslate nohighlight">\(UV\)</span> plane with <span class="math notranslate nohighlight">\(Q_x\)</span> along the <span class="math notranslate nohighlight">\(U\)</span>
+axis and <span class="math notranslate nohighlight">\(Q_y\)</span> along the <span class="math notranslate nohighlight">\(V\)</span> axis, or a 1D Debye average can be calculated.
+Unlike in the GUI, while scripting we have precise control over which points
+are evaluated.</p>
+<p>In order to calculate the scattering intensity at a set of <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span> values,
+we create two lists <cite>Qx = [Q_x1, Q_x2, …]</cite> and <cite>Qy = [Q_y1, Q_y2, …]</cite> and
+pass these into <cite>model.runXY([Qx, Qy])</cite>.
+Note that we are passing a nested list of the two lists, i.e. a list of length
+two, where each element is a list of the same length giving Qx and Qy values.
+For example to evaluate the scattering intensity on a grid:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">y_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">xs</span><span class="p">,</span> <span class="n">ys</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x_vals</span><span class="p">,</span> <span class="n">y_vals</span><span class="p">)</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">xs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="n">ys</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">runXY</span><span class="p">([</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>The output will be the scattering intensities as an array corresponding to the
+given <span class="math notranslate nohighlight">\(Q\)</span> coordinates.</p>
+<p>If we have grid type data with no magnetic component we can calculate the Debye
+full average at any magnitude <span class="math notranslate nohighlight">\(Q\)</span>.
+Similarly we pass these magnitudes into the model as a list of lists. The first
+element should be a list of magnitudes, and the second element an empty list:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">q_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">run</span><span class="p">([</span><span class="n">q_vals</span><span class="p">,</span> <span class="p">[]])</span>
+</pre></div>
+</div>
+<p>Note the difference between the following two code snippets:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Qs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">runXY</span><span class="p">([</span><span class="n">Qs</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">Qs</span><span class="p">)])</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Qs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">runXY</span><span class="p">([</span><span class="n">Qs</span><span class="p">,</span> <span class="p">[]])</span>
+</pre></div>
+</div>
+<p>The first calculates the values of the scattering intensity along the positive
+<span class="math notranslate nohighlight">\(Q_x\)</span> axis. The second calculates the orientational average intensity at
+various magnitudes of <span class="math notranslate nohighlight">\(Q\)</span>.</p>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gsc_ex_default_data.html">Example 1: The Default Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gsc_ex_magnetic_cylinder.html">Example 2: A Magnetic Cylinder</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gsc_ex_magnetic_spheres.html">Example 3: Magnetic Spheres</a></li>
+</ul>
+</div>
+<div class="line-block">
+<div class="line"><a class="reference download internal" download="" href="../../../_downloads/f05977e2daeb84b66ba783624ea14070/gensas_orientational_average.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Scripting</span> <span class="pre">Example:</span> <span class="pre">Orientational</span> <span class="pre">Averaging</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">Default</span> <span class="pre">Data</span> <span class="pre">(Jupyter</span> <span class="pre">Notebook)</span></code></a></div>
+<div class="line"><a class="reference download internal" download="" href="../../../_downloads/174575af371f70c03ad2f2eb9fb4de4a/gensas_orientational_average.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Scripting</span> <span class="pre">Example:</span> <span class="pre">Orientational</span> <span class="pre">Averaging</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">Default</span> <span class="pre">Data</span> <span class="pre">(PDF)</span></code></a></div>
+</div>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
+<blockquote>
+<div><aside class="footnote-list brackets">
+<aside class="footnote brackets" id="maranville1" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>An implementation of an efficient direct Fourier
+transform of polygonal areas and volumes
+(2021) Brian B. Maranville <a class="reference external" href="https://arxiv.org/abs/2104.08309">arXiv:2104.08309</a></p>
+</aside>
+<aside class="footnote brackets" id="mrk1969" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Polarization Analysis of Thermal-Neutron Scattering
+(1969) R. M. Moon, T. Riste, and W. C. Koehler Phys. Rev. 181, 920
+<a class="reference external" href="https://doi.org/10.1103/PhysRev.181.920">DOI</a></p>
+</aside>
+</aside>
+</div></blockquote>
+<p><em>Document History</em></p>
+<div class="line-block">
+<div class="line">2015-05-01 Steve King</div>
+<div class="line">2021-09-14 Robert Bourne</div>
+<div class="line">2023-10-30 Yun Liu</div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Generic SAS Calculator Tool</a><ul>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#data-structure">Data Structure</a><ul>
+<li><a class="reference internal" href="#grid-type-data">Grid Type Data</a></li>
+<li><a class="reference internal" href="#element-type-data">Element Type Data</a></li>
+<li><a class="reference internal" href="#coordinate-systems">Coordinate Systems</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#magnetic-scattering">Magnetic Scattering</a></li>
+<li><a class="reference internal" href="#how-to-use-the-tool">How to use the Tool</a><ul>
+<li><a class="reference internal" href="#inputs">Inputs</a></li>
+<li><a class="reference internal" href="#information-panel">Information Panel</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#file-types">File Types</a><ul>
+<li><a class="reference internal" href="#sld-files">SLD Files</a></li>
+<li><a class="reference internal" href="#pdb-files">PDB Files</a></li>
+<li><a class="reference internal" href="#omf-files">OMF Files</a></li>
+<li><a class="reference internal" href="#vtk-files">VTK Files</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#scripting">Scripting</a><ul>
+<li><a class="reference internal" href="#data-creation">1) Data creation</a></li>
+<li><a class="reference internal" href="#model-creation">2) Model creation</a></li>
+<li><a class="reference internal" href="#intensity-calculation">3) Intensity calculation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="resolution_calculator_help.html"
+                          title="previous chapter">Q Resolution Estimator Tool</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="gsc_ex_default_data.html"
+                          title="next chapter">Example 1: Default Calculator Data</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user/qtgui/Calculators/sas_calculator_help.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="gsc_ex_default_data.html" title="Example 1: Default Calculator Data"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="resolution_calculator_help.html" title="Q Resolution Estimator Tool"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../tools.html" >Tools &amp; Utilities</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Generic SAS Calculator Tool</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

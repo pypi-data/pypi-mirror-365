@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Example 2: A Magnetic Cylinder &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Example 3: Magnetic Spheres" href="gsc_ex_magnetic_spheres.html" />
+    <link rel="prev" title="Example 1: Default Calculator Data" href="gsc_ex_default_data.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="gsc_ex_magnetic_spheres.html" title="Example 3: Magnetic Spheres"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="gsc_ex_default_data.html" title="Example 1: Default Calculator Data"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../tools.html" >Tools &amp; Utilities</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sas_calculator_help.html" accesskey="U">Generic SAS Calculator Tool</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Example 2: A Magnetic Cylinder</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="example-2-a-magnetic-cylinder">
+<span id="gsc-ex-magnetic-cylinder"></span><h1>Example 2: A Magnetic Cylinder<a class="headerlink" href="#example-2-a-magnetic-cylinder" title="Link to this heading">¶</a></h1>
+<p>In this example we will use an SLD file describing a single solid
+cylinder, with both nuclear and magnetic scattering length densities (SLDs).
+The mag. cylinder SLD file can be found in the test folder for coordinate data.
+We will then use the calculator to create scattering intensity patterns for
+both a non-magnetised and magnetised cylinder.</p>
+<p>Our cylinder will have a radius of 20Å and a
+length of 40Å, with its axis
+at a 60° polar angle to the <span class="math notranslate nohighlight">\(z\)</span>-axis. The cylinder will have equal nuclear and
+magnetic SLDs, with the magnetic SLD along the cylinder’s axis.
+We will write first an SLD file for an cylinder aligned along the <span class="math notranslate nohighlight">\(z\)</span> axis -
+and perform the rotation within the calculator.</p>
+<p>The file should describe a cylinder as below, with a constant nuclear
+scattering length density of
+1x10<sup>-6</sup>Å<sup>-2</sup> and
+a constant magnetic scattering length density of
+(0, 0, 1x10<sup>-6</sup>)Å<sup>-2</sup>:</p>
+<figure class="align-default">
+<img alt="../../../_images/cylinder_graphic.png" src="../../../_images/cylinder_graphic.png" />
+</figure>
+<p>For completeness, the following code generates the SLD file
+calculator:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">size</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">35.0</span><span class="p">,</span> <span class="mf">35.0</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span> <span class="c1"># describe each axis of the grid</span>
+<span class="c1"># create a full 3D grid</span>
+<span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">zs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">xs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">ys</span> <span class="o">=</span> <span class="n">ys</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="n">zs</span> <span class="o">=</span> <span class="n">zs</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+<span class="c1"># create arrays to hold the SLDs</span>
+<span class="n">N</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+<span class="n">Mx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+<span class="n">My</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+<span class="n">Mz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+<span class="c1"># fill in the values of the non-zero SLDs within the cylinder</span>
+<span class="n">inside_cylinder</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">bitwise_and</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float_power</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">float_power</span><span class="p">(</span><span class="n">ys</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">20</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">zs</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">N</span><span class="p">[</span><span class="n">inside_cylinder</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-6</span>
+<span class="n">Mz</span><span class="p">[</span><span class="n">inside_cylinder</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1e-6</span>
+<span class="c1"># save the output to an sld file</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">zs</span><span class="p">,</span> <span class="n">N</span><span class="p">,</span> <span class="n">Mx</span><span class="p">,</span> <span class="n">My</span><span class="p">,</span> <span class="n">Mz</span><span class="p">))</span>
+<span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="s2">&quot;mag_cylinder.sld&quot;</span><span class="p">,</span> <span class="n">output</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="s2">&quot;x y z N mx my mz&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We do not need to worry that the large number of pixels with zero valued SLD
+around the cylinder slows down the computation, as such pixels are
+stripped before the calculation begins.</p>
+<section id="structural-scattering">
+<h2>Structural Scattering<a class="headerlink" href="#structural-scattering" title="Link to this heading">¶</a></h2>
+<p>First we consider the scattering pattern of a non-magnetic cylinder. We open
+the scattering calculator and use the nuclear datafile <cite>load</cite> button to load
+the nuclear SLD for this sample into the calculator.</p>
+<figure class="align-default">
+<img alt="../../../_images/gsc_tool_1.png" src="../../../_images/gsc_tool_1.png" />
+</figure>
+<p>By pressing the <cite>draw</cite> button we can see a view of the pixels describing the
+sample. Pixels with 0 SLD are coloured in yellow, all others are given a colour
+related
+to their SLD, which in this case is a constant.</p>
+<figure class="align-default">
+<img alt="../../../_images/cylinder_draw_output.png" src="../../../_images/cylinder_draw_output.png" />
+</figure>
+<p>In order to set the cylinder at an angle of 60° to the <span class="math notranslate nohighlight">\(z\)</span> axis we use the
+sample coordinates highlighted in red below. We also want a 100x100 pixel
+binning in <span class="math notranslate nohighlight">\(Q\)</span>.
+Unlike the default data in example 1, this value is not given a warning orange
+background, due to the higher discretisation of the real space data for the
+cylinder.</p>
+<figure class="align-default">
+<img alt="../../../_images/gsc_tool_2.png" src="../../../_images/gsc_tool_2.png" />
+</figure>
+<p>Pressing compute gives us the following output in the main window:</p>
+<figure class="align-default">
+<img alt="../../../_images/nuclear_output.png" src="../../../_images/nuclear_output.png" />
+</figure>
+<p>This relatively simple system can be compared with the analytical model in the
+fitting calculator to test the correctness of our results.
+We send the output of the scattering calculator to the fitting panel as in
+example 1 <a class="reference internal" href="gsc_ex_default_data.html#gsc-ex-default-data"><span class="std std-ref">Example 1: Default Calculator Data</span></a> and choose the <cite>cylinder</cite> category and <cite>cylinder</cite> model.
+We then set the following settings to match the fitting calculator to the
+scattering calculator settings:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><em>scale</em>: 1.0</p></li>
+<li><p><em>background</em>: 0.0</p></li>
+<li><p><em>sld</em>: 1 (<span class="math notranslate nohighlight">\(\times 10^{-6}\)</span> in units)</p></li>
+<li><p><em>sld_solvent</em>: 0</p></li>
+<li><p><em>radius</em>: 20</p></li>
+<li><p><em>length</em>: 40</p></li>
+<li><p><em>theta</em>: 60</p></li>
+<li><p><em>phi</em>: 0</p></li>
+</ul>
+</div></blockquote>
+<p>Computing this gives us the model and residual plots:</p>
+<figure class="align-default">
+<img alt="../../../_images/main_window_3.png" src="../../../_images/main_window_3.png" />
+</figure>
+<p>The value of <span class="math notranslate nohighlight">\(\chi^2 = 5.65\times 10^{-6}\)</span> demonstrates that the calculator has
+produced very accurate results.</p>
+<p>For a better comparison of the results, we can adjust the colour scales by
+right-clicking on each of the scattering intensity plots and selecting <cite>2D
+Color Map</cite> to set the maximum and minimum ranges of the plots:</p>
+<figure class="align-default">
+<img alt="../../../_images/color_map_4.png" src="../../../_images/color_map_4.png" />
+</figure>
+<p>We also need to adjust the scale for the residuals plot. Since the residuals
+for this fit include negative values we need to change from a log to a linear
+scale
+by right clicking the plot and selecting <cite>Toggle Linear/Log Scale</cite>. We can then
+adjust the range of the color map as before - in this case to the range from
+-0.01 to 0.01.</p>
+<figure class="align-default">
+<img alt="../../../_images/main_window_5.png" src="../../../_images/main_window_5.png" />
+</figure>
+</section>
+<section id="magnetic-scattering">
+<h2>Magnetic Scattering<a class="headerlink" href="#magnetic-scattering" title="Link to this heading">¶</a></h2>
+<p>We will now add the magnetic SLD to the cylinder. We load our magnetic cylinder
+SLD file into the magnetic datafile slot, and alter the magnetic beamline
+settings
+to put the polarisation direction along the <span class="math notranslate nohighlight">\(U\)</span> axis (the horizontal direction)
+and to record the ++ cross-section (“+” state as defined in Moon, Riste, and
+Koehler, 1969 <a class="footnote-reference brackets" href="#mrk1969" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> corresponds to 0 in the textbox for up_frac).</p>
+<figure class="align-default">
+<img alt="../../../_images/gsc_tool_5b.png" src="../../../_images/gsc_tool_5b.png" />
+</figure>
+<p>Running the calculation gives us the following output in the main window:</p>
+<figure class="align-default">
+<img alt="../../../_images/magnetic_output.png" src="../../../_images/magnetic_output.png" />
+</figure>
+<p>Additional to the structural scattering pattern now an angular anisotropy due
+to the magnetisation occurs.</p>
+<p>Again we can compare our result to the analytic result of the fitting
+calculator. We set the same settings as before for the cylinder model but also
+check the
+<cite>Magnetism</cite> checkbox in the fitting window. We then navigate to the <cite>Magnetism</cite>
+tab and set the following settings to match with the scattering calculator:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><em>up_frac_i</em>: 0</p></li>
+<li><p><em>up_frac_f</em>: 0</p></li>
+<li><p><em>up_angle</em>: 90 (corresponds to up_theta in the calculator)</p></li>
+<li><p><em>up_phi</em>: 0</p></li>
+<li><p><em>sld_M0</em>: 1 (corresponds to sample magnetic SLD)</p></li>
+<li><p><em>sld_mtheta</em>: 60 (gives the direction of the magnetic SLD in polar angles)</p></li>
+<li><p><em>sld_mphi</em>: 0</p></li>
+<li><p><em>sld_solvent_M0</em>: 0 (the magnetic SLD of the solvent)</p></li>
+<li><p><em>sld_solvent_mtheta</em>: 0</p></li>
+<li><p><em>sld_solvent_mphi</em>: 0</p></li>
+</ul>
+</div></blockquote>
+<figure class="align-default">
+<img alt="../../../_images/magnetism_fitting.png" src="../../../_images/magnetism_fitting.png" />
+</figure>
+<p>Carrying out the fitting gives the following results (after adjusting scales to
+match):</p>
+<figure class="align-default">
+<img alt="../../../_images/main_window_6.png" src="../../../_images/main_window_6.png" />
+</figure>
+<p>Again the value of <span class="math notranslate nohighlight">\(\chi^2 = 1.92\times 10^{-7}\)</span> shows an excellent fit.</p>
+<section id="references">
+<h3>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h3>
+<blockquote>
+<div><aside class="footnote-list brackets">
+<aside class="footnote brackets" id="mrk1969" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Polarization Analysis of Thermal-Neutron Scattering
+(1969) R. M. Moon, T. Riste, and W. C. Koehler Phys. Rev. 181, 920
+<a class="reference external" href="https://doi.org/10.1103/PhysRev.181.920">DOI</a></p>
+</aside>
+</aside>
+</div></blockquote>
+<p><em>Document History</em></p>
+<div class="line-block">
+<div class="line">2021-09-14 Robert Bourne</div>
+</div>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Example 2: A Magnetic Cylinder</a><ul>
+<li><a class="reference internal" href="#structural-scattering">Structural Scattering</a></li>
+<li><a class="reference internal" href="#magnetic-scattering">Magnetic Scattering</a><ul>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="gsc_ex_default_data.html"
+                          title="previous chapter">Example 1: Default Calculator Data</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="gsc_ex_magnetic_spheres.html"
+                          title="next chapter">Example 3: Magnetic Spheres</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user/qtgui/Calculators/gsc_ex_magnetic_cylinder.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="gsc_ex_magnetic_spheres.html" title="Example 3: Magnetic Spheres"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="gsc_ex_default_data.html" title="Example 1: Default Calculator Data"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../tools.html" >Tools &amp; Utilities</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sas_calculator_help.html" >Generic SAS Calculator Tool</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Example 2: A Magnetic Cylinder</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

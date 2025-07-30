@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Theory &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Theory</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="theory">
+<span id="pstheory"></span><h1>Theory<a class="headerlink" href="#theory" title="Link to this heading">¶</a></h1>
+<p>Scattering at vector <span class="math notranslate nohighlight">\(\mathbf Q\)</span> for an individual particle with
+shape parameters <span class="math notranslate nohighlight">\(\mathbf\xi\)</span> and contrast <span class="math notranslate nohighlight">\(\rho_c(\mathbf r, \mathbf\xi)\)</span>
+is computed from the square of the amplitude, <span class="math notranslate nohighlight">\(F(\mathbf Q, \mathbf\xi)\)</span>, as</p>
+<div class="math notranslate nohighlight">
+\[I(\mathbf Q) = F(\mathbf Q, \mathbf\xi) F^*(\mathbf Q, \mathbf\xi)
+    \big/ V(\mathbf\xi)\]</div>
+<p>with the particle volume <span class="math notranslate nohighlight">\(V(\mathbf \xi)\)</span> and</p>
+<div class="math notranslate nohighlight">
+\[F(\mathbf Q, \mathbf\xi) = \int_{\mathbb R^3} \rho_c(\mathbf r, \mathbf\xi)
+    e^{i \mathbf Q \cdot \mathbf r} \,\mathrm d \mathbf r = F\]</div>
+<p>The 1-D scattering pattern for monodisperse particles uses the orientation
+average in spherical coordinates,</p>
+<div class="math notranslate nohighlight">
+\[I(Q) = n \langle F F^*\rangle = \frac{n}{4\pi}
+\int_{\theta=0}^{\pi} \int_{\phi=0}^{2\pi}
+F F^* \sin(\theta) \,\mathrm d\phi \mathrm d\theta\]</div>
+<p>where <span class="math notranslate nohighlight">\(F(\mathbf Q,\mathbf\xi)\)</span> uses
+<span class="math notranslate nohighlight">\(\mathbf Q = [Q \sin\theta\cos\phi, Q \sin\theta\sin\phi, Q \cos\theta]^T\)</span>.
+A <span class="math notranslate nohighlight">\(u\)</span>-substitution may be used, with <span class="math notranslate nohighlight">\(\alpha = \cos \theta\)</span>,
+<span class="math notranslate nohighlight">\(\surd(1 - \alpha^2) = \sin \theta\)</span>, and
+<span class="math notranslate nohighlight">\(\mathrm d\alpha = -\sin\theta\,\mathrm d\theta\)</span>.
+Here,</p>
+<div class="math notranslate nohighlight">
+\[n = V_f/V(\mathbf\xi)\]</div>
+<p>is the number density of scatterers estimated from the volume fraction <span class="math notranslate nohighlight">\(V_f\)</span>
+of particles in solution. In this formalism, each incoming
+wave interacts with exactly one particle before being scattered into the
+detector. All interference effects are within the particle itself.
+The detector accumulates counts in proportion to the relative probability
+at each pixel. The extension to heterogeneous systems is simply a matter of
+adding the scattering patterns in proportion to the number density of each
+particle. That is, given shape parameters <span class="math notranslate nohighlight">\(\mathbf\xi\)</span> with probability
+<span class="math notranslate nohighlight">\(P_\mathbf{\xi}\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[I(Q) = \int_\Xi n(\mathbf\xi) \langle F F^* \rangle \,\mathrm d\xi
+     = V_f\frac{\int_\Xi P_\mathbf{\xi} \langle F F^* \rangle
+     \,\mathrm d\mathbf\xi}{\int_\Xi P_\mathbf\xi V(\mathbf\xi)\,\mathrm d\mathbf\xi}\]</div>
+<p>This approximation is valid in the dilute limit, where particles are
+sufficiently far apart that the interaction between them can be ignored.</p>
+<p>As concentration increases, a structure factor term <span class="math notranslate nohighlight">\(S(Q)\)</span> can be included,
+giving the monodisperse approximation for the interaction between particles,
+with</p>
+<div class="math notranslate nohighlight">
+\[I(Q) = n \langle F F^* \rangle S(Q)\]</div>
+<p>For particles without spherical symmetry, the decoupling approximation
+is more accurate, with</p>
+<div class="math notranslate nohighlight">
+\[I(Q) = n [\langle F F^* \rangle
+    + \langle F \rangle \langle F \rangle^* (S(Q) - 1)]\]</div>
+<p>Or equivalently,</p>
+<div class="math notranslate nohighlight">
+\[I(Q) = P(Q)[1 + \beta\,(S(Q) - 1)]\]</div>
+<p>with the form factor <span class="math notranslate nohighlight">\(P(Q) = n \langle F F^* \rangle\)</span> and
+<span class="math notranslate nohighlight">\(\beta = \langle F \rangle \langle F \rangle^* \big/ \langle F F^* \rangle\)</span>.
+These approximations can be extended to heterogeneous systems using averages
+over size, <span class="math notranslate nohighlight">\(\langle \cdot \rangle_\mathbf\xi = \int_\Xi P_\mathbf\xi \langle\cdot\rangle\,\mathrm d\mathbf\xi \big/ \int_\Xi P_\mathbf\xi \,\mathrm d\mathbf\xi\)</span> and setting
+<span class="math notranslate nohighlight">\(n = V_f\big/\langle V \rangle_\mathbf\xi\)</span>.</p>
+<p>Further improvements can be made using the local monodisperse
+approximation (LMA) or using partial structure factors as done in <a class="footnote-reference brackets" href="#bressler" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>,
+but these are not implemented in this code.</p>
+<p>For hollow shapes, <em>volfraction</em> is computed from the material in the
+shell rather than the shell plus solvent inside the shell.  Using
+<span class="math notranslate nohighlight">\(V_e(\mathbf\xi)\)</span> as the enclosed volume of the shell plus solvent and
+<span class="math notranslate nohighlight">\(V_c(\mathbf\xi)\)</span> as the core volume of solvent inside the shell, we
+can compute the average enclosed and shell volumes as</p>
+<div class="math notranslate nohighlight">
+\begin{align*}
+\langle V_e \rangle &amp;= \frac{
+    \int_\Xi P_\mathbf\xi V_e(\mathbf\xi)\,\mathrm d\mathbf\xi
+}{ \int_\Xi P_\mathbf\xi\,\mathrm d\mathbf \xi } \\
+\langle V_s \rangle &amp;= \frac{
+    \int_\Xi P_\mathbf\xi (V_e(\mathbf\xi) - V_c(\mathbf\xi))\,\mathrm d\mathbf\xi
+}{ \int_\Xi P_\mathbf\xi\,\mathrm d\mathbf \xi }
+\end{align*}</div><p>Given <span class="math notranslate nohighlight">\(n\)</span> particles and a total solvent volume <span class="math notranslate nohighlight">\(V_\text{out}\)</span> outside the
+shells, the volume fraction of the shell, <span class="math notranslate nohighlight">\(\phi_s\)</span> and the shell plus
+enclosed solvent <span class="math notranslate nohighlight">\(\phi_e\)</span> are</p>
+<div class="math notranslate nohighlight">
+\begin{align*}
+\phi_s &amp;= \frac{n \langle V_s \rangle}{n \langle V_s \rangle + n \langle V_c \rangle + V_\text{out}}
+       = \frac{n \langle V_s \rangle}{V_\text{total}} \\
+\phi_e &amp;= \frac{n \langle V_e \rangle}{n \langle V_e \rangle + V_\text{out}}
+       = \frac{n \langle V_e \rangle}{V_\text{total}}
+\end{align*}</div><p>Dividing gives</p>
+<div class="math notranslate nohighlight">
+\[\frac{\phi_S}{\phi_P} = \frac{\langle V_e \rangle}{\langle V_s \rangle}\]</div>
+<p>so the enclosed volume fraction can be computed from the shell volume fraction
+and the form:shell volume ratio as</p>
+<div class="math notranslate nohighlight">
+\[\phi_S = \phi_P \langle V_e \rangle \big/ \langle V_s \rangle\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Prior to Sasmodels v1.0.5 (Nov 2020), the intermediate <span class="math notranslate nohighlight">\(P(Q)\)</span> returned by
+the interaction calculator did not incorporate the volume normalization and
+so <span class="math notranslate nohighlight">\(I(Q) \ne P(Q) S(Q)\)</span>. This became apparent when <span class="math notranslate nohighlight">\(P(Q)\)</span> and <span class="math notranslate nohighlight">\(I(Q)\)</span> were
+plotted together. Further details can be found <a class="reference external" href="https://github.com/SasView/sasview/issues/1698">here</a>.</p>
+</div>
+<section id="related-sections">
+<h2>Related sections<a class="headerlink" href="#related-sections" title="Link to this heading">¶</a></h2>
+<p>The concepts described above are developed further in the following sections:</p>
+<p><a class="reference internal" href="pd/polydispersity.html#polydispersityhelp"><span class="std std-ref">Polydispersity &amp; Orientational Distributions</span></a></p>
+<p><a class="reference internal" href="resolution.html#resolution-smearing"><span class="std std-ref">Resolution (Smearing) Functions</span></a></p>
+<p><a class="reference internal" href="fitting_sq.html#interaction-models"><span class="std std-ref">Fitting Models with Structure Factors</span></a></p>
+<p><a class="reference internal" href="orientation/orientation.html#orientation"><span class="std std-ref">Oriented Particles</span></a></p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="bressler" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Bressler I., Kohlbrecher J., Thunemann A.F.
+<em>J. Appl. Crystallogr.</em> 48 (2015) 1587-1598</p>
+</aside>
+</aside>
+<p><em>Document History</em></p>
+<div class="line-block">
+<div class="line">2019-03-31 Paul Kienzle, Steve King &amp; Richard Heenan</div>
+<div class="line">2021-11-03 Steve King</div>
+<div class="line">2022-10-29 Steve King</div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Theory</a><ul>
+<li><a class="reference internal" href="#related-sections">Related sections</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/user/qtgui/Perspectives/Fitting/theory.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Theory</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

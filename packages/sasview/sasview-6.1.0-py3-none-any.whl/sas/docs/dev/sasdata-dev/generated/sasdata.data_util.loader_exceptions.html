@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>sasdata.data_util.loader_exceptions module &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="sasdata.data_util.manipulations module" href="sasdata.data_util.manipulations.html" />
+    <link rel="prev" title="sasdata.data_util.formatnum module" href="sasdata.data_util.formatnum.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sasdata.data_util.manipulations.html" title="sasdata.data_util.manipulations module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="sasdata.data_util.formatnum.html" title="sasdata.data_util.formatnum module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sasdata.html" >sasdata package</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="sasdata.data_util.html" accesskey="U">sasdata.data_util package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sasdata.data_util.loader_exceptions module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-sasdata.data_util.loader_exceptions">
+<span id="sasdata-data-util-loader-exceptions-module"></span><h1>sasdata.data_util.loader_exceptions module<a class="headerlink" href="#module-sasdata.data_util.loader_exceptions" title="Link to this heading">¶</a></h1>
+<p>Exceptions specific to loading data.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="sasdata.data_util.loader_exceptions.DataReaderException">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sasdata.data_util.loader_exceptions.</span></span><span class="sig-name descname"><span class="pre">DataReaderException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.loader_exceptions.DataReaderException" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Exception for files that were able to mostly load, but had minor issues
+along the way.
+Any exceptions of this type should be put into the datainfo.errors</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sasdata.data_util.loader_exceptions.DataReaderException.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160; <span class="pre">Exception</span> <span class="pre">for</span> <span class="pre">files</span> <span class="pre">that</span> <span class="pre">were</span> <span class="pre">able</span> <span class="pre">to</span> <span class="pre">mostly</span> <span class="pre">load,</span> <span class="pre">but</span> <span class="pre">had</span> <span class="pre">minor</span> <span class="pre">issues\n</span>&#160;&#160;&#160; <span class="pre">along</span> <span class="pre">the</span> <span class="pre">way.\n</span>&#160;&#160;&#160; <span class="pre">Any</span> <span class="pre">exceptions</span> <span class="pre">of</span> <span class="pre">this</span> <span class="pre">type</span> <span class="pre">should</span> <span class="pre">be</span> <span class="pre">put</span> <span class="pre">into</span> <span class="pre">the</span> <span class="pre">datainfo.errors\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#sasdata.data_util.loader_exceptions.DataReaderException.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.loader_exceptions.DataReaderException.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.loader_exceptions.DataReaderException.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sasdata.data_util.loader_exceptions.DataReaderException.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sasdata.data_util.loader_exceptions'</span></em><a class="headerlink" href="#sasdata.data_util.loader_exceptions.DataReaderException.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sasdata.data_util.loader_exceptions.DataReaderException.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#sasdata.data_util.loader_exceptions.DataReaderException.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="sasdata.data_util.loader_exceptions.DefaultReaderException">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sasdata.data_util.loader_exceptions.</span></span><span class="sig-name descname"><span class="pre">DefaultReaderException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.loader_exceptions.DefaultReaderException" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Exception for files with no associated reader. This should be thrown by
+default readers only to tell Loader to try the next reader.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sasdata.data_util.loader_exceptions.DefaultReaderException.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160; <span class="pre">Exception</span> <span class="pre">for</span> <span class="pre">files</span> <span class="pre">with</span> <span class="pre">no</span> <span class="pre">associated</span> <span class="pre">reader.</span> <span class="pre">This</span> <span class="pre">should</span> <span class="pre">be</span> <span class="pre">thrown</span> <span class="pre">by\n</span>&#160;&#160;&#160; <span class="pre">default</span> <span class="pre">readers</span> <span class="pre">only</span> <span class="pre">to</span> <span class="pre">tell</span> <span class="pre">Loader</span> <span class="pre">to</span> <span class="pre">try</span> <span class="pre">the</span> <span class="pre">next</span> <span class="pre">reader.\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#sasdata.data_util.loader_exceptions.DefaultReaderException.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.loader_exceptions.DefaultReaderException.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.loader_exceptions.DefaultReaderException.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sasdata.data_util.loader_exceptions.DefaultReaderException.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sasdata.data_util.loader_exceptions'</span></em><a class="headerlink" href="#sasdata.data_util.loader_exceptions.DefaultReaderException.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sasdata.data_util.loader_exceptions.DefaultReaderException.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#sasdata.data_util.loader_exceptions.DefaultReaderException.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="sasdata.data_util.loader_exceptions.FileContentsException">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sasdata.data_util.loader_exceptions.</span></span><span class="sig-name descname"><span class="pre">FileContentsException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.loader_exceptions.FileContentsException" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Exception for files with an associated reader, but with no loadable data.
+This is useful for catching loader or file format issues.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sasdata.data_util.loader_exceptions.FileContentsException.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160; <span class="pre">Exception</span> <span class="pre">for</span> <span class="pre">files</span> <span class="pre">with</span> <span class="pre">an</span> <span class="pre">associated</span> <span class="pre">reader,</span> <span class="pre">but</span> <span class="pre">with</span> <span class="pre">no</span> <span class="pre">loadable</span> <span class="pre">data.\n</span>&#160;&#160;&#160; <span class="pre">This</span> <span class="pre">is</span> <span class="pre">useful</span> <span class="pre">for</span> <span class="pre">catching</span> <span class="pre">loader</span> <span class="pre">or</span> <span class="pre">file</span> <span class="pre">format</span> <span class="pre">issues.\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#sasdata.data_util.loader_exceptions.FileContentsException.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.loader_exceptions.FileContentsException.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.loader_exceptions.FileContentsException.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sasdata.data_util.loader_exceptions.FileContentsException.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sasdata.data_util.loader_exceptions'</span></em><a class="headerlink" href="#sasdata.data_util.loader_exceptions.FileContentsException.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sasdata.data_util.loader_exceptions.FileContentsException.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#sasdata.data_util.loader_exceptions.FileContentsException.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="sasdata.data_util.loader_exceptions.NoKnownLoaderException">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sasdata.data_util.loader_exceptions.</span></span><span class="sig-name descname"><span class="pre">NoKnownLoaderException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.loader_exceptions.NoKnownLoaderException" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Exception for files with no associated reader based on the file
+extension of the loaded file. This exception should only be thrown by
+loader.py.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sasdata.data_util.loader_exceptions.NoKnownLoaderException.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160; <span class="pre">Exception</span> <span class="pre">for</span> <span class="pre">files</span> <span class="pre">with</span> <span class="pre">no</span> <span class="pre">associated</span> <span class="pre">reader</span> <span class="pre">based</span> <span class="pre">on</span> <span class="pre">the</span> <span class="pre">file\n</span>&#160;&#160;&#160; <span class="pre">extension</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">loaded</span> <span class="pre">file.</span> <span class="pre">This</span> <span class="pre">exception</span> <span class="pre">should</span> <span class="pre">only</span> <span class="pre">be</span> <span class="pre">thrown</span> <span class="pre">by\n</span>&#160;&#160;&#160; <span class="pre">loader.py.\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#sasdata.data_util.loader_exceptions.NoKnownLoaderException.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.loader_exceptions.NoKnownLoaderException.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">e</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.loader_exceptions.NoKnownLoaderException.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sasdata.data_util.loader_exceptions.NoKnownLoaderException.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sasdata.data_util.loader_exceptions'</span></em><a class="headerlink" href="#sasdata.data_util.loader_exceptions.NoKnownLoaderException.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sasdata.data_util.loader_exceptions.NoKnownLoaderException.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#sasdata.data_util.loader_exceptions.NoKnownLoaderException.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">sasdata.data_util.loader_exceptions module</a><ul>
+<li><a class="reference internal" href="#sasdata.data_util.loader_exceptions.DataReaderException"><code class="docutils literal notranslate"><span class="pre">DataReaderException</span></code></a><ul>
+<li><a class="reference internal" href="#sasdata.data_util.loader_exceptions.DataReaderException.__doc__"><code class="docutils literal notranslate"><span class="pre">DataReaderException.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.loader_exceptions.DataReaderException.__init__"><code class="docutils literal notranslate"><span class="pre">DataReaderException.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.loader_exceptions.DataReaderException.__module__"><code class="docutils literal notranslate"><span class="pre">DataReaderException.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.loader_exceptions.DataReaderException.__weakref__"><code class="docutils literal notranslate"><span class="pre">DataReaderException.__weakref__</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sasdata.data_util.loader_exceptions.DefaultReaderException"><code class="docutils literal notranslate"><span class="pre">DefaultReaderException</span></code></a><ul>
+<li><a class="reference internal" href="#sasdata.data_util.loader_exceptions.DefaultReaderException.__doc__"><code class="docutils literal notranslate"><span class="pre">DefaultReaderException.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.loader_exceptions.DefaultReaderException.__init__"><code class="docutils literal notranslate"><span class="pre">DefaultReaderException.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.loader_exceptions.DefaultReaderException.__module__"><code class="docutils literal notranslate"><span class="pre">DefaultReaderException.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.loader_exceptions.DefaultReaderException.__weakref__"><code class="docutils literal notranslate"><span class="pre">DefaultReaderException.__weakref__</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sasdata.data_util.loader_exceptions.FileContentsException"><code class="docutils literal notranslate"><span class="pre">FileContentsException</span></code></a><ul>
+<li><a class="reference internal" href="#sasdata.data_util.loader_exceptions.FileContentsException.__doc__"><code class="docutils literal notranslate"><span class="pre">FileContentsException.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.loader_exceptions.FileContentsException.__init__"><code class="docutils literal notranslate"><span class="pre">FileContentsException.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.loader_exceptions.FileContentsException.__module__"><code class="docutils literal notranslate"><span class="pre">FileContentsException.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.loader_exceptions.FileContentsException.__weakref__"><code class="docutils literal notranslate"><span class="pre">FileContentsException.__weakref__</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sasdata.data_util.loader_exceptions.NoKnownLoaderException"><code class="docutils literal notranslate"><span class="pre">NoKnownLoaderException</span></code></a><ul>
+<li><a class="reference internal" href="#sasdata.data_util.loader_exceptions.NoKnownLoaderException.__doc__"><code class="docutils literal notranslate"><span class="pre">NoKnownLoaderException.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.loader_exceptions.NoKnownLoaderException.__init__"><code class="docutils literal notranslate"><span class="pre">NoKnownLoaderException.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.loader_exceptions.NoKnownLoaderException.__module__"><code class="docutils literal notranslate"><span class="pre">NoKnownLoaderException.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.loader_exceptions.NoKnownLoaderException.__weakref__"><code class="docutils literal notranslate"><span class="pre">NoKnownLoaderException.__weakref__</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="sasdata.data_util.formatnum.html"
+                          title="previous chapter">sasdata.data_util.formatnum module</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="sasdata.data_util.manipulations.html"
+                          title="next chapter">sasdata.data_util.manipulations module</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/dev/sasdata-dev/generated/sasdata.data_util.loader_exceptions.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sasdata.data_util.manipulations.html" title="sasdata.data_util.manipulations module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="sasdata.data_util.formatnum.html" title="sasdata.data_util.formatnum module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sasdata.html" >sasdata package</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="sasdata.data_util.html" >sasdata.data_util package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sasdata.data_util.loader_exceptions module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

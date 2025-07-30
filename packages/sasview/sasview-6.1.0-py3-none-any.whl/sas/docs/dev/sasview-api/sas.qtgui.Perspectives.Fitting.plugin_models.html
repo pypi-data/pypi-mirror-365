@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>sas.qtgui.Perspectives.Fitting.plugin_models package &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="sas.qtgui.Perspectives.Invariant package" href="sas.qtgui.Perspectives.Invariant.html" />
+    <link rel="prev" title="sas.qtgui.Perspectives.Fitting.UI package" href="sas.qtgui.Perspectives.Fitting.UI.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sas.qtgui.Perspectives.Invariant.html" title="sas.qtgui.Perspectives.Invariant package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="sas.qtgui.Perspectives.Fitting.UI.html" title="sas.qtgui.Perspectives.Fitting.UI package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="modules.html" >SasView</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sas.html" >sas package</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="sas.qtgui.html" >sas.qtgui package</a> &#187;</li>
+          <li class="nav-item nav-item-5"><a href="sas.qtgui.Perspectives.html" >sas.qtgui.Perspectives package</a> &#187;</li>
+          <li class="nav-item nav-item-6"><a href="sas.qtgui.Perspectives.Fitting.html" accesskey="U">sas.qtgui.Perspectives.Fitting package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sas.qtgui.Perspectives.Fitting.plugin_models package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="sas-qtgui-perspectives-fitting-plugin-models-package">
+<h1>sas.qtgui.Perspectives.Fitting.plugin_models package<a class="headerlink" href="#sas-qtgui-perspectives-fitting-plugin-models-package" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-sas.qtgui.Perspectives.Fitting.plugin_models.plugin_structure_template">
+<span id="sas-qtgui-perspectives-fitting-plugin-models-plugin-structure-template-module"></span><h2>sas.qtgui.Perspectives.Fitting.plugin_models.plugin_structure_template module<a class="headerlink" href="#module-sas.qtgui.Perspectives.Fitting.plugin_models.plugin_structure_template" title="Link to this heading">¶</a></h2>
+<section id="definition">
+<h3>Definition<a class="headerlink" href="#definition" title="Link to this heading">¶</a></h3>
+<p>This template can be used to develop your plugin structure factor.</p>
+<div class="math notranslate nohighlight">
+\[I(q) = mq+b\]</div>
+<p>where <em>m</em> is the slope and <em>b</em> is the intercept.</p>
+</section>
+<section id="validation">
+<h3>Validation<a class="headerlink" href="#validation" title="Link to this heading">¶</a></h3>
+</section>
+<section id="references">
+<h3>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>A LastNameA and B. LastNameB, <em>Title</em>, Journal, MoreInfo, (YEAR)</p></li>
+</ol>
+</section>
+<section id="authorship-and-verification">
+<h3>Authorship and Verification<a class="headerlink" href="#authorship-and-verification" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Author:</strong> Your Name Here</p></li>
+<li><p><strong>Last Modified by:</strong></p></li>
+<li><p><strong>Last Reviewed by:</strong> Reviewer Name Here <strong>Date:</strong> Date Here</p></li>
+</ul>
+</section>
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.Fitting.plugin_models.plugin_structure_template.Iq">
+<span class="sig-prename descclassname"><span class="pre">sas.qtgui.Perspectives.Fitting.plugin_models.plugin_structure_template.</span></span><span class="sig-name descname"><span class="pre">Iq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.Fitting.plugin_models.plugin_structure_template.Iq" title="Link to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Parameters:</dt><dd><p>q:      input scattering vectors, units 1/Ang
+m:      slope of line, units Ang/cm, default value=2
+b:      intercept of line, units 1/cm, default value=1</p>
+</dd>
+<dt>Returns:</dt><dd><p>I(q):   1D scattering intensity at q, units 1/cm</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-sas.qtgui.Perspectives.Fitting.plugin_models.plugin_template">
+<span id="sas-qtgui-perspectives-fitting-plugin-models-plugin-template-module"></span><h2>sas.qtgui.Perspectives.Fitting.plugin_models.plugin_template module<a class="headerlink" href="#module-sas.qtgui.Perspectives.Fitting.plugin_models.plugin_template" title="Link to this heading">¶</a></h2>
+<section id="id1">
+<h3>Definition<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
+<p>This template can be used to develop your plugin model.</p>
+<div class="math notranslate nohighlight">
+\[I(q) = mq+b\]</div>
+<p>where <em>m</em> is the slope and <em>b</em> is the intercept.</p>
+</section>
+<section id="id2">
+<h3>Validation<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+</section>
+<section id="id3">
+<h3>References<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p>A LastNameA and B. LastNameB, <em>Title</em>, Journal, MoreInfo, (YEAR)</p></li>
+</ol>
+</section>
+<section id="id4">
+<h3>Authorship and Verification<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Author:</strong> Your Name Here</p></li>
+<li><p><strong>Last Modified by:</strong></p></li>
+<li><p><strong>Last Reviewed by:</strong> Reviewer Name Here <strong>Date:</strong> Date Here</p></li>
+</ul>
+</section>
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.Fitting.plugin_models.plugin_template.Iq">
+<span class="sig-prename descclassname"><span class="pre">sas.qtgui.Perspectives.Fitting.plugin_models.plugin_template.</span></span><span class="sig-name descname"><span class="pre">Iq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.Fitting.plugin_models.plugin_template.Iq" title="Link to this definition">¶</a></dt>
+<dd><dl class="simple">
+<dt>Parameters:</dt><dd><p>q:      input scattering vectors, units 1/Ang
+m:      slope of line, units Ang/cm, default value=2
+b:      intercept of line, units 1/cm, default value=1</p>
+</dd>
+<dt>Returns:</dt><dd><p>I(q):   1D scattering intensity at q, units 1/cm</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-sas.qtgui.Perspectives.Fitting.plugin_models">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-sas.qtgui.Perspectives.Fitting.plugin_models" title="Link to this heading">¶</a></h2>
+<p>Example plugin models to be added to the SasView plugin directory on startup
+if no plugins are present.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">sas.qtgui.Perspectives.Fitting.plugin_models package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-sas.qtgui.Perspectives.Fitting.plugin_models.plugin_structure_template">sas.qtgui.Perspectives.Fitting.plugin_models.plugin_structure_template module</a><ul>
+<li><a class="reference internal" href="#definition">Definition</a></li>
+<li><a class="reference internal" href="#validation">Validation</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+<li><a class="reference internal" href="#authorship-and-verification">Authorship and Verification</a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.Fitting.plugin_models.plugin_structure_template.Iq"><code class="docutils literal notranslate"><span class="pre">Iq()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-sas.qtgui.Perspectives.Fitting.plugin_models.plugin_template">sas.qtgui.Perspectives.Fitting.plugin_models.plugin_template module</a><ul>
+<li><a class="reference internal" href="#id1">Definition</a></li>
+<li><a class="reference internal" href="#id2">Validation</a></li>
+<li><a class="reference internal" href="#id3">References</a></li>
+<li><a class="reference internal" href="#id4">Authorship and Verification</a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.Fitting.plugin_models.plugin_template.Iq"><code class="docutils literal notranslate"><span class="pre">Iq()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-sas.qtgui.Perspectives.Fitting.plugin_models">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="sas.qtgui.Perspectives.Fitting.UI.html"
+                          title="previous chapter">sas.qtgui.Perspectives.Fitting.UI package</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="sas.qtgui.Perspectives.Invariant.html"
+                          title="next chapter">sas.qtgui.Perspectives.Invariant package</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/dev/sasview-api/sas.qtgui.Perspectives.Fitting.plugin_models.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sas.qtgui.Perspectives.Invariant.html" title="sas.qtgui.Perspectives.Invariant package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="sas.qtgui.Perspectives.Fitting.UI.html" title="sas.qtgui.Perspectives.Fitting.UI package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="modules.html" >SasView</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sas.html" >sas package</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="sas.qtgui.html" >sas.qtgui package</a> &#187;</li>
+          <li class="nav-item nav-item-5"><a href="sas.qtgui.Perspectives.html" >sas.qtgui.Perspectives package</a> &#187;</li>
+          <li class="nav-item nav-item-6"><a href="sas.qtgui.Perspectives.Fitting.html" >sas.qtgui.Perspectives.Fitting package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sas.qtgui.Perspectives.Fitting.plugin_models package</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

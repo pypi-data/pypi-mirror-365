@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>be_polyelectrolyte &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="broad_peak" href="broad_peak.html" />
+    <link rel="prev" title="Shape-Independent Functions" href="../qtgui/Perspectives/Fitting/models/shape-independent.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="broad_peak.html" title="broad_peak"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../qtgui/Perspectives/Fitting/models/shape-independent.html" title="Shape-Independent Functions"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-independent.html" accesskey="U">Shape-Independent Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">be_polyelectrolyte</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="be-polyelectrolyte">
+<span id="id1"></span><h1>be_polyelectrolyte<a class="headerlink" href="#be-polyelectrolyte" title="Link to this heading">¶</a></h1>
+<p>Polyelectrolyte with the RPA expression derived by Borue and Erukhimovich</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>scale</p></td>
+<td><p>Scale factor or Volume fraction</p></td>
+<td><p>None</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>background</p></td>
+<td><p>Source background</p></td>
+<td><p>cm<sup>-1</sup></p></td>
+<td><p>0.001</p></td>
+</tr>
+<tr class="row-even"><td><p>contrast_factor</p></td>
+<td><p>Contrast factor of the polymer</p></td>
+<td><p>barns</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>bjerrum_length</p></td>
+<td><p>Bjerrum length</p></td>
+<td><p>Å</p></td>
+<td><p>7.1</p></td>
+</tr>
+<tr class="row-even"><td><p>virial_param</p></td>
+<td><p>Virial parameter</p></td>
+<td><p>Å<sup>3</sup></p></td>
+<td><p>12</p></td>
+</tr>
+<tr class="row-odd"><td><p>monomer_length</p></td>
+<td><p>Monomer length</p></td>
+<td><p>Å</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-even"><td><p>salt_concentration</p></td>
+<td><p>Concentration of monovalent salt</p></td>
+<td><p>mol/L</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>ionization_degree</p></td>
+<td><p>Degree of ionization</p></td>
+<td><p>None</p></td>
+<td><p>0.05</p></td>
+</tr>
+<tr class="row-even"><td><p>polymer_concentration</p></td>
+<td><p>Polymer molar concentration</p></td>
+<td><p>mol/L</p></td>
+<td><p>0.7</p></td>
+</tr>
+</tbody>
+</table>
+<p>The returned value is scaled to units of cm<sup>-1</sup> sr<sup>-1</sup>, absolute scale.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please read the Validation section below.</p>
+</div>
+<p><strong>Definition</strong>
+This model calculates the structure factor of a polyelectrolyte solution with
+the RPA expression derived by Borue and Erukhimovich<a class="footnote-reference brackets" href="#borue" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.  Note however
+that the fitting procedure here does not follow the notation in that reference
+as ‘s’ and ‘t’ are <strong>not</strong> decoupled. Instead the scattering intensity <span class="math notranslate nohighlight">\(I(q)\)</span>
+is calculated as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}I(q) &amp;= K\frac{q^2+k^2}{4\pi L_b\alpha ^2}
+    \frac{1}{1+r_{0}^4(q^2+k^2)(q^2-12hC_a/b^2)} + \text{background} \\
+k^2 &amp;= 4\pi L_b(2C_s + \alpha C_a) \\
+r_{0}^2 &amp;= \frac{b}{\alpha \sqrt{C_a 48\pi L_b}}\end{split}\]</div>
+<p>where</p>
+<p><span class="math notranslate nohighlight">\(K\)</span> is the contrast factor for the polymer which is defined differently than in
+other models and is given in barns where 1 <span class="math notranslate nohighlight">\(barn = 10^{-24}\)</span> <span class="math notranslate nohighlight">\(cm^2\)</span>.  <span class="math notranslate nohighlight">\(K\)</span> is
+defined as:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}K &amp;= a^2 \\
+a &amp;= b_p - (v_p/v_s) b_s\end{split}\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(b_p\)</span> and <span class="math notranslate nohighlight">\(b_s\)</span> are <strong>sum of the scattering lengths of the atoms</strong>
+constituting the polymer monomer and the solvent molecules, respectively.</p></li>
+<li><p><span class="math notranslate nohighlight">\(v_p\)</span> and <span class="math notranslate nohighlight">\(v_s\)</span> are the partial molar volume of the polymer and the
+solvent, respectively.</p></li>
+<li><p><span class="math notranslate nohighlight">\(L_b\)</span> is the Bjerrum length (Å) - <strong>Note:</strong> This parameter needs to be
+kept constant for a given solvent and temperature!</p></li>
+<li><p><span class="math notranslate nohighlight">\(h\)</span> is the virial parameter (Å<sup>3</sup>) - <strong>Note:</strong> See <a class="footnote-reference brackets" href="#borue" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> for the
+correct interpretation of this parameter.  It incorporates second and third
+virial coefficients and can be <em>negative</em>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(b\)</span> is the monomer length (Å).</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_s\)</span> is the concentration of monovalent salt(1/Å<sup>3</sup> - internally
+converted from mol/L).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\alpha\)</span> is the degree of ionization (the ratio of charged monomers to the
+total number of monomers)</p></li>
+<li><p><span class="math notranslate nohighlight">\(C_a\)</span> is the polymer molar concentration (1/Å<sup>3</sup> - internally converted
+from mol/L)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\text{background}\)</span> is the incoherent background.</p></li>
+</ul>
+<p>For 2D data the scattering intensity is calculated in the same way as 1D,
+where the <span class="math notranslate nohighlight">\(\vec q\)</span> vector is defined as</p>
+<div class="math notranslate nohighlight">
+\[q = \sqrt{q_x^2 + q_y^2}\]</div>
+<p><strong>Validation</strong></p>
+<p>As of the last revision, this code is believed to be correct.  However it
+needs further validation and should be used with caution at this time.  The
+history of this code goes back to a 1998 implementation. It was recently noted
+that in that implementation, while both the polymer concentration and salt
+concentration were converted from experimental units of mol/L to more
+dimensionally useful units of 1/Å<sup>3</sup>, only the converted version of the
+polymer concentration was actually being used in the calculation while the
+unconverted salt concentration (still in apparent units of mol/L) was being
+used.  This was carried through to Sasmodels as used for SasView 4.1 (though
+the line of code converting the salt concentration to the new units was removed
+somewhere along the line). Simple dimensional analysis of the calculation shows
+that the converted salt concentration should be used, which the original code
+suggests was the intention, so this has now been corrected (for SasView 4.2).
+Once better validation has been performed this note will be removed.</p>
+<figure class="align-default" id="id7">
+<img alt="../../_images/be_polyelectrolyte_autogenfig.png" src="../../_images/be_polyelectrolyte_autogenfig.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 100 </span><span class="caption-text">1D plot corresponding to the default parameters of the model.</span><a class="headerlink" href="#id7" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Source</strong></p>
+<p><a class="reference download internal" download="" href="../../_downloads/f6a7de7fc8f2ba35f991dbc6c4c70477/be_polyelectrolyte.py"><code class="xref download docutils literal notranslate"><span class="pre">be_polyelectrolyte.py</span></code></a></p>
+<p><strong>References</strong></p>
+<p>For further details, see <a class="footnote-reference brackets" href="#joanny1990" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>, <a class="footnote-reference brackets" href="#moussaid1993" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>, <a class="footnote-reference brackets" href="#raphael1990" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>.</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="borue" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id2">1</a>,<a role="doc-backlink" href="#id3">2</a>)</span>
+<p>V Y Borue, I Y Erukhimovich, <em>Macromolecules</em>, 21 (1988) 3240</p>
+</aside>
+<aside class="footnote brackets" id="joanny1990" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">2</a><span class="fn-bracket">]</span></span>
+<p>J F Joanny, L Leibler, <em>Journal de Physique</em>, 51 (1990) 545</p>
+</aside>
+<aside class="footnote brackets" id="moussaid1993" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">3</a><span class="fn-bracket">]</span></span>
+<p>A Moussaid, F Schosseler, J P Munch, S Candau,
+<em>J. Journal de Physique II France</em>, 3 (1993) 573</p>
+</aside>
+<aside class="footnote brackets" id="raphael1990" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">4</a><span class="fn-bracket">]</span></span>
+<p>E Raphael, J F Joanny, <em>Europhysics Letters</em>, 11 (1990) 179</p>
+</aside>
+</aside>
+<p><strong>Authorship and Verification</strong></p>
+<ul class="simple">
+<li><p><strong>Author:</strong> NIST IGOR/DANSE <strong>Date:</strong> pre 2010</p></li>
+<li><p><strong>Last Modified by:</strong> Paul Butler <strong>Date:</strong> September 25, 2018</p></li>
+<li><p><strong>Last Reviewed by:</strong> Paul Butler <strong>Date:</strong> September 25, 2018</p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../qtgui/Perspectives/Fitting/models/shape-independent.html"
+                          title="previous chapter">Shape-Independent Functions</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="broad_peak.html"
+                          title="next chapter">broad_peak</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user/models/be_polyelectrolyte.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="broad_peak.html" title="broad_peak"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../qtgui/Perspectives/Fitting/models/shape-independent.html" title="Shape-Independent Functions"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-independent.html" >Shape-Independent Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">be_polyelectrolyte</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

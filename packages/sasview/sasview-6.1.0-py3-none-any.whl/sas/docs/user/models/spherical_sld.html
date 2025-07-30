@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>spherical_sld &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="superball" href="superball.html" />
+    <link rel="prev" title="sphere" href="sphere.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="superball.html" title="superball"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="sphere.html" title="sphere"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-sphere.html" accesskey="U">Sphere Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">spherical_sld</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="spherical-sld">
+<span id="id1"></span><h1>spherical_sld<a class="headerlink" href="#spherical-sld" title="Link to this heading">¶</a></h1>
+<p>Spherical SLD intensity calculation</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>scale</p></td>
+<td><p>Scale factor or Volume fraction</p></td>
+<td><p>None</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>background</p></td>
+<td><p>Source background</p></td>
+<td><p>cm<sup>-1</sup></p></td>
+<td><p>0.001</p></td>
+</tr>
+<tr class="row-even"><td><p>n_shells</p></td>
+<td><p>number of shells (must be integer)</p></td>
+<td><p>None</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>sld_solvent</p></td>
+<td><p>solvent sld</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>sld[n_shells]</p></td>
+<td><p>sld of the shell</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>4.06</p></td>
+</tr>
+<tr class="row-odd"><td><p>thickness[n_shells]</p></td>
+<td><p>thickness shell</p></td>
+<td><p>Å</p></td>
+<td><p>100</p></td>
+</tr>
+<tr class="row-even"><td><p>interface[n_shells]</p></td>
+<td><p>thickness of the interface</p></td>
+<td><p>Å</p></td>
+<td><p>50</p></td>
+</tr>
+<tr class="row-odd"><td><p>shape[n_shells]</p></td>
+<td><p>interface shape</p></td>
+<td><p>None</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>nu[n_shells]</p></td>
+<td><p>interface shape exponent</p></td>
+<td><p>None</p></td>
+<td><p>2.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>n_steps</p></td>
+<td><p>number of steps in each interface (must be an odd integer)</p></td>
+<td><p>None</p></td>
+<td><p>35</p></td>
+</tr>
+</tbody>
+</table>
+<p>The returned value is scaled to units of cm<sup>-1</sup> sr<sup>-1</sup>, absolute scale.</p>
+<p><strong>Definition</strong></p>
+<p>Similarly to the onion, this model provides the form factor, <span class="math notranslate nohighlight">\(P(q)\)</span>, for
+a multi-shell sphere, where the interface between the each neighboring
+shells can be described by the error function, power-law, or exponential
+functions.  The scattering intensity is computed by building a continuous
+custom SLD profile along the radius of the particle. The SLD profile is
+composed of a number of uniform shells with interfacial shells between them.</p>
+<figure class="align-default" id="id4">
+<img alt="../../_images/spherical_sld_profile.png" src="../../_images/spherical_sld_profile.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 93 </span><span class="caption-text">Example SLD profile</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Unlike the <a class="reference internal" href="onion.html#onion"><span class="std std-ref">onion</span></a> model (using an analytical integration), the interfacial
+shells here are sub-divided and numerically integrated assuming each
+sub-shell is described by a line function, with <em>n_steps</em> sub-shells per
+interface. The form factor is normalized by the total volume of the sphere.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>n_shells</em> must be an integer. <em>n_steps</em> must be an ODD integer.</p>
+</div>
+<p>Interface shapes are as follows:</p>
+<blockquote>
+<div><p>0: erf(<span class="math notranslate nohighlight">\(\nu z\)</span>)</p>
+<p>1: Rpow(<span class="math notranslate nohighlight">\(z^\nu\)</span>)</p>
+<p>2: Lpow(<span class="math notranslate nohighlight">\(z^\nu\)</span>)</p>
+<p>3: Rexp(<span class="math notranslate nohighlight">\(-\nu z\)</span>)</p>
+<p>4: Lexp(<span class="math notranslate nohighlight">\(-\nu z\)</span>)</p>
+<p>5: Boucher (<span class="math notranslate nohighlight">\((1-z^2)^(\nu/2-2)\)</span>)</p>
+</div></blockquote>
+<p>The form factor <span class="math notranslate nohighlight">\(P(q)\)</span> in 1D is calculated by <a class="footnote-reference brackets" href="#feigin1987" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>:</p>
+<div class="math notranslate nohighlight">
+\[P(q) = \frac{f^2}{V_\text{particle}} \text{ where }
+f = f_\text{core} + \sum_{\text{inter}_i=0}^N f_{\text{inter}_i} +
+\sum_{\text{flat}_i=0}^N f_{\text{flat}_i} +f_\text{solvent}\]</div>
+<p>For a spherically symmetric particle with a particle density <span class="math notranslate nohighlight">\(\rho_x(r)\)</span>
+the sld function can be defined as:</p>
+<div class="math notranslate nohighlight">
+\[f_x = 4 \pi \int_{0}^{\infty} \rho_x(r)  \frac{\sin(qr)} {qr^2} r^2 dr\]</div>
+<p>so that individual terms can be calculated as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f_\text{core}
+    &amp;= 4 \pi \int_{0}^{r_\text{core}} \rho_\text{core}
+        \frac{\sin(qr)} {qr} r^2 dr \\
+    &amp;= 3 \rho_\text{core} V(r_\text{core})
+      \left[ \frac{\sin(qr_\text{core}) - qr_\text{core} \cos(qr_\text{core})}
+            {qr_\text{core}^3} \right] \\
+f_{\text{inter}_i}
+    &amp;= 4 \pi \int_{\Delta t_{ \text{inter}_i } } \rho_{ \text{inter}_i }
+        \frac{\sin(qr)} {qr} r^2 dr \\
+f_{\text{shell}_i}
+    &amp;= 4 \pi \int_{\Delta t_{ \text{inter}_i } } \rho_{ \text{flat}_i }
+        \frac{\sin(qr)} {qr} r^2 dr \\
+    &amp;= 3 \rho_{\text{flat}_i} V (r_{\text{inter}_i}
+                                   + \Delta t_{\text{inter}_i})
+        \left[
+            \frac{\sin(qr_{\text{inter}_i} + \Delta t_{\text{inter}_i})
+                - q (r_{\text{inter}_i} + \Delta t_{ \text{inter}_i })
+                \cos(q(r_{\text{inter}_i} + \Delta t_{\text{inter}_i}))}
+            {q ( r_{\text{inter}_i} + \Delta t_{\text{inter}_i} )^3 }
+        \right] \\
+    &amp;\quad {} - 3 \rho_{ \text{flat}_i } V (r_{\text{inter}_i})
+        \left[
+            \frac{\sin(qr_{\text{inter}_i})
+                - qr_{\text{flat}_i} \cos(qr_{\text{inter}_i})}
+            {qr_{\text{inter}_i}^3}
+        \right] \\
+f_\text{solvent}
+    &amp;= 4 \pi \int_{r_N}^{\infty} \rho_\text{solvent}
+        \frac{\sin(qr)} {qr} r^2 dr \\
+    &amp;= 3 \rho_\text{solvent} V(r_N)
+        \left[ \frac{\sin(qr_N) - qr_N \cos(qr_N)} {qr_N^3} \right]\end{split}\]</div>
+<p>Here we assumed that the SLDs of the core and solvent are constant in <span class="math notranslate nohighlight">\(r\)</span>.
+The SLD at the interface between shells, <span class="math notranslate nohighlight">\(\rho_{\text {inter}_i}\)</span>
+is calculated with a function chosen by an user, where the functions are</p>
+<p>Exp:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\rho_{{inter}_i}(r) &amp;=
+\begin{cases}
+    B\, \exp\left(
+        \frac{\pm A(r - r_{\text{flat}_i})}{\Delta t_{\text{inter}_i}}
+    \right) + C  &amp; \mbox{for } A \neq 0 \\
+    B\, \left(
+        \frac{(r - r_{\text{flat}_i})}{\Delta t_{\text{inter}_i}}
+    \right) + C  &amp; \mbox{for } A = 0 \\
+\end{cases}\end{split}\]</div>
+<p>Power-Law:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\rho_{{inter}_i}(r) &amp;=
+\begin{cases}
+    \pm B\, \left(
+        \frac{(r - r_{\text{flat}_i})}{\Delta t_{ \text{inter}_i }}
+        \right) ^A  + C  &amp; \mbox{for } A \neq 0 \\
+    \rho_{\text{flat}_{i+1}}  &amp; \mbox{for } A = 0 \\
+\end{cases}\end{split}\]</div>
+<p>Erf:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\rho_{{inter}_i}(r) =
+\begin{cases}
+    B\, \text{erf} \left(
+        \frac{A(r - r_{\text{flat}_i})}{\sqrt{2} \Delta t_{\text{inter}_i}}
+        \right) + C  &amp; \mbox{for } A \neq 0 \\
+    B\, \left(
+        \frac{(r - r_{\text{flat}_i})}{\Delta t_{\text{inter}_i}}
+        \right)  +C  &amp; \mbox{for } A = 0 \\
+\end{cases}\end{split}\]</div>
+<p>Boucher <a class="footnote-reference brackets" href="#boucher1983" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\rho_{{inter}_i}(r) =
+\begin{cases}
+    \pm B\, \left(1-
+        (\frac{(r - r_{\text{flat}_i})}{\Delta t_{ \text{inter}_i }})^2
+        \right) ^(A/2-2)  + C  &amp; \mbox{for } A \neq 0 \\
+    \rho_{\text{flat}_{i+1}}  &amp; \mbox{for } A = 0 \\
+\end{cases}\end{split}\]</div>
+<p>The functions are normalized so that they vary between 0 and 1, and they are
+constrained such that the SLD is continuous at the boundaries of the interface
+as well as each sub-shell. Thus B and C are determined.</p>
+<p>Once <span class="math notranslate nohighlight">\(\rho_{\text{inter}_i}\)</span> is found at the boundary of the sub-shell of the
+interface, we can find its contribution to the form factor <span class="math notranslate nohighlight">\(P(q)\)</span></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f_{\text{inter}_i}
+    &amp;= 4 \pi \int_{\Delta t_{\text{inter}_i} } \rho_{\text{inter}_i}
+        \frac{\sin(qr)}{qr} r^2 dr \\
+    &amp;= 4 \pi \sum_{j=1}^{n_\text{steps}}
+        \int_{r_j}^{r_{j+1}} \rho_{\text{inter}_i}(r_j)
+            \frac{\sin(qr)}{qr} r^2 dr \\
+    &amp;\approx 4 \pi \sum_{j=1}^{n_\text{steps}}
+    \Biggl[
+         3 (\rho_{\text{inter}_i}(r_{j+1}) - \rho_{\text{inter}_i}(r_{j})) V (r_j)
+        \left[
+            \frac{r_j^2 \beta_\text{out}^2 \sin(\beta_\text{out})
+                - (\beta_\text{out}^2-2) \cos(\beta_\text{out})}
+            {\beta_\text{out}^4}
+        \right] \\
+    &amp;\quad {} - 3 (\rho_{\text{inter}_i}(r_{j+1}) - \rho_{\text{inter}_i}(r_{j})) V(r_{j-1})
+        \left[
+            \frac{r_{j-1}^2 \sin(\beta_\text{in})
+                - (\beta_\text{in}^2-2) \cos(\beta_\text{in})}
+            {\beta_\text{in}^4}
+        \right] \\
+    &amp;\quad {} + 3 \rho_{\text{inter}_i}(r_{j+1})  V(r_j)
+        \left[
+            \frac{\sin(\beta_\text{out}) - \cos(\beta_\text{out})}
+            {\beta_\text{out}^4}
+        \right] \\
+    &amp;\quad {} - 3 \rho_{\text{inter}_i}(r_{j})  V(r_j)
+        \left[
+            \frac{\sin(\beta_\text{in}) - \cos(\beta_\text{in})}
+            {\beta_\text{in}^4}
+        \right]
+    \Biggr]\end{split}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\begin{align*}
+V(a) &amp;= \frac {4\pi}{3}a^3
+    &amp; {} &amp; {} \\
+a_\text{in} &amp;\sim \frac{r_j}{r_{j+1} -r_j}
+    &amp; a_\text{out} &amp;\sim \frac{r_{j+1}}{r_{j+1} -r_j} \\
+\beta_\text{in} &amp;= qr_j
+    &amp; \beta_\text{out} &amp;= qr_{j+1}
+\end{align*}</div><p>We assume <span class="math notranslate nohighlight">\(\rho_{\text{inter}_j} (r)\)</span> is approximately linear
+within the sub-shell <span class="math notranslate nohighlight">\(j\)</span>.</p>
+<p>Finally the form factor can be calculated by</p>
+<div class="math notranslate nohighlight">
+\[P(q) = \frac{[f]^2} {V_\text{particle}} \mbox{ where } V_\text{particle}
+= V(r_{\text{shell}_N})\]</div>
+<p>For 2D data the scattering intensity is calculated in the same way as 1D,
+where the <span class="math notranslate nohighlight">\(q\)</span> vector is defined as</p>
+<div class="math notranslate nohighlight">
+\[q = \sqrt{q_x^2 + q_y^2}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The outer most radius is used as the effective radius for <span class="math notranslate nohighlight">\(S(Q)\)</span>
+when <span class="math notranslate nohighlight">\(P(Q) * S(Q)\)</span> is applied.</p>
+</div>
+<figure class="align-default" id="id5">
+<img alt="../../_images/spherical_sld_autogenfig.png" src="../../_images/spherical_sld_autogenfig.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 94 </span><span class="caption-text">1D plot corresponding to the default parameters of the model.</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Source</strong></p>
+<p><a class="reference download internal" download="" href="../../_downloads/778611c8f099250518f9ff5bac47cf40/spherical_sld.py"><code class="xref download docutils literal notranslate"><span class="pre">spherical_sld.py</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/26ff81df03c27c4153320b6d8cff6a2c/spherical_sld.c"><code class="xref download docutils literal notranslate"><span class="pre">spherical_sld.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/5224eea2106a0533fa82ac542ccf5579/sas_3j1x_x.c"><code class="xref download docutils literal notranslate"><span class="pre">sas_3j1x_x.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/7acd903b2a85b6d8b87d14aad7bdcdcf/sas_erf.c"><code class="xref download docutils literal notranslate"><span class="pre">sas_erf.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/452c1d4eca138ac30381a8c4b66a9239/polevl.c"><code class="xref download docutils literal notranslate"><span class="pre">polevl.c</span></code></a></p>
+<p><strong>References</strong></p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="feigin1987" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
+<p>L A Feigin and D I Svergun, Structure Analysis by Small-Angle X-Ray
+and Neutron Scattering, Plenum Press, New York, (1987)</p>
+</aside>
+<aside class="footnote brackets" id="boucher1983" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">2</a><span class="fn-bracket">]</span></span>
+<p>B Boucher, P Chieux, P Convert, and M Tournarie,
+<em>Metal Physics</em>, 13,1339 (1983).</p>
+</aside>
+</aside>
+<p><strong>Authorship and Verification</strong></p>
+<ul class="simple">
+<li><p><strong>Author:</strong> Jae-Hie Cho <strong>Date:</strong> Nov 1, 2010</p></li>
+<li><p><strong>Last Modified by:</strong> Paul Kienzle <strong>Date:</strong> Dec 20, 2016</p></li>
+<li><p><strong>Last Reviewed by:</strong> Steve King <strong>Date:</strong> March 29, 2019</p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="sphere.html"
+                          title="previous chapter">sphere</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="superball.html"
+                          title="next chapter">superball</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user/models/spherical_sld.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="superball.html" title="superball"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="sphere.html" title="sphere"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-sphere.html" >Sphere Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">spherical_sld</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

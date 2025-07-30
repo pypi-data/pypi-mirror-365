@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>sas.qtgui.Utilities.WhatsNew package &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="sas.qtgui.Utilities.WhatsNew.css package" href="sas.qtgui.Utilities.WhatsNew.css.html" />
+    <link rel="prev" title="sas.qtgui.Utilities.UI package" href="sas.qtgui.Utilities.UI.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sas.qtgui.Utilities.WhatsNew.css.html" title="sas.qtgui.Utilities.WhatsNew.css package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="sas.qtgui.Utilities.UI.html" title="sas.qtgui.Utilities.UI package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="modules.html" >SasView</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sas.html" >sas package</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="sas.qtgui.html" >sas.qtgui package</a> &#187;</li>
+          <li class="nav-item nav-item-5"><a href="sas.qtgui.Utilities.html" accesskey="U">sas.qtgui.Utilities package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sas.qtgui.Utilities.WhatsNew package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="sas-qtgui-utilities-whatsnew-package">
+<h1>sas.qtgui.Utilities.WhatsNew package<a class="headerlink" href="#sas-qtgui-utilities-whatsnew-package" title="Link to this heading">¶</a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sas.qtgui.Utilities.WhatsNew.css.html">sas.qtgui.Utilities.WhatsNew.css package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sas.qtgui.Utilities.WhatsNew.css.html#module-sas.qtgui.Utilities.WhatsNew.css">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-sas.qtgui.Utilities.WhatsNew.WhatsNew">
+<span id="sas-qtgui-utilities-whatsnew-whatsnew-module"></span><h2>sas.qtgui.Utilities.WhatsNew.WhatsNew module<a class="headerlink" href="#module-sas.qtgui.Utilities.WhatsNew.WhatsNew" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.qtgui.Utilities.WhatsNew.WhatsNew.</span></span><span class="sig-name descname"><span class="pre">WhatsNew</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">only_recent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QDialog</span></code></p>
+<p>What’s New window: displays messages about what is new in this version of SasView</p>
+<p>It will find all files in messages.[version] if [version] is newer than the last time
+the “don’t show me again” option was chosen</p>
+<p>To add new messages, just dump a (self-contained) html file into the appropriate folder</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'</span> <span class="pre">What\'s</span> <span class="pre">New</span> <span class="pre">window:</span> <span class="pre">displays</span> <span class="pre">messages</span> <span class="pre">about</span> <span class="pre">what</span> <span class="pre">is</span> <span class="pre">new</span> <span class="pre">in</span> <span class="pre">this</span> <span class="pre">version</span> <span class="pre">of</span> <span class="pre">SasView\n\n</span>&#160;&#160;&#160; <span class="pre">It</span> <span class="pre">will</span> <span class="pre">find</span> <span class="pre">all</span> <span class="pre">files</span> <span class="pre">in</span> <span class="pre">messages.[version]</span> <span class="pre">if</span> <span class="pre">[version]</span> <span class="pre">is</span> <span class="pre">newer</span> <span class="pre">than</span> <span class="pre">the</span> <span class="pre">last</span> <span class="pre">time\n</span>&#160;&#160;&#160; <span class="pre">the</span> <span class="pre">&quot;don\'t</span> <span class="pre">show</span> <span class="pre">me</span> <span class="pre">again&quot;</span> <span class="pre">option</span> <span class="pre">was</span> <span class="pre">chosen\n\n</span>&#160;&#160;&#160; <span class="pre">To</span> <span class="pre">add</span> <span class="pre">new</span> <span class="pre">messages,</span> <span class="pre">just</span> <span class="pre">dump</span> <span class="pre">a</span> <span class="pre">(self-contained)</span> <span class="pre">html</span> <span class="pre">file</span> <span class="pre">into</span> <span class="pre">the</span> <span class="pre">appropriate</span> <span class="pre">folder\n\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySide6.QtWidgets.QWidget</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySide6.QtCore.Qt.WindowType</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">Default(Qt.WindowFlags)</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">sizeGripEnabled</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modal</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.qtgui.Utilities.WhatsNew.WhatsNew'</span></em><a class="headerlink" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.close_me">
+<span class="sig-name descname"><span class="pre">close_me</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.close_me" title="Link to this definition">¶</a></dt>
+<dd><p>Close action, needs to save the state for showing</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.has_new_messages">
+<span class="sig-name descname"><span class="pre">has_new_messages</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.has_new_messages" title="Link to this definition">¶</a></dt>
+<dd><p>Should the window be shown?</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.next_file">
+<span class="sig-name descname"><span class="pre">next_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.next_file" title="Link to this definition">¶</a></dt>
+<dd><p>Show the next available file (increment counter, show)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.prev_file">
+<span class="sig-name descname"><span class="pre">prev_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.prev_file" title="Link to this definition">¶</a></dt>
+<dd><p>Go to next file</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.set_enable_disable_prev_next">
+<span class="sig-name descname"><span class="pre">set_enable_disable_prev_next</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.set_enable_disable_prev_next" title="Link to this definition">¶</a></dt>
+<dd><p>Set the appropriate enable state on the navigation buttons</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.show_file">
+<span class="sig-name descname"><span class="pre">show_file</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.show_file" title="Link to this definition">¶</a></dt>
+<dd><p>Set the text of the window to the file with the current index</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;WhatsNew&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;QDialog&quot;:</span> <span class="pre">)</span></em><a class="headerlink" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.staticMetaObject" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNewBrowser">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.qtgui.Utilities.WhatsNew.WhatsNew.</span></span><span class="sig-name descname"><span class="pre">WhatsNewBrowser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNewBrowser" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">QTextBrowser</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNewBrowser.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNewBrowser.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNewBrowser.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySide6.QtWidgets.QWidget</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySide6.QtCore.QUrl</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sourceType</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">PySide6.QtGui.QTextDocument.ResourceType</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">searchPaths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">collections.abc.Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">openExternalLinks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">openLinks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNewBrowser.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNewBrowser.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.qtgui.Utilities.WhatsNew.WhatsNew'</span></em><a class="headerlink" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNewBrowser.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNewBrowser.loadResource">
+<span class="sig-name descname"><span class="pre">loadResource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kind</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">QUrl</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNewBrowser.loadResource" title="Link to this definition">¶</a></dt>
+<dd><p>Override the resource discovery to get the images we need</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNewBrowser.setHtml">
+<span class="sig-name descname"><span class="pre">setHtml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNewBrowser.setHtml" title="Link to this definition">¶</a></dt>
+<dd><p>Overriden to inject CSS into HTML files - very, very ugly</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNewBrowser.staticMetaObject">
+<span class="sig-name descname"><span class="pre">staticMetaObject</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">PySide6.QtCore.QMetaObject(&quot;WhatsNewBrowser&quot;</span> <span class="pre">inherits</span> <span class="pre">&quot;QTextBrowser&quot;:</span> <span class="pre">)</span></em><a class="headerlink" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNewBrowser.staticMetaObject" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.qtgui.Utilities.WhatsNew.WhatsNew.main">
+<span class="sig-prename descclassname"><span class="pre">sas.qtgui.Utilities.WhatsNew.WhatsNew.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.main" title="Link to this definition">¶</a></dt>
+<dd><p>Demo/testing window</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.qtgui.Utilities.WhatsNew.WhatsNew.whats_new_messages">
+<span class="sig-prename descclassname"><span class="pre">sas.qtgui.Utilities.WhatsNew.WhatsNew.</span></span><span class="sig-name descname"><span class="pre">whats_new_messages</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">only_recent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.whats_new_messages" title="Link to this definition">¶</a></dt>
+<dd><p>Accumulate all files that are newer than the value in the config</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>only_recent</strong> – require strictly newer stuff, strictness is needed for showing new things
+when there is an update, non-strictness is needed for the menu access.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-sas.qtgui.Utilities.WhatsNew.newer">
+<span id="sas-qtgui-utilities-whatsnew-newer-module"></span><h2>sas.qtgui.Utilities.WhatsNew.newer module<a class="headerlink" href="#module-sas.qtgui.Utilities.WhatsNew.newer" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.qtgui.Utilities.WhatsNew.newer.newest">
+<span class="sig-prename descclassname"><span class="pre">sas.qtgui.Utilities.WhatsNew.newer.</span></span><span class="sig-name descname"><span class="pre">newest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version_a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version_b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#sas.qtgui.Utilities.WhatsNew.newer.newest" title="Link to this definition">¶</a></dt>
+<dd><p>Return the newest of two versions by the comparison used in the what’s new box,
+if they are equally new, return the first one.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.qtgui.Utilities.WhatsNew.newer.reduced_version">
+<span class="sig-prename descclassname"><span class="pre">sas.qtgui.Utilities.WhatsNew.newer.</span></span><span class="sig-name descname"><span class="pre">reduced_version</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version_string</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#sas.qtgui.Utilities.WhatsNew.newer.reduced_version" title="Link to this definition">¶</a></dt>
+<dd><p>Convert a version string into the three numbers we care about for the purposes
+of the WhatsNew dialog (i.e. strip a,b suffixes etc, make into three ints</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.qtgui.Utilities.WhatsNew.newer.strictly_newer_than">
+<span class="sig-prename descclassname"><span class="pre">sas.qtgui.Utilities.WhatsNew.newer.</span></span><span class="sig-name descname"><span class="pre">strictly_newer_than</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version_a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version_b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#sas.qtgui.Utilities.WhatsNew.newer.strictly_newer_than" title="Link to this definition">¶</a></dt>
+<dd><p>Is the version string “version_a” string strictly newer than “version_b”</p>
+</dd></dl>
+
+</section>
+<section id="module-sas.qtgui.Utilities.WhatsNew">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-sas.qtgui.Utilities.WhatsNew" title="Link to this heading">¶</a></h2>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">sas.qtgui.Utilities.WhatsNew package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-sas.qtgui.Utilities.WhatsNew.WhatsNew">sas.qtgui.Utilities.WhatsNew.WhatsNew module</a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew"><code class="docutils literal notranslate"><span class="pre">WhatsNew</span></code></a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.__doc__"><code class="docutils literal notranslate"><span class="pre">WhatsNew.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.__init__"><code class="docutils literal notranslate"><span class="pre">WhatsNew.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.__module__"><code class="docutils literal notranslate"><span class="pre">WhatsNew.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.close_me"><code class="docutils literal notranslate"><span class="pre">WhatsNew.close_me()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.has_new_messages"><code class="docutils literal notranslate"><span class="pre">WhatsNew.has_new_messages()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.next_file"><code class="docutils literal notranslate"><span class="pre">WhatsNew.next_file()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.prev_file"><code class="docutils literal notranslate"><span class="pre">WhatsNew.prev_file()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.set_enable_disable_prev_next"><code class="docutils literal notranslate"><span class="pre">WhatsNew.set_enable_disable_prev_next()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.show_file"><code class="docutils literal notranslate"><span class="pre">WhatsNew.show_file()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNew.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">WhatsNew.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNewBrowser"><code class="docutils literal notranslate"><span class="pre">WhatsNewBrowser</span></code></a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNewBrowser.__doc__"><code class="docutils literal notranslate"><span class="pre">WhatsNewBrowser.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNewBrowser.__init__"><code class="docutils literal notranslate"><span class="pre">WhatsNewBrowser.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNewBrowser.__module__"><code class="docutils literal notranslate"><span class="pre">WhatsNewBrowser.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNewBrowser.loadResource"><code class="docutils literal notranslate"><span class="pre">WhatsNewBrowser.loadResource()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNewBrowser.setHtml"><code class="docutils literal notranslate"><span class="pre">WhatsNewBrowser.setHtml()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.WhatsNewBrowser.staticMetaObject"><code class="docutils literal notranslate"><span class="pre">WhatsNewBrowser.staticMetaObject</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Utilities.WhatsNew.WhatsNew.whats_new_messages"><code class="docutils literal notranslate"><span class="pre">whats_new_messages()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-sas.qtgui.Utilities.WhatsNew.newer">sas.qtgui.Utilities.WhatsNew.newer module</a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Utilities.WhatsNew.newer.newest"><code class="docutils literal notranslate"><span class="pre">newest()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Utilities.WhatsNew.newer.reduced_version"><code class="docutils literal notranslate"><span class="pre">reduced_version()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Utilities.WhatsNew.newer.strictly_newer_than"><code class="docutils literal notranslate"><span class="pre">strictly_newer_than()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-sas.qtgui.Utilities.WhatsNew">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="sas.qtgui.Utilities.UI.html"
+                          title="previous chapter">sas.qtgui.Utilities.UI package</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="sas.qtgui.Utilities.WhatsNew.css.html"
+                          title="next chapter">sas.qtgui.Utilities.WhatsNew.css package</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/dev/sasview-api/sas.qtgui.Utilities.WhatsNew.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sas.qtgui.Utilities.WhatsNew.css.html" title="sas.qtgui.Utilities.WhatsNew.css package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="sas.qtgui.Utilities.UI.html" title="sas.qtgui.Utilities.UI package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="modules.html" >SasView</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sas.html" >sas package</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="sas.qtgui.html" >sas.qtgui package</a> &#187;</li>
+          <li class="nav-item nav-item-5"><a href="sas.qtgui.Utilities.html" >sas.qtgui.Utilities package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sas.qtgui.Utilities.WhatsNew package</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+[console_scripts]
+sasview = sas.cli:main
+
+[pyinstaller40]
+hook-dirs = sas.__pyinstaller:get_hook_dirs

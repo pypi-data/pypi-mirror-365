@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Shape2SAS &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Python Shell-Editor Tool" href="python_shell_help.html" />
+    <link rel="prev" title="Example 3: Magnetic Spheres" href="gsc_ex_magnetic_spheres.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="python_shell_help.html" title="Python Shell-Editor Tool"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="gsc_ex_magnetic_spheres.html" title="Example 3: Magnetic Spheres"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../tools.html" accesskey="U">Tools &amp; Utilities</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Shape2SAS</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="shape2sas">
+<span id="shape2sas-tool"></span><h1>Shape2SAS<a class="headerlink" href="#shape2sas" title="Link to this heading">¶</a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
+<p>This tool allows the user to build particles from a series of predefined shapes. By allowing particles to be placed in
+any location, or orientation relative to an origin, many unique structures can be constructed. Once a structure is
+created, the user can generate a theoretical data set that can be analysed, or an empirical fitting model can be
+generated to compare the structure to real data.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The particles are constructed from a series of randomly distributed points within the defined shape.
+Because of this randomness, creating the same particle two different times may result in subtle differences between
+scattering curves and slight differences in the resulting empirical models.</p>
+</div>
+<p>The base shapes available to the user include spheres, cylinders, ellipsoids, elliptical cylinders, disks, cubes, cuboids,
+hollow spheres, hollow cubes, and cylindrical rings. Each of the particles can be individually modified in all dimensions,
+can be moved to any point in space, and rotated about any point in space. The scattering length density, relative to the
+medium the particle is in, can also be defined. If the particle is in air, this should be the scattering length density
+of the particle material.</p>
+</section>
+<section id="using-the-tool">
+<h2>Using the Tool<a class="headerlink" href="#using-the-tool" title="Link to this heading">¶</a></h2>
+<img alt="../../../_images/main_window.png" src="../../../_images/main_window.png" />
+<p>When the tool is first selected from the menu option, the ‘Build Model’ tab will open. The user can select a shape and
+‘Add’ it to the table in the center of the window. The first row of the table is the particle shape, the second row is
+the scattering length density relative to the solvent, the next three rows are particle dimensions which vary between
+shapes, the sixth through eighth rows are to position the particle in space, the ninth through eleventh rows define
+the center of rotation, the 12th through 15th rows define the angles of rotation about the center of rotation and the
+last row defines the particle color.</p>
+<p>The rotation of particles requires further discussion. As mentioned, each particle can be rotated separately from all
+other particles, but the center of rotation does not need to be the center of the particle, or within the particle volume
+at all. The RP values define the center of particle rotation. When the alpha, beta, and gamma angles are changed, the
+individual particle is rotated about the center of rotation. If the center of rotation is the particle centroid, this will
+result in a rotation with no translation. If the center or rotation is outside the particle, both a rotation and
+translation of the particle will occur.</p>
+<p>Once a series of shapes is defined, the 3D rendering and predicted SAS scattering can be calculated by clicking Plot.
+The ‘Include Scattering’ checkbox must be selected for the SAS data calculation. If the resulting image does not look
+as expected, modify the shape table and rerun the calculation until everything is as desired. If two particles overlap in
+space, by default, the SLD for the particle first generated will be used in the calculation and any subsequent particles
+in that same volume will be ignored. If the ‘Exclude overlap’ option is unselected, the average SLD within the overlap volume
+will be calculated and used for the scattering calculations.</p>
+<p>Parameter list for each shape particle:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Row</p></th>
+<th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Particle name</p></td>
+<td><p>The shape selected from the predefined shapes in the combobox.</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>ΔSLD</p></td>
+<td><p>The SLD of the particle relative to the medium surrounding it. Defaults to 1.0</p></td>
+</tr>
+<tr class="row-even"><td><p>3, 4, 5</p></td>
+<td><p>Size Definitions</p></td>
+<td><p>The sizes for each major axis of the particle, in Å. The inputs will vary based on the shape.</p></td>
+</tr>
+<tr class="row-odd"><td><p>6, 7, 8</p></td>
+<td><p>COMX, COMY, COMZ</p></td>
+<td><p>The particle centroid relative to the coordinate origin, in Å.</p></td>
+</tr>
+<tr class="row-even"><td><p>9, 10, 11</p></td>
+<td><p>RPX, RPY, RPZ</p></td>
+<td><p>The center of rotation, in cartesian space, about which this particle will rotate, in Å.</p></td>
+</tr>
+<tr class="row-odd"><td><p>12, 13, 14</p></td>
+<td><p>α, β, γ</p></td>
+<td><p>The rotation angle from the point of rotation, about each axis, in degrees.</p></td>
+</tr>
+<tr class="row-even"><td><p>15</p></td>
+<td><p>Color</p></td>
+<td><p>The color of the points displayed in the particle viewer window. Red, Green, or Blue.</p></td>
+</tr>
+</tbody>
+</table>
+<img alt="../../../_images/saxs_virtual_experiment.png" src="../../../_images/saxs_virtual_experiment.png" />
+<p>Once the particle is of the expected form, a few more options are available. The first is the option to generate an
+empirical model based on the scattering pattern using the ‘To plugin model’ button. This will open a window where you
+you can select the parameters included in the model and then generate the model.
+The second option is to run a ‘Virtual SAXS Experiment’ in the second tab of the window.
+In the second tab, set the Q range, the number of Q points, the number of P(r) points, the number of simulated points
+within the 3D volume, and any structure factor contributions that may arise. The resulting theoretical curve can be sent
+to the data explorer where the data set may be treated as any other data set loaded from a file.</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
+<p>This tool has been adapted from the tool available at <a class="reference external" href="https://somo.chem.utk.edu/shape2sas/">https://somo.chem.utk.edu/shape2sas/</a>. For more information on the
+theoretical basis and calculations performed, please see the paper by Larsen, et. al. <a class="reference external" href="https://scripts.iucr.org/cgi-bin/paper?jl5064">https://scripts.iucr.org/cgi-bin/paper?jl5064</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This help document was last changed by Jeff Krzywon, 23May2025</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Shape2SAS</a><ul>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#using-the-tool">Using the Tool</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="gsc_ex_magnetic_spheres.html"
+                          title="previous chapter">Example 3: Magnetic Spheres</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="python_shell_help.html"
+                          title="next chapter">Python Shell-Editor Tool</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user/qtgui/Calculators/shape_2_sas_help.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="python_shell_help.html" title="Python Shell-Editor Tool"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="gsc_ex_magnetic_spheres.html" title="Example 3: Magnetic Spheres"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../tools.html" >Tools &amp; Utilities</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Shape2SAS</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

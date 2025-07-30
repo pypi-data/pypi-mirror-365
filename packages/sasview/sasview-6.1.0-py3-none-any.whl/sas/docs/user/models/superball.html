@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>superball &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="vesicle" href="vesicle.html" />
+    <link rel="prev" title="spherical_sld" href="spherical_sld.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="vesicle.html" title="vesicle"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="spherical_sld.html" title="spherical_sld"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-sphere.html" accesskey="U">Sphere Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">superball</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="superball">
+<span id="id1"></span><h1>superball<a class="headerlink" href="#superball" title="Link to this heading">¶</a></h1>
+<p>Superball with uniform scattering length density.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>scale</p></td>
+<td><p>Scale factor or Volume fraction</p></td>
+<td><p>None</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>background</p></td>
+<td><p>Source background</p></td>
+<td><p>cm<sup>-1</sup></p></td>
+<td><p>0.001</p></td>
+</tr>
+<tr class="row-even"><td><p>sld</p></td>
+<td><p>Superball scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>sld_solvent</p></td>
+<td><p>Solvent scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>length_a</p></td>
+<td><p>Cube edge length of the superball</p></td>
+<td><p>Å</p></td>
+<td><p>50</p></td>
+</tr>
+<tr class="row-odd"><td><p>exponent_p</p></td>
+<td><p>Exponent describing the roundness of the superball</p></td>
+<td><p>None</p></td>
+<td><p>2.5</p></td>
+</tr>
+<tr class="row-even"><td><p>theta</p></td>
+<td><p>c axis to beam angle</p></td>
+<td><p>degree</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>phi</p></td>
+<td><p>rotation about beam</p></td>
+<td><p>degree</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>psi</p></td>
+<td><p>rotation about c axis</p></td>
+<td><p>degree</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<p>The returned value is scaled to units of cm<sup>-1</sup> sr<sup>-1</sup>, absolute scale.</p>
+<p><strong>Definition</strong></p>
+<figure class="align-default" id="id4">
+<img alt="../../_images/superball_realSpace.png" src="../../_images/superball_realSpace.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 95 </span><span class="caption-text">Superball visualisation for varied values of the parameter p.</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>This model calculates the scattering of a superball, which represents a cube
+with rounded edges. It can be used to describe nanoparticles that deviate from
+the perfect cube shape as it is often observed experimentally
+<a class="footnote-reference brackets" href="#wetterskogsuperball" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>. The shape is described by</p>
+<div class="math notranslate nohighlight">
+\[x^{2p} + y^{2p} + z^{2p} \leq \biggl( \frac{a}{2} \biggr)^{2p}\]</div>
+<p>with <span class="math notranslate nohighlight">\(a\)</span> the cube edge length of the superball and <span class="math notranslate nohighlight">\(p\)</span> a parameter that
+describes the roundness of the edges. In the limiting cases <span class="math notranslate nohighlight">\(p=1\)</span> the superball
+corresponds to a sphere with radius <span class="math notranslate nohighlight">\(R = a/2\)</span> and for <span class="math notranslate nohighlight">\(p = \infty\)</span> to a cube
+with edge length <span class="math notranslate nohighlight">\(a\)</span>. The exponent <span class="math notranslate nohighlight">\(p\)</span> is related to <span class="math notranslate nohighlight">\(a\)</span> and the face diagonal
+<span class="math notranslate nohighlight">\(d\)</span> via</p>
+<div class="math notranslate nohighlight">
+\[p = \frac{1}{1 + 2 \mathrm{log}_2 (a/d)}.\]</div>
+<figure class="align-default" id="id5">
+<img alt="../../_images/superball_geometry2d.png" src="../../_images/superball_geometry2d.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 96 </span><span class="caption-text">Cross-sectional view of a superball showing the principal axis length <span class="math notranslate nohighlight">\(a\)</span>,
+the face-diagonal <span class="math notranslate nohighlight">\(d\)</span> and the superball radius <span class="math notranslate nohighlight">\(R\)</span>.</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The oriented form factor is determined by solving</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}p_o(\vec{q}) =&amp; \int_{V} \mathrm{d} \vec{r} e^{i \vec{q} \cdot \vec{r}}\\
+    =&amp; \frac{a^3}{8} \int_{-1}^{1} \mathrm{d} x \int_{-\gamma}^{\gamma}
+        \mathrm{d} y \int_{-\zeta}^{\zeta} \mathrm{d} z
+        e^{i a (q_x x + q_y y + q_z z) / 2}\\
+    =&amp; \frac{a^2}{2 q_z} \int_{-1}^{1} \mathrm{d} x \int_{-\gamma}^{\gamma}
+        \mathrm{d} y  e^{i a(q_x x + q_y y)/2}
+        \sin(q_z a \zeta / 2),\end{split}\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\gamma =&amp; \sqrt[2p]{1-x^{2p}}, \\
+\zeta =&amp; \sqrt[2p]{1-x^{2p} -y^{2p}}.\end{split}\]</div>
+<p>The integral can be transformed to</p>
+<div class="math notranslate nohighlight">
+\[p_o(\vec{q}) = \frac{2 a^2}{q_z} \int_{0}^{1} \mathrm{d} x \, \cos
+    \biggl(\frac{a q_x x}{2} \biggr) \int_{0}^{\gamma} \mathrm{d} y \,
+    \cos \biggl( \frac{a q_y y}{2} \biggr) \sin
+    \biggl( \frac{a q_z \zeta}{2} \biggr),\]</div>
+<p>which can be solved numerically.</p>
+<p>The orientational average is then obtained by calculating</p>
+<div class="math notranslate nohighlight">
+\[P(q) = \int_0^{\tfrac{\pi}{2}} \mathrm{d} \varphi \int_0^{\tfrac{\pi}{2}}
+    \mathrm{d} \theta \, \sin (\theta) | p_o(\vec{q}) |^2\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{q} &amp;= q \begin{pmatrix} \cos (\varphi) \sin (\theta)\\
+\sin (\varphi) \sin(\theta)\\
+\cos (\theta)\end{pmatrix}\end{split}\]</div>
+<p>The implemented orientationally averaged superball model is then fully given by
+<a class="footnote-reference brackets" href="#dresensuperball" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p>
+<div class="math notranslate nohighlight">
+\[I(q) = \mathrm{scale} (\Delta \rho)^2 P(q) + \mathrm{background}.\]</div>
+<p><strong>FITTING NOTES</strong></p>
+<p><strong>Validation</strong></p>
+<blockquote>
+<div><p>The code is validated by reproducing the spherical form factor implemented
+in SasView for <span class="math notranslate nohighlight">\(p = 1\)</span> and the parallelepiped form factor with <span class="math notranslate nohighlight">\(a = b = c\)</span> for
+<span class="math notranslate nohighlight">\(p = 1000\)</span>. The form factors match in the first order oscillation with a
+precision in the order of <span class="math notranslate nohighlight">\(10^{-4}\)</span>. The agreement worsens for higher order
+oscillations and beyond the third order oscillations a higher order Gauss
+quadrature rule needs to be used to keep the agreement below <span class="math notranslate nohighlight">\(10^{-3}\)</span>.
+This is however avoided in this implementation to keep the computation time
+fast.</p>
+</div></blockquote>
+<figure class="align-default" id="id6">
+<img alt="../../_images/superball_autogenfig.png" src="../../_images/superball_autogenfig.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 97 </span><span class="caption-text">1D and 2D plots corresponding to the default parameters of the model.</span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Source</strong></p>
+<p><a class="reference download internal" download="" href="../../_downloads/f1746967f1947d94da12773341cb63b9/superball.py"><code class="xref download docutils literal notranslate"><span class="pre">superball.py</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/e7ea3b810aff4f2a6d06d298083724a6/superball.c"><code class="xref download docutils literal notranslate"><span class="pre">superball.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/b25a60d811c127e67d081d5b10155d56/sas_gamma.c"><code class="xref download docutils literal notranslate"><span class="pre">sas_gamma.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/ac9fdd1c4ce37c4c24cef6f51b59dd0e/gauss20.c"><code class="xref download docutils literal notranslate"><span class="pre">gauss20.c</span></code></a></p>
+<p><strong>References</strong></p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="wetterskogsuperball" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
+<ol class="upperalpha simple" start="5">
+<li><p>Wetterskog, A. Klapper, S. Disch, E. Josten, R. P. Hermann, U. Rücker, T. Brückel, L. Bergström and G. Salazar-Alvarez, <em>Nanoscale</em>, 8 (2016) 15571</p></li>
+</ol>
+</aside>
+<aside class="footnote brackets" id="dresensuperball" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">2</a><span class="fn-bracket">]</span></span>
+<ol class="upperalpha simple" start="4">
+<li><p>Dresen, A. Qdemat, S. Ulusoy, F. Mees, D. Zakutna, E. Wetterskog, E. Kentzinger, G. Salazar-Alvarez, S. Disch, <em>J. Phys. Chem. C</em> (2021), doi: 10.1021/acs.jpcc.1c06082</p></li>
+</ol>
+</aside>
+</aside>
+<p><strong>Source</strong></p>
+<p><a class="reference external" href="https://github.com/SasView/sasmodels/blob/master/sasmodels/models/superball.py">superball.py</a></p>
+<p><a class="reference external" href="https://github.com/SasView/sasmodels/blob/master/sasmodels/models/superball.c">superball.c</a></p>
+<p><strong>Authorship and Verification</strong></p>
+<ul class="simple">
+<li><p><strong>Author:</strong> Dominique Dresen <strong>Date:</strong> March 27, 2019</p></li>
+<li><p><strong>Last Modified by:</strong> Dominique Dresen <strong>Date:</strong> March 27, 2019</p></li>
+<li><p><strong>Last Reviewed by:</strong> Dirk Honecker <strong>Date:</strong> November 05, 2021</p></li>
+<li><p><strong>Source added by :</strong> Dominique Dresen <strong>Date:</strong> March 27, 2019</p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="spherical_sld.html"
+                          title="previous chapter">spherical_sld</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="vesicle.html"
+                          title="next chapter">vesicle</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user/models/superball.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="vesicle.html" title="vesicle"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="spherical_sld.html" title="spherical_sld"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-sphere.html" >Sphere Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">superball</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

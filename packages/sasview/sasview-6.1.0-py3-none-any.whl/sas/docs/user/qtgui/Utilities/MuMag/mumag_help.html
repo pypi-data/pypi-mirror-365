@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>MuMag Tool &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Working with SasView" href="../../../working.html" />
+    <link rel="prev" title="File Converter Tool" href="../../Calculators/file_converter_help.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../../working.html" title="Working with SasView"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../../Calculators/file_converter_help.html" title="File Converter Tool"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../tools.html" accesskey="U">Tools &amp; Utilities</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MuMag Tool</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="mumag-tool">
+<h1>MuMag Tool<a class="headerlink" href="#mumag-tool" title="Link to this heading">¶</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
+<p>MuMag is an analysis tool for calculating exchange stiffness constants, residual scattering, anisotropy field
+and longitudinal magnetization based on unpolarized 1D SANS experiments with applied magnetic fields. The theory
+behind this has been published <a class="reference external" href="https://doi.org/10.1107/S1600576722005349">here</a>.</p>
+<p>Given some scattering curve recorded at different applied field intensities, <span class="math notranslate nohighlight">\(I(q, H)\)</span>, MuMag will break
+down these curves into two (in the case of parallel magnetic fields) and three, components (
+for perpendicular fields relative to the beam). In the perpendicular case, the resulting linear
+decomposition has the following form:</p>
+<p><span class="math notranslate nohighlight">\(I(q, H) = I_res(q) + S_H(q) R_H(q, H) + S_M(q) R_M(q, H)\)</span></p>
+<p>Where <span class="math notranslate nohighlight">\(R_H\)</span> and <span class="math notranslate nohighlight">\(R_M\)</span> are known magnetic response functions (see the paper above), and <span class="math notranslate nohighlight">\(I_res\)</span>,
+<span class="math notranslate nohighlight">\(S_H\)</span> and <span class="math notranslate nohighlight">\(S_M\)</span> are non-field dependent terms: the residual scattering function,
+the anisotropy field scattering function and the longitudinal magnetisation scattering function respectively.</p>
+<p>In the parallel case <span class="math notranslate nohighlight">\(S_M\)</span> and <span class="math notranslate nohighlight">\(R_M\)</span> are zero.</p>
+</section>
+<section id="loading-data">
+<h2>Loading data<a class="headerlink" href="#loading-data" title="Link to this heading">¶</a></h2>
+<p>To load data click on the <cite>Import Data</cite> button. This will give you a file chooser that allows you to select a
+<strong>directory</strong>. This directory should contain multiple files for measurements taken with different applied magnetic fields.</p>
+<p>Currently, <em>the magnetic field and other information is expected to be in the filename with a format as described below</em></p>
+<section id="form-of-data-files">
+<h3>Form of Data Files<a class="headerlink" href="#form-of-data-files" title="Link to this heading">¶</a></h3>
+<p>The experimental magnetic SANS data for a given analysis is expected to be stored as CSV files in a single folder.
+Information about each SANS scattering curve  must be given through the file names, like in the following example:</p>
+<p>Example filenames:</p>
+<ul class="simple">
+<li><p>1_0_1340_10.csv</p></li>
+<li><p>2_20_1340_10.csv</p></li>
+<li><p>3_35_1340_10.csv</p></li>
+<li><p>4_50_1340_10.csv</p></li>
+<li><p>…</p></li>
+</ul>
+<p>The fields separated by underscores have the following meaning</p>
+<ol class="arabic simple">
+<li><p>Index of the files (e.g. 1, 2, 3, 4, …) - (not used by SasView’s MuMag, but is used by the MATLAB version)</p></li>
+<li><p>Externally applied magnetic field <span class="math notranslate nohighlight">\(μ_0 H_0\)</span> in mT (e.g. 0, 20, 25, 50, …)</p></li>
+<li><p>Saturation magnetization <span class="math notranslate nohighlight">\(μ_0 M_s\)</span> in mT (e.g. 1340, 1340, 1340, 1340, …)</p></li>
+<li><p>Demagnetization field <span class="math notranslate nohighlight">\(μ_0 H_d\)</span> in mT (e.g. 10, 10, 10, 10, 10, …)</p></li>
+</ol>
+<p>(All these values could also be written as float number with dot separator e.g. 10.4345)</p>
+<p>The CSV files are expected have three columns: momentum transfer <span class="math notranslate nohighlight">\(q\)</span> in nm <span class="math notranslate nohighlight">\(^{-1}\)</span>,
+scattering intensity <span class="math notranslate nohighlight">\(I(q)\)</span>, and the standard error corresponding to <cite>I(q)</cite>.</p>
+<p>Each of the files must have the same length and be sorted from lowest to highest q-value.
+In the files only the numerical data is stored, no headers.</p>
+</section>
+</section>
+<section id="running-mumag">
+<h2>Running MuMag<a class="headerlink" href="#running-mumag" title="Link to this heading">¶</a></h2>
+<p>To run MuMag, load the data, set the parameters below, and click <cite>Fit</cite>.</p>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>Analysis method</strong> - This chooses one of two experiment types. Perpendicular is where the applied field is perpendicular to the beam (e.g. beam in x direction and field in z), and parallel where the applied field is parallel.</p></li>
+<li><p><strong>Maximum q</strong> - MuMag has the ability to exclude q values beyond a given value, specified here</p></li>
+<li><p><strong>Applied field</strong> - MuMag will use only data with applied field strengths above this value. MuMag requires the sample to be at (or close to) saturation, use this field to specify where this is.</p></li>
+<li><p><strong>Scan range</strong> - When calculating the exchange stiffness constant A, MuMag’s minimisation step has two components. (1) A brute for search, then (2) a refinement. These three values that describe the values for which the brute force search will take place (start, stop and step), as well as the values used for related plots.</p></li>
+</ul>
+</section>
+<section id="results">
+<h3>Results<a class="headerlink" href="#results" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><strong>A value</strong> - The estimated exchange stiffness constant (A)</p></li>
+<li><p><strong>A uncertainty</strong> - An estimate of the uncertainty associated with it</p></li>
+</ul>
+</section>
+<section id="plots">
+<h3>Plots<a class="headerlink" href="#plots" title="Link to this heading">¶</a></h3>
+<p>When you load data the <cite>data</cite> plot will be populated. When you click <cite>fit</cite> the rest will be.</p>
+<ul class="simple">
+<li><p><strong>Data</strong> - A plot of all the loaded data</p></li>
+<li><dl class="simple">
+<dt><strong>Fit Results</strong></dt><dd><ul>
+<li><p><span class="math notranslate nohighlight">\(\chi^2\)</span> - figure of merit used by MuMag to calculate the best A value, across different values of A (currently mean squared). This plot is useful to checking your problem is well conditioned.</p></li>
+<li><p><span class="math notranslate nohighlight">\(I_res\)</span> - The <em>residual intensity</em> - the part of the scattering that doesn’t respond to applied field changes, inferred from the data (see above for details)</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_H\)</span> - Anisotropy field scattering function</p></li>
+<li><p><span class="math notranslate nohighlight">\(S_M\)</span> - Scattering function of the longitudinal magnetization</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><strong>Comparison</strong> - Crosses show original data, lines show scattering curves reconstructed based on <span class="math notranslate nohighlight">\(I_res\)</span>, <span class="math notranslate nohighlight">\(S_H\)</span> and <span class="math notranslate nohighlight">\(S_M\)</span></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">MuMag Tool</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#loading-data">Loading data</a><ul>
+<li><a class="reference internal" href="#form-of-data-files">Form of Data Files</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#running-mumag">Running MuMag</a><ul>
+<li><a class="reference internal" href="#parameters">Parameters</a></li>
+<li><a class="reference internal" href="#results">Results</a></li>
+<li><a class="reference internal" href="#plots">Plots</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../../Calculators/file_converter_help.html"
+                          title="previous chapter">File Converter Tool</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../../../working.html"
+                          title="next chapter">Working with SasView</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/user/qtgui/Utilities/MuMag/mumag_help.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../../working.html" title="Working with SasView"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../../Calculators/file_converter_help.html" title="File Converter Tool"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../tools.html" >Tools &amp; Utilities</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MuMag Tool</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

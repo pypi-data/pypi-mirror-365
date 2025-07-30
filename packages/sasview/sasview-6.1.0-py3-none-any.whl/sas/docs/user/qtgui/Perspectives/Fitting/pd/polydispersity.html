@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Polydispersity &amp; Orientational Distributions &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Oriented Particles" href="../orientation/orientation.html" />
+    <link rel="prev" title="Fitting Models with Structure Factors" href="../fitting_sq.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../orientation/orientation.html" title="Oriented Particles"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../fitting_sq.html" title="Fitting Models with Structure Factors"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../analysis.html" >Fitting &amp; Other Analyses</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../fitting.html" accesskey="U">Fitting Documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Polydispersity &amp; Orientational Distributions</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="polydispersity-orientational-distributions">
+<span id="polydispersityhelp"></span><h1>Polydispersity &amp; Orientational Distributions<a class="headerlink" href="#polydispersity-orientational-distributions" title="Link to this heading">¶</a></h1>
+<p>For some models we can calculate the average intensity for a population of
+particles that possess size and/or orientational (ie, angular) distributions
+(see <a class="reference internal" href="../theory.html#pstheory"><span class="std std-ref">Theory</span></a> for more details). In SasView we call the former
+<em>polydispersity</em> but use the parameter <em>PD</em> to parameterise both. In other
+words, the meaning of <em>PD</em> in a model depends on the actual parameter it is
+being applied too.</p>
+<p>The resultant intensity is then normalized by the average particle volume such
+that</p>
+<div class="math notranslate nohighlight">
+\[P(q) = \frac{\text{scale}}{\langle V \rangle} \langle F F^* \rangle + \text{background}\]</div>
+<p>where <span class="math notranslate nohighlight">\(F\)</span> is the scattering amplitude and <span class="math notranslate nohighlight">\(\langle\cdot\rangle\)</span> denotes an
+average over the distribution <span class="math notranslate nohighlight">\(f(x; \bar x, \sigma)\)</span>, giving</p>
+<div class="math notranslate nohighlight">
+\[P(q) = \frac{\text{scale}}{\langle V \rangle} \int_\mathbb{R}
+f(x; \bar x, \sigma) F^2(q, x)\, dx + \text{background}\]</div>
+<p>Each distribution is characterized by a center value <span class="math notranslate nohighlight">\(\bar x\)</span> or
+<span class="math notranslate nohighlight">\(x_\text{med}\)</span>, a width parameter <span class="math notranslate nohighlight">\(\sigma\)</span> (note this is <em>not necessarily</em>
+the standard deviation, so read the description carefully), the number of
+sigmas <span class="math notranslate nohighlight">\(N_\sigma\)</span> to include from the tails of the distribution, and the
+number of points used to compute the average. The center of the distribution
+is set by the value of the model parameter. The meaning of a polydispersity
+parameter <em>PD</em> (not to be confused with a molecular weight distributions
+in polymer science) in a model depends on the type of parameter it is being
+applied too.</p>
+<p>The distribution width applied to <em>volume</em> (ie, shape-describing) parameters
+is relative to the center value such that <span class="math notranslate nohighlight">\(\sigma = \mathrm{PD} \cdot \bar x\)</span>.
+However, the distribution width applied to <em>orientation</em> (ie, angle-describing)
+parameters is just <span class="math notranslate nohighlight">\(\sigma = \mathrm{PD}\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(N_\sigma\)</span> determines how far into the tails to evaluate the distribution,
+with larger values of <span class="math notranslate nohighlight">\(N_\sigma\)</span> required for heavier tailed distributions.
+The scattering in general falls rapidly with <span class="math notranslate nohighlight">\(qr\)</span> so the usual assumption
+that <span class="math notranslate nohighlight">\(f(r - 3\sigma_r)\)</span> is tiny and therefore <span class="math notranslate nohighlight">\(f(r - 3\sigma_r)f(r - 3\sigma_r)\)</span>
+will not contribute much to the average may not hold when particles are large.
+This, too, will require increasing <span class="math notranslate nohighlight">\(N_\sigma\)</span>.</p>
+<p>Users should note that the averaging computation is very intensive. Applying
+polydispersion and/or orientational distributions to multiple parameters at
+the same time, or increasing the number of points in the distribution, will
+require patience! However, the calculations are generally more robust with
+more data points or more angles.</p>
+<p>The following distribution functions are provided:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#uniform-distribution">Uniform Distribution</a></p></li>
+<li><p><a class="reference internal" href="#rectangular-distribution">Rectangular Distribution</a></p></li>
+<li><p><a class="reference internal" href="#gaussian-distribution">Gaussian Distribution</a></p></li>
+<li><p><a class="reference internal" href="#boltzmann-distribution">Boltzmann Distribution</a></p></li>
+<li><p><a class="reference internal" href="#lognormal-distribution">Lognormal Distribution</a></p></li>
+<li><p><a class="reference internal" href="#schulz-distribution">Schulz Distribution</a></p></li>
+<li><p><a class="reference internal" href="#array-distribution">Array Distribution</a></p></li>
+<li><p><a class="reference internal" href="#user-defined-distributions">User-defined Distributions</a></p></li>
+</ul>
+<p>These distributions define the <em>number density</em> of the given population of
+scatterers. The resulting scattering is then the number average over the
+distribution.</p>
+<p><strong>Beware: the default distribution for all parameters is the Gaussian
+Distribution but this may not be suitable. See</strong> <a class="reference internal" href="#suggested-applications">Suggested Applications</a> <strong>below.</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In 2009 IUPAC decided to introduce the new term ‘dispersity’ to replace
+the term ‘polydispersity’ (see <a class="reference external" href="http://media.iupac.org/publications/pac/2009/pdf/8102x0351.pdf">Pure Appl. Chem., (2009), 81(2),
+351-353</a>
+in order to make the terminology describing distributions of chemical
+properties unambiguous. However, these terms are unrelated to the
+proportional size distributions and orientational distributions used in
+SasView models.</p>
+</div>
+<section id="calculation-of-i-q">
+<h2>Calculation of I(q)<a class="headerlink" href="#calculation-of-i-q" title="Link to this heading">¶</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(w(r)\)</span> be the <em>relative number</em> of particles of size <span class="math notranslate nohighlight">\(r\)</span>, <strong>not the volume
+fraction of particles</strong>. <span class="math notranslate nohighlight">\(w(r)\)</span> scales with the number density, <span class="math notranslate nohighlight">\(n(r)\)</span>.</p>
+<p>The <em>volume fraction</em>, <span class="math notranslate nohighlight">\(\phi\)</span>, is the integrated volume of all particles, <span class="math notranslate nohighlight">\(V_p\)</span>,
+divided by total volume, <span class="math notranslate nohighlight">\(V_t\)</span></p>
+<div class="math notranslate nohighlight" id="equation-eq1">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eq1" title="Link to this equation">¶</a></span>\[\phi = \frac{V_p}{V_t}\]</div>
+<p>where <span class="math notranslate nohighlight">\(V_p\)</span> is the number of particles, <span class="math notranslate nohighlight">\(N\)</span>, multiplied by the average particle volume
+<span class="math notranslate nohighlight">\(\langle V(r) \rangle\)</span></p>
+<div class="math notranslate nohighlight" id="equation-eq2">
+<span class="eqno">(2)<a class="headerlink" href="#equation-eq2" title="Link to this equation">¶</a></span>\[Vp = N \langle V(r) \rangle\]</div>
+<p>The <em>number density</em> of particles, <span class="math notranslate nohighlight">\(n\)</span>, is the total number of particles divided by
+the total volume</p>
+<div class="math notranslate nohighlight" id="equation-eq3">
+<span class="eqno">(3)<a class="headerlink" href="#equation-eq3" title="Link to this equation">¶</a></span>\[n = \frac{N}{V_t}\]</div>
+<p>Since <span class="math notranslate nohighlight">\(w(r)\)</span> is a distribution on the number of particles that (ideally) sums to one,
+the number of particles of size <span class="math notranslate nohighlight">\(r\)</span>, <span class="math notranslate nohighlight">\(n(r)\)</span>, scales with <span class="math notranslate nohighlight">\(w(r)\)</span> as</p>
+<div class="math notranslate nohighlight" id="equation-eq4">
+<span class="eqno">(4)<a class="headerlink" href="#equation-eq4" title="Link to this equation">¶</a></span>\[n(r) = \frac{w(r)}{\int w(r)dr} \cdot \frac{N}{V_t}\]</div>
+<p>Rewriting <a class="reference internal" href="#equation-eq1">(1)</a> as <span class="math notranslate nohighlight">\(V_p =  \phi V_t\)</span> and substituting into <a class="reference internal" href="#equation-eq2">(2)</a> gives
+<span class="math notranslate nohighlight">\(\phi V_t = N \langle V(r) \rangle\)</span> which can then be solved for <span class="math notranslate nohighlight">\(N / V_t\)</span></p>
+<div class="math notranslate nohighlight" id="equation-eq5">
+<span class="eqno">(5)<a class="headerlink" href="#equation-eq5" title="Link to this equation">¶</a></span>\[\frac{N}{V_t} = \frac{\phi}{\langle V(r) \rangle}\]</div>
+<p>Substituting <a class="reference internal" href="#equation-eq5">(5)</a> into <a class="reference internal" href="#equation-eq4">(4)</a>, we get</p>
+<div class="math notranslate nohighlight" id="equation-eq6">
+<span class="eqno">(6)<a class="headerlink" href="#equation-eq6" title="Link to this equation">¶</a></span>\[n(r) = \frac{w(r)}{\int w(r)dr} \cdot \frac{\phi}{\langle V(r) \rangle}\]</div>
+<p>Since <span class="math notranslate nohighlight">\(w(r)\)</span> is the relative number of particles of size <span class="math notranslate nohighlight">\(r\)</span>, the average volume is</p>
+<div class="math notranslate nohighlight" id="equation-eq7">
+<span class="eqno">(7)<a class="headerlink" href="#equation-eq7" title="Link to this equation">¶</a></span>\[\langle V(r) \rangle = \frac{\int w(r)V(r)dr}{\int w(r)dr}\]</div>
+<p>Substituting <a class="reference internal" href="#equation-eq7">(7)</a> into <a class="reference internal" href="#equation-eq6">(6)</a> then yields</p>
+<div class="math notranslate nohighlight" id="equation-eq8">
+<span class="eqno">(8)<a class="headerlink" href="#equation-eq8" title="Link to this equation">¶</a></span>\[n(r) = w(r) \cdot  \frac{\phi}{\int w(r)V(r)dr}\]</div>
+<p>Note that the second half of <a class="reference internal" href="#equation-eq8">(8)</a> is independent of <span class="math notranslate nohighlight">\(r\)</span> and can slip out of the
+integral, such that</p>
+<div class="math notranslate nohighlight" id="equation-eq9">
+<span class="eqno">(9)<a class="headerlink" href="#equation-eq9" title="Link to this equation">¶</a></span>\[I(q) = \int n(r) \langle F F^* \rangle dr
+     = \frac{\phi \int w(r) \langle F F^* \rangle dr}{\int w(r)V(r) dr}\]</div>
+</section>
+<section id="suggested-applications">
+<h2>Suggested Applications<a class="headerlink" href="#suggested-applications" title="Link to this heading">¶</a></h2>
+<p>If applying polydispersion to parameters describing particle sizes, consider
+using the <a class="reference internal" href="#lognormal-distribution">Lognormal Distribution</a> or <a class="reference internal" href="#schulz-distribution">Schulz Distribution</a>.</p>
+<p>If applying polydispersion to parameters describing interfacial thicknesses
+or orientations, consider using the <a class="reference internal" href="#gaussian-distribution">Gaussian Distribution</a> or
+<a class="reference internal" href="#boltzmann-distribution">Boltzmann Distribution</a>.</p>
+<p>If applying polydispersion to parameters describing angles, use the
+<a class="reference internal" href="#uniform-distribution">Uniform Distribution</a> or a <em>Maier-Saupe</em> distribution or a <em>Cyclic Gaussian</em>
+distribution.</p>
+<p>The <a class="reference internal" href="#array-distribution">Array Distribution</a> provides a very simple means of implementing a
+user-defined distribution, but without any fittable parameters. Greater
+flexibility is conferred by using <a class="reference internal" href="#user-defined-distributions">User-defined Distributions</a>.</p>
+</section>
+<section id="usage-notes">
+<h2>Usage Notes<a class="headerlink" href="#usage-notes" title="Link to this heading">¶</a></h2>
+<p>Beware of using distributions that are always positive (eg, the <em>Lognormal</em>) for
+angles because angles can be negative! If in doubt, plot the polydispersity data
+for the model and check!</p>
+<p>The parameter bounds (ie, Min/Max) for polydispersion should be specified under the
+Polydispersity tab on the FitPage. They are not formally linked to the bounds for
+the parameter to which polydispersion is being applied that appear under the Model
+tab. In other words, bounds on a <em>radius</em> parameter under Model are not the same as
+bounds on a <em>distribution of radius</em> parameter under Polydispersity, and vice versa.</p>
+<p>If a distribution exceeds its parameter bounds those weights outside the bounds are
+excluded and the distribution is normalized such that the sum of the remaining
+weights in the truncated distribution equal one.</p>
+<p>Whilst PD values for ‘size’ parameters are in proportion to the mean, with values
+normally lying in the range 0 – 1, PD values for ‘angular’ parameters represent the
+actual width of the distribution in degrees, so values as high as 5 or 10 degrees
+maybe necessary to describe oriented systems. Again, plotting the relevant
+polydispersity data will easily show if a sensible value is being used.</p>
+<p>When using an <a class="reference internal" href="#array-distribution">Array Distribution</a>, be aware that the polydispersity parameters,
+and the parameter to which the distribution is being applied, cannot be fitted.</p>
+<p>Additional distribution functions (and, indeed models) may be found on the
+<a class="reference external" href="http://marketplace.sasview.org/">Sasview Model Marketplace</a>.</p>
+</section>
+<section id="uniform-distribution">
+<h2>Uniform Distribution<a class="headerlink" href="#uniform-distribution" title="Link to this heading">¶</a></h2>
+<p>The Uniform Distribution is defined as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f(x) = \frac{1}{\text{Norm}}
+\begin{cases}
+    1 &amp; \text{for } |x - \bar x| \leq \sigma \\
+    0 &amp; \text{for } |x - \bar x| &gt; \sigma
+\end{cases}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\bar x\)</span> (<span class="math notranslate nohighlight">\(x_\text{mean}\)</span> in the figure) is the mean of the
+distribution, <span class="math notranslate nohighlight">\(\sigma\)</span> is the half-width, and <em>Norm</em> is a normalization
+factor which is determined during the numerical calculation.</p>
+<p>The polydispersity in sasmodels is given by</p>
+<div class="math notranslate nohighlight">
+\[\text{PD} = \sigma / \bar x\]</div>
+<figure class="align-default" id="id1">
+<img alt="../../../../../_images/pd_uniform.jpg" src="../../../../../_images/pd_uniform.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 133 </span><span class="caption-text">Uniform distribution.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The value <span class="math notranslate nohighlight">\(N_\sigma\)</span> is ignored for this distribution.</p>
+</section>
+<section id="rectangular-distribution">
+<h2>Rectangular Distribution<a class="headerlink" href="#rectangular-distribution" title="Link to this heading">¶</a></h2>
+<p>The Rectangular Distribution is defined as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}f(x) = \frac{1}{\text{Norm}}
+\begin{cases}
+    1 &amp; \text{for } |x - \bar x| \leq w \\
+    0 &amp; \text{for } |x - \bar x| &gt; w
+\end{cases}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\bar x\)</span> (<span class="math notranslate nohighlight">\(x_\text{mean}\)</span> in the figure) is the mean of the
+distribution, <span class="math notranslate nohighlight">\(w\)</span> is the half-width, and <em>Norm</em> is a normalization
+factor which is determined during the numerical calculation.</p>
+<p>Note that the standard deviation and the half width <span class="math notranslate nohighlight">\(w\)</span> are different!</p>
+<p>The standard deviation is</p>
+<div class="math notranslate nohighlight">
+\[\sigma = w / \sqrt{3}\]</div>
+<p>whilst the polydispersity in sasmodels is given by</p>
+<div class="math notranslate nohighlight">
+\[\text{PD} = \sigma / \bar x\]</div>
+<figure class="align-default" id="id2">
+<img alt="../../../../../_images/pd_rectangular.jpg" src="../../../../../_images/pd_rectangular.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 134 </span><span class="caption-text">Rectangular distribution.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Rectangular Distribution is deprecated in favour of the
+Uniform Distribution above and is described here for backwards
+compatibility with earlier versions of SasView only.</p>
+</div>
+</section>
+<section id="gaussian-distribution">
+<h2>Gaussian Distribution<a class="headerlink" href="#gaussian-distribution" title="Link to this heading">¶</a></h2>
+<p>The Gaussian Distribution is defined as</p>
+<div class="math notranslate nohighlight">
+\[f(x) = \frac{1}{\text{Norm}}
+        \exp\left(-\frac{(x - \bar x)^2}{2\sigma^2}\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\bar x\)</span> (<span class="math notranslate nohighlight">\(x_\text{mean}\)</span> in the figure) is the mean of the
+distribution and <em>Norm</em> is a normalization factor which is determined
+during the numerical calculation.</p>
+<p>The polydispersity in sasmodels is given by</p>
+<div class="math notranslate nohighlight">
+\[\text{PD} = \sigma / \bar x\]</div>
+<figure class="align-default" id="id3">
+<img alt="../../../../../_images/pd_gaussian.jpg" src="../../../../../_images/pd_gaussian.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 135 </span><span class="caption-text">Normal distribution.</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="boltzmann-distribution">
+<h2>Boltzmann Distribution<a class="headerlink" href="#boltzmann-distribution" title="Link to this heading">¶</a></h2>
+<p>The Boltzmann Distribution is defined here as</p>
+<div class="math notranslate nohighlight">
+\[f(x) = \frac{1}{\text{Norm}}
+        \exp\left(-\frac{ | x - \bar x | }{\sigma}\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\bar x\)</span> (<span class="math notranslate nohighlight">\(x_\text{mean}\)</span> in the figure) is the mean of the
+distribution and <em>Norm</em> is a normalization factor which is determined
+during the numerical calculation. Strictly speaking, however, this
+function is a Laplace Distribution, of which the Boltzmann Distribution
+is but a limiting case.</p>
+<p>The width is defined as</p>
+<div class="math notranslate nohighlight">
+\[\sigma=\frac{k T}{E}\]</div>
+<p>which is the inverse Boltzmann factor, where <span class="math notranslate nohighlight">\(k\)</span> is the Boltzmann constant,
+<span class="math notranslate nohighlight">\(T\)</span> the temperature in Kelvin and <span class="math notranslate nohighlight">\(E\)</span> a characteristic energy per particle.</p>
+<figure class="align-default" id="id4">
+<img alt="../../../../../_images/pd_boltzmann.jpg" src="../../../../../_images/pd_boltzmann.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 136 </span><span class="caption-text">Boltzmann distribution.</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="lognormal-distribution">
+<h2>Lognormal Distribution<a class="headerlink" href="#lognormal-distribution" title="Link to this heading">¶</a></h2>
+<p>The Lognormal Distribution describes a function of <span class="math notranslate nohighlight">\(x\)</span> where <span class="math notranslate nohighlight">\(\ln (x)\)</span> has
+a normal distribution. The result is a distribution that is skewed towards
+larger values of <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>The Lognormal Distribution is defined as</p>
+<div class="math notranslate nohighlight">
+\[f(x) = \frac{1}{\text{Norm}}\frac{1}{x\sigma}
+        \exp\left(-\frac{1}{2}
+                    \bigg(\frac{\ln(x) - \mu}{\sigma}\bigg)^2\right)\]</div>
+<p>where <em>Norm</em> is a normalization factor which will be determined during
+the numerical calculation, <span class="math notranslate nohighlight">\(\mu=\ln(x_\text{med})\)</span> and <span class="math notranslate nohighlight">\(x_\text{med}\)</span>
+is the <em>median</em> value of the <em>lognormal</em> distribution, but <span class="math notranslate nohighlight">\(\sigma\)</span> is
+a parameter describing the width of the underlying <em>normal</em> distribution.</p>
+<p><span class="math notranslate nohighlight">\(x_\text{med}\)</span> will be the value given for the respective size parameter
+in sasmodels, for example, <em>radius=60</em>.</p>
+<p>The polydispersity in sasmodels is given by</p>
+<div class="math notranslate nohighlight">
+\[\text{PD} = \sigma = p / x_\text{med}\]</div>
+<p>The mean value of the distribution is given by <span class="math notranslate nohighlight">\(\bar x = \exp(\mu+ \sigma^2/2)\)</span>
+and the peak value by <span class="math notranslate nohighlight">\(\max x = \exp(\mu - \sigma^2)\)</span>.</p>
+<p>The variance (the square of the standard deviation) of the <em>lognormal</em>
+distribution is given by</p>
+<div class="math notranslate nohighlight">
+\[\nu = [\exp({\sigma}^2) - 1] \exp({2\mu + \sigma^2})\]</div>
+<p>Note that larger values of PD might need a larger number of points
+and <span class="math notranslate nohighlight">\(N_\sigma\)</span>.</p>
+<figure class="align-default" id="id5">
+<img alt="../../../../../_images/pd_lognormal.jpg" src="../../../../../_images/pd_lognormal.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 137 </span><span class="caption-text">Lognormal distribution for PD=0.1.</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>For further information on the Lognormal distribution see:</p>
+<p><a class="reference external" href="http://en.wikipedia.org/wiki/Log-normal_distribution">http://en.wikipedia.org/wiki/Log-normal_distribution</a></p>
+<p><a class="reference external" href="http://mathworld.wolfram.com/LogNormalDistribution.html">http://mathworld.wolfram.com/LogNormalDistribution.html</a></p>
+</section>
+<section id="schulz-distribution">
+<h2>Schulz Distribution<a class="headerlink" href="#schulz-distribution" title="Link to this heading">¶</a></h2>
+<p>The Schulz (sometimes written Schultz) distribution is similar to the
+Lognormal distribution, in that it is also skewed towards larger values of
+<span class="math notranslate nohighlight">\(x\)</span>, but which has computational advantages over the Lognormal distribution.</p>
+<p>The Schulz distribution is defined as</p>
+<div class="math notranslate nohighlight">
+\[f(x) = \frac{1}{\text{Norm}} (z+1)^{z+1}(x/\bar x)^z
+        \frac{\exp[-(z+1)x/\bar x]}{\bar x\Gamma(z+1)}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\bar x\)</span> (<span class="math notranslate nohighlight">\(x_\text{mean}\)</span> in the figure) is the mean of the
+distribution, <em>Norm</em> is a normalization factor which is determined
+during the numerical calculation, and <span class="math notranslate nohighlight">\(z\)</span> is a measure of the width
+of the distribution such that</p>
+<div class="math notranslate nohighlight">
+\[z = (1-p^2) / p^2\]</div>
+<p>where <span class="math notranslate nohighlight">\(p\)</span> is the polydispersity in sasmodels given by</p>
+<div class="math notranslate nohighlight">
+\[PD = p = \sigma / \bar x\]</div>
+<p>and <span class="math notranslate nohighlight">\(\sigma\)</span> is the RMS deviation from <span class="math notranslate nohighlight">\(\bar x\)</span>.</p>
+<p>Note that larger values of PD might need a larger number of points
+and <span class="math notranslate nohighlight">\(N_\sigma\)</span>. For example, for PD=0.7 with radius=60 Å, at least
+Npts&gt;=160 and Nsigmas&gt;=15 are required.</p>
+<figure class="align-default" id="id6">
+<img alt="../../../../../_images/pd_schulz.jpg" src="../../../../../_images/pd_schulz.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 138 </span><span class="caption-text">Schulz distribution.</span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>For further information on the Schulz distribution see:</p>
+<p><a class="reference external" href="https://doi.org/10.1063/1.446055">M Kotlarchyk &amp; S-H Chen, J Chem Phys, (1983), 79, 2461</a></p>
+<p><a class="reference external" href="https://doi.org/10.1021/j100317a032">M Kotlarchyk, RB Stephens, and JS Huang, J Phys Chem, (1988), 92, 1533</a>.</p>
+</section>
+<section id="array-distribution">
+<h2>Array Distribution<a class="headerlink" href="#array-distribution" title="Link to this heading">¶</a></h2>
+<p>This user-definable distribution should be given as a simple ASCII text
+file where the array is defined by two columns of numbers: <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(f(x)\)</span>.
+The <span class="math notranslate nohighlight">\(f(x)\)</span> will be normalized to 1 during the computation.</p>
+<p>Example of what an array distribution file should look like:</p>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>30</p></td>
+<td><p>0.1</p></td>
+</tr>
+<tr class="row-even"><td><p>32</p></td>
+<td><p>0.3</p></td>
+</tr>
+<tr class="row-odd"><td><p>35</p></td>
+<td><p>0.4</p></td>
+</tr>
+<tr class="row-even"><td><p>36</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>37</p></td>
+<td><p>0.6</p></td>
+</tr>
+<tr class="row-even"><td><p>39</p></td>
+<td><p>0.7</p></td>
+</tr>
+<tr class="row-odd"><td><p>41</p></td>
+<td><p>0.9</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Only these array values are used for computation, any other
+polydispersity parameter values in the model have no effect and
+will be ignored when computing the average.  <strong>This also means that
+any parameter with an array distribution cannot be fitted.</strong></p>
+</div>
+<p>If representing continuous distributions, it is best to use a simple rectangle
+rule integration with equally spaced <span class="math notranslate nohighlight">\(x\)</span> values and the weight <span class="math notranslate nohighlight">\(f(x)\)</span> chosen at
+the center of each interval.</p>
+</section>
+<section id="user-defined-distributions">
+<h2>User-defined Distributions<a class="headerlink" href="#user-defined-distributions" title="Link to this heading">¶</a></h2>
+<p>You can also define your own distribution by creating a python file defining a
+<em>Distribution</em> object with a <em>_weights</em> method.  The <em>_weights</em> method takes
+<em>center</em>, <em>sigma</em>, <em>lb</em> and <em>ub</em> as arguments, and can access <em>self.npts</em>
+and <em>self.nsigmas</em> from the distribution.  They are interpreted as follows:</p>
+<ul class="simple">
+<li><p><em>center</em> the value of the shape parameter (for size dispersity) or zero
+if it is an angular dispersity.  This parameter may be fitted.</p></li>
+<li><p><em>sigma</em> the width of the distribution, which is the polydispersity parameter
+times the center for size dispersity, or the polydispersity parameter alone
+for angular dispersity.  This parameter may be fitted.</p></li>
+<li><p><em>lb</em>, <em>ub</em> are the parameter limits (lower &amp; upper bounds) given in the model
+definition file.  For example, a radius parameter has <em>lb</em> equal to zero.  A
+volume fraction parameter would have <em>lb</em> equal to zero and <em>ub</em> equal to one.</p></li>
+<li><p><em>self.nsigmas</em> the distance to go into the tails when evaluating the
+distribution.  For a two parameter distribution, this value could be
+co-opted to use for the second parameter, though it will not be available
+for fitting.</p></li>
+<li><p><em>self.npts</em> the number of points to use when evaluating the distribution.
+The user will adjust this to trade calculation time for accuracy, but the
+distribution code is free to return more or fewer, or use it for the third
+parameter in a three parameter distribution.</p></li>
+</ul>
+<p>As an example, the code following wraps the Laplace distribution from scipy stats:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.stats</span><span class="w"> </span><span class="kn">import</span> <span class="n">laplace</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">sasmodels</span><span class="w"> </span><span class="kn">import</span> <span class="n">weights</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Dispersion</span><span class="p">(</span><span class="n">weights</span><span class="o">.</span><span class="n">Dispersion</span><span class="p">):</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Laplace distribution</span>
+
+<span class="sd">    .. math::</span>
+
+<span class="sd">        w(x) = e^{-\sigma |x - \mu|}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;laplace&quot;</span>
+    <span class="n">default</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">npts</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">nsigmas</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># default values</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_weights</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">lb</span><span class="p">,</span> <span class="n">ub</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_linspace</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">sigma</span><span class="p">,</span> <span class="n">lb</span><span class="p">,</span> <span class="n">ub</span><span class="p">)</span>
+        <span class="n">wx</span> <span class="o">=</span> <span class="n">laplace</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">center</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">wx</span>
+</pre></div>
+</div>
+<p>You can plot the weights for a given value and width using the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="kn">import</span> <span class="n">inf</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sasmodels</span><span class="w"> </span><span class="kn">import</span> <span class="n">weights</span>
+
+<span class="c1"># reload the user-defined weights</span>
+<span class="n">weights</span><span class="o">.</span><span class="n">load_weights</span><span class="p">()</span>
+<span class="n">x</span><span class="p">,</span> <span class="n">wx</span> <span class="o">=</span> <span class="n">weights</span><span class="o">.</span><span class="n">get_weights</span><span class="p">(</span><span class="s1">&#39;laplace&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">35</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">nsigmas</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+                            <span class="n">limits</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">inf</span><span class="p">],</span> <span class="n">relative</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># plot the weights</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">interactive</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">wx</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The <em>self.nsigmas</em> and <em>self.npts</em> parameters are normally used to control
+the accuracy of the distribution integral. The <em>self._linspace</em> function
+uses them to define the <em>x</em> values (along with the <em>center</em>, <em>sigma</em>,
+<em>lb</em>, and <em>ub</em> which are passed as parameters).  If you repurpose npts or
+nsigmas you will need to generate your own <em>x</em>.  Be sure to honour the
+limits <em>lb</em> and <em>ub</em>, for example to disallow a negative radius or constrain
+the volume fraction to lie between zero and one.</p>
+<p>To activate a user-defined distribution, put it in a file such as <em>distname.py</em>
+in the <em>SAS_WEIGHTS_PATH</em> folder.  This is defined with an environment
+variable, defaulting to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SAS_WEIGHTS_PATH</span><span class="o">=~/.</span><span class="n">sasview</span><span class="o">/</span><span class="n">weights</span>
+</pre></div>
+</div>
+<p>or on Windows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SAS_WEIGHTS_PATH</span><span class="o">=%</span><span class="n">USERPROFILE</span><span class="o">%</span>\<span class="o">.</span><span class="n">sasview</span>\<span class="n">weights</span>
+</pre></div>
+</div>
+<p>The weights path is loaded on startup.  To update the distribution definition
+in a running application you will need to enter the following python commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sasmodels.weights</span>
+<span class="n">sasmodels</span><span class="o">.</span><span class="n">weights</span><span class="o">.</span><span class="n">load_weights</span><span class="p">(</span><span class="s1">&#39;path/to/distname.py&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="note-about-dls-polydispersity">
+<h2>Note about DLS polydispersity<a class="headerlink" href="#note-about-dls-polydispersity" title="Link to this heading">¶</a></h2>
+<p>Several measures of polydispersity abound in Dynamic Light Scattering (DLS) and
+it should not be assumed that any of the following can be simply equated with
+the polydispersity <em>PD</em> parameter used in SasView.</p>
+<p>The dimensionless <strong>Polydispersity Index (PI)</strong> is a measure of the width of the
+distribution of autocorrelation function decay rates (<em>not</em> the distribution of
+particle sizes itself, though the two are inversely related) and is defined by
+ISO 22412:2017 as</p>
+<div class="math notranslate nohighlight">
+\[PI = \mu_{2} / \bar \Gamma^2\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mu_\text{2}\)</span> is the second cumulant, and <span class="math notranslate nohighlight">\(\bar \Gamma^2\)</span> is the
+intensity-weighted average value, of the distribution of decay rates.</p>
+<p><em>If the distribution of decay rates is Gaussian</em> then</p>
+<div class="math notranslate nohighlight">
+\[PI = \sigma^2 / 2\bar \Gamma^2\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma\)</span> is the standard deviation, allowing a <strong>Relative Polydispersity (RP)</strong>
+to be defined as</p>
+<div class="math notranslate nohighlight">
+\[RP = \sigma / \bar \Gamma = \sqrt{2 \cdot PI}\]</div>
+<p>PI values smaller than 0.05 indicate a highly monodisperse system. Values
+greater than 0.7 indicate significant polydispersity.</p>
+<p>The <strong>size polydispersity P-parameter</strong> is defined as the relative standard
+deviation coefficient of variation</p>
+<div class="math notranslate nohighlight">
+\[P = \sqrt\nu / \bar R\]</div>
+<p>where <span class="math notranslate nohighlight">\(\nu\)</span> is the variance of the distribution and <span class="math notranslate nohighlight">\(\bar R\)</span> is the mean
+value of <span class="math notranslate nohighlight">\(R\)</span>. Here, the product <span class="math notranslate nohighlight">\(P \bar R\)</span> is <em>equal</em> to the standard
+deviation of the Lognormal distribution.</p>
+<p>P values smaller than 0.13 indicate a monodisperse system.</p>
+<p>For more information see:</p>
+<p><a class="reference external" href="https://www.iso.org/standard/65410.html">ISO 22412:2017, International Standards Organisation (2017)</a>.</p>
+<p><a class="reference external" href="http://www.materials-talks.com/blog/2014/10/23/polydispersity-what-does-it-mean-for-dls-and-chromatography/">Polydispersity: What does it mean for DLS and Chromatography</a>.</p>
+<p><a class="reference external" href="http://www.biophysics.bioc.cam.ac.uk/wp-content/uploads/2011/02/DLS_Terms_defined_Malvern.pdf">Dynamic Light Scattering: Common Terms Defined, Whitepaper WP111214. Malvern Instruments (2011)</a>.</p>
+<p><a class="reference external" href="https://doi.org/10.1039/B414175J">S King, C Washington &amp; R Heenan, Phys Chem Chem Phys, (2005), 7, 143</a>.</p>
+<p>T Allen, in <em>Particle Size Measurement</em>, 4th Edition, Chapman &amp; Hall, London (1990).</p>
+</section>
+<section id="related-sections">
+<h2>Related sections<a class="headerlink" href="#related-sections" title="Link to this heading">¶</a></h2>
+<p>See also:</p>
+<p><a class="reference internal" href="../theory.html#pstheory"><span class="std std-ref">Theory</span></a></p>
+<p><a class="reference internal" href="../resolution.html#resolution-smearing"><span class="std std-ref">Resolution (Smearing) Functions</span></a></p>
+<p><a class="reference internal" href="../fitting_sq.html#interaction-models"><span class="std std-ref">Fitting Models with Structure Factors</span></a></p>
+<p><a class="reference internal" href="../orientation/orientation.html#orientation"><span class="std std-ref">Oriented Particles</span></a></p>
+<p><em>Document History</em></p>
+<div class="line-block">
+<div class="line">2015-05-01 Steve King</div>
+<div class="line">2017-05-08 Paul Kienzle</div>
+<div class="line">2018-03-20 Steve King</div>
+<div class="line">2018-04-04 Steve King</div>
+<div class="line">2018-08-09 Steve King</div>
+<div class="line">2021-11-03 Steve King</div>
+<div class="line">2022-10-30 Steve King</div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../../../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Polydispersity &amp; Orientational Distributions</a><ul>
+<li><a class="reference internal" href="#calculation-of-i-q">Calculation of I(q)</a></li>
+<li><a class="reference internal" href="#suggested-applications">Suggested Applications</a></li>
+<li><a class="reference internal" href="#usage-notes">Usage Notes</a></li>
+<li><a class="reference internal" href="#uniform-distribution">Uniform Distribution</a></li>
+<li><a class="reference internal" href="#rectangular-distribution">Rectangular Distribution</a></li>
+<li><a class="reference internal" href="#gaussian-distribution">Gaussian Distribution</a></li>
+<li><a class="reference internal" href="#boltzmann-distribution">Boltzmann Distribution</a></li>
+<li><a class="reference internal" href="#lognormal-distribution">Lognormal Distribution</a></li>
+<li><a class="reference internal" href="#schulz-distribution">Schulz Distribution</a></li>
+<li><a class="reference internal" href="#array-distribution">Array Distribution</a></li>
+<li><a class="reference internal" href="#user-defined-distributions">User-defined Distributions</a></li>
+<li><a class="reference internal" href="#note-about-dls-polydispersity">Note about DLS polydispersity</a></li>
+<li><a class="reference internal" href="#related-sections">Related sections</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../fitting_sq.html"
+                          title="previous chapter">Fitting Models with Structure Factors</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../orientation/orientation.html"
+                          title="next chapter">Oriented Particles</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/user/qtgui/Perspectives/Fitting/pd/polydispersity.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../orientation/orientation.html" title="Oriented Particles"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../fitting_sq.html" title="Fitting Models with Structure Factors"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../analysis.html" >Fitting &amp; Other Analyses</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../fitting.html" >Fitting Documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Polydispersity &amp; Orientational Distributions</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

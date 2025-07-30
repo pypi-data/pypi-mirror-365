@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>SLD Calculator Tool &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Density/Volume Calculator Tool" href="density_calculator_help.html" />
+    <link rel="prev" title="Data Operations Tool" href="data_operator_help.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="density_calculator_help.html" title="Density/Volume Calculator Tool"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="data_operator_help.html" title="Data Operations Tool"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../tools.html" accesskey="U">Tools &amp; Utilities</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">SLD Calculator Tool</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="sld-calculator-tool">
+<h1>SLD Calculator Tool<a class="headerlink" href="#sld-calculator-tool" title="Link to this heading">¶</a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
+<p>This tool calculates the neutron and x-ray scattering length densities (SLD) and some other useful scattering parameters of a wide range of materials including molecules, solutions/mixtures, isotopic mixtures, and biomolecules.
+This SLD calculator utilizes the periodictable python package<sup>1</sup>, which is a periodic table populated with values useful for neutron and x-ray experiments.</p>
+</section>
+<section id="user-inputs">
+<h2>User Inputs<a class="headerlink" href="#user-inputs" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt><strong>Molecular Formula</strong></dt><dd><p>This field defines the material for which you are calculating the SLD. The section “<a class="reference internal" href="#specifying-materials-or-mixtures-in-the-molecular-formula-field">Specifying Materials or Mixtures in the Molecular Formula Field</a>” offers further guidance on how to enter molecules, biomolecules, and more complex mixtures.</p>
+</dd>
+<dt><strong>Mass Density</strong> (g·cm<sup>-3</sup>)</dt><dd><p>This field defines the density of the material for which you are calculating the SLD. Density uncertainty is likely the largest source of error in the SLD calculator. This field may be excluded in cases where the mass density of each individual component is provided in the formula field.</p>
+</dd>
+<dt><strong>Neutron Wavelength</strong> (Å)</dt><dd><p>Wavelength is used to calculate the neutron scattering cross-section and 1/e length. It is required for neutron calculations and entered in units of Å.</p>
+</dd>
+<dt><strong>X-ray Wavelength</strong> (Å)</dt><dd><p>Wavelength is used to calculate the x-ray scattering length density. It is required for x-ray calculations and entered in units of Å.</p>
+</dd>
+</dl>
+</section>
+<section id="calculator-output">
+<h2>Calculator Output<a class="headerlink" href="#calculator-output" title="Link to this heading">¶</a></h2>
+<dl class="simple">
+<dt><strong>Neutron SLD</strong> (Å<sup>-2</sup>)</dt><dd><p>A measure of the neutron scattering power of the material, which is used for fitting data from neutron scattering experiments.</p>
+</dd>
+<dt><strong>X-ray SLD</strong> (Å<sup>-2</sup>)</dt><dd><p>A measure of the x-ray scattering power of the material, which is used for fitting data from x-ray scattering experiments.</p>
+</dd>
+<dt><strong>Neutron Incoherent Cross-section</strong> (cm<sup>-1</sup>)</dt><dd><p>A measure of the probability that the neutron will scatter incoherently.</p>
+</dd>
+<dt><strong>Neutron Absorption Cross-Section</strong> (cm<sup>-1</sup>)</dt><dd><p>A measure of the probability that a neutron will be absorbed by the material.</p>
+</dd>
+<dt><strong>Neutron 1/e length</strong> (cm)</dt><dd><p>The sample thickness required to reduce the transmission to 36.8% (1/e).</p>
+</dd>
+</dl>
+</section>
+<section id="specifying-materials-or-mixtures-in-the-molecular-formula-field">
+<h2>Specifying Materials or Mixtures in the Molecular Formula Field<a class="headerlink" href="#specifying-materials-or-mixtures-in-the-molecular-formula-field" title="Link to this heading">¶</a></h2>
+<p><strong>Molecular formulas</strong> can be entered intuitively with atoms being represented by their atomic symbol. For example, calcium carbonate (CaCO<sub>3</sub>):</p>
+<blockquote>
+<div><p>CaCO3</p>
+</div></blockquote>
+<p><strong>Multipart species</strong> can be constructed using a single molecular formula, or by separating the components with a + or a space. For example, consider the hexahydrate of calcium carbonate, ikaite, (CaCO<sub>3</sub> · 6(H<sub>2</sub>O)) which can be denoted as:</p>
+<blockquote>
+<div><p>CaCO3(H2O)6</p>
+<p>CaCO3 6H2O</p>
+<p>CaCO3+6H2O</p>
+</div></blockquote>
+<p><strong>Isotopes</strong> are represented as the element symbol followed by its mass number in square brackets, for example C[12] and C[13]. A special exception to this are isotopes of hydrogen which can also be represented as H = H[1], D = H[2], and T=H[3].</p>
+<p><strong>Isotopic Mixtures</strong> can be entered in several ways. Take, for example a mixture of 30% H<sub>2</sub>O and 70% D<sub>2</sub>O (mole fraction). It can be entered as:</p>
+<blockquote>
+<div><p>H3D7O5</p>
+<p>H[1]3H[2]7O5</p>
+<p>3H2O+7D2O</p>
+</div></blockquote>
+<p><em>For isotopic substitution you must also adjust the density for your mixture.</em> There is a density calculator in SASview that may be useful, but measurement with a density meter is recommended.</p>
+<p><strong>Mass Fraction</strong> can be entered with each component of the mixture written as XX%wt <em>or</em> XXwt% “component” and each component separated with //. The mass fraction of the last component does not need to be specified as the sum of the fractions must add to 100. The mass density field must be updated to specify the density of the mixture. For example:</p>
+<blockquote>
+<div><p>50%wt Co // Ti</p>
+<p>1%wtNaCl // 50%wtD2O // H2O</p>
+</div></blockquote>
+<p><strong>Volume Fraction</strong> can be entered in the same way by substituting <em>%vol or vol%</em> for <em>%wt</em>. The density of each component must be specified using an &#64;density notation, where density is in units of g·cm<sup>-3</sup>. The mass density field will be calculated from the molecular formula when all individual densities are provided and the density field will  be greyed out and ignored.</p>
+<blockquote>
+<div><p>50%vol H2O&#64;1 // D2O&#64;1.1</p>
+</div></blockquote>
+<p>These can be combined for more complicated solutions. For example, if you have a 10wt% sodium chloride in water solution and you dilute 20 mL of this solution to 100 mL with D<sub>2</sub>O, this can be represented as:</p>
+<blockquote>
+<div><p>20%vol (10%wt NaCl // H2O)&#64;1.07 // D2O&#64;1.11</p>
+</div></blockquote>
+<p>For even more complicated solutions, parenthesis can be nested and the number of atoms can be integer or decimal. For example H<sub>2</sub>O is equivalent to:</p>
+<blockquote>
+<div><p>(HO0.5)2</p>
+</div></blockquote>
+<p><strong>Solution Composition with Mass and Volume</strong> can be specified in units of mass and volume. The mass density field must be updated to specify the density of the solution. For example:</p>
+<blockquote>
+<div><p>5g NaCl // 50 mL H2O&#64;1</p>
+<p>mass density = 1.07(g·cm<sup>-3</sup>)</p>
+</div></blockquote>
+<p><em>Reminder the solution density is the largest source of error for these calculations.</em> Measure the solution density for an accurate result. For example:</p>
+<blockquote>
+<div><p>A brine solution containing 10.44 g Al(NO<sub>3</sub>)<sub>3</sub>· 9H<sub>2</sub>O and 27.51 g D<sub>2</sub>O was prepared for a wormlike micelle experiments. The solution density was measured with a density meter and found to be 1.22 (g·cm<sup>-3</sup>). Using the scattering length density calculator we enter:</p>
+<p>10.44g Al(NO3)3(H2O)9 // 27.5126g D2O</p>
+<p>mass density = 1.22 (g·cm<sup>-3</sup>)</p>
+<p>The SLD is calculated to be 5.46e-06 (Å<sup>-2</sup>)</p>
+</div></blockquote>
+<p><strong>Biomolecules</strong></p>
+<p>DNA, Peptides, and RNA can be described using the FASTA format.<sup>2, 3</sup> When using this format density will be estimated automatically and the SLD will be calculated for the biomolecule with all exchangeable hydrogens as H.
+Use the following codes:</p>
+<blockquote>
+<div><p>“aa” - amino acid sequences
+A=Alanine, R=Arginine, L= Leucine</p>
+<p>“dna” - DNA sequences
+A = adenosine, C = cytidine, G = guanine, T = thymidine</p>
+<p>“rna” - RNA sequences
+U = uridine</p>
+</div></blockquote>
+<p>For example, the amino acid sequence for {beta}-casein can be written as:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>aa: RELEELNVPGEIVESLSSSEESITRINKKIEKFQSEEQQQTEDELQDKIHPFA</dt><dd><p>QTQSLVYPFPGPIPNSLPQNIPPLTQTPVVVPPFLQPEVMGVSKVKEAMAPKH
+KEMPFPKYPVEPFTESQSLTLTDVENLHLPLPLLQSWMHQPHQPLPPTVMFPP
+QSVLSLSQSKVLPVPQKAVPYPQRDMPIQAFLLYQEPVLGPVRGPFPIIV</p>
+</dd>
+</dl>
+</div></blockquote>
+<p><strong>References:</strong></p>
+<p>[1] Kienzle, P. A. (2008-2019). Extensible periodic table (v1.5.2). Computer Software. <a class="reference external" href="https://periodictable.readthedocs.io">https://periodictable.readthedocs.io</a>. [calculator source, web service source]</p>
+<p>[2] Pearson WR, Lipman DJ (April 1988). “Improved tools for biological sequence comparison”. Proceedings of the National Academy of Sciences of the United States of America. 85 (8): 2444-8. doi:10.1073/pnas.85.8.2444.</p>
+<p>[3] <a class="reference external" href="https://zhanggroup.org/FASTA/">https://zhanggroup.org/FASTA/</a>  (helpful explanation of FASTA syntax)</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This help document was last changed by Katie Weigandt, 08Mar2024</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">SLD Calculator Tool</a><ul>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#user-inputs">User Inputs</a></li>
+<li><a class="reference internal" href="#calculator-output">Calculator Output</a></li>
+<li><a class="reference internal" href="#specifying-materials-or-mixtures-in-the-molecular-formula-field">Specifying Materials or Mixtures in the Molecular Formula Field</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="data_operator_help.html"
+                          title="previous chapter">Data Operations Tool</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="density_calculator_help.html"
+                          title="next chapter">Density/Volume Calculator Tool</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user/qtgui/Calculators/sld_calculator_help.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="density_calculator_help.html" title="Density/Volume Calculator Tool"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="data_operator_help.html" title="Data Operations Tool"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../tools.html" >Tools &amp; Utilities</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">SLD Calculator Tool</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

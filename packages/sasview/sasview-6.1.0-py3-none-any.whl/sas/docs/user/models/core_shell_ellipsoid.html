@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>core_shell_ellipsoid &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="ellipsoid" href="ellipsoid.html" />
+    <link rel="prev" title="Ellipsoid Functions" href="../qtgui/Perspectives/Fitting/models/shape-ellipsoid.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ellipsoid.html" title="ellipsoid"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../qtgui/Perspectives/Fitting/models/shape-ellipsoid.html" title="Ellipsoid Functions"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-ellipsoid.html" accesskey="U">Ellipsoid Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">core_shell_ellipsoid</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="core-shell-ellipsoid">
+<span id="id1"></span><h1>core_shell_ellipsoid<a class="headerlink" href="#core-shell-ellipsoid" title="Link to this heading">¶</a></h1>
+<p>Form factor for an spheroid ellipsoid particle with a core shell structure.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>scale</p></td>
+<td><p>Scale factor or Volume fraction</p></td>
+<td><p>None</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>background</p></td>
+<td><p>Source background</p></td>
+<td><p>cm<sup>-1</sup></p></td>
+<td><p>0.001</p></td>
+</tr>
+<tr class="row-even"><td><p>radius_equat_core</p></td>
+<td><p>Equatorial radius of core</p></td>
+<td><p>Å</p></td>
+<td><p>20</p></td>
+</tr>
+<tr class="row-odd"><td><p>x_core</p></td>
+<td><p>axial ratio of core, X = r_polar/r_equatorial</p></td>
+<td><p>None</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-even"><td><p>thick_shell</p></td>
+<td><p>thickness of shell at equator</p></td>
+<td><p>Å</p></td>
+<td><p>30</p></td>
+</tr>
+<tr class="row-odd"><td><p>x_polar_shell</p></td>
+<td><p>ratio of thickness of shell at pole to that at equator</p></td>
+<td><p>None</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>sld_core</p></td>
+<td><p>Core scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>sld_shell</p></td>
+<td><p>Shell scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>sld_solvent</p></td>
+<td><p>Solvent scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>6.3</p></td>
+</tr>
+<tr class="row-odd"><td><p>theta</p></td>
+<td><p>elipsoid axis to beam angle</p></td>
+<td><p>degree</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>phi</p></td>
+<td><p>rotation about beam</p></td>
+<td><p>degree</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<p>The returned value is scaled to units of cm<sup>-1</sup> sr<sup>-1</sup>, absolute scale.</p>
+<p><strong>Definition</strong></p>
+<p>Parameters for this model are the core axial ratio <span class="math notranslate nohighlight">\(X_{core}\)</span> and a shell
+thickness <span class="math notranslate nohighlight">\(t_{shell}\)</span>, which are more often what we would like to determine
+and make the model better behaved, particularly when polydispersity is
+applied, than the four independent radii used in the original parameterization
+of this model.</p>
+<figure class="align-default">
+<img alt="../../_images/core_shell_ellipsoid_geometry.png" src="../../_images/core_shell_ellipsoid_geometry.png" />
+</figure>
+<p>The geometric parameters of this model are shown in the diagram above, which
+shows (a) a cut through at the circular equator and (b) a cross section through
+the poles, of a prolate ellipsoid.</p>
+<p>When <span class="math notranslate nohighlight">\(X_{core}\)</span> &lt; 1 the core is oblate; when <span class="math notranslate nohighlight">\(X_{core}\)</span> &gt; 1 it is prolate.
+<span class="math notranslate nohighlight">\(X_{core}\)</span> = 1 is a spherical core.</p>
+<p>For a fixed shell thickness <span class="math notranslate nohighlight">\(X_{polar shell}\)</span> = 1, to scale <span class="math notranslate nohighlight">\(t_{shell}\)</span>
+pro-rata with the radius set or constrain <span class="math notranslate nohighlight">\(X_{polar shell}\)</span> = <span class="math notranslate nohighlight">\(X_{core}\)</span>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When including an <span class="math notranslate nohighlight">\(S(q)\)</span>, the radius in <span class="math notranslate nohighlight">\(S(q)\)</span> is calculated to be that of
+a sphere with the same 2nd virial coefficient of the outer surface of the
+ellipsoid. This may have some undesirable effects if the aspect ratio of the
+ellipsoid is large (ie, if <span class="math notranslate nohighlight">\(X &lt;&lt; 1\)</span> or <span class="math notranslate nohighlight">\(X &gt;&gt; 1\)</span>), when the <span class="math notranslate nohighlight">\(S(q)\)</span>
+- which assumes spheres - will not in any case be valid.  Generating a
+custom product model will enable separate effective volume fraction and
+effective radius in the <span class="math notranslate nohighlight">\(S(q)\)</span>.</p>
+</div>
+<p>If SAS data are in absolute units, and the SLDs are correct, then scale should
+be the total volume fraction of the “outer particle”. When <span class="math notranslate nohighlight">\(S(q)\)</span> is introduced
+this moves to the <span class="math notranslate nohighlight">\(S(q)\)</span> volume fraction, and scale should then be 1.0, or
+contain some other units conversion factor (for example, if you have SAXS data).</p>
+<p>The calculation of intensity follows that for the solid ellipsoid, but
+with separate terms for the core-shell and shell-solvent boundaries.</p>
+<div class="math notranslate nohighlight">
+\[P(q,\alpha) = \frac{\text{scale}}{V} F^2(q,\alpha) + \text{background}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\begin{align*}
+F(q,\alpha) = &amp;f(q,R_e,R_e.x_{core},\alpha) \\
+&amp;+ f(q,R_e + t_{shell},
+     R_e.x_{core} + t_{shell}.x_{polar shell},\alpha)
+\end{align*}</div><p>where</p>
+<div class="math notranslate nohighlight">
+\[f(q,R_e,R_p,\alpha) = \frac{3 \Delta \rho V (\sin(qr)
+            - qr\cos(qr)}
+            {(qr)^3}\]</div>
+<p>for</p>
+<div class="math notranslate nohighlight">
+\[r = \left[ R_e^2 \sin^2 \alpha + R_p^2 \cos^2 \alpha \right]^{1/2}\]</div>
+<p><span class="math notranslate nohighlight">\(\alpha\)</span> is the angle between the axis of the ellipsoid and <span class="math notranslate nohighlight">\(\vec q\)</span>,
+<span class="math notranslate nohighlight">\(V = (4/3)\pi R_pR_e^2\)</span> is the volume of the ellipsoid , <span class="math notranslate nohighlight">\(R_p\)</span> is the
+polar radius along the rotational axis of the ellipsoid, <span class="math notranslate nohighlight">\(R_e\)</span> is the
+equatorial radius perpendicular to the rotational axis of the ellipsoid,
+<span class="math notranslate nohighlight">\(t_{shell}\)</span> is the thickness of the shell at the equator,
+and <span class="math notranslate nohighlight">\(\Delta \rho\)</span> (the contrast) is the scattering length density difference,
+either <span class="math notranslate nohighlight">\((\rho_{core} - \rho_{shell})\)</span> or <span class="math notranslate nohighlight">\((\rho_{shell} - \rho_{solvent})\)</span>.</p>
+<p>For randomly oriented particles:</p>
+<div class="math notranslate nohighlight">
+\[F^2(q)=\int_{0}^{\pi/2}{F^2(q,\alpha)\sin(\alpha)d\alpha}\]</div>
+<p>For oriented ellipsoids the <em>theta</em>, <em>phi</em> and <em>psi</em> orientation parameters
+will appear when fitting 2D data, see the <a class="reference internal" href="elliptical_cylinder.html#elliptical-cylinder"><span class="std std-ref">elliptical_cylinder</span></a> model
+for further information.</p>
+<figure class="align-default" id="id2">
+<img alt="../../_images/core_shell_ellipsoid_autogenfig.png" src="../../_images/core_shell_ellipsoid_autogenfig.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 39 </span><span class="caption-text">1D and 2D plots corresponding to the default parameters of the model.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Source</strong></p>
+<p><a class="reference download internal" download="" href="../../_downloads/04ef5c5f19a58e6e48b8dc3be28e60a1/core_shell_ellipsoid.py"><code class="xref download docutils literal notranslate"><span class="pre">core_shell_ellipsoid.py</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/8947ceebb65f27408a3bad595189260d/core_shell_ellipsoid.c"><code class="xref download docutils literal notranslate"><span class="pre">core_shell_ellipsoid.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/9ee45b8c6371b0a130036ee53e1f050e/gauss76.c"><code class="xref download docutils literal notranslate"><span class="pre">gauss76.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/5224eea2106a0533fa82ac542ccf5579/sas_3j1x_x.c"><code class="xref download docutils literal notranslate"><span class="pre">sas_3j1x_x.c</span></code></a></p>
+<p><strong>References</strong>
+see for example:</p>
+<ol class="arabic simple">
+<li><p>Kotlarchyk, M.; Chen, S.-H. <em>J. Chem. Phys.</em>, 1983, 79, 2461</p></li>
+<li><p>Berr, S. <em>J. Phys. Chem.</em>, 1987, 91, 4760</p></li>
+</ol>
+<p><strong>Authorship and Verification</strong></p>
+<ul class="simple">
+<li><p><strong>Author:</strong> NIST IGOR/DANSE <strong>Date:</strong> pre 2010</p></li>
+<li><p><strong>Last Modified by:</strong> Richard Heenan (reparametrised model) <strong>Date:</strong> 2015</p></li>
+<li><p><strong>Last Reviewed by:</strong> Steve King <strong>Date:</strong> March 27, 2019</p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../qtgui/Perspectives/Fitting/models/shape-ellipsoid.html"
+                          title="previous chapter">Ellipsoid Functions</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="ellipsoid.html"
+                          title="next chapter">ellipsoid</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user/models/core_shell_ellipsoid.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ellipsoid.html" title="ellipsoid"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../qtgui/Perspectives/Fitting/models/shape-ellipsoid.html" title="Ellipsoid Functions"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-ellipsoid.html" >Ellipsoid Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">core_shell_ellipsoid</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>sc_paracrystal &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Parallelepiped Functions" href="../qtgui/Perspectives/Fitting/models/shape-parallelepiped.html" />
+    <link rel="prev" title="fcc_paracrystal" href="fcc_paracrystal.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../qtgui/Perspectives/Fitting/models/shape-parallelepiped.html" title="Parallelepiped Functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="fcc_paracrystal.html" title="fcc_paracrystal"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-paracrystal.html" accesskey="U">Paracrystal Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sc_paracrystal</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="sc-paracrystal">
+<span id="id1"></span><h1>sc_paracrystal<a class="headerlink" href="#sc-paracrystal" title="Link to this heading">¶</a></h1>
+<p>Simple cubic lattice with paracrystalline distortion</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>scale</p></td>
+<td><p>Scale factor or Volume fraction</p></td>
+<td><p>None</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>background</p></td>
+<td><p>Source background</p></td>
+<td><p>cm<sup>-1</sup></p></td>
+<td><p>0.001</p></td>
+</tr>
+<tr class="row-even"><td><p>dnn</p></td>
+<td><p>Nearest neighbor distance</p></td>
+<td><p>Å</p></td>
+<td><p>220</p></td>
+</tr>
+<tr class="row-odd"><td><p>d_factor</p></td>
+<td><p>Paracrystal distortion factor</p></td>
+<td><p>None</p></td>
+<td><p>0.06</p></td>
+</tr>
+<tr class="row-even"><td><p>radius</p></td>
+<td><p>Radius of sphere</p></td>
+<td><p>Å</p></td>
+<td><p>40</p></td>
+</tr>
+<tr class="row-odd"><td><p>sld</p></td>
+<td><p>Sphere scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-even"><td><p>sld_solvent</p></td>
+<td><p>Solvent scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>6.3</p></td>
+</tr>
+<tr class="row-odd"><td><p>theta</p></td>
+<td><p>c axis to beam angle</p></td>
+<td><p>degree</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>phi</p></td>
+<td><p>rotation about beam</p></td>
+<td><p>degree</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>psi</p></td>
+<td><p>rotation about c axis</p></td>
+<td><p>degree</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<p>The returned value is scaled to units of cm<sup>-1</sup> sr<sup>-1</sup>, absolute scale.</p>
+<p><strong>Definition</strong></p>
+<p>Calculates the scattering from a <strong>simple cubic lattice</strong> with
+paracrystalline distortion. Thermal vibrations are considered to be
+negligible, and the size of the paracrystal is infinitely large.
+Paracrystalline distortion is assumed to be isotropic and characterized
+by a Gaussian distribution.</p>
+<p>The scattering intensity <span class="math notranslate nohighlight">\(I(q)\)</span> is calculated as</p>
+<div class="math notranslate nohighlight">
+\[I(q) = \frac{\text{scale}}{V_p} V_\text{lattice} P(q) Z(q) + \text{background}\]</div>
+<p>where <em>scale</em> is the volume fraction of crystal in the sample volume,
+<span class="math notranslate nohighlight">\(V_\text{lattice}\)</span> is the volume fraction of spheres in the crystal, <span class="math notranslate nohighlight">\(V_p\)</span> is
+the volume of the primary particle, <span class="math notranslate nohighlight">\(P(q)\)</span> is the form factor of the sphere
+(normalized), and <span class="math notranslate nohighlight">\(Z(q)\)</span> is the paracrystalline structure factor for a
+simple cubic structure.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>At this point the GUI does not return <span class="math notranslate nohighlight">\(V_\text{lattice}\)</span> separately so that
+the user will need to calculate it from the equation given and the
+appropriate returned parameters.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>As per the equations below, this model will return I(q)=0 for all q if the
+distortion factor is equal to 0. The model is not meant to support perfect
+crystals.</p>
+</div>
+<figure class="align-default" id="id7">
+<img alt="../../_images/sc_crystal_geometry.jpg" src="../../_images/sc_crystal_geometry.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 57 </span><span class="caption-text">Simple cubic (SC) lattice taken from reference <a class="footnote-reference brackets" href="#matsuoka1987" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.</span><a class="headerlink" href="#id7" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Following the derivation from reference <a class="footnote-reference brackets" href="#matsuoka1987" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>, as corrected in
+reference <a class="footnote-reference brackets" href="#matsuoka1990" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>, and based on the above figure, the
+primitive unit cell vectors are <span class="math notranslate nohighlight">\(\vec{a_1},\vec{a_2}\)</span>, and <span class="math notranslate nohighlight">\(\vec{a_3}\)</span> which
+in this case are the same as the conventional unit cell vectors (<span class="math notranslate nohighlight">\(\vec{b_1}\)</span>,
+<span class="math notranslate nohighlight">\(\vec{b_2}\)</span>, and <span class="math notranslate nohighlight">\(\vec{b_3}\)</span>) so that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\vec{a_1} &amp;= \vec{b_1} = a \hat{\textbf{x}} \\
+\vec{a_2} &amp;= \vec{b_2} = a \hat{\textbf{y}} \\
+\vec{a_3} &amp;= \vec{b_3} = a \hat{\textbf{z}}.\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(a\)</span> is the lattice parameter which is also in this case the nearest
+neighbor distance <span class="math notranslate nohighlight">\(D\)</span>.</p>
+<p>The volume fraction (<span class="math notranslate nohighlight">\(V_{lattice}\)</span>) of spherical particles with
+radius <span class="math notranslate nohighlight">\(R\)</span> sitting on the sc lattice is then given by:</p>
+<div class="math notranslate nohighlight">
+\[V_{lattice} = \frac{4/3 \pi R^3}{D^3}\]</div>
+<p>Now, continuing to follow <a class="footnote-reference brackets" href="#matsuoka1987" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>, the structure (lattice)
+factor <span class="math notranslate nohighlight">\(Z(\vec{q})\)</span> for a 3D paracrystal can be written as:</p>
+<div class="math notranslate nohighlight">
+\[Z(\vec{q}) = \prod_{k=1}^{3}Z_k(\vec{q})\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[Z_k(\vec{q}) = \frac{1-|F_k|^2}{1-2|F_k|\cos(\vec{a_k}\cdot\vec{q})+|F_k|^2}\]</div>
+<p>and where <span class="math notranslate nohighlight">\(F_k(\vec{q})\)</span> is the structure factor of the primitive unit cell
+defined as:</p>
+<div class="math notranslate nohighlight">
+\[F_k(\vec{q}) = e^{-\frac{1}{2} \Delta a^2_k q^2} \times e^{-i\vec{q}\cdot\vec{a_k}}.\]</div>
+<p>Here, <span class="math notranslate nohighlight">\(\vec{a_k}\)</span> are the primitive unit cell vectors <span class="math notranslate nohighlight">\(\vec{a_1}\)</span>, <span class="math notranslate nohighlight">\(\vec{a_2}\)</span>,
+and <span class="math notranslate nohighlight">\(\vec{a_3}\)</span>. Furthermore, <span class="math notranslate nohighlight">\(\Delta a_k\)</span> is the isotropic distortion of the
+lattice point from its ideal position and can be defined by a constant factor
+<span class="math notranslate nohighlight">\(g=\Delta a / |\vec{a_1}| = \Delta a / |\vec{a_2}| = \Delta a / |\vec{a_3}|=\Delta a/D\)</span>.</p>
+<p>Finally, assuming the definitions presented in this document, the authors of
+reference <a class="footnote-reference brackets" href="#matsuoka1987" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> have derived the lattice factors which, substituting
+<span class="math notranslate nohighlight">\(D\)</span> for the lattice parameter <span class="math notranslate nohighlight">\(a\)</span>, are given by:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}Z_1(q,\theta,\phi)&amp;=[1-e^{-q^2\Delta a^2}]/\{1-2e^{-\frac{1}{2}q^2\Delta a^2}\cos(-qD \sin\theta \cos\phi ) + e^{-q^2\Delta a^2}\}\\
+Z_2(q,\theta,\phi)&amp;=[1-e^{-q^2\Delta a^2}]/\{1-2e^{-\frac{1}{2}q^2\Delta a^2}\cos(qD \sin\theta \sin\phi) + e^{-q^2\Delta a^2}\}\\
+Z_3(q,\theta,\phi)&amp;=[1-e^{-q^2\Delta a^2}]/\{1-2e^{-\frac{1}{2}q^2\Delta a^2}\cos(qD \cos\theta) + e^{-q^2\Delta a^2}\}.\\\end{split}\]</div>
+<p>Finally, the position of the Bragg peaks for the sc lattice are indexed by (reduced q-values):</p>
+<div class="math notranslate nohighlight">
+\[\frac{qa}{2\pi}=\frac{qD}{2\pi} = \sqrt{h^2+k^2+l^2}\]</div>
+<p>where for a simple cubic lattice there are <strong>no</strong> selection rules for h, k, l
+so that all permutations of them give constructive interference. Thus the peak
+positions correspond to (just the first 5)</p>
+<div class="math notranslate nohighlight">
+\begin{align*}
+q/q_0 \quad &amp; \quad 1
+            &amp; \sqrt{2} \quad
+            &amp; \quad  \sqrt{3} \quad
+            &amp; \sqrt{4} \quad
+            &amp; \quad \sqrt{5}\quad \\
+Indices \quad &amp; (100)
+              &amp; \quad (110) \quad
+              &amp; \quad (111)
+              &amp; (200) \quad
+              &amp; \quad (210)
+\end{align*}</div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The calculation of <span class="math notranslate nohighlight">\(Z(q)\)</span> is a double numerical integral that must be
+carried out with a high density of points to properly capture the sharp
+peaks of the paracrystalline scattering. So be warned that the calculation
+is slow. Fitting of any experimental data must be resolution smeared for
+any meaningful fit. This makes a triple integral which may be very slow.
+If a double-precision GPU with OpenCL support is available this may improve
+the speed of the calculation.</p>
+</div>
+<p>The 2D (Anisotropic model) is based on the reference below where <em>I(q)</em> is
+approximated for 1d scattering. Thus the scattering pattern for 2D may not
+be accurate particularly at low <span class="math notranslate nohighlight">\(q\)</span>. For general details of the calculation
+and angular dispersions for oriented particles see <a class="reference internal" href="../qtgui/Perspectives/Fitting/orientation/orientation.html#orientation"><span class="std std-ref">Oriented Particles</span></a>.
+Note that we are not responsible for any incorrectness of the
+2D model computation.</p>
+<figure class="align-default" id="id8">
+<img alt="../../_images/parallelepiped_angle_definition.png" src="../../_images/parallelepiped_angle_definition.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 58 </span><span class="caption-text">Orientation of the crystal with respect to the scattering plane, when
+<span class="math notranslate nohighlight">\(\theta = \phi = 0\)</span> the <span class="math notranslate nohighlight">\(c\)</span> axis is along the beam direction (the <span class="math notranslate nohighlight">\(z\)</span> axis).</span><a class="headerlink" href="#id8" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id9">
+<img alt="../../_images/sc_paracrystal_autogenfig.png" src="../../_images/sc_paracrystal_autogenfig.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 59 </span><span class="caption-text">1D and 2D plots corresponding to the default parameters of the model.</span><a class="headerlink" href="#id9" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Source</strong></p>
+<p><a class="reference download internal" download="" href="../../_downloads/98820df7afde2e61844df992390c54a4/sc_paracrystal.py"><code class="xref download docutils literal notranslate"><span class="pre">sc_paracrystal.py</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/bd75b657176130e7cd86a2d9517a8647/sc_paracrystal.c"><code class="xref download docutils literal notranslate"><span class="pre">sc_paracrystal.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/98bad99bddf362c4825a36c6d3c6d65a/gauss150.c"><code class="xref download docutils literal notranslate"><span class="pre">gauss150.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/23ec89d029a151ee0c2731a00ae0ebcb/sphere_form.c"><code class="xref download docutils literal notranslate"><span class="pre">sphere_form.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/5224eea2106a0533fa82ac542ccf5579/sas_3j1x_x.c"><code class="xref download docutils literal notranslate"><span class="pre">sas_3j1x_x.c</span></code></a></p>
+<p><strong>Reference</strong></p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="matsuoka1987" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id2">1</a>,<a role="doc-backlink" href="#id3">2</a>,<a role="doc-backlink" href="#id5">3</a>,<a role="doc-backlink" href="#id6">4</a>)</span>
+<p>Hideki Matsuoka et. al. <em>Physical Review B</em>, 36 (1987)
+1754-1765 (Original Paper)</p>
+</aside>
+<aside class="footnote brackets" id="matsuoka1990" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">2</a><span class="fn-bracket">]</span></span>
+<p>Hideki Matsuoka et. al. <em>Physical Review B</em>, 41 (1990)
+3854-3856 (Corrections to FCC and BCC lattice structure calculation)</p>
+</aside>
+</aside>
+<p><strong>Authorship and Verification</strong></p>
+<ul class="simple">
+<li><p><strong>Author:</strong> NIST IGOR/DANSE <strong>Date:</strong> pre 2010</p></li>
+<li><p><strong>Last Modified by:</strong> Paul Butler <strong>Date:</strong> Oct 27, 2022</p></li>
+<li><p><strong>Last Reviewed by:</strong> Jonathan Gaudet <strong>Date:</strong> Nov 2, 2022</p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="fcc_paracrystal.html"
+                          title="previous chapter">fcc_paracrystal</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../qtgui/Perspectives/Fitting/models/shape-parallelepiped.html"
+                          title="next chapter">Parallelepiped Functions</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user/models/sc_paracrystal.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../qtgui/Perspectives/Fitting/models/shape-parallelepiped.html" title="Parallelepiped Functions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="fcc_paracrystal.html" title="fcc_paracrystal"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-paracrystal.html" >Paracrystal Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sc_paracrystal</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

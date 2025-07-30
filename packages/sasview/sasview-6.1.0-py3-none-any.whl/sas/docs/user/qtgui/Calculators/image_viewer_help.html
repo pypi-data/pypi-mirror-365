@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Image Viewer Tool &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="File Converter Tool" href="file_converter_help.html" />
+    <link rel="prev" title="Python Shell-Editor Tool" href="python_shell_help.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="file_converter_help.html" title="File Converter Tool"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="python_shell_help.html" title="Python Shell-Editor Tool"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../tools.html" accesskey="U">Tools &amp; Utilities</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Image Viewer Tool</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="image-viewer-tool">
+<span id="id1"></span><h1>Image Viewer Tool<a class="headerlink" href="#image-viewer-tool" title="Link to this heading">¶</a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
+<p>This tool loads image files and displays them as 2D (x-y coordinate against
+counts per pixel). The plot can then can be saved, printed, and copied. The
+plot can also be resized by dragging the corner of the panel.</p>
+<p>The supported input image formats are:</p>
+<ul class="simple">
+<li><p>BMP (bitmap format)</p></li>
+<li><p>GIF (graphical interchange format)</p></li>
+<li><p>JPG (joint photographic experts group format)</p></li>
+<li><p>PNG (portable network graphics format)</p></li>
+<li><p>TIF (tagged image format)</p></li>
+</ul>
+</section>
+<section id="using-the-tool">
+<h2>Using the tool<a class="headerlink" href="#using-the-tool" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Select <em>Image Viewer</em> from the <em>Tool</em> menu on the SasView toolbar.</p></li>
+</ol>
+<img alt="../../../_images/image_viewer_menu.png" src="../../../_images/image_viewer_menu.png" />
+<ol class="arabic simple" start="2">
+<li><p>Click on <em>Load Image</em> in the <em>File</em> menu and select a file. If the loading is successful the image
+will be displayed.</p></li>
+</ol>
+<img alt="../../../_images/image_viewer_loaded.png" src="../../../_images/image_viewer_loaded.png" />
+<ol class="arabic simple" start="3">
+<li><p>To save, print, or copy the image, or to apply a grid overlay, right-click
+anywhere in the plot.</p></li>
+</ol>
+<img alt="../../../_images/image_viewer_menu1.png" src="../../../_images/image_viewer_menu1.png" />
+<ol class="arabic" start="4">
+<li><p>If the image is taken from a 2D detector, SasView can attempt to convert
+the colour/grey scale into pseudo-intensity 2D data using</p>
+<p>z = (0.299 x R) + (0.587 x G) + (0.114 x B)</p>
+<p>unless the image is formatted as 8-bit grey-scale TIF.</p>
+</li>
+<li><p>In the <em>Convert to Data</em> dialog from the <em>Image</em> menu, set the parameters relevant to the data and
+then click the OK.</p></li>
+</ol>
+<img alt="../../../_images/image_viewer_conversion.png" src="../../../_images/image_viewer_conversion.png" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This help document was last changed by Piotr Rozyczko, 10 May 2019</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Image Viewer Tool</a><ul>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#using-the-tool">Using the tool</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="python_shell_help.html"
+                          title="previous chapter">Python Shell-Editor Tool</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="file_converter_help.html"
+                          title="next chapter">File Converter Tool</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user/qtgui/Calculators/image_viewer_help.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="file_converter_help.html" title="File Converter Tool"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="python_shell_help.html" title="Python Shell-Editor Tool"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../tools.html" >Tools &amp; Utilities</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Image Viewer Tool</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

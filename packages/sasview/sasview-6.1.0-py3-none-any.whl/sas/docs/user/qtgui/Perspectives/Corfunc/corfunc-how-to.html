@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>How To Use Corfunc &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Size Distribution" href="../SizeDistribution/sizedistribution_help.html" />
+    <link rel="prev" title="Corfunc Technical Documentation" href="corfunc-technical.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../SizeDistribution/sizedistribution_help.html" title="Size Distribution"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="corfunc-technical.html" title="Corfunc Technical Documentation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../analysis.html" >Fitting &amp; Other Analyses</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="corfunc_help.html" accesskey="U">Correlation Function Analysis</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">How To Use Corfunc</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="how-to-use-corfunc">
+<span id="corfunc-how-to"></span><h1>How To Use Corfunc<a class="headerlink" href="#how-to-use-corfunc" title="Link to this heading">¶</a></h1>
+<section id="running-a-calculation">
+<h2>Running a Calculation<a class="headerlink" href="#running-a-calculation" title="Link to this heading">¶</a></h2>
+<p>Upon sending data for correlation function analysis, it will be plotted (minus
+the background value), along with a bar indicating the upper end of the
+low-Q range (used for Guinier back-extrapolation) and 2 bars indicating
+the range to be used for Porod forward-extrapolation.</p>
+<p>This information is also shown on the orange and green interactive slider on the left.
+You can drag bars on this slider (not the plot), or enter values manually.</p>
+<figure class="align-center">
+<img alt="../../../../_images/tutorial_data_loaded.png" src="../../../../_images/tutorial_data_loaded.png" />
+</figure>
+<p>Once the Q ranges have been set, click the “Go” button to run the analysis.
+This will run through the process described in the technical documentation using the
+default options shown above the button.</p>
+<p>The parameters used along the way can be overriden by changing them in the appropriate text boxes,
+and whether or not they are recalculated is controlled by the check boxes.</p>
+</section>
+<section id="options">
+<h2>Options<a class="headerlink" href="#options" title="Link to this heading">¶</a></h2>
+<p>In addition to the checkboxes that control whether parts of the calculation are executed,
+there are options for choosing how the lamellar parameters are extracted.
+These are intended to give flexibility to users and allow for manual control in certain edge
+cases, or where there are small errors in the transformed data.</p>
+<p>Automatic selection is the most robust choice, this will choose the leftmost option
+as long as it is feasible.</p>
+<p>The extra options are as follows:</p>
+<p>1) There is an option to choose how the tangent slope used for calculating lamellar parameters
+such as <cite>hard block</cite> are calculated. Usually this is done by finding the inflection point of the
+curve. However, in some datasets it is more appropriate to use the point half way between the minimum
+and maximum values of <span class="math notranslate nohighlight">\(\Gamma_1\)</span>;</p>
+<p>2) The second option chooses whether to use the first minimum or subsequent maximum to infer the periodicity.
+The standard option is to use the maximum, but in some cases, such as where the period is
+long compared to experimental data,
+it might be necessary to use twice the minimum as a proxy.</p>
+<p>The automatic selection should be appropriate for general use.</p>
+</section>
+<section id="output">
+<h2>Output<a class="headerlink" href="#output" title="Link to this heading">¶</a></h2>
+<p>When the calculation is complete, the extrapolated curve will be shown on the Q-space plot.</p>
+<blockquote>
+<div><figure class="align-center">
+<img alt="../../../../_images/tutorial_after_go.png" src="../../../../_images/tutorial_after_go.png" />
+</figure>
+</div></blockquote>
+<p>The <cite>Real Space</cite> tab shows plots of <span class="math notranslate nohighlight">\(\Gamma_1\)</span> and <span class="math notranslate nohighlight">\(\Gamma_3\)</span></p>
+<blockquote>
+<div><figure class="align-center">
+<img alt="../../../../_images/tutorial_real_space.png" src="../../../../_images/tutorial_real_space.png" />
+</figure>
+</div></blockquote>
+<p>To check the extrapolation parameters, a diagram shows the geometric construction used to
+derive them in the <cite>Extraction Diagram</cite> tab.</p>
+<blockquote>
+<div><figure class="align-center">
+<img alt="../../../../_images/tutorial_extraction.png" src="../../../../_images/tutorial_extraction.png" />
+</figure>
+</div></blockquote>
+<p>Finally, you can see the interface distribution function in the <cite>IDF</cite> tab</p>
+<blockquote>
+<div><figure class="align-center">
+<img alt="../../../../_images/tutorial_idf.png" src="../../../../_images/tutorial_idf.png" />
+</figure>
+</div></blockquote>
+<p>The export buttons allow you to produce CSV files containing either the extrapolated
+Q-space data, or the transformed data.</p>
+<p>The structure of the transformed data file is shown below (note that as this is a 4 column .csv file,
+SasView will interpret this as a <span class="math notranslate nohighlight">\(I(q)\)</span> vs <span class="math notranslate nohighlight">\(q\)</span> curve if you try to load it from the main
+SasView window).</p>
+<blockquote>
+<div><figure class="align-center">
+<img alt="../../../../_images/tutorial_export_data.png" src="../../../../_images/tutorial_export_data.png" />
+</figure>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If <em>Export Extrapolated</em> is selected a dialog box will appear in which the
+bounds and binning of the extrapolated data can be selected. This is pre-populated
+with the values for the experimental data; i.e. using these values would <em>not</em>
+actually include any extrapolated data!</p>
+</div>
+<figure class="align-center">
+<img alt="../../../../_images/tutorial_extrapolate.png" src="../../../../_images/tutorial_extrapolate.png" />
+</figure>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">How To Use Corfunc</a><ul>
+<li><a class="reference internal" href="#running-a-calculation">Running a Calculation</a></li>
+<li><a class="reference internal" href="#options">Options</a></li>
+<li><a class="reference internal" href="#output">Output</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="corfunc-technical.html"
+                          title="previous chapter">Corfunc Technical Documentation</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../SizeDistribution/sizedistribution_help.html"
+                          title="next chapter">Size Distribution</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/user/qtgui/Perspectives/Corfunc/corfunc-how-to.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../SizeDistribution/sizedistribution_help.html" title="Size Distribution"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="corfunc-technical.html" title="Corfunc Technical Documentation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../analysis.html" >Fitting &amp; Other Analyses</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="corfunc_help.html" >Correlation Function Analysis</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">How To Use Corfunc</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

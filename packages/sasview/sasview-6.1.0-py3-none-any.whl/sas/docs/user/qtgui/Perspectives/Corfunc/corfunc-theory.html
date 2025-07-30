@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Correlation Function Theory &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Corfunc Technical Documentation" href="corfunc-technical.html" />
+    <link rel="prev" title="Correlation Function Analysis" href="corfunc_help.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="corfunc-technical.html" title="Corfunc Technical Documentation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="corfunc_help.html" title="Correlation Function Analysis"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../analysis.html" >Fitting &amp; Other Analyses</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="corfunc_help.html" accesskey="U">Correlation Function Analysis</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Correlation Function Theory</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="correlation-function-theory">
+<span id="corfunc-theory"></span><h1>Correlation Function Theory<a class="headerlink" href="#correlation-function-theory" title="Link to this heading">¶</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
+<p>In small angle scattering we measure the tendency for probe particles (neutrons, photons, etc)
+to transfer various amounts of momentum to a sample. The momentum is generally inferred from the scattering angle
+of probe particles, along with other information about the probe particles (e.g. kinetic energy).
+Small angle scattering is assumed to be elastic, which allows the momentum transfer to be directly related to a wavelength, and thus
+a spatial distance. The correlation function represents the scattering intensity in terms of this spatial distance,
+rather than in terms of momentum transfer.</p>
+<p>We can interpret the correlation function in terms of the sample structure by thinking about
+pairs of points separated by a given displacement. When, on average over the sample, the pairs of points
+have a high scattering length density, then the correlation function has a large value. Similarly,
+when the pairs have a low scattering length density, the correlation function is low.
+More concretely: the correlation function <span class="math notranslate nohighlight">\(\Gamma(\vec{r})\)</span> for vector <span class="math notranslate nohighlight">\(\vec{r} = (x,y,z)\)</span> is proportional to
+the pairwise product of scattering length densities for all points separated by the vector <span class="math notranslate nohighlight">\((x,y,z)\)</span>
+summed over all orientations and locations.</p>
+<p>Another way of thinking about the correlation function is as the scattering length
+density but with phase information removed. As scattering experiments contain
+no phase information, calculating the correlation function
+is as close as one can get to calculating the scattering length density from
+scattering data without incorporating additional information.</p>
+<p>The nature of small angle scattering further limits what spatial information
+can be recovered. Whilst in its most general form the correlation
+function takes a three dimensional vector input,
+small angle scattering measurements are limited to one or two dimensions,
+which in turn limits the amount of information about the correlation
+function that can be obtained. For this reason, in the correlation function
+analysis tool we consider various one dimensional projections of the full
+correlation function, labelled <span class="math notranslate nohighlight">\(\Gamma_1\)</span> and <span class="math notranslate nohighlight">\(\Gamma_3\)</span> .</p>
+<p>The <span class="math notranslate nohighlight">\(\Gamma_1\)</span> projection looks at changes in a single
+direction perpendicular to the beam, with the other directions being averaged.
+The direction is typically selected by hand from a 2D measurement prior to analysis.
+Theoretically, the correlation function will be fully recoved as long as the system
+being looked at is truly one dimensional and properly aligned.
+However, one must remember the constraints of a small angle scattering experiment,
+we only measure a small range of momentum transfer, and extrapolate the rest,
+as such the extrapolation steps must be appropriate for the system.
+This is in addition to the usual considerations of resolution and systematic
+measurement error.</p>
+<p>The <span class="math notranslate nohighlight">\(\Gamma_3\)</span> projection is motivated by a system of
+monodisperse, randomly oriented particles in dilute suspension,
+such that there are no spatial correlations between particles.
+It is the kind of system described by the Debye equation.
+Just as is the case with <span class="math notranslate nohighlight">\(\Gamma_1\)</span>, as long as one truly
+has this kind of system, and with caveats about extrapolation
+and experimental constraints, one should be able to fully recover
+the correlation function.</p>
+</section>
+<section id="lorentz-correction">
+<h2>Lorentz Correction<a class="headerlink" href="#lorentz-correction" title="Link to this heading">¶</a></h2>
+<p>Lorentz corrections are often used in correlation function analysis.
+Corfunc uses a Lorentz correction of</p>
+<div class="math notranslate nohighlight">
+\[I(q) = q^2 I_\text{measured}(q)\]</div>
+<p>In what follows, we assume that appropriate corrections have been made.
+<span class="math notranslate nohighlight">\(I(q)\)</span> here is what would be called <span class="math notranslate nohighlight">\(I_1(q)\)</span> in <span class="xref std std-ref">Stribeck</span>.</p>
+</section>
+<section id="formal-description">
+<h2>Formal Description<a class="headerlink" href="#formal-description" title="Link to this heading">¶</a></h2>
+<p>More formally, the correlation function is a quantity that arises naturally from calculating the square magnitude
+of the three dimensional Fourier transform, which is proportional to the scattering amplitude.</p>
+<div class="math notranslate nohighlight">
+\[\frac{d\sigma}{d\Omega} \propto F(\vec{q}) F^*(\vec{q})\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[F(\vec{q}) = \int \rho(r) e^{i \vec{r}\cdot\vec{q}} \; dr^3\]</div>
+<p>where <span class="math notranslate nohighlight">\(dr^3\)</span> is the volume element (<span class="math notranslate nohighlight">\(dx\;dy\;dz\)</span>).</p>
+<figure class="align-center">
+<img alt="../../../../_images/commutivity.png" src="../../../../_images/commutivity.png" />
+</figure>
+<p>A couple of algebraic steps will bring us to the correlation function: first,
+as <span class="math notranslate nohighlight">\(\rho\)</span> is real, and the conjugate of <span class="math notranslate nohighlight">\(e^{ix}\)</span> is <span class="math notranslate nohighlight">\(e^{-ix}\)</span> we
+know that the conjugate of <span class="math notranslate nohighlight">\(F\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[F^*(\vec{q}) = \int \rho(r) e^{-i \vec{r}\cdot\vec{q}}\]</div>
+<p>meaning that, with some renaming of variables (from <span class="math notranslate nohighlight">\(r\)</span> to <span class="math notranslate nohighlight">\(s\)</span> and <span class="math notranslate nohighlight">\(t\)</span>), we have</p>
+<div class="math notranslate nohighlight">
+\[F(\vec{q}) F^*(\vec{q}) = \left(\int \rho(\vec{t}) e^{i \vec{t}\cdot\vec{q}} \; dt^3\right)\left( \int \rho(\vec{s}) e^{-i \vec{s}\cdot\vec{q}} \; ds^3 \right)\]</div>
+<p>With some rearrangement this becomes</p>
+<div class="math notranslate nohighlight">
+\[\int\int \rho(\vec{s}) \rho(\vec{t}) e^{i (t-s)\cdot\vec{q}} \; dr^3 \; ds^3\]</div>
+<p>and now letting <span class="math notranslate nohighlight">\(\vec{r} = \vec{t} - \vec{s}\)</span>
+and applying the Fourier translation theorem, we can rewrite the above as
+(note this is not the same <span class="math notranslate nohighlight">\(\vec{r}\)</span> as before, but a new variable):</p>
+<div class="math notranslate nohighlight">
+\[\int\int \rho(\vec{s}) \rho(\vec{s} + \vec{r}) e^{i \vec{r}\cdot\vec{q}} \; ds^3  \; dr^3\]</div>
+<p>Some final reordering of the integration gives</p>
+<div class="math notranslate nohighlight">
+\[\int \left[ \int \rho(\vec{s}) \rho(\vec{s} + \vec{r}) \; ds^3 \right] \; e^{i \vec{r}\cdot\vec{q}} \; dr^3\]</div>
+<p>The quantity in square brackets is what is called the correlation function, <span class="math notranslate nohighlight">\(\gamma(\vec{r})\)</span>, so:</p>
+<div class="math notranslate nohighlight">
+\[\gamma(\vec{r}) = \int \rho(\vec{s}) \rho(\vec{s} + \vec{r}) \; ds^3\]</div>
+<p>and it is the quantity that is Fourier transformed (with some appropriate scaling)
+to get the magnitude of the scattering.</p>
+<section id="some-useful-properties-of-the-correlation-function">
+<h3>Some useful properties of the Correlation Function<a class="headerlink" href="#some-useful-properties-of-the-correlation-function" title="Link to this heading">¶</a></h3>
+<p>As we have mentioned before, the correlation function contains no phase information,
+mathematically this is the same as saying (1) that its Fourier transform is purely real,
+or (2) that the correlation function is an even function. The consequence of this is
+that we can write the Fourier transform of the correlation function using a cosine instead
+of a complex exponential.</p>
+<p>Demonstrating the evenness of the correlation function is easily done by a change of
+the variable of integration from <span class="math notranslate nohighlight">\(\vec{s}\)</span>
+to <span class="math notranslate nohighlight">\(\vec{u} = \vec{s} + \vec{r}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\gamma(\vec{r}) = \int \rho(\vec{s}) \rho(\vec{s} + \vec{r}) \; ds^3 = \int \rho(\vec{u}-\vec{r}) \rho(\vec{u}) \; du^3 = \gamma(-\vec{r})\]</div>
+<p>and from this we can show that its Fourier transform is real by applying the following
+to each dimension in turn (shown here in the 1D case for even <span class="math notranslate nohighlight">\(f(x)\)</span>).</p>
+<p>First, we split the integral into negative and positive <span class="math notranslate nohighlight">\(x\)</span> parts:</p>
+<div class="math notranslate nohighlight">
+\[\int_{-\infty}^\infty f(x) e^{i x \xi} dx = \int_{-\infty}^0 f(x) e^{i x \xi} dx + \int_{0}^\infty f(x) e^{i x \xi} dx\]</div>
+<p>Let <span class="math notranslate nohighlight">\(u = -x\)</span> for the negative part, use the fact that <span class="math notranslate nohighlight">\(f(-x)=f(x)\)</span> and
+recalculate the bounds of integration</p>
+<div class="math notranslate nohighlight">
+\[= \int_0^\infty f(u) e^{-i u \xi} du + \int_{0}^\infty f(x) e^{i x \xi} dx\]</div>
+<p>Note that <span class="math notranslate nohighlight">\(u\)</span> only appears within the integral, so we can rename it to <span class="math notranslate nohighlight">\(x\)</span>
+and recombine it with the positive part. We can also multiply the integral by two and
+the integrand by two, giving</p>
+<div class="math notranslate nohighlight">
+\[= 2 \int_0^\infty f(x) \frac{e^{i x \xi} + e^{-i x \xi}}{2} dx\]</div>
+<p>The fractional part of which is the complex definition of cosine.
+Applying this definition and using the fact that <span class="math notranslate nohighlight">\(f(x)\)</span> is even
+to restore the original bounds of integration we get</p>
+<div class="math notranslate nohighlight">
+\[= \int_{-\infty}^{\infty} f(x) cos(x \xi) dx\]</div>
+<p>which shows that the Fourier transform is purely real, reflecting the
+fact that there is no phase information (which would be encoded in the imaginary part).</p>
+</section>
+<section id="the-gamma-1-projection">
+<h3>The <span class="math notranslate nohighlight">\(\Gamma_1\)</span> Projection<a class="headerlink" href="#the-gamma-1-projection" title="Link to this heading">¶</a></h3>
+<p>Consider the Fourier transform of the three dimensional correlation function,</p>
+<div class="math notranslate nohighlight">
+\[\int\int\int \gamma(\vec{r}) e^{i \vec{r} \cdot \vec{q}} \; dx \; dy \; dz\]</div>
+<p>Now let <span class="math notranslate nohighlight">\(q_z = q_y = 0\)</span>.
+The motivation for this is (1) that during small angle scattering <span class="math notranslate nohighlight">\(q_z\)</span>
+is small enough to be neglected, and (2) that we are choosing to measure
+in one direction of the <span class="math notranslate nohighlight">\(q_x q_y\)</span> plane.
+We assume, without loss of generality, this to be where <span class="math notranslate nohighlight">\(q_y=0\)</span>.</p>
+<p>This gives us <span class="math notranslate nohighlight">\(q \cdot r = x q_x\)</span>, and so the transform becomes</p>
+<div class="math notranslate nohighlight">
+\[I(q) = \int \gamma(\vec{r}) e^{i x q_x} \; dx \; dy \; dz\]</div>
+<p>which we can rewrite as</p>
+<div class="math notranslate nohighlight">
+\[\int\left( \int\int \gamma(\vec{r}) \; dy\;dz\right) e^{i x q_x} \; dx\]</div>
+<p>the quantity in the brackets is <span class="math notranslate nohighlight">\(\Gamma_1(x)\)</span>. That is to say</p>
+<div class="math notranslate nohighlight">
+\[\Gamma_1(x) = \int\int \gamma(\vec{r}) \;dy\;dz\]</div>
+<p>If we now use the fact that <span class="math notranslate nohighlight">\(\gamma(\vec{r})\)</span> is an even function,
+we can use the result above to get</p>
+<div class="math notranslate nohighlight">
+\[I(q) = \int \Gamma_1(x) \cos(qx) dx\]</div>
+<p>The job of Corfunc is now to invert this. The following operation does the job:</p>
+<div class="math notranslate nohighlight">
+\[\Gamma_1(x) = \int I(q) \cos(qx) dx\]</div>
+<p>We can check this by showing that</p>
+<div class="math notranslate nohighlight">
+\[f(y) = \int \left( \int f(x) \cos(qx) dx \right) \cos(qy) dq\]</div>
+<p>Doing this formally requires a fair bit of algebraic legwork,
+but there is an informal argument that will get us there.
+First note that we can write it as (hand-waving away the convergence issues)</p>
+<div class="math notranslate nohighlight">
+\[f(y) = \int f(x) \int cos(qx) cos(qy) dq dx\]</div>
+<p>Then the equation corresponds to the identity function if the integral</p>
+<div class="math notranslate nohighlight">
+\[\int cos(qx) cos(qy) dq\]</div>
+<p>is the delta function. This is the case, because cosine functions form an orthogonal basis.
+When <span class="math notranslate nohighlight">\(x=y\)</span> the integral is non-zero, being an
+integral of the always positive <span class="math notranslate nohighlight">\(cos^2(qx)\)</span>.
+Conversely, when <span class="math notranslate nohighlight">\(x \neq y\)</span> the integral is zero.</p>
+</section>
+<section id="the-gamma-3-projection">
+<h3>The <span class="math notranslate nohighlight">\(\Gamma_3\)</span> Projection<a class="headerlink" href="#the-gamma-3-projection" title="Link to this heading">¶</a></h3>
+<p>The <span class="math notranslate nohighlight">\(\Gamma_3\)</span> projection is based on spherical symmetry.
+It’s derivation is essentially that of Debye’s formula</p>
+<p>We begin with an expression for the scattered intensity as above</p>
+<div class="math notranslate nohighlight">
+\[I(\vec{q}) = \int_{\mathbb{R}^3} \gamma(\vec{r}) e^{i \vec{r} \cdot \vec{q}} dr^3\]</div>
+<p>now, we want to average this over all angles, i.e. over all <span class="math notranslate nohighlight">\(q\)</span>-vectors of a given length, and we do so in a coordinate
+system relative to <span class="math notranslate nohighlight">\(\vec{r}\)</span>. This is an unobvious choice of coordinate system, but it simplifies things greatly,
+as in such a coordinate system, the dot product <span class="math notranslate nohighlight">\(\vec{r}\cdot\vec{q}\)</span> becomes <span class="math notranslate nohighlight">\(qr \cos\theta\)</span>.</p>
+<p>For our averaging there is a total of <span class="math notranslate nohighlight">\(4\pi\)</span> steradians in a sphere, giving a leading factor of <span class="math notranslate nohighlight">\(1/4\pi\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[I(\vec{q}) = \frac{1}{4\pi}\int_{\phi=0}{\phi=2\pi}\int_{\theta=0}^{\theta=\pi}\int_{\vec{r}\in\mathbb{R}} \gamma(\vec{r}) e^{i qr \cos\theta} d\vec{r}^3 \sin(\theta) d\theta d\phi\]</div>
+<p>The integral is constant with with respect to <span class="math notranslate nohighlight">\(\phi\)</span>, so drops out as a factor of <span class="math notranslate nohighlight">\(2\pi\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[= \frac{1}{2}\int_{\theta=0}^{\theta=\pi}\int_{\vec{r}\in\mathbb{R}^3} \gamma(\vec{r}) e^{i \vec{r} \cdot \vec{q}} d\vec{r}^3 \sin(\theta) d\theta\]</div>
+<p>and we can adjust the order of integration, noting that because of our choice of coordinate system, <span class="math notranslate nohighlight">\(\gamma(\vec{r})\)</span> is
+independent of <span class="math notranslate nohighlight">\(\theta\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[= \frac{1}{2}\int_{\vec{r}\in\mathbb{R}^3} \gamma(\vec{r}) \int_{\theta=0}^{\theta=\pi} e^{i \vec{r} \cdot \vec{q}} \sin(\theta) d\theta d\vec{r}^3\]</div>
+<p>Now, we can consider the inner integral specifically, firstly by doing a substitution of <span class="math notranslate nohighlight">\(u = -\cos\theta\)</span>. This
+means that <span class="math notranslate nohighlight">\(du = \sin\theta d\theta\)</span>, the interval <span class="math notranslate nohighlight">\(\theta\in[0,\pi]\)</span> becomes <span class="math notranslate nohighlight">\(u\in[1, -1]\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\int_{\theta=0}^{\theta=\pi} e^{i \vec{r} \cdot \vec{q}} \sin(\theta) d\theta = \int_{u=-1}^{u=1} e^{i q r u} du\]</div>
+<p>which is just an exponential and easily integrated</p>
+<div class="math notranslate nohighlight">
+\[= \left[ \frac{-i e^{i q r u}}{qr} \right]_{-1}^{1} = \frac{i \left(e^{-i q r} - e^{i q r} \right) }{qr} = 2 \frac{i \sinh(-iqr)}{qr}\]</div>
+<p>which by the relationship between complex trigonometric and hyperbolic functions becomes</p>
+<div class="math notranslate nohighlight">
+\[= 2 \frac{\sin qr}{qr}\]</div>
+<p>The leading <span class="math notranslate nohighlight">\(2\)</span> will cancel the leading <span class="math notranslate nohighlight">\(1/2\)</span> and the value of <span class="math notranslate nohighlight">\(I(q)\)</span> can be seen to be</p>
+<div class="math notranslate nohighlight">
+\[I(q) = \int_{\vec{r}\in\mathbb{R}^3} \gamma(\vec{r}) \frac{\sin qr}{qr} d\vec{r}^3\]</div>
+<p>Note that this object is not dependent on the angular components of <span class="math notranslate nohighlight">\(\vec{r}\)</span>, so the integral
+over <span class="math notranslate nohighlight">\(\mathbb{R}^3\)</span> can be written as</p>
+<div class="math notranslate nohighlight">
+\[= \int_0^\infty \int_\Omega\gamma(\vec{r})d\Omega \frac{\sin qr}{qr} dr\]</div>
+<p>Where <span class="math notranslate nohighlight">\(\Omega\)</span> is a solid angle element. Letting</p>
+<div class="math notranslate nohighlight">
+\[\Gamma_3(r) = \int_\Omega \gamma(\vec{r}) d\Omega\]</div>
+<p>we have, finally,</p>
+<div class="math notranslate nohighlight">
+\[I(q) = \int_0^\infty \Gamma_3(r) \frac{\sin qr}{qr} dr\]</div>
+<p>In corfunc we don’t invert this directly, but do so via <span class="math notranslate nohighlight">\(\Gamma_1\)</span></p>
+</section>
+<section id="relationship-between-gamma-1-and-gamma-3">
+<h3>Relationship between <span class="math notranslate nohighlight">\(\Gamma_1\)</span> and <span class="math notranslate nohighlight">\(\Gamma_3\)</span><a class="headerlink" href="#relationship-between-gamma-1-and-gamma-3" title="Link to this heading">¶</a></h3>
+<p>Internally, Corfunc calculates <span class="math notranslate nohighlight">\(\Gamma_3\)</span> from <span class="math notranslate nohighlight">\(\Gamma_1\)</span>.
+Let’s now look at how we can get one from the other, starting with <span class="math notranslate nohighlight">\(\Gamma_3\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\Gamma_3 = \int I(q) \frac{\sin(q x)}{q x} dq\]</div>
+<p>First, multiply by <span class="math notranslate nohighlight">\(x\)</span></p>
+<div class="math notranslate nohighlight">
+\[x \Gamma_3 = x \int I(q) \frac{\sin(q x)}{q x} dq = \int I(q) \frac{\sin(q x)}{q} dq\]</div>
+<p>Now take the derivative with respect to <span class="math notranslate nohighlight">\(x\)</span></p>
+<div class="math notranslate nohighlight">
+\[\frac{d}{dx} x \Gamma_3 = \frac{d}{dx} \int I(q) \frac{\sin(q x)}{q} dq = \int I(q) \cos (q x) dq = \Gamma_1\]</div>
+<p>Which, after expressing in terms of <span class="math notranslate nohighlight">\(\Gamma_1\)</span> gives us the relation we use in corfunc, for
+calculating <span class="math notranslate nohighlight">\(\Gamma_3\)</span></p>
+<div class="math notranslate nohighlight">
+\[\Gamma_3(x) = \int_0^x \frac{\Gamma_1(r)}{r} dr\]</div>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
+<div role="list" class="citation-list">
+<div class="citation" id="rutland" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Rutland<span class="fn-bracket">]</span></span>
+<p>Ruland, W. <em>Coll. Polym. Sci.</em> (1977), 255, 417-427</p>
+</div>
+<div class="citation" id="strobl" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Strobl<span class="fn-bracket">]</span></span>
+<p>Strobl, G. R.; Schneider, M. <em>J. Polym. Sci.</em> (1980), 18, 1343-1359</p>
+</div>
+<div class="citation" id="koberstein" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Koberstein<span class="fn-bracket">]</span></span>
+<p>Koberstein, J.; Stein R. <em>J. Polym. Sci. Phys. Ed.</em> (1983), 21, 2181-2200</p>
+</div>
+<div class="citation" id="calleja1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Calleja1<span class="fn-bracket">]</span></span>
+<p>Baltá Calleja, F. J.; Vonk, C. G. <em>X-ray Scattering of Synthetic Poylmers</em>, Elsevier. Amsterdam (1989), 247-251</p>
+</div>
+<div class="citation" id="calleja2" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Calleja2<span class="fn-bracket">]</span></span>
+<p>Baltá Calleja, F. J.; Vonk, C. G. <em>X-ray Scattering of Synthetic Poylmers</em>, Elsevier. Amsterdam (1989), 257-261</p>
+</div>
+<div class="citation" id="calleja3" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Calleja3<span class="fn-bracket">]</span></span>
+<p>Baltá Calleja, F. J.; Vonk, C. G. <em>X-ray Scattering of Synthetic Poylmers</em>, Elsevier. Amsterdam (1989), 260-270</p>
+</div>
+<div class="citation" id="goschel" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Goschel<span class="fn-bracket">]</span></span>
+<p>Göschel, U.; Urban, G. <em>Polymer</em> (1995), 36, 3633-3639</p>
+</div>
+<div class="citation" id="stribeck" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Stribeck<span class="fn-bracket">]</span></span>
+<p>Stribeck, N. <em>X-Ray Scattering of Soft Matter</em>, Springer. Berlin (2007), 138-161</p>
+</div>
+</div>
+<p><a class="reference internal" href="fdr-pdfs.html#fdr"><span class="std std-ref">Fibre Diffraction Review References</span></a> (PDF format)</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Correlation Function Theory</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#lorentz-correction">Lorentz Correction</a></li>
+<li><a class="reference internal" href="#formal-description">Formal Description</a><ul>
+<li><a class="reference internal" href="#some-useful-properties-of-the-correlation-function">Some useful properties of the Correlation Function</a></li>
+<li><a class="reference internal" href="#the-gamma-1-projection">The <span class="math notranslate nohighlight">\(\Gamma_1\)</span> Projection</a></li>
+<li><a class="reference internal" href="#the-gamma-3-projection">The <span class="math notranslate nohighlight">\(\Gamma_3\)</span> Projection</a></li>
+<li><a class="reference internal" href="#relationship-between-gamma-1-and-gamma-3">Relationship between <span class="math notranslate nohighlight">\(\Gamma_1\)</span> and <span class="math notranslate nohighlight">\(\Gamma_3\)</span></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="corfunc_help.html"
+                          title="previous chapter">Correlation Function Analysis</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="corfunc-technical.html"
+                          title="next chapter">Corfunc Technical Documentation</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/user/qtgui/Perspectives/Corfunc/corfunc-theory.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="corfunc-technical.html" title="Corfunc Technical Documentation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="corfunc_help.html" title="Correlation Function Analysis"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../analysis.html" >Fitting &amp; Other Analyses</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="corfunc_help.html" >Correlation Function Analysis</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Correlation Function Theory</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

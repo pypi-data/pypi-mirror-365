@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>fuzzy_sphere &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="linear_pearls" href="linear_pearls.html" />
+    <link rel="prev" title="core_shell_sphere" href="core_shell_sphere.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="linear_pearls.html" title="linear_pearls"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="core_shell_sphere.html" title="core_shell_sphere"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-sphere.html" accesskey="U">Sphere Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">fuzzy_sphere</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="fuzzy-sphere">
+<span id="id1"></span><h1>fuzzy_sphere<a class="headerlink" href="#fuzzy-sphere" title="Link to this heading">¶</a></h1>
+<p>Scattering from spherical particles with a fuzzy surface.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>scale</p></td>
+<td><p>Scale factor or Volume fraction</p></td>
+<td><p>None</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>background</p></td>
+<td><p>Source background</p></td>
+<td><p>cm<sup>-1</sup></p></td>
+<td><p>0.001</p></td>
+</tr>
+<tr class="row-even"><td><p>sld</p></td>
+<td><p>Particle scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>sld_solvent</p></td>
+<td><p>Solvent scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-even"><td><p>radius</p></td>
+<td><p>Sphere radius</p></td>
+<td><p>Å</p></td>
+<td><p>60</p></td>
+</tr>
+<tr class="row-odd"><td><p>fuzziness</p></td>
+<td><p>std deviation of Gaussian convolution for interface (must be &lt;&lt; radius)</p></td>
+<td><p>Å</p></td>
+<td><p>10</p></td>
+</tr>
+</tbody>
+</table>
+<p>The returned value is scaled to units of cm<sup>-1</sup> sr<sup>-1</sup>, absolute scale.</p>
+<p>For information about polarised and magnetic scattering, see
+the <a class="reference internal" href="../qtgui/Perspectives/Fitting/magnetism/magnetism.html#magnetism"><span class="std std-ref">Polarisation/Magnetic Scattering</span></a> documentation.</p>
+<p><strong>Definition</strong></p>
+<p>The scattering intensity <span class="math notranslate nohighlight">\(I(q)\)</span> is calculated as:</p>
+<div class="math notranslate nohighlight">
+\[I(q) = \frac{\text{scale}}{V}(\Delta \rho)^2 A^2(q) S(q)
+       + \text{background}\]</div>
+<p>where the amplitude <span class="math notranslate nohighlight">\(A(q)\)</span> is given as the typical sphere scattering convoluted
+with a Gaussian to get a gradual drop-off in the scattering length density:</p>
+<div class="math notranslate nohighlight">
+\[A(q) = \frac{3\left[\sin(qR) - qR \cos(qR)\right]}{(qR)^3}
+       \exp\left(\frac{-(\sigma_\text{fuzzy}q)^2}{2}\right)\]</div>
+<p>Here <span class="math notranslate nohighlight">\(A(q)^2\)</span> is the form factor, <span class="math notranslate nohighlight">\(P(q)\)</span>. The scale is equivalent to the
+volume fraction of spheres, each of volume, <span class="math notranslate nohighlight">\(V\)</span>. Contrast <span class="math notranslate nohighlight">\((\Delta \rho)\)</span>
+is the difference of scattering length densities of the sphere and the
+surrounding solvent.</p>
+<p>Poly-dispersion in radius and in fuzziness is provided for, though the
+fuzziness must be kept much smaller than the sphere radius for meaningful
+results.</p>
+<p>From the reference:</p>
+<blockquote>
+<div><p>The “fuzziness” of the interface is defined by the parameter
+<span class="math notranslate nohighlight">\(\sigma_\text{fuzzy}\)</span>. The particle radius <span class="math notranslate nohighlight">\(R\)</span> represents the radius of the
+particle where the scattering length density profile decreased to 1/2 of the
+core density. <span class="math notranslate nohighlight">\(\sigma_\text{fuzzy}\)</span> is the width of the smeared particle
+surface; i.e., the standard deviation from the average height of the fuzzy
+interface. The inner regions of the microgel that display a higher density
+are described by the radial box profile extending to a radius of
+approximately <span class="math notranslate nohighlight">\(R_\text{box} \sim R - 2 \sigma\)</span>. The profile approaches
+zero as <span class="math notranslate nohighlight">\(R_\text{sans} \sim R + 2\sigma\)</span>.</p>
+</div></blockquote>
+<p>For 2D data: The 2D scattering intensity is calculated in the same way as 1D,
+where the <span class="math notranslate nohighlight">\(q\)</span> vector is defined as</p>
+<div class="math notranslate nohighlight">
+\[q = \sqrt{{q_x}^2 + {q_y}^2}\]</div>
+<figure class="align-default" id="id2">
+<img alt="../../_images/fuzzy_sphere_autogenfig.png" src="../../_images/fuzzy_sphere_autogenfig.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 81 </span><span class="caption-text">1D plot corresponding to the default parameters of the model.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Source</strong></p>
+<p><a class="reference download internal" download="" href="../../_downloads/c998cd5a5348323bc26bd55075c9699d/fuzzy_sphere.py"><code class="xref download docutils literal notranslate"><span class="pre">fuzzy_sphere.py</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/c55927de0adf44eb8e4649b110cc02cc/fuzzy_sphere.c"><code class="xref download docutils literal notranslate"><span class="pre">fuzzy_sphere.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/5224eea2106a0533fa82ac542ccf5579/sas_3j1x_x.c"><code class="xref download docutils literal notranslate"><span class="pre">sas_3j1x_x.c</span></code></a></p>
+<p><strong>References</strong></p>
+<ol class="arabic simple">
+<li><p>M Stieger, J. S Pedersen, P Lindner, W Richtering,
+<em>Langmuir</em>, 20 (2004) 7283-7292</p></li>
+</ol>
+<p><strong>Authorship and Verification</strong></p>
+<ul class="simple">
+<li><p><strong>Author:</strong></p></li>
+<li><p><strong>Last Modified by:</strong></p></li>
+<li><p><strong>Last Reviewed by:</strong></p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="core_shell_sphere.html"
+                          title="previous chapter">core_shell_sphere</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="linear_pearls.html"
+                          title="next chapter">linear_pearls</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user/models/fuzzy_sphere.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="linear_pearls.html" title="linear_pearls"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="core_shell_sphere.html" title="core_shell_sphere"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-sphere.html" >Sphere Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">fuzzy_sphere</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

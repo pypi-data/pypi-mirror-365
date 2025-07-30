@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Polarisation/Magnetic Scattering &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="Optimizer Selection" href="../optimizer.html" />
+    <link rel="prev" title="Resolution (Smearing) Functions" href="../resolution.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../optimizer.html" title="Optimizer Selection"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../resolution.html" title="Resolution (Smearing) Functions"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../analysis.html" >Fitting &amp; Other Analyses</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../fitting.html" accesskey="U">Fitting Documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Polarisation/Magnetic Scattering</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="polarisation-magnetic-scattering">
+<span id="magnetism"></span><h1>Polarisation/Magnetic Scattering<a class="headerlink" href="#polarisation-magnetic-scattering" title="Link to this heading">¶</a></h1>
+<p>For magnetic systems, the scattering length density (SLD = <span class="math notranslate nohighlight">\(\beta\)</span>) is a
+combination of the nuclear and magnetic SLD. For polarised neutrons, the
+resulting effective SLD depends on the spin state of the neutron before and
+after being scattered in the sample.</p>
+<p>Models in Sasview, which define a SLD parameter, can be evaluated also as
+magnetic models introducing the magnetisation (vector) $mathbf{M} = M
+(costheta_M , sin theta_M sin phi_M, sintheta_M cos phi_M)$ and the
+associated magnetic SLD given by the simple relation <span class="math notranslate nohighlight">\(\beta_M = b_H M\)</span>, where
+<span class="math notranslate nohighlight">\(b_H=\dfrac{\gamma r_0}{2 \mu_B} = 2.7\)</span> fm denotes the magnetic scattering
+length and <span class="math notranslate nohighlight">\(M=\lvert \mathbf{M} \rvert\)</span> the magnetisation magnitude, where
+<span class="math notranslate nohighlight">\(\gamma = -1.913\)</span> is the gyromagnetic ratio, <span class="math notranslate nohighlight">\(\mu_B\)</span> is the Bohr magneton, <span class="math notranslate nohighlight">\(r_0\)</span>
+is the classical radius of electron.</p>
+<p>It is assumed that the magnetic SLD in each region of the model is uniformly for
+nuclear scattering and has one effective magnetisation orientation.</p>
+<p>The external field <span class="math notranslate nohighlight">\(\mathbf{H}=H \mathbf{P}\)</span> coincides with the polarisation
+axis $mathbf{P}=( sintheta_P cos phi_P , sin theta_P sin phi_P,
+costheta_P)$ for the neutrons, which is the quantisation axis for the Pauli
+spin operator.</p>
+<figure class="align-default">
+<img alt="../../../../../_images/mag_vector.png" src="../../../../../_images/mag_vector.png" />
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The polarisation axis at the sample position determines the scattering
+geometry. The polarisation turns adiabatically to the guide field of the
+instrument, before and after the field at the sample position. This operation
+does not change the observed spin-resolved scattering at the detector. The
+magnetic field defines (for random anisotropy systems) a symmetry axis and
+the magnetisation vector will be oriented symmetrically around the field.
+For AC oscillating/rotation field varying in space and with time, you can
+couple the magnetisation with the field axis via a constrained fit. This
+will allow to easily parametrise a phase shift of the magnetisation lagging
+behind a magnetic field varying from time frame to time frame.</p>
+</div>
+<p>The neutrons are polarised parallel (+) or antiparallel (-) to <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>. One
+can distinguish 4 spin-resolved cross sections:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Non-spin-flip (NSF) <span class="math notranslate nohighlight">\((+ +)\)</span> and <span class="math notranslate nohighlight">\((- -)\)</span></p></li>
+<li><p>Spin-flip (SF) <span class="math notranslate nohighlight">\((+ -)\)</span> and <span class="math notranslate nohighlight">\((- +)\)</span></p></li>
+</ul>
+</div></blockquote>
+<p>The spin-dependent magnetic scattering length densities are defined as (see
+Moon, Riste, and Koehler, 1969 <a class="footnote-reference brackets" href="#mrk1969" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>)</p>
+<div class="math notranslate nohighlight">
+\[\beta_{M, s_{in} s_{out}}  = b_H\sigma \cdot \mathbf{M}_{\perp}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma\)</span> is the Pauli spin, and <span class="math notranslate nohighlight">\(s_{in/out}\)</span> describes the spin state of
+the neutron before and after the sample.</p>
+<p>For magnetic neutron scattering, only the magnetisation component or
+Halpern-Johnson vector <span class="math notranslate nohighlight">\(\mathbf{M}_{\perp}\)</span> perpendicular to the scattering
+vector <span class="math notranslate nohighlight">\(\mathbf{Q}= \hat{\mathbf{q}}=\hat{\mathbf{q}} (\cos\theta, \sin \theta,0)\)</span>
+contributes to the magnetic scattering:</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{M}_{\perp} = \hat{\mathbf{q}} [\hat{\mathbf{q}} \cdot \mathbf{M}] -
+                     \mathbf{M}\]</div>
+<p>with <span class="math notranslate nohighlight">\(\hat{\mathbf{q}}\)</span> the unit scattering vector and <span class="math notranslate nohighlight">\(\theta\)</span> denotes the
+angle between <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span> and the x-axis.</p>
+<p>The two NSF cross sections are given by</p>
+<div class="math notranslate nohighlight">
+\[I^{\pm\pm} = N^2 \mp \mathbf{P}\cdot(N^{\ast}\mathbf{M}_{\perp} +
+             N\mathbf{M}_{\perp}^{\ast}) +
+             (\mathbf{P}\cdot \mathbf{M}_{\perp})^2\]</div>
+<p>and the two SF channels:</p>
+<div class="math notranslate nohighlight">
+\[I^{\pm\mp} = \mathbf{M}_{\perp}\cdot \mathbf{M}_{\perp} -
+             (\mathbf{P}\cdot \mathbf{M}_{\perp})^2 \mp
+             i \mathbf{P}\cdot \mathbf{M}_{\perp}
+             \times \mathbf{M}_{\perp}^{\ast}\]</div>
+<p>with <span class="math notranslate nohighlight">\(i=\sqrt{-1}\)</span>, and <span class="math notranslate nohighlight">\(^{\ast}\)</span> denoting the complex conjugate quantity, and
+<span class="math notranslate nohighlight">\(\times\)</span> and <span class="math notranslate nohighlight">\(\cdot\)</span>  the vector and scalar product, respectively. For symmetric,
+collinear spin structures (<span class="math notranslate nohighlight">\(\mathbf{M}_{\perp} = \mathbf{M}_{\perp}^{\ast}\)</span>), and
+the last term vanishes.</p>
+<p>For the NSF scattering the component of the Halpern-Johnson vector parallel to
+<span class="math notranslate nohighlight">\(P\)</span> contributes</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{M}_{\perp,\parallel P } = ( \mathbf{P} \cdot \mathbf{M}_{\perp})
+                                  \mathbf{P}\]</div>
+<p>In SasView, form factor models expect a scattering length density (SLD) as parameter.
+For the NSF state, the effective SLD is simply</p>
+<div class="math notranslate nohighlight">
+\[\rho_{\pm\pm } = \rho_N \mp b_H \mathbf{P} \cdot \mathbf{M}_{\perp}\]</div>
+<p>The magnetic scattering vector component perpendicular to the polarisation gives
+rise to SF scattering</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{M}_{\perp,\perp P } = \mathbf{M}_{\perp } - (\mathbf{P} \cdot
+                              \mathbf{M}_{\perp }) \mathbf{P}\]</div>
+<p>This vector can itself again be decomposed in two contributions from the base vectors spanning
+the plane perpendicular to <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>. This allows to construct the purely magnetic
+SLD for the SF state.</p>
+<p>Every magnetic scattering cross section can be constructed from an incoherent
+mixture of the 4 spin-resolved spin states depending on the efficiency
+parameters before (<span class="math notranslate nohighlight">\(u_i\)</span>) and after (<span class="math notranslate nohighlight">\(u_f\)</span>) the sample. For a half-polarised
+experiment(SANSPOL with <span class="math notranslate nohighlight">\(u_f=0.5\)</span>) or full (longitudinal) polarisation analysis,
+the accessible spin states are measured independently and a simultaneous
+analysis of the measured states is performed, tying all the model parameters
+together except <span class="math notranslate nohighlight">\(u_i\)</span> and <span class="math notranslate nohighlight">\(u_f\)</span>, which are set based on the (known) polarisation
+efficiencies of the instrument.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The values of the ‘up_frac_i’ (<span class="math notranslate nohighlight">\(u_i\)</span>) and ‘up_frac_f’ (<span class="math notranslate nohighlight">\(u_f\)</span>) must be
+in the range 0 to 1. The parameters ‘up_frac_i’ and ‘up_frac_f’ can be easily
+associated to polarisation efficiencies ‘e_in/out’ (of the instrument).
+Efficiency values range from 0.5 (unpolarised beam)  to 1 (perfect optics)
+or 0 (perfect optics, but other spin state). For ‘up_frac_i/f’ &lt; 0.5 a cross
+section is constructed with the spin reversed/flipped with respect to the
+initial supermirror polariser. The actual polarisation efficiency in this
+case is however  ‘e_in/out’ = 1 -‘up_frac_i/f’.</p>
+</div>
+<section id="user-input">
+<h2>User Input<a class="headerlink" href="#user-input" title="Link to this heading">¶</a></h2>
+<p>The following user input parameters are used:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sld_M - the magnetic scattering length density :math:`b_H M`
+sld_mtheta - the polar angle :math:`\theta_M` of the magnetisation vector
+sld_mphi - the azimuthal angle :math:`\phi_M` of the magnetisation vector
+up_frac_i - polarisation efficiency :math:`u_i` *before* the sample
+up_frac_f - polarisation efficiency :math:`u_f` *after* the sample
+p_theta - the inclination :math:`\theta_P` of the polarisation from the beam axis
+p_phi - the rotation angle :math:`\phi_P` around the incoming beam axis
+</pre></div>
+</div>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
+<blockquote>
+<div><aside class="footnote-list brackets">
+<aside class="footnote brackets" id="mrk1969" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>R. M. Moon and T. Riste and W. C. Koehler, <em>Phys. Rev.</em>, 181
+(1969) 920.</p>
+</aside>
+</aside>
+</div></blockquote>
+<p><em>Document History</em></p>
+<div class="line-block">
+<div class="line">2015-05-02 Steve King</div>
+<div class="line">2017-11-15 Paul Kienzle</div>
+<div class="line">2018-06-02 Adam Washington</div>
+<div class="line">2020-12-08 Dirk Honecker</div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../../../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Polarisation/Magnetic Scattering</a><ul>
+<li><a class="reference internal" href="#user-input">User Input</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../resolution.html"
+                          title="previous chapter">Resolution (Smearing) Functions</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../optimizer.html"
+                          title="next chapter">Optimizer Selection</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/user/qtgui/Perspectives/Fitting/magnetism/magnetism.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../optimizer.html" title="Optimizer Selection"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../resolution.html" title="Resolution (Smearing) Functions"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../../analysis.html" >Fitting &amp; Other Analyses</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../fitting.html" >Fitting Documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Polarisation/Magnetic Scattering</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Test Data &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Tutorials" href="../tutorial.html" />
+    <link rel="prev" title="Plotting Data/Models" href="../qtgui/MainWindow/graph_help.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../tutorial.html" title="Tutorials"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../qtgui/MainWindow/graph_help.html" title="Plotting Data/Models"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../working.html" accesskey="U">Working with SasView</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Test Data</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="test-data">
+<h1>Test Data<a class="headerlink" href="#test-data" title="Link to this heading">¶</a></h1>
+<p>Test data sets are included as a convenience to our users. Look in the \example_data
+sub-folder in your SasView installation folder.</p>
+<p>The test data sets are organized based on their data structure &amp; purpose:</p>
+<ul class="simple">
+<li><p><em>1D data</em></p></li>
+<li><p><em>2D data</em></p></li>
+<li><p><em>convertible data</em> (as used by the File Converter tool)</p></li>
+<li><p><em>coordinate data</em> (as used by the Generic Scattering Calculator tool)</p></li>
+<li><p><em>DLS data</em></p></li>
+<li><p><em>image data</em> (as used by the Image Viewer tool)</p></li>
+<li><p><em>magnetic data</em> (from polarised SANS)</p></li>
+<li><p><em>NR data</em></p></li>
+<li><p><em>SESANS data</em></p></li>
+<li><p><em>other formats</em></p></li>
+<li><p><em>saved states</em></p></li>
+<li><p><em>other test data</em> (such as distribution weights files)</p></li>
+</ul>
+<p>For information on the structure of these files, please see <a class="reference internal" href="../data/data/data_formats_help.html#formats"><span class="std std-ref">Data Formats</span></a>.</p>
+<section id="d-data">
+<h2>1D Data<a class="headerlink" href="#d-data" title="Link to this heading">¶</a></h2>
+<p>1D data sets EITHER have:</p>
+<ul class="simple">
+<li><p>at least two columns of data with <em>Q</em> on the x-axis and <em>I(Q)</em> (assumed to be
+in absolute units) on the y-axis; optionally, additional columns of data may
+carry uncertainty data, resolution data, etc, or other metadata.</p></li>
+</ul>
+<p>OR:</p>
+<ul class="simple">
+<li><p>the <em>Q</em> data and the <em>I(Q)</em> data in separate files <em>with no other information</em>;
+data in the this format need to be converted to a single file multi-column format
+with the <a class="reference internal" href="../qtgui/Calculators/file_converter_help.html#file-converter-tool"><span class="std std-ref">File Converter Tool</span></a> before they can be analysed in SasView; see
+<a class="reference internal" href="#convertible-data">Convertible Data</a> below.</p></li>
+</ul>
+<section id="d-test-data">
+<h3>1D Test Data<a class="headerlink" href="#d-test-data" title="Link to this heading">¶</a></h3>
+<p><strong>Example data files are located in the \1d_data sub-folder.</strong></p>
+<dl class="simple">
+<dt>10wtAOT_Reline_120_reduced / Anton-Paar / saxsess_example</dt><dd><ul class="simple">
+<li><p>SAXS data from Anton-Paar SAXSess instruments saved in Otto Glatter’s PDH format.</p></li>
+</ul>
+</dd>
+<dt>1umSlitSmearSphere</dt><dd><ul class="simple">
+<li><p>Simulated NIST USANS data from a 1% dispersion of 1 micron spheres in D2O.</p></li>
+</ul>
+</dd>
+<dt>33837rear_1D_1.75_16.5</dt><dd><ul class="simple">
+<li><p>TOF-SANS data from a magnetically-oriented surfactant liquid crystal collected on
+the SANS2D instrument at ISIS.</p></li>
+<li><p>The files were output by the Mantid framework v3.6.</p></li>
+</ul>
+</dd>
+<dt>98929</dt><dd><ul class="simple">
+<li><p>Simple two-column text variant of ISIS_98929 (see below).</p></li>
+</ul>
+</dd>
+<dt>Alumina_usaxs</dt><dd><ul class="simple">
+<li><p>Data from a mixture of two Alumina powders of different coarseness
+collected on the old APS USAXS instrument at 33ID. Once thoroughly mixed
+the sample was then pressed between two pieces of Scotch tape and placed in
+the beam.</p></li>
+<li><p>Note that, as usual for powder samples, this data is not on absolute scale.</p></li>
+<li><p>Suitable for testing <span class="xref std std-ref">_Size_Distribution</span> . Also, an old video by Jan
+Ilavsky (<a class="reference external" href="https://www.youtube.com/watch?v=WMd0N9_5iJo">https://www.youtube.com/watch?v=WMd0N9_5iJo</a>) uses this data to
+demonstrate the use of theIrena version of Size Distribution.</p></li>
+</ul>
+</dd>
+<dt>Anton-Paar</dt><dd><ul class="simple">
+<li><p>Example of the Anton-Paar XML format.</p></li>
+</ul>
+</dd>
+<dt>AOT_Microemulsion</dt><dd><ul class="simple">
+<li><p>TOF-SANS data from Aerosol-OT surfactant-stabilised oil-in-water microemulsions
+collected on the LOQ instrument at ISIS.</p></li>
+<li><p>Data are provided at three contrasts: core (oil core), drop (oil core + surfactant
+layer), and shell (surfactant layer).</p></li>
+<li><p>The files were output by the Mantid framework v3.1.</p></li>
+<li><p>Suitable for testing <a class="reference internal" href="../qtgui/Perspectives/Fitting/fitting_help.html#simultaneous-fit-mode"><span class="std std-ref">Simultaneous Fit Mode</span></a> .</p></li>
+</ul>
+</dd>
+<dt>apoferritin</dt><dd><ul class="simple">
+<li><p>TOF-SANS data from a solution of the protein apoferritin collected on the SANS2D
+instrument at ISIS.</p></li>
+<li><p>Suitable for testing <a class="reference internal" href="../qtgui/Perspectives/Inversion/pr_help.html#p-r-inversion"><span class="std std-ref">P(r) Calculation</span></a> .</p></li>
+</ul>
+</dd>
+<dt>APS_DND-CAT</dt><dd><ul class="simple">
+<li><p>SAXS data from the DND-CAT instrument at the APS.</p></li>
+</ul>
+</dd>
+<dt>AUSANS_run3_2_no_buffer / AUSANS_run4_1_with_buffer</dt><dd><ul class="simple">
+<li><p>SANS data from the old AUSANS instrument at HIFAR (now decommissioned).</p></li>
+</ul>
+</dd>
+<dt>conalbumin</dt><dd><ul class="simple">
+<li><p>TOF-SANS data from a solution of the protein conalbumin collected on the SANS2D
+instrument at ISIS.</p></li>
+<li><p>Suitable for testing <a class="reference internal" href="../qtgui/Perspectives/Inversion/pr_help.html#p-r-inversion"><span class="std std-ref">P(r) Calculation</span></a> .</p></li>
+</ul>
+</dd>
+<dt>FK403_0006_Nika / Lew_Sa3_DSM_QinA</dt><dd><ul class="simple">
+<li><p>USAXS data from the 9ID instrument at the APS.</p></li>
+</ul>
+</dd>
+<dt>hSDS_D2O</dt><dd><ul class="simple">
+<li><p>TOF-SANS data from h25-sodium dodecyl sulphate solutions in D2O at 0.5wt%
+(just above the cmc), 2wt% (well above the cmc), and 2wt% but with 0.2mM
+NaCl electrolyte collected on the LOQ instrument at ISIS.</p></li>
+<li><p>The files were output by the Mantid framework v3.1.</p></li>
+<li><p>Suitable for testing charged S(Q) models.</p></li>
+</ul>
+</dd>
+<dt>ISIS_83404 / ISIS_98929</dt><dd><ul class="simple">
+<li><p>TOF-SANS data from polyamide-6 fibres hydrated in D2O collected on the LOQ
+instrument at ISIS. The data exhibit a broad lamellar peak from the semi-
+crystalline nanostructure.</p></li>
+<li><p>This is the <em>same data</em> as that in the BSL/OTOKO Z8300* / Z9800* convertible
+files (see <a class="reference internal" href="#convertible-data">Convertible Data</a>) but in an amalgamated format!</p></li>
+<li><p>Suitable for testing <span class="xref std std-ref">Correlation_Function_Analysis</span> .</p></li>
+</ul>
+</dd>
+<dt>ISIS_Polymer_Blend_RT2</dt><dd><ul class="simple">
+<li><p>TOF-SANS data from a monodisperse (Mw/Mn~1.03) polymer blend of 52wt%
+d8-polystyrene : 48wt% h8-polystyrene collected on the LOQ instrument at ISIS.</p></li>
+<li><p>Mw~54180 g/mol, Rg~58 Ang.</p></li>
+<li><p>The file was output by the Mantid framework v3.12.</p></li>
+<li><p>Suitable for testing the mono_gauss_coil, poly_gauss_coil and rpa models.</p></li>
+</ul>
+</dd>
+<dt>ISIS_Polymer_Blend_TK49</dt><dd><ul class="simple">
+<li><p>TOF-SANS data from a monodisperse (Mw/Mn~1.02) polymer blend of 49wt%
+d8-polystyrene : 51wt% h8-polystyrene collected on the LOQ instrument at ISIS.</p></li>
+<li><p>Mw~77500g/mol, Rg~74 Ang.</p></li>
+<li><p>The file was output by the Mantid framework v2.6.</p></li>
+<li><p>Suitable for testing the mono_gauss_coil, poly_gauss_coil and rpa models.</p></li>
+</ul>
+</dd>
+<dt>latex_smeared</dt><dd><ul class="simple">
+<li><p>SANS and USANS data from 500nm polymer latex particles dispersed in D2O.</p></li>
+</ul>
+</dd>
+<dt>Ludox_silica</dt><dd><ul class="simple">
+<li><p>TOF-SANS data from a dispersion of Ludox silica in mother liquor collected
+on the LOQ instrument at ISIS.</p></li>
+<li><p>The file was output by the Mantid framework v3.11.</p></li>
+</ul>
+</dd>
+<dt>P123_D2O</dt><dd><ul class="simple">
+<li><p>TOF-SANS data from lyotropic liquid crystalline solutions of the non-ionic
+ABA block copolymer Pluronic P123 in D2O at 10wt%, 30wt%, and 40wt% collected
+on the LOQ instrument at ISIS.</p></li>
+<li><p>This is the 1D radially-averaged form of the 2D data below (see <a class="reference internal" href="#id1">2D Data</a>)!</p></li>
+<li><p>The files were output by the Mantid framework v3.3.</p></li>
+<li><p>Suitable for testing paracrystal models.</p></li>
+</ul>
+</dd>
+<dt>VTMA</dt><dd><ul class="simple">
+<li><p>Multi-frame USAXS data from a thermo-mechanical analysis scan performed at
+the APS.</p></li>
+<li><p>Suitable for testing <a class="reference internal" href="../qtgui/Perspectives/Fitting/fitting_help.html#batch-fit-mode"><span class="std std-ref">Batch Fit Mode</span></a> .</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="id1">
+<h2>2D Data<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<p>2D data sets are data sets that give the reduced intensity for a given <em>Qx-Qy</em> bin.
+Depending on the file format, uncertainty data and metadata may also be present.</p>
+<section id="id2">
+<h3>2D Test Data<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<p><strong>Example data files are located in the \2d_data sub-folder.</strong></p>
+<dl class="simple">
+<dt>14250_2D_NoDetInfo_NXcanSAS_v3</dt><dd><ul class="simple">
+<li><p>TOF-SANS data from an unidentified sample collected on the LARMOR instrument
+at ISIS.</p></li>
+<li><p>The data are written in a minimalist form of the NXcanSAS standard format.</p></li>
+</ul>
+</dd>
+<dt>33837rear_2D_1.75_16.5</dt><dd><ul class="simple">
+<li><p>TOF-SANS data from a magnetically-oriented surfactant liquid crystal collected
+on the SANS2D instrument at ISIS.</p></li>
+<li><p>The data are written in the NIST 2D format and two variants of the NXcanSAS
+standard format.</p></li>
+<li><p>The NXcanSAS files were output by the Mantid framework v3.6 and v3.7.</p></li>
+</ul>
+</dd>
+<dt>BAM_2D</dt><dd><ul class="simple">
+<li><p>SAXS data from an oriented Fe sample collected at BAM.</p></li>
+<li><p>The data are written in a minimalist form of the NXcanSAS standard format.</p></li>
+</ul>
+</dd>
+<dt>exp18_14_igor_2dqxqy</dt><dd><ul class="simple">
+<li><p>SANS data from a non-centrosymmetric measurement collected on the HiResSANS
+instrument at ORNL.</p></li>
+<li><p>The data are written in the NIST 2D format.</p></li>
+</ul>
+</dd>
+<dt>P123_D2O</dt><dd><ul class="simple">
+<li><p>TOF-SANS data from lyotropic liquid crystalline solutions of the non-ionic
+ABA block copolymer Pluronic P123 in D2O at 10wt%, 30wt%, and 40wt% collected
+on the LOQ instrument at ISIS.</p></li>
+<li><p>This is the 2D form of the 1D radially-averaged data above (see <a class="reference internal" href="#d-data">1D Data</a>)!</p></li>
+<li><p>The data are written in the NIST 2D format.</p></li>
+<li><p>Suitable for testing paracrystal models.</p></li>
+</ul>
+</dd>
+<dt>SILIC010</dt><dd><ul class="simple">
+<li><p>SANS data from a 2% dispersion of silica nanoparticles in D2O collected at ORNL.</p></li>
+<li><p>The data are written in the NIST 2D format.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="convertible-data">
+<h2>Convertible Data<a class="headerlink" href="#convertible-data" title="Link to this heading">¶</a></h2>
+<p><strong>Example data files are located in the \convertible_files sub-folder.</strong></p>
+<dl class="simple">
+<dt>APS_X / APS_Y</dt><dd><ul class="simple">
+<li><p>ASCII format 1D SAXS data output by a reduction software package at the APS.</p></li>
+<li><p>Suitable for testing the <a class="reference internal" href="../qtgui/Calculators/file_converter_help.html#file-converter-tool"><span class="std std-ref">File Converter Tool</span></a> .</p></li>
+</ul>
+</dd>
+<dt>FIT2D_I / FIT2D_Q</dt><dd><ul class="simple">
+<li><p>ASCII format 1D SAXS data output by the FIT2D software package at the ESRF.</p></li>
+<li><p>Suitable for testing the <a class="reference internal" href="../qtgui/Calculators/file_converter_help.html#file-converter-tool"><span class="std std-ref">File Converter Tool</span></a> .</p></li>
+</ul>
+</dd>
+<dt>X25000.L2D</dt><dd><ul class="simple">
+<li><p>Binary BSL/OTOKO format 2D TOF-SANS data collected on the LOQ instrument at ISIS.</p></li>
+<li><p>Suitable for testing the <a class="reference internal" href="../qtgui/Calculators/file_converter_help.html#file-converter-tool"><span class="std std-ref">File Converter Tool</span></a> .</p></li>
+</ul>
+</dd>
+<dt>Z8300*.I1D / Z8300*.QAX / Z9800*.I1D / Z9800*.QAX</dt><dd><ul class="simple">
+<li><p>Binary BSL/OTOKO format 1D TOF-SANS data from polyamide-6 fibres hydrated
+in D2O collected on the LOQ instrument at ISIS. The data exhibit a broad
+lamellar peak from the semi-crystalline nanostructure.</p></li>
+<li><p>This is the <em>same data</em> as that in ISIS_83404 / ISIS_98929 (see <a class="reference internal" href="#d-data">1D Data</a>)
+but in a historical separated format developed at the SRS Daresbury!</p></li>
+<li><p>Suitable for testing the <a class="reference internal" href="../qtgui/Calculators/file_converter_help.html#file-converter-tool"><span class="std std-ref">File Converter Tool</span></a> .</p></li>
+<li><p>Suitable for testing <span class="xref std std-ref">Correlation_Function_Analysis</span> after conversion.</p></li>
+</ul>
+</dd>
+<dt>LMOG_100254_merged_ISIS2D</dt><dd><ul class="simple">
+<li><p>ASCII format TOF-SANS data from low-molecular weight organo-gelator system
+collected on the LOQ instrument at ISIS.</p></li>
+<li><p>The data are written in the historical COLETTE (or RKH) 2D format.</p></li>
+<li><p>Suitable for testing the <a class="reference internal" href="../qtgui/Calculators/file_converter_help.html#file-converter-tool"><span class="std std-ref">File Converter Tool</span></a> .</p></li>
+</ul>
+</dd>
+<dt>YBCO_12685__ISIS2D</dt><dd><ul class="simple">
+<li><p>ASCII format TOF-SANS data from a Nb/YBaCuO superconductor sample collected
+on the SANS2D instrument at ISIS.</p></li>
+<li><p>The data are written in the historical COLETTE (or RKH) 2D format.</p></li>
+<li><p>Suitable for testing the <a class="reference internal" href="../qtgui/Calculators/file_converter_help.html#file-converter-tool"><span class="std std-ref">File Converter Tool</span></a> .</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="coordinate-data">
+<h2>Coordinate Data<a class="headerlink" href="#coordinate-data" title="Link to this heading">¶</a></h2>
+<p>Coordinate data, such as PDB (Protein Data Bank) or OMF/SLD (micromagnetic simulation)
+files, and which describe a specific structure, are designed to be read and viewed in
+the <a class="reference internal" href="../qtgui/Calculators/sas_calculator_help.html#sans-calculator-tool"><span class="std std-ref">Generic SAS Calculator Tool</span></a> .</p>
+<section id="coordinate-test-data">
+<h3>Coordinate Test Data<a class="headerlink" href="#coordinate-test-data" title="Link to this heading">¶</a></h3>
+<p><strong>Example data files are located in the \coordinate_data sub-folder.</strong></p>
+<dl class="simple">
+<dt>1n04</dt><dd><ul class="simple">
+<li><p>PDB format data file describing the structure of the protein transferrin.</p></li>
+</ul>
+</dd>
+<dt>2w0o</dt><dd><ul class="simple">
+<li><p>PDB format data file describing the structure of the protein apoferritin.</p></li>
+</ul>
+</dd>
+<dt>A_Raw_Example-1</dt><dd><ul class="simple">
+<li><p>OMF format data file from a simulation of magnetic spheres.</p></li>
+</ul>
+</dd>
+<dt>diamond</dt><dd><ul class="simple">
+<li><p>PDB format data file describing the structure of diamond.</p></li>
+</ul>
+</dd>
+<dt>dna</dt><dd><ul class="simple">
+<li><p>PDB format data file describing the structure of DNA.</p></li>
+</ul>
+</dd>
+<dt>five_tetrahedra_cube</dt><dd><ul class="simple">
+<li><p>VTK format file describing a cube formed of five finite elements.</p></li>
+</ul>
+</dd>
+<dt>mag_cylinder</dt><dd><ul class="simple">
+<li><p>SLD file that describes a single cylinder of radius 2nm and length of 4nm.
+The cylinder has equal nuclear and magnetic SLD, magnetised along the length.</p></li>
+</ul>
+</dd>
+<dt>sld_file</dt><dd><ul class="simple">
+<li><p>Example SLD format data file.</p></li>
+</ul>
+</dd>
+<dt>sphere_R= x with x = 0_0025, 0_2025, 4 and 2500</dt><dd><ul class="simple">
+<li><p>VTK format data files describing a homogeneously magnetised sphere. The ratio R
+between nuclear and magnetic SLD is varied from mostly magnetic to only nuclear
+structural scattering.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="dls-data">
+<h2>DLS Data<a class="headerlink" href="#dls-data" title="Link to this heading">¶</a></h2>
+<p>DLS (Dynamic Light Scattering) data sets primarily contain the intensity
+autocorrelation function as a function of the delay time (in microseconds).</p>
+<section id="dls-test-data">
+<h3>DLS Test Data<a class="headerlink" href="#dls-test-data" title="Link to this heading">¶</a></h3>
+<p><strong>Example data files are located in the \dls_data sub-folder.</strong></p>
+<dl class="simple">
+<dt>dls_monodisperse / dls_polydisperse</dt><dd><ul class="simple">
+<li><p>DLS data from a very dilute dispersion of 3 nm polymer latex nanoparticles in
+H/D-water.</p></li>
+<li><p>Suitable for testing the cumulants_dls model.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="image-data">
+<h2>Image Data<a class="headerlink" href="#image-data" title="Link to this heading">¶</a></h2>
+<p>Image data sets are designed to be read by the <a class="reference internal" href="../qtgui/Calculators/image_viewer_help.html#image-viewer-tool"><span class="std std-ref">Image Viewer Tool</span></a> .
+They can also be converted into synthetic 2D data.</p>
+<section id="image-test-data">
+<h3>Image Test Data<a class="headerlink" href="#image-test-data" title="Link to this heading">¶</a></h3>
+<p><strong>Example data files are located in the \image_data sub-folder.</strong></p>
+<dl class="simple">
+<dt>ISIS_98940</dt><dd><ul class="simple">
+<li><p>TOF-SANS data from polyamide-6 fibres hydrated in D2O collected on the LOQ
+instrument at ISIS. The data exhibit a broad lamellar peak from the semi-
+crystalline nanostructure which, because of the orientation of the fibres,
+gives rise to an anisotropic 2D scattering pattern.</p></li>
+<li><p>The image data is presented in Windows Bitmap (.bmp), GIF (.gif), JPEG (.jpg),
+Portable Network Grpahics (.png), and TIFF (.tif) formats.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="magnetic-data">
+<h2>Magnetic Data<a class="headerlink" href="#magnetic-data" title="Link to this heading">¶</a></h2>
+<p>Polarised SANS data.</p>
+<section id="magnetic-test-data">
+<h3>Magnetic Test Data<a class="headerlink" href="#magnetic-test-data" title="Link to this heading">¶</a></h3>
+<p><strong>Example data files are located in the \magnetic_data sub-folder.</strong></p>
+<dl class="simple">
+<dt>S50</dt><dd><ul class="simple">
+<li><p>2D and 1D sector data from 10 nm nanospheres in d8-toluene (c_Fe2O3 = 50 mg/ml,
+~1 vol%) at an aligning magnetic field of 1.5 T in horizontal direction.</p></li>
+<li><p>See <a class="reference external" href="https://dx.doi.org/10.1088/1367-2630/14/1/013025">10.1088/1367-2630/14/1/013025</a></p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="reflectometry-data">
+<h2>Reflectometry Data<a class="headerlink" href="#reflectometry-data" title="Link to this heading">¶</a></h2>
+<p>Neutron (NR) or X-ray (XR) Reflectometry data sets primarily contain the
+interfacial reflectivity as a function of <em>Q</em>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Refl1D reflectivity model-fitting software uses the same fitting
+engine (Bumps) as SasView.</p>
+</div>
+<section id="reflectometry-test-data">
+<h3>Reflectometry Test Data<a class="headerlink" href="#reflectometry-test-data" title="Link to this heading">¶</a></h3>
+<p><strong>Example data files are located in the \reflectometry_data sub-folder.</strong></p>
+<dl class="simple">
+<dt>NR_Ni_down_state / NR_Ni_up_state</dt><dd><ul class="simple">
+<li><p>Polarised (spin down/up) NR data from a Ni multilayer sample.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="sesans-data">
+<h2>SESANS Data<a class="headerlink" href="#sesans-data" title="Link to this heading">¶</a></h2>
+<p>SESANS (Spin-Echo SANS) data sets primarily contain the normalised neutron
+polarisation as a function of the spin-echo length. Also see <a class="reference internal" href="../qtgui/Perspectives/Fitting/sesans/sans_to_sesans.html#sesans"><span class="std std-ref">SANS to SESANS conversion</span></a> .
+SasView treats all files ending .ses as SESANS data.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The .ses format is still under development and may be subject to change.</p>
+</div>
+<section id="sesans-test-data">
+<h3>SESANS Test Data<a class="headerlink" href="#sesans-test-data" title="Link to this heading">¶</a></h3>
+<p><strong>Example data files are located in the \sesans_data sub-folder.</strong></p>
+<dl class="simple">
+<dt>sphere_isis</dt><dd><ul class="simple">
+<li><p>SESANS data from 100nm PMMA latex nanoparticles in h/d-decalin collected on
+the LARMOR instrument at ISIS over spin-echo lengths 260 &lt; <span class="math notranslate nohighlight">\(\delta\)</span> &lt; 19300 Å .</p></li>
+</ul>
+</dd>
+<dt>spheres2micron</dt><dd><ul class="simple">
+<li><p>SESANS data from 2 micron polystyrene spheres in 53% H2O / 47% D2O collected
+on the LARMOR instrument at ISIS over spin-echo lengths 400 &lt; <span class="math notranslate nohighlight">\(\delta\)</span> &lt; 46000 Å .</p></li>
+</ul>
+</dd>
+<dt>spheres2micron_long</dt><dd><ul class="simple">
+<li><p>SESANS data from 2 micron polystyrene spheres in 53% H2O / 47% D2O collected
+on the LARMOR instrument at ISIS over spin-echo lengths 400 &lt; <span class="math notranslate nohighlight">\(\delta\)</span> &lt; 200000 Å .</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="saved-states">
+<h2>Saved States<a class="headerlink" href="#saved-states" title="Link to this heading">¶</a></h2>
+<p>Saved states are projects and analyses saved by the SasView program.</p>
+<p>A single analysis file contains the data and parameters for a single fit
+(.fit), p(r) inversion (.prv), or invariant calculation (.inv).</p>
+<p>A project file (.svs) contains the results for every active analysis in a
+SasView session.</p>
+<section id="saved-state-test-data">
+<h3>Saved State Test Data<a class="headerlink" href="#saved-state-test-data" title="Link to this heading">¶</a></h3>
+<p><strong>Example data files are located in the \saved_states sub-folder.</strong></p>
+<dl class="simple">
+<dt>constrained_fit_project</dt><dd><ul class="simple">
+<li><p>A saved fitting project.</p></li>
+<li><p>The file contents are written in XML.</p></li>
+</ul>
+</dd>
+<dt>fit_pr_and_invariant_project</dt><dd><ul class="simple">
+<li><p>A saved fitting and invariant analysis project.</p></li>
+<li><p>The file contents are written in XML.</p></li>
+</ul>
+</dd>
+<dt>fitstate.fitv</dt><dd><ul class="simple">
+<li><p>A saved fitting analysis.</p></li>
+<li><p>The file contents are written in XML.</p></li>
+</ul>
+</dd>
+<dt>project_multiplicative_constraint</dt><dd><ul class="simple">
+<li><p>A saved fitting project with multiple parameter constraints.</p></li>
+<li><p>The file contents are written in XML.</p></li>
+</ul>
+</dd>
+<dt>project_new_style</dt><dd><ul class="simple">
+<li><p>A complex saved fitting project.</p></li>
+<li><p>The file contents are written in JSON.</p></li>
+</ul>
+</dd>
+<dt>prstate.prv</dt><dd><ul class="simple">
+<li><p>A saved P(r) analysis.</p></li>
+<li><p>The file contents are written in XML.</p></li>
+</ul>
+</dd>
+<dt>test.inv</dt><dd><ul class="simple">
+<li><p>A saved invariant analysis.</p></li>
+<li><p>The file contents are written in XML.</p></li>
+</ul>
+</dd>
+<dt>test002.inv</dt><dd><ul class="simple">
+<li><p>A saved invariant analysis.</p></li>
+<li><p>The file contents are written in XML.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="other-formats">
+<h2>Other Formats<a class="headerlink" href="#other-formats" title="Link to this heading">¶</a></h2>
+<p>Data in the \other_formats folder are alternative variations of formats used
+by SasView, or formats that are not yet implemented but which might be in future
+versions of the program.</p>
+<dl class="simple">
+<dt>1000A_sphere_sm</dt><dd><ul class="simple">
+<li><p>CanSAS 1D format data from 1000 Å spheres.</p></li>
+<li><p>This version of the format was written by the NIST IGOR reduction software
+(cf. similar xml data in the <a class="reference internal" href="#d-data">1D Data</a> folder).</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="other-test-data">
+<h2>Other Test Data<a class="headerlink" href="#other-test-data" title="Link to this heading">¶</a></h2>
+<p>Data in the \other_files folder include weights for testing user-defined
+distributions (i.e., polydispersity) on angular (theta/phi) or size (radius/length)
+parameters.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please read the help documentation on <a class="reference internal" href="../qtgui/Perspectives/Fitting/pd/polydispersity.html#polydispersityhelp"><span class="std std-ref">Polydispersity &amp; Orientational Distributions</span></a> before
+attempting to use user-defined distributions.</p>
+</div>
+<p>dist_THETA_weights.txt</p>
+<p>phi_weights.txt</p>
+<p>radius_dist.txt</p>
+<p>THETA_weights.txt</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This help document was last changed by Steve King, 25Jan2024</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Test Data</a><ul>
+<li><a class="reference internal" href="#d-data">1D Data</a><ul>
+<li><a class="reference internal" href="#d-test-data">1D Test Data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id1">2D Data</a><ul>
+<li><a class="reference internal" href="#id2">2D Test Data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#convertible-data">Convertible Data</a></li>
+<li><a class="reference internal" href="#coordinate-data">Coordinate Data</a><ul>
+<li><a class="reference internal" href="#coordinate-test-data">Coordinate Test Data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dls-data">DLS Data</a><ul>
+<li><a class="reference internal" href="#dls-test-data">DLS Test Data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#image-data">Image Data</a><ul>
+<li><a class="reference internal" href="#image-test-data">Image Test Data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#magnetic-data">Magnetic Data</a><ul>
+<li><a class="reference internal" href="#magnetic-test-data">Magnetic Test Data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#reflectometry-data">Reflectometry Data</a><ul>
+<li><a class="reference internal" href="#reflectometry-test-data">Reflectometry Test Data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sesans-data">SESANS Data</a><ul>
+<li><a class="reference internal" href="#sesans-test-data">SESANS Test Data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#saved-states">Saved States</a><ul>
+<li><a class="reference internal" href="#saved-state-test-data">Saved State Test Data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#other-formats">Other Formats</a></li>
+<li><a class="reference internal" href="#other-test-data">Other Test Data</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../qtgui/MainWindow/graph_help.html"
+                          title="previous chapter">Plotting Data/Models</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../tutorial.html"
+                          title="next chapter">Tutorials</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user/example_data/testdata_help.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../tutorial.html" title="Tutorials"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../qtgui/MainWindow/graph_help.html" title="Plotting Data/Models"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../working.html" >Working with SasView</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Test Data</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

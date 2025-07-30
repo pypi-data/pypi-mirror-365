@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Shape-Independent Functions &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" />
+    <link rel="next" title="be_polyelectrolyte" href="../../../../models/be_polyelectrolyte.html" />
+    <link rel="prev" title="vesicle" href="../../../../models/vesicle.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../../../models/be_polyelectrolyte.html" title="be_polyelectrolyte"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../../../../models/vesicle.html" title="vesicle"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Model Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Shape-Independent Functions</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="shape-independent-functions">
+<span id="shape-independent"></span><h1>Shape-Independent Functions<a class="headerlink" href="#shape-independent-functions" title="Link to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/be_polyelectrolyte.html">be_polyelectrolyte</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/broad_peak.html">broad_peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/correlation_length.html">correlation_length</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/dab.html">dab</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/fractal.html">fractal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/fractal_core_shell.html">fractal_core_shell</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/gauss_lorentz_gel.html">gauss_lorentz_gel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/gaussian_peak.html">gaussian_peak</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/gel_fit.html">gel_fit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/guinier.html">guinier</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/guinier_porod.html">guinier_porod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/line.html">line</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/lorentz.html">lorentz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/mass_fractal.html">mass_fractal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/mass_surface_fractal.html">mass_surface_fractal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/mono_gauss_coil.html">mono_gauss_coil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/peak_lorentz.html">peak_lorentz</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/poly_gauss_coil.html">poly_gauss_coil</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/polymer_excl_volume.html">polymer_excl_volume</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/porod.html">porod</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/power_law.html">power_law</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/rpa.html">rpa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/spinodal.html">spinodal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/star_polymer.html">star_polymer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/surface_fractal.html">surface_fractal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/teubner_strey.html">teubner_strey</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/two_lorentzian.html">two_lorentzian</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/two_power_law.html">two_power_law</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../models/unified_power_Rg.html">unified_power_Rg</a></li>
+</ul>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../../../../models/vesicle.html"
+                          title="previous chapter">vesicle</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../../../../models/be_polyelectrolyte.html"
+                          title="next chapter">be_polyelectrolyte</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../../_sources/user/qtgui/Perspectives/Fitting/models/shape-independent.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../../../models/be_polyelectrolyte.html" title="be_polyelectrolyte"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../../../../models/vesicle.html" title="vesicle"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Model Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Shape-Independent Functions</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

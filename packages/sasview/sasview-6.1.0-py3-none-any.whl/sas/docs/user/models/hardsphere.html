@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>hardsphere &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="hayter_msa" href="hayter_msa.html" />
+    <link rel="prev" title="Structure Factors" href="../qtgui/Perspectives/Fitting/models/structure-factor.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="hayter_msa.html" title="hayter_msa"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../qtgui/Perspectives/Fitting/models/structure-factor.html" title="Structure Factors"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/structure-factor.html" accesskey="U">Structure Factors</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">hardsphere</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="hardsphere">
+<span id="id1"></span><h1>hardsphere<a class="headerlink" href="#hardsphere" title="Link to this heading">¶</a></h1>
+<p>Hard sphere structure factor, with Percus-Yevick closure</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>radius_effective</p></td>
+<td><p>effective radius of hard sphere</p></td>
+<td><p>Å</p></td>
+<td><p>50</p></td>
+</tr>
+<tr class="row-odd"><td><p>volfraction</p></td>
+<td><p>volume fraction of hard spheres</p></td>
+<td><p>None</p></td>
+<td><p>0.2</p></td>
+</tr>
+</tbody>
+</table>
+<p>The returned value is a dimensionless structure factor, <span class="math notranslate nohighlight">\(S(q)\)</span>.</p>
+<p>Calculates the interparticle structure factor for monodisperse
+spherical particles interacting through hard sphere (excluded volume)
+interactions. This <span class="math notranslate nohighlight">\(S(q)\)</span> may also be a reasonable approximation for
+other particle shapes that freely rotate (but see the note below),
+and for moderately polydisperse systems.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This routine is intended for uncharged particles! For charged
+particles try using the <a class="reference internal" href="hayter_msa.html#hayter-msa"><span class="std std-ref">hayter_msa</span></a> <span class="math notranslate nohighlight">\(S(q)\)</span> instead.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Earlier versions of SasView did not incorporate the so-called
+<span class="math notranslate nohighlight">\(\beta(q)\)</span> (“beta”) correction [1] for polydispersity and non-sphericity.
+This is only available in SasView versions 5.0 and higher.</p>
+</div>
+<p>radius_effective is the effective hard sphere radius.
+volfraction is the volume fraction occupied by the spheres.</p>
+<p>In SasView the effective radius may be calculated from the parameters
+used in the form factor <span class="math notranslate nohighlight">\(P(q)\)</span> that this <span class="math notranslate nohighlight">\(S(q)\)</span> is combined with.</p>
+<p>For numerical stability the computation uses a Taylor series expansion
+at very small <span class="math notranslate nohighlight">\(qR\)</span>, but there may be a very minor glitch at the
+transition point in some circumstances.</p>
+<p>This S(q) uses the Percus-Yevick closure relationship [2] where the
+interparticle potential <span class="math notranslate nohighlight">\(U(r)\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}U(r) = \begin{cases}
+\infty &amp; r &lt; 2R \\
+0 &amp; r \geq 2R
+\end{cases}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(r\)</span> is the distance from the center of a sphere of a radius <span class="math notranslate nohighlight">\(R\)</span>.</p>
+<p>For a 2D plot, the wave transfer is defined as</p>
+<div class="math notranslate nohighlight">
+\[q = \sqrt{q_x^2 + q_y^2}\]</div>
+<figure class="align-default" id="id2">
+<img alt="../../_images/hardsphere_autogenfig.png" src="../../_images/hardsphere_autogenfig.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 129 </span><span class="caption-text">1D plot corresponding to the default parameters of the model.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Source</strong></p>
+<p><a class="reference download internal" download="" href="../../_downloads/4a33d5085b9d749a6a7666774e071974/hardsphere.py"><code class="xref download docutils literal notranslate"><span class="pre">hardsphere.py</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/903ee88dabc974e18c0138c59af2e297/hardsphere.c"><code class="xref download docutils literal notranslate"><span class="pre">hardsphere.c</span></code></a></p>
+<p><strong>References</strong></p>
+<ol class="arabic simple">
+<li><p>M Kotlarchyk &amp; S-H Chen, <em>J. Chem. Phys.</em>, 79 (1983) 2461-2469</p></li>
+<li><p>J K Percus, J Yevick, <em>J. Phys. Rev.</em>, 110, (1958) 1</p></li>
+</ol>
+<p><strong>Authorship and Verification</strong></p>
+<ul class="simple">
+<li><p><strong>Author:</strong></p></li>
+<li><p><strong>Last Modified by:</strong></p></li>
+<li><p><strong>Last Reviewed by:</strong></p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../qtgui/Perspectives/Fitting/models/structure-factor.html"
+                          title="previous chapter">Structure Factors</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="hayter_msa.html"
+                          title="next chapter">hayter_msa</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user/models/hardsphere.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="hayter_msa.html" title="hayter_msa"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../qtgui/Perspectives/Fitting/models/structure-factor.html" title="Structure Factors"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/structure-factor.html" >Structure Factors</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">hardsphere</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

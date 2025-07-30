@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>sasdata.data_util.uncertainty module &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="sasdata.data_util.util module" href="sasdata.data_util.util.html" />
+    <link rel="prev" title="sasdata.data_util.registry module" href="sasdata.data_util.registry.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sasdata.data_util.util.html" title="sasdata.data_util.util module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="sasdata.data_util.registry.html" title="sasdata.data_util.registry module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sasdata.html" >sasdata package</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="sasdata.data_util.html" accesskey="U">sasdata.data_util package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sasdata.data_util.uncertainty module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-sasdata.data_util.uncertainty">
+<span id="sasdata-data-util-uncertainty-module"></span><h1>sasdata.data_util.uncertainty module<a class="headerlink" href="#module-sasdata.data_util.uncertainty" title="Link to this heading">¶</a></h1>
+<p>Uncertainty propagation class for arithmetic, log and exp.</p>
+<p>Based on scalars or numpy vectors, this class allows you to store and
+manipulate values+uncertainties, with propagation of gaussian error for
+addition, subtraction, multiplication, division, power, exp and log.</p>
+<p>Storage properties are determined by the numbers used to set the value
+and uncertainty.  Be sure to use floating point uncertainty vectors
+for inplace operations since numpy does not do automatic type conversion.
+Normal operations can use mixed integer and floating point.  In place
+operations such as <em>a *= b</em> create at most one extra copy for each operation.
+By contrast, <em>c = a*b</em> uses four intermediate vectors, so shouldn’t be used
+for huge arrays.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sasdata.data_util.uncertainty.</span></span><span class="sig-name descname"><span class="pre">Uncertainty</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__abs__">
+<span class="sig-name descname"><span class="pre">__abs__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__abs__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__add__">
+<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__add__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__and__">
+<span class="sig-name descname"><span class="pre">__and__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__and__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__coerce__">
+<span class="sig-name descname"><span class="pre">__coerce__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__coerce__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__complex__">
+<span class="sig-name descname"><span class="pre">__complex__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__complex__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__delitem__">
+<span class="sig-name descname"><span class="pre">__delitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__delitem__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__dict__">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'sasdata.data_util.uncertainty',</span> <span class="pre">'_getdx':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty._getdx&gt;,</span> <span class="pre">'_setdx':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty._setdx&gt;,</span> <span class="pre">'dx':</span> <span class="pre">&lt;property</span> <span class="pre">object&gt;,</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__init__&gt;,</span> <span class="pre">'__len__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__len__&gt;,</span> <span class="pre">'__getitem__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__getitem__&gt;,</span> <span class="pre">'__setitem__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__setitem__&gt;,</span> <span class="pre">'__delitem__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__delitem__&gt;,</span> <span class="pre">'__add__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__add__&gt;,</span> <span class="pre">'__sub__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__sub__&gt;,</span> <span class="pre">'__mul__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__mul__&gt;,</span> <span class="pre">'__truediv__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__truediv__&gt;,</span> <span class="pre">'__pow__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__pow__&gt;,</span> <span class="pre">'__radd__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__radd__&gt;,</span> <span class="pre">'__rsub__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__rsub__&gt;,</span> <span class="pre">'__rmul__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__rmul__&gt;,</span> <span class="pre">'__rtruediv__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__rtruediv__&gt;,</span> <span class="pre">'__rpow__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__rpow__&gt;,</span> <span class="pre">'__iadd__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__iadd__&gt;,</span> <span class="pre">'__isub__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__isub__&gt;,</span> <span class="pre">'__imul__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__imul__&gt;,</span> <span class="pre">'__itruediv__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__itruediv__&gt;,</span> <span class="pre">'__ipow__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__ipow__&gt;,</span> <span class="pre">'__div__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__div__&gt;,</span> <span class="pre">'__rdiv__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__rdiv__&gt;,</span> <span class="pre">'__idiv__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__idiv__&gt;,</span> <span class="pre">'__neg__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__neg__&gt;,</span> <span class="pre">'__pos__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__pos__&gt;,</span> <span class="pre">'__abs__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__abs__&gt;,</span> <span class="pre">'__str__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__str__&gt;,</span> <span class="pre">'__repr__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__repr__&gt;,</span> <span class="pre">'__floordiv__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__floordiv__&gt;,</span> <span class="pre">'__mod__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__mod__&gt;,</span> <span class="pre">'__divmod__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__divmod__&gt;,</span> <span class="pre">'__lshift__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__lshift__&gt;,</span> <span class="pre">'__rshift__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__rshift__&gt;,</span> <span class="pre">'__and__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__and__&gt;,</span> <span class="pre">'__xor__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__xor__&gt;,</span> <span class="pre">'__or__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__or__&gt;,</span> <span class="pre">'__rfloordiv__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__rfloordiv__&gt;,</span> <span class="pre">'__rmod__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__rmod__&gt;,</span> <span class="pre">'__rdivmod__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__rdivmod__&gt;,</span> <span class="pre">'__rlshift__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__rlshift__&gt;,</span> <span class="pre">'__rrshift__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__rrshift__&gt;,</span> <span class="pre">'__rand__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__rand__&gt;,</span> <span class="pre">'__rxor__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__rxor__&gt;,</span> <span class="pre">'__ror__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__ror__&gt;,</span> <span class="pre">'__ifloordiv__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__ifloordiv__&gt;,</span> <span class="pre">'__imod__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__imod__&gt;,</span> <span class="pre">'__idivmod__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__idivmod__&gt;,</span> <span class="pre">'__ilshift__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__ilshift__&gt;,</span> <span class="pre">'__irshift__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__irshift__&gt;,</span> <span class="pre">'__iand__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__iand__&gt;,</span> <span class="pre">'__ixor__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__ixor__&gt;,</span> <span class="pre">'__ior__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__ior__&gt;,</span> <span class="pre">'__invert__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__invert__&gt;,</span> <span class="pre">'__complex__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__complex__&gt;,</span> <span class="pre">'__int__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__int__&gt;,</span> <span class="pre">'__long__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__long__&gt;,</span> <span class="pre">'__float__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__float__&gt;,</span> <span class="pre">'__oct__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__oct__&gt;,</span> <span class="pre">'__hex__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__hex__&gt;,</span> <span class="pre">'__index__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__index__&gt;,</span> <span class="pre">'__coerce__':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.__coerce__&gt;,</span> <span class="pre">'log':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.log&gt;,</span> <span class="pre">'exp':</span> <span class="pre">&lt;function</span> <span class="pre">Uncertainty.exp&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'Uncertainty'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'Uncertainty'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__doc__':</span> <span class="pre">None,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__dict__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__div__">
+<span class="sig-name descname"><span class="pre">__div__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__div__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__divmod__">
+<span class="sig-name descname"><span class="pre">__divmod__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__divmod__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__float__">
+<span class="sig-name descname"><span class="pre">__float__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__float__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__floordiv__">
+<span class="sig-name descname"><span class="pre">__floordiv__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__floordiv__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__getitem__">
+<span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__getitem__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__hex__">
+<span class="sig-name descname"><span class="pre">__hex__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__hex__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__iadd__">
+<span class="sig-name descname"><span class="pre">__iadd__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__iadd__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__iand__">
+<span class="sig-name descname"><span class="pre">__iand__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__iand__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__idiv__">
+<span class="sig-name descname"><span class="pre">__idiv__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__idiv__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__idivmod__">
+<span class="sig-name descname"><span class="pre">__idivmod__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__idivmod__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__ifloordiv__">
+<span class="sig-name descname"><span class="pre">__ifloordiv__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__ifloordiv__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__ilshift__">
+<span class="sig-name descname"><span class="pre">__ilshift__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__ilshift__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__imod__">
+<span class="sig-name descname"><span class="pre">__imod__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__imod__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__imul__">
+<span class="sig-name descname"><span class="pre">__imul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__imul__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__index__">
+<span class="sig-name descname"><span class="pre">__index__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__index__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">variance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__int__">
+<span class="sig-name descname"><span class="pre">__int__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__int__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__invert__">
+<span class="sig-name descname"><span class="pre">__invert__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__invert__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__ior__">
+<span class="sig-name descname"><span class="pre">__ior__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__ior__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__ipow__">
+<span class="sig-name descname"><span class="pre">__ipow__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__ipow__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__irshift__">
+<span class="sig-name descname"><span class="pre">__irshift__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__irshift__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__isub__">
+<span class="sig-name descname"><span class="pre">__isub__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__isub__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__itruediv__">
+<span class="sig-name descname"><span class="pre">__itruediv__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__itruediv__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__ixor__">
+<span class="sig-name descname"><span class="pre">__ixor__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__ixor__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__len__">
+<span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__len__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__long__">
+<span class="sig-name descname"><span class="pre">__long__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__long__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__lshift__">
+<span class="sig-name descname"><span class="pre">__lshift__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__lshift__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__mod__">
+<span class="sig-name descname"><span class="pre">__mod__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__mod__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sasdata.data_util.uncertainty'</span></em><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__mul__">
+<span class="sig-name descname"><span class="pre">__mul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__mul__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__neg__">
+<span class="sig-name descname"><span class="pre">__neg__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__neg__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__oct__">
+<span class="sig-name descname"><span class="pre">__oct__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__oct__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__or__">
+<span class="sig-name descname"><span class="pre">__or__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__or__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self|value.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__pos__">
+<span class="sig-name descname"><span class="pre">__pos__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__pos__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__pow__">
+<span class="sig-name descname"><span class="pre">__pow__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__pow__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__radd__">
+<span class="sig-name descname"><span class="pre">__radd__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__radd__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__rand__">
+<span class="sig-name descname"><span class="pre">__rand__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__rand__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__rdiv__">
+<span class="sig-name descname"><span class="pre">__rdiv__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__rdiv__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__rdivmod__">
+<span class="sig-name descname"><span class="pre">__rdivmod__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__rdivmod__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__rfloordiv__">
+<span class="sig-name descname"><span class="pre">__rfloordiv__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__rfloordiv__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__rlshift__">
+<span class="sig-name descname"><span class="pre">__rlshift__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__rlshift__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__rmod__">
+<span class="sig-name descname"><span class="pre">__rmod__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__rmod__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__rmul__">
+<span class="sig-name descname"><span class="pre">__rmul__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__rmul__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__ror__">
+<span class="sig-name descname"><span class="pre">__ror__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__ror__" title="Link to this definition">¶</a></dt>
+<dd><p>Return value|self.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__rpow__">
+<span class="sig-name descname"><span class="pre">__rpow__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__rpow__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__rrshift__">
+<span class="sig-name descname"><span class="pre">__rrshift__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__rrshift__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__rshift__">
+<span class="sig-name descname"><span class="pre">__rshift__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__rshift__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__rsub__">
+<span class="sig-name descname"><span class="pre">__rsub__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__rsub__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__rtruediv__">
+<span class="sig-name descname"><span class="pre">__rtruediv__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__rtruediv__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__rxor__">
+<span class="sig-name descname"><span class="pre">__rxor__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__rxor__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__setitem__">
+<span class="sig-name descname"><span class="pre">__setitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__setitem__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__str__" title="Link to this definition">¶</a></dt>
+<dd><p>Return str(self).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__sub__">
+<span class="sig-name descname"><span class="pre">__sub__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__sub__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__truediv__">
+<span class="sig-name descname"><span class="pre">__truediv__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__truediv__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.__xor__">
+<span class="sig-name descname"><span class="pre">__xor__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.__xor__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty._getdx">
+<span class="sig-name descname"><span class="pre">_getdx</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty._getdx" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty._setdx">
+<span class="sig-name descname"><span class="pre">_setdx</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dx</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty._setdx" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.dx">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dx</span></span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.dx" title="Link to this definition">¶</a></dt>
+<dd><p>standard deviation</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.exp">
+<span class="sig-name descname"><span class="pre">exp</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.exp" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.Uncertainty.log">
+<span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.Uncertainty.log" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.exp">
+<span class="sig-prename descclassname"><span class="pre">sasdata.data_util.uncertainty.</span></span><span class="sig-name descname"><span class="pre">exp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.exp" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.log">
+<span class="sig-prename descclassname"><span class="pre">sasdata.data_util.uncertainty.</span></span><span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.log" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sasdata.data_util.uncertainty.test">
+<span class="sig-prename descclassname"><span class="pre">sasdata.data_util.uncertainty.</span></span><span class="sig-name descname"><span class="pre">test</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.data_util.uncertainty.test" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">sasdata.data_util.uncertainty module</a><ul>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty"><code class="docutils literal notranslate"><span class="pre">Uncertainty</span></code></a><ul>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__abs__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__abs__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__add__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__and__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__and__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__coerce__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__coerce__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__complex__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__complex__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__delitem__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__delitem__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__dict__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__dict__</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__div__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__div__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__divmod__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__divmod__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__doc__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__float__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__float__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__floordiv__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__floordiv__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__getitem__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__hex__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__hex__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__iadd__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__iadd__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__iand__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__iand__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__idiv__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__idiv__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__idivmod__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__idivmod__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__ifloordiv__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__ifloordiv__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__ilshift__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__ilshift__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__imod__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__imod__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__imul__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__imul__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__index__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__index__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__init__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__int__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__int__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__invert__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__invert__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__ior__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__ior__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__ipow__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__ipow__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__irshift__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__irshift__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__isub__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__isub__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__itruediv__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__itruediv__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__ixor__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__ixor__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__len__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__len__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__long__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__long__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__lshift__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__lshift__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__mod__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__mod__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__module__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__mul__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__mul__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__neg__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__neg__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__oct__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__oct__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__or__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__or__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__pos__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__pos__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__pow__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__pow__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__radd__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__radd__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__rand__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__rand__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__rdiv__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__rdiv__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__rdivmod__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__rdivmod__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__repr__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__rfloordiv__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__rfloordiv__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__rlshift__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__rlshift__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__rmod__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__rmod__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__rmul__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__rmul__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__ror__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__ror__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__rpow__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__rpow__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__rrshift__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__rrshift__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__rshift__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__rshift__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__rsub__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__rsub__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__rtruediv__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__rtruediv__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__rxor__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__rxor__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__setitem__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__setitem__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__str__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__sub__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__sub__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__truediv__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__truediv__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__weakref__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__weakref__</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.__xor__"><code class="docutils literal notranslate"><span class="pre">Uncertainty.__xor__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty._getdx"><code class="docutils literal notranslate"><span class="pre">Uncertainty._getdx()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty._setdx"><code class="docutils literal notranslate"><span class="pre">Uncertainty._setdx()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.dx"><code class="docutils literal notranslate"><span class="pre">Uncertainty.dx</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.exp"><code class="docutils literal notranslate"><span class="pre">Uncertainty.exp()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.Uncertainty.log"><code class="docutils literal notranslate"><span class="pre">Uncertainty.log()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.exp"><code class="docutils literal notranslate"><span class="pre">exp()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.log"><code class="docutils literal notranslate"><span class="pre">log()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.data_util.uncertainty.test"><code class="docutils literal notranslate"><span class="pre">test()</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="sasdata.data_util.registry.html"
+                          title="previous chapter">sasdata.data_util.registry module</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="sasdata.data_util.util.html"
+                          title="next chapter">sasdata.data_util.util module</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/dev/sasdata-dev/generated/sasdata.data_util.uncertainty.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sasdata.data_util.util.html" title="sasdata.data_util.util module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="sasdata.data_util.registry.html" title="sasdata.data_util.registry module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sasdata.html" >sasdata package</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="sasdata.data_util.html" >sasdata.data_util package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sasdata.data_util.uncertainty module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

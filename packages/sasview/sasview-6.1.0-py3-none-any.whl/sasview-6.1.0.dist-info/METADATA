@@ -1,0 +1,78 @@
+Metadata-Version: 2.4
+Name: sasview
+Version: 6.1.0
+Summary: SasView application
+Project-URL: Homepage, http://sasview.org
+Project-URL: Documentation, https://www.sasview.org/docs/
+Project-URL: Repository, https://github.com/SasView/sasview/
+Project-URL: Issues, https://github.com/SasView/sasview/issues
+Project-URL: Changelog, https://github.com/SasView/sasview/releases
+Author-email: SasView Team <developers@sasview.org>
+License: BSD-3-Clause
+License-File: LICENSE.TXT
+Keywords: X-ray,data analysis,neutron,scattering,small-angle
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Programming Language :: Python
+Requires-Python: >=3.9
+Requires-Dist: appdirs
+Requires-Dist: bumps
+Requires-Dist: cffi
+Requires-Dist: docutils
+Requires-Dist: dominate
+Requires-Dist: h5py
+Requires-Dist: html2text
+Requires-Dist: html5lib
+Requires-Dist: importlib-resources; python_version < '3.9'
+Requires-Dist: ipython
+Requires-Dist: jsonschema
+Requires-Dist: lxml
+Requires-Dist: mako
+Requires-Dist: matplotlib
+Requires-Dist: numba
+Requires-Dist: numpy
+Requires-Dist: packaging
+Requires-Dist: periodictable
+Requires-Dist: platformdirs
+Requires-Dist: pybind11
+Requires-Dist: pylint
+Requires-Dist: pyopencl
+Requires-Dist: pyopengl
+Requires-Dist: pyparsing
+Requires-Dist: pyside6
+Requires-Dist: pytools
+Requires-Dist: pywin32; platform_system == 'Windows'
+Requires-Dist: qtconsole
+Requires-Dist: sasdata
+Requires-Dist: sasmodels
+Requires-Dist: scipy
+Requires-Dist: siphash24
+Requires-Dist: sphinx
+Requires-Dist: superqt
+Requires-Dist: tccbox
+Requires-Dist: twisted
+Requires-Dist: uncertainties
+Requires-Dist: xhtml2pdf
+Requires-Dist: zope
+Provides-Extra: dev
+Requires-Dist: build; extra == 'dev'
+Requires-Dist: hatch-build-scripts; extra == 'dev'
+Requires-Dist: hatch-requirements-txt; extra == 'dev'
+Requires-Dist: hatch-sphinx; extra == 'dev'
+Requires-Dist: hatch-vcs; extra == 'dev'
+Requires-Dist: hatchling; extra == 'dev'
+Provides-Extra: test
+Requires-Dist: pytest; extra == 'test'
+Requires-Dist: pytest-mock; extra == 'test'
+Requires-Dist: pytest-qt; extra == 'test'
+Requires-Dist: unittest-xml-reporting; extra == 'test'
+Description-Content-Type: text/markdown
+
+[SasView](http://www.sasview.org) is a Small Angle Scattering (SAS) analysis package for the analysis of 1D and 2D scattering data directly in inverse space. The focus was originally on neutron data (SANS) but has been used for X-ray’s as well and includes a tool for determining a slit resolution for the SAXSess instrument. SansView also includes PrView to invert SAS data to P(r), a resolution calculator, and a scattering length density calculator among others tools. A simple plugin mechanism is available for users to add custom models. 
+
+This project was initiated by the NSF funded DANSE project, DMR-0520547, SANS sub-project at the University of Tennessee Knoxville. Acknowledgement of that original funding would be appreciated in any publications that make use of the software.
+
+This project receives funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No 654000
+
+[SasView website](http://www.sasview.org)

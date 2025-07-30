@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Size Distribution &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Tools &amp; Utilities" href="../../../tools.html" />
+    <link rel="prev" title="How To Use Corfunc" href="../Corfunc/corfunc-how-to.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../../tools.html" title="Tools &amp; Utilities"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../Corfunc/corfunc-how-to.html" title="How To Use Corfunc"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../analysis.html" accesskey="U">Fitting &amp; Other Analyses</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Size Distribution</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="size-distribution">
+<span id="id1"></span><h1>Size Distribution<a class="headerlink" href="#size-distribution" title="Link to this heading">¶</a></h1>
+<section id="principle">
+<h2>Principle<a class="headerlink" href="#principle" title="Link to this heading">¶</a></h2>
+<p>Size distribution analysis is a technique for extracting information from
+scattering of a nominally two phase material where the shape of the domains
+of the minority phase are assumed to be known, but the size distribution is
+completely unknown. It is most often used in materials where the domain sizes
+have an extremely large variation, such as pores in rocks, hence the oft used
+term “pore size distribution” for this type of analysis. The scattered
+intensity in this case is given by the integral of the scattering intensity
+from every size present in the system. Basically a polydispersity integral of
+the monodisperse I(Q) but where the shape of the distribution can be anything
+and is most likely not possible to put in a parameterized analytical form. Thus
+the equation to fit is:</p>
+<div class="math notranslate nohighlight">
+\[I(Q)= \Delta \rho^2 \int N_p(r) P(Q,r) dr\]</div>
+<p>Where <span class="math notranslate nohighlight">\(N_p(r)\)</span> is the number density of particles of characteristic dimension
+<span class="math notranslate nohighlight">\(r\)</span>, and <span class="math notranslate nohighlight">\(P(Q,r)\)</span> is the form factor for that characteristic dimension. The
+exact meaning of <span class="math notranslate nohighlight">\(r\)</span> will of course depend on the model being used.For a
+sphere <span class="math notranslate nohighlight">\(r\)</span> is simply the radius of the sphere and the <span class="math notranslate nohighlight">\(P(Q,r)\)</span> in this case
+is given by:</p>
+<div class="math notranslate nohighlight">
+\[P(Q,r) = \left[
+    3V_p(\Delta\rho) \cdot \frac{\sin(Qr) - Qr\cos(Qr))}{(Qr)^3}
+    \right]^2\]</div>
+<p>SasView is using the sasmodels package which automatically scales to volume
+fraction rather than number density using:</p>
+<div class="math notranslate nohighlight">
+\[N_p = \phi/V_p\]</div>
+<p>The current implementation uses an ellipsoid of revolution. Here <span class="math notranslate nohighlight">\(r\)</span> in the
+above equations is the equatorial radius. The default is for an ellipsoid with
+polar radius = equatorial radius and thus an axial ratio of 1 which is a
+sphere. The equation for an ellipsoid of revolution is given in the sasmodels
+documentation and <span class="math notranslate nohighlight">\(r = R_{eq}\)</span> with an eccentricity (aspect ratio) fixed by the
+user which is <span class="math notranslate nohighlight">\(Ecc = R_{polar}/R_{eq}\)</span>. Other shapes are expected to be
+added in the future.</p>
+<p>The “fitting parameter” in this approach then is the distribution function.
+In order to calculate this practically over a finite <span class="math notranslate nohighlight">\(Q\)</span> range, we replace the
+integral equation with the following sum, where <span class="math notranslate nohighlight">\(r_{min}\)</span> and <span class="math notranslate nohighlight">\(r_{max}\)</span> should
+be within the range that will significantly affect the scattering in the <span class="math notranslate nohighlight">\(Q\)</span>
+range being used.</p>
+<div class="math notranslate nohighlight">
+\[I(Q)= \Delta \rho^2 \sum_{r_{min}}^{r_{max}} N_p(r) P(Q,r)\]</div>
+<p>Even so, fitting is over determined, particularly given the noise in any real
+data. Essentially, this is an ill posed problem. In order
+to provide a reasonably robust solution, a regularization technique is generally
+used. Here we implement only the most common MaxEnt (Maximum Entropy) method,
+used for example by the famous CONTIN algorithm employed in light scattering.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The assumptions inherent in this method are:</p>
+<ul class="simple">
+<li><p>The system can be approximated as a two phase system</p></li>
+<li><p>The scattering length density of each phase is known</p></li>
+<li><p>The minor phase is made up of domains of varying sizes but a fixed shape</p></li>
+<li><p>The minor phase is sufficiently “dilute” as to not have any interdomain
+interference terms (i.e. no S(Q)}</p></li>
+</ul>
+</div>
+</section>
+<section id="maximum-entropy">
+<h2>Maximum Entropy<a class="headerlink" href="#maximum-entropy" title="Link to this heading">¶</a></h2>
+<p>The concept of statistical entropy was first introduced by Claude Shannon in
+1948 in his famous treatise, <em>A Mathematical Theory of Communication</em>,
+considered the foundation of information theory <a class="footnote-reference brackets" href="#shannon1" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>, <a class="footnote-reference brackets" href="#shannon2" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>,
+<a class="footnote-reference brackets" href="#shannon3" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>. Later, in 1957, E. T. Jaynes introduced the principle of <strong>maximum entropy</strong> in
+two key papers <a class="footnote-reference brackets" href="#jaynes1" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>, <a class="footnote-reference brackets" href="#jaynes2" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a> where he emphasized a natural
+correspondence between statistical mechanics and information theory. In this
+framework, the best solution to an optimization problem is the solution that
+leads to the <strong>Maximum Entropy</strong> where the Shannon Entropy is defined as:</p>
+<div class="math notranslate nohighlight">
+\[H(X) = - \sum_{i} p(x_i) ln p(x_i)\]</div>
+<p>Where <span class="math notranslate nohighlight">\(p(x_i)\)</span> is the probability of the ith distribution.</p>
+<p>In a nutshell, the idea of the maximum entropy method is that the most probable
+distribution that satisfies all the known constraints is the best answer to the
+optimization problem. Also known as the “maximum ignorance” answer, and is the
+solution with the maximum “entropy.” In other words, the answer that makes the
+fewest assumptions beyond what is known.</p>
+<p>Here, the known constraint is that <span class="math notranslate nohighlight">\(\chi^2\)</span> between the scattering data and the
+scattered intensity expected from a system of the chosen shape, with the
+solution distribution of sizes, must be minimized.  In other words, of all the
+distributions that would satisfy the <span class="math notranslate nohighlight">\(\chi^2\)</span> constraint, we find the one with
+the maximum entropy. The size distribution problem however is too complex to be
+conducive to an analytical solution and so an iterative process is employed.
+Here we employ an  algorithm due to Skillings and Bryan <a class="footnote-reference brackets" href="#skillingsandbryan" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></a>
+as implemented in GSAS II <a class="footnote-reference brackets" href="#gsas" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></a>.</p>
+</section>
+<section id="using-the-size-distribution-analysis">
+<h2>Using the Size Distribution Analysis<a class="headerlink" href="#using-the-size-distribution-analysis" title="Link to this heading">¶</a></h2>
+<p>Load some data with the <em>Data Explorer.</em></p>
+<p>Select a dataset and use the <em>Send To</em> button on the <em>Data Explorer</em> to load
+the dataset into the <em>Size Distribution</em> panel.</p>
+<img alt="../../../../_images/ParametersTab.png" src="../../../../_images/ParametersTab.png" />
+<p>This will open the panel on the <em>Parameters</em> tab and plot the data to fit.
+The most important parameters to adjust at this point are the minimum and
+maximum diameters of the distribution. The calculation will only explore
+diameters in this range. It is important that the range of diameters be
+sufficient to fit the full <span class="math notranslate nohighlight">\(Q\)</span> range of the data (within the minimum and
+maximum bounds set, if any). For example, if the largest diameter will be in the
+Guinier region in a <span class="math notranslate nohighlight">\(Q\)</span> range where the data is stil showing growth, the fit
+will never be able to converge. Likewise, if the smallest diameter allowed
+is larger than can be “seen” at the highest <span class="math notranslate nohighlight">\(Q\)</span> in the data, it may also be
+hard for the fit to converge. On the other hand, it is best not to excessively
+exceed the limits imposed by the <span class="math notranslate nohighlight">\(Q\)</span> range being fit.</p>
+<p>If the data is on absolute scale and a quantitative volume fraction is desired the
+contrast factor between the domain of interest and the matrix must be set
+correctly. Otherwise, the value is not important and can be left alone.</p>
+<p>The number of bins sets the number of sizes within the size range that will be
+calculated.</p>
+<p>The models section default is usually appropriate. Currently, only the ellipsoid
+model is implemented. This may be expanded in the future to include cylinders
+for example. The aspect ratio for the ellipsoid however can be changed. The
+default of 1 is for a sphere. An aspect ratio greater than 1 will yield a
+prolate ellipsoid while a value smaller than 1 is for an oblate ellipsoid.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The Size Distribution analysis assumes the data is properly background
+subtracted. The smaller sizes in particular will be very sensitive to that.
+If this is not the case for your data, proceed to the options tab as
+described below and ensure that the background subtraction is set correctly.</p>
+</div>
+<p>At this point, one can run a fit.  There are two buttons at the bottom of the
+panel: <em>Qick fit</em> and <em>Full fit</em>. One should always start with the
+<em>Quick fit</em>. The only difference between the two is that the first will only
+run the calculation once and produce the result.</p>
+<img alt="../../../../_images/QuickFit.png" src="../../../../_images/QuickFit.png" />
+<p>After a short time, the graph will be updated with the fit to the data using
+the resulting distribution, while a second plot will pop up showing the final
+distribution of sizes that are returned, giving the volume fraction (true or
+relative depending on whether the data are on absolute scale or not) of each
+size. Finally the <em>Output</em> section of the <em>Parameters</em> tab will show the
+results including whether or not the fitting converged, the reduced
+<span class="math notranslate nohighlight">\(\chi^2\)</span>, the percent volume fraction of domains (assuming absolute scaled
+data and correct contrast term) along with statistics on the diameter such
+as the mean and median.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently the diameter averages are given in terms of the volume
+distribution not the number distribution. Thus the mean diameter
+is essentially weighted towards the largest sizes. The number
+distribution may be given in future versions.</p>
+</div>
+<p>In the plot representing the distribution of sizes there are also two red
+vertical lines. These lines represent a conservative estimate of the sizes that
+are well within the <span class="math notranslate nohighlight">\(Q\)</span> range of the fit and thus “trustable.” Any amount of
+sizes outside that range should be considered highly suspect!</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is usually a fairly ill posed problem and the fitting may not converge.
+This will pop up a <code class="docutils literal notranslate"><span class="pre">WARNING:</span></code> in the log explorer warning that this is
+the case. The results panel will also note in <strong>bold red font</strong> that the
+fitting did not converge. The algorithm will return the values from the last
+iteration that was run but should be viewed with suspicion. One should
+<strong>never</strong> report values from an unconverged fit!</p>
+</div>
+<img alt="../../../../_images/QuickFitFailed.png" src="../../../../_images/QuickFitFailed.png" />
+<p>Once one is happy with the <em>Quick fit</em> results, it is recommended to finish by
+running a <em>Full fit</em>. This will run the same fit ten times over. However, each
+time the input data will be “randomized” within the data’s error bars to
+account for the noise in the data. The sigma on the resulting distribution
+magnitudes provides an estimate of the uncertainties on those values and the
+resulting total volume fraction.</p>
+<img alt="../../../../_images/FullFit.png" src="../../../../_images/FullFit.png" />
+</section>
+<section id="refining-the-fit">
+<h2>Refining the fit<a class="headerlink" href="#refining-the-fit" title="Link to this heading">¶</a></h2>
+<p>In order to get a more reasonable fit, and in particular one that converges, it
+will often be necessary to adjust the parameters on the <em>Options</em> tab.</p>
+<img alt="../../../../_images/OptionsTab.png" src="../../../../_images/OptionsTab.png" />
+<p>The first thing to worry about, as noted above, is the background subtraction.
+The usual high Q background can be entered if known. It can also
+be estimated using a Porod Plot (available using the linearized fits in
+SasView). This is probably the most accurate way to determine the background
+if it is not known. Alternatively, if there are sufficient points in the data
+that are clearly in the flat background region, the background can be estimated
+by providing the minimum and maximum <span class="math notranslate nohighlight">\(Q\)</span> where the data is flat and then
+pressing the <code class="docutils literal notranslate"><span class="pre">Fit</span> <span class="pre">flat</span> <span class="pre">background</span></code> button in the <em>Options</em> tab. The values to
+use for the <span class="math notranslate nohighlight">\(Q\)</span> limits can be read off the plot by moving the cursor over the
+points at the extremes and reading off the x value given in the bottom right of
+the plot.</p>
+<p>At times the data may also have a low <span class="math notranslate nohighlight">\(Q\)</span> background due for example to the
+interface scattering from a powder sample. In most cases this should be a -4
+power law expected from sharp interfaces (the Porod Law for smooth surfaces
+at the length scales being probed) though there may be times when a different
+power law is appropriate. However the scale factor will certainly need
+adjusting. This can be done by first checking the <code class="docutils literal notranslate"><span class="pre">Subtract</span> <span class="pre">Low-Q</span> <span class="pre">power</span> <span class="pre">law</span></code>
+check box. At this point, once again it can be done manually. The plot will
+update each time enter is pressed after changing a background value to show
+both the background curve and the subtracted data. The user can then iterate
+to find the best values. Alternatively, and again giving the minimum and
+maximum <span class="math notranslate nohighlight">\(Q\)</span> values that are 100% dominated by the low <span class="math notranslate nohighlight">\(Q\)</span> background term and
+pressing <code class="docutils literal notranslate"><span class="pre">Fit</span> <span class="pre">power</span> <span class="pre">law</span></code>, the program will estimate the values by fitting a
+power law to the region of data indicated. Here one can choose to fix the
+power law exponent to a known value (the default) and only the scale factor
+will be estimated, or, by checking the <code class="docutils literal notranslate"><span class="pre">Fit</span></code> radio button next to the
+<code class="docutils literal notranslate"><span class="pre">power</span></code> text entry box, both the power law exponent and scale factor will
+be estimated.</p>
+<p>Once the backgrounds are subtracted properly, the range of <span class="math notranslate nohighlight">\(Q\)</span> to be fit can
+also be limited using either the range sliders in the plot or entering the
+values in the <code class="docutils literal notranslate"><span class="pre">Fitting</span> <span class="pre">range</span></code> box of the <em>Options</em> tab. Remember that these
+<span class="math notranslate nohighlight">\(Q\)</span> bounds define the range of diameters that can be probed using this method.</p>
+<img alt="../../../../_images/backSubtracted.png" src="../../../../_images/backSubtracted.png" />
+<p>Next the <code class="docutils literal notranslate"><span class="pre">Weighting</span></code> box parameters can be adjusted. SasView automatically
+sets the fitting to use the uncertainty data associated with the data, or,
+if no uncertainties are given with the data (which should never be the case),
+will set it to 1% of the intensity value for each data point. No uncertainty
+on the data points will almost always fail to converge. There are a couple of
+other options, neither great choices, to mitigate this. But to be very clear,
+it is <strong>HIGHLY</strong> discouraged to use data without uncertainties.</p>
+<p>That said, scattering data never accounts for anything but counting statistics.
+When the uncertainty is dominated by those this can be reasonable. However, if
+it is not, then the uncertainties can be far too small. This will have a huge
+impact on the ability of this analyis to converge. This is often a problem
+with X-ray data for example, but is true for most data and a particular problem
+here because one of the criteria for convergence is that <span class="math notranslate nohighlight">\(\chi^2\)</span> be within 1%
+of 1.0 (so 0.99 &lt; <span class="math notranslate nohighlight">\(\chi^2\)</span> &lt; 1.01). A first order correction is made available
+here in the <code class="docutils literal notranslate"><span class="pre">Weight</span> <span class="pre">factor</span></code> box. The value entered here effectivly increases
+the size of the uncertainties sent to the fitting routine by that factor.
+Larger error bars will decrease <span class="math notranslate nohighlight">\(\chi^2\)</span> thus making convergence easier.</p>
+<p>Finally, there is a <code class="docutils literal notranslate"><span class="pre">Method</span> <span class="pre">parameters</span></code> box which contains two adjustable
+parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MaxEnt</span> <span class="pre">Sky</span> <span class="pre">Background</span></code>. This is a value that should be small and probably
+never adjusted unless one knows what one is doing. Basically it adds a level
+of <em>inherent</em> background.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Iterations</span></code>. This sets the maximum number of iterations the Maximum
+Entropy optimization routine will perform before it stops and returns a
+“not converged” error. In general, if the routine does not converge in 100
+iterations it probably won’t. Typical numbers of iterations for convergence
+range from 5 to 30. It is possible to increase the limit to whatever number
+one has patience for.</p></li>
+</ul>
+<section id="reference">
+<h3>Reference<a class="headerlink" href="#reference" title="Link to this heading">¶</a></h3>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="shannon1" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
+<p>C. E. Shannon “A mathematical theory of communication” in <em>The
+Bell System Technical Journal</em> <strong>27</strong>, 379-423 (1948).
+<a class="reference external" href="https://doi.org/10.1002/j.1538-7305.1948.tb01338.x">DOI: 10.1002/j.1538-7305.1948.tb01338.x</a></p>
+</aside>
+<aside class="footnote brackets" id="shannon2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">2</a><span class="fn-bracket">]</span></span>
+<p>C. E. Shannon “A mathematical theory of communication” in <em>The
+Bell System Technical Journal</em> <strong>27</strong>, 623-656 (1948).
+<a class="reference external" href="https://doi.org/10.1002/j.1538-7305.1948.tb00917.x">DOI: 10.1002/j.1538-7305.1948.tb00917.x.</a></p>
+</aside>
+<aside class="footnote brackets" id="shannon3" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">3</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://web.archive.org/web/19980715013250/http://cm.bell-labs.com/cm/ms/what/shannonday/shannon1948.pdf">https://web.archive.org/web/19980715013250/http://cm.bell-labs.com/cm/ms/what/shannonday/shannon1948.pdf</a></p>
+</aside>
+<aside class="footnote brackets" id="jaynes1" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">4</a><span class="fn-bracket">]</span></span>
+<p>E. T. Jaynes “Information Theory and Statistical Mechanics” <em>Phys. Rev.</em> <strong>106</strong>, 620 (1957)
+<a class="reference external" href="https://doi.org/10.1103/PhysRev.106.620">DOI: 10.1103/PhysRev.106.620</a></p>
+</aside>
+<aside class="footnote brackets" id="jaynes2" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">5</a><span class="fn-bracket">]</span></span>
+<p>E. T. Jaynes “Information Theory and Statistical Mechanics. II” <em>Phys. Rev.</em> <strong>108</strong>, 171 (1957)
+<a class="reference external" href="https://doi.org/10.1103/PhysRev.108.171">DOI: 10.1103/PhysRev.108.171</a></p>
+</aside>
+<aside class="footnote brackets" id="skillingsandbryan" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">6</a><span class="fn-bracket">]</span></span>
+<p>J. Skilling and R. K. Bryan Monthly <em>Notices of the Royal Astronomical Society</em>
+<strong>211</strong>, 111–124 (1984).
+<a class="reference external" href="https://doi.org/10.1093/mnras/211.1.111">DOI: 10.1093/mnras/211.1.111</a></p>
+</aside>
+<aside class="footnote brackets" id="gsas" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">7</a><span class="fn-bracket">]</span></span>
+<p><a class="reference external" href="https://advancedphotonsource.github.io/GSAS-II-tutorials/">https://advancedphotonsource.github.io/GSAS-II-tutorials/</a>. The size
+distribution code is mostly in the <a class="reference external" href="https://subversion.xray.aps.anl.gov/pyGSAS/trunk/GSASIIsasd.py">GSASIIsasd.py module</a></p>
+</aside>
+</aside>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This help document was last modified by Paul Butler on May 30, 2025</p>
+</div>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Size Distribution</a><ul>
+<li><a class="reference internal" href="#principle">Principle</a></li>
+<li><a class="reference internal" href="#maximum-entropy">Maximum Entropy</a></li>
+<li><a class="reference internal" href="#using-the-size-distribution-analysis">Using the Size Distribution Analysis</a></li>
+<li><a class="reference internal" href="#refining-the-fit">Refining the fit</a><ul>
+<li><a class="reference internal" href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../Corfunc/corfunc-how-to.html"
+                          title="previous chapter">How To Use Corfunc</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../../../tools.html"
+                          title="next chapter">Tools &amp; Utilities</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/user/qtgui/Perspectives/SizeDistribution/sizedistribution_help.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../../tools.html" title="Tools &amp; Utilities"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../Corfunc/corfunc-how-to.html" title="How To Use Corfunc"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../analysis.html" >Fitting &amp; Other Analyses</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Size Distribution</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

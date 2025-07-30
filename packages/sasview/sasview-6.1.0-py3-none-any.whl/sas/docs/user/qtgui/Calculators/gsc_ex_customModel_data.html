@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Example: Fit the experimental data using the calculated \(P(Q)\) from a PDB file &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Example: Fit the experimental data using the calculated <span class="math notranslate nohighlight">\(P(Q)\)</span> from a PDB file</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="example-fit-the-experimental-data-using-the-calculated-p-q-from-a-pdb-file">
+<span id="gsc-ex-custommodel-data"></span><h1>Example: Fit the experimental data using the calculated <span class="math notranslate nohighlight">\(P(Q)\)</span> from a PDB file<a class="headerlink" href="#example-fit-the-experimental-data-using-the-calculated-p-q-from-a-pdb-file" title="Link to this heading">¶</a></h1>
+<p>(Pictures in this document were generated using SasView 6.0.0.) To calculate <span class="math notranslate nohighlight">\(P(Q)\)</span> from a PDB file, use the Generic Scattering Calculator in the Tools menu. In this example, a PDB file for apoferritin was downloaded from the PDB data bank (<a class="reference external" href="https://www.rcsb.org/structure/6z6u">https://www.rcsb.org/structure/6z6u</a>). The custom model function, custom_apoferritinLong, was obtained from the scattering calculator using the Debye full avg. w/ <span class="math notranslate nohighlight">\(\beta(Q)\)</span> option after loading the apoferritin PDB file (see print-screen below). Note that the q-range and the number of data points can be customized. The Export Model box should be checked to enable a file name for the custom plugin model that will be produced (custom_apoferritinLong). Clicking “Compute” launches the calculation of <span class="math notranslate nohighlight">\(P(Q)\)</span> and <span class="math notranslate nohighlight">\(\beta(Q)\)</span>, and generate the file into the plugin model directory of the SasView. Once the computation is finished, the plugin model is ready to use to fit scattering data.</p>
+<figure class="align-default">
+<img alt="../../../_images/gsc_ex_customModel_data_Fig3.jpg" src="../../../_images/gsc_ex_customModel_data_Fig3.jpg" />
+</figure>
+<p>To use the calculated custom apoferritinLong model in Fit panel, one selects “Plugin Models” in the Category box. The custom model should already exist in the SasView directory and can be found in the drop down menu of the “Model name”. This custom model, custom_apoferritinLong, returns both the normalized form factor, <span class="math notranslate nohighlight">\(\tilde{P}(Q)\)</span>, and <span class="math notranslate nohighlight">\(\beta(Q)\)</span> caculated using the PDB file. But <span class="math notranslate nohighlight">\(\beta(Q)\)</span> is only used if one needs to fit the data with the inter-particle structure factor, <span class="math notranslate nohighlight">\(S(Q)\)</span>, with the static decoupling approximation.</p>
+<p>Warning: when generating the custom plugin model using the Generic Scattering Calculator, please be careful about the following two issues before using it:</p>
+<ol class="arabic simple">
+<li><p>There should be <span class="math notranslate nohighlight">\(enough\)</span> number of data points included in the plugin model. Because the plugin model calculates the theoretical <span class="math notranslate nohighlight">\(I(Q)\)</span> by interpolating the data during the fitting, the more data points generated by the Generic Scattering Calculator, the more accurate the theoretical curves is.</p></li>
+<li><p>Because each instrument has a resolution function for each <span class="math notranslate nohighlight">\(Q\)</span> value, the theoretical curve needs to be calculated by considering the resolution function. To make the fitting function working properly, the <span class="math notranslate nohighlight">\(Q\)</span> range calculated for the plugin model in the Generic Scattering Calculator should be larger than the <span class="math notranslate nohighlight">\(Q\)</span> range of the experimental data. If the <span class="math notranslate nohighlight">\(Q\)</span> range of theoretical data is too close to (or smaller than) that of the experimental data, the calculated theoretical values may all return as “NaN”. When this happens, the plugin model will not function properly to fit experimental data.</p></li>
+</ol>
+<p>The following example is to demonstrate how to fit the data with the calculated form factor.</p>
+<figure class="align-default">
+<img alt="../../../_images/gsc_ex_customModel_data_Fig1.jpg" src="../../../_images/gsc_ex_customModel_data_Fig1.jpg" />
+</figure>
+<p>The scattering pattern, <span class="math notranslate nohighlight">\(I(Q)\)</span>, is calculated as</p>
+<div class="math notranslate nohighlight">
+\[I(Q) = \frac{scale}{V}(SLD - SLD_{solvent})^2V_{protein} \tilde{P}(Q\alpha)S_{eff}(Q) + background\]</div>
+<p><span class="math notranslate nohighlight">\(SLD\)</span> is the scattering length density of the protein (or particle). And <span class="math notranslate nohighlight">\(SLD\_solvent\)</span> is the scattering length density of solvent.</p>
+<p><span class="math notranslate nohighlight">\(V_{protein}\)</span> is the protein volume. If the scattering length density and protein volume are assigned with correct values, <span class="math notranslate nohighlight">\(scale\)</span> is the volume fraction of the protein ( or particle).</p>
+<p><span class="math notranslate nohighlight">\(\alpha\)</span> is the swelling factor. In general, <span class="math notranslate nohighlight">\(\alpha\)</span> should be one (or close to one). The parameter is introduced just in case that there is a slight swelling of the particle.</p>
+<p><span class="math notranslate nohighlight">\(S_{eff}(Q)\)</span> is the effective structure factor with</p>
+<div class="math notranslate nohighlight">
+\[S_{eff}(Q) = 1 + \beta(Q\alpha)(S(Q)+1)\]</div>
+<p>And <span class="math notranslate nohighlight">\(S(Q)\)</span> is the interparticule structure factor.</p>
+<p>For dilute solutions, it is simplified as</p>
+<div class="math notranslate nohighlight">
+\[I(Q) = \frac{scale}{V}(SLD - SLD_{solvent})^2V_{protein} \tilde{P}(Q\alpha) + background\]</div>
+<p>The following figure shows the comparison between one experimental apoferritin protein SANS data of a dilute sample with the calculated <span class="math notranslate nohighlight">\(I(Q)\)</span> using this model.</p>
+<figure class="align-default">
+<img alt="../../../_images/gsc_ex_customModel_data_Fig2.jpg" src="../../../_images/gsc_ex_customModel_data_Fig2.jpg" />
+</figure>
+<p>If one needs to fit concentrated protein solutions, an appropriate structure factor model needs to be chosen. If a protein is anisotropic, one also needs to use the static decoupling approximation. <span class="math notranslate nohighlight">\(\beta(Q)\)</span> will be automatially used during the fitting. One fitting parameter to calculate <span class="math notranslate nohighlight">\(S(Q)\)</span> using the models available in the SasView is the effective radius that is called radius_effective in the SasView. One needs to choose how to correlate the effective radius with the size of a protein. Note that the effective radius is related with the interaciton between porteins, and could be different from the radius of a protein/particle. It is therefore ok, and sometimes recommended, to use unconstrained method for the “radius_effective_mode” since there is no fitting prameter related with the protein size in this custom fitting model. If a protein is nearly spherical such as apoferritin, there is no need to use the static decoupling approximation.</p>
+<p><em>Document History</em></p>
+<div class="line-block">
+<div class="line">2023-10-30 Yun Liu</div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user/qtgui/Calculators/gsc_ex_customModel_data.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Example: Fit the experimental data using the calculated <span class="math notranslate nohighlight">\(P(Q)\)</span> from a PDB file</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

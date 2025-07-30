@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>core_shell_bicelle_elliptical_belt_rough &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="core_shell_cylinder" href="core_shell_cylinder.html" />
+    <link rel="prev" title="core_shell_bicelle_elliptical" href="core_shell_bicelle_elliptical.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="core_shell_cylinder.html" title="core_shell_cylinder"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="core_shell_bicelle_elliptical.html" title="core_shell_bicelle_elliptical"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-cylinder.html" accesskey="U">Cylinder Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">core_shell_bicelle_elliptical_belt_rough</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="core-shell-bicelle-elliptical-belt-rough">
+<span id="id1"></span><h1>core_shell_bicelle_elliptical_belt_rough<a class="headerlink" href="#core-shell-bicelle-elliptical-belt-rough" title="Link to this heading">¶</a></h1>
+<p>Elliptical cylinder with a core-shell scattering length density profile..</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>scale</p></td>
+<td><p>Scale factor or Volume fraction</p></td>
+<td><p>None</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>background</p></td>
+<td><p>Source background</p></td>
+<td><p>cm<sup>-1</sup></p></td>
+<td><p>0.001</p></td>
+</tr>
+<tr class="row-even"><td><p>radius</p></td>
+<td><p>Cylinder core radius r_minor</p></td>
+<td><p>Å</p></td>
+<td><p>30</p></td>
+</tr>
+<tr class="row-odd"><td><p>x_core</p></td>
+<td><p>Axial ratio of core, X = r_major/r_minor</p></td>
+<td><p>None</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-even"><td><p>thick_rim</p></td>
+<td><p>Rim or belt shell thickness</p></td>
+<td><p>Å</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p>thick_face</p></td>
+<td><p>Cylinder face thickness</p></td>
+<td><p>Å</p></td>
+<td><p>14</p></td>
+</tr>
+<tr class="row-even"><td><p>length</p></td>
+<td><p>Cylinder length</p></td>
+<td><p>Å</p></td>
+<td><p>50</p></td>
+</tr>
+<tr class="row-odd"><td><p>sld_core</p></td>
+<td><p>Cylinder core scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>sld_face</p></td>
+<td><p>Cylinder face scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-odd"><td><p>sld_rim</p></td>
+<td><p>Cylinder rim scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>sld_solvent</p></td>
+<td><p>Solvent scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>sigma</p></td>
+<td><p>Interfacial roughness</p></td>
+<td><p>Å</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>theta</p></td>
+<td><p>Cylinder axis to beam angle</p></td>
+<td><p>degree</p></td>
+<td><p>90</p></td>
+</tr>
+<tr class="row-odd"><td><p>phi</p></td>
+<td><p>Rotation about beam</p></td>
+<td><p>degree</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>psi</p></td>
+<td><p>Rotation about cylinder axis</p></td>
+<td><p>degree</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<p>The returned value is scaled to units of cm<sup>-1</sup> sr<sup>-1</sup>, absolute scale.</p>
+<p><strong>Definition</strong></p>
+<p>This model provides the form factor for an elliptical cylinder with a
+core-shell scattering length density profile <a class="footnote-reference brackets" href="#onsager1949" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>.
+Thus this is a variation
+of the core-shell bicelle model, but with an elliptical cylinder for the core.
+In this version the “rim” or “belt” does NOT extend the full length of
+the particle, but has the same length as the core. Outer shells on the
+rims and flat ends may be of different thicknesses and scattering length
+densities. The form factor is normalized by the total particle volume.
+This version includes an approximate “interfacial roughness”.</p>
+<figure class="align-default" id="id3">
+<img alt="../../_images/core_shell_bicelle_belt_geometry.png" src="../../_images/core_shell_bicelle_belt_geometry.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 15 </span><span class="caption-text">Schematic cross-section of bicelle with belt. Note however that the model
+here calculates for rectangular, not curved, rims as shown below.</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id4">
+<img alt="../../_images/core_shell_bicelle_belt_parameters.png" src="../../_images/core_shell_bicelle_belt_parameters.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Cross section of model used here. Users will have
+to decide how to distribute “heads” and “tails” between the rim, face
+and core regions in order to estimate appropriate starting parameters.</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Given the scattering length densities (sld) <span class="math notranslate nohighlight">\(\rho_c\)</span>, the core sld, <span class="math notranslate nohighlight">\(\rho_f\)</span>,
+the face sld, <span class="math notranslate nohighlight">\(\rho_r\)</span>, the rim sld and <span class="math notranslate nohighlight">\(\rho_s\)</span> the solvent sld, the
+scattering length density variation along the bicelle axis is:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\rho(r) =
+  \begin{cases}
+  &amp;\rho_c \text{ for } 0 \lt r \lt R;   -L/2 \lt z\lt L/2 \\[1.5ex]
+  &amp;\rho_f \text{ for } 0 \lt r \lt R;   -(L/2 +t_\text{face}) \lt z\lt -L/2;
+  L/2 \lt z\lt (L/2+t_\text{face}) \\[1.5ex]
+  &amp;\rho_r\text{ for } R \lt r \lt R+t_\text{rim}; -L/2 \lt z\lt L/2
+  \end{cases}\end{split}\]</div>
+<p>The form factor for the bicelle is calculated in cylindrical coordinates, where
+<span class="math notranslate nohighlight">\(\alpha\)</span> is the angle between the <span class="math notranslate nohighlight">\(Q\)</span> vector and the cylinder axis, and <span class="math notranslate nohighlight">\(\psi\)</span>
+is the angle for the ellipsoidal cross section core, to give:</p>
+<div class="math notranslate nohighlight">
+\[I(Q,\alpha,\psi) = \frac{\text{scale}}{V_t}
+    \cdot F(Q,\alpha, \psi)^2 \cdot \sin(\alpha)
+    \cdot\exp\left\{ -\frac{1}{2}Q^2\sigma^2 \right\} + \text{background}\]</div>
+<p>where a numerical integration of <span class="math notranslate nohighlight">\(F(Q,\alpha, \psi)^2\sin(\alpha)\)</span> is
+carried out over <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\psi\)</span> for:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}F(Q,\alpha,\psi) = &amp;\bigg[
+  (\rho_c -\rho_r - \rho_f + \rho_s) V_c
+  \frac{2J_1(QR'\sin \alpha)}{QR'\sin\alpha}
+  \frac{\sin(QL\cos\alpha/2)}{Q(L/2)\cos\alpha} \\
+&amp;+(\rho_f - \rho_s) V_{c+f}
+  \frac{2J_1(QR'\sin\alpha)}{QR'\sin\alpha}
+  \frac{\sin(Q(L/2+t_f)\cos\alpha)}{Q(L/2+t_f)\cos\alpha} \\
+&amp;+(\rho_r - \rho_s) V_{c+r}
+  \frac{2J_1(Q(R'+t_r)\sin\alpha)}{Q(R'+t_r)\sin\alpha}
+  \frac{\sin(Q(L/2)\cos\alpha)}{Q(L/2)\cos\alpha}
+\bigg]\end{split}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[R' = \frac{R}{\sqrt{2}}
+    \sqrt{(1+X_\text{core}^{2}) + (1-X_\text{core}^{2})\cos(\psi)}\]</div>
+<p>and <span class="math notranslate nohighlight">\(V_t = \pi (R+t_r)(X_\text{core} R+t_r) L + 2 \pi X_\text{core} R^2 t_f\)</span> is
+the total volume of the bicelle, <span class="math notranslate nohighlight">\(V_c = \pi X_\text{core} R^2 L\)</span> the volume of
+the core, <span class="math notranslate nohighlight">\(V_{c+f} = \pi X_\text{core} R^2 (L+2 t_f)\)</span> the volume of the core
+plus the volume of the faces, <span class="math notranslate nohighlight">\(V_{c+r} = \pi (R+t_r)(X_\text{core} R+t_r) L\)</span>
+the volume of the core plus the rim, <span class="math notranslate nohighlight">\(R\)</span> is the radius of the core,
+<span class="math notranslate nohighlight">\(X_\text{core}\)</span> is the axial ratio of the core, <span class="math notranslate nohighlight">\(L\)</span> the length of the core,
+<span class="math notranslate nohighlight">\(t_f\)</span> the thickness of the face, <span class="math notranslate nohighlight">\(t_r\)</span> the thickness of the rim and <span class="math notranslate nohighlight">\(J_1\)</span> the
+usual first order Bessel function. The core has radii <span class="math notranslate nohighlight">\(R\)</span> and <span class="math notranslate nohighlight">\(X_\text{core} R\)</span>
+so is circular, as for the core_shell_bicelle model, for <span class="math notranslate nohighlight">\(X_\text{core}=1\)</span>.
+Note that you may need to limit the range of <span class="math notranslate nohighlight">\(X_\text{core}\)</span>, especially if
+using the Monte-Carlo algorithm, as setting radius to <span class="math notranslate nohighlight">\(R/X_\text{core}\)</span> and
+axial ratio to <span class="math notranslate nohighlight">\(1/X_\text{core}\)</span> gives an equivalent solution!</p>
+<p>An approximation for the effects of “Gaussian interfacial roughness” <span class="math notranslate nohighlight">\(\sigma\)</span>
+is included, by multiplying <span class="math notranslate nohighlight">\(I(Q)\)</span> by
+<span class="math notranslate nohighlight">\(\exp\left \{ -\frac{1}{2}Q^2\sigma^2 \right \}\)</span>. This applies, in some way, to
+all interfaces in the model not just the external ones. (Note that for a one
+dimensional system convolution of the scattering length density profile with
+a Gaussian of standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span> does exactly this multiplication.)
+Leave <span class="math notranslate nohighlight">\(\sigma\)</span> set to zero for the usual sharp interfaces.</p>
+<p>The output of the 1D scattering intensity function for randomly oriented
+bicelles is then given by integrating over all possible <span class="math notranslate nohighlight">\(\alpha\)</span> and <span class="math notranslate nohighlight">\(\psi\)</span>.</p>
+<p>For oriented bicelles the <em>theta</em>, <em>phi</em> and <em>psi</em> orientation parameters
+will appear when fitting 2D data, for further details of the calculation
+and angular dispersions  see <a class="reference internal" href="../qtgui/Perspectives/Fitting/orientation/orientation.html#orientation"><span class="std std-ref">Oriented Particles</span></a> .</p>
+<figure class="align-default" id="id5">
+<img alt="../../_images/elliptical_cylinder_angle_definition.png" src="../../_images/elliptical_cylinder_angle_definition.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 17 </span><span class="caption-text">Definition of the angles for the oriented core_shell_bicelle_elliptical
+particles.</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id6">
+<img alt="../../_images/core_shell_bicelle_elliptical_belt_rough_autogenfig.png" src="../../_images/core_shell_bicelle_elliptical_belt_rough_autogenfig.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 18 </span><span class="caption-text">1D and 2D plots corresponding to the default parameters of the model.</span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Source</strong></p>
+<p><a class="reference download internal" download="" href="../../_downloads/9a55ed3155a422a18977bd6d553e4984/core_shell_bicelle_elliptical_belt_rough.py"><code class="xref download docutils literal notranslate"><span class="pre">core_shell_bicelle_elliptical_belt_rough.py</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/4e381d02ab2bf8070a5ce0cfadbc9eef/core_shell_bicelle_elliptical_belt_rough.c"><code class="xref download docutils literal notranslate"><span class="pre">core_shell_bicelle_elliptical_belt_rough.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/9ee45b8c6371b0a130036ee53e1f050e/gauss76.c"><code class="xref download docutils literal notranslate"><span class="pre">gauss76.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/660768eefaf4e06a52683dd926958ab0/sas_J1.c"><code class="xref download docutils literal notranslate"><span class="pre">sas_J1.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/452c1d4eca138ac30381a8c4b66a9239/polevl.c"><code class="xref download docutils literal notranslate"><span class="pre">polevl.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/8d452b9a5af0e1d22c4fdd83f967d3af/sas_Si.c"><code class="xref download docutils literal notranslate"><span class="pre">sas_Si.c</span></code></a></p>
+<p><strong>References</strong></p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="onsager1949" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
+<ol class="upperalpha simple" start="12">
+<li><p>Onsager, <em>Ann. New York Acad. Sci.</em>, 51 (1949) 627-659</p></li>
+</ol>
+</aside>
+</aside>
+<p><strong>Authorship and Verification</strong></p>
+<ul class="simple">
+<li><p><strong>Author:</strong> Richard Heenan <strong>Date:</strong> October 5, 2017</p></li>
+<li><p><strong>Last Modified by:</strong>  Richard Heenan new 2d orientation <strong>Date:</strong> October 5, 2017</p></li>
+<li><p><strong>Last Reviewed by:</strong>  Richard Heenan 2d calc seems agree with 1d <strong>Date:</strong> Nov 2, 2017</p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="core_shell_bicelle_elliptical.html"
+                          title="previous chapter">core_shell_bicelle_elliptical</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="core_shell_cylinder.html"
+                          title="next chapter">core_shell_cylinder</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user/models/core_shell_bicelle_elliptical_belt_rough.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="core_shell_cylinder.html" title="core_shell_cylinder"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="core_shell_bicelle_elliptical.html" title="core_shell_bicelle_elliptical"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-cylinder.html" >Cylinder Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">core_shell_bicelle_elliptical_belt_rough</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

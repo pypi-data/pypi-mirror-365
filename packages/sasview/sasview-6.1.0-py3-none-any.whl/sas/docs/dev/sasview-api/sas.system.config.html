@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>sas.system.config package &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Sasmodels Developers Guide" href="../sasmodels-dev/index.html" />
+    <link rel="prev" title="sas.system package" href="sas.system.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../sasmodels-dev/index.html" title="Sasmodels Developers Guide"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="sas.system.html" title="sas.system package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="modules.html" >SasView</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sas.html" >sas package</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="sas.system.html" accesskey="U">sas.system package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sas.system.config package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="sas-system-config-package">
+<h1>sas.system.config package<a class="headerlink" href="#sas-system-config-package" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-sas.system.config.config">
+<span id="sas-system-config-config-module"></span><h2>sas.system.config.config module<a class="headerlink" href="#module-sas.system.config.config" title="Link to this heading">¶</a></h2>
+<p>Configuration class - stores configuration information for SasView</p>
+<p>If you’re looking to change a field in the config file, you should read this</p>
+<section id="configs">
+<h3>Configs<a class="headerlink" href="#configs" title="Link to this heading">¶</a></h3>
+<p>Configs are a nightmare from the perspective of code maintainability. There are
+three main reasons for this:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>They have a tendency to accumulate junk because people dont realise that a
+config item is no longer needed</p></li>
+<li><p>It’s hard to trace the usages and types because values are loaded at runtime</p></li>
+<li><p>Maintaining synchrony between config files and config usages is difficult, as
+it is the users that have control over the config files.</p></li>
+</ol>
+</div></blockquote>
+<p>The Config class here attempts to resolve some of these issues in a way that
+preserves as many of the current uses as possible. It is a compromise between
+SasView’s current methods, and more standard ways of handling configurations.</p>
+</section>
+<section id="brief-outline">
+<h3>Brief Outline<a class="headerlink" href="#brief-outline" title="Link to this heading">¶</a></h3>
+<p>The main Config class provides a definition of the variables allowed in a config
+file, along with their default values. This class is used to generate a schema
+that determines how config files are read. Only a few types of variable are allowed</p>
+<ul class="simple">
+<li><p>bool</p></li>
+<li><p>int</p></li>
+<li><p>float</p></li>
+<li><p>str</p></li>
+<li><p>Homogeneous lists of the above, to 10 levels of depth</p></li>
+<li><p>None and empty list (please try to avoid)</p></li>
+</ul>
+<p>Other types will throw an error at runtime when the schema is created.</p>
+<p>None types and
+empty lists have no type information at runtime, so the schema cannot check/coerce
+the type of config variables when they are loaded. It is best to avoid having these
+as default values if possible.</p>
+<p>The presence of a config file is not necessary for the functioning of the config
+system, only for making changes that differ from the default values.</p>
+</section>
+<section id="what-belongs-in-a-config">
+<h3>What Belongs in a Config<a class="headerlink" href="#what-belongs-in-a-config" title="Link to this heading">¶</a></h3>
+<p>Things that do belong:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Program settings that are configurable by users through the GUI</p></li>
+<li><p>Program settings that have no GUI editor, but that some advanced users
+might want to set manually with a text editor</p></li>
+<li><p>Settings that control developer tools, e.g. debug modes</p></li>
+<li><p>Very little else</p></li>
+</ol>
+</div></blockquote>
+<p>Things that don’t belong, but were previously in the config:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>dynamic content, i.e. values that are modified programmatically,
+this includes variables that are defined in terms of other variables,
+but otherwise don’t change</p></li>
+<li><p>Paths to resources within sasview (use importlib.resources instead)</p></li>
+<li><p>Blocks of data that won’t be modified by the user and used primarily
+by single class - e.g. the text for a message</p></li>
+<li><p>Large blocks of text in general</p></li>
+</ol>
+</div></blockquote>
+</section>
+<section id="making-changes-to-the-config-class">
+<h3>Making Changes to the Config Class<a class="headerlink" href="#making-changes-to-the-config-class" title="Link to this heading">¶</a></h3>
+<p>As users have their own copy of the sasview configuration, deletions,
+name changes, default value changes, and variable type changes
+often constitute a breaking change from the perspective of version
+control. The users locally stored config will, in general, not be
+backwards compatible with the new config. Extreme caution should be
+exercised - when changing the config, don’t just think about the
+problem at hand, but about the future maintainability of SasView in
+general.</p>
+<p>Adding to the Config class:
+Before adding a variable, think about whether it might more properly
+belong somewhere else, perhaps in the web or legal classes in the
+system package.
+Remember that config variables are accessed across the whole of sasview
+and that names need to be suitably descriptive.</p>
+<p>Deleting from the Config class:
+Currently (02/09/2022) the consequences of providing an entry in a
+config file that is not properly reflected in the Config class is a
+error. To ease backward compatibility, it is possible to disable
+the errors for a deleted class member by adding their name to
+the <cite>_deleted_attributes</cite> list. The suggested deletion process would
+be</p>
+<p><code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">[-]</span>&#160;&#160; <span class="pre">self.my_variable</span> <span class="pre">=</span> <span class="pre">10</span>
+<span class="pre">[+]</span>&#160;&#160; <span class="pre">self._deleted_attributes.append(&quot;my_variable&quot;)</span>
+<span class="pre">`</span></code></p>
+<p>At major releases, additions to _deleted_attributes should be removed.</p>
+</section>
+<section id="other-design-decisions-made-for-the-config-class">
+<h3>Other Design Decisions made for the Config Class<a class="headerlink" href="#other-design-decisions-made-for-the-config-class" title="Link to this heading">¶</a></h3>
+<p>The Config class cannot be dynamically modified, this prevents the config
+from having fields that are unspecified in the base class,
+and makes it so that all usages of fields can be automatically tracked.</p>
+<p>Subclassing of Config is also disabled for similar reasons.</p>
+<p>I have opted not to use frozen dataclasses at this time
+because, as they currently work, the behaviour would make creating
+different configs difficult.</p>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.system.config.config.Config">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.system.config.config.</span></span><span class="sig-name descname"><span class="pre">Config</span></span><a class="headerlink" href="#sas.system.config.config.Config" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sas.system.config.config_meta.ConfigBase" title="sas.system.config.config_meta.ConfigBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigBase</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.config.Config.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sas.system.config.config.Config.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.config.Config.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.config.Config.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.config.Config.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.system.config.config'</span></em><a class="headerlink" href="#sas.system.config.config.Config.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-sas.system.config.config_meta">
+<span id="sas-system-config-config-meta-module"></span><h2>sas.system.config.config_meta module<a class="headerlink" href="#module-sas.system.config.config_meta" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigBase">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.system.config.config_meta.</span></span><span class="sig-name descname"><span class="pre">ConfigBase</span></span><a class="headerlink" href="#sas.system.config.config_meta.ConfigBase" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Base class for Config, keep the definition of config variables and workings as separate as possible</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigBase.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#sas.system.config.config_meta.ConfigBase.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigBase.__dict__">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'sas.system.config.config_meta',</span> <span class="pre">'__doc__':</span> <span class="pre">'</span> <span class="pre">Base</span> <span class="pre">class</span> <span class="pre">for</span> <span class="pre">Config,</span> <span class="pre">keep</span> <span class="pre">the</span> <span class="pre">definition</span> <span class="pre">of</span> <span class="pre">config</span> <span class="pre">variables</span> <span class="pre">and</span> <span class="pre">workings</span> <span class="pre">as</span> <span class="pre">separate</span> <span class="pre">as</span> <span class="pre">possible</span> <span class="pre">',</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">ConfigBase.__init__&gt;,</span> <span class="pre">'defaults':</span> <span class="pre">&lt;property</span> <span class="pre">object&gt;,</span> <span class="pre">'config_filename':</span> <span class="pre">&lt;function</span> <span class="pre">ConfigBase.config_filename&gt;,</span> <span class="pre">'finalise':</span> <span class="pre">&lt;function</span> <span class="pre">ConfigBase.finalise&gt;,</span> <span class="pre">'update':</span> <span class="pre">&lt;function</span> <span class="pre">ConfigBase.update&gt;,</span> <span class="pre">'save':</span> <span class="pre">&lt;function</span> <span class="pre">ConfigBase.save&gt;,</span> <span class="pre">'override_with_defaults':</span> <span class="pre">&lt;function</span> <span class="pre">ConfigBase.override_with_defaults&gt;,</span> <span class="pre">'save_to_file_object':</span> <span class="pre">&lt;function</span> <span class="pre">ConfigBase.save_to_file_object&gt;,</span> <span class="pre">'load':</span> <span class="pre">&lt;function</span> <span class="pre">ConfigBase.load&gt;,</span> <span class="pre">'load_from_file_object':</span> <span class="pre">&lt;function</span> <span class="pre">ConfigBase.load_from_file_object&gt;,</span> <span class="pre">'_state_copy':</span> <span class="pre">&lt;function</span> <span class="pre">ConfigBase._state_copy&gt;,</span> <span class="pre">'_generate_schema':</span> <span class="pre">&lt;function</span> <span class="pre">ConfigBase._generate_schema&gt;,</span> <span class="pre">'__setattr__':</span> <span class="pre">&lt;function</span> <span class="pre">ConfigBase.__setattr__&gt;,</span> <span class="pre">'validate':</span> <span class="pre">&lt;function</span> <span class="pre">ConfigBase.validate&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'ConfigBase'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'ConfigBase'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__annotations__':</span> <span class="pre">{'_schema':</span> <span class="pre">'Dict[str,</span> <span class="pre">SchemaElement]',</span> <span class="pre">'_defaults':</span> <span class="pre">'Dict[str,</span> <span class="pre">SchemaElement]',</span> <span class="pre">'_deleted_attributes':</span> <span class="pre">'List[str]',</span> <span class="pre">'_bad_entries':</span> <span class="pre">'Dict[str,</span> <span class="pre">Any]'}})</span></em><a class="headerlink" href="#sas.system.config.config_meta.ConfigBase.__dict__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigBase.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'</span> <span class="pre">Base</span> <span class="pre">class</span> <span class="pre">for</span> <span class="pre">Config,</span> <span class="pre">keep</span> <span class="pre">the</span> <span class="pre">definition</span> <span class="pre">of</span> <span class="pre">config</span> <span class="pre">variables</span> <span class="pre">and</span> <span class="pre">workings</span> <span class="pre">as</span> <span class="pre">separate</span> <span class="pre">as</span> <span class="pre">possible</span> <span class="pre">'</span></em><a class="headerlink" href="#sas.system.config.config_meta.ConfigBase.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigBase.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.config_meta.ConfigBase.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigBase.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.system.config.config_meta'</span></em><a class="headerlink" href="#sas.system.config.config_meta.ConfigBase.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigBase.__setattr__">
+<span class="sig-name descname"><span class="pre">__setattr__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.config_meta.ConfigBase.__setattr__" title="Link to this definition">¶</a></dt>
+<dd><p>Implement setattr(self, name, value).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigBase.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#sas.system.config.config_meta.ConfigBase.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigBase._generate_schema">
+<span class="sig-name descname"><span class="pre">_generate_schema</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="#sas.system.config.schema_elements.SchemaElement" title="sas.system.config.schema_elements.SchemaElement"><span class="pre">SchemaElement</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#sas.system.config.config_meta.ConfigBase._generate_schema" title="Link to this definition">¶</a></dt>
+<dd><p>Auto-generate schema for the current config class and validate config class</p>
+<p>Note: there is an assumption here that the class of the value in the default
+config file is</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigBase._state_copy">
+<span class="sig-name descname"><span class="pre">_state_copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#sas.system.config.config_meta.ConfigBase._state_copy" title="Link to this definition">¶</a></dt>
+<dd><p>Get a copy of all the data in the config</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigBase.config_filename">
+<span class="sig-name descname"><span class="pre">config_filename</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">create_if_nonexistent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.config_meta.ConfigBase.config_filename" title="Link to this definition">¶</a></dt>
+<dd><p>Filename for saving config items</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigBase.defaults">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">defaults</span></span><a class="headerlink" href="#sas.system.config.config_meta.ConfigBase.defaults" title="Link to this definition">¶</a></dt>
+<dd><p>Expose the default values to allow resetting of defaults. No setter should ever be created for this!</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigBase.finalise">
+<span class="sig-name descname"><span class="pre">finalise</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.config_meta.ConfigBase.finalise" title="Link to this definition">¶</a></dt>
+<dd><p>Call this at the end of the config to make this class ‘final’
+and to set up the config file schema</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigBase.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.config_meta.ConfigBase.load" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigBase.load_from_file_object">
+<span class="sig-name descname"><span class="pre">load_from_file_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.config_meta.ConfigBase.load_from_file_object" title="Link to this definition">¶</a></dt>
+<dd><p>Load config file</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigBase.override_with_defaults">
+<span class="sig-name descname"><span class="pre">override_with_defaults</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.config_meta.ConfigBase.override_with_defaults" title="Link to this definition">¶</a></dt>
+<dd><p>Set the config entries to defaults, and prevent saving from happening</p>
+<p>Added with the ability to disable for testing in mind</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigBase.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.config_meta.ConfigBase.save" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigBase.save_to_file_object">
+<span class="sig-name descname"><span class="pre">save_to_file_object</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.config_meta.ConfigBase.save_to_file_object" title="Link to this definition">¶</a></dt>
+<dd><p>Save config file</p>
+<p>Only changed and unknown variables will be included in the saved file</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigBase.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.config_meta.ConfigBase.update" title="Link to this definition">¶</a></dt>
+<dd><p>Set the fields of the config from a dictionary</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigBase.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.config_meta.ConfigBase.validate" title="Link to this definition">¶</a></dt>
+<dd><p>Check whether a value conforms to the type in the schema</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigLocked">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.system.config.config_meta.</span></span><span class="sig-name descname"><span class="pre">ConfigLocked</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.config_meta.ConfigLocked" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigLocked.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sas.system.config.config_meta.ConfigLocked.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigLocked.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.config_meta.ConfigLocked.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigLocked.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.system.config.config_meta'</span></em><a class="headerlink" href="#sas.system.config.config_meta.ConfigLocked.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigLocked.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#sas.system.config.config_meta.ConfigLocked.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigMeta">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.system.config.config_meta.</span></span><span class="sig-name descname"><span class="pre">ConfigMeta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bases</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classdict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.config_meta.ConfigMeta" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigMeta.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#sas.system.config.config_meta.ConfigMeta.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigMeta.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sas.system.config.config_meta.ConfigMeta.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigMeta.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.system.config.config_meta'</span></em><a class="headerlink" href="#sas.system.config.config_meta.ConfigMeta.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.ConfigMeta.__new__">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">__new__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mcs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bases</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classdict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.config_meta.ConfigMeta.__new__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.MalformedFile">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.system.config.config_meta.</span></span><span class="sig-name descname"><span class="pre">MalformedFile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.config_meta.MalformedFile" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.MalformedFile.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sas.system.config.config_meta.MalformedFile.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.MalformedFile.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.config_meta.MalformedFile.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.MalformedFile.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.system.config.config_meta'</span></em><a class="headerlink" href="#sas.system.config.config_meta.MalformedFile.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.config_meta.MalformedFile.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#sas.system.config.config_meta.MalformedFile.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-sas.system.config.schema_elements">
+<span id="sas-system-config-schema-elements-module"></span><h2>sas.system.config.schema_elements module<a class="headerlink" href="#module-sas.system.config.schema_elements" title="Link to this heading">¶</a></h2>
+<dl class="py exception">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.CoercionError">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.system.config.schema_elements.</span></span><span class="sig-name descname"><span class="pre">CoercionError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.schema_elements.CoercionError" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised when we can’t make a variable conform to the schema</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.CoercionError.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;</span> <span class="pre">Raised</span> <span class="pre">when</span> <span class="pre">we</span> <span class="pre">can't</span> <span class="pre">make</span> <span class="pre">a</span> <span class="pre">variable</span> <span class="pre">conform</span> <span class="pre">to</span> <span class="pre">the</span> <span class="pre">schema&quot;</span></em><a class="headerlink" href="#sas.system.config.schema_elements.CoercionError.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.CoercionError.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.schema_elements.CoercionError.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.CoercionError.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.system.config.schema_elements'</span></em><a class="headerlink" href="#sas.system.config.schema_elements.CoercionError.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.CoercionError.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#sas.system.config.schema_elements.CoercionError.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaBool">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.system.config.schema_elements.</span></span><span class="sig-name descname"><span class="pre">SchemaBool</span></span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaBool" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sas.system.config.schema_elements.SchemaVariable" title="sas.system.config.schema_elements.SchemaVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">SchemaVariable</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaBool.__abstractmethods__">
+<span class="sig-name descname"><span class="pre">__abstractmethods__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">frozenset({})</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaBool.__abstractmethods__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaBool.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaBool.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaBool.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.system.config.schema_elements'</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaBool.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaBool._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaBool._abc_impl" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaBool.coerce">
+<span class="sig-name descname"><span class="pre">coerce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaBool.coerce" title="Link to this definition">¶</a></dt>
+<dd><p>Force a variable to conform to the schema, if possible</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaBool.schema_variable_type">
+<span class="sig-name descname"><span class="pre">schema_variable_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'bool'</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaBool.schema_variable_type" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaElement">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.system.config.schema_elements.</span></span><span class="sig-name descname"><span class="pre">SchemaElement</span></span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaElement" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<p>Base class for schema elements</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaElement.__abstractmethods__">
+<span class="sig-name descname"><span class="pre">__abstractmethods__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">frozenset({'coerce'})</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaElement.__abstractmethods__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaElement.__dict__">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'sas.system.config.schema_elements',</span> <span class="pre">'__doc__':</span> <span class="pre">'</span> <span class="pre">Base</span> <span class="pre">class</span> <span class="pre">for</span> <span class="pre">schema</span> <span class="pre">elements',</span> <span class="pre">'coerce':</span> <span class="pre">&lt;function</span> <span class="pre">SchemaElement.coerce&gt;,</span> <span class="pre">'validate':</span> <span class="pre">&lt;function</span> <span class="pre">SchemaElement.validate&gt;,</span> <span class="pre">'__eq__':</span> <span class="pre">&lt;function</span> <span class="pre">SchemaElement.__eq__&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'SchemaElement'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'SchemaElement'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__hash__':</span> <span class="pre">None,</span> <span class="pre">'__abstractmethods__':</span> <span class="pre">frozenset({'coerce'}),</span> <span class="pre">'_abc_impl':</span> <span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaElement.__dict__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaElement.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'</span> <span class="pre">Base</span> <span class="pre">class</span> <span class="pre">for</span> <span class="pre">schema</span> <span class="pre">elements'</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaElement.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaElement.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaElement.__eq__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self==value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaElement.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaElement.__hash__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaElement.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.system.config.schema_elements'</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaElement.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaElement.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaElement.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaElement._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaElement._abc_impl" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaElement.coerce">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">coerce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaElement.coerce" title="Link to this definition">¶</a></dt>
+<dd><p>Force a variable to conform to the schema, if possible</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaElement.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaElement.validate" title="Link to this definition">¶</a></dt>
+<dd><p>Return true if value is valid according to the schema</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaError">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.system.config.schema_elements.</span></span><span class="sig-name descname"><span class="pre">SchemaError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaError" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Raised when there are problems creating a schema</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaError.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'</span> <span class="pre">Raised</span> <span class="pre">when</span> <span class="pre">there</span> <span class="pre">are</span> <span class="pre">problems</span> <span class="pre">creating</span> <span class="pre">a</span> <span class="pre">schema'</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaError.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaError.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaError.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaError.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.system.config.schema_elements'</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaError.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaError.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaError.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaFloat">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.system.config.schema_elements.</span></span><span class="sig-name descname"><span class="pre">SchemaFloat</span></span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaFloat" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sas.system.config.schema_elements.SchemaVariable" title="sas.system.config.schema_elements.SchemaVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">SchemaVariable</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaFloat.__abstractmethods__">
+<span class="sig-name descname"><span class="pre">__abstractmethods__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">frozenset({})</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaFloat.__abstractmethods__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaFloat.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaFloat.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaFloat.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.system.config.schema_elements'</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaFloat.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaFloat._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaFloat._abc_impl" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaFloat.coerce">
+<span class="sig-name descname"><span class="pre">coerce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaFloat.coerce" title="Link to this definition">¶</a></dt>
+<dd><p>Force a variable to conform to the schema, if possible</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaFloat.schema_variable_type">
+<span class="sig-name descname"><span class="pre">schema_variable_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'float'</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaFloat.schema_variable_type" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaInt">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.system.config.schema_elements.</span></span><span class="sig-name descname"><span class="pre">SchemaInt</span></span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaInt" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sas.system.config.schema_elements.SchemaVariable" title="sas.system.config.schema_elements.SchemaVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">SchemaVariable</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaInt.__abstractmethods__">
+<span class="sig-name descname"><span class="pre">__abstractmethods__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">frozenset({})</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaInt.__abstractmethods__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaInt.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaInt.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaInt.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.system.config.schema_elements'</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaInt.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaInt._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaInt._abc_impl" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaInt.coerce">
+<span class="sig-name descname"><span class="pre">coerce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaInt.coerce" title="Link to this definition">¶</a></dt>
+<dd><p>Force a variable to conform to the schema, if possible</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaInt.schema_variable_type">
+<span class="sig-name descname"><span class="pre">schema_variable_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'int'</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaInt.schema_variable_type" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaList">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.system.config.schema_elements.</span></span><span class="sig-name descname"><span class="pre">SchemaList</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">child_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#sas.system.config.schema_elements.SchemaElement" title="sas.system.config.schema_elements.SchemaElement"><span class="pre">SchemaElement</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaList" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sas.system.config.schema_elements.SchemaElement" title="sas.system.config.schema_elements.SchemaElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">SchemaElement</span></code></a></p>
+<p>Schema Element representing a homogeneous list</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaList.__abstractmethods__">
+<span class="sig-name descname"><span class="pre">__abstractmethods__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">frozenset({})</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaList.__abstractmethods__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaList.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'</span> <span class="pre">Schema</span> <span class="pre">Element</span> <span class="pre">representing</span> <span class="pre">a</span> <span class="pre">homogeneous</span> <span class="pre">list'</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaList.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaList.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#sas.system.config.schema_elements.SchemaElement" title="sas.system.config.schema_elements.SchemaElement"><span class="pre">SchemaElement</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaList.__eq__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self==value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaList.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaList.__hash__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaList.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">child_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#sas.system.config.schema_elements.SchemaElement" title="sas.system.config.schema_elements.SchemaElement"><span class="pre">SchemaElement</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaList.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaList.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.system.config.schema_elements'</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaList.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaList.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaList.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaList._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaList._abc_impl" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaList.coerce">
+<span class="sig-name descname"><span class="pre">coerce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaList.coerce" title="Link to this definition">¶</a></dt>
+<dd><p>Force a variable to conform to the schema, if possible</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaNonSpecified">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.system.config.schema_elements.</span></span><span class="sig-name descname"><span class="pre">SchemaNonSpecified</span></span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaNonSpecified" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sas.system.config.schema_elements.SchemaElement" title="sas.system.config.schema_elements.SchemaElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">SchemaElement</span></code></a></p>
+<p>Representation of a list with elements of an unknown type -
+we use this when an empty list is in the config, or default is set to None</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaNonSpecified.__abstractmethods__">
+<span class="sig-name descname"><span class="pre">__abstractmethods__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">frozenset({})</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaNonSpecified.__abstractmethods__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaNonSpecified.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'</span> <span class="pre">Representation</span> <span class="pre">of</span> <span class="pre">a</span> <span class="pre">list</span> <span class="pre">with</span> <span class="pre">elements</span> <span class="pre">of</span> <span class="pre">an</span> <span class="pre">unknown</span> <span class="pre">type</span> <span class="pre">-\n</span>&#160;&#160;&#160; <span class="pre">we</span> <span class="pre">use</span> <span class="pre">this</span> <span class="pre">when</span> <span class="pre">an</span> <span class="pre">empty</span> <span class="pre">list</span> <span class="pre">is</span> <span class="pre">in</span> <span class="pre">the</span> <span class="pre">config,</span> <span class="pre">or</span> <span class="pre">default</span> <span class="pre">is</span> <span class="pre">set</span> <span class="pre">to</span> <span class="pre">None'</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaNonSpecified.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaNonSpecified.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#sas.system.config.schema_elements.SchemaElement" title="sas.system.config.schema_elements.SchemaElement"><span class="pre">SchemaElement</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaNonSpecified.__eq__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self==value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaNonSpecified.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaNonSpecified.__hash__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaNonSpecified.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaNonSpecified.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaNonSpecified.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.system.config.schema_elements'</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaNonSpecified.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaNonSpecified.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaNonSpecified.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaNonSpecified._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaNonSpecified._abc_impl" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaNonSpecified.coerce">
+<span class="sig-name descname"><span class="pre">coerce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaNonSpecified.coerce" title="Link to this definition">¶</a></dt>
+<dd><p>Force a variable to conform to the schema, if possible</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaStr">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.system.config.schema_elements.</span></span><span class="sig-name descname"><span class="pre">SchemaStr</span></span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaStr" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sas.system.config.schema_elements.SchemaVariable" title="sas.system.config.schema_elements.SchemaVariable"><code class="xref py py-class docutils literal notranslate"><span class="pre">SchemaVariable</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaStr.__abstractmethods__">
+<span class="sig-name descname"><span class="pre">__abstractmethods__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">frozenset({})</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaStr.__abstractmethods__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaStr.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaStr.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaStr.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.system.config.schema_elements'</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaStr.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaStr._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaStr._abc_impl" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaStr.coerce">
+<span class="sig-name descname"><span class="pre">coerce</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaStr.coerce" title="Link to this definition">¶</a></dt>
+<dd><p>Force a variable to conform to the schema, if possible</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaStr.schema_variable_type">
+<span class="sig-name descname"><span class="pre">schema_variable_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'str'</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaStr.schema_variable_type" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaVariable">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.system.config.schema_elements.</span></span><span class="sig-name descname"><span class="pre">SchemaVariable</span></span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaVariable" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sas.system.config.schema_elements.SchemaElement" title="sas.system.config.schema_elements.SchemaElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">SchemaElement</span></code></a></p>
+<p>SchemaElement for values (i.e. float, int, bool, str)</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaVariable.__abstractmethods__">
+<span class="sig-name descname"><span class="pre">__abstractmethods__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">frozenset({'coerce'})</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaVariable.__abstractmethods__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaVariable.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'schema_variable_type':</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;}</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaVariable.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaVariable.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'</span> <span class="pre">SchemaElement</span> <span class="pre">for</span> <span class="pre">values</span> <span class="pre">(i.e.</span> <span class="pre">float,</span> <span class="pre">int,</span> <span class="pre">bool,</span> <span class="pre">str)'</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaVariable.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaVariable.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#sas.system.config.schema_elements.SchemaElement" title="sas.system.config.schema_elements.SchemaElement"><span class="pre">SchemaElement</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaVariable.__eq__" title="Link to this definition">¶</a></dt>
+<dd><p>Return self==value.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaVariable.__hash__">
+<span class="sig-name descname"><span class="pre">__hash__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaVariable.__hash__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaVariable.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaVariable.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaVariable.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.system.config.schema_elements'</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaVariable.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaVariable.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.schema_elements.SchemaVariable.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaVariable._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaVariable._abc_impl" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.SchemaVariable.schema_variable_type">
+<span class="sig-name descname"><span class="pre">schema_variable_type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">''</span></em><a class="headerlink" href="#sas.system.config.schema_elements.SchemaVariable.schema_variable_type" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.create_schema_element">
+<span class="sig-prename descclassname"><span class="pre">sas.system.config.schema_elements.</span></span><span class="sig-name descname"><span class="pre">create_schema_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">recursion_depth</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#sas.system.config.schema_elements.SchemaElement" title="sas.system.config.schema_elements.SchemaElement"><span class="pre">SchemaElement</span></a></span></span><a class="headerlink" href="#sas.system.config.schema_elements.create_schema_element" title="Link to this definition">¶</a></dt>
+<dd><p>Get an appropriate schema element for a specified config datum</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.pairwise_schema_union">
+<span class="sig-prename descclassname"><span class="pre">sas.system.config.schema_elements.</span></span><span class="sig-name descname"><span class="pre">pairwise_schema_union</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#sas.system.config.schema_elements.SchemaElement" title="sas.system.config.schema_elements.SchemaElement"><span class="pre">SchemaElement</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#sas.system.config.schema_elements.SchemaElement" title="sas.system.config.schema_elements.SchemaElement"><span class="pre">SchemaElement</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#sas.system.config.schema_elements.SchemaElement" title="sas.system.config.schema_elements.SchemaElement"><span class="pre">SchemaElement</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#sas.system.config.schema_elements.pairwise_schema_union" title="Link to this definition">¶</a></dt>
+<dd><p>Pairwise union of Schema Elements</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.system.config.schema_elements.schema_union">
+<span class="sig-prename descclassname"><span class="pre">sas.system.config.schema_elements.</span></span><span class="sig-name descname"><span class="pre">schema_union</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elements</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#sas.system.config.schema_elements.SchemaElement" title="sas.system.config.schema_elements.SchemaElement"><span class="pre">SchemaElement</span></a><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.config.schema_elements.schema_union" title="Link to this definition">¶</a></dt>
+<dd><p>Union of an arbitrary number of Schema Elements</p>
+</dd></dl>
+
+</section>
+<section id="module-sas.system.config">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-sas.system.config" title="Link to this heading">¶</a></h2>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">sas.system.config package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-sas.system.config.config">sas.system.config.config module</a><ul>
+<li><a class="reference internal" href="#configs">Configs</a></li>
+<li><a class="reference internal" href="#brief-outline">Brief Outline</a></li>
+<li><a class="reference internal" href="#what-belongs-in-a-config">What Belongs in a Config</a></li>
+<li><a class="reference internal" href="#making-changes-to-the-config-class">Making Changes to the Config Class</a></li>
+<li><a class="reference internal" href="#other-design-decisions-made-for-the-config-class">Other Design Decisions made for the Config Class</a></li>
+<li><a class="reference internal" href="#sas.system.config.config.Config"><code class="docutils literal notranslate"><span class="pre">Config</span></code></a><ul>
+<li><a class="reference internal" href="#sas.system.config.config.Config.__doc__"><code class="docutils literal notranslate"><span class="pre">Config.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config.Config.__init__"><code class="docutils literal notranslate"><span class="pre">Config.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config.Config.__module__"><code class="docutils literal notranslate"><span class="pre">Config.__module__</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-sas.system.config.config_meta">sas.system.config.config_meta module</a><ul>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigBase"><code class="docutils literal notranslate"><span class="pre">ConfigBase</span></code></a><ul>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigBase.__annotations__"><code class="docutils literal notranslate"><span class="pre">ConfigBase.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigBase.__dict__"><code class="docutils literal notranslate"><span class="pre">ConfigBase.__dict__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigBase.__doc__"><code class="docutils literal notranslate"><span class="pre">ConfigBase.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigBase.__init__"><code class="docutils literal notranslate"><span class="pre">ConfigBase.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigBase.__module__"><code class="docutils literal notranslate"><span class="pre">ConfigBase.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigBase.__setattr__"><code class="docutils literal notranslate"><span class="pre">ConfigBase.__setattr__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigBase.__weakref__"><code class="docutils literal notranslate"><span class="pre">ConfigBase.__weakref__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigBase._generate_schema"><code class="docutils literal notranslate"><span class="pre">ConfigBase._generate_schema()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigBase._state_copy"><code class="docutils literal notranslate"><span class="pre">ConfigBase._state_copy()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigBase.config_filename"><code class="docutils literal notranslate"><span class="pre">ConfigBase.config_filename()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigBase.defaults"><code class="docutils literal notranslate"><span class="pre">ConfigBase.defaults</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigBase.finalise"><code class="docutils literal notranslate"><span class="pre">ConfigBase.finalise()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigBase.load"><code class="docutils literal notranslate"><span class="pre">ConfigBase.load()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigBase.load_from_file_object"><code class="docutils literal notranslate"><span class="pre">ConfigBase.load_from_file_object()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigBase.override_with_defaults"><code class="docutils literal notranslate"><span class="pre">ConfigBase.override_with_defaults()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigBase.save"><code class="docutils literal notranslate"><span class="pre">ConfigBase.save()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigBase.save_to_file_object"><code class="docutils literal notranslate"><span class="pre">ConfigBase.save_to_file_object()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigBase.update"><code class="docutils literal notranslate"><span class="pre">ConfigBase.update()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigBase.validate"><code class="docutils literal notranslate"><span class="pre">ConfigBase.validate()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigLocked"><code class="docutils literal notranslate"><span class="pre">ConfigLocked</span></code></a><ul>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigLocked.__doc__"><code class="docutils literal notranslate"><span class="pre">ConfigLocked.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigLocked.__init__"><code class="docutils literal notranslate"><span class="pre">ConfigLocked.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigLocked.__module__"><code class="docutils literal notranslate"><span class="pre">ConfigLocked.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigLocked.__weakref__"><code class="docutils literal notranslate"><span class="pre">ConfigLocked.__weakref__</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigMeta"><code class="docutils literal notranslate"><span class="pre">ConfigMeta</span></code></a><ul>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigMeta.__annotations__"><code class="docutils literal notranslate"><span class="pre">ConfigMeta.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigMeta.__doc__"><code class="docutils literal notranslate"><span class="pre">ConfigMeta.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigMeta.__module__"><code class="docutils literal notranslate"><span class="pre">ConfigMeta.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.ConfigMeta.__new__"><code class="docutils literal notranslate"><span class="pre">ConfigMeta.__new__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.MalformedFile"><code class="docutils literal notranslate"><span class="pre">MalformedFile</span></code></a><ul>
+<li><a class="reference internal" href="#sas.system.config.config_meta.MalformedFile.__doc__"><code class="docutils literal notranslate"><span class="pre">MalformedFile.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.MalformedFile.__init__"><code class="docutils literal notranslate"><span class="pre">MalformedFile.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.MalformedFile.__module__"><code class="docutils literal notranslate"><span class="pre">MalformedFile.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.config_meta.MalformedFile.__weakref__"><code class="docutils literal notranslate"><span class="pre">MalformedFile.__weakref__</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-sas.system.config.schema_elements">sas.system.config.schema_elements module</a><ul>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.CoercionError"><code class="docutils literal notranslate"><span class="pre">CoercionError</span></code></a><ul>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.CoercionError.__doc__"><code class="docutils literal notranslate"><span class="pre">CoercionError.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.CoercionError.__init__"><code class="docutils literal notranslate"><span class="pre">CoercionError.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.CoercionError.__module__"><code class="docutils literal notranslate"><span class="pre">CoercionError.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.CoercionError.__weakref__"><code class="docutils literal notranslate"><span class="pre">CoercionError.__weakref__</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaBool"><code class="docutils literal notranslate"><span class="pre">SchemaBool</span></code></a><ul>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaBool.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">SchemaBool.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaBool.__doc__"><code class="docutils literal notranslate"><span class="pre">SchemaBool.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaBool.__module__"><code class="docutils literal notranslate"><span class="pre">SchemaBool.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaBool._abc_impl"><code class="docutils literal notranslate"><span class="pre">SchemaBool._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaBool.coerce"><code class="docutils literal notranslate"><span class="pre">SchemaBool.coerce()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaBool.schema_variable_type"><code class="docutils literal notranslate"><span class="pre">SchemaBool.schema_variable_type</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaElement"><code class="docutils literal notranslate"><span class="pre">SchemaElement</span></code></a><ul>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaElement.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">SchemaElement.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaElement.__dict__"><code class="docutils literal notranslate"><span class="pre">SchemaElement.__dict__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaElement.__doc__"><code class="docutils literal notranslate"><span class="pre">SchemaElement.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaElement.__eq__"><code class="docutils literal notranslate"><span class="pre">SchemaElement.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaElement.__hash__"><code class="docutils literal notranslate"><span class="pre">SchemaElement.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaElement.__module__"><code class="docutils literal notranslate"><span class="pre">SchemaElement.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaElement.__weakref__"><code class="docutils literal notranslate"><span class="pre">SchemaElement.__weakref__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaElement._abc_impl"><code class="docutils literal notranslate"><span class="pre">SchemaElement._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaElement.coerce"><code class="docutils literal notranslate"><span class="pre">SchemaElement.coerce()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaElement.validate"><code class="docutils literal notranslate"><span class="pre">SchemaElement.validate()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaError"><code class="docutils literal notranslate"><span class="pre">SchemaError</span></code></a><ul>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaError.__doc__"><code class="docutils literal notranslate"><span class="pre">SchemaError.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaError.__init__"><code class="docutils literal notranslate"><span class="pre">SchemaError.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaError.__module__"><code class="docutils literal notranslate"><span class="pre">SchemaError.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaError.__weakref__"><code class="docutils literal notranslate"><span class="pre">SchemaError.__weakref__</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaFloat"><code class="docutils literal notranslate"><span class="pre">SchemaFloat</span></code></a><ul>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaFloat.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">SchemaFloat.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaFloat.__doc__"><code class="docutils literal notranslate"><span class="pre">SchemaFloat.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaFloat.__module__"><code class="docutils literal notranslate"><span class="pre">SchemaFloat.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaFloat._abc_impl"><code class="docutils literal notranslate"><span class="pre">SchemaFloat._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaFloat.coerce"><code class="docutils literal notranslate"><span class="pre">SchemaFloat.coerce()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaFloat.schema_variable_type"><code class="docutils literal notranslate"><span class="pre">SchemaFloat.schema_variable_type</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaInt"><code class="docutils literal notranslate"><span class="pre">SchemaInt</span></code></a><ul>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaInt.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">SchemaInt.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaInt.__doc__"><code class="docutils literal notranslate"><span class="pre">SchemaInt.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaInt.__module__"><code class="docutils literal notranslate"><span class="pre">SchemaInt.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaInt._abc_impl"><code class="docutils literal notranslate"><span class="pre">SchemaInt._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaInt.coerce"><code class="docutils literal notranslate"><span class="pre">SchemaInt.coerce()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaInt.schema_variable_type"><code class="docutils literal notranslate"><span class="pre">SchemaInt.schema_variable_type</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaList"><code class="docutils literal notranslate"><span class="pre">SchemaList</span></code></a><ul>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaList.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">SchemaList.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaList.__doc__"><code class="docutils literal notranslate"><span class="pre">SchemaList.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaList.__eq__"><code class="docutils literal notranslate"><span class="pre">SchemaList.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaList.__hash__"><code class="docutils literal notranslate"><span class="pre">SchemaList.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaList.__init__"><code class="docutils literal notranslate"><span class="pre">SchemaList.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaList.__module__"><code class="docutils literal notranslate"><span class="pre">SchemaList.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaList.__repr__"><code class="docutils literal notranslate"><span class="pre">SchemaList.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaList._abc_impl"><code class="docutils literal notranslate"><span class="pre">SchemaList._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaList.coerce"><code class="docutils literal notranslate"><span class="pre">SchemaList.coerce()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaNonSpecified"><code class="docutils literal notranslate"><span class="pre">SchemaNonSpecified</span></code></a><ul>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaNonSpecified.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">SchemaNonSpecified.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaNonSpecified.__doc__"><code class="docutils literal notranslate"><span class="pre">SchemaNonSpecified.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaNonSpecified.__eq__"><code class="docutils literal notranslate"><span class="pre">SchemaNonSpecified.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaNonSpecified.__hash__"><code class="docutils literal notranslate"><span class="pre">SchemaNonSpecified.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaNonSpecified.__init__"><code class="docutils literal notranslate"><span class="pre">SchemaNonSpecified.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaNonSpecified.__module__"><code class="docutils literal notranslate"><span class="pre">SchemaNonSpecified.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaNonSpecified.__repr__"><code class="docutils literal notranslate"><span class="pre">SchemaNonSpecified.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaNonSpecified._abc_impl"><code class="docutils literal notranslate"><span class="pre">SchemaNonSpecified._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaNonSpecified.coerce"><code class="docutils literal notranslate"><span class="pre">SchemaNonSpecified.coerce()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaStr"><code class="docutils literal notranslate"><span class="pre">SchemaStr</span></code></a><ul>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaStr.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">SchemaStr.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaStr.__doc__"><code class="docutils literal notranslate"><span class="pre">SchemaStr.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaStr.__module__"><code class="docutils literal notranslate"><span class="pre">SchemaStr.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaStr._abc_impl"><code class="docutils literal notranslate"><span class="pre">SchemaStr._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaStr.coerce"><code class="docutils literal notranslate"><span class="pre">SchemaStr.coerce()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaStr.schema_variable_type"><code class="docutils literal notranslate"><span class="pre">SchemaStr.schema_variable_type</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaVariable"><code class="docutils literal notranslate"><span class="pre">SchemaVariable</span></code></a><ul>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaVariable.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">SchemaVariable.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaVariable.__annotations__"><code class="docutils literal notranslate"><span class="pre">SchemaVariable.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaVariable.__doc__"><code class="docutils literal notranslate"><span class="pre">SchemaVariable.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaVariable.__eq__"><code class="docutils literal notranslate"><span class="pre">SchemaVariable.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaVariable.__hash__"><code class="docutils literal notranslate"><span class="pre">SchemaVariable.__hash__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaVariable.__init__"><code class="docutils literal notranslate"><span class="pre">SchemaVariable.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaVariable.__module__"><code class="docutils literal notranslate"><span class="pre">SchemaVariable.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaVariable.__repr__"><code class="docutils literal notranslate"><span class="pre">SchemaVariable.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaVariable._abc_impl"><code class="docutils literal notranslate"><span class="pre">SchemaVariable._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.SchemaVariable.schema_variable_type"><code class="docutils literal notranslate"><span class="pre">SchemaVariable.schema_variable_type</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.create_schema_element"><code class="docutils literal notranslate"><span class="pre">create_schema_element()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.pairwise_schema_union"><code class="docutils literal notranslate"><span class="pre">pairwise_schema_union()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.config.schema_elements.schema_union"><code class="docutils literal notranslate"><span class="pre">schema_union()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-sas.system.config">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="sas.system.html"
+                          title="previous chapter">sas.system package</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../sasmodels-dev/index.html"
+                          title="next chapter">Sasmodels Developers Guide</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/dev/sasview-api/sas.system.config.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../sasmodels-dev/index.html" title="Sasmodels Developers Guide"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="sas.system.html" title="sas.system package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="modules.html" >SasView</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sas.html" >sas package</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="sas.system.html" >sas.system package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sas.system.config package</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

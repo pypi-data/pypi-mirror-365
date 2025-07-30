@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>polymer_excl_volume &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="porod" href="porod.html" />
+    <link rel="prev" title="poly_gauss_coil" href="poly_gauss_coil.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="porod.html" title="porod"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="poly_gauss_coil.html" title="poly_gauss_coil"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-independent.html" accesskey="U">Shape-Independent Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">polymer_excl_volume</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="polymer-excl-volume">
+<span id="id1"></span><h1>polymer_excl_volume<a class="headerlink" href="#polymer-excl-volume" title="Link to this heading">¶</a></h1>
+<p>Polymer Excluded Volume model</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>scale</p></td>
+<td><p>Scale factor or Volume fraction</p></td>
+<td><p>None</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>background</p></td>
+<td><p>Source background</p></td>
+<td><p>cm<sup>-1</sup></p></td>
+<td><p>0.001</p></td>
+</tr>
+<tr class="row-even"><td><p>rg</p></td>
+<td><p>Radius of Gyration</p></td>
+<td><p>Å</p></td>
+<td><p>60</p></td>
+</tr>
+<tr class="row-odd"><td><p>porod_exp</p></td>
+<td><p>Porod exponent</p></td>
+<td><p>None</p></td>
+<td><p>3</p></td>
+</tr>
+</tbody>
+</table>
+<p>The returned value is scaled to units of cm<sup>-1</sup> sr<sup>-1</sup>, absolute scale.</p>
+<p>This model describes the scattering from polymer chains subject to excluded
+volume effects and has been used as a template for describing mass fractals.</p>
+<p><strong>Definition</strong></p>
+<p>The form factor was originally presented in the following integral form
+(Benoit, 1957)</p>
+<div class="math notranslate nohighlight">
+\[P(Q)=2\int_0^{1}dx(1-x)exp\left[-\frac{Q^2a^2}{6}n^{2v}x^{2v}\right]\]</div>
+<p>where <span class="math notranslate nohighlight">\(\nu\)</span> is the excluded volume parameter
+(which is related to the Porod exponent <span class="math notranslate nohighlight">\(m\)</span> as <span class="math notranslate nohighlight">\(\nu=1/m\)</span> ),
+<span class="math notranslate nohighlight">\(a\)</span> is the statistical segment length of the polymer chain,
+and <span class="math notranslate nohighlight">\(n\)</span> is the degree of polymerization.</p>
+<p>This integral was put into an almost analytical form as follows
+(Hammouda, 1993)</p>
+<div class="math notranslate nohighlight">
+\[P(Q)=\frac{1}{\nu U^{1/2\nu}}
+\left\{
+    \gamma\left(\frac{1}{2\nu},U\right) -
+    \frac{1}{U^{1/2\nu}}\gamma\left(\frac{1}{\nu},U\right)
+\right\}\]</div>
+<p>and later recast as (for example, Hore, 2013; Hammouda &amp; Kim, 2017)</p>
+<div class="math notranslate nohighlight">
+\[P(Q)=\frac{1}{\nu U^{1/2\nu}}\gamma\left(\frac{1}{2\nu},U\right) -
+\frac{1}{\nu U^{1/\nu}}\gamma\left(\frac{1}{\nu},U\right)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\gamma(x,U)\)</span> is the incomplete gamma function</p>
+<div class="math notranslate nohighlight">
+\[\gamma(x,U)=\int_0^{U}dt\ \exp(-t)t^{x-1}\]</div>
+<p>and the variable <span class="math notranslate nohighlight">\(U\)</span> is given in terms of the scattering vector <span class="math notranslate nohighlight">\(Q\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[U=\frac{Q^2a^2n^{2\nu}}{6} = \frac{Q^2R_{g}^2(2\nu+1)(2\nu+2)}{6}\]</div>
+<p>The two analytic forms are equivalent. In the 1993 paper</p>
+<div class="math notranslate nohighlight">
+\[\frac{1}{\nu U^{1/2\nu}}\]</div>
+<p>has been factored out.</p>
+<p><strong>SasView implements the 1993 expression</strong>.</p>
+<p>The square of the radius-of-gyration is defined as</p>
+<div class="math notranslate nohighlight">
+\[R_{g}^2 = \frac{a^2n^{2\nu}}{(2\nu+1)(2\nu+2)}\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This model applies only in the mass fractal range (ie, <span class="math notranslate nohighlight">\(5/3&lt;=m&lt;=3\)</span>)
+and <strong>does not apply</strong> to surface fractals (<span class="math notranslate nohighlight">\(3&lt;m&lt;=4\)</span>).
+It also does not reproduce the rigid rod limit (m=1) because it assumes
+chain flexibility from the outset. It may cover a portion of the
+semi-flexible chain range (<span class="math notranslate nohighlight">\(1&lt;m&lt;5/3\)</span>).</p>
+</div>
+<p>A low-Q expansion yields the Guinier form and a high-Q expansion yields the
+Porod form which is given by</p>
+<div class="math notranslate nohighlight">
+\[P(Q\rightarrow \infty) = \frac{1}{\nu U^{1/2\nu}}\Gamma\left(
+\frac{1}{2\nu}\right) - \frac{1}{\nu U^{1/\nu}}\Gamma\left(
+\frac{1}{\nu}\right)\]</div>
+<p>Here <span class="math notranslate nohighlight">\(\Gamma(x) = \gamma(x,\infty)\)</span> is the gamma function.</p>
+<p>The asymptotic limit is dominated by the first term</p>
+<div class="math notranslate nohighlight">
+\[P(Q\rightarrow \infty)
+   \sim \frac{1}{\nu U^{1/2\nu}}\Gamma\left(\frac{1}{2\nu}\right) =
+\frac{m}{\left(QR_{g}\right)^m}
+   \left[\frac{6}{(2\nu +1)(2\nu +2)} \right]^{m/2} \Gamma (m/2)\]</div>
+<p>The special case when <span class="math notranslate nohighlight">\(\nu=0.5\)</span> (or <span class="math notranslate nohighlight">\(m=1/\nu=2\)</span> ) corresponds to Gaussian
+chains for which the form factor is given by the familiar Debye function.</p>
+<div class="math notranslate nohighlight">
+\[P(Q) = \frac{2}{Q^4R_{g}^4} \left[\exp(-Q^2R_{g}^2) - 1 + Q^2R_{g}^2 \right]\]</div>
+<p>For 2D data: The 2D scattering intensity is calculated in the same way as 1D,
+where the <span class="math notranslate nohighlight">\(q\)</span> vector is defined as</p>
+<div class="math notranslate nohighlight">
+\[q = \sqrt{q_x^2 + q_y^2}\]</div>
+<figure class="align-default" id="id2">
+<img alt="../../_images/polymer_excl_volume_autogenfig.png" src="../../_images/polymer_excl_volume_autogenfig.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 118 </span><span class="caption-text">1D plot corresponding to the default parameters of the model.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Source</strong></p>
+<p><a class="reference download internal" download="" href="../../_downloads/82f554fa4b3fe2e8138b78a20d0ad7e3/polymer_excl_volume.py"><code class="xref download docutils literal notranslate"><span class="pre">polymer_excl_volume.py</span></code></a></p>
+<p><strong>References</strong></p>
+<ol class="arabic simple">
+<li><p>H Benoit, <em>Comptes Rendus</em>, 245 (1957) 2244-2247</p></li>
+<li><p>B Hammouda, <em>SANS from Homogeneous Polymer Mixtures - A Unified Overview</em>,
+<em>Advances in Polym. Sci.</em> 106 (1993) 87-133</p></li>
+<li><p>M Hore et al, <em>Co-Nonsolvency of Poly(N-isopropylacrylamide) in Deuterated
+Water/Ethanol Mixtures</em>, <em>Macromolecules</em> 46 (2013) 7894-7901</p></li>
+<li><p>B Hammouda &amp; M-H Kim, <em>The empirical core-chain model</em>,
+<em>Journal of Molecular Liquids</em> 247 (2017) 434-440</p></li>
+</ol>
+<p><strong>Authorship and Verification</strong></p>
+<ul class="simple">
+<li><p><strong>Author:</strong></p></li>
+<li><p><strong>Last Modified by:</strong></p></li>
+<li><p><strong>Last Reviewed by:</strong></p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="poly_gauss_coil.html"
+                          title="previous chapter">poly_gauss_coil</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="porod.html"
+                          title="next chapter">porod</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user/models/polymer_excl_volume.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="porod.html" title="porod"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="poly_gauss_coil.html" title="poly_gauss_coil"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-independent.html" >Shape-Independent Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">polymer_excl_volume</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

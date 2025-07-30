@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>sas.sascalc.realspace package &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="sas.sascalc.shape2sas package" href="sas.sascalc.shape2sas.html" />
+    <link rel="prev" title="sas.sascalc.pr package" href="sas.sascalc.pr.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sas.sascalc.shape2sas.html" title="sas.sascalc.shape2sas package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="sas.sascalc.pr.html" title="sas.sascalc.pr package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="modules.html" >SasView</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sas.html" >sas package</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="sas.sascalc.html" accesskey="U">sas.sascalc package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sas.sascalc.realspace package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="sas-sascalc-realspace-package">
+<h1>sas.sascalc.realspace package<a class="headerlink" href="#sas-sascalc-realspace-package" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-sas.sascalc.realspace.VolumeCanvas">
+<span id="sas-sascalc-realspace-volumecanvas-module"></span><h2>sas.sascalc.realspace.VolumeCanvas module<a class="headerlink" href="#module-sas.sascalc.realspace.VolumeCanvas" title="Link to this heading">¶</a></h2>
+<p>Volume Canvas</p>
+<p>Simulation canvas for real-space simulation of SAS scattering intensity.
+The user can create an arrangement of basic shapes and estimate I(q) and
+I(q_x, q_y). Error estimates on the simulation are also available.</p>
+<p>Example:</p>
+<p>import sas.sascalc.realspace.VolumeCanvas as VolumeCanvas
+canvas = VolumeCanvas.VolumeCanvas()
+canvas.setParam(‘lores_density’, 0.01)</p>
+<p>sphere = SphereDescriptor()
+handle = canvas.addObject(sphere)</p>
+<p>output, error = canvas.getIqError(q=0.1)
+output, error = canvas.getIq2DError(0.1, 0.1)</p>
+<p>or alternatively:
+iq = canvas.run(0.1)
+i2_2D = canvas.run([0.1, 1.57])</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.CylinderDescriptor">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.sascalc.realspace.VolumeCanvas.</span></span><span class="sig-name descname"><span class="pre">CylinderDescriptor</span></span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.CylinderDescriptor" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor" title="sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor"><code class="xref py py-class docutils literal notranslate"><span class="pre">ShapeDescriptor</span></code></a></p>
+<p>Descriptor for a cylinder
+Orientation: Default cylinder is along Y</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p>Length [default = 40 A]</p></li>
+<li><p>Radius [default = 10 A]</p></li>
+<li><p>Contrast [default = 1 A-2]</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.CylinderDescriptor.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">Descriptor</span> <span class="pre">for</span> <span class="pre">a</span> <span class="pre">cylinder\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">Orientation:</span> <span class="pre">Default</span> <span class="pre">cylinder</span> <span class="pre">is</span> <span class="pre">along</span> <span class="pre">Y\n\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">Parameters:\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">-</span> <span class="pre">Length</span> <span class="pre">[default</span> <span class="pre">=</span> <span class="pre">40</span> <span class="pre">A]\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">-</span> <span class="pre">Radius</span> <span class="pre">[default</span> <span class="pre">=</span> <span class="pre">10</span> <span class="pre">A]\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">-</span> <span class="pre">Contrast</span> <span class="pre">[default</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">A-2]\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.CylinderDescriptor.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.CylinderDescriptor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.CylinderDescriptor.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>Initialization</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.CylinderDescriptor.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.sascalc.realspace.VolumeCanvas'</span></em><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.CylinderDescriptor.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.CylinderDescriptor.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.CylinderDescriptor.create" title="Link to this definition">¶</a></dt>
+<dd><p>Create an instance of the shape
+&#64;return: instance of the shape</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.EllipsoidDescriptor">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.sascalc.realspace.VolumeCanvas.</span></span><span class="sig-name descname"><span class="pre">EllipsoidDescriptor</span></span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.EllipsoidDescriptor" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor" title="sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor"><code class="xref py py-class docutils literal notranslate"><span class="pre">ShapeDescriptor</span></code></a></p>
+<p>Descriptor for an ellipsoid</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><ul class="simple">
+<li><p>Radius_x along the x-axis [default = 30 A]</p></li>
+<li><p>Radius_y along the y-axis [default = 20 A]</p></li>
+<li><p>Radius_z along the z-axis [default = 10 A]</p></li>
+<li><p>contrast [default = 1 A-2]</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.EllipsoidDescriptor.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.EllipsoidDescriptor.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.EllipsoidDescriptor.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">Descriptor</span> <span class="pre">for</span> <span class="pre">an</span> <span class="pre">ellipsoid\n\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">Parameters:\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">-</span> <span class="pre">Radius_x</span> <span class="pre">along</span> <span class="pre">the</span> <span class="pre">x-axis</span> <span class="pre">[default</span> <span class="pre">=</span> <span class="pre">30</span> <span class="pre">A]\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">-</span> <span class="pre">Radius_y</span> <span class="pre">along</span> <span class="pre">the</span> <span class="pre">y-axis</span> <span class="pre">[default</span> <span class="pre">=</span> <span class="pre">20</span> <span class="pre">A]\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">-</span> <span class="pre">Radius_z</span> <span class="pre">along</span> <span class="pre">the</span> <span class="pre">z-axis</span> <span class="pre">[default</span> <span class="pre">=</span> <span class="pre">10</span> <span class="pre">A]\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">-</span> <span class="pre">contrast</span> <span class="pre">[default</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">A-2]\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.EllipsoidDescriptor.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.EllipsoidDescriptor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.EllipsoidDescriptor.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>Initialization</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.EllipsoidDescriptor.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.sascalc.realspace.VolumeCanvas'</span></em><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.EllipsoidDescriptor.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.EllipsoidDescriptor.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.EllipsoidDescriptor.create" title="Link to this definition">¶</a></dt>
+<dd><p>Create an instance of the shape
+&#64;return: instance of the shape</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.HelixDescriptor">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.sascalc.realspace.VolumeCanvas.</span></span><span class="sig-name descname"><span class="pre">HelixDescriptor</span></span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.HelixDescriptor" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor" title="sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor"><code class="xref py py-class docutils literal notranslate"><span class="pre">ShapeDescriptor</span></code></a></p>
+<p>Descriptor for an helix</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><p>-radius_helix: the radius of the helix [default = 10 A]
+-radius_tube: radius of the “tube” that forms the helix [default = 3 A]
+-pitch: distance between two consecutive turns of the helix [default = 34 A]
+-turns: number of turns of the helix [default = 3]
+-contrast: contrast parameter [default = 1 A-2]</p>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.HelixDescriptor.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.HelixDescriptor.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.HelixDescriptor.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">Descriptor</span> <span class="pre">for</span> <span class="pre">an</span> <span class="pre">helix\n\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">Parameters:\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">-radius_helix:</span> <span class="pre">the</span> <span class="pre">radius</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">helix</span> <span class="pre">[default</span> <span class="pre">=</span> <span class="pre">10</span> <span class="pre">A]\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">-radius_tube:</span> <span class="pre">radius</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">&quot;tube&quot;</span> <span class="pre">that</span> <span class="pre">forms</span> <span class="pre">the</span> <span class="pre">helix</span> <span class="pre">[default</span> <span class="pre">=</span> <span class="pre">3</span> <span class="pre">A]\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">-pitch:</span> <span class="pre">distance</span> <span class="pre">between</span> <span class="pre">two</span> <span class="pre">consecutive</span> <span class="pre">turns</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">helix</span> <span class="pre">[default</span> <span class="pre">=</span> <span class="pre">34</span> <span class="pre">A]\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">-turns:</span> <span class="pre">number</span> <span class="pre">of</span> <span class="pre">turns</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">helix</span> <span class="pre">[default</span> <span class="pre">=</span> <span class="pre">3]\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">-contrast:</span> <span class="pre">contrast</span> <span class="pre">parameter</span> <span class="pre">[default</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">A-2]\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.HelixDescriptor.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.HelixDescriptor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.HelixDescriptor.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>Initialization</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.HelixDescriptor.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.sascalc.realspace.VolumeCanvas'</span></em><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.HelixDescriptor.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.HelixDescriptor.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.HelixDescriptor.create" title="Link to this definition">¶</a></dt>
+<dd><p>Create an instance of the shape
+&#64;return: instance of the shape</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.PDBDescriptor">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.sascalc.realspace.VolumeCanvas.</span></span><span class="sig-name descname"><span class="pre">PDBDescriptor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.PDBDescriptor" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor" title="sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor"><code class="xref py py-class docutils literal notranslate"><span class="pre">ShapeDescriptor</span></code></a></p>
+<p>Descriptor for a PDB set of points</p>
+<dl class="simple">
+<dt>Parameter:</dt><dd><ul class="simple">
+<li><p>file = name of the PDB file</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.PDBDescriptor.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.PDBDescriptor.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.PDBDescriptor.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">Descriptor</span> <span class="pre">for</span> <span class="pre">a</span> <span class="pre">PDB</span> <span class="pre">set</span> <span class="pre">of</span> <span class="pre">points\n\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">Parameter:\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">-</span> <span class="pre">file</span> <span class="pre">=</span> <span class="pre">name</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">PDB</span> <span class="pre">file\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.PDBDescriptor.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.PDBDescriptor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.PDBDescriptor.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>Initialization
+&#64;param filename: name of the PDB file to load</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.PDBDescriptor.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.sascalc.realspace.VolumeCanvas'</span></em><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.PDBDescriptor.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.PDBDescriptor.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.PDBDescriptor.create" title="Link to this definition">¶</a></dt>
+<dd><p>Create an instance of the shape
+&#64;return: instance of the shape</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.sascalc.realspace.VolumeCanvas.</span></span><span class="sig-name descname"><span class="pre">ShapeDescriptor</span></span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class to hold the information about a shape
+The descriptor holds a dictionary of parameters.</p>
+<p>Note: if shape parameters are accessed directly
+from outside VolumeCanvas. The getPr method
+should be called before evaluating I(q).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor.__dict__">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'sas.sascalc.realspace.VolumeCanvas',</span> <span class="pre">'__doc__':</span> <span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">Class</span> <span class="pre">to</span> <span class="pre">hold</span> <span class="pre">the</span> <span class="pre">information</span> <span class="pre">about</span> <span class="pre">a</span> <span class="pre">shape\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">The</span> <span class="pre">descriptor</span> <span class="pre">holds</span> <span class="pre">a</span> <span class="pre">dictionary</span> <span class="pre">of</span> <span class="pre">parameters.\n\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">Note:</span> <span class="pre">if</span> <span class="pre">shape</span> <span class="pre">parameters</span> <span class="pre">are</span> <span class="pre">accessed</span> <span class="pre">directly\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">from</span> <span class="pre">outside</span> <span class="pre">VolumeCanvas.</span> <span class="pre">The</span> <span class="pre">getPr</span> <span class="pre">method\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">should</span> <span class="pre">be</span> <span class="pre">called</span> <span class="pre">before</span> <span class="pre">evaluating</span> <span class="pre">I(q).\n\n</span>&#160;&#160;&#160; <span class="pre">',</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">ShapeDescriptor.__init__&gt;,</span> <span class="pre">'create':</span> <span class="pre">&lt;function</span> <span class="pre">ShapeDescriptor.create&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'ShapeDescriptor'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'ShapeDescriptor'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor.__dict__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">Class</span> <span class="pre">to</span> <span class="pre">hold</span> <span class="pre">the</span> <span class="pre">information</span> <span class="pre">about</span> <span class="pre">a</span> <span class="pre">shape\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">The</span> <span class="pre">descriptor</span> <span class="pre">holds</span> <span class="pre">a</span> <span class="pre">dictionary</span> <span class="pre">of</span> <span class="pre">parameters.\n\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">Note:</span> <span class="pre">if</span> <span class="pre">shape</span> <span class="pre">parameters</span> <span class="pre">are</span> <span class="pre">accessed</span> <span class="pre">directly\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">from</span> <span class="pre">outside</span> <span class="pre">VolumeCanvas.</span> <span class="pre">The</span> <span class="pre">getPr</span> <span class="pre">method\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">should</span> <span class="pre">be</span> <span class="pre">called</span> <span class="pre">before</span> <span class="pre">evaluating</span> <span class="pre">I(q).\n\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>Initialization</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.sascalc.realspace.VolumeCanvas'</span></em><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor.create" title="Link to this definition">¶</a></dt>
+<dd><p>Create an instance of the shape</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.SphereDescriptor">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.sascalc.realspace.VolumeCanvas.</span></span><span class="sig-name descname"><span class="pre">SphereDescriptor</span></span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.SphereDescriptor" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor" title="sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor"><code class="xref py py-class docutils literal notranslate"><span class="pre">ShapeDescriptor</span></code></a></p>
+<p>Descriptor for a sphere</p>
+<dl class="simple">
+<dt>The parameters are:</dt><dd><ul class="simple">
+<li><p>radius [Angstroem] [default = 20 A]</p></li>
+<li><p>Contrast [A-2] [default = 1 A-2]</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.SphereDescriptor.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.SphereDescriptor.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.SphereDescriptor.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">Descriptor</span> <span class="pre">for</span> <span class="pre">a</span> <span class="pre">sphere\n\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">The</span> <span class="pre">parameters</span> <span class="pre">are:\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">-</span> <span class="pre">radius</span> <span class="pre">[Angstroem]</span> <span class="pre">[default</span> <span class="pre">=</span> <span class="pre">20</span> <span class="pre">A]\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">-</span> <span class="pre">Contrast</span> <span class="pre">[A-2]</span> <span class="pre">[default</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">A-2]\n\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.SphereDescriptor.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.SphereDescriptor.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.SphereDescriptor.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>Initialization</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.SphereDescriptor.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.sascalc.realspace.VolumeCanvas'</span></em><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.SphereDescriptor.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.SphereDescriptor.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.SphereDescriptor.create" title="Link to this definition">¶</a></dt>
+<dd><p>Create an instance of the shape
+&#64;return: instance of the shape</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.sascalc.realspace.VolumeCanvas.</span></span><span class="sig-name descname"><span class="pre">VolumeCanvas</span></span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sas.sascalc.calculator.html#sas.sascalc.calculator.BaseComponent.BaseComponent" title="sas.sascalc.calculator.BaseComponent.BaseComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseComponent</span></code></a></p>
+<p>Class representing an empty space volume to add
+geometrical object to.</p>
+<p>For 1D I(q) simulation, getPr() is called internally for the
+first call to getIq().</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">Class</span> <span class="pre">representing</span> <span class="pre">an</span> <span class="pre">empty</span> <span class="pre">space</span> <span class="pre">volume</span> <span class="pre">to</span> <span class="pre">add\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">geometrical</span> <span class="pre">object</span> <span class="pre">to.\n\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">For</span> <span class="pre">1D</span> <span class="pre">I(q)</span> <span class="pre">simulation,</span> <span class="pre">getPr()</span> <span class="pre">is</span> <span class="pre">called</span> <span class="pre">internally</span> <span class="pre">for</span> <span class="pre">the\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">first</span> <span class="pre">call</span> <span class="pre">to</span> <span class="pre">getIq().\n\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>Initialization</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.sascalc.realspace.VolumeCanvas'</span></em><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas._addSingleShape">
+<span class="sig-name descname"><span class="pre">_addSingleShape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shapeDesc</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas._addSingleShape" title="Link to this definition">¶</a></dt>
+<dd><p>create shapeobject based on shapeDesc
+&#64;param shapeDesc: shape description</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas._createVolumeFromList">
+<span class="sig-name descname"><span class="pre">_createVolumeFromList</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas._createVolumeFromList" title="Link to this definition">¶</a></dt>
+<dd><p>Create a new lores model with all the shapes in our internal list
+Whenever we change a parameter of a shape, we have to re-create
+the whole thing.</p>
+<p>Items with higher ‘order’ number take precedence for regions
+of space that are shared with other objects. Points in the
+overlapping region belonging to objects with lower ‘order’
+will be ignored.</p>
+<p>Items are added in decreasing ‘order’ number.
+The item with the highest ‘order’ will be added <em>first</em>.
+[That conventions is prescribed by the realSpaceModeling module]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas._create_modelObject">
+<span class="sig-name descname"><span class="pre">_create_modelObject</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas._create_modelObject" title="Link to this definition">¶</a></dt>
+<dd><p>Create the simulation model obejct from the list
+of shapes.</p>
+<p>This method needs to be called each time a parameter
+changes because of the way the underlying library
+was (badly) written. It is impossible to change a
+parameter, or remove a shape without having to
+refill the space points.</p>
+<p>TODO: improve that.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas._model_changed">
+<span class="sig-name descname"><span class="pre">_model_changed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas._model_changed" title="Link to this definition">¶</a></dt>
+<dd><p>Reset internal data members to reflect the fact that the
+real-space model has changed</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.add" title="Link to this definition">¶</a></dt>
+<dd><p>The intend of this method is to eventually be able to use it
+as a factory for the canvas and unify the simulation with the
+analytical solutions. For instance, if one adds a cylinder and
+it is the only shape on the canvas, the analytical solution
+could be called. If multiple shapes are involved, then
+simulation has to be performed.</p>
+<p>This function is deprecated, use addObject().</p>
+<p>&#64;param shape: name of the object to add to the canvas [string]
+&#64;param id: string handle for the object [string] [optional]
+&#64;return: string handle for the object</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.addObject">
+<span class="sig-name descname"><span class="pre">addObject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shapeDesc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.addObject" title="Link to this definition">¶</a></dt>
+<dd><p>Adds a real-space object to the canvas.</p>
+<p>&#64;param shapeDesc: object to add to the canvas [ShapeDescriptor]
+&#64;param id: string handle for the object [string] [optional]
+&#64;return: string handle for the object</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.delete">
+<span class="sig-name descname"><span class="pre">delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.delete" title="Link to this definition">¶</a></dt>
+<dd><p>Delete a shape. The ID for the shape is required.
+&#64;param id: string handle for the object [string] [optional]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getError">
+<span class="sig-name descname"><span class="pre">getError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getError" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the error of I(q) for a given q-value
+&#64;param q: q-value [float]
+&#64;return: I(q) [float]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getIq">
+<span class="sig-name descname"><span class="pre">getIq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getIq" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the value of I(q) for a given q-value</p>
+<p>This method should remain internal to the class
+and the run() method should be used instead.</p>
+<p>&#64;param q: q-value [float]
+&#64;return: I(q) [float]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getIq2D">
+<span class="sig-name descname"><span class="pre">getIq2D</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qy</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getIq2D" title="Link to this definition">¶</a></dt>
+<dd><p>Returns simulate I(q) for given q_x and q_y values.
+&#64;param qx: q_x [A-1]
+&#64;param qy: q_y [A-1]
+&#64;return: I(q) [cm-1]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getIq2DError">
+<span class="sig-name descname"><span class="pre">getIq2DError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">qx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qy</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getIq2DError" title="Link to this definition">¶</a></dt>
+<dd><p>Return the simulated value along with its estimated
+error for a given q-value</p>
+<p>Propagation of errors is used to evaluate the
+uncertainty.</p>
+<p>&#64;param qx: qx-value [float]
+&#64;param qy: qy-value [float]
+&#64;return: mean, error [float, float]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getIqError">
+<span class="sig-name descname"><span class="pre">getIqError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getIqError" title="Link to this definition">¶</a></dt>
+<dd><p>Return the simulated value along with its estimated
+error for a given q-value</p>
+<p>Propagation of errors is used to evaluate the
+uncertainty.</p>
+<p>&#64;param q: q-value [float]
+&#64;return: mean, error [float, float]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getParam">
+<span class="sig-name descname"><span class="pre">getParam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getParam" title="Link to this definition">¶</a></dt>
+<dd><p>&#64;param name: name of the parameter to change</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getParamList">
+<span class="sig-name descname"><span class="pre">getParamList</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shapeid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getParamList" title="Link to this definition">¶</a></dt>
+<dd><dl>
+<dt>….       return a full list of all available parameters from</dt><dd><p>self.params.keys(). If a key in self.params is a instance
+of ShapeDescriptor, extend the return list to:</p>
+<p>[param1,param2,shapeid.param1,shapeid.param2…….]</p>
+<p>If shapeid is provided, return the list of parameters that
+belongs to that shape id only : [shapeid.param1, shapeid.param2…]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getPr">
+<span class="sig-name descname"><span class="pre">getPr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getPr" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate P(r) from the objects on the canvas.
+This method should always be called after the shapes
+on the VolumeCanvas have changed.</p>
+<p>&#64;return: calculation output flag</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getPrData">
+<span class="sig-name descname"><span class="pre">getPrData</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getPrData" title="Link to this definition">¶</a></dt>
+<dd><p>Write P(r) to an output file
+&#64;param filename: file name for P(r) output</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getShapeList">
+<span class="sig-name descname"><span class="pre">getShapeList</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getShapeList" title="Link to this definition">¶</a></dt>
+<dd><p>Return a list of the shapes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.run" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the value of I(q) for a given q-value
+&#64;param q: q-value ([float] or [list]) ([A-1] or [[A-1], [rad]])
+&#64;return: I(q) [float] [cm-1]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.runXY">
+<span class="sig-name descname"><span class="pre">runXY</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">q</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.runXY" title="Link to this definition">¶</a></dt>
+<dd><p>Standard run command for the canvas.
+Redirects to the correct method
+according to the input type.
+&#64;param q: q-value [float] or [list] [A-1]
+&#64;return: I(q) [float] [cm-1]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.setParam">
+<span class="sig-name descname"><span class="pre">setParam</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.setParam" title="Link to this definition">¶</a></dt>
+<dd><p>Function to set the value of a parameter.
+Both VolumeCanvas parameters and shape parameters
+are accessible.</p>
+<p>Note: if shape parameters are accessed directly
+from outside VolumeCanvas. The getPr method
+should be called before evaluating I(q).</p>
+<p>TODO: implemented a check method to protect
+against that.</p>
+<p>&#64;param name: name of the parameter to change
+&#64;param value: value to give the parameter</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.write_pr">
+<span class="sig-name descname"><span class="pre">write_pr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.write_pr" title="Link to this definition">¶</a></dt>
+<dd><p>Write P(r) to an output file
+&#64;param filename: file name for P(r) output</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-sas.sascalc.realspace">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-sas.sascalc.realspace" title="Link to this heading">¶</a></h2>
+<p>Real-Space Modeling for SAS</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">sas.sascalc.realspace package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-sas.sascalc.realspace.VolumeCanvas">sas.sascalc.realspace.VolumeCanvas module</a><ul>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.CylinderDescriptor"><code class="docutils literal notranslate"><span class="pre">CylinderDescriptor</span></code></a><ul>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.CylinderDescriptor.__doc__"><code class="docutils literal notranslate"><span class="pre">CylinderDescriptor.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.CylinderDescriptor.__init__"><code class="docutils literal notranslate"><span class="pre">CylinderDescriptor.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.CylinderDescriptor.__module__"><code class="docutils literal notranslate"><span class="pre">CylinderDescriptor.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.CylinderDescriptor.create"><code class="docutils literal notranslate"><span class="pre">CylinderDescriptor.create()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.EllipsoidDescriptor"><code class="docutils literal notranslate"><span class="pre">EllipsoidDescriptor</span></code></a><ul>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.EllipsoidDescriptor.__annotations__"><code class="docutils literal notranslate"><span class="pre">EllipsoidDescriptor.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.EllipsoidDescriptor.__doc__"><code class="docutils literal notranslate"><span class="pre">EllipsoidDescriptor.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.EllipsoidDescriptor.__init__"><code class="docutils literal notranslate"><span class="pre">EllipsoidDescriptor.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.EllipsoidDescriptor.__module__"><code class="docutils literal notranslate"><span class="pre">EllipsoidDescriptor.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.EllipsoidDescriptor.create"><code class="docutils literal notranslate"><span class="pre">EllipsoidDescriptor.create()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.HelixDescriptor"><code class="docutils literal notranslate"><span class="pre">HelixDescriptor</span></code></a><ul>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.HelixDescriptor.__annotations__"><code class="docutils literal notranslate"><span class="pre">HelixDescriptor.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.HelixDescriptor.__doc__"><code class="docutils literal notranslate"><span class="pre">HelixDescriptor.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.HelixDescriptor.__init__"><code class="docutils literal notranslate"><span class="pre">HelixDescriptor.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.HelixDescriptor.__module__"><code class="docutils literal notranslate"><span class="pre">HelixDescriptor.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.HelixDescriptor.create"><code class="docutils literal notranslate"><span class="pre">HelixDescriptor.create()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.PDBDescriptor"><code class="docutils literal notranslate"><span class="pre">PDBDescriptor</span></code></a><ul>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.PDBDescriptor.__annotations__"><code class="docutils literal notranslate"><span class="pre">PDBDescriptor.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.PDBDescriptor.__doc__"><code class="docutils literal notranslate"><span class="pre">PDBDescriptor.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.PDBDescriptor.__init__"><code class="docutils literal notranslate"><span class="pre">PDBDescriptor.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.PDBDescriptor.__module__"><code class="docutils literal notranslate"><span class="pre">PDBDescriptor.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.PDBDescriptor.create"><code class="docutils literal notranslate"><span class="pre">PDBDescriptor.create()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor"><code class="docutils literal notranslate"><span class="pre">ShapeDescriptor</span></code></a><ul>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor.__annotations__"><code class="docutils literal notranslate"><span class="pre">ShapeDescriptor.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor.__dict__"><code class="docutils literal notranslate"><span class="pre">ShapeDescriptor.__dict__</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor.__doc__"><code class="docutils literal notranslate"><span class="pre">ShapeDescriptor.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor.__init__"><code class="docutils literal notranslate"><span class="pre">ShapeDescriptor.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor.__module__"><code class="docutils literal notranslate"><span class="pre">ShapeDescriptor.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor.__weakref__"><code class="docutils literal notranslate"><span class="pre">ShapeDescriptor.__weakref__</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.ShapeDescriptor.create"><code class="docutils literal notranslate"><span class="pre">ShapeDescriptor.create()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.SphereDescriptor"><code class="docutils literal notranslate"><span class="pre">SphereDescriptor</span></code></a><ul>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.SphereDescriptor.__annotations__"><code class="docutils literal notranslate"><span class="pre">SphereDescriptor.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.SphereDescriptor.__doc__"><code class="docutils literal notranslate"><span class="pre">SphereDescriptor.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.SphereDescriptor.__init__"><code class="docutils literal notranslate"><span class="pre">SphereDescriptor.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.SphereDescriptor.__module__"><code class="docutils literal notranslate"><span class="pre">SphereDescriptor.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.SphereDescriptor.create"><code class="docutils literal notranslate"><span class="pre">SphereDescriptor.create()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas</span></code></a><ul>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.__annotations__"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.__doc__"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.__init__"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.__module__"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas._addSingleShape"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas._addSingleShape()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas._createVolumeFromList"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas._createVolumeFromList()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas._create_modelObject"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas._create_modelObject()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas._model_changed"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas._model_changed()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.add"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas.add()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.addObject"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas.addObject()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.delete"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas.delete()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getError"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas.getError()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getIq"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas.getIq()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getIq2D"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas.getIq2D()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getIq2DError"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas.getIq2DError()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getIqError"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas.getIqError()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getParam"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas.getParam()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getParamList"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas.getParamList()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getPr"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas.getPr()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getPrData"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas.getPrData()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.getShapeList"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas.getShapeList()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.run"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas.run()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.runXY"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas.runXY()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.setParam"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas.setParam()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.realspace.VolumeCanvas.VolumeCanvas.write_pr"><code class="docutils literal notranslate"><span class="pre">VolumeCanvas.write_pr()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-sas.sascalc.realspace">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="sas.sascalc.pr.html"
+                          title="previous chapter">sas.sascalc.pr package</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="sas.sascalc.shape2sas.html"
+                          title="next chapter">sas.sascalc.shape2sas package</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/dev/sasview-api/sas.sascalc.realspace.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sas.sascalc.shape2sas.html" title="sas.sascalc.shape2sas package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="sas.sascalc.pr.html" title="sas.sascalc.pr package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="modules.html" >SasView</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sas.html" >sas package</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="sas.sascalc.html" >sas.sascalc package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sas.sascalc.realspace package</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

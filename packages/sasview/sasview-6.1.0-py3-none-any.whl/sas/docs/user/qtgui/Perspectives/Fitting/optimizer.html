@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Optimizer Selection &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="SANS to SESANS conversion" href="sesans/sans_to_sesans.html" />
+    <link rel="prev" title="Polarisation/Magnetic Scattering" href="magnetism/magnetism.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sesans/sans_to_sesans.html" title="SANS to SESANS conversion"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="magnetism/magnetism.html" title="Polarisation/Magnetic Scattering"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../analysis.html" >Fitting &amp; Other Analyses</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="fitting.html" accesskey="U">Fitting Documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Optimizer Selection</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="optimizer-selection">
+<span id="optimizer-guide"></span><h1>Optimizer Selection<a class="headerlink" href="#optimizer-selection" title="Link to this heading">¶</a></h1>
+<p>Bumps has a number of different optimizers available, each with its own
+control parameters:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#fit-lm"><span class="std std-ref">Levenberg-Marquardt</span></a></p></li>
+<li><p><a class="reference internal" href="#fit-amoeba"><span class="std std-ref">Nelder-Mead Simplex</span></a></p></li>
+<li><p><a class="reference internal" href="#fit-dream"><span class="std std-ref">DREAM</span></a></p></li>
+<li><p><a class="reference internal" href="#fit-de"><span class="std std-ref">Differential Evolution</span></a></p></li>
+<li><p><a class="reference internal" href="#fit-newton"><span class="std std-ref">Quasi-Newton BFGS</span></a></p></li>
+<li><p><a class="reference internal" href="#fit-rl"><span class="std std-ref">Random Lines</span></a> [experimental]</p></li>
+<li><p><a class="reference internal" href="#fit-ps"><span class="std std-ref">Particle Swarm</span></a> [experimental]</p></li>
+<li><p><a class="reference internal" href="#fit-pt"><span class="std std-ref">Parallel Tempering</span></a> [experimental]</p></li>
+</ul>
+<p>In general there is a trade-off between convergence
+rate and robustness, with the fastest algorithms most likely to find a
+local minimum rather than a global minimum.   The gradient descent algorithms
+(<a class="reference internal" href="#fit-lm"><span class="std std-ref">Levenberg-Marquardt</span></a>, <a class="reference internal" href="#fit-newton"><span class="std std-ref">Quasi-Newton BFGS</span></a>) tend to be fast but they will find local
+minima only, while the population algorithms (<a class="reference internal" href="#fit-dream"><span class="std std-ref">DREAM</span></a>, <a class="reference internal" href="#fit-de"><span class="std std-ref">Differential Evolution</span></a>)
+are more robust and likely slower.   <a class="reference internal" href="#fit-amoeba"><span class="std std-ref">Nelder-Mead Simplex</span></a> is somewhere between,
+with a small population keeping the search local but more robust than the
+gradient descent algorithms.</p>
+<p>Each algorithm has its own set of control parameters for adjusting the
+search process and the stopping conditions.  The same option may mean
+slightly different things to different optimizers.  The Bumps package
+provides a dialog box for selecting the optimizer and its options
+when running the fit wx application.  This only includes the common options
+for the most useful optimizers.  For full control, the fit will need to
+be run from the command line interface or through a python script.</p>
+<p>For parameter uncertainty, most algorithms use the covariance matrix at
+the optimum to estimate an uncertainty ellipse.  This is okay for a
+preliminary analysis, but only works reliably for weakly correlated parameters.
+For full uncertainty analysis, <a class="reference internal" href="#fit-dream"><span class="std std-ref">DREAM</span></a> uses a random walk to explore
+the parameter space near the minimum, showing pair-wise correlations
+amongst the parameter values.  In order for <a class="reference internal" href="#fit-dream"><span class="std std-ref">DREAM</span></a> to return the
+correct uncertainty, the function to be optimized should be a conditional
+probability density, with <em>nllf</em> as the negative log likelihood function
+of seeing point <span class="math notranslate nohighlight">\(x\)</span> in the parameter space.  Other functions
+can be fitted, but uncertainty estimates will be meaningless.</p>
+<p>Most algorithms have been adapted to run in parallel at least to some degree.
+The  implementation is not heavily tuned, either in terms of minimizing the
+overhead per function evaluation or for distributing the problem across
+multiple processors.   If the theory function is implemented in parallel,
+then the optimizer should be run in serial.  Mixed mode is also possible
+when running on a cluster with a multi-threaded theory function.  In this
+case, only one theory function will be evaluated on each cluster node, but
+the optimizer will distribute the parameters values to the cluster nodes
+in parallel.  Do not run serial algorithms (<a class="reference internal" href="#fit-lm"><span class="std std-ref">Levenberg-Marquardt</span></a>, <a class="reference internal" href="#fit-newton"><span class="std std-ref">Quasi-Newton BFGS</span></a>) on
+a cluster.</p>
+<p>We have included a number of optimizers in Bumps that did not perform
+particularly well on our problem sets.  However, they may be perfect
+for your problem, so we have left them in the package for you to explore.
+They are not available in the GUI selection.</p>
+<section id="levenberg-marquardt">
+<span id="fit-lm"></span><h2>Levenberg-Marquardt<a class="headerlink" href="#levenberg-marquardt" title="Link to this heading">¶</a></h2>
+<img alt="Levenberg-Marquardt option screen." class="align-left" src="../../../../_images/fit-lm.png" />
+<p>The Levenberg-Marquardt <a class="footnote-reference brackets" href="#levenberg1944" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> <a class="footnote-reference brackets" href="#marquardt1963" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a> algorithm has been
+the standard method for non-linear data fitting.  As a gradient descent
+trust region method, it starts at the initial value of the function and
+steps in the direction of the derivative until it reaches the minimum.
+Set up as an explicit minimization of the sum of square differences between
+theory and model, it uses a numerical approximation of the Jacobian matrix
+to set the step direction and an adaptive algorithm to set the size of
+the trust region.</p>
+<section id="when-to-use">
+<h3>When to use<a class="headerlink" href="#when-to-use" title="Link to this heading">¶</a></h3>
+<p>Use this method when you have a reasonable fit near the minimum, and
+you want to get the best possible value.  This can then be used as the starting
+point for uncertainty analysis using <a class="reference internal" href="#fit-dream"><span class="std std-ref">DREAM</span></a>.  This method requires
+that the problem definition includes a <em>residuals</em> method, but this should
+always be true when fitting data.</p>
+<p>When modeling the results of an experiment, the best fit value is an
+accident of the measurement.  Redo the same measurement, and the slightly
+different values you measure will lead to a different best fit.  The
+important quantity to report is the credible interval covering
+68%  (1-<span class="math notranslate nohighlight">\(\sigma\)</span>) or 95% (2-<span class="math notranslate nohighlight">\(\sigma\)</span>) of the range of
+parameter values that are somewhat consistent with the data.</p>
+<p>This method uses <em>lmfit</em> from <em>scipy</em>, and does not run in parallel.</p>
+</section>
+<section id="options">
+<h3>Options<a class="headerlink" href="#options" title="Link to this heading">¶</a></h3>
+<p><em>Steps</em> is the number of gradient steps to take.  Each step requires
+a calculation of the Jacobian matrix to determine the direction.  This
+needs <span class="math notranslate nohighlight">\(2 m n\)</span> function evaluations, where <span class="math notranslate nohighlight">\(n\)</span> is the number of parameters and
+each function is evaluated and <span class="math notranslate nohighlight">\(m\)</span> data points (assuming center point
+formula for finite difference estimate of the derivative).  The resulting
+linear equation is then solved, but for small <span class="math notranslate nohighlight">\(n\)</span> and expensive function
+evaluation this overhead can be ignored.  Use <code class="docutils literal notranslate"><span class="pre">--steps=n</span></code> from
+the command line.</p>
+<p><em>f(x) tolerance</em> and <em>x tolerance</em> are used to determine when
+the fit has reached the point where no significant improvement is expected.
+If the function value does not improve significantly within the step, or
+the step is too short, then the fit will terminate.  Use <code class="docutils literal notranslate"><span class="pre">--ftol=v</span></code> and
+<code class="docutils literal notranslate"><span class="pre">--xtol=v</span></code> from the command line.</p>
+<p>From the command line, <code class="docutils literal notranslate"><span class="pre">--starts=n</span></code> will automatically restart the algorithm
+after it has converged so that a slightly better value can be found. If
+<code class="docutils literal notranslate"><span class="pre">--keep_best</span></code> is included then restart will use a value near the minimum,
+otherwise it will restart the fit from a random point in the parameter space.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--fit=lm</span></code> to select the Levenberg-Marquardt fitter from the command line.</p>
+</section>
+<section id="notes">
+<h3>Notes<a class="headerlink" href="#notes" title="Link to this heading">¶</a></h3>
+<p>v0.8.2 Changed from scipy.leastsq to mpfit for better bounds handling. Use
+<code class="docutils literal notranslate"><span class="pre">--fit=scipy.leastsq</span></code> to restore the previous behaviour.</p>
+</section>
+<section id="references">
+<h3>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h3>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="levenberg1944" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Levenberg, K.
+<em>Quarterly Journal of Applied Mathematics</em>
+1944, II (2), 164–168.</p>
+</aside>
+<aside class="footnote brackets" id="marquardt1963" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">2</a><span class="fn-bracket">]</span></span>
+<p>Marquardt, D. W.
+<em>Journal of the Society for Industrial and Applied Mathematics</em>
+1963, 11 (2), 431–441.
+DOI: <a class="reference external" href="http://dx.doi.org/10.1137/0111030">10.1137/0111030</a></p>
+</aside>
+</aside>
+</section>
+</section>
+<section id="nelder-mead-simplex">
+<span id="fit-amoeba"></span><h2>Nelder-Mead Simplex<a class="headerlink" href="#nelder-mead-simplex" title="Link to this heading">¶</a></h2>
+<img alt="Nelder-Mead Simplex option screen." class="align-left" src="../../../../_images/fit-amoeba.png" />
+<p>The Nelder-Mead <a class="footnote-reference brackets" href="#nelder1965" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> downhill simplex algorithm is a robust optimizer
+which does not require the function to be continuous or differentiable.</p>
+<p>It uses the relative values of the function at the corners of a
+simplex (an n-dimensional triangle) to decide which points of the simplex
+to update.  It will take the worst value and try moving it inward or
+outward, or reflect it through the centroid of the remaining values
+stopping if it finds a better value.  If none of these values are
+better, then it will shrink the simplex and start again.  The name
+amoeba comes from the book <em>Numerical Recipes</em> <a class="footnote-reference brackets" href="#press1992" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a> wherein they
+describe the search as acting like an amoeba, squeezing through narrow valleys
+as it makes its way down to the minimum.</p>
+<section id="id6">
+<h3>When to use<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
+<p>Use this method as a first fit to your model.  If your fitting function
+is well behaved with few local minima this will give a quick estimate of
+the model, and help you decide if the model needs to be refined.  If your
+function is poorly behaved, you will need to select a good initial value
+before fitting, or use a more robust method such
+as <a class="reference internal" href="#fit-de"><span class="std std-ref">Differential Evolution</span></a> or <a class="reference internal" href="#fit-dream"><span class="std std-ref">DREAM</span></a>.</p>
+<p>The uncertainty reported comes from a numerical derivative estimate at the
+minimum.</p>
+<p>This method requires a series of function updates, and does not benefit
+much from running in parallel.</p>
+</section>
+<section id="id7">
+<h3>Options<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<p><em>Steps</em> is the simplex update iterations to perform.  Most updates
+require one or two function evaluations, but shrinking the simplex evaluates
+every value in the simplex. Use <code class="docutils literal notranslate"><span class="pre">--steps=n</span></code> from the command line.</p>
+<p><em>Starts</em> tells the optimizer to restart a given number of times.
+Each time it restarts it uses a random starting point.   Use
+<code class="docutils literal notranslate"><span class="pre">--starts=n</span></code> from the command line.</p>
+<p><em>Simplex radius</em> is the initial size of the simplex, as a portion of
+the bounds defining the parameter space.  If a parameter is unbounded, then
+the radius will be treated as a portion of the parameter value. Use
+<code class="docutils literal notranslate"><span class="pre">--radius=n</span></code> from the command line.</p>
+<p><em>x tolerance</em> and <em>f(x) tolerance</em> are used to determine when the
+fit has reached the point where no significant improvement is expected.
+If the simplex is tiny (that is, the corners are close to each other) and
+flat (that is, the values at the corners are close to each other),
+then the fit will terminate.  Use <code class="docutils literal notranslate"><span class="pre">--xtol=v</span></code> and <code class="docutils literal notranslate"><span class="pre">--ftol=v</span></code> from
+the command line.</p>
+<p>From the command line, use <code class="docutils literal notranslate"><span class="pre">--keep_best</span></code> so that restarts are centered on a
+value near the minimum rather than restarting from a random point within the
+parameter bounds.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--fit=amoeba</span></code> to select the Nelder-Mead simplex fitter from the
+command line.</p>
+</section>
+<section id="id8">
+<h3>References<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="nelder1965" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">3</a><span class="fn-bracket">]</span></span>
+<p>Nelder, J. A.; Mead, R.
+<em>The Computer Journal</em>
+1965, 7 (4), 308–313.
+DOI: <a class="reference external" href="http://dx.doi.org/10.1093/comjnl/7.4.308">10.1093/comjnl/7.4.308</a></p>
+</aside>
+<aside class="footnote brackets" id="press1992" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">4</a><span class="fn-bracket">]</span></span>
+<p>Press, W. H.; Flannery, B. P.; Teukolsky, S. A.; Vetterling, W. T.
+In <em>Numerical Recipes in C: The Art of Scientific Computing, Second Edition</em>;
+Cambridge University Press: Cambridge; New York, 1992; pp 408–412.</p>
+</aside>
+</aside>
+</section>
+</section>
+<section id="quasi-newton-bfgs">
+<span id="fit-newton"></span><h2>Quasi-Newton BFGS<a class="headerlink" href="#quasi-newton-bfgs" title="Link to this heading">¶</a></h2>
+<img alt="Quasi-Newton BFGS option screen." class="align-left" src="../../../../_images/fit-newton.png" />
+<p>Broyden-Fletcher-Goldfarb-Shanno <a class="footnote-reference brackets" href="#dennis1987" id="id9" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a> is a gradient descent method
+which uses the gradient to determine the step direction and an approximation of
+the Hessian matrix to estimate the curvature and guess a step size. The step is
+further refined with a one-dimensional search in the direction of the gradient.</p>
+<section id="id10">
+<h3>When to use<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h3>
+<p>Like <a class="reference internal" href="#fit-lm"><span class="std std-ref">Levenberg-Marquardt</span></a>, this method converges quickly to the minimum.  It does
+not assume that the problem is in the form of a sum of squares and does not
+require a <em>residuals</em> method.</p>
+<p>The <span class="math notranslate nohighlight">\(n\)</span> partial derivatives are computed in parallel.</p>
+</section>
+<section id="id11">
+<h3>Options<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
+<p><em>Steps</em> is the number of gradient steps to take.  Each step requires
+a calculation of the Jacobian matrix to determine the direction.  This
+needs <span class="math notranslate nohighlight">\(2 m n\)</span> function evaluations, where <span class="math notranslate nohighlight">\(n\)</span> is the number of parameters and
+each function is evaluated and <span class="math notranslate nohighlight">\(m\)</span> data points (assuming center point
+formula for finite difference estimate of the derivative).  The resulting
+linear equation is then solved, but for small <span class="math notranslate nohighlight">\(n\)</span> and expensive function
+evaluation this overhead can be ignored.
+Use <code class="docutils literal notranslate"><span class="pre">--steps=n</span></code> from the command line.</p>
+<p><em>Starts</em> tells the optimizer to restart a given number of times.
+Each time it restarts it uses a random starting point.
+Use <code class="docutils literal notranslate"><span class="pre">--starts=n</span></code> from the command line.</p>
+<p><em>f(x) tolerance</em> and <em>x tolerance</em> are used to determine when
+the fit has reached the point where no significant improvement is expected.
+If the function is small or the step is too short then the fit
+will terminate.  Use <code class="docutils literal notranslate"><span class="pre">--ftol=v</span></code> and <code class="docutils literal notranslate"><span class="pre">--xtol=v</span></code> from the command line.</p>
+<p>From the command line, <code class="docutils literal notranslate"><span class="pre">--keep_best</span></code> uses a value near the previous minimum
+when restarting instead of using a random value within the parameter bounds.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--fit=newton</span></code> to select BFGS from the command line.</p>
+</section>
+<section id="id12">
+<h3>References<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h3>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="dennis1987" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id9">5</a><span class="fn-bracket">]</span></span>
+<p>Dennis, J. E.; Schnabel, R. B.
+<em>Numerical Methods for Unconstrained Optimization and Nonlinear Equations</em>;
+Society for Industrial and Applied Mathematics: Philadelphia, 1987.</p>
+</aside>
+</aside>
+</section>
+</section>
+<section id="differential-evolution">
+<span id="fit-de"></span><h2>Differential Evolution<a class="headerlink" href="#differential-evolution" title="Link to this heading">¶</a></h2>
+<img alt="Differential Evolution option screen." class="align-left" src="../../../../_images/fit-de.png" />
+<p>Differential evolution <a class="footnote-reference brackets" href="#storn1997" id="id13" role="doc-noteref"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></a> is a population based algorithm which uses
+differences between points as a guide to selecting new points. For each member
+of the population a pair of points is chosen at random, and a difference vector
+is computed.  This vector is scaled, and a random subset of its components are
+added to the current point based on crossover ratio. This new point is
+evaluated, and if its value is lower than the current point, it replaces
+it in the population.   There are many variations available within DE that
+have not been exposed in Bumps.  Interested users can modify
+<code class="xref py py-class docutils literal notranslate"><span class="pre">bumps.fitters.DEFit</span></code> and experiment with different crossover and
+mutation algorithms, and perhaps add them as command line options.</p>
+<p>Differential evolution is a robust directed search strategy.  Early in the
+search, when the population is disperse, the difference vectors are large
+and the search remains broad.  As the search progresses, more of the
+population goes into the valleys and eventually all the points end up in
+local minima.  Now the differences between random pairs will often be small
+and the search will become more localized.</p>
+<p>The population is initialized according to the prior probability distribution
+for each each parameter.  That is, if the parameter is bounded, it will use
+a uniform random number generate within the bounds.  If it is unbounded, it
+will use a uniform value in [0,1].  If the parameter corresponds to the result
+of a previous measurement with mean <span class="math notranslate nohighlight">\(\mu\)</span> and standard deviation <span class="math notranslate nohighlight">\(\sigma\)</span>,
+then the initial values will be pulled from a Gaussian random number generator.</p>
+<section id="id14">
+<h3>When to use<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h3>
+<p>Convergence with differential evolution will be slower, but more robust.</p>
+<p>Each update will evaluate <span class="math notranslate nohighlight">\(k\)</span> points in parallel, where <span class="math notranslate nohighlight">\(k\)</span> is the size
+of the population.</p>
+</section>
+<section id="id15">
+<h3>Options<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h3>
+<p><em>Steps</em> is the number of iterations.  Each step updates each member
+of the population.  The population size scales with the number of fitted
+parameters. Use <code class="docutils literal notranslate"><span class="pre">--steps=n</span></code> from the command line.</p>
+<p><em>Population</em> determines the size of the population.  The number of
+individuals, <span class="math notranslate nohighlight">\(k\)</span>, is equal to the number of fitted parameters times the
+population scale factor.  Use <code class="docutils literal notranslate"><span class="pre">--pop=k</span></code> from the command line.</p>
+<p><em>Crossover ratio</em> determines what proportion of the dimensions to update
+at each step.  Smaller values will likely lead to slower convergence, but
+more robust results.  Values must be between 0 and 1.  Use <code class="docutils literal notranslate"><span class="pre">--CR=v</span></code> from
+the command line.</p>
+<p><em>Scale</em> determines how much to scale each difference vector before adding
+it to the candidate point.  The selected mutation algorithm chooses a scale
+factor uniformly in <span class="math notranslate nohighlight">\([0,F]\)</span>.  Use <code class="docutils literal notranslate"><span class="pre">--F=v</span></code> from the command line.</p>
+<p><em>f(x) tolerance</em> and <em>x tolerance</em> are used to determine when the
+fit has reached the point where no significant improvement is expected.
+If the population is flat (that is, the minimum and maximum values are
+within tolerance) and tiny (that is, all the points are close to each
+other) then the fit will terminate.  Use <code class="docutils literal notranslate"><span class="pre">ftol=v</span></code> and <code class="docutils literal notranslate"><span class="pre">xtol=v</span></code> from the
+command line.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--fit=de</span></code> to select differential evolution from the command line.</p>
+</section>
+<section id="id16">
+<h3>References<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h3>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="storn1997" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id13">6</a><span class="fn-bracket">]</span></span>
+<p>Storn, R.; Price, K.
+<em>Journal of Global Optimization</em>
+1997, 11 (4), 341–359.
+DOI: <a class="reference external" href="http://dx.doi.org/10.1023/A:1008202821328">10.1023/A:1008202821328</a></p>
+</aside>
+</aside>
+</section>
+</section>
+<section id="dream">
+<span id="fit-dream"></span><h2>DREAM<a class="headerlink" href="#dream" title="Link to this heading">¶</a></h2>
+<img alt="DREAM option screen." class="align-left" src="../../../../_images/fit-dream.png" />
+<p>DREAM <a class="footnote-reference brackets" href="#vrugt2009" id="id17" role="doc-noteref"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></a> is a population based algorithm like differential evolution,
+but instead of only keeping individuals which improve each generation, it
+will sometimes keep individuals which get worse.  Although it is not
+fast and does not give the very best value for the function, we have
+found it to be a robust fitting engine which will give a good value given
+enough time.</p>
+<p>The progress of each individual in the population from generation to
+generation can considered a Markov chain, whose transition probability
+is equal to the probability of taking the step times the probability
+that it keeps the step based on the difference in value between the points.
+By including a purely random stepper with some probability, the detailed
+balance condition is preserved, and the Markov chain converges onto
+the underlying equilibrium distribution.  If the theory function represents
+the conditional probability of selecting each point in the parameter
+space, then the resulting chain is a random draw from the posterior
+distribution.</p>
+<p>This means that the DREAM algorithm can be used to determine the parameter
+uncertainties.  Unlike the hessian estimate at the minimum that is
+used to report uncertainties from the other fitters, the resulting
+uncertainty need not Gaussian.  Indeed, the resulting distribution can
+even be multi-modal.  Fits to measured data using theory functions that
+have symmetric solutions have shown all equivalent solutions with approximately
+equal probability.</p>
+<section id="id18">
+<h3>When to use<a class="headerlink" href="#id18" title="Link to this heading">¶</a></h3>
+<p>Use DREAM when you need a robust fitting algorithm.  It takes longer but
+it does an excellent job of exploring different minima and getting close
+to the global optimum.</p>
+<p>Use DREAM when you want a detailed analysis of the parameter uncertainty.</p>
+<p>Like differential evolution, DREAM will evaluate <span class="math notranslate nohighlight">\(k\)</span> points in parallel,
+where <span class="math notranslate nohighlight">\(k\)</span> is the size of the population.</p>
+</section>
+<section id="id19">
+<h3>Options<a class="headerlink" href="#id19" title="Link to this heading">¶</a></h3>
+<p><em>Samples</em> is the number of points to be drawn from the Markov chain.
+To estimate the 68% interval to two digits of precision, at least
+1e5 (or 100,000) samples are needed.  For the 95% interval, 1e6
+(or 1,000,000) samples are needed.  The default 1e4 samples
+gives a rough approximation of the uncertainty relatively quickly.
+Use <code class="docutils literal notranslate"><span class="pre">--samples=n</span></code> from the command line.</p>
+<p><em>Burn-in Steps</em> is the number of iterations to required for the Markov
+chain to converge to the equilibrium distribution.  If the fit ends
+early, the tail of the burn will be saved to the start of the steps.
+Use <code class="docutils literal notranslate"><span class="pre">--burn=n</span></code> from the command line.</p>
+<p><em>Population</em> determines the size of the population.  The number of
+individuals, <span class="math notranslate nohighlight">\(k\)</span>, is equal to the number of fitted parameters times the
+population scale factor.  Use <code class="docutils literal notranslate"><span class="pre">--pop=k</span></code> from the command line.</p>
+<p><em>Initializer</em> determines how the population will be initialized.
+The options are as follows:</p>
+<blockquote>
+<div><p><em>eps</em> (epsilon ball), in which the entire initial population is chosen
+at random from within a tiny hypersphere centered about the initial point</p>
+<p><em>lhs</em> (latin hypersquare), which chops the bounds within each dimension
+in <span class="math notranslate nohighlight">\(k\)</span> equal sized chunks where <span class="math notranslate nohighlight">\(k\)</span> is the size of the population and
+makes sure that each parameter has at least one value within each chunk
+across the population.</p>
+<p><em>cov</em> (covariance matrix), in which the uncertainty is estimated using
+the covariance matrix at the initial point, and points are selected
+at random from the corresponding Gaussian ellipsoid</p>
+<p><em>random</em> (uniform random), in which the points are selected at random
+within the bounds of the parameters</p>
+</div></blockquote>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--init=type</span></code> from the command line.</p>
+<p><em>Thinning</em> is the amount of thinning to use when collecting the
+population.  If the fit is somewhat stuck, with most steps not improving
+the fit, then you will need to thin the population to get proper
+statistics.  Use <code class="docutils literal notranslate"><span class="pre">--thin=k</span></code> from the command line.</p>
+<p><em>Convergence</em> gives a cutoff value <span class="math notranslate nohighlight">\(\alpha\)</span> for determining when
+the Markov chain has converged. The default is <code class="docutils literal notranslate"><span class="pre">--alpha=0.00</span></code> for no
+convergence tests. Various tests are used, such as comparing the distribution
+of points in the first part of the chain to the last part and looking for
+trends in the log-likelihood values. You may need to use smaller <span class="math notranslate nohighlight">\(\alpha\)</span> for
+shorter sequences (samples over variables times population) since the test
+statistics will have higher variance. Convergence is tested every <span class="math notranslate nohighlight">\(n\)</span> steps.</p>
+<p><em>Outliers</em> is the test to use to check for outlier chains. Default is
+<code class="docutils literal notranslate"><span class="pre">--outliers=none</span></code> for no outlier test. Options are <em>iqr</em>, which uses
+the inter-quartile range on the likelihoods, <em>grubbs</em>, which uses a t-test
+on the likelihoods, and <em>mahal</em> which looks at the distance from the best
+chain in parameter space. Outlier removal occurs every <span class="math notranslate nohighlight">\(2n\)</span> steps where
+<span class="math notranslate nohighlight">\(n\)</span> is #samples/(#pars #pop), or when the convergence test indicates the
+chains are stable. Outliers are replaced by non-outlier chains at random.
+These new chains need at least <span class="math notranslate nohighlight">\(n\)</span> steps to mix before being used. If the
+MCMC exploration stops due to time, some of the chains may not be properly
+mixed.</p>
+<p><em>Burn-in trim</em> is used to clear spurious samples from the Markov chains.
+If <code class="docutils literal notranslate"><span class="pre">--trim=true</span></code> then Bumps finds the “burn point” after which the
+chains appear to have converged. Samples before this point are ignored
+when computed statistics and making plots. The trimmed samples are still
+written to the MCMC output files so they will be available when the fit
+is resumed.</p>
+<p><em>Calculate entropy</em>, if true, computes the entropy for the fit.  This is
+an estimate of the amount of information in the data.  Use <code class="docutils literal notranslate"><span class="pre">--entropy=method</span></code>
+from the command line, where method is one of <em>llf</em> (default), <em>gmm</em>, <em>mvn</em>
+or <em>wnn</em>. See below for details.</p>
+<p><em>Steps</em>, if not zero, determines the number of iterations to use for
+drawing samples after burn in. Each iteration updates the full population,
+which is (population x number of fitted parameters) points. This option
+is available for compatibility; it is more useful to set the number of
+samples directly.  Use <code class="docutils literal notranslate"><span class="pre">--steps=n</span></code> from the command line.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--fit=dream</span></code> to select DREAM from the command line. Consider using
+<code class="docutils literal notranslate"><span class="pre">--parallel</span></code> and <code class="docutils literal notranslate"><span class="pre">--checkpoint</span></code> as well. When running in a batch queue,
+add <code class="docutils literal notranslate"><span class="pre">--batch</span></code> and use <code class="docutils literal notranslate"><span class="pre">--mpi</span></code> rather than <code class="docutils literal notranslate"><span class="pre">--parallel</span></code>.</p>
+</section>
+<section id="output">
+<h3>Output<a class="headerlink" href="#output" title="Link to this heading">¶</a></h3>
+<p>DREAM produces a number of different outputs, and there are a number of
+things to check before using its reported uncertainty values.  The main
+goal of selecting <code class="docutils literal notranslate"><span class="pre">--burn=n</span></code> is to wait long enough to reach the
+equilibrium distribution.</p>
+<figure class="align-default" id="id36">
+<img alt="example of incomplete fit" src="../../../../_images/dream-incomplete.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 142 </span><span class="caption-text">This DREAM fit is incomplete, as can be seen on all four plots.  The
+<em>Convergence</em> plot is still decreasing, the <em>Parameter Trace</em> plot shows a
+reduction in the mixing of Markov chain values, the <em>Correlation</em> plots are
+fuzzy and mostly empty, or show obvious correlations, and the <em>Uncertainty</em>
+plot shows black histograms (indicating that there are a few stray values
+far away from the best) whilst the green maximum likelihood spikes do not
+match the histogram (indicating that the region around the best value has
+not been adequately explored).</span><a class="headerlink" href="#id36" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id37">
+<img alt="example of a completed fit" src="../../../../_images/dream-complete.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 143 </span><span class="caption-text">This DREAM fit completed successfully.  The <em>Convergence</em> plot is flat,
+the <em>Parameter Trace</em> plot is flat and messy indicating good mixing of the
+Markov chain values, the <em>Correlation</em> plots show nice defined blobs (with a
+bit of correlation between the <em>M1.radius</em> parameter and the <em>M1.radius.
+width</em> parameter), and the uncertainty plots show a narrow range of -log(P)
+values in the mostly brown histograms well-matched to the green constrained
+maximum likelihood line.</span><a class="headerlink" href="#id37" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>For each parameter in the fit, DREAM finds the mean, median and best value,
+as well as the 68% and 95% credible intervals.  The mean value is
+defined as <span class="math notranslate nohighlight">\(\int x P(x) dx\)</span>, which is just the expected value of the
+probability distribution for the parameter.  The median value is the 50%
+point in the probability distribution, and the best value is the maximum
+likelihood value seen in the random walk.  The credible intervals are the
+central intervals which capture 68% and 95% of the parameter values
+respectively.  You need approximately 100,000 samples to get two digits of
+precision on the 68% interval, and 1,000,000 samples for the 95%
+interval. <a class="footnote-reference brackets" href="#jcgm2008" id="id20" role="doc-noteref"><span class="fn-bracket">[</span>9<span class="fn-bracket">]</span></a></p>
+<table class="docutils align-default" id="id38">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">Example fit output</span><a class="headerlink" href="#id38" title="Link to this table">¶</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>#</p></th>
+<th class="head"><p>Parameter</p></th>
+<th class="head"><p>mean</p></th>
+<th class="head"><p>median</p></th>
+<th class="head"><p>best</p></th>
+<th class="head"><p>[   68% interval]</p></th>
+<th class="head"><p>[   95% interval]</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>M1.background</p></td>
+<td><p>0.059925(41)</p></td>
+<td><p>0.059924</p></td>
+<td><p>0.059922</p></td>
+<td><p>[0.05988 0.05997]</p></td>
+<td><p>[0.05985 0.06000]</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>M1.radius</p></td>
+<td><p>2345.3(15)</p></td>
+<td><p>2345.234</p></td>
+<td><p>2345.174</p></td>
+<td><p>[2343.83 2346.74]</p></td>
+<td><p>[2342.36 2348.29]</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>M1.radius.width</p></td>
+<td><p>0.00775(41)</p></td>
+<td><p>0.00774</p></td>
+<td><p>0.00777</p></td>
+<td><p>[ 0.0074  0.0081]</p></td>
+<td><p>[ 0.0070  0.0086]</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>M1.scale</p></td>
+<td><p>0.21722(20)</p></td>
+<td><p>0.217218</p></td>
+<td><p>0.217244</p></td>
+<td><p>[0.21702 0.21743]</p></td>
+<td><p>[0.21681 0.21761]</p></td>
+</tr>
+</tbody>
+</table>
+<p>The <em>Convergence</em> plot shows the range of <span class="math notranslate nohighlight">\(\chi^2\)</span> values in the population
+for each iteration.  The band shows the 68% of values around the median, and
+the solid line shows the minimum value.  If the distribution has reached
+equilibrium, then convergence graph should be roughly flat, with little
+change in the minimum value throughout the graph.  If there is no convergence,
+then the remaining plots don’t mean much.</p>
+<p>The <em>Correlations</em> plot shows cross correlation between each pair of
+parameters.  If the parameters are completely uncorrelated then the boxes
+should contain circles.  Diagonals indicate strong correlation.  Square
+blocks indicate that the fit is not sensitive to one of the parameters.
+The range plotted on the correlation plot is determined by the 95% interval
+of the data.  The individual correlation plots are too small to show the
+range of values for the parameters.  These can instead be read from the
+<em>Uncertainty</em> plot for each parameter, which covers the same range of values
+and indicates 68% and 95% intervals.  If there are some chains that are
+wandering around away from the minimum, then the plot will look fuzzy, and
+not have a nice blob in the center.  If a correlation plot has multiple blobs,
+then there are multiple minima in your problem space, usually because there
+are symmetries in the problem definition.  For example, a model fitting
+<span class="math notranslate nohighlight">\(x + a^2\)</span> will have identical solutions for <span class="math notranslate nohighlight">\(\pm\,a\)</span>.</p>
+<p>The <em>Uncertainty</em> plot shows histograms for each fitted parameter generated
+from the values for that parameter across all chains.  Within each histogram
+bar the values are sorted and displayed as a gradient from black to copper,
+with black values having the lowest <span class="math notranslate nohighlight">\(\chi^2\)</span> and copper values having the
+highest.  The resulting histogram should be dark brown, with a black hump
+in the center and light brown tips.  If there are large lumps of light brown,
+or excessive black then its likely that the optimizer did not converge.  The
+green line over the histogram shows the best value seen within each
+histogram bin (the maximum likelihood given <span class="math notranslate nohighlight">\(p_k == x\)</span>).
+With enough samples and proper convergence, it should roughly follow the
+outline of the histogram.  The yellow band in the center of the plot
+represents the 68% interval for the data.  The histogram cuts off at 95%.
+These values along with the median are shown as labels along the x axis.
+The green asterisk represents the best value, the green <em>E</em> the mean value
+and the vertical green line the median value.  If the fit is not sensitive
+to a parameter, or if two parameters are strongly correlated, the parameter
+histogram will show a box rather than a hump.  Spiky shapes (either in the
+histogram or the maximum likelihood line) indicate lack of convergence or
+maybe not enough steps.  A chopped histograms indicates that the range for
+that parameter is too small.</p>
+<p>The <em>Parameter Trace</em> plot is diagnostic for models which have poor mixing.
+In this cases no matter how the parameter values are changing, they are
+landing on much worse values for the <span class="math notranslate nohighlight">\(\chi^2\)</span>.  This can happen if the
+problem is highly constrained with many tight and twisty values.</p>
+<p>The <em>Data and Theory</em> plot should show theory and data lining up pretty well,
+with the theory overlaying about 2/3 of the error bars on the data
+(1-<span class="math notranslate nohighlight">\(\sigma\)</span> = 68%).  The <em>Residuals</em> plot shows the difference between
+theory and data divided by uncertainty.  The residuals should be 2/3 within
+[-1, 1], They should not show any structure, such as humps where the theory
+misses the data for long stretches.  This indicates some feature missing
+from the model, or a lack of convergence to the best model.</p>
+<p>If entropy is requested, then Bumps will show the total number of bits of
+information in the fit, where entropy is defined as:</p>
+<p>Since we already have a sample from the posterior distribution <span class="math notranslate nohighlight">\(p(\Theta)\)</span>
+the Monte Carlo integral should be <span class="math notranslate nohighlight">\(S \approx \sum_{k} \log_2 p(\theta_k)\)</span>.
+However, we do not know <span class="math notranslate nohighlight">\(p(\theta_k)\)</span>, especially when we are integrating
+over nuisance parameters and only computing entropy for the parameters of
+interest. There are numerous methods in the literature for performing
+this calculation, and we have implemented the following:</p>
+<ul class="simple">
+<li><p><em>gmm</em> fits the MCMC sample to a Gaussian mixture model (GMM) and
+then estimates the entropy of the GMM through Monte Carlo integration.</p></li>
+<li><p><em>llf</em> finds the average ratio between the unnormalized negative log
+likelihood (NLLF) and a kernel density estimate (sklearn <em>KernelDensity</em>
+with default options), then estimates the entropy from the normalized
+likelihood through Monte Carlo integration. <a class="footnote-reference brackets" href="#kramer2010" id="id21" role="doc-noteref"><span class="fn-bracket">[</span>8<span class="fn-bracket">]</span></a> This technique
+will not work for marginal likelihood estimates.</p></li>
+<li><p><em>mvn</em> fits the MCMC sample to a multivariate Gaussian and returns the
+entropy of that Gaussian. This is fast and accurate when the sample is
+well behaved (i.e., the uncertainty distribution is approximately
+Gaussian).</p></li>
+<li><p><em>wnn</em> estimates entropy from nearest-neighbour distances in the
+sample. <a class="footnote-reference brackets" href="#berrett2019" id="id22" role="doc-noteref"><span class="fn-bracket">[</span>10<span class="fn-bracket">]</span></a></p></li>
+</ul>
+<p>Using entropy and simulation we hope to be able to make experiment
+planning decisions in a way that maximizes information, by estimating
+whether it is better to measure more precisely or to measure different
+but related values and fit them with shared parameters.</p>
+</section>
+<section id="id23">
+<h3>References<a class="headerlink" href="#id23" title="Link to this heading">¶</a></h3>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="vrugt2009" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id17">7</a><span class="fn-bracket">]</span></span>
+<p>Vrugt, J. A.; Ter Braak, C. J. F.; Diks, C. G. H.; Robinson, B. A.;
+Hyman, J. M.; Higdon, D.
+International Journal of Nonlinear Sciences and Numerical Simulation,
+2009, 10 (3), 273–290.
+DOI: <a class="reference external" href="http://dx.doi.org/10.1515/IJNSNS.2009.10.3.273">10.1515/IJNSNS.2009.10.3.273</a></p>
+</aside>
+<aside class="footnote brackets" id="kramer2010" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id21">8</a><span class="fn-bracket">]</span></span>
+<p>Kramer, A.; Hasenauer, J.; Allgower, F.; Radde, N.
+<em>In 2010 IEEE International Conference on Control Applications (CCA)</em>
+2010; pp 493–498.
+DOI: <a class="reference external" href="http://dx.doi.org/10.1109/CCA.2010.5611198">10.1109/CCA.2010.5611198</a></p>
+</aside>
+<aside class="footnote brackets" id="jcgm2008" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id20">9</a><span class="fn-bracket">]</span></span>
+<p>JCGM.
+<em>Evaluation of measurement data — Supplement 1 to the “Guide to the
+expression of uncertainty in measurement” — Propagation of distributions
+using a Monte Carlo method</em>; Joint Committee for Guides in Metrology,
+JCGM 101:2008; Geneva, Switzerland, 2008; p 90.
+<a class="reference external" href="http://www.bipm.org/utils/common/documents/jcgm/JCGM_101_2008_E.pdf">http://www.bipm.org/utils/common/documents/jcgm/JCGM_101_2008_E.pdf</a></p>
+</aside>
+<aside class="footnote brackets" id="berrett2019" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id22">10</a><span class="fn-bracket">]</span></span>
+<p>Berrett, T. B.; Samworth, R.J.; Yuan, M.;
+<em>Efficient multivariate entropy estimation via k-nearest neighbour distances.</em>
+Annals of Statistics 2019, 47 (1), 288-318.
+DOI: <a class="reference external" href="http://dx.doi.org/10.1214/18-AOS1688">10.1214/18-AOS1688</a></p>
+</aside>
+</aside>
+</section>
+</section>
+<section id="particle-swarm">
+<span id="fit-ps"></span><h2>Particle Swarm<a class="headerlink" href="#particle-swarm" title="Link to this heading">¶</a></h2>
+<p>Inspired by bird flocking behaviour, the particle swarm <a class="footnote-reference brackets" href="#kennedy1995" id="id24" role="doc-noteref"><span class="fn-bracket">[</span>11<span class="fn-bracket">]</span></a> algorithm
+is a population-based method which updates an individual according to its
+momentum and a force toward the current best fit parameter values.  We
+did not explore variations of this algorithm in any detail.</p>
+<section id="id25">
+<h3>When to use<a class="headerlink" href="#id25" title="Link to this heading">¶</a></h3>
+<p>Particle swarm performed well enough in our low dimensional test problems,
+but made little progress when more fit parameters were added.</p>
+<p>The population updates can run in parallel, but the tiny population size
+limits the amount of parallelism.</p>
+</section>
+<section id="id26">
+<h3>Options<a class="headerlink" href="#id26" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">--steps=n</span></code> is the number of iterations.  Each step updates each member
+of the population.  The population size scales with the number of fitted
+parameters.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--pop=k</span></code> determines the size of the population.  The number of
+individuals, <span class="math notranslate nohighlight">\(k\)</span>, is equal to the number of fitted parameters times the
+population scale factor.  The default scale factor is 1.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--fit=ps</span></code> to select particle swarm from the command line.</p>
+<p>Add a few more lines</p>
+</section>
+<section id="id27">
+<h3>References<a class="headerlink" href="#id27" title="Link to this heading">¶</a></h3>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="kennedy1995" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id24">11</a><span class="fn-bracket">]</span></span>
+<p>Kennedy, J.; Eberhart, R.
+Particle Swarm Optimization
+<em>Proceedings of IEEE International Conference on Neural Networks. IV.</em>
+1995; pp 1942–1948.
+DOI: <a class="reference external" href="http://dx.doi.org/810.1109/ICNN.1995.488968">10.1109/ICNN.1995.48896</a></p>
+</aside>
+</aside>
+</section>
+</section>
+<section id="random-lines">
+<span id="fit-rl"></span><h2>Random Lines<a class="headerlink" href="#random-lines" title="Link to this heading">¶</a></h2>
+<p>Most of the population based algorithms ignore the value of the function when
+choosing the points in the next iteration.  Random lines <a class="footnote-reference brackets" href="#sahin2013" id="id28" role="doc-noteref"><span class="fn-bracket">[</span>12<span class="fn-bracket">]</span></a> is a new
+style of algorithm which fits a quadratic model to a selection from the
+population, and uses that model to propose a new point in the next
+generation of the population.  The hope is that the method will inherit
+the robustness of the population based algorithms as well as the rapid
+convergence of the newton descent algorithms.</p>
+<section id="id29">
+<h3>When to use<a class="headerlink" href="#id29" title="Link to this heading">¶</a></h3>
+<p>Random lines works very well for some of our test problems, showing
+rapid convergence to the optimum, but on other problems it makes
+very little progress.</p>
+<p>The population updates can run in parallel.</p>
+</section>
+<section id="id30">
+<h3>Options<a class="headerlink" href="#id30" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">--steps=n</span></code> is the number of iterations.  Each step updates each member
+of the population.  The population size scales with the number of fitted
+parameters.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--pop=k</span></code> determines the size of the population.  The number of
+individuals, <span class="math notranslate nohighlight">\(k\)</span>, is equal to the number of fitted parameters times the
+population scale factor.  The default scale factor is 0.5.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--CR=v</span></code> is the crossover ratio, determining what proportion of the
+dimensions to update at each step.  Values must be between 0 and 1.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--starts=n</span></code> tells the optimizer to restart a given number of times.
+Each time it restarts it uses a random starting point.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--keep_best</span></code> uses a value near the previous minimum when restarting
+instead of using a random value within the parameter bounds.  This option is
+not available in the options dialog.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--fit=rl</span></code> to select random lines from the command line.</p>
+</section>
+<section id="id31">
+<h3>References<a class="headerlink" href="#id31" title="Link to this heading">¶</a></h3>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="sahin2013" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id28">12</a><span class="fn-bracket">]</span></span>
+<p>Sahin, I.
+<em>An International Journal of Optimization and Control:  Theories &amp; Applications (IJOCTA)</em>
+2013, 3 (2), 111–119.</p>
+</aside>
+</aside>
+</section>
+</section>
+<section id="parallel-tempering">
+<span id="fit-pt"></span><h2>Parallel Tempering<a class="headerlink" href="#parallel-tempering" title="Link to this heading">¶</a></h2>
+<p>Parallel tempering <a class="footnote-reference brackets" href="#swendsen1986" id="id32" role="doc-noteref"><span class="fn-bracket">[</span>13<span class="fn-bracket">]</span></a> is an MCMC algorithm for uncertainty analysis.
+This version runs at multiple temperatures simultaneously, with chains at high
+temperature able to more easily jump between minima and chains at low
+temperature to fully explore the minima.  Like <a class="reference internal" href="#fit-dream"><span class="std std-ref">DREAM</span></a> it has a
+differential evolution stepper, but this version uses the chain history
+as the population rather than maintaining a population at each temperature.</p>
+<p>This is an experimental algorithm which does not yet perform well.</p>
+<section id="id33">
+<h3>When to use<a class="headerlink" href="#id33" title="Link to this heading">¶</a></h3>
+<p>When complete, parallel tempering should be used for problems with widely
+spaced local minima which dream cannot fit.</p>
+</section>
+<section id="id34">
+<h3>Options<a class="headerlink" href="#id34" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">--steps=n</span></code> is the number of iterations to include in the Markov
+chain.  Each iteration updates the full population.  The population size
+scales with the number of fitted parameters.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--burn=n</span></code> is the number of iterations to required for the Markov
+chain to converge to the equilibrium distribution.  If the fit ends
+early, the tail of the burn will be saved to the start of the steps.</p>
+<p><code class="docutils literal notranslate"><span class="pre">--CR=v</span></code> is the differential evolution crossover ratio to use when
+computing step size and direction.  Use a small value to step through the
+dimensions one at a time, or a large value to step through all at once.</p>
+<p><code class="docutils literal notranslate"><span class="pre">-nT=k</span></code>, <code class="docutils literal notranslate"><span class="pre">-Tmin=v</span></code> and <code class="docutils literal notranslate"><span class="pre">--Tmax=v</span></code> specify a log-spaced initial
+distribution of temperatures.  The default is 25 points between
+0.1 and 10.  <a class="reference internal" href="#fit-dream"><span class="std std-ref">DREAM</span></a> runs at a fixed temperature of 1.0.</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">--fit=pt</span></code> to select parallel tempering from the command line.</p>
+</section>
+<section id="id35">
+<h3>References<a class="headerlink" href="#id35" title="Link to this heading">¶</a></h3>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="swendsen1986" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id32">13</a><span class="fn-bracket">]</span></span>
+<p>Swendsen, R. H.; Wang J. S.
+Replica Monte Carlo simulation of spin glasses
+<em>Physical Review Letters</em>
+1986, 57, 2607-2609</p>
+</aside>
+</aside>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Optimizer Selection</a><ul>
+<li><a class="reference internal" href="#levenberg-marquardt">Levenberg-Marquardt</a><ul>
+<li><a class="reference internal" href="#when-to-use">When to use</a></li>
+<li><a class="reference internal" href="#options">Options</a></li>
+<li><a class="reference internal" href="#notes">Notes</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nelder-mead-simplex">Nelder-Mead Simplex</a><ul>
+<li><a class="reference internal" href="#id6">When to use</a></li>
+<li><a class="reference internal" href="#id7">Options</a></li>
+<li><a class="reference internal" href="#id8">References</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#quasi-newton-bfgs">Quasi-Newton BFGS</a><ul>
+<li><a class="reference internal" href="#id10">When to use</a></li>
+<li><a class="reference internal" href="#id11">Options</a></li>
+<li><a class="reference internal" href="#id12">References</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#differential-evolution">Differential Evolution</a><ul>
+<li><a class="reference internal" href="#id14">When to use</a></li>
+<li><a class="reference internal" href="#id15">Options</a></li>
+<li><a class="reference internal" href="#id16">References</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#dream">DREAM</a><ul>
+<li><a class="reference internal" href="#id18">When to use</a></li>
+<li><a class="reference internal" href="#id19">Options</a></li>
+<li><a class="reference internal" href="#output">Output</a></li>
+<li><a class="reference internal" href="#id23">References</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#particle-swarm">Particle Swarm</a><ul>
+<li><a class="reference internal" href="#id25">When to use</a></li>
+<li><a class="reference internal" href="#id26">Options</a></li>
+<li><a class="reference internal" href="#id27">References</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#random-lines">Random Lines</a><ul>
+<li><a class="reference internal" href="#id29">When to use</a></li>
+<li><a class="reference internal" href="#id30">Options</a></li>
+<li><a class="reference internal" href="#id31">References</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#parallel-tempering">Parallel Tempering</a><ul>
+<li><a class="reference internal" href="#id33">When to use</a></li>
+<li><a class="reference internal" href="#id34">Options</a></li>
+<li><a class="reference internal" href="#id35">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="magnetism/magnetism.html"
+                          title="previous chapter">Polarisation/Magnetic Scattering</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="sesans/sans_to_sesans.html"
+                          title="next chapter">SANS to SESANS conversion</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/user/qtgui/Perspectives/Fitting/optimizer.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sesans/sans_to_sesans.html" title="SANS to SESANS conversion"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="magnetism/magnetism.html" title="Polarisation/Magnetic Scattering"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../analysis.html" >Fitting &amp; Other Analyses</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="fitting.html" >Fitting Documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Optimizer Selection</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

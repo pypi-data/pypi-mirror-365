@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>mass_surface_fractal &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="mono_gauss_coil" href="mono_gauss_coil.html" />
+    <link rel="prev" title="mass_fractal" href="mass_fractal.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="mono_gauss_coil.html" title="mono_gauss_coil"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="mass_fractal.html" title="mass_fractal"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-independent.html" accesskey="U">Shape-Independent Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">mass_surface_fractal</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="mass-surface-fractal">
+<span id="id1"></span><h1>mass_surface_fractal<a class="headerlink" href="#mass-surface-fractal" title="Link to this heading">¶</a></h1>
+<p>Mass Surface Fractal model</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>scale</p></td>
+<td><p>Scale factor or Volume fraction</p></td>
+<td><p>None</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>background</p></td>
+<td><p>Source background</p></td>
+<td><p>cm<sup>-1</sup></p></td>
+<td><p>0.001</p></td>
+</tr>
+<tr class="row-even"><td><p>fractal_dim_mass</p></td>
+<td><p>Mass fractal dimension</p></td>
+<td><p>None</p></td>
+<td><p>1.8</p></td>
+</tr>
+<tr class="row-odd"><td><p>fractal_dim_surf</p></td>
+<td><p>Surface fractal dimension</p></td>
+<td><p>None</p></td>
+<td><p>2.3</p></td>
+</tr>
+<tr class="row-even"><td><p>rg_cluster</p></td>
+<td><p>Cluster radius of gyration</p></td>
+<td><p>Å</p></td>
+<td><p>4000</p></td>
+</tr>
+<tr class="row-odd"><td><p>rg_primary</p></td>
+<td><p>Primary particle radius of gyration</p></td>
+<td><p>Å</p></td>
+<td><p>86.7</p></td>
+</tr>
+</tbody>
+</table>
+<p>The returned value is scaled to units of cm<sup>-1</sup> sr<sup>-1</sup>, absolute scale.</p>
+<p>A number of natural and commercial processes form high-surface area materials
+as a result of the vapour-phase aggregation of primary particles.
+Examples of such materials include soots, aerosols, and fume or pyrogenic
+silicas. These are all characterised by cluster mass distributions (sometimes
+also cluster size distributions) and internal surfaces that are fractal in
+nature. The scattering from such materials displays two distinct breaks in
+log-log representation, corresponding to the radius-of-gyration of the primary
+particles, <span class="math notranslate nohighlight">\(rg\)</span>, and the radius-of-gyration of the clusters (aggregates),
+<span class="math notranslate nohighlight">\(Rg\)</span>. Between these boundaries the scattering follows a power law related to
+the mass fractal dimension, <span class="math notranslate nohighlight">\(Dm\)</span>, whilst above the high-Q boundary the
+scattering follows a power law related to the surface fractal dimension of
+the primary particles, <span class="math notranslate nohighlight">\(Ds\)</span>.</p>
+<p><strong>Definition</strong></p>
+<p>The scattered intensity I(q) is calculated using a modified
+Ornstein-Zernicke equation</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}I(q) &amp;= \text{scale} \times P(q) + \text{background} \\
+P(q) &amp;= \left\{ \left[ 1+(q^2a)\right]^{D_m/2} \times
+               \left[ 1+(q^2b)\right]^{(6-D_s-D_m)/2}
+       \right\}^{-1} \\
+a &amp;= R_{g}^2/(3D_m/2) \\
+b &amp;= r_{g}^2/[-3(D_s+D_m-6)/2] \\
+\text{scale} &amp;= \text{scale factor}
+    \times NV^2 (\rho_\text{particle} - \rho_\text{solvent})^2\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(R_g\)</span> is the size of the cluster, <span class="math notranslate nohighlight">\(r_g\)</span> is the size of the primary
+particle, <span class="math notranslate nohighlight">\(D_s\)</span> is the surface fractal dimension, <span class="math notranslate nohighlight">\(D_m\)</span> is the mass fractal
+dimension, <span class="math notranslate nohighlight">\(\rho_\text{solvent}\)</span> is the scattering length density of the
+solvent, and <span class="math notranslate nohighlight">\(\rho_\text{particle}\)</span> is the scattering length density of
+particles.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The surface ( <span class="math notranslate nohighlight">\(D_s\)</span> ) and mass ( <span class="math notranslate nohighlight">\(D_m\)</span> ) fractal dimensions are only
+valid if <span class="math notranslate nohighlight">\(0 &lt; surface\_dim &lt; 6\)</span>, <span class="math notranslate nohighlight">\(0 &lt; mass\_dim &lt; 6\)</span>, and
+<span class="math notranslate nohighlight">\((surface\_dim + mass\_dim ) &lt; 6\)</span>.
+Older versions of sasview may have the default primary particle radius
+larger than the cluster radius, this was an error, also present in the
+Schmidt review paper below. The primary particle should be the smaller
+as described in the original Hurd, et al., who also point out that
+polydispersity in the primary particle sizes may affect their
+apparent surface fractal dimension.</p>
+</div>
+<figure class="align-default" id="id2">
+<img alt="../../_images/mass_surface_fractal_autogenfig.png" src="../../_images/mass_surface_fractal_autogenfig.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 114 </span><span class="caption-text">1D plot corresponding to the default parameters of the model.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Source</strong></p>
+<p><a class="reference download internal" download="" href="../../_downloads/f781fd99cc688a3cd92fe61e10592e6f/mass_surface_fractal.py"><code class="xref download docutils literal notranslate"><span class="pre">mass_surface_fractal.py</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/2a28820bb7420799cc31763fe0b7f2b7/mass_surface_fractal.c"><code class="xref download docutils literal notranslate"><span class="pre">mass_surface_fractal.c</span></code></a></p>
+<p><strong>References</strong></p>
+<ol class="arabic simple">
+<li><p>P Schmidt, <em>J Appl. Cryst.</em>, 24 (1991) 414-435 Equation(19)</p></li>
+<li><p>A J Hurd, D W Schaefer, J E Martin, <em>Phys. Rev. A</em>,
+35 (1987) 2361-2364 Equation(2)</p></li>
+</ol>
+<p><strong>Authorship and Verification</strong></p>
+<ul class="simple">
+<li><p><strong>Author:</strong> Piotr Rozyczko <strong>Date:</strong> Jan 20, 2016</p></li>
+<li><p><strong>Last Modified by:</strong></p></li>
+<li><p><strong>Last Reviewed by:</strong> Richard Heenan <strong>Date:</strong> May 30, 2018</p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="mass_fractal.html"
+                          title="previous chapter">mass_fractal</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="mono_gauss_coil.html"
+                          title="next chapter">mono_gauss_coil</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user/models/mass_surface_fractal.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="mono_gauss_coil.html" title="mono_gauss_coil"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="mass_fractal.html" title="mass_fractal"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-independent.html" >Shape-Independent Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">mass_surface_fractal</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>lamellar_stack_caille &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="lamellar_stack_paracrystal" href="lamellar_stack_paracrystal.html" />
+    <link rel="prev" title="lamellar_hg_stack_caille" href="lamellar_hg_stack_caille.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="lamellar_stack_paracrystal.html" title="lamellar_stack_paracrystal"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="lamellar_hg_stack_caille.html" title="lamellar_hg_stack_caille"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-lamellae.html" accesskey="U">Lamellae Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">lamellar_stack_caille</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="lamellar-stack-caille">
+<span id="id1"></span><h1>lamellar_stack_caille<a class="headerlink" href="#lamellar-stack-caille" title="Link to this heading">¶</a></h1>
+<p>Random lamellar sheet with Caille structure factor</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>scale</p></td>
+<td><p>Scale factor or Volume fraction</p></td>
+<td><p>None</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>background</p></td>
+<td><p>Source background</p></td>
+<td><p>cm<sup>-1</sup></p></td>
+<td><p>0.001</p></td>
+</tr>
+<tr class="row-even"><td><p>thickness</p></td>
+<td><p>sheet thickness</p></td>
+<td><p>Å</p></td>
+<td><p>30</p></td>
+</tr>
+<tr class="row-odd"><td><p>Nlayers</p></td>
+<td><p>Number of layers</p></td>
+<td><p>None</p></td>
+<td><p>20</p></td>
+</tr>
+<tr class="row-even"><td><p>d_spacing</p></td>
+<td><p>lamellar d-spacing of Caille S(Q)</p></td>
+<td><p>Å</p></td>
+<td><p>400</p></td>
+</tr>
+<tr class="row-odd"><td><p>Caille_parameter</p></td>
+<td><p>Caille parameter</p></td>
+<td><p>Å<sup>-2</sup></p></td>
+<td><p>0.1</p></td>
+</tr>
+<tr class="row-even"><td><p>sld</p></td>
+<td><p>layer scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>6.3</p></td>
+</tr>
+<tr class="row-odd"><td><p>sld_solvent</p></td>
+<td><p>Solvent scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+<p>The returned value is scaled to units of cm<sup>-1</sup> sr<sup>-1</sup>, absolute scale.</p>
+<p>This model provides the scattering intensity, <span class="math notranslate nohighlight">\(I(q) = P(q) S(q)\)</span>, for a
+lamellar phase where a random distribution in solution are assumed.
+Here a Caille <span class="math notranslate nohighlight">\(S(q)\)</span> is used for the lamellar stacks.</p>
+<p><strong>Definition</strong></p>
+<p>The scattering intensity <span class="math notranslate nohighlight">\(I(q)\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[I(q) = 2\pi \frac{P(q)S(q)}{q^2\delta }\]</div>
+<p>The form factor is</p>
+<div class="math notranslate nohighlight">
+\[P(q) = \frac{2\Delta\rho^2}{q^2}\left(1-\cos q\delta \right)\]</div>
+<p>and the structure factor is</p>
+<div class="math notranslate nohighlight">
+\[S(q) = 1 + 2 \sum_1^{N-1}\left(1-\frac{n}{N}\right)
+       \cos(qdn)\exp\left(-\frac{2q^2d^2\alpha(n)}{2}\right)\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\begin{align*}
+\alpha(n) &amp;= \frac{\eta_{cp}}{4\pi^2} \left(\ln(\pi n)+\gamma_E\right)
+          &amp;&amp; \\
+\gamma_E  &amp;= 0.5772156649
+          &amp;&amp; \text{Euler's constant} \\
+\eta_{cp} &amp;= \frac{q_o^2k_B T}{8\pi\sqrt{K\overline{B}}}
+          &amp;&amp; \text{Caille constant}
+\end{align*}</div><p>Here <span class="math notranslate nohighlight">\(d\)</span> = (repeat) d_spacing, <span class="math notranslate nohighlight">\(\delta\)</span> = bilayer thickness,
+the contrast <span class="math notranslate nohighlight">\(\Delta\rho\)</span> = SLD(headgroup) - SLD(solvent),
+<span class="math notranslate nohighlight">\(K\)</span> = smectic bending elasticity, <span class="math notranslate nohighlight">\(B\)</span> = compression modulus, and
+<span class="math notranslate nohighlight">\(N\)</span> = number of lamellar plates (<em>n_plates</em>).</p>
+<p>NB: <strong>When the Caille parameter is greater than approximately 0.8 to 1.0, the
+assumptions of the model are incorrect.</strong> And due to a complication of the
+model function, users are responsible for making sure that all the assumptions
+are handled accurately (see the original reference below for more details).</p>
+<p>Non-integer numbers of stacks are calculated as a linear combination of
+results for the next lower and higher values.</p>
+<p>The 2D scattering intensity is calculated in the same way as 1D, where the
+<span class="math notranslate nohighlight">\(q\)</span> vector is defined as</p>
+<div class="math notranslate nohighlight">
+\[q = \sqrt{q_x^2 + q_y^2}\]</div>
+<figure class="align-default" id="id2">
+<img alt="../../_images/lamellar_stack_caille_autogenfig.png" src="../../_images/lamellar_stack_caille_autogenfig.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 49 </span><span class="caption-text">1D plot corresponding to the default parameters of the model.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Source</strong></p>
+<p><a class="reference download internal" download="" href="../../_downloads/de1e985ae639e1ff5b0d173839926270/lamellar_stack_caille.py"><code class="xref download docutils literal notranslate"><span class="pre">lamellar_stack_caille.py</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/036c76a56def788d395ec40b81679468/lamellar_stack_caille.c"><code class="xref download docutils literal notranslate"><span class="pre">lamellar_stack_caille.c</span></code></a></p>
+<p><strong>References</strong></p>
+<ol class="arabic simple">
+<li><p>F Nallet, R Laversanne, and D Roux, <em>J. Phys. II France</em>, 3, (1993) 487-502</p></li>
+<li><p>J Berghausen, J Zipfel, P Lindner, W Richtering,
+<em>J. Phys. Chem. B</em>, 105, (2001) 11081-11088</p></li>
+</ol>
+<p><strong>Authorship and Verification</strong></p>
+<ul class="simple">
+<li><p><strong>Author:</strong></p></li>
+<li><p><strong>Last Modified by:</strong></p></li>
+<li><p><strong>Last Reviewed by:</strong></p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="lamellar_hg_stack_caille.html"
+                          title="previous chapter">lamellar_hg_stack_caille</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="lamellar_stack_paracrystal.html"
+                          title="next chapter">lamellar_stack_paracrystal</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user/models/lamellar_stack_caille.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="lamellar_stack_paracrystal.html" title="lamellar_stack_paracrystal"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="lamellar_hg_stack_caille.html" title="lamellar_hg_stack_caille"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-lamellae.html" >Lamellae Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">lamellar_stack_caille</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

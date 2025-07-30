@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Fitting &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Assessing Fit Quality" href="residuals_help.html" />
+    <link rel="prev" title="Fitting Documentation" href="fitting.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="residuals_help.html" title="Assessing Fit Quality"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="fitting.html" title="Fitting Documentation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../analysis.html" >Fitting &amp; Other Analyses</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="fitting.html" accesskey="U">Fitting Documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Fitting</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="fitting">
+<h1>Fitting<a class="headerlink" href="#fitting" title="Link to this heading">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If some code blocks are not readable, expand the documentation window</p>
+</div>
+<section id="preparing-to-fit-data">
+<h2>Preparing to fit data<a class="headerlink" href="#preparing-to-fit-data" title="Link to this heading">¶</a></h2>
+<p>To fit some data you must first load some data, activate one or more data sets,
+send those data sets to fitting, and select a model to fit to each data set.</p>
+<p>Instructions on how to load and activate data are in the section <a class="reference internal" href="../../MainWindow/data_explorer_help.html#loading-data"><span class="std std-ref">Loading Data</span></a>.</p>
+<p>SasView can fit data in one of three ways:</p>
+<ul class="simple">
+<li><p>in <em>Single</em> fit mode - individual data sets are fitted independently one-by-one</p></li>
+<li><p>in <em>Simultaneous</em> fit mode - multiple data sets are fitted simultaneously to
+the <em>same</em> model with/without constrained parameters (this might be useful,
+for example, if you have measured the same sample at different contrasts)</p></li>
+<li><p>in <em>Batch</em> fit mode - multiple data sets are fitted sequentially to the
+<em>same</em> model (this might be useful, for example, if you have performed
+a kinetic or time-resolved experiment and have <em>lots</em> of data sets!)</p></li>
+</ul>
+</section>
+<section id="selecting-a-model">
+<h2>Selecting a model<a class="headerlink" href="#selecting-a-model" title="Link to this heading">¶</a></h2>
+<p>The models in SasView are grouped into categories. By default these consist of:</p>
+<ul class="simple">
+<li><p><em>Cylinder</em> - cylindrical shapes (disc, right cylinder, cylinder with end-caps
+etc)</p></li>
+<li><p><em>Ellipsoid</em> - ellipsoidal shapes (oblate, prolate, core shell, etc)</p></li>
+<li><p><em>Parallelepiped</em> - as the name implies</p></li>
+<li><p><em>Sphere</em> - spheroidal shapes (sphere, core multishell, vesicle, etc)</p></li>
+<li><p><em>Lamellae</em> - lamellar shapes (lamellar, core shell lamellar, stacked
+lamellar, etc)</p></li>
+<li><p><em>Shape-Independent</em> - models describing structure in terms of density
+correlation functions, fractals, peaks, power laws, etc</p></li>
+<li><p><em>Paracrystal</em> - semi ordered structures (bcc, fcc, etc)</p></li>
+<li><p><em>Structure Factor</em> - S(Q) models</p></li>
+<li><p><em>Plugin Models</em> - User-created (custom/non-library) Python models</p></li>
+</ul>
+<p>Use the <em>Category</em> drop-down menu to chose a category of model, then select
+a model from the drop-down menu to the right. The “Show Plot” button on the
+bottom of the dialog will become active. If you click on it,
+a graph of the chosen model, calculated using default parameter values, will appear.
+The graph will update dynamically as the parameter values are changed.</p>
+<p>You can decide your own model categorizations using the <a class="reference internal" href="#category-manager"><span class="std std-ref">Category Manager</span></a>.</p>
+<p>Once you have selected a model you can read its help documentation by clicking
+on the <em>Help</em> button. Additionally, right clicking on the empty space in the
+parameter table will display a short description of the model.</p>
+<img alt="../../../../_images/descr_fig.png" src="../../../../_images/descr_fig.png" />
+<section id="interaction-models">
+<span id="interaction-and-mixture-models"></span><h3>Interaction Models<a class="headerlink" href="#interaction-models" title="Link to this heading">¶</a></h3>
+<p>Structure factor S(Q) models can be combined with many form factor P(Q) models
+in the other categories to generate what SasView calls “interaction models”
+(previously “product models”). The combination can be done by one of two
+methods, but how they behave is slightly different.</p>
+<p>The first, most straightforward, method is simply to use the S(Q) drop-down in
+the FitPage:</p>
+<figure class="align-default">
+<img alt="../../../../_images/p_and_s_buttons.png" src="../../../../_images/p_and_s_buttons.png" />
+</figure>
+<p>This example would then generate an interaction model with the following
+parameters:</p>
+<figure class="align-default">
+<img alt="../../../../_images/p_and_s_buttons_parameters.png" src="../../../../_images/p_and_s_buttons_parameters.png" />
+</figure>
+<p>The other method is to use the <a class="reference internal" href="#add-multiply-models"><span class="std std-ref">Add / Multiply Models</span></a> tool under Fitting menu:</p>
+<figure class="align-default">
+<img alt="../../../../_images/p_and_s_sum_model.png" src="../../../../_images/p_and_s_sum_model.png" />
+</figure>
+<p>This creates an interaction model with the following parameters:</p>
+<figure class="align-default">
+<img alt="../../../../_images/p_and_s_sum_model_parameters.png" src="../../../../_images/p_and_s_sum_model_parameters.png" />
+</figure>
+<p>As can be seen, the second method has produced an interaction model with an
+extra parameter: <em>radius_effective</em>. This is the radial distance determining the
+range of the <span class="math notranslate nohighlight">\(S(Q)\)</span> interaction and may, or may not, be the same as the
+<em>radius</em>, in this example, depending on the concentration of the system. In
+other systems, <em>radius_effective</em> may depend on the particle form (shape).
+SasView offers the flexibility to automatically constrain (tie) some of these
+parameters together so that, for example, <em>radius_effective</em> = <em>radius</em>. See
+<a class="reference internal" href="#add-multiply-models"><span class="std std-ref">Add / Multiply Models</span></a>.</p>
+<p>Also see <a class="reference internal" href="fitting_sq.html#interaction-models"><span class="std std-ref">Fitting Models with Structure Factors</span></a> for further information.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>SasView v5.0.4 incorporated a technical change to how the volume
+normalisation is incorporated in the interaction calculator that computes
+<span class="math notranslate nohighlight">\(I(Q)\)</span> from <span class="math notranslate nohighlight">\(P(Q) S(Q)\)</span>. The change will affect all future versions of
+SasView. For more details, please see the <a class="reference internal" href="../../../data/RELEASE.html#release-notes"><span class="std std-ref">Release Notes</span></a>.</p>
+</div>
+</section>
+<section id="mixture-models">
+<h3>Mixture Models<a class="headerlink" href="#mixture-models" title="Link to this heading">¶</a></h3>
+<p>SasView “mixture models” (previously called “sum models”) are summations of
+form factor models, or even of form factor models and an “interaction model”
+(see above), and are used to describe mixed-phase systems where the scattering
+is proportional to the volume fraction of each contributing phase.</p>
+</section>
+<section id="show-1d-2d">
+<h3>Show 1D/2D<a class="headerlink" href="#show-1d-2d" title="Link to this heading">¶</a></h3>
+<p>Models are normally fitted to 1D (ie, I(Q) vs Q) data sets, but some models in
+SasView can also be fitted to 2D (ie, I(Qx,Qy) vs Qx vs Qy) data sets.</p>
+<p><em>NB: Magnetic scattering can only be fitted in SasView in 2D.</em></p>
+<p>To activate 2D fitting mode, select the <em>2D view</em> checkbox on the <em>Fit Page</em>. To
+return to 1D fitting model, de-select the same checkbox.</p>
+</section>
+</section>
+<section id="category-manager">
+<span id="id1"></span><h2>Category Manager<a class="headerlink" href="#category-manager" title="Link to this heading">¶</a></h2>
+<p>To change the model categorizations, either choose <em>Category Manager</em> from the
+<em>View</em> option on the menu bar, or click on the <em>Modify</em> button on the <em>Fit Page</em>.</p>
+<img alt="../../../../_images/cat_fig0.png" src="../../../../_images/cat_fig0.png" />
+<p>The categorization of all models except the user supplied Plugin Models can be
+reassigned, added to, and removed using <em>Category Manager</em>. Models can also be
+hidden from view in the drop-down menus.</p>
+<img alt="../../../../_images/cat_fig1.png" src="../../../../_images/cat_fig1.png" />
+<section id="changing-category">
+<h3>Changing category<a class="headerlink" href="#changing-category" title="Link to this heading">¶</a></h3>
+<p>To change category, highlight a model in the list by left-clicking on its entry
+and then click the <em>Modify</em> button. Use the <em>Change Category</em> panel that appears
+to make the required changes.</p>
+<img alt="../../../../_images/cat_fig2.png" src="../../../../_images/cat_fig2.png" />
+<p>To create a category for the selected model, click the <em>Add</em> button. In order
+to delete a category, select the category name and click the <em>Remove</em>
+button. Then click <em>OK</em>.</p>
+</section>
+<section id="showing-hiding-models">
+<h3>Showing/hiding models<a class="headerlink" href="#showing-hiding-models" title="Link to this heading">¶</a></h3>
+<p>Use the <em>Enable / Disable All</em> buttons and the check boxes beside each model
+to select the models to show/hide. To apply the selection, click <em>OK</em>.</p>
+</section>
+</section>
+<section id="model-functions">
+<h2>Model Functions<a class="headerlink" href="#model-functions" title="Link to this heading">¶</a></h2>
+<p>For a complete list of all the library models available in SasView, see
+the <a class="reference external" href="models/index.html">Model Documentation</a> .</p>
+<p>It is also possible to add your own models.</p>
+</section>
+<section id="adding-your-own-models">
+<span id="id2"></span><h2>Adding your own Models<a class="headerlink" href="#adding-your-own-models" title="Link to this heading">¶</a></h2>
+<p>There are essentially four ways to generate new fitting models for SasView:</p>
+<ul class="simple">
+<li><p>Using the SasView <a class="reference internal" href="#add-multiply-models"><span class="std std-ref">Add / Multiply Models</span></a> dialog to sum/multiply
+together <em>two existing models</em> in the model library (best for
+beginners - provided the required models are in the model library!)</p></li>
+<li><p>Using the SasView <a class="reference internal" href="#new-plugin-model"><span class="std std-ref">Add Custom Model</span></a> helper dialog (aimed at those with
+little programming experience but works best for relatively simple models)</p></li>
+<li><p>By copying/editing an existing model (this can include models generated by
+the <em>New Plugin Model</em> dialog) in the <a class="reference internal" href="../../Calculators/python_shell_help.html#python-shell"><span class="std std-ref">Python Shell-Editor Tool</span></a> or
+<a class="reference internal" href="#model-editor"><span class="std std-ref">Model Editor</span></a> (suitable for all use cases)</p></li>
+<li><p>By writing a model from scratch outside of SasView (only recommended for
+experienced Python users)</p></li>
+</ul>
+<p>In the last two cases, please read the guidance on <a class="reference internal" href="plugin.html#writing-a-plugin"><span class="std std-ref">Writing a Plugin Model</span></a>
+before proceeding.</p>
+<p><strong>For your model to be found by SasView it must reside in the *~\.sasview\plugin_models* folder.</strong></p>
+</section>
+<section id="plugin-model-operations">
+<span id="id3"></span><h2>Plugin Model Operations<a class="headerlink" href="#plugin-model-operations" title="Link to this heading">¶</a></h2>
+<p>From the <em>Fitting</em> option in the menu bar, select one of the options:</p>
+<img alt="../../../../_images/edit_model_menu.png" src="../../../../_images/edit_model_menu.png" />
+<ul class="simple">
+<li><p><em>Add Custom Model</em> - to create a plugin model template with a helper dialog</p></li>
+<li><p><em>Edit Custom Model</em> - to edit a plugin model in an editor window</p></li>
+<li><p><em>Manage Custom Models</em> - to list available plugin models, add one you have
+written, duplicate a model, edit a model, or delete a model</p></li>
+<li><p><em>Add/Multiply Models</em> - to create a plugin model by summing/multiplying <em>two
+existing models</em> in the model library</p></li>
+</ul>
+<section id="add-custom-model">
+<span id="new-plugin-model"></span><h3>Add Custom Model<a class="headerlink" href="#add-custom-model" title="Link to this heading">¶</a></h3>
+<p>Relatively straightforward models can be programmed directly from the SasView
+GUI using the <em>Plugin Definition</em> Function.</p>
+<img alt="../../../../_images/new_model.png" src="../../../../_images/new_model.png" />
+<p>When using this feature, be aware that even if your code has errors, including
+syntax errors, a model file is still generated. When you then correct the errors
+and click ‘Apply’ again to re-compile you will get an error informing you that
+the model already exists if the ‘Overwrite’ box is not checked. In this case you
+will need to supply a new model function name. By default the ‘Overwrite’ box is
+not <em>checked</em>.</p>
+<p>Also note that the ‘Fit Parameters’ have been split into two sections: those
+which can be polydisperse (shape and orientation parameters) and those which are
+not (eg, scattering length densities).</p>
+<p>A model file generated by this option can be viewed and further modified using
+the <a class="reference internal" href="#model-editor"><span class="std std-ref">Model Editor</span></a>.</p>
+<p>A number of options are available to be directly set using check boxes.</p>
+<ul>
+<li><p>‘Generate Python model’: Specifies if a new python model file should be generated when clicking Apply. If the model has not been written, this cannot be unselected. <em>If the python model exists, unchecking this will only allow for a new C model file to be generated and any settings changed in the editor will be ignored.</em></p></li>
+<li><p>‘Generate C model template’: Specifies if a new C model <em>template</em> file should be generated when clicking Apply. <em>NOTE: This will only generate a template C file that includes instructions to enable it. A full C file generation is planned for a future release of SasView.</em> Default: Unchecked.</p></li>
+<li><p>‘Can use single precision floating point values’: An option to allow single precision calculations within your model. This allows for faster calculations with OpenCL. Default: Checked</p></li>
+<li><p>‘Can use OpenCL’: This allows a model to take advantage of GPU acceleration for faster calculations. Please note, this option requires a working C model. Default: Unchecked</p></li>
+<li><p>‘Has F(Q) Calculations’: This enables the model to use be used as a form factor and be coupled with a structure factor model. Default: Unchecked</p></li>
+<li><p>‘Can be used as structure factor’: Specify whether the new plugin can be used as a structure factor S(Q). If the this flag is set, two values are added to the parameter list. The model writer must add the parameters to the declarations of the functions Iq and Iqxy. Such a plugin should then be available in the S(Q) drop-down box on a FitPage (once a P(Q) model has been selected). Default: Unchecked:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">parameters</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="p">[</span><span class="s1">&#39;radius_effective&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">numpy</span><span class="o">.</span><span class="n">inf</span><span class="p">],</span> <span class="s1">&#39;volume&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="s1">&#39;volfraction&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">],</span>
+                <span class="p">[</span><span class="o">...</span><span class="p">],</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">Iq</span><span class="p">(</span><span class="n">x</span> <span class="p">,</span> <span class="n">radius_effective</span><span class="p">,</span> <span class="n">volfraction</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">Iqxy</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">radius_effective</span><span class="p">,</span> <span class="n">volfraction</span><span class="p">,</span> <span class="o">...</span><span class="p">):</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="add-multiply-models">
+<span id="id4"></span><h3>Add / Multiply Models<a class="headerlink" href="#add-multiply-models" title="Link to this heading">¶</a></h3>
+<p>Choosing the <em>Add/Multiply models</em> item from the <em>Fitting</em> menu</p>
+<img alt="../../../../_images/sum_multi_menu.png" src="../../../../_images/sum_multi_menu.png" />
+<p>displays the <em>Easy Add/Multiply Editor</em> dialog.</p>
+<img alt="../../../../_images/sum_model.png" src="../../../../_images/sum_model.png" />
+<p>This editor allows the creation of combined custom Plugin Models.
+Give the new model a name (which will appear in the list of plugin models on the <em>FitPage</em>)
+and brief description (to appear under the <em>Details</em> button on the <em>FitPage</em>). The model name must not contain
+spaces (use underscores to separate words if necessary) and if it is longer
+than ~25 characters the name will not display in full in the list of models.
+Now select two models, as model_1 (or p1) and model_2 (or p2), and the
+required operator, ‘+’, ‘*’, or ‘&#64;’  between them. Finally, click the <em>Apply</em> button
+to generate and test the model.</p>
+<p>The <cite>+</cite> operator sums the individual I(Q) calculations and introduces a third scale factor:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Plugin</span> <span class="n">Model</span> <span class="o">=</span> <span class="n">scale_factor</span> <span class="o">*</span> <span class="p">{(</span><span class="n">scale_1</span> <span class="o">*</span> <span class="n">model_1</span><span class="p">)</span> <span class="o">+/-</span> <span class="p">(</span><span class="n">scale_2</span> <span class="o">*</span> <span class="n">model_2</span><span class="p">)}</span> <span class="o">+</span> <span class="n">background</span>
+</pre></div>
+</div>
+<p>the <cite>*</cite> operator multiplies the individual I(Q) calculations:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Plugin</span> <span class="n">Model</span> <span class="o">=</span> <span class="n">scale_factor</span> <span class="o">*</span> <span class="p">(</span><span class="n">model1</span> <span class="o">*</span> <span class="n">model2</span><span class="p">)</span> <span class="o">+</span> <span class="n">background</span>
+</pre></div>
+</div>
+<p>and the <cite>&#64;</cite> operator treats the combination as a form factor [F(Q)] for model_1 and a structure factor [S(Q)] for
+model_2. The scale and background for F(Q) and S(Q) are set to 1 and 0 respectively and the combined model should
+support the beta approximation:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Plugin</span> <span class="n">Model</span> <span class="o">=</span> <span class="n">scale_factor</span> <span class="o">*</span> <span class="n">vol_fraction</span> <span class="o">*</span> <span class="o">&lt;</span><span class="n">FF</span><span class="o">&gt;</span> <span class="o">*</span> <span class="n">S</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span> <span class="o">+</span> <span class="n">background</span> <span class="p">::</span> <span class="n">No</span> <span class="n">beta</span>
+<span class="n">Plugin</span> <span class="n">Model</span> <span class="o">=</span> <span class="n">scale_factor</span> <span class="o">*</span> <span class="p">(</span><span class="n">vol_fraction</span> <span class="o">/</span> <span class="n">form_volume</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">FF</span><span class="o">&gt;</span> <span class="o">+</span> <span class="o">&lt;</span><span class="n">F</span><span class="o">&gt;^</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">S</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span> <span class="o">+</span> <span class="n">background</span> <span class="p">::</span> <span class="n">beta</span>
+</pre></div>
+</div>
+<p><strong>All Versions</strong> Changes made to a plugin model are not applied to models actively in use on fit pages.
+To apply plugin model changes, re-select the model from the drop-down menu on the FitPage.</p>
+<p><strong>In SasView 6.x</strong>, multiplicity models cannot be combined. If a model with any layer or conditional parameter is
+selected, similar models are removed from the other combo box.</p>
+<p><strong>In SasView 4.x</strong>, if the model is not listed on a fit page you can try and force a
+recompilation of the plugins by selecting <em>Fitting</em> &gt; <em>Plugin Model Operations</em>
+&gt; <em>Load Plugin Models</em>. <strong>In SasView 5.0.2 and earlier</strong>, you may need to restart the
+program. <strong>In SasView 5.0.3 and later</strong>, the new model should appear in the list as soon as
+the model is saved.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>SasView versions 4.2.x, 5.0.0 and 5.0.1</strong>
+The <em>Easy Add/Multiply Editor</em> dialog should <em>not</em> be used to combine a
+plugin model with a built-in model, or to combine two plugin models. The
+operation will appear to work in 4.2.x but may generate a faulty plugin
+model. In 5.0.0 the operation will fail (generating an error message in the
+Log Explorer). Whilst in 5.0.1 the operation has been blocked.</p>
+<p>If you need to generate a plugin model from more than two built-in models,
+please read the sub-sections <a class="reference internal" href="#model-structure"><span class="std std-ref">Model Structure</span></a> and <a class="reference internal" href="#combining-multiple-models"><span class="std std-ref">Combining more than two models</span></a>
+below.</p>
+</div>
+</section>
+<section id="model-structure">
+<span id="id5"></span><h3>Model Structure<a class="headerlink" href="#model-structure" title="Link to this heading">¶</a></h3>
+<p><strong>SasView version 4.2</strong> introduced a much simplified and more extensible
+structure for plugin models generated through the Easy Sum/Multi Editor. For
+example, the code for a combination of a sphere model with a power law model
+now looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sasmodels.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_model_info</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sasmodels.sasview_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_model_from_info</span>
+
+<span class="n">model_info</span> <span class="o">=</span> <span class="n">load_model_info</span><span class="p">(</span><span class="s1">&#39;sphere+power_law&#39;</span><span class="p">)</span>
+<span class="n">model_info</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;MyPluginModel&#39;</span>
+<span class="n">model_info</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;sphere + power_law&#39;</span>
+<span class="n">Model</span> <span class="o">=</span> <span class="n">make_model_from_info</span><span class="p">(</span><span class="n">model_info</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To change the models or operators contributing to this plugin it is only
+necessary to edit the string in the brackets after <em>load_model_info</em>, though it
+would also be a good idea to update the model name and description too!!!</p>
+<p>The model specification string can handle multiple models and combinations of
+operators (‘+’ or ‘*’) which are processed according to normal conventions. Thus
+‘model1+model2*model3’ would be valid and would multiply model2 by model3
+before adding model1. In this example, parameters in the <em>FitPage</em> would be
+prefixed A (for model2), B (for model3) and C (for model1). Whilst this might
+appear a little confusing, unless you were creating a plugin model from
+multiple instances of the same model the parameter assignments ought to be
+obvious when you load the plugin.</p>
+<p>This streamlined approach to building complex plugin models from existing
+library models, or models available on the <em>Model Marketplace</em>, also permits
+the creation of P(Q)*S(Q) plugin models, something that was not possible in
+earlier versions of SasView. Also see <a class="reference internal" href="#interaction-and-mixture-models"><span class="std std-ref">Interaction Models</span></a>
+above.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Interaction Models</strong></p>
+<p>When the <em>Easy Sum/Multi Editor</em> creates a P(Q)*S(Q) model it will use
+the * symbol like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sphere</span><span class="o">*</span><span class="n">hardsphere</span>
+</pre></div>
+</div>
+<p>However, it is probably advisable to edit the model file and use the &#64;
+symbol instead, for example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sphere</span><span class="nd">@hardsphere</span>
+</pre></div>
+</div>
+<p>This is because * and &#64; confer different behavior on the model</p>
+<ul class="simple">
+<li><p><em>with &#64;</em> - the radius and volume fraction in the S(Q) model are
+constrained to have the <em>same</em> values as the radius and volume fraction
+in the P(Q) model.</p></li>
+<li><p><em>with *</em> - the radii and volume fractions in the P(Q) and S(Q) models are
+unconstrained.</p></li>
+</ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If combining P(Q) models with S(Q) models, <em>particularly if combining
+multiple instances of such models</em> (eg, <span class="math notranslate nohighlight">\((P(Q)_1\)</span> * <span class="math notranslate nohighlight">\(S(Q)_1\)</span>) + <span class="math notranslate nohighlight">\((P(Q)_2\)</span> * <span class="math notranslate nohighlight">\(S(Q)_2)\)</span>
+or similar), pay careful attention to the behaviour of the scale and volume
+fraction parameters and test your model thoroughly, preferably on
+well-characterised data.</p>
+</div>
+</section>
+<section id="combining-more-than-two-models">
+<span id="combining-multiple-models"></span><h3>Combining more than two models<a class="headerlink" href="#combining-more-than-two-models" title="Link to this heading">¶</a></h3>
+<p>If you need generate a plugin model from more than two other models, it is
+tempting to think that the way to do so is simply to use the
+<em>Easy Add/Multiply Editor</em> dialog to combine the first two models into a
+plugin, then generate a new plugin using that first plugin as one of the
+selected models, combine it with the third model, and repeat as required.</p>
+<p>This does not currently work properly (although it <em>may appear to</em> in SasView
+4.2.x).</p>
+<p>Instead, use the <em>Easy Add/Multiply Editor</em> dialog to combine the first two
+models, then navigate to the plugin folder (~\.sasview\plugin_models on
+Windows) and open the plugin Python file (eg, MyPluginModel.py) in a text
+editor.</p>
+<p>Now edit the Python to specify all the models to contribute to the expanded
+plugin (the text string in the brackets after <em>load_model_info</em>). Make sure you
+specify the model names correctly, including any capitalisation (if in doubt
+use the model name dropdown on a <em>FitPage</em>)! Finally, update the model name and
+description, and save the file.</p>
+<p>So, as an example, one could take the MyPluginModel example in the preceding
+section, change it to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sasmodels.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_model_info</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sasmodels.sasview_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_model_from_info</span>
+
+<span class="n">model_info</span> <span class="o">=</span> <span class="n">load_model_info</span><span class="p">(</span><span class="s1">&#39;power_law+fractal+gaussian_peak+gaussian_peak&#39;</span><span class="p">)</span>
+<span class="n">model_info</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;MyBigPluginModel&#39;</span>
+<span class="n">model_info</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s1">&#39;For fitting pores in crystalline framework&#39;</span>
+<span class="n">Model</span> <span class="o">=</span> <span class="n">make_model_from_info</span><span class="p">(</span><span class="n">model_info</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and re-save it as MyBigPluginModel.py. When loaded into a <em>FitPage</em>, the
+parameters for the four models in the <em>load_model_info</em> string are then all
+present and prefixed by A_, B_, C_, and D_, respectively.</p>
+</section>
+<section id="model-editor">
+<span id="id6"></span><h3>Model Editor<a class="headerlink" href="#model-editor" title="Link to this heading">¶</a></h3>
+<p>Selecting “Edit Custom Model” option opens the editor window.</p>
+<img alt="../../../../_images/model_editor_empty.png" src="../../../../_images/model_editor_empty.png" />
+<p>Initially, the editor is empty. A custom model can be loaded by clicking on the
+<em>Load plugin…</em> button and choosing one of the existing custom plugins.</p>
+<p>Once the model is loaded, it can be edited and saved with <em>Save</em> button.
+Saving the model will perform the validation and only when the model is correct
+it will be saved to a file. Successful model check is indicated by a SasView
+status bar message.</p>
+<p>When <em>Cancel</em> is clicked, any changes to the model are discarded and the window
+is closed.</p>
+<p>For details of the SasView plugin model format see <a class="reference internal" href="plugin.html#writing-a-plugin"><span class="std std-ref">Writing a Plugin Model</span></a> .</p>
+<p>To use the model, go to the relevant <em>Fit Page</em>, select the <em>Plugin Models</em>
+category and then select the model from the drop-down menu.</p>
+</section>
+<section id="plugin-manager">
+<h3>Plugin Manager<a class="headerlink" href="#plugin-manager" title="Link to this heading">¶</a></h3>
+<p>Selecting the <em>Manage Custom Models</em> option shows a list of all the plugin
+models in the plugin model folder, on Windows this is</p>
+<blockquote>
+<div><p><em>C:\Users\{username}\.sasview\plugin_models</em></p>
+</div></blockquote>
+<p>You can add, edit, duplicate and delete these models using buttons on the right
+side of the list.</p>
+<img alt="../../../../_images/plugin_manager.png" src="../../../../_images/plugin_manager.png" />
+</section>
+<section id="add-a-model">
+<h3>Add a model<a class="headerlink" href="#add-a-model" title="Link to this heading">¶</a></h3>
+<p>Clicking the “Add” button opens the Model Editor window, allowing you to create
+a new plugin as described above.</p>
+</section>
+<section id="duplicate-a-model">
+<h3>Duplicate a model<a class="headerlink" href="#duplicate-a-model" title="Link to this heading">¶</a></h3>
+<p>Clicking the “Duplicate” button will create a copy of the selected model(s).
+Naming of the duplicate follows the standard, with an <em>n</em> added to the
+plugin model name, where <em>n</em> is the first unused integer.</p>
+</section>
+<section id="edit-a-model">
+<h3>Edit a model<a class="headerlink" href="#edit-a-model" title="Link to this heading">¶</a></h3>
+<p>When a single model is selected, clicking this button will open the Advanced
+<em>Model Editor</em> allowing you to edit the Python code of the model. If no models
+or multiple models are selected, the <em>Edit</em> button is disabled.</p>
+</section>
+<section id="delete-plugin-models">
+<h3>Delete Plugin Models<a class="headerlink" href="#delete-plugin-models" title="Link to this heading">¶</a></h3>
+<p>Simply highlight the plugin model(s) to be removed and click on the “Delete”
+button. The operation is final.</p>
+<p><em>NB: Models shipped with SasView cannot be removed in this way.</em></p>
+</section>
+</section>
+<section id="fit-algorithms">
+<span id="fitting-options"></span><h2>Fit Algorithms<a class="headerlink" href="#fit-algorithms" title="Link to this heading">¶</a></h2>
+<p>It is possible to specify which optimiser SasView should use to fit the data, and
+to modify some of the configurational parameters for each optimiser.</p>
+<p>From <em>Fitting</em> in the menu bar select <em>Fit Algorithms</em>, then select one of the
+following optimisers:</p>
+<ul class="simple">
+<li><p>DREAM</p></li>
+<li><p>Levenberg-Marquardt</p></li>
+<li><p>Quasi-Newton BFGS</p></li>
+<li><p>Differential Evolution</p></li>
+<li><p>Nelder-Mead Simplex</p></li>
+</ul>
+<img alt="../../../../_images/fit_algorithms.png" src="../../../../_images/fit_algorithms.png" />
+<p>The DREAM optimiser is the most sophisticated, but may not necessarily be the best
+option for fitting simple models. If uncertain, try the Levenberg-Marquardt optimiser
+initially.</p>
+<p>These optimisers form the <em>Bumps</em> package written by P Kienzle. For more information
+on each optimiser, see the <a class="reference internal" href="fitting.html#fitting-documentation"><span class="std std-ref">Fitting Documentation</span></a>.</p>
+</section>
+<section id="fitting-limits">
+<h2>Fitting Limits<a class="headerlink" href="#fitting-limits" title="Link to this heading">¶</a></h2>
+<p>By default, <em>SasView</em> will attempt to model fit the full range of the data; ie,
+across all <em>Q</em> values. If necessary, however, it is possible to specify only a
+sub-region of the data for fitting.</p>
+<p>In a <em>FitPage</em> or <em>BatchPage</em> change the tab to <em>Fit Options</em> and then change
+the <em>Q</em> values in the <em>Min</em> and/or <em>Max</em>
+text boxes.</p>
+<p>To return to including all data in the fit, click the <em>Reset</em> button.</p>
+</section>
+<section id="shortcuts">
+<h2>Shortcuts<a class="headerlink" href="#shortcuts" title="Link to this heading">¶</a></h2>
+<section id="copy-paste-parameters">
+<h3>Copy/Paste Parameters<a class="headerlink" href="#copy-paste-parameters" title="Link to this heading">¶</a></h3>
+<p>It is possible to copy the parameters from one <em>Fit Page</em> and to paste them into
+another <em>Fit Page</em> using the same model.</p>
+<p>To <em>copy</em> parameters, either:</p>
+<ul class="simple">
+<li><p>Select <em>Edit -&gt; Copy Params</em> from the menu bar, or</p></li>
+<li><p>Use Ctrl(Cmd on Mac) + Left Mouse Click on the <em>Fit Page</em>.</p></li>
+</ul>
+<p>To <em>paste</em> parameters, either:</p>
+<ul class="simple">
+<li><p>Select <em>Edit -&gt; Paste Params</em> from the menu bar, or</p></li>
+<li><p>Use Ctrl(Cmd on Mac) + Shift + Left-click on the <em>Fit Page</em>.</p></li>
+</ul>
+<p>If either operation is successful a message will appear in the info line at the
+bottom of the SasView window.</p>
+</section>
+</section>
+<section id="status-bar-log-explorer">
+<span id="status-bar"></span><h2>Status Bar &amp; Log Explorer<a class="headerlink" href="#status-bar-log-explorer" title="Link to this heading">¶</a></h2>
+<p>The status bar is located at the bottom of the SasView window and displays
+messages, warnings and errors.</p>
+<img alt="../../../../_images/log_explorer.png" src="../../../../_images/log_explorer.png" />
+<p>The bottom part of the SasView application window contains the <em>Log Explorer</em>.
+The <em>Log Explorer</em> displays available message history and run-time traceback
+information.</p>
+</section>
+<section id="single-fit-mode">
+<span id="id7"></span><h2>Single Fit Mode<a class="headerlink" href="#single-fit-mode" title="Link to this heading">¶</a></h2>
+<p><em>NB: Before proceeding, ensure that the Batch mode checkbox at the bottom of</em>
+<em>the Data Explorer is unchecked (see the section</em> <a class="reference internal" href="../../MainWindow/data_explorer_help.html#loading-data"><span class="std std-ref">Loading Data</span></a> <em>).</em></p>
+<p>This mode fits one data set.</p>
+<p>When data is sent to the fitting, the Fit Page will show the dataset name.</p>
+<img alt="../../../../_images/dataset_name.png" src="../../../../_images/dataset_name.png" />
+<p>Clicking on the <em>Show Plot</em> will cause the data can be plotted in a graph window
+as markers.</p>
+<p>If a graph does not appear, or a graph window appears but is empty, then the data
+has not loaded correctly. Check to see if there is a message in the <a class="reference internal" href="#status-bar"><span class="std std-ref">Status Bar &amp; Log Explorer</span></a>
+or in the <em>Console</em> window.</p>
+<p>Assuming the data has loaded correctly, when a model is selected a blue model
+calculation (or what SasView calls a ‘Theory’) line will appear in the earlier graph
+window, and a second graph window will appear displaying the residuals (the
+difference between the experimental data and the theory) at the same X-data values.
+See <a class="reference internal" href="residuals_help.html#assessing-fit-quality"><span class="std std-ref">Assessing Fit Quality</span></a>.</p>
+<p>The objective of model-fitting is to find a <em>physically-plausible</em> model, and set
+of model parameters, that generate a theory that reproduces the experimental data
+and gives residual values as close to zero as possible.</p>
+<p>Change the default values of the model parameters by hand until the theory line
+starts to represent the experimental data. Then uncheck the tick boxes alongside
+all parameters <em>except</em> the ‘background’ and the ‘scale’. Click the <em>Fit</em> button.
+SasView will optimise the values of the ‘background’ and ‘scale’ and also display
+the corresponding uncertainties on the optimised values.</p>
+<p><em>NB: If no uncertainty is shown it generally means that the model is not very</em>
+<em>dependent on the corresponding parameter (or that one or more parameters are</em>
+<em>‘correlated’).</em></p>
+<p>In the bottom right corner of the <em>Fit Page</em> is a box displaying the normalised value
+of the statistical <span class="math notranslate nohighlight">\(\chi^2\)</span> parameter returned by the optimiser.</p>
+<p>Now check the box for another model parameter and click <em>Fit</em> again. Repeat this
+process until most or all parameters are checked and have been optimised. As the
+fit of the theory to the experimental data improves the value of ‘chi2/Npts’ will
+decrease. A good model fit should easily produce values of ‘chi2/Npts’ that are
+close to one, and certainly &lt;100. See <a class="reference internal" href="residuals_help.html#assessing-fit-quality"><span class="std std-ref">Assessing Fit Quality</span></a>.</p>
+<p>SasView has a number of different optimisers (see the section <a class="reference internal" href="#fitting-options"><span class="std std-ref">Fit Algorithms</span></a>).
+The DREAM optimiser is the most sophisticated, but may not necessarily be the best
+option for fitting simple models. If uncertain, try the Levenberg-Marquardt optimiser
+initially.</p>
+<section id="polydisperse-parameters">
+<h3>Polydisperse Parameters<a class="headerlink" href="#polydisperse-parameters" title="Link to this heading">¶</a></h3>
+<p>Some model parameters, for example, radii/lengths or orientation angles can be
+polydisperse; i.e. they can have a distribution of possible values. Polydisperse
+parameters are defined as such when the model is coded, and can be activated by
+clicking the <em>Polydispersity</em> checkbox on the <em>Fit Page</em>.</p>
+<img alt="../../../../_images/enable_pd.png" src="../../../../_images/enable_pd.png" />
+<p>Clicking on the <em>Polydispersity</em> tab then provides access to these polydisperse
+parameters and allows the type (i.e. the <em>function</em> to be used) and ‘width’
+(the <em>PD[ratio]</em>) to be adjusted. If necessary the ‘step size’ (<em>Npts</em>) and
+‘range’ (<em>Nsigs</em>) of the function can also be adjusted.</p>
+<img alt="../../../../_images/pd_tab.png" src="../../../../_images/pd_tab.png" />
+<p>For more information, see the descriptions of <a class="reference internal" href="pd/polydispersity.html#polydispersityhelp"><span class="std std-ref">Polydispersity &amp; Orientational Distributions</span></a>. In
+particular, pay attention to the Suggested Applications and Usage Notes therein.
+The detail of how SasView computes the scattering from polydisperse systems is
+described in the <a class="reference internal" href="theory.html#pstheory"><span class="std std-ref">Theory</span></a> section.</p>
+<p>Note that SasView defaults to Gaussian distributions, but these will not always
+be the best choice. Also, the definitions of the centre (e.g. whether it is the
+mean or median value, for example) and the actual width of the function will
+vary depending on the chosen distribution! For orientation distributions the
+<em>PD[ratio]</em> parameter is absolute. But for distributions applied to ‘volume’
+(size) parameters the <em>PD[ratio]</em> parameter will always be relative to the
+current centre value.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Polydispersity distributions in SasView define the number density
+of the given population of scatterers. The resulting scattering is
+then the number average over the distribution.</strong></p>
+</div>
+<p>It is possible to optimise a <em>PD[ratio]</em> parameter during fitting by checking
+the accompanying checkbox. However, this is usually only effective in the
+latter stages of a converging fit.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Neither the <em>PD[ratio]</em>, or the parameter to which it is applied, can
+be optimised if using an Array Distribution. See
+<a class="reference internal" href="pd/polydispersity.html#polydispersityhelp"><span class="std std-ref">Polydispersity &amp; Orientational Distributions</span></a>.</p>
+</div>
+</section>
+<section id="reparameterizing-models">
+<span id="reparameterization-editor"></span><h3>Reparameterizing Models<a class="headerlink" href="#reparameterizing-models" title="Link to this heading">¶</a></h3>
+<p>It is possible to change model parameters of an existing model, without writing an entirely
+new model using the reparameterization editor available from the Fitting menu. The editor
+allows a user to select a model, plugins included, and to define a series of new parameters that are
+mathematically related to existing parameters.</p>
+<p>Within the editor, select the model you wish to modify, and its parameters will be displayed once the
+model is selected. A second input allows you to define new parameters that will replace existing
+parameters. The text box near the bottom of the window allows free-form inputs to redefine
+existing parameters as a function of new parameters.</p>
+<p>More information on reparameterization, the process to create a reparametereized model,
+and the model file that results from this editor can be found at <a class="reference internal" href="plugin.html#reparameterized-models"><span class="std std-ref">Reparameterized Models</span></a>.</p>
+<img alt="../../../../_images/reparameterization_editor.png" src="../../../../_images/reparameterization_editor.png" />
+<p>It is also possible to reparameterize a particle model, for instance, to give
+greater control over polydispersity due to intra-particle constraints.
+If the particles aspect ratio is constrained but not its volume, or if its volume must be
+preserved but a range of aspect ratios are permitted for each volume. This may require a
+User-Defined distribution function to fully describe the model (see <a class="reference internal" href="pd/polydispersity.html#polydispersityhelp"><span class="std std-ref">Polydispersity &amp; Orientational Distributions</span></a>).</p>
+</section>
+<section id="using-a-gpu">
+<h3>Using a GPU<a class="headerlink" href="#using-a-gpu" title="Link to this heading">¶</a></h3>
+<p>Incoporating polydispersity in a fit can certainly improve the overall solution
+and add a dose of realism to it (few real systems are monodisperse!). But doing
+so will slow the fitting process, sometimes quite dramatically. In these
+circumstances enabling a GPU, if present, will help.</p>
+<img alt="../../../../_images/gpu_options.png" src="../../../../_images/gpu_options.png" />
+<p>If a <em>potential</em> GPU device is present the dialog will show it. The <em>Test</em>
+button can then be used to check if your system has the necessary drivers to
+use it. But also see <a class="reference internal" href="gpu_setup.html#gpu-setup"><span class="std std-ref">GPU Setup</span></a> .</p>
+</section>
+</section>
+<section id="simultaneous-fit-mode">
+<span id="id8"></span><h2>Simultaneous Fit Mode<a class="headerlink" href="#simultaneous-fit-mode" title="Link to this heading">¶</a></h2>
+<p><em>NB: Before proceeding, ensure that the Batch Mode check button at the bottom of</em>
+<em>the Data Explorer is unchecked (see the section</em> <a class="reference internal" href="../../MainWindow/data_explorer_help.html#loading-data"><span class="std std-ref">Loading Data</span></a> <em>).</em></p>
+<p>This mode is an extension of the <a class="reference internal" href="#single-fit-mode"><span class="std std-ref">Single Fit Mode</span></a> that fits two or more data
+sets <em>to the same model</em> simultaneously. If necessary it is possible to constrain
+fit parameters between data sets (eg, to fix a background level, or radius, etc).</p>
+<p>If the data to be fit are in multiple files, load each file, then select each file
+in the <em>Data Explorer</em>, and <em>Send To Fitting</em>. If multiple data sets are in one file,
+load that file, <em>Unselect All Data</em>, select just those data sets to be fitted, and
+<em>Send To Fitting</em>. Either way, the result should be that for <em>n</em> data sets you have
+2<em>n</em> graphs (<em>n</em> of the data and model fit, and <em>n</em> of the resulting residuals). But
+it may be helpful to minimise the residuals plots for clarity. Also see
+<a class="reference internal" href="residuals_help.html#assessing-fit-quality"><span class="std std-ref">Assessing Fit Quality</span></a>.</p>
+<p><em>NB: If you need to use a custom Plugin Model, you must ensure that model is
+available first (see</em> <a class="reference internal" href="#adding-your-own-models"><span class="std std-ref">Adding your own Models</span></a> <em>).</em></p>
+<section id="method">
+<h3>Method<a class="headerlink" href="#method" title="Link to this heading">¶</a></h3>
+<p>Now go to each <em>FitPage</em> in turn and:</p>
+<ul class="simple">
+<li><p>Select the required category and model;</p></li>
+<li><p>Unselect all the model parameters;</p></li>
+<li><p>Enter some starting guesses for the parameters;</p></li>
+<li><p>Enter any parameter limits (recommended);</p></li>
+<li><p>Select which parameters will refine (selecting all is generally a bad idea…);</p></li>
+</ul>
+<p>When done, select <em>Constrained or Simultaneous Fit</em> under <em>Fitting</em> in the menu
+bar.</p>
+<p>In the <em>Const &amp; Simul Fit</em> page that appears, select which data sets are to be
+simultaneously fitted (this will probably be all of them or you would not have
+loaded them in the first place!).</p>
+<img alt="../../../../_images/constraint_1.png" src="../../../../_images/constraint_1.png" />
+<p>To tie parameters between the data sets with constraints, select the data sets
+and right click. From the menu choose <em>Mutual constraint of parameters in
+selected models</em></p>
+<img alt="../../../../_images/constraint_menu.png" src="../../../../_images/constraint_menu.png" />
+<p>When ready, click the <em>Fit</em> button on the <em>Const &amp; Simul Fit</em> page, NOT the <em>Fit</em>
+button on the individual <em>FitPage</em>’s.</p>
+</section>
+<section id="simultaneous-fits-without-constraints">
+<h3>Simultaneous Fits without Constraints<a class="headerlink" href="#simultaneous-fits-without-constraints" title="Link to this heading">¶</a></h3>
+<p>The results of the model-fitting will be returned to each of the individual
+<em>FitPage</em>’s. Also see <a class="reference internal" href="residuals_help.html#assessing-fit-quality"><span class="std std-ref">Assessing Fit Quality</span></a>.</p>
+</section>
+<section id="simultaneous-fits-with-constraints">
+<h3>Simultaneous Fits with Constraints<a class="headerlink" href="#simultaneous-fits-with-constraints" title="Link to this heading">¶</a></h3>
+<p>In the <em>Const. &amp; Simul. Fit</em> page make sure that at least two fitpages are present.
+Then, click the <em>Add constraints</em> button</p>
+<img alt="../../../../_images/add_constraint.png" src="../../../../_images/add_constraint.png" />
+<p>Alternatively, right clicking on two selected fitpages in the
+<em>Source choice for simultaneous fitting</em> area will bring up the context menu:</p>
+<img alt="../../../../_images/constraint_menu.png" src="../../../../_images/constraint_menu.png" />
+<p>Here you can choose datasets for fitting and define constraints between parameters in
+both datasets.</p>
+<p>Clicking the <em>Add constraints</em> button or choosing the <em>Mutual constraint of
+parameters in selected models…</em> option will bring up the <em>Complex Constraint</em>
+dialog.</p>
+<img alt="../../../../_images/complex_constraint.png" src="../../../../_images/complex_constraint.png" />
+<p>Constraints will generally be of the form</p>
+<blockquote>
+<div><p>Mi:Parameter1 = Mj.Parameter1</p>
+</div></blockquote>
+<p>however the text box after the ‘=’ sign can be used to adjust this
+relationship; for example</p>
+<blockquote>
+<div><p>Mi:Parameter1 = scalar * Mj.Parameter1</p>
+</div></blockquote>
+<p>A ‘free-form’ constraint box is also provided.</p>
+<p>Many constraints can be entered for a single fit.</p>
+<p>The results of the model-fitting will be returned to each of the individual
+<em>FitPage</em>’s. Also see <a class="reference internal" href="residuals_help.html#assessing-fit-quality"><span class="std std-ref">Assessing Fit Quality</span></a>.</p>
+</section>
+<section id="simultaneous-fits-with-a-modified-weighting">
+<h3>Simultaneous Fits with a Modified Weighting<a class="headerlink" href="#simultaneous-fits-with-a-modified-weighting" title="Link to this heading">¶</a></h3>
+<p>When simultaneously fitting different data sets, the degree of influence that each
+of them has on the final fit is defined by their statistical weight, i.e. mainly
+the number of points and their uncertainty in each data set.
+The SasView fitting engine tries to minimize the total <span class="math notranslate nohighlight">\(\chi^2\)</span>, where the difference
+between the data and the model for each data point is added quadratically using a
+weight that by default is inversely proportional to the y axis error. As a consequence,
+datasets with more points and smaller errors will exert a greater influence on
+the fit. While the weighting scheme can be modified in the <em>Fit Options</em> tab,
+even setting the weighting to None (i.e. all data points from all data sets have
+the same weight, equal to 1) will not solve the potential issue of having disparate
+number of data points in different sets. In this case, if one data set has much
+more (less) points than the remaining data sets, it will have a much larger (smaller)
+influence in the global fit.</p>
+<p>This is especially true for data gathered using different methods with different
+associated errors. For example attempting to fit SANS and SAXS data often leads to the
+SAXS data dominating the fit. The <em>Modify Weighting</em> option provides a way of getting
+around this issue by allowing the user to multiply the individual weights by a global
+factor that can be adjusted for each data set.</p>
+<p>Checking the <em>Modify Weighting</em> box reveals a fifth column in the source choice
+dialog called Weighting. This is depicted in the screenshot below.</p>
+<img alt="../../../../_images/weighting_scheme_default.png" src="../../../../_images/weighting_scheme_default.png" />
+<p>The pre-filled option in the weighting column is 1.0, and only numerical inputs
+(integer or floating point numbers) are allowed. It is important to understand
+that when the <em>Modify Weighting</em> box is checked, <strong>the weights of each data set
+will be modified, even when all the weights in the weighting column are equal
+to 1.</strong> Actually, when all the user weights are equal to 1, SasView will try to
+calculate appropriate weights in order to ensure that all the data sets have
+approximately a similar influence in the total fit. This is done by estimating the
+statistical weight of each data set <em>j</em> as <span class="math notranslate nohighlight">\(W_j = \sum_i^{N_j} (1/e_i)^2\)</span>, where at present
+<span class="math notranslate nohighlight">\(e_i\)</span> is the relative error of point <em>i</em>, i.e. <span class="math notranslate nohighlight">\(e_i = \sigma_i / |I_i|\)</span>, and then
+the weight to apply to each data set is computed as <span class="math notranslate nohighlight">\(Min(W_j)/W_j\)</span>. Thus, the weight of the
+initially “lighter” set remains equal to 1, while the remaining sets will be scaled down by
+a factor &lt; 1. Then the user weighting factors multiply this scaling factor, giving the
+final weight for each data set that will be sent to the fitting engine. The final weights
+used in the simultaneous fit are given in the <em>Log Explorer</em> window and can provide a useful
+indication of how much each data set has been “modified” with respect to the original data.</p>
+<p><strong>Warning:</strong> This option gives the user the flexibility to play with the data sets, in order
+to drive the global fit in a desired direction. It can be useful when a particular set contains
+important information to determine one or several model parameters, but it is ignored in the
+global fit because of statistical issues. However, ideally this option should never be needed,
+as difficulties when trying to fit simultaneously several sets are often an indication of
+other problems such as systematic errors, inadequate error/resolution estimation, etc.
+Therefore, users are advised to be extremely careful when using this option and to
+carefully check any result obtained using modified weights.</p>
+</section>
+</section>
+<section id="batch-fit-mode">
+<span id="id9"></span><h2>Batch Fit Mode<a class="headerlink" href="#batch-fit-mode" title="Link to this heading">¶</a></h2>
+<p><em>NB: Before proceeding, ensure that the Batch Mode check button at the bottom of</em>
+<em>the Data Explorer is unchecked (see the section</em> <a class="reference internal" href="../../MainWindow/data_explorer_help.html#loading-data"><span class="std std-ref">Loading Data</span></a> <em>). The Batch</em>
+<em>Mode button will be used later on!</em></p>
+<p>This mode <em>sequentially</em> fits two or more data sets <em>to the same model</em>. Unlike in
+simultaneous fitting, in batch fitting it is not possible to constrain fit parameters
+between data sets.</p>
+<p>If the data to be fit are in multiple files, load each file in the <em>Data Explorer</em>.
+If multiple data sets are in one file, load just that file. <em>Unselect All Data</em>, then
+select a single initial data set to be fitted. Fit that selected data set as described
+above under <a class="reference internal" href="#single-fit-mode"><span class="std std-ref">Single Fit Mode</span></a>.</p>
+<p><em>NB: If you need to use a custom Plugin Model, you must ensure that model is
+available first (see</em> <a class="reference internal" href="#adding-your-own-models"><span class="std std-ref">Adding your own Models</span></a> <em>).</em></p>
+<section id="id10">
+<h3>Method<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h3>
+<p>Now <em>Select All Data</em> in the <em>Data Explorer</em>, check the <em>Batch Mode</em> check button
+at the bottom of that panel and <em>Send To Fitting</em>. A <em>BatchPage</em> will be created.</p>
+<img alt="../../../../_images/batch_button_area.png" src="../../../../_images/batch_button_area.png" />
+<p><em>NB: The Batch Page can also be created by checking the Batch Mode check button</em>
+<em>and selecting New Fit Page under Fitting in the menu bar.</em></p>
+<p>Using the drop-down menus in the <em>BatchPage</em>, now set up the <em>same</em> data set
+with the <em>same</em> model that you just fitted in single fit mode. A quick way to
+set the model parameter values is to just copy them from the earlier Single
+Fit. To do this, go back to the Single Fit <em>FitPage</em>, select <em>Copy Params</em>
+under <em>Edit</em> in the menu bar, then go back to the <em>BatchPage</em> and <em>Paste Params</em>.</p>
+<p>When ready, use the <em>Fit</em> button on the <em>BatchPage</em> to perform the fitting, NOT
+the <em>Fit</em> button on the individual <em>FitPage</em>’s.</p>
+<p>Unlike in single fit mode, the results of batch fits are not returned to
+the <em>BatchPage</em>. Instead, a spreadsheet-like <a class="reference internal" href="#grid-window"><span class="std std-ref">Grid Window</span></a> will appear.</p>
+<p>If you want to visually check a graph of a particular fit, click on the name of
+a <em>Data set</em> in the <em>Grid Window</em> and then click the <em>Plot</em> button. The
+data and the model fit will be displayed.</p>
+<img alt="../../../../_images/view_button.png" src="../../../../_images/view_button.png" />
+<p><em>NB: In theory, returning to the BatchPage and changing the name of the I(Q)</em>
+<em>data source should also work, but at the moment whilst this does change the</em>
+<em>data set displayed it always superimposes the ‘theory’ corresponding to the</em>
+<em>starting parameters.</em></p>
+</section>
+<section id="chain-fitting">
+<h3>Chain Fitting<a class="headerlink" href="#chain-fitting" title="Link to this heading">¶</a></h3>
+<p>By default, the <em>same</em> parameter values copied from the initial single fit into
+the <em>BatchPage</em> will be used as the starting parameters for all batch fits. It
+is, however, possible to get <em>SasView</em> to use the results of a fit to a preceding
+data set as the starting parameters for the next fit in the sequence. This
+variation of batch fitting is called <em>Chain Fitting</em>, and will considerably speed
+up model-fitting if you have lots of very similar data sets where a few parameters
+are gradually changing. Do not use chain fitting on disparate data sets.</p>
+<p>To use chain fitting, select <em>Chain Fitting</em> under <em>Fitting</em> in the menu bar. It
+toggles on/off, so selecting it again will switch back to normal batch fitting.</p>
+<p>To choose the order of the fitpages in the fitting process, drag and drop rows in the
+<em>Source choice for simultaneous fitting</em> table. The order of the table determines
+the order of the chain fitting performed.</p>
+</section>
+<section id="grid-window">
+<span id="id11"></span><h3>Grid Window<a class="headerlink" href="#grid-window" title="Link to this heading">¶</a></h3>
+<p>The <em>Grid Window</em> provides an easy way to view the results from batch fitting.
+It will be displayed automatically when a batch fit completes, but may be
+opened at any time by selecting <em>Show Grid Window</em> under <em>View</em> in the menu
+bar.</p>
+<img alt="../../../../_images/restore_batch_window.png" src="../../../../_images/restore_batch_window.png" />
+<p>If there is an existing Grid Window and another batch fit is performed,*
+<em>an additional ‘Table’ tab will be added to the Grid Window.</em></p>
+<p>The parameter values in the <em>currently selected</em> table of the <em>Grid Window</em>
+can be output to a CSV file by choosing <em>Save As</em> under <em>File</em> in the (<em>Grid</em>
+<em>Window</em>) menu bar. The default filename includes the date and time that the
+batch fit was performed.</p>
+<p>Saved CSV files can be reloaded by choosing <em>Open</em> under <em>File</em> in the <em>Grid</em>
+<em>Window</em> menu bar. The loaded parameters will appear in a new table tab.</p>
+<img alt="../../../../_images/file_menu.png" src="../../../../_images/file_menu.png" />
+<p><em>NB: Saving the Grid Window does not save any experimental data, residuals</em>
+<em>or actual model fits. Consequently if you reload a saved CSV file the</em>
+<em>ability to View Fits will be lost.</em></p>
+</section>
+<section id="parameter-plots">
+<h3>Parameter Plots<a class="headerlink" href="#parameter-plots" title="Link to this heading">¶</a></h3>
+<p>Any row (dataset) can be plotted by selecting it and either right-clicking and
+choosing <em>Plot selected fits</em> menu item or by clicking on the <em>Plot</em> button.</p>
+</section>
+</section>
+<section id="combined-batch-fit-mode">
+<h2>Combined Batch Fit Mode<a class="headerlink" href="#combined-batch-fit-mode" title="Link to this heading">¶</a></h2>
+<p>The purpose of the Combined Batch Fit is to allow running two or more batch
+fits in sequence without overwriting the output table of results.  This may be
+of interest for example if one is fitting a series of data sets where there is
+a shape change occurring in the series that requires changing the model part
+way through the series; for example a sphere to rod transition.  Indeed the
+regular batch mode does not allow for multiple models and requires all the
+files in the series to be fit with single model and set of parameters.  While
+it is of course possible to just run part of the series as a batch fit using
+model one followed by running another batch fit on the rest of the series with
+model two (and/or model three etc), doing so will overwrite the table of
+outputs from the previous batch fit(s).  This may not be desirable if one is
+interested in comparing the parameters: for example the sphere radius of set
+one and the cylinder radius of set two.</p>
+<section id="id12">
+<h3>Method<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h3>
+<p>In order to use the <em>Combined Batch Fit</em>, first load all the data needed as
+described in <a class="reference internal" href="../../MainWindow/data_explorer_help.html#loading-data"><span class="std std-ref">Loading Data</span></a>. Next start up two or more <em>BatchPage</em> fits
+following the instructions in <a class="reference internal" href="#batch-fit-mode"><span class="std std-ref">Batch Fit Mode</span></a> but <strong>DO NOT PRESS FIT</strong>.</p>
+<p>When done, select <em>Constrained or Simultaneous Fit</em> under <em>Fitting</em> in the menu bar.</p>
+<p>In the <em>Const &amp; Simul Fit</em> page that appears, choose <em>Batch fits</em> radio button and
+select which data sets are to be  fitted.</p>
+<img alt="../../../../_images/simult_batch.png" src="../../../../_images/simult_batch.png" />
+<p>Once all are selected, click the Fit button on
+the <em>Const. Simult. Fitting</em> to run each batch fit in <em>sequence</em></p>
+<p>The batch table will then pop up at the end as for the case of the simple Batch
+Fitting with the following caveats:</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The order matters.  The parameters in the table will be taken from the model
+used in the first <em>BatchPage</em> of the list.  Any parameters from the
+second and later <em>BatchPage</em> s that have the same name as a parameter in the
+first will show up allowing for plotting of that parameter across the
+models. The other parameters will not be available in the grid.
+To choose the order of the fitpages in the fitting process, drag and drop
+rows in the <em>Source choice for simultaneous fitting</em> table.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>a corollary of the above is that currently models created as a sum|multiply
+model will not work as desired because the generated model parameters have a
+p#_ appended to the beginning and thus radius and p1_radius will not be
+recognized as the same parameter.</p>
+</div>
+<img alt="../../../../_images/combine_batch_grid.png" src="../../../../_images/combine_batch_grid.png" />
+<p>In the example shown above the data is a time series with a shifting peak.
+The first part of the series was fitted using the <em>broad_peak</em> model, while
+the rest of the data were fit using the <em>gaussian_peak</em> model. Unfortunately the
+time is not listed in the file but the file name contains the information. As
+described in <a class="reference internal" href="#grid-window"><span class="std std-ref">Grid Window</span></a>, a column can be added manually, in this case
+called time, and the peak position plotted against time.</p>
+<img alt="../../../../_images/combine_batch_plot.png" src="../../../../_images/combine_batch_plot.png" />
+<p>Note the discontinuity in the peak position.  This reflects the fact that the
+Gaussian fit is a rather poor model for the data and is not actually
+finding the peak.</p>
+</section>
+</section>
+<section id="fitting-sesans-data">
+<span id="fitting-sesans"></span><h2>Fitting SESANS Data<a class="headerlink" href="#fitting-sesans-data" title="Link to this heading">¶</a></h2>
+<p>Since SasView version 4.1.1 it has been possible to fit SESANS data using
+the same fitting perspective as used to fit SANS data. This is accomplished
+using an on-the-fly <a class="reference internal" href="sesans/sans_to_sesans.html#sesans"><span class="std std-ref">SANS to SESANS conversion</span></a> from <em>Q</em>-space to real-space.</p>
+<p>To use this functionality it is important that the SESANS data file has
+the extension .ses to distinguish it from <em>Q</em>-space data. The SESANS user
+community is gradually refining the structure and content of its data files.
+Some current examples can be found in the \example_data\sesans_data folder within
+the SasView installation folder. For more information about the contents
+of .ses files, see <a class="reference internal" href="../../../data/data/data_formats_help.html#formats"><span class="std std-ref">Data Formats</span></a>.</p>
+<p>Load the .ses file and Send to Fitting as normal.</p>
+<img alt="../../../../_images/fitting_sesans_1.png" src="../../../../_images/fitting_sesans_1.png" />
+<p>The first true indication that the data are not SANS data comes when the
+data are plotted. Instead of <em>Intensity</em> vs <em>Q</em>, the data are displayed
+as a normalised depolarisation (<em>P</em>) vs spin-echo length (<span class="math notranslate nohighlight">\({\delta}\)</span>).</p>
+<img alt="../../../../_images/fitting_sesans_2.png" src="../../../../_images/fitting_sesans_2.png" />
+<p>Since SESANS data normally represent much longer length scales than SANS
+data, it will likely be necessary to significantly increase key size
+parameters in a model before attempting any fitting. In the screenshot
+above for example, the radius of the sphere could be increased from its default
+value of 50 Å to 5000 Å in order to get the transform to show
+something more sensible.</p>
+<p>The model parameters can then be optimised by checking them as required
+and clicking the Fit button as is normal.</p>
+<img alt="../../../../_images/fitting_sesans_3.png" src="../../../../_images/fitting_sesans_3.png" />
+<p>Note that SESANS data is not subject to an incoherent background signal in the
+way that normal SANS data is. For this reason the <em>background</em> parameter in
+any model being used to fit SESANS data should be fixed at zero.</p>
+<p>The procedure just described supersedes the original procedure using the
+command line interpreter, see <a class="reference internal" href="sesans/sesans_fitting.html#sesans-fitting"><span class="std std-ref">Fitting SESANS Data from the Command Line</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This help document was last changed by Caitlyn Wolf, 20March2024</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Fitting</a><ul>
+<li><a class="reference internal" href="#preparing-to-fit-data">Preparing to fit data</a></li>
+<li><a class="reference internal" href="#selecting-a-model">Selecting a model</a><ul>
+<li><a class="reference internal" href="#interaction-models">Interaction Models</a></li>
+<li><a class="reference internal" href="#mixture-models">Mixture Models</a></li>
+<li><a class="reference internal" href="#show-1d-2d">Show 1D/2D</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#category-manager">Category Manager</a><ul>
+<li><a class="reference internal" href="#changing-category">Changing category</a></li>
+<li><a class="reference internal" href="#showing-hiding-models">Showing/hiding models</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#model-functions">Model Functions</a></li>
+<li><a class="reference internal" href="#adding-your-own-models">Adding your own Models</a></li>
+<li><a class="reference internal" href="#plugin-model-operations">Plugin Model Operations</a><ul>
+<li><a class="reference internal" href="#add-custom-model">Add Custom Model</a></li>
+<li><a class="reference internal" href="#add-multiply-models">Add / Multiply Models</a></li>
+<li><a class="reference internal" href="#model-structure">Model Structure</a></li>
+<li><a class="reference internal" href="#combining-more-than-two-models">Combining more than two models</a></li>
+<li><a class="reference internal" href="#model-editor">Model Editor</a></li>
+<li><a class="reference internal" href="#plugin-manager">Plugin Manager</a></li>
+<li><a class="reference internal" href="#add-a-model">Add a model</a></li>
+<li><a class="reference internal" href="#duplicate-a-model">Duplicate a model</a></li>
+<li><a class="reference internal" href="#edit-a-model">Edit a model</a></li>
+<li><a class="reference internal" href="#delete-plugin-models">Delete Plugin Models</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#fit-algorithms">Fit Algorithms</a></li>
+<li><a class="reference internal" href="#fitting-limits">Fitting Limits</a></li>
+<li><a class="reference internal" href="#shortcuts">Shortcuts</a><ul>
+<li><a class="reference internal" href="#copy-paste-parameters">Copy/Paste Parameters</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#status-bar-log-explorer">Status Bar &amp; Log Explorer</a></li>
+<li><a class="reference internal" href="#single-fit-mode">Single Fit Mode</a><ul>
+<li><a class="reference internal" href="#polydisperse-parameters">Polydisperse Parameters</a></li>
+<li><a class="reference internal" href="#reparameterizing-models">Reparameterizing Models</a></li>
+<li><a class="reference internal" href="#using-a-gpu">Using a GPU</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#simultaneous-fit-mode">Simultaneous Fit Mode</a><ul>
+<li><a class="reference internal" href="#method">Method</a></li>
+<li><a class="reference internal" href="#simultaneous-fits-without-constraints">Simultaneous Fits without Constraints</a></li>
+<li><a class="reference internal" href="#simultaneous-fits-with-constraints">Simultaneous Fits with Constraints</a></li>
+<li><a class="reference internal" href="#simultaneous-fits-with-a-modified-weighting">Simultaneous Fits with a Modified Weighting</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#batch-fit-mode">Batch Fit Mode</a><ul>
+<li><a class="reference internal" href="#id10">Method</a></li>
+<li><a class="reference internal" href="#chain-fitting">Chain Fitting</a></li>
+<li><a class="reference internal" href="#grid-window">Grid Window</a></li>
+<li><a class="reference internal" href="#parameter-plots">Parameter Plots</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#combined-batch-fit-mode">Combined Batch Fit Mode</a><ul>
+<li><a class="reference internal" href="#id12">Method</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#fitting-sesans-data">Fitting SESANS Data</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="fitting.html"
+                          title="previous chapter">Fitting Documentation</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="residuals_help.html"
+                          title="next chapter">Assessing Fit Quality</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/user/qtgui/Perspectives/Fitting/fitting_help.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="residuals_help.html" title="Assessing Fit Quality"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="fitting.html" title="Fitting Documentation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../analysis.html" >Fitting &amp; Other Analyses</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="fitting.html" >Fitting Documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Fitting</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

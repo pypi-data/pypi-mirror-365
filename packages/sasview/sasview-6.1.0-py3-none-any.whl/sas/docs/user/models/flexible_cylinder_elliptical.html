@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>flexible_cylinder_elliptical &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="hollow_cylinder" href="hollow_cylinder.html" />
+    <link rel="prev" title="flexible_cylinder" href="flexible_cylinder.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="hollow_cylinder.html" title="hollow_cylinder"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="flexible_cylinder.html" title="flexible_cylinder"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-cylinder.html" accesskey="U">Cylinder Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">flexible_cylinder_elliptical</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="flexible-cylinder-elliptical">
+<span id="id1"></span><h1>flexible_cylinder_elliptical<a class="headerlink" href="#flexible-cylinder-elliptical" title="Link to this heading">¶</a></h1>
+<p>Flexible cylinder wth an elliptical cross section and a uniform scattering length density.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>scale</p></td>
+<td><p>Scale factor or Volume fraction</p></td>
+<td><p>None</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>background</p></td>
+<td><p>Source background</p></td>
+<td><p>cm<sup>-1</sup></p></td>
+<td><p>0.001</p></td>
+</tr>
+<tr class="row-even"><td><p>length</p></td>
+<td><p>Length of the flexible cylinder</p></td>
+<td><p>Å</p></td>
+<td><p>1000</p></td>
+</tr>
+<tr class="row-odd"><td><p>kuhn_length</p></td>
+<td><p>Kuhn length of the flexible cylinder</p></td>
+<td><p>Å</p></td>
+<td><p>100</p></td>
+</tr>
+<tr class="row-even"><td><p>radius</p></td>
+<td><p>Radius of the flexible cylinder</p></td>
+<td><p>Å</p></td>
+<td><p>20</p></td>
+</tr>
+<tr class="row-odd"><td><p>axis_ratio</p></td>
+<td><p>Axis_ratio (major_radius/minor_radius</p></td>
+<td><p>None</p></td>
+<td><p>1.5</p></td>
+</tr>
+<tr class="row-even"><td><p>sld</p></td>
+<td><p>Cylinder scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>sld_solvent</p></td>
+<td><p>Solvent scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>6.3</p></td>
+</tr>
+</tbody>
+</table>
+<p>The returned value is scaled to units of cm<sup>-1</sup> sr<sup>-1</sup>, absolute scale.</p>
+<p>This model calculates the form factor for a flexible cylinder with an
+elliptical cross section and a uniform scattering length density.
+The non-negligible diameter of the cylinder is included by accounting
+for excluded volume interactions within the walk of a single cylinder.
+<strong>Inter-cylinder interactions are NOT provided for.</strong></p>
+<p>The form factor is normalized by the particle volume such that</p>
+<div class="math notranslate nohighlight">
+\[P(q) = \text{scale} \left&lt;F^2\right&gt;/V + \text{background}\]</div>
+<p>where the averaging <span class="math notranslate nohighlight">\(\left&lt;\ldots\right&gt;\)</span> is over all possible orientations
+of the flexible cylinder.</p>
+<p>The 2D scattering intensity is the same as 1D, regardless of the orientation
+of the q vector which is defined as</p>
+<div class="math notranslate nohighlight">
+\[q = \sqrt{q_x^2 + q_y^2}\]</div>
+<p><strong>Definitions</strong></p>
+<p>The function is calculated in a similar way to that for the
+<a class="reference internal" href="flexible_cylinder.html#flexible-cylinder"><span class="std std-ref">flexible_cylinder</span></a> model in reference [1] below using the author’s
+“Method 3 With Excluded Volume”.</p>
+<p>The model is a parameterization of simulations of a discrete representation of
+the worm-like chain model of Kratky and Porod applied in the pseudo-continuous
+limit. See equations (13, 26-27) in the original reference for the details.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are several typos in the original reference that have been
+corrected by Chen <em>et al</em> (WRC) [2]. Details of the corrections are in the
+reference below. Most notably</p>
+<ul class="simple">
+<li><p>Equation (13): the term <span class="math notranslate nohighlight">\((1 - w(QR))\)</span> should swap position with <span class="math notranslate nohighlight">\(w(QR)\)</span></p></li>
+<li><p>Equations (23) and (24) are incorrect; WRC has entered these into
+Mathematica and solved analytically. The results were then converted to
+code.</p></li>
+<li><p>Equation (27) should be <span class="math notranslate nohighlight">\(q0 = max(a3/(Rg^2)^{1/2},3)\)</span> instead of
+<span class="math notranslate nohighlight">\(max(a3*b(Rg^2)^{1/2},3)\)</span></p></li>
+<li><p>The scattering function is negative for a range of parameter values and
+q-values that are experimentally accessible. A correction function has
+been added to give the proper behavior.</p></li>
+</ul>
+</div>
+<figure class="align-default">
+<img alt="../../_images/flexible_cylinder_ex_geometry.jpg" src="../../_images/flexible_cylinder_ex_geometry.jpg" />
+</figure>
+<p>The chain of contour length, <span class="math notranslate nohighlight">\(L\)</span>, (the total length) can be described as a
+chain of some number of locally stiff segments of length <span class="math notranslate nohighlight">\(l_p\)</span>, the
+persistence length (the length along the cylinder over which the flexible
+cylinder can be considered a rigid rod). The Kuhn length <span class="math notranslate nohighlight">\((b = 2*l_p)\)</span> is
+also used to describe the stiffness of a chain.</p>
+<p>The cross section of the cylinder is elliptical, with minor radius <span class="math notranslate nohighlight">\(a\)</span> . The
+major radius is larger, so of course, <strong>the axis_ratio must be greater than
+one.</strong> Simple constraints should be applied during curve fitting to maintain
+this inequality.</p>
+<p>In the parameters, the <span class="math notranslate nohighlight">\(sld\)</span> and <span class="math notranslate nohighlight">\(sld\_solvent\)</span> represent the SLD of the
+chain/cylinder and solvent respectively. The <em>scale</em>, and the contrast are
+both multiplicative factors in the model and are perfectly correlated. One or
+both of these parameters must be held fixed during model fitting.</p>
+<p><strong>This is a model with complex behaviour depending on the ratio of</strong> <span class="math notranslate nohighlight">\(L/b\)</span>
+<strong>and the reader is strongly encouraged to read reference [1] before use.</strong></p>
+<figure class="align-default" id="id2">
+<img alt="../../_images/flexible_cylinder_elliptical_autogenfig.png" src="../../_images/flexible_cylinder_elliptical_autogenfig.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 30 </span><span class="caption-text">1D plot corresponding to the default parameters of the model.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Source</strong></p>
+<p><a class="reference download internal" download="" href="../../_downloads/78533d9b6f8ae592536bf1beb7266a1e/flexible_cylinder_elliptical.py"><code class="xref download docutils literal notranslate"><span class="pre">flexible_cylinder_elliptical.py</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/cf4f7355fb2ce001d4cfaea5dd16b12f/flexible_cylinder_elliptical.c"><code class="xref download docutils literal notranslate"><span class="pre">flexible_cylinder_elliptical.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/e36a368780e11d5b646c712f85f5a0b3/wrc_cyl.c"><code class="xref download docutils literal notranslate"><span class="pre">wrc_cyl.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/9ee45b8c6371b0a130036ee53e1f050e/gauss76.c"><code class="xref download docutils literal notranslate"><span class="pre">gauss76.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/660768eefaf4e06a52683dd926958ab0/sas_J1.c"><code class="xref download docutils literal notranslate"><span class="pre">sas_J1.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/452c1d4eca138ac30381a8c4b66a9239/polevl.c"><code class="xref download docutils literal notranslate"><span class="pre">polevl.c</span></code></a></p>
+<p><strong>References</strong></p>
+<ol class="arabic simple">
+<li><p>J S Pedersen and P Schurtenberger. <em>Scattering functions of semiflexible
+polymers with and without excluded volume effects.</em>
+Macromolecules, 29 (1996) 7602-7612</p></li>
+<li><p>W R Chen, P D Butler and L J Magid, <em>Incorporating Intermicellar
+Interactions in the Fitting of SANS Data from Cationic Wormlike Micelles.</em>
+Langmuir, 22(15) 2006 6539-6548</p></li>
+</ol>
+<p><strong>Authorship and Verification</strong></p>
+<ul class="simple">
+<li><p><strong>Author:</strong></p></li>
+<li><p><strong>Last Modified by:</strong> Richard Heenan <strong>Date:</strong> December, 2016</p></li>
+<li><p><strong>Last Reviewed by:</strong> Steve King <strong>Date:</strong> March 26, 2019</p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="flexible_cylinder.html"
+                          title="previous chapter">flexible_cylinder</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="hollow_cylinder.html"
+                          title="next chapter">hollow_cylinder</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user/models/flexible_cylinder_elliptical.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="hollow_cylinder.html" title="hollow_cylinder"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="flexible_cylinder.html" title="flexible_cylinder"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-cylinder.html" >Cylinder Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">flexible_cylinder_elliptical</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

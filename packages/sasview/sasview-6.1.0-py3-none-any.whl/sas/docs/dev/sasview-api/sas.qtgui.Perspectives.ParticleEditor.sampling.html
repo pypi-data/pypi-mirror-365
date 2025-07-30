@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>sas.qtgui.Perspectives.ParticleEditor.sampling package &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="sas.qtgui.Perspectives.SizeDistribution package" href="sas.qtgui.Perspectives.SizeDistribution.html" />
+    <link rel="prev" title="sas.qtgui.Perspectives.ParticleEditor.datamodel package" href="sas.qtgui.Perspectives.ParticleEditor.datamodel.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sas.qtgui.Perspectives.SizeDistribution.html" title="sas.qtgui.Perspectives.SizeDistribution package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="sas.qtgui.Perspectives.ParticleEditor.datamodel.html" title="sas.qtgui.Perspectives.ParticleEditor.datamodel package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="modules.html" >SasView</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sas.html" >sas package</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="sas.qtgui.html" >sas.qtgui package</a> &#187;</li>
+          <li class="nav-item nav-item-5"><a href="sas.qtgui.Perspectives.html" >sas.qtgui.Perspectives package</a> &#187;</li>
+          <li class="nav-item nav-item-6"><a href="sas.qtgui.Perspectives.ParticleEditor.html" accesskey="U">sas.qtgui.Perspectives.ParticleEditor package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sas.qtgui.Perspectives.ParticleEditor.sampling package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="sas-qtgui-perspectives-particleeditor-sampling-package">
+<h1>sas.qtgui.Perspectives.ParticleEditor.sampling package<a class="headerlink" href="#sas-qtgui-perspectives-particleeditor-sampling-package" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-sas.qtgui.Perspectives.ParticleEditor.sampling.angles">
+<span id="sas-qtgui-perspectives-particleeditor-sampling-angles-module"></span><h2>sas.qtgui.Perspectives.ParticleEditor.sampling.angles module<a class="headerlink" href="#module-sas.qtgui.Perspectives.ParticleEditor.sampling.angles" title="Link to this heading">¶</a></h2>
+<p>Different methods for sampling the angular distribution of q vectors</p>
+<p>A list of the different methods available can be found at the bottom of the code and needs to be updated if new ones
+are added.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.qtgui.Perspectives.ParticleEditor.sampling.angles.</span></span><span class="sig-name descname"><span class="pre">Uniform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geodesic_divisions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sas.qtgui.Perspectives.ParticleEditor.datamodel.html#sas.qtgui.Perspectives.ParticleEditor.datamodel.calculation.AngularDistribution" title="sas.qtgui.Perspectives.ParticleEditor.datamodel.calculation.AngularDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">AngularDistribution</span></code></a></p>
+<p>Spherically averaged sample</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.__abstractmethods__">
+<span class="sig-name descname"><span class="pre">__abstractmethods__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">frozenset({})</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.__abstractmethods__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'</span> <span class="pre">Spherically</span> <span class="pre">averaged</span> <span class="pre">sample</span> <span class="pre">'</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geodesic_divisions</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.qtgui.Perspectives.ParticleEditor.sampling.angles'</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform._abc_impl" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.n_points">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_points</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.n_points" title="Link to this definition">¶</a></dt>
+<dd><p>Number of sample points</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.name">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.name" title="Link to this definition">¶</a></dt>
+<dd><p>Name of this distribution</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.parameters">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">type</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.parameters" title="Link to this definition">¶</a></dt>
+<dd><p>List of keyword arguments to constructor, names for GUI, and the type of value</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.sample_points_and_weights">
+<span class="sig-name descname"><span class="pre">sample_points_and_weights</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.sample_points_and_weights" title="Link to this definition">¶</a></dt>
+<dd><p>Get sample q vector directions and associated weights</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.qtgui.Perspectives.ParticleEditor.sampling.angles.</span></span><span class="sig-name descname"><span class="pre">ZDelta</span></span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sas.qtgui.Perspectives.ParticleEditor.datamodel.html#sas.qtgui.Perspectives.ParticleEditor.datamodel.calculation.AngularDistribution" title="sas.qtgui.Perspectives.ParticleEditor.datamodel.calculation.AngularDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">AngularDistribution</span></code></a></p>
+<p>Perfectly oriented sample</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta.__abstractmethods__">
+<span class="sig-name descname"><span class="pre">__abstractmethods__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">frozenset({})</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta.__abstractmethods__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'</span> <span class="pre">Perfectly</span> <span class="pre">oriented</span> <span class="pre">sample</span> <span class="pre">'</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.qtgui.Perspectives.ParticleEditor.sampling.angles'</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return repr(self).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta._abc_impl" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta.n_points">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_points</span></span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta.n_points" title="Link to this definition">¶</a></dt>
+<dd><p>Number of sample points</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta.name">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta.name" title="Link to this definition">¶</a></dt>
+<dd><p>Name of this distribution</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta.parameters">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">parameters</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta.parameters" title="Link to this definition">¶</a></dt>
+<dd><p>List of keyword arguments to constructor, names for GUI, and the type of value</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta.sample_points_and_weights">
+<span class="sig-name descname"><span class="pre">sample_points_and_weights</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta.sample_points_and_weights" title="Link to this definition">¶</a></dt>
+<dd><p>Get sample q vector directions and associated weights</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-sas.qtgui.Perspectives.ParticleEditor.sampling.chunking">
+<span id="sas-qtgui-perspectives-particleeditor-sampling-chunking-module"></span><h2>sas.qtgui.Perspectives.ParticleEditor.sampling.chunking module<a class="headerlink" href="#module-sas.qtgui.Perspectives.ParticleEditor.sampling.chunking" title="Link to this heading">¶</a></h2>
+<p>Functions designed to help avoid using too much memory, chunks up the pairwise distributions</p>
+<p>Something like this</p>
+<p>.                 First Point</p>
+<p>.       1   2   3 | 4   5   6 | 7   8   9 | 0
+.   1             |           |           |
+.S                |           |           |
+.e  2   CHUNK 1   |  CHUNK 2  |  CHUNK 3  | CHUNK 4
+.c                |           |           |
+.o  3             |           |           |
+.n —————+———–+———–+————
+.d  4             |           |           |
+.                 |           |           |
+.P  5   CHUNK 5   |  CHUNK 6  | CHUNK 7   | CHUNK 8
+.o                |           |           |
+.i  6             |           |           |
+.n —————+———–+———–+————
+.t  7             |           |           |
+.                 |           |           |
+.   8   CHUNK 9   | CHUNK 10  | CHUNK 11  |  CHUNK 12
+.                 |           |           |
+.   9             |           |           |
+.  —————+———–+———–+————
+.   0             |           |           |
+.      CHUNK 13   | CHUNK 14  | CHUNK 15  |  CHUNK 16
+.                 |           |           |</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.</span></span><span class="sig-name descname"><span class="pre">Chunker</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point_generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="sas.qtgui.Perspectives.ParticleEditor.datamodel.html#sas.qtgui.Perspectives.ParticleEditor.datamodel.calculation.SpatialDistribution" title="sas.qtgui.Perspectives.ParticleEditor.datamodel.calculation.SpatialDistribution"><span class="pre">SpatialDistribution</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker.__abstractmethods__">
+<span class="sig-name descname"><span class="pre">__abstractmethods__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">frozenset({'_iterator'})</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker.__abstractmethods__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker.__dict__">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'sas.qtgui.Perspectives.ParticleEditor.sampling.chunking',</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">Chunker.__init__&gt;,</span> <span class="pre">'__iter__':</span> <span class="pre">&lt;function</span> <span class="pre">Chunker.__iter__&gt;,</span> <span class="pre">'_iterator':</span> <span class="pre">&lt;function</span> <span class="pre">Chunker._iterator&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'Chunker'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'Chunker'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__doc__':</span> <span class="pre">None,</span> <span class="pre">'__abstractmethods__':</span> <span class="pre">frozenset({'_iterator'}),</span> <span class="pre">'_abc_impl':</span> <span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker.__dict__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point_generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="sas.qtgui.Perspectives.ParticleEditor.datamodel.html#sas.qtgui.Perspectives.ParticleEditor.datamodel.calculation.SpatialDistribution" title="sas.qtgui.Perspectives.ParticleEditor.datamodel.calculation.SpatialDistribution"><span class="pre">SpatialDistribution</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker.__iter__">
+<span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker.__iter__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.qtgui.Perspectives.ParticleEditor.sampling.chunking'</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker._abc_impl" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker._iterator">
+<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_iterator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker._iterator" title="Link to this definition">¶</a></dt>
+<dd><p>Python generator function that yields chunks</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunks">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.</span></span><span class="sig-name descname"><span class="pre">Chunks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point_generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="sas.qtgui.Perspectives.ParticleEditor.datamodel.html#sas.qtgui.Perspectives.ParticleEditor.datamodel.calculation.SpatialDistribution" title="sas.qtgui.Perspectives.ParticleEditor.datamodel.calculation.SpatialDistribution"><span class="pre">SpatialDistribution</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunks" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker" title="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker"><code class="xref py py-class docutils literal notranslate"><span class="pre">Chunker</span></code></a></p>
+<p>Class that takes a point generator, and produces all pairwise combinations in chunks</p>
+<p>This trades off speed for space.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunks.__abstractmethods__">
+<span class="sig-name descname"><span class="pre">__abstractmethods__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">frozenset({'_iterator'})</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunks.__abstractmethods__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunks.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'</span> <span class="pre">Class</span> <span class="pre">that</span> <span class="pre">takes</span> <span class="pre">a</span> <span class="pre">point</span> <span class="pre">generator,</span> <span class="pre">and</span> <span class="pre">produces</span> <span class="pre">all</span> <span class="pre">pairwise</span> <span class="pre">combinations</span> <span class="pre">in</span> <span class="pre">chunks\n\n</span>&#160;&#160;&#160; <span class="pre">This</span> <span class="pre">trades</span> <span class="pre">off</span> <span class="pre">speed</span> <span class="pre">for</span> <span class="pre">space.\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunks.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunks.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.qtgui.Perspectives.ParticleEditor.sampling.chunking'</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunks.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunks._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunks._abc_impl" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.InputLengthMismatch">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.</span></span><span class="sig-name descname"><span class="pre">InputLengthMismatch</span></span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.InputLengthMismatch" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.InputLengthMismatch.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.InputLengthMismatch.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.InputLengthMismatch.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.qtgui.Perspectives.ParticleEditor.sampling.chunking'</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.InputLengthMismatch.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.InputLengthMismatch.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.InputLengthMismatch.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.SingleChunk">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.</span></span><span class="sig-name descname"><span class="pre">SingleChunk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point_generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="sas.qtgui.Perspectives.ParticleEditor.datamodel.html#sas.qtgui.Perspectives.ParticleEditor.datamodel.calculation.SpatialDistribution" title="sas.qtgui.Perspectives.ParticleEditor.datamodel.calculation.SpatialDistribution"><span class="pre">SpatialDistribution</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.SingleChunk" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker" title="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker"><code class="xref py py-class docutils literal notranslate"><span class="pre">Chunker</span></code></a></p>
+<p>Chunker that doesn’t chunk</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.SingleChunk.__abstractmethods__">
+<span class="sig-name descname"><span class="pre">__abstractmethods__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">frozenset({})</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.SingleChunk.__abstractmethods__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.SingleChunk.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;</span> <span class="pre">Chunker</span> <span class="pre">that</span> <span class="pre">doesn't</span> <span class="pre">chunk</span> <span class="pre">&quot;</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.SingleChunk.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.SingleChunk.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.qtgui.Perspectives.ParticleEditor.sampling.chunking'</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.SingleChunk.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.SingleChunk._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.SingleChunk._abc_impl" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.SingleChunk._iterator">
+<span class="sig-name descname"><span class="pre">_iterator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.SingleChunk._iterator" title="Link to this definition">¶</a></dt>
+<dd><p>Python generator function that yields chunks</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.pairwise_chunk_iterator">
+<span class="sig-prename descclassname"><span class="pre">sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.</span></span><span class="sig-name descname"><span class="pre">pairwise_chunk_iterator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chunk_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.pairwise_chunk_iterator" title="Link to this definition">¶</a></dt>
+<dd><p>Generator to do chunking as described in the module docs above</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.sublist_lengths">
+<span class="sig-prename descclassname"><span class="pre">sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.</span></span><span class="sig-name descname"><span class="pre">sublist_lengths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.sublist_lengths" title="Link to this definition">¶</a></dt>
+<dd><p>Return the length of the</p>
+</dd></dl>
+
+</section>
+<section id="module-sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic">
+<span id="sas-qtgui-perspectives-particleeditor-sampling-geodesic-module"></span><h2>sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic module<a class="headerlink" href="#module-sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.</span></span><span class="sig-name descname"><span class="pre">Geodesic</span></span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Points arranged pretty uniformly and regularly on a sphere</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic.__dict__">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic',</span> <span class="pre">'__doc__':</span> <span class="pre">'</span> <span class="pre">Points</span> <span class="pre">arranged</span> <span class="pre">pretty</span> <span class="pre">uniformly</span> <span class="pre">and</span> <span class="pre">regularly</span> <span class="pre">on</span> <span class="pre">a</span> <span class="pre">sphere',</span> <span class="pre">'_base_vertices':</span> <span class="pre">[(0.0,</span> <span class="pre">0.0,</span> <span class="pre">1.0),</span> <span class="pre">(np.float64(0.8944271909999159),</span> <span class="pre">np.float64(0.0),</span> <span class="pre">np.float64(0.4472135954999579)),</span> <span class="pre">(np.float64(0.27639320225002106),</span> <span class="pre">np.float64(0.8506508083520399),</span> <span class="pre">np.float64(0.4472135954999579)),</span> <span class="pre">(np.float64(-0.7236067977499788),</span> <span class="pre">np.float64(0.5257311121191337),</span> <span class="pre">np.float64(0.4472135954999579)),</span> <span class="pre">(np.float64(-0.723606797749979),</span> <span class="pre">np.float64(-0.5257311121191335),</span> <span class="pre">np.float64(0.4472135954999579)),</span> <span class="pre">(np.float64(0.27639320225002084),</span> <span class="pre">np.float64(-0.85065080835204),</span> <span class="pre">np.float64(0.4472135954999579)),</span> <span class="pre">(np.float64(0.7236067977499789),</span> <span class="pre">np.float64(0.5257311121191336),</span> <span class="pre">np.float64(-0.4472135954999579)),</span> <span class="pre">(np.float64(-0.27639320225002095),</span> <span class="pre">np.float64(0.85065080835204),</span> <span class="pre">np.float64(-0.4472135954999579)),</span> <span class="pre">(np.float64(-0.8944271909999159),</span> <span class="pre">np.float64(1.0953573965284052e-16),</span> <span class="pre">np.float64(-0.4472135954999579)),</span> <span class="pre">(np.float64(-0.2763932022500211),</span> <span class="pre">np.float64(-0.8506508083520399),</span> <span class="pre">np.float64(-0.4472135954999579)),</span> <span class="pre">(np.float64(0.7236067977499788),</span> <span class="pre">np.float64(-0.5257311121191338),</span> <span class="pre">np.float64(-0.4472135954999579)),</span> <span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">-1.0)],</span> <span class="pre">'_base_edges':</span> <span class="pre">[(0,</span> <span class="pre">1),</span> <span class="pre">(0,</span> <span class="pre">2),</span> <span class="pre">(0,</span> <span class="pre">3),</span> <span class="pre">(0,</span> <span class="pre">4),</span> <span class="pre">(0,</span> <span class="pre">5),</span> <span class="pre">(1,</span> <span class="pre">2),</span> <span class="pre">(2,</span> <span class="pre">3),</span> <span class="pre">(3,</span> <span class="pre">4),</span> <span class="pre">(4,</span> <span class="pre">5),</span> <span class="pre">(5,</span> <span class="pre">1),</span> <span class="pre">(1,</span> <span class="pre">6),</span> <span class="pre">(2,</span> <span class="pre">7),</span> <span class="pre">(3,</span> <span class="pre">8),</span> <span class="pre">(4,</span> <span class="pre">9),</span> <span class="pre">(5,</span> <span class="pre">10),</span> <span class="pre">(1,</span> <span class="pre">10),</span> <span class="pre">(2,</span> <span class="pre">6),</span> <span class="pre">(3,</span> <span class="pre">7),</span> <span class="pre">(4,</span> <span class="pre">8),</span> <span class="pre">(5,</span> <span class="pre">9),</span> <span class="pre">(6,</span> <span class="pre">7),</span> <span class="pre">(7,</span> <span class="pre">8),</span> <span class="pre">(8,</span> <span class="pre">9),</span> <span class="pre">(9,</span> <span class="pre">10),</span> <span class="pre">(10,</span> <span class="pre">6),</span> <span class="pre">(6,</span> <span class="pre">11),</span> <span class="pre">(7,</span> <span class="pre">11),</span> <span class="pre">(8,</span> <span class="pre">11),</span> <span class="pre">(9,</span> <span class="pre">11),</span> <span class="pre">(10,</span> <span class="pre">11)],</span> <span class="pre">'_base_triangles':</span> <span class="pre">[(0,</span> <span class="pre">1,</span> <span class="pre">2),</span> <span class="pre">(0,</span> <span class="pre">2,</span> <span class="pre">3),</span> <span class="pre">(0,</span> <span class="pre">3,</span> <span class="pre">4),</span> <span class="pre">(0,</span> <span class="pre">4,</span> <span class="pre">5),</span> <span class="pre">(0,</span> <span class="pre">5,</span> <span class="pre">1),</span> <span class="pre">(2,</span> <span class="pre">1,</span> <span class="pre">6),</span> <span class="pre">(3,</span> <span class="pre">2,</span> <span class="pre">7),</span> <span class="pre">(4,</span> <span class="pre">3,</span> <span class="pre">8),</span> <span class="pre">(5,</span> <span class="pre">4,</span> <span class="pre">9),</span> <span class="pre">(1,</span> <span class="pre">5,</span> <span class="pre">10),</span> <span class="pre">(6,</span> <span class="pre">10,</span> <span class="pre">1),</span> <span class="pre">(7,</span> <span class="pre">6,</span> <span class="pre">2),</span> <span class="pre">(8,</span> <span class="pre">7,</span> <span class="pre">3),</span> <span class="pre">(9,</span> <span class="pre">8,</span> <span class="pre">4),</span> <span class="pre">(10,</span> <span class="pre">9,</span> <span class="pre">5),</span> <span class="pre">(6,</span> <span class="pre">7,</span> <span class="pre">11),</span> <span class="pre">(7,</span> <span class="pre">8,</span> <span class="pre">11),</span> <span class="pre">(8,</span> <span class="pre">9,</span> <span class="pre">11),</span> <span class="pre">(9,</span> <span class="pre">10,</span> <span class="pre">11),</span> <span class="pre">(10,</span> <span class="pre">6,</span> <span class="pre">11)],</span> <span class="pre">'_cache':</span> <span class="pre">{},</span> <span class="pre">'points_for_division_amount':</span> <span class="pre">&lt;staticmethod(&lt;function</span> <span class="pre">Geodesic.points_for_division_amount&gt;)&gt;,</span> <span class="pre">'minimal_divisions_for_points':</span> <span class="pre">&lt;staticmethod(&lt;function</span> <span class="pre">Geodesic.minimal_divisions_for_points&gt;)&gt;,</span> <span class="pre">'by_point_count':</span> <span class="pre">&lt;staticmethod(&lt;function</span> <span class="pre">Geodesic.by_point_count&gt;)&gt;,</span> <span class="pre">'by_divisions':</span> <span class="pre">&lt;staticmethod(&lt;function</span> <span class="pre">Geodesic.by_divisions&gt;)&gt;,</span> <span class="pre">'_calculate_weights':</span> <span class="pre">&lt;staticmethod(&lt;function</span> <span class="pre">Geodesic._calculate_weights&gt;)&gt;,</span> <span class="pre">'_rotation_matrix_to_z_vector':</span> <span class="pre">&lt;staticmethod(&lt;function</span> <span class="pre">Geodesic._rotation_matrix_to_z_vector&gt;)&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'Geodesic'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'Geodesic'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic.__dict__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'</span> <span class="pre">Points</span> <span class="pre">arranged</span> <span class="pre">pretty</span> <span class="pre">uniformly</span> <span class="pre">and</span> <span class="pre">regularly</span> <span class="pre">on</span> <span class="pre">a</span> <span class="pre">sphere'</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic'</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic._base_edges">
+<span class="sig-name descname"><span class="pre">_base_edges</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[(0,</span> <span class="pre">1),</span> <span class="pre">(0,</span> <span class="pre">2),</span> <span class="pre">(0,</span> <span class="pre">3),</span> <span class="pre">(0,</span> <span class="pre">4),</span> <span class="pre">(0,</span> <span class="pre">5),</span> <span class="pre">(1,</span> <span class="pre">2),</span> <span class="pre">(2,</span> <span class="pre">3),</span> <span class="pre">(3,</span> <span class="pre">4),</span> <span class="pre">(4,</span> <span class="pre">5),</span> <span class="pre">(5,</span> <span class="pre">1),</span> <span class="pre">(1,</span> <span class="pre">6),</span> <span class="pre">(2,</span> <span class="pre">7),</span> <span class="pre">(3,</span> <span class="pre">8),</span> <span class="pre">(4,</span> <span class="pre">9),</span> <span class="pre">(5,</span> <span class="pre">10),</span> <span class="pre">(1,</span> <span class="pre">10),</span> <span class="pre">(2,</span> <span class="pre">6),</span> <span class="pre">(3,</span> <span class="pre">7),</span> <span class="pre">(4,</span> <span class="pre">8),</span> <span class="pre">(5,</span> <span class="pre">9),</span> <span class="pre">(6,</span> <span class="pre">7),</span> <span class="pre">(7,</span> <span class="pre">8),</span> <span class="pre">(8,</span> <span class="pre">9),</span> <span class="pre">(9,</span> <span class="pre">10),</span> <span class="pre">(10,</span> <span class="pre">6),</span> <span class="pre">(6,</span> <span class="pre">11),</span> <span class="pre">(7,</span> <span class="pre">11),</span> <span class="pre">(8,</span> <span class="pre">11),</span> <span class="pre">(9,</span> <span class="pre">11),</span> <span class="pre">(10,</span> <span class="pre">11)]</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic._base_edges" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic._base_triangles">
+<span class="sig-name descname"><span class="pre">_base_triangles</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[(0,</span> <span class="pre">1,</span> <span class="pre">2),</span> <span class="pre">(0,</span> <span class="pre">2,</span> <span class="pre">3),</span> <span class="pre">(0,</span> <span class="pre">3,</span> <span class="pre">4),</span> <span class="pre">(0,</span> <span class="pre">4,</span> <span class="pre">5),</span> <span class="pre">(0,</span> <span class="pre">5,</span> <span class="pre">1),</span> <span class="pre">(2,</span> <span class="pre">1,</span> <span class="pre">6),</span> <span class="pre">(3,</span> <span class="pre">2,</span> <span class="pre">7),</span> <span class="pre">(4,</span> <span class="pre">3,</span> <span class="pre">8),</span> <span class="pre">(5,</span> <span class="pre">4,</span> <span class="pre">9),</span> <span class="pre">(1,</span> <span class="pre">5,</span> <span class="pre">10),</span> <span class="pre">(6,</span> <span class="pre">10,</span> <span class="pre">1),</span> <span class="pre">(7,</span> <span class="pre">6,</span> <span class="pre">2),</span> <span class="pre">(8,</span> <span class="pre">7,</span> <span class="pre">3),</span> <span class="pre">(9,</span> <span class="pre">8,</span> <span class="pre">4),</span> <span class="pre">(10,</span> <span class="pre">9,</span> <span class="pre">5),</span> <span class="pre">(6,</span> <span class="pre">7,</span> <span class="pre">11),</span> <span class="pre">(7,</span> <span class="pre">8,</span> <span class="pre">11),</span> <span class="pre">(8,</span> <span class="pre">9,</span> <span class="pre">11),</span> <span class="pre">(9,</span> <span class="pre">10,</span> <span class="pre">11),</span> <span class="pre">(10,</span> <span class="pre">6,</span> <span class="pre">11)]</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic._base_triangles" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic._base_vertices">
+<span class="sig-name descname"><span class="pre">_base_vertices</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[(0.0,</span> <span class="pre">0.0,</span> <span class="pre">1.0),</span> <span class="pre">(np.float64(0.8944271909999159),</span> <span class="pre">np.float64(0.0),</span> <span class="pre">np.float64(0.4472135954999579)),</span> <span class="pre">(np.float64(0.27639320225002106),</span> <span class="pre">np.float64(0.8506508083520399),</span> <span class="pre">np.float64(0.4472135954999579)),</span> <span class="pre">(np.float64(-0.7236067977499788),</span> <span class="pre">np.float64(0.5257311121191337),</span> <span class="pre">np.float64(0.4472135954999579)),</span> <span class="pre">(np.float64(-0.723606797749979),</span> <span class="pre">np.float64(-0.5257311121191335),</span> <span class="pre">np.float64(0.4472135954999579)),</span> <span class="pre">(np.float64(0.27639320225002084),</span> <span class="pre">np.float64(-0.85065080835204),</span> <span class="pre">np.float64(0.4472135954999579)),</span> <span class="pre">(np.float64(0.7236067977499789),</span> <span class="pre">np.float64(0.5257311121191336),</span> <span class="pre">np.float64(-0.4472135954999579)),</span> <span class="pre">(np.float64(-0.27639320225002095),</span> <span class="pre">np.float64(0.85065080835204),</span> <span class="pre">np.float64(-0.4472135954999579)),</span> <span class="pre">(np.float64(-0.8944271909999159),</span> <span class="pre">np.float64(1.0953573965284052e-16),</span> <span class="pre">np.float64(-0.4472135954999579)),</span> <span class="pre">(np.float64(-0.2763932022500211),</span> <span class="pre">np.float64(-0.8506508083520399),</span> <span class="pre">np.float64(-0.4472135954999579)),</span> <span class="pre">(np.float64(0.7236067977499788),</span> <span class="pre">np.float64(-0.5257311121191338),</span> <span class="pre">np.float64(-0.4472135954999579)),</span> <span class="pre">(0.0,</span> <span class="pre">0.0,</span> <span class="pre">-1.0)]</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic._base_vertices" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic._cache">
+<span class="sig-name descname"><span class="pre">_cache</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic._cache" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic._calculate_weights">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_calculate_weights</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic._calculate_weights" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the anular area associated with each point</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic._rotation_matrix_to_z_vector">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_rotation_matrix_to_z_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point_on_sphere</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic._rotation_matrix_to_z_vector" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate <em>a</em> rotation matrix that moves a given point onto the z axis</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic.by_divisions">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">by_divisions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_divisions</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic.by_divisions" title="Link to this definition">¶</a></dt>
+<dd><p>Get point sample on a unit geodesic sphere, points are creating by dividing each
+face of an icosahedron into smaller triangles so that each edge is split into n_divisions pieces</p>
+<p>Weights of each point are calculated by fractional spherical area of dual polyhedron, and total weight = 4pi</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic.by_point_count">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">by_point_count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_points</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic.by_point_count" title="Link to this definition">¶</a></dt>
+<dd><p>Get point sample on a unit geodesic sphere, <em>at least</em> n_points will be returned</p>
+<p>Weights of each point are calculated by fractional spherical area of dual polyhedron, and total weight = 4pi</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic.minimal_divisions_for_points">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">minimal_divisions_for_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_points</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic.minimal_divisions_for_points" title="Link to this definition">¶</a></dt>
+<dd><p>What division number should I use if I want at least n_points points on my geodesic</p>
+<p>rounded (ciel) inverse of points_for_division_amount</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic.points_for_division_amount">
+<em class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">points_for_division_amount</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_divisions</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic.points_for_division_amount" title="Link to this definition">¶</a></dt>
+<dd><p>Get the number of points on the sphere for a given number of geodesic divisions
+by which I mean how many sections is each edge of the initial icosahedron split into
+(not how many times it is divided in half, which might be what you think given some other
+geodesic generation methods)</p>
+<p>Icosahedron counts as 1 division</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.GeodesicDivisions">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.</span></span><span class="sig-name descname"><span class="pre">GeodesicDivisions</span></span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.GeodesicDivisions" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Use this so that the GUI program gives geodesic divisions box, rather than a plain int one</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.GeodesicDivisions.__dict__">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic',</span> <span class="pre">'__doc__':</span> <span class="pre">'</span> <span class="pre">Use</span> <span class="pre">this</span> <span class="pre">so</span> <span class="pre">that</span> <span class="pre">the</span> <span class="pre">GUI</span> <span class="pre">program</span> <span class="pre">gives</span> <span class="pre">geodesic</span> <span class="pre">divisions</span> <span class="pre">box,</span> <span class="pre">rather</span> <span class="pre">than</span> <span class="pre">a</span> <span class="pre">plain</span> <span class="pre">int</span> <span class="pre">one',</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'GeodesicDivisions'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'GeodesicDivisions'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.GeodesicDivisions.__dict__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.GeodesicDivisions.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'</span> <span class="pre">Use</span> <span class="pre">this</span> <span class="pre">so</span> <span class="pre">that</span> <span class="pre">the</span> <span class="pre">GUI</span> <span class="pre">program</span> <span class="pre">gives</span> <span class="pre">geodesic</span> <span class="pre">divisions</span> <span class="pre">box,</span> <span class="pre">rather</span> <span class="pre">than</span> <span class="pre">a</span> <span class="pre">plain</span> <span class="pre">int</span> <span class="pre">one'</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.GeodesicDivisions.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.GeodesicDivisions.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic'</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.GeodesicDivisions.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.GeodesicDivisions.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.GeodesicDivisions.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-sas.qtgui.Perspectives.ParticleEditor.sampling.points">
+<span id="sas-qtgui-perspectives-particleeditor-sampling-points-module"></span><h2>sas.qtgui.Perspectives.ParticleEditor.sampling.points module<a class="headerlink" href="#module-sas.qtgui.Perspectives.ParticleEditor.sampling.points" title="Link to this heading">¶</a></h2>
+<p>Instances of the spatial sampler</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.BoundedByCube">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.qtgui.Perspectives.ParticleEditor.sampling.points.</span></span><span class="sig-name descname"><span class="pre">BoundedByCube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_desired_points</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.BoundedByCube" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sas.qtgui.Perspectives.ParticleEditor.datamodel.html#sas.qtgui.Perspectives.ParticleEditor.datamodel.calculation.SpatialDistribution" title="sas.qtgui.Perspectives.ParticleEditor.datamodel.calculation.SpatialDistribution"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpatialDistribution</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.BoundedByCube.__abstractmethods__">
+<span class="sig-name descname"><span class="pre">__abstractmethods__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">frozenset({'generate'})</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.BoundedByCube.__abstractmethods__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.BoundedByCube.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.BoundedByCube.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.BoundedByCube.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.qtgui.Perspectives.ParticleEditor.sampling.points'</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.BoundedByCube.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.BoundedByCube._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.BoundedByCube._abc_impl" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.BoundedByCube._boundary_base_points">
+<span class="sig-name descname"><span class="pre">_boundary_base_points</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">array([[-1.,</span>&#160; <span class="pre">0.,</span>&#160; <span class="pre">0.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[</span> <span class="pre">1.,</span>&#160; <span class="pre">0.,</span>&#160; <span class="pre">0.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[</span> <span class="pre">0.,</span> <span class="pre">-1.,</span>&#160; <span class="pre">0.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[</span> <span class="pre">0.,</span>&#160; <span class="pre">1.,</span>&#160; <span class="pre">0.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[</span> <span class="pre">0.,</span>&#160; <span class="pre">0.,</span> <span class="pre">-1.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[</span> <span class="pre">0.,</span>&#160; <span class="pre">0.,</span>&#160; <span class="pre">1.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[</span> <span class="pre">1.,</span>&#160; <span class="pre">1.,</span>&#160; <span class="pre">1.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[</span> <span class="pre">1.,</span>&#160; <span class="pre">1.,</span> <span class="pre">-1.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[</span> <span class="pre">1.,</span> <span class="pre">-1.,</span>&#160; <span class="pre">1.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[</span> <span class="pre">1.,</span> <span class="pre">-1.,</span> <span class="pre">-1.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[-1.,</span>&#160; <span class="pre">1.,</span>&#160; <span class="pre">1.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[-1.,</span>&#160; <span class="pre">1.,</span> <span class="pre">-1.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[-1.,</span> <span class="pre">-1.,</span>&#160; <span class="pre">1.],</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">[-1.,</span> <span class="pre">-1.,</span> <span class="pre">-1.]])</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.BoundedByCube._boundary_base_points" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.BoundedByCube._bounding_surface_check_points">
+<span class="sig-name descname"><span class="pre">_bounding_surface_check_points</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.BoundedByCube._bounding_surface_check_points" title="Link to this definition">¶</a></dt>
+<dd><p>Points used to check that the SLD/magnetism vector are zero outside the sample space</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.Grid">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.qtgui.Perspectives.ParticleEditor.sampling.points.</span></span><span class="sig-name descname"><span class="pre">Grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desired_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.Grid" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.BoundedByCube" title="sas.qtgui.Perspectives.ParticleEditor.sampling.points.BoundedByCube"><code class="xref py py-class docutils literal notranslate"><span class="pre">BoundedByCube</span></code></a></p>
+<p>Generate points on a grid within a cube with side length 2*radius</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.Grid.__abstractmethods__">
+<span class="sig-name descname"><span class="pre">__abstractmethods__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">frozenset({})</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.Grid.__abstractmethods__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.Grid.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'</span> <span class="pre">Generate</span> <span class="pre">points</span> <span class="pre">on</span> <span class="pre">a</span> <span class="pre">grid</span> <span class="pre">within</span> <span class="pre">a</span> <span class="pre">cube</span> <span class="pre">with</span> <span class="pre">side</span> <span class="pre">length</span> <span class="pre">2*radius</span> <span class="pre">'</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.Grid.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.Grid.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desired_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.Grid.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.Grid.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.qtgui.Perspectives.ParticleEditor.sampling.points'</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.Grid.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.Grid._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.Grid._abc_impl" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.Grid.generate">
+<span class="sig-name descname"><span class="pre">generate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.Grid.generate" title="Link to this definition">¶</a></dt>
+<dd><p>Generate points from start_index up to end_index</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.Grid.info">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">info</span></span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.Grid.info" title="Link to this definition">¶</a></dt>
+<dd><p>Information to be displayed in the settings window next to the point number input</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.PointGeneratorStepper">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.qtgui.Perspectives.ParticleEditor.sampling.points.</span></span><span class="sig-name descname"><span class="pre">PointGeneratorStepper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point_generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="sas.qtgui.Perspectives.ParticleEditor.datamodel.html#sas.qtgui.Perspectives.ParticleEditor.datamodel.calculation.SpatialDistribution" title="sas.qtgui.Perspectives.ParticleEditor.datamodel.calculation.SpatialDistribution"><span class="pre">SpatialDistribution</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bootstrap_sections</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.PointGeneratorStepper" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Generate batches of step_size points from a PointGenerator instance</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.PointGeneratorStepper.__dict__">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'sas.qtgui.Perspectives.ParticleEditor.sampling.points',</span> <span class="pre">'__doc__':</span> <span class="pre">'</span> <span class="pre">Generate</span> <span class="pre">batches</span> <span class="pre">of</span> <span class="pre">step_size</span> <span class="pre">points</span> <span class="pre">from</span> <span class="pre">a</span> <span class="pre">PointGenerator</span> <span class="pre">instance\n</span>&#160;&#160;&#160; <span class="pre">',</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">PointGeneratorStepper.__init__&gt;,</span> <span class="pre">'_iterator':</span> <span class="pre">&lt;function</span> <span class="pre">PointGeneratorStepper._iterator&gt;,</span> <span class="pre">'__iter__':</span> <span class="pre">&lt;function</span> <span class="pre">PointGeneratorStepper.__iter__&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'PointGeneratorStepper'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'PointGeneratorStepper'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.PointGeneratorStepper.__dict__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.PointGeneratorStepper.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'</span> <span class="pre">Generate</span> <span class="pre">batches</span> <span class="pre">of</span> <span class="pre">step_size</span> <span class="pre">points</span> <span class="pre">from</span> <span class="pre">a</span> <span class="pre">PointGenerator</span> <span class="pre">instance\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.PointGeneratorStepper.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.PointGeneratorStepper.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point_generator</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="sas.qtgui.Perspectives.ParticleEditor.datamodel.html#sas.qtgui.Perspectives.ParticleEditor.datamodel.calculation.SpatialDistribution" title="sas.qtgui.Perspectives.ParticleEditor.datamodel.calculation.SpatialDistribution"><span class="pre">SpatialDistribution</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">step_size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bootstrap_sections</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.PointGeneratorStepper.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.PointGeneratorStepper.__iter__">
+<span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.PointGeneratorStepper.__iter__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.PointGeneratorStepper.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.qtgui.Perspectives.ParticleEditor.sampling.points'</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.PointGeneratorStepper.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.PointGeneratorStepper.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.PointGeneratorStepper.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.PointGeneratorStepper._iterator">
+<span class="sig-name descname"><span class="pre">_iterator</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.PointGeneratorStepper._iterator" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.RandomCube">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.qtgui.Perspectives.ParticleEditor.sampling.points.</span></span><span class="sig-name descname"><span class="pre">RandomCube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desired_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.RandomCube" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.BoundedByCube" title="sas.qtgui.Perspectives.ParticleEditor.sampling.points.BoundedByCube"><code class="xref py py-class docutils literal notranslate"><span class="pre">BoundedByCube</span></code></a></p>
+<p>Generate random points in a cube with side length 2*radius</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.RandomCube.__abstractmethods__">
+<span class="sig-name descname"><span class="pre">__abstractmethods__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">frozenset({})</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.RandomCube.__abstractmethods__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.RandomCube.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'</span> <span class="pre">Generate</span> <span class="pre">random</span> <span class="pre">points</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">cube</span> <span class="pre">with</span> <span class="pre">side</span> <span class="pre">length</span> <span class="pre">2*radius'</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.RandomCube.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.RandomCube.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desired_points</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.RandomCube.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.RandomCube.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.qtgui.Perspectives.ParticleEditor.sampling.points'</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.RandomCube.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.RandomCube._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.RandomCube._abc_impl" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.RandomCube.allows_bootstrap">
+<span class="sig-name descname"><span class="pre">allows_bootstrap</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.RandomCube.allows_bootstrap" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Perspectives.ParticleEditor.sampling.points.RandomCube.generate">
+<span class="sig-name descname"><span class="pre">generate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_index</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.RandomCube.generate" title="Link to this definition">¶</a></dt>
+<dd><p>Generate points from start_index up to end_index</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-sas.qtgui.Perspectives.ParticleEditor.sampling">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-sas.qtgui.Perspectives.ParticleEditor.sampling" title="Link to this heading">¶</a></h2>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">sas.qtgui.Perspectives.ParticleEditor.sampling package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-sas.qtgui.Perspectives.ParticleEditor.sampling.angles">sas.qtgui.Perspectives.ParticleEditor.sampling.angles module</a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform"><code class="docutils literal notranslate"><span class="pre">Uniform</span></code></a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">Uniform.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.__doc__"><code class="docutils literal notranslate"><span class="pre">Uniform.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.__init__"><code class="docutils literal notranslate"><span class="pre">Uniform.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.__module__"><code class="docutils literal notranslate"><span class="pre">Uniform.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.__repr__"><code class="docutils literal notranslate"><span class="pre">Uniform.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform._abc_impl"><code class="docutils literal notranslate"><span class="pre">Uniform._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.n_points"><code class="docutils literal notranslate"><span class="pre">Uniform.n_points</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.name"><code class="docutils literal notranslate"><span class="pre">Uniform.name()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.parameters"><code class="docutils literal notranslate"><span class="pre">Uniform.parameters()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.Uniform.sample_points_and_weights"><code class="docutils literal notranslate"><span class="pre">Uniform.sample_points_and_weights()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta"><code class="docutils literal notranslate"><span class="pre">ZDelta</span></code></a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">ZDelta.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta.__doc__"><code class="docutils literal notranslate"><span class="pre">ZDelta.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta.__module__"><code class="docutils literal notranslate"><span class="pre">ZDelta.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta.__repr__"><code class="docutils literal notranslate"><span class="pre">ZDelta.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta._abc_impl"><code class="docutils literal notranslate"><span class="pre">ZDelta._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta.n_points"><code class="docutils literal notranslate"><span class="pre">ZDelta.n_points</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta.name"><code class="docutils literal notranslate"><span class="pre">ZDelta.name()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta.parameters"><code class="docutils literal notranslate"><span class="pre">ZDelta.parameters()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.angles.ZDelta.sample_points_and_weights"><code class="docutils literal notranslate"><span class="pre">ZDelta.sample_points_and_weights()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-sas.qtgui.Perspectives.ParticleEditor.sampling.chunking">sas.qtgui.Perspectives.ParticleEditor.sampling.chunking module</a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker"><code class="docutils literal notranslate"><span class="pre">Chunker</span></code></a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">Chunker.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker.__dict__"><code class="docutils literal notranslate"><span class="pre">Chunker.__dict__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker.__doc__"><code class="docutils literal notranslate"><span class="pre">Chunker.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker.__init__"><code class="docutils literal notranslate"><span class="pre">Chunker.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker.__iter__"><code class="docutils literal notranslate"><span class="pre">Chunker.__iter__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker.__module__"><code class="docutils literal notranslate"><span class="pre">Chunker.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker.__weakref__"><code class="docutils literal notranslate"><span class="pre">Chunker.__weakref__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker._abc_impl"><code class="docutils literal notranslate"><span class="pre">Chunker._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunker._iterator"><code class="docutils literal notranslate"><span class="pre">Chunker._iterator()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunks"><code class="docutils literal notranslate"><span class="pre">Chunks</span></code></a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunks.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">Chunks.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunks.__doc__"><code class="docutils literal notranslate"><span class="pre">Chunks.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunks.__module__"><code class="docutils literal notranslate"><span class="pre">Chunks.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.Chunks._abc_impl"><code class="docutils literal notranslate"><span class="pre">Chunks._abc_impl</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.InputLengthMismatch"><code class="docutils literal notranslate"><span class="pre">InputLengthMismatch</span></code></a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.InputLengthMismatch.__doc__"><code class="docutils literal notranslate"><span class="pre">InputLengthMismatch.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.InputLengthMismatch.__module__"><code class="docutils literal notranslate"><span class="pre">InputLengthMismatch.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.InputLengthMismatch.__weakref__"><code class="docutils literal notranslate"><span class="pre">InputLengthMismatch.__weakref__</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.SingleChunk"><code class="docutils literal notranslate"><span class="pre">SingleChunk</span></code></a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.SingleChunk.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">SingleChunk.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.SingleChunk.__doc__"><code class="docutils literal notranslate"><span class="pre">SingleChunk.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.SingleChunk.__module__"><code class="docutils literal notranslate"><span class="pre">SingleChunk.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.SingleChunk._abc_impl"><code class="docutils literal notranslate"><span class="pre">SingleChunk._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.SingleChunk._iterator"><code class="docutils literal notranslate"><span class="pre">SingleChunk._iterator()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.pairwise_chunk_iterator"><code class="docutils literal notranslate"><span class="pre">pairwise_chunk_iterator()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.chunking.sublist_lengths"><code class="docutils literal notranslate"><span class="pre">sublist_lengths()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic">sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic module</a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic"><code class="docutils literal notranslate"><span class="pre">Geodesic</span></code></a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic.__dict__"><code class="docutils literal notranslate"><span class="pre">Geodesic.__dict__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic.__doc__"><code class="docutils literal notranslate"><span class="pre">Geodesic.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic.__module__"><code class="docutils literal notranslate"><span class="pre">Geodesic.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic.__weakref__"><code class="docutils literal notranslate"><span class="pre">Geodesic.__weakref__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic._base_edges"><code class="docutils literal notranslate"><span class="pre">Geodesic._base_edges</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic._base_triangles"><code class="docutils literal notranslate"><span class="pre">Geodesic._base_triangles</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic._base_vertices"><code class="docutils literal notranslate"><span class="pre">Geodesic._base_vertices</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic._cache"><code class="docutils literal notranslate"><span class="pre">Geodesic._cache</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic._calculate_weights"><code class="docutils literal notranslate"><span class="pre">Geodesic._calculate_weights()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic._rotation_matrix_to_z_vector"><code class="docutils literal notranslate"><span class="pre">Geodesic._rotation_matrix_to_z_vector()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic.by_divisions"><code class="docutils literal notranslate"><span class="pre">Geodesic.by_divisions()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic.by_point_count"><code class="docutils literal notranslate"><span class="pre">Geodesic.by_point_count()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic.minimal_divisions_for_points"><code class="docutils literal notranslate"><span class="pre">Geodesic.minimal_divisions_for_points()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.Geodesic.points_for_division_amount"><code class="docutils literal notranslate"><span class="pre">Geodesic.points_for_division_amount()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.GeodesicDivisions"><code class="docutils literal notranslate"><span class="pre">GeodesicDivisions</span></code></a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.GeodesicDivisions.__dict__"><code class="docutils literal notranslate"><span class="pre">GeodesicDivisions.__dict__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.GeodesicDivisions.__doc__"><code class="docutils literal notranslate"><span class="pre">GeodesicDivisions.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.GeodesicDivisions.__module__"><code class="docutils literal notranslate"><span class="pre">GeodesicDivisions.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.geodesic.GeodesicDivisions.__weakref__"><code class="docutils literal notranslate"><span class="pre">GeodesicDivisions.__weakref__</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-sas.qtgui.Perspectives.ParticleEditor.sampling.points">sas.qtgui.Perspectives.ParticleEditor.sampling.points module</a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.BoundedByCube"><code class="docutils literal notranslate"><span class="pre">BoundedByCube</span></code></a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.BoundedByCube.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">BoundedByCube.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.BoundedByCube.__doc__"><code class="docutils literal notranslate"><span class="pre">BoundedByCube.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.BoundedByCube.__module__"><code class="docutils literal notranslate"><span class="pre">BoundedByCube.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.BoundedByCube._abc_impl"><code class="docutils literal notranslate"><span class="pre">BoundedByCube._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.BoundedByCube._boundary_base_points"><code class="docutils literal notranslate"><span class="pre">BoundedByCube._boundary_base_points</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.BoundedByCube._bounding_surface_check_points"><code class="docutils literal notranslate"><span class="pre">BoundedByCube._bounding_surface_check_points()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.Grid"><code class="docutils literal notranslate"><span class="pre">Grid</span></code></a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.Grid.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">Grid.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.Grid.__doc__"><code class="docutils literal notranslate"><span class="pre">Grid.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.Grid.__init__"><code class="docutils literal notranslate"><span class="pre">Grid.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.Grid.__module__"><code class="docutils literal notranslate"><span class="pre">Grid.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.Grid._abc_impl"><code class="docutils literal notranslate"><span class="pre">Grid._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.Grid.generate"><code class="docutils literal notranslate"><span class="pre">Grid.generate()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.Grid.info"><code class="docutils literal notranslate"><span class="pre">Grid.info</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.PointGeneratorStepper"><code class="docutils literal notranslate"><span class="pre">PointGeneratorStepper</span></code></a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.PointGeneratorStepper.__dict__"><code class="docutils literal notranslate"><span class="pre">PointGeneratorStepper.__dict__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.PointGeneratorStepper.__doc__"><code class="docutils literal notranslate"><span class="pre">PointGeneratorStepper.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.PointGeneratorStepper.__init__"><code class="docutils literal notranslate"><span class="pre">PointGeneratorStepper.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.PointGeneratorStepper.__iter__"><code class="docutils literal notranslate"><span class="pre">PointGeneratorStepper.__iter__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.PointGeneratorStepper.__module__"><code class="docutils literal notranslate"><span class="pre">PointGeneratorStepper.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.PointGeneratorStepper.__weakref__"><code class="docutils literal notranslate"><span class="pre">PointGeneratorStepper.__weakref__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.PointGeneratorStepper._iterator"><code class="docutils literal notranslate"><span class="pre">PointGeneratorStepper._iterator()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.RandomCube"><code class="docutils literal notranslate"><span class="pre">RandomCube</span></code></a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.RandomCube.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">RandomCube.__abstractmethods__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.RandomCube.__doc__"><code class="docutils literal notranslate"><span class="pre">RandomCube.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.RandomCube.__init__"><code class="docutils literal notranslate"><span class="pre">RandomCube.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.RandomCube.__module__"><code class="docutils literal notranslate"><span class="pre">RandomCube.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.RandomCube._abc_impl"><code class="docutils literal notranslate"><span class="pre">RandomCube._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.RandomCube.allows_bootstrap"><code class="docutils literal notranslate"><span class="pre">RandomCube.allows_bootstrap()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Perspectives.ParticleEditor.sampling.points.RandomCube.generate"><code class="docutils literal notranslate"><span class="pre">RandomCube.generate()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-sas.qtgui.Perspectives.ParticleEditor.sampling">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="sas.qtgui.Perspectives.ParticleEditor.datamodel.html"
+                          title="previous chapter">sas.qtgui.Perspectives.ParticleEditor.datamodel package</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="sas.qtgui.Perspectives.SizeDistribution.html"
+                          title="next chapter">sas.qtgui.Perspectives.SizeDistribution package</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/dev/sasview-api/sas.qtgui.Perspectives.ParticleEditor.sampling.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sas.qtgui.Perspectives.SizeDistribution.html" title="sas.qtgui.Perspectives.SizeDistribution package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="sas.qtgui.Perspectives.ParticleEditor.datamodel.html" title="sas.qtgui.Perspectives.ParticleEditor.datamodel package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="modules.html" >SasView</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sas.html" >sas package</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="sas.qtgui.html" >sas.qtgui package</a> &#187;</li>
+          <li class="nav-item nav-item-5"><a href="sas.qtgui.Perspectives.html" >sas.qtgui.Perspectives package</a> &#187;</li>
+          <li class="nav-item nav-item-6"><a href="sas.qtgui.Perspectives.ParticleEditor.html" >sas.qtgui.Perspectives.ParticleEditor package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sas.qtgui.Perspectives.ParticleEditor.sampling package</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

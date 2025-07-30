@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>sasdata.file_converter.bsl_loader module &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="sasdata.file_converter.cansas_writer module" href="sasdata.file_converter.cansas_writer.html" />
+    <link rel="prev" title="sasdata.file_converter.ascii2d_loader module" href="sasdata.file_converter.ascii2d_loader.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sasdata.file_converter.cansas_writer.html" title="sasdata.file_converter.cansas_writer module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="sasdata.file_converter.ascii2d_loader.html" title="sasdata.file_converter.ascii2d_loader module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sasdata.html" >sasdata package</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="sasdata.file_converter.html" accesskey="U">sasdata.file_converter package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sasdata.file_converter.bsl_loader module</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="module-sasdata.file_converter.bsl_loader">
+<span id="sasdata-file-converter-bsl-loader-module"></span><h1>sasdata.file_converter.bsl_loader module<a class="headerlink" href="#module-sasdata.file_converter.bsl_loader" title="Link to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="sasdata.file_converter.bsl_loader.BSLLoader">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sasdata.file_converter.bsl_loader.</span></span><span class="sig-name descname"><span class="pre">BSLLoader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.file_converter.bsl_loader.BSLLoader" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Loads 2D SAS data from a BSL file.
+CLoader is a C extension (found in c_ext/bsl_loader.c)</p>
+<p>See <a class="reference external" href="http://www.diamond.ac.uk/Beamlines/Soft-Condensed-Matter/small-angle/SAXS-Software/CCP13/BSL.html">http://www.diamond.ac.uk/Beamlines/Soft-Condensed-Matter/small-angle/SAXS-Software/CCP13/BSL.html</a>
+for more info on the BSL file format.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sasdata.file_converter.bsl_loader.BSLLoader.__dict__">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'sasdata.file_converter.bsl_loader',</span> <span class="pre">'__doc__':</span> <span class="pre">'\n</span>&#160;&#160;&#160; <span class="pre">Loads</span> <span class="pre">2D</span> <span class="pre">SAS</span> <span class="pre">data</span> <span class="pre">from</span> <span class="pre">a</span> <span class="pre">BSL</span> <span class="pre">file.\n</span>&#160;&#160;&#160; <span class="pre">CLoader</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">C</span> <span class="pre">extension</span> <span class="pre">(found</span> <span class="pre">in</span> <span class="pre">c_ext/bsl_loader.c)\n\n</span>&#160;&#160;&#160; <span class="pre">See</span> <span class="pre">http://www.diamond.ac.uk/Beamlines/Soft-Condensed-Matter/small-angle/SAXS-Software/CCP13/BSL.html\n</span>&#160;&#160;&#160; <span class="pre">for</span> <span class="pre">more</span> <span class="pre">info</span> <span class="pre">on</span> <span class="pre">the</span> <span class="pre">BSL</span> <span class="pre">file</span> <span class="pre">format.\n</span>&#160;&#160;&#160; <span class="pre">',</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">BSLLoader.__init__&gt;,</span> <span class="pre">'_parse_header':</span> <span class="pre">&lt;function</span> <span class="pre">BSLLoader._parse_header&gt;,</span> <span class="pre">'filename':</span> <span class="pre">&lt;property</span> <span class="pre">object&gt;,</span> <span class="pre">'n_frames':</span> <span class="pre">&lt;property</span> <span class="pre">object&gt;,</span> <span class="pre">'n_pixels':</span> <span class="pre">&lt;property</span> <span class="pre">object&gt;,</span> <span class="pre">'n_rasters':</span> <span class="pre">&lt;property</span> <span class="pre">object&gt;,</span> <span class="pre">'swap_bytes':</span> <span class="pre">&lt;property</span> <span class="pre">object&gt;,</span> <span class="pre">'load_frames':</span> <span class="pre">&lt;function</span> <span class="pre">BSLLoader.load_frames&gt;,</span> <span class="pre">'load_data':</span> <span class="pre">&lt;function</span> <span class="pre">BSLLoader.load_data&gt;,</span> <span class="pre">'__str__':</span> <span class="pre">&lt;function</span> <span class="pre">BSLLoader.__str__&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'BSLLoader'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'BSLLoader'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#sasdata.file_converter.bsl_loader.BSLLoader.__dict__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sasdata.file_converter.bsl_loader.BSLLoader.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160; <span class="pre">Loads</span> <span class="pre">2D</span> <span class="pre">SAS</span> <span class="pre">data</span> <span class="pre">from</span> <span class="pre">a</span> <span class="pre">BSL</span> <span class="pre">file.\n</span>&#160;&#160;&#160; <span class="pre">CLoader</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">C</span> <span class="pre">extension</span> <span class="pre">(found</span> <span class="pre">in</span> <span class="pre">c_ext/bsl_loader.c)\n\n</span>&#160;&#160;&#160; <span class="pre">See</span> <span class="pre">http://www.diamond.ac.uk/Beamlines/Soft-Condensed-Matter/small-angle/SAXS-Software/CCP13/BSL.html\n</span>&#160;&#160;&#160; <span class="pre">for</span> <span class="pre">more</span> <span class="pre">info</span> <span class="pre">on</span> <span class="pre">the</span> <span class="pre">BSL</span> <span class="pre">file</span> <span class="pre">format.\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#sasdata.file_converter.bsl_loader.BSLLoader.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.file_converter.bsl_loader.BSLLoader.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.file_converter.bsl_loader.BSLLoader.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>Parses the BSL header file and sets instance variables apropriately</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> – Path to the BSL header file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sasdata.file_converter.bsl_loader.BSLLoader.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sasdata.file_converter.bsl_loader'</span></em><a class="headerlink" href="#sasdata.file_converter.bsl_loader.BSLLoader.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.file_converter.bsl_loader.BSLLoader.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.file_converter.bsl_loader.BSLLoader.__str__" title="Link to this definition">¶</a></dt>
+<dd><p>Print the objects params.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string description of object parameters.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sasdata.file_converter.bsl_loader.BSLLoader.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#sasdata.file_converter.bsl_loader.BSLLoader.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.file_converter.bsl_loader.BSLLoader._parse_header">
+<span class="sig-name descname"><span class="pre">_parse_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">header_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sasdata_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folder</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.file_converter.bsl_loader.BSLLoader._parse_header" title="Link to this definition">¶</a></dt>
+<dd><p>Method that parses the header file and returns the metadata in data_info</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>header_file</strong> – header file object.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>metadata of header file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="sasdata.file_converter.bsl_loader.BSLLoader.filename">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">filename</span></span><a class="headerlink" href="#sasdata.file_converter.bsl_loader.BSLLoader.filename" title="Link to this definition">¶</a></dt>
+<dd><p>File to load.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.file_converter.bsl_loader.BSLLoader.load_data">
+<span class="sig-name descname"><span class="pre">load_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.file_converter.bsl_loader.BSLLoader.load_data" title="Link to this definition">¶</a></dt>
+<dd><p>Loads the file named in filename in 4 byte float, in either
+little or big Endian depending on self.swap_bytes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>frame</strong> – The frame to load.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>np array of loaded floats.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sasdata.file_converter.bsl_loader.BSLLoader.load_frames">
+<span class="sig-name descname"><span class="pre">load_frames</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frames</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sasdata.file_converter.bsl_loader.BSLLoader.load_frames" title="Link to this definition">¶</a></dt>
+<dd><p>Loads all frames of the BSl file into a Data2D object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>frames</strong> – Number of frames.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Data2D frame_data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="sasdata.file_converter.bsl_loader.BSLLoader.n_frames">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_frames</span></span><a class="headerlink" href="#sasdata.file_converter.bsl_loader.BSLLoader.n_frames" title="Link to this definition">¶</a></dt>
+<dd><p>Number of frames in the file.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="sasdata.file_converter.bsl_loader.BSLLoader.n_pixels">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_pixels</span></span><a class="headerlink" href="#sasdata.file_converter.bsl_loader.BSLLoader.n_pixels" title="Link to this definition">¶</a></dt>
+<dd><p>Number of pixels in the file.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="sasdata.file_converter.bsl_loader.BSLLoader.n_rasters">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">n_rasters</span></span><a class="headerlink" href="#sasdata.file_converter.bsl_loader.BSLLoader.n_rasters" title="Link to this definition">¶</a></dt>
+<dd><p>Number of rasters in the file.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="sasdata.file_converter.bsl_loader.BSLLoader.swap_bytes">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">swap_bytes</span></span><a class="headerlink" href="#sasdata.file_converter.bsl_loader.BSLLoader.swap_bytes" title="Link to this definition">¶</a></dt>
+<dd><p>Whether or not the bytes are in reverse order.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="sasdata.file_converter.bsl_loader.BSLParsingError">
+<em class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sasdata.file_converter.bsl_loader.</span></span><span class="sig-name descname"><span class="pre">BSLParsingError</span></span><a class="headerlink" href="#sasdata.file_converter.bsl_loader.BSLParsingError" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sasdata.file_converter.bsl_loader.BSLParsingError.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sasdata.file_converter.bsl_loader.BSLParsingError.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sasdata.file_converter.bsl_loader.BSLParsingError.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sasdata.file_converter.bsl_loader'</span></em><a class="headerlink" href="#sasdata.file_converter.bsl_loader.BSLParsingError.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sasdata.file_converter.bsl_loader.BSLParsingError.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#sasdata.file_converter.bsl_loader.BSLParsingError.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">sasdata.file_converter.bsl_loader module</a><ul>
+<li><a class="reference internal" href="#sasdata.file_converter.bsl_loader.BSLLoader"><code class="docutils literal notranslate"><span class="pre">BSLLoader</span></code></a><ul>
+<li><a class="reference internal" href="#sasdata.file_converter.bsl_loader.BSLLoader.__dict__"><code class="docutils literal notranslate"><span class="pre">BSLLoader.__dict__</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.file_converter.bsl_loader.BSLLoader.__doc__"><code class="docutils literal notranslate"><span class="pre">BSLLoader.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.file_converter.bsl_loader.BSLLoader.__init__"><code class="docutils literal notranslate"><span class="pre">BSLLoader.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.file_converter.bsl_loader.BSLLoader.__module__"><code class="docutils literal notranslate"><span class="pre">BSLLoader.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.file_converter.bsl_loader.BSLLoader.__str__"><code class="docutils literal notranslate"><span class="pre">BSLLoader.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.file_converter.bsl_loader.BSLLoader.__weakref__"><code class="docutils literal notranslate"><span class="pre">BSLLoader.__weakref__</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.file_converter.bsl_loader.BSLLoader._parse_header"><code class="docutils literal notranslate"><span class="pre">BSLLoader._parse_header()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.file_converter.bsl_loader.BSLLoader.filename"><code class="docutils literal notranslate"><span class="pre">BSLLoader.filename</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.file_converter.bsl_loader.BSLLoader.load_data"><code class="docutils literal notranslate"><span class="pre">BSLLoader.load_data()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.file_converter.bsl_loader.BSLLoader.load_frames"><code class="docutils literal notranslate"><span class="pre">BSLLoader.load_frames()</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.file_converter.bsl_loader.BSLLoader.n_frames"><code class="docutils literal notranslate"><span class="pre">BSLLoader.n_frames</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.file_converter.bsl_loader.BSLLoader.n_pixels"><code class="docutils literal notranslate"><span class="pre">BSLLoader.n_pixels</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.file_converter.bsl_loader.BSLLoader.n_rasters"><code class="docutils literal notranslate"><span class="pre">BSLLoader.n_rasters</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.file_converter.bsl_loader.BSLLoader.swap_bytes"><code class="docutils literal notranslate"><span class="pre">BSLLoader.swap_bytes</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sasdata.file_converter.bsl_loader.BSLParsingError"><code class="docutils literal notranslate"><span class="pre">BSLParsingError</span></code></a><ul>
+<li><a class="reference internal" href="#sasdata.file_converter.bsl_loader.BSLParsingError.__doc__"><code class="docutils literal notranslate"><span class="pre">BSLParsingError.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.file_converter.bsl_loader.BSLParsingError.__module__"><code class="docutils literal notranslate"><span class="pre">BSLParsingError.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sasdata.file_converter.bsl_loader.BSLParsingError.__weakref__"><code class="docutils literal notranslate"><span class="pre">BSLParsingError.__weakref__</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="sasdata.file_converter.ascii2d_loader.html"
+                          title="previous chapter">sasdata.file_converter.ascii2d_loader module</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="sasdata.file_converter.cansas_writer.html"
+                          title="next chapter">sasdata.file_converter.cansas_writer module</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/dev/sasdata-dev/generated/sasdata.file_converter.bsl_loader.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sasdata.file_converter.cansas_writer.html" title="sasdata.file_converter.cansas_writer module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="sasdata.file_converter.ascii2d_loader.html" title="sasdata.file_converter.ascii2d_loader module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sasdata.html" >sasdata package</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="sasdata.file_converter.html" >sasdata.file_converter package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sasdata.file_converter.bsl_loader module</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

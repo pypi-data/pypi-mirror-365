@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Example 1: Default Calculator Data &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Example 2: A Magnetic Cylinder" href="gsc_ex_magnetic_cylinder.html" />
+    <link rel="prev" title="Generic SAS Calculator Tool" href="sas_calculator_help.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="gsc_ex_magnetic_cylinder.html" title="Example 2: A Magnetic Cylinder"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="sas_calculator_help.html" title="Generic SAS Calculator Tool"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../tools.html" >Tools &amp; Utilities</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sas_calculator_help.html" accesskey="U">Generic SAS Calculator Tool</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Example 1: Default Calculator Data</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="example-1-default-calculator-data">
+<span id="gsc-ex-default-data"></span><h1>Example 1: Default Calculator Data<a class="headerlink" href="#example-1-default-calculator-data" title="Link to this heading">¶</a></h1>
+<p>In this example we will use the default data in the generic scattering calculator to find
+the scattering intensity of a 60x60x60Å cube with constant
+scattering length density of 6.97x10<sup>-6</sup>Å<sup>-2</sup>. We begin by
+selecting Tool&gt;Generic Scattering Calculator from the top menu.</p>
+<p>Upon loading the calculator we are shown the following interface:</p>
+<figure class="align-default">
+<img alt="../../../_images/gsc_ex_default_data_1.png" src="../../../_images/gsc_ex_default_data_1.png" />
+</figure>
+<p>The default data within the generic scattering calculator (highlighted in red) describes a rectangular grid of 10x10x10 pixels, with
+each pixel being 6x6x6Å. Each pixel has a constant nuclear SLD of 6.97x10<sup>-6</sup>Å<sup>-2</sup>
+and no magnetic SLD.</p>
+<p>To calculate the scattering pattern we press the <cite>compute</cite> button, and the following image appears in the main window:</p>
+<figure class="align-default">
+<img alt="../../../_images/gsc_ex_default_data_2.png" src="../../../_images/gsc_ex_default_data_2.png" />
+</figure>
+<p>This shows the scattering intensity on a 30x30 grid of pixels, up to a maximum value of 0.3Å<sup>-1</sup> in each axis, as
+specified in the Q Range settings in the calculator. In order to see a higher resolution image we can adjust the number of Qx (Qy) bins. For a smooth image here we will set
+this value to 100.</p>
+<figure class="align-default">
+<img alt="../../../_images/gsc_ex_default_data_3.png" src="../../../_images/gsc_ex_default_data_3.png" />
+</figure>
+<p>The orange highlight of the textbox informs us that this value is potentially too high. More precisely it is informing us that with the given spacing of
+pixels in the realspace data the fourier transform cannot resolve peaks at such fine resolution in Q space. While using more Q bins can produce
+nicer images - which more clearly show the overall pattern - we should be aware of this limitation. Pressing compute again gives us a new output:</p>
+<figure class="align-default">
+<img alt="../../../_images/gsc_ex_default_data_4.png" src="../../../_images/gsc_ex_default_data_4.png" />
+</figure>
+<p>Given that for purely nuclear data the scattering pattern corresponds to a fourier transform, it should not be a suprise that for a cube oriented with
+the axes, a sinc pattern appears.</p>
+<p>It is often far more useful to know the orientational average at each magnitude <span class="math notranslate nohighlight">\(\|\mathbf{Q}\|\)</span> than the result for a single oriented cube. Because the default data
+is positioned on a regular grid, and contains only nuclear scattering length densities, we can use the Debye full average option, which uses the Debye formula to
+calculate the orientational average:</p>
+<figure class="align-default">
+<img alt="../../../_images/gsc_ex_default_data_5.png" src="../../../_images/gsc_ex_default_data_5.png" />
+</figure>
+<p>Pressing compute again gives:</p>
+<figure class="align-default">
+<img alt="../../../_images/gsc_ex_default_data_6.png" src="../../../_images/gsc_ex_default_data_6.png" />
+</figure>
+<p>For such a simple structure as a cube, the analytical result is well known, and we can compare the calculator’s simulation to the fitting tool. In the main window we select the most
+recent dataset (the Debye full average) and select <cite>Send data to</cite> with <cite>Fitting</cite> mode selected in the adjacent drop down. We can now select the <cite>Parallelepiped</cite> model category and then
+the <cite>Parallelepiped</cite> model in the fitting window. We also adjust all the paramters in the window to match those of the default data in the scattering calculator.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>scale: 1</p></li>
+<li><p>background: 0</p></li>
+<li><p>sld: 6.97 (<span class="math notranslate nohighlight">\(\times 10^{-6}\)</span> in units)</p></li>
+<li><p>sld_solvent: 0</p></li>
+<li><p>length_a: 60</p></li>
+<li><p>length_b: 60</p></li>
+<li><p>length_c: 60</p></li>
+</ul>
+</div></blockquote>
+<p>If we now press <cite>Compute/Plot</cite> at the bottom of the fitting window we see a plot of our data and the analytical result.</p>
+<figure class="align-default">
+<img alt="../../../_images/gsc_ex_default_data_7.png" src="../../../_images/gsc_ex_default_data_7.png" />
+</figure>
+<figure class="align-default">
+<img alt="../../../_images/gsc_ex_default_data_7b.png" src="../../../_images/gsc_ex_default_data_7b.png" />
+</figure>
+<p>As we would expect, at higher Q values the calculator result deviates from the analytical result, due to the discretisation of the data in the calculator. With a 10x10x10 cube of pixels
+we obtain <span class="math notranslate nohighlight">\(\chi^2 = 1.96\)</span>.</p>
+<p>If we adjust the calculator settings to use a 20x20x20 grid of pixels to describe the same sample, we expect to see a much better match. We adjust the settings as follows:</p>
+<figure class="align-default">
+<img alt="../../../_images/gsc_ex_default_data_8.png" src="../../../_images/gsc_ex_default_data_8.png" />
+</figure>
+<p>Recomputing the data and comparing it to the fitting calculator as before gives a substantially better fit of <span class="math notranslate nohighlight">\(\chi^2 = 0.12\)</span>. It is visibly obvious from the graph as well
+that this fit is much closer to the analytical result.</p>
+<figure class="align-default">
+<img alt="../../../_images/gsc_ex_default_data_9.png" src="../../../_images/gsc_ex_default_data_9.png" />
+</figure>
+<figure class="align-default">
+<img alt="../../../_images/gsc_ex_default_data_9b.png" src="../../../_images/gsc_ex_default_data_9b.png" />
+</figure>
+<p><em>Document History</em></p>
+<div class="line-block">
+<div class="line">2021-09-14 Robert Bourne</div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="sas_calculator_help.html"
+                          title="previous chapter">Generic SAS Calculator Tool</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="gsc_ex_magnetic_cylinder.html"
+                          title="next chapter">Example 2: A Magnetic Cylinder</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user/qtgui/Calculators/gsc_ex_default_data.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="gsc_ex_magnetic_cylinder.html" title="Example 2: A Magnetic Cylinder"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="sas_calculator_help.html" title="Generic SAS Calculator Tool"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../tools.html" >Tools &amp; Utilities</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sas_calculator_help.html" >Generic SAS Calculator Tool</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Example 1: Default Calculator Data</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

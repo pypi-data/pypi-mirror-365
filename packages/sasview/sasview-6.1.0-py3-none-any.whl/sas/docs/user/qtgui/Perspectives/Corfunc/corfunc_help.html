@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Correlation Function Analysis &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Correlation Function Theory" href="corfunc-theory.html" />
+    <link rel="prev" title="Invariant Calculation" href="../Invariant/invariant_help.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="corfunc-theory.html" title="Correlation Function Theory"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../Invariant/invariant_help.html" title="Invariant Calculation"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../analysis.html" accesskey="U">Fitting &amp; Other Analyses</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Correlation Function Analysis</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="correlation-function-analysis">
+<span id="corfunc-help"></span><h1>Correlation Function Analysis<a class="headerlink" href="#correlation-function-analysis" title="Link to this heading">¶</a></h1>
+<p>The Correlation Function Analysis documentation is split into three sections.
+One on the general principles of correlation function analysis.
+Another containing details on how the analysis is performed in SasView, and
+another showing how to use the tool from a users perspective.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="corfunc-theory.html">Theoretical basis of correlation function analysis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="corfunc-theory.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="corfunc-theory.html#lorentz-correction">Lorentz Correction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="corfunc-theory.html#formal-description">Formal Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="corfunc-theory.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="corfunc-technical.html">Details of how the Corfunc module in SasView works</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="corfunc-technical.html#in-brief">In Brief</a></li>
+<li class="toctree-l2"><a class="reference internal" href="corfunc-technical.html#extrapolation">Extrapolation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="corfunc-technical.html#transformation">Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="corfunc-technical.html#interpretation">Interpretation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="corfunc-how-to.html">How-to/tutorial on using Corfunc</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="corfunc-how-to.html#running-a-calculation">Running a Calculation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="corfunc-how-to.html#options">Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="corfunc-how-to.html#output">Output</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../Invariant/invariant_help.html"
+                          title="previous chapter">Invariant Calculation</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="corfunc-theory.html"
+                          title="next chapter">Correlation Function Theory</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/user/qtgui/Perspectives/Corfunc/corfunc_help.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="corfunc-theory.html" title="Correlation Function Theory"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../Invariant/invariant_help.html" title="Invariant Calculation"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../analysis.html" >Fitting &amp; Other Analyses</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Correlation Function Analysis</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

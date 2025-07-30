@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>sas.qtgui.Plotting.Masks package &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="sas.qtgui.Plotting.Slicers package" href="sas.qtgui.Plotting.Slicers.html" />
+    <link rel="prev" title="sas.qtgui.Plotting package" href="sas.qtgui.Plotting.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sas.qtgui.Plotting.Slicers.html" title="sas.qtgui.Plotting.Slicers package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="sas.qtgui.Plotting.html" title="sas.qtgui.Plotting package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="modules.html" >SasView</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sas.html" >sas package</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="sas.qtgui.html" >sas.qtgui package</a> &#187;</li>
+          <li class="nav-item nav-item-5"><a href="sas.qtgui.Plotting.html" accesskey="U">sas.qtgui.Plotting package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sas.qtgui.Plotting.Masks package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="sas-qtgui-plotting-masks-package">
+<h1>sas.qtgui.Plotting.Masks package<a class="headerlink" href="#sas-qtgui-plotting-masks-package" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-sas.qtgui.Plotting.Masks.BoxMask">
+<span id="sas-qtgui-plotting-masks-boxmask-module"></span><h2>sas.qtgui.Plotting.Masks.BoxMask module<a class="headerlink" href="#module-sas.qtgui.Plotting.Masks.BoxMask" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.BoxMask.BoxMask">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.qtgui.Plotting.Masks.BoxMask.</span></span><span class="sig-name descname"><span class="pre">BoxMask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'black'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">side</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.008</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.008</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0025</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sas.qtgui.Plotting.Slicers.html#sas.qtgui.Plotting.Slicers.BaseInteractor.BaseInteractor" title="sas.qtgui.Plotting.Slicers.BaseInteractor.BaseInteractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseInteractor</span></code></a></p>
+<p>BoxMask Class: determine 2 rectangular area to find the pixel of
+a Data inside of box.</p>
+<p>Uses PointerInteractor , VerticalDoubleLine,HorizontalDoubleLine.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>zorder</strong> – Artists with lower zorder values are drawn first.</p></li>
+<li><p><strong>x_min</strong> – the minimum value of the x coordinate</p></li>
+<li><p><strong>x_max</strong> – the maximum value of the x coordinate</p></li>
+<li><p><strong>y_min</strong> – the minimum value of the y coordinate</p></li>
+<li><p><strong>y_max</strong> – the maximum value of the y coordinate</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.BoxMask.BoxMask.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.BoxMask.BoxMask.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160; <span class="pre">BoxMask</span> <span class="pre">Class:</span> <span class="pre">determine</span> <span class="pre">2</span> <span class="pre">rectangular</span> <span class="pre">area</span> <span class="pre">to</span> <span class="pre">find</span> <span class="pre">the</span> <span class="pre">pixel</span> <span class="pre">of\n</span>&#160;&#160;&#160; <span class="pre">a</span> <span class="pre">Data</span> <span class="pre">inside</span> <span class="pre">of</span> <span class="pre">box.\n\n</span>&#160;&#160;&#160; <span class="pre">Uses</span> <span class="pre">PointerInteractor</span> <span class="pre">,</span> <span class="pre">VerticalDoubleLine,HorizontalDoubleLine.\n\n</span>&#160;&#160;&#160; <span class="pre">:param</span> <span class="pre">zorder:</span>&#160; <span class="pre">Artists</span> <span class="pre">with</span> <span class="pre">lower</span> <span class="pre">zorder</span> <span class="pre">values</span> <span class="pre">are</span> <span class="pre">drawn</span> <span class="pre">first.\n</span>&#160;&#160;&#160; <span class="pre">:param</span> <span class="pre">x_min:</span> <span class="pre">the</span> <span class="pre">minimum</span> <span class="pre">value</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">x</span> <span class="pre">coordinate\n</span>&#160;&#160;&#160; <span class="pre">:param</span> <span class="pre">x_max:</span> <span class="pre">the</span> <span class="pre">maximum</span> <span class="pre">value</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">x</span> <span class="pre">coordinate\n</span>&#160;&#160;&#160; <span class="pre">:param</span> <span class="pre">y_min:</span> <span class="pre">the</span> <span class="pre">minimum</span> <span class="pre">value</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">y</span> <span class="pre">coordinate\n</span>&#160;&#160;&#160; <span class="pre">:param</span> <span class="pre">y_max:</span> <span class="pre">the</span> <span class="pre">maximum</span> <span class="pre">value</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">y</span> <span class="pre">coordinate\n\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.BoxMask.BoxMask.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'black'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">side</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.008</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.008</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_min</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0025</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_max</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0025</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.BoxMask.BoxMask.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.qtgui.Plotting.Masks.BoxMask'</span></em><a class="headerlink" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.BoxMask.BoxMask._post_data">
+<span class="sig-name descname"><span class="pre">_post_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask._post_data" title="Link to this definition">¶</a></dt>
+<dd><p>Get the limits of the boxsum and compute the sum of the pixel
+contained in that region and the error on that sum</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.BoxMask.BoxMask.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.clear" title="Link to this definition">¶</a></dt>
+<dd><p>Clear the slicer and all connected events related to this slicer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.BoxMask.BoxMask.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.draw" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.BoxMask.BoxMask.get_mask">
+<span class="sig-name descname"><span class="pre">get_mask</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.get_mask" title="Link to this definition">¶</a></dt>
+<dd><p>return mask as a result of boxcut</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.BoxMask.BoxMask.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.get_params" title="Link to this definition">¶</a></dt>
+<dd><p>Store a copy of values of parameters of the slicer into a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return params<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the dictionary created</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.BoxMask.BoxMask.move">
+<span class="sig-name descname"><span class="pre">move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ev</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.move" title="Link to this definition">¶</a></dt>
+<dd><p>Process move to a new position, making sure that the move is allowed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.BoxMask.BoxMask.moveend">
+<span class="sig-name descname"><span class="pre">moveend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ev</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.moveend" title="Link to this definition">¶</a></dt>
+<dd><p>After a dragging motion this function is called to compute
+the error and the sum of pixel of a given data 2D</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.BoxMask.BoxMask.restore">
+<span class="sig-name descname"><span class="pre">restore</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.restore" title="Link to this definition">¶</a></dt>
+<dd><p>Restore the roughness for this layer.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.BoxMask.BoxMask.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ev</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.save" title="Link to this definition">¶</a></dt>
+<dd><p>Remember the roughness for this layer and the next so that we
+can restore on Esc.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.BoxMask.BoxMask.set_cursor">
+<span class="sig-name descname"><span class="pre">set_cursor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.set_cursor" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.BoxMask.BoxMask.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.set_params" title="Link to this definition">¶</a></dt>
+<dd><p>Receive a dictionary and reset the slicer with values contained
+in the values of the dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>params</strong> – a dictionary containing name of slicer parameters and
+values the user assigned to the slicer.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.BoxMask.BoxMask.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.update" title="Link to this definition">¶</a></dt>
+<dd><p>Respond to changes in the model by recalculating the profiles and
+resetting the widgets.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-sas.qtgui.Plotting.Masks.CircularMask">
+<span id="sas-qtgui-plotting-masks-circularmask-module"></span><h2>sas.qtgui.Plotting.Masks.CircularMask module<a class="headerlink" href="#module-sas.qtgui.Plotting.Masks.CircularMask" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.CircularMask.CircularMask">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.qtgui.Plotting.Masks.CircularMask.</span></span><span class="sig-name descname"><span class="pre">CircularMask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'grey'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">side</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sas.qtgui.Plotting.Slicers.html#sas.qtgui.Plotting.Slicers.BaseInteractor.BaseInteractor" title="sas.qtgui.Plotting.Slicers.BaseInteractor.BaseInteractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseInteractor</span></code></a></p>
+<p>Draw a ring Given a radius</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.CircularMask.CircularMask.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.CircularMask.CircularMask.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160;&#160; <span class="pre">Draw</span> <span class="pre">a</span> <span class="pre">ring</span> <span class="pre">Given</span> <span class="pre">a</span> <span class="pre">radius\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.CircularMask.CircularMask.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'grey'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">side</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.__init__" title="Link to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Param<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the color of the line that defined the ring</p>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>r</strong> – the radius of the ring</p></li>
+<li><p><strong>sign</strong> – the direction of motion the the marker</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.CircularMask.CircularMask.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.qtgui.Plotting.Masks.CircularMask'</span></em><a class="headerlink" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.CircularMask.CircularMask._post_data">
+<span class="sig-name descname"><span class="pre">_post_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask._post_data" title="Link to this definition">¶</a></dt>
+<dd><p>Uses annulus parameters to plot averaged data into 1D data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>nbins</strong> – the number of points to plot</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.CircularMask.CircularMask.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.clear" title="Link to this definition">¶</a></dt>
+<dd><p>Clear the slicer and all connected events related to this slicer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.CircularMask.CircularMask.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.draw" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.CircularMask.CircularMask.getParams">
+<span class="sig-name descname"><span class="pre">getParams</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.getParams" title="Link to this definition">¶</a></dt>
+<dd><p>Store a copy of values of parameters of the slicer into a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return params<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the dictionary created</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.CircularMask.CircularMask.move">
+<span class="sig-name descname"><span class="pre">move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ev</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.move" title="Link to this definition">¶</a></dt>
+<dd><p>Process move to a new position, making sure that the move is allowed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.CircularMask.CircularMask.moveend">
+<span class="sig-name descname"><span class="pre">moveend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ev</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.moveend" title="Link to this definition">¶</a></dt>
+<dd><p>Called when any dragging motion ends.
+Post an event (type =SlicerParameterEvent)
+to plotter 2D with a copy  slicer parameters
+Call  _post_data method</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.CircularMask.CircularMask.restore">
+<span class="sig-name descname"><span class="pre">restore</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.restore" title="Link to this definition">¶</a></dt>
+<dd><p>Restore the roughness for this layer.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.CircularMask.CircularMask.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ev</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.save" title="Link to this definition">¶</a></dt>
+<dd><p>Remember the roughness for this layer and the next so that we
+can restore on Esc.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.CircularMask.CircularMask.setParams">
+<span class="sig-name descname"><span class="pre">setParams</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.setParams" title="Link to this definition">¶</a></dt>
+<dd><p>Receive a dictionary and reset the slicer with values contained
+in the values of the dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>params</strong> – a dictionary containing name of slicer parameters and
+values the user assigned to the slicer.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.CircularMask.CircularMask.set_cursor">
+<span class="sig-name descname"><span class="pre">set_cursor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.set_cursor" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.CircularMask.CircularMask.set_layer">
+<span class="sig-name descname"><span class="pre">set_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.set_layer" title="Link to this definition">¶</a></dt>
+<dd><p>Allow adding plot to the same panel
+:param n: the number of layer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.CircularMask.CircularMask.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.update" title="Link to this definition">¶</a></dt>
+<dd><p>Respond to changes in the model by recalculating the profiles and
+resetting the widgets.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-sas.qtgui.Plotting.Masks.SectorMask">
+<span id="sas-qtgui-plotting-masks-sectormask-module"></span><h2>sas.qtgui.Plotting.Masks.SectorMask module<a class="headerlink" href="#module-sas.qtgui.Plotting.Masks.SectorMask" title="Link to this heading">¶</a></h2>
+<p>Sector mask interactor</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.SectorMask.SectorMask">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.qtgui.Plotting.Masks.SectorMask.</span></span><span class="sig-name descname"><span class="pre">SectorMask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gray'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">side</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="sas.qtgui.Plotting.Slicers.html#sas.qtgui.Plotting.Slicers.BaseInteractor.BaseInteractor" title="sas.qtgui.Plotting.Slicers.BaseInteractor.BaseInteractor"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseInteractor</span></code></a></p>
+<p>Draw a sector slicer.Allow to find the data 2D inside of the sector lines</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.SectorMask.SectorMask.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.SectorMask.SectorMask.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160; <span class="pre">Draw</span> <span class="pre">a</span> <span class="pre">sector</span> <span class="pre">slicer.Allow</span> <span class="pre">to</span> <span class="pre">find</span> <span class="pre">the</span> <span class="pre">data</span> <span class="pre">2D</span> <span class="pre">inside</span> <span class="pre">of</span> <span class="pre">the</span> <span class="pre">sector</span> <span class="pre">lines\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.SectorMask.SectorMask.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gray'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">side</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.SectorMask.SectorMask.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.qtgui.Plotting.Masks.SectorMask'</span></em><a class="headerlink" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.SectorMask.SectorMask._post_data">
+<span class="sig-name descname"><span class="pre">_post_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask._post_data" title="Link to this definition">¶</a></dt>
+<dd><p>compute sector averaging of data into data1D</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.SectorMask.SectorMask.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.clear" title="Link to this definition">¶</a></dt>
+<dd><p>Clear the slicer and all connected events related to this slicer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.SectorMask.SectorMask.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.draw" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.SectorMask.SectorMask.get_params">
+<span class="sig-name descname"><span class="pre">get_params</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.get_params" title="Link to this definition">¶</a></dt>
+<dd><p>Store a copy of values of parameters of the slicer into a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return params<span class="colon">:</span></dt>
+<dd class="field-odd"><p>the dictionary created</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.SectorMask.SectorMask.move">
+<span class="sig-name descname"><span class="pre">move</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ev</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.move" title="Link to this definition">¶</a></dt>
+<dd><p>Process move to a new position, making sure that the move is allowed.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.SectorMask.SectorMask.moveend">
+<span class="sig-name descname"><span class="pre">moveend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ev</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.moveend" title="Link to this definition">¶</a></dt>
+<dd><p>Called a dragging motion ends.Get slicer event</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.SectorMask.SectorMask.restore">
+<span class="sig-name descname"><span class="pre">restore</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.restore" title="Link to this definition">¶</a></dt>
+<dd><p>Restore the roughness for this layer.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.SectorMask.SectorMask.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ev</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.save" title="Link to this definition">¶</a></dt>
+<dd><p>Remember the roughness for this layer and the next so that we
+can restore on Esc.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.SectorMask.SectorMask.set_cursor">
+<span class="sig-name descname"><span class="pre">set_cursor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.set_cursor" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.SectorMask.SectorMask.set_params">
+<span class="sig-name descname"><span class="pre">set_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.set_params" title="Link to this definition">¶</a></dt>
+<dd><p>Receive a dictionary and reset the slicer with values contained
+in the values of the dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>params</strong> – a dictionary containing name of slicer parameters and
+values the user assigned to the slicer.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.qtgui.Plotting.Masks.SectorMask.SectorMask.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.update" title="Link to this definition">¶</a></dt>
+<dd><p>Respond to changes in the model by recalculating the profiles and
+resetting the widgets.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-sas.qtgui.Plotting.Masks">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-sas.qtgui.Plotting.Masks" title="Link to this heading">¶</a></h2>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">sas.qtgui.Plotting.Masks package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-sas.qtgui.Plotting.Masks.BoxMask">sas.qtgui.Plotting.Masks.BoxMask module</a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask"><code class="docutils literal notranslate"><span class="pre">BoxMask</span></code></a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.__annotations__"><code class="docutils literal notranslate"><span class="pre">BoxMask.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.__doc__"><code class="docutils literal notranslate"><span class="pre">BoxMask.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.__init__"><code class="docutils literal notranslate"><span class="pre">BoxMask.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.__module__"><code class="docutils literal notranslate"><span class="pre">BoxMask.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask._post_data"><code class="docutils literal notranslate"><span class="pre">BoxMask._post_data()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.clear"><code class="docutils literal notranslate"><span class="pre">BoxMask.clear()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.draw"><code class="docutils literal notranslate"><span class="pre">BoxMask.draw()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.get_mask"><code class="docutils literal notranslate"><span class="pre">BoxMask.get_mask()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.get_params"><code class="docutils literal notranslate"><span class="pre">BoxMask.get_params()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.move"><code class="docutils literal notranslate"><span class="pre">BoxMask.move()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.moveend"><code class="docutils literal notranslate"><span class="pre">BoxMask.moveend()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.restore"><code class="docutils literal notranslate"><span class="pre">BoxMask.restore()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.save"><code class="docutils literal notranslate"><span class="pre">BoxMask.save()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.set_cursor"><code class="docutils literal notranslate"><span class="pre">BoxMask.set_cursor()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.set_params"><code class="docutils literal notranslate"><span class="pre">BoxMask.set_params()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.BoxMask.BoxMask.update"><code class="docutils literal notranslate"><span class="pre">BoxMask.update()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-sas.qtgui.Plotting.Masks.CircularMask">sas.qtgui.Plotting.Masks.CircularMask module</a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask"><code class="docutils literal notranslate"><span class="pre">CircularMask</span></code></a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.__annotations__"><code class="docutils literal notranslate"><span class="pre">CircularMask.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.__doc__"><code class="docutils literal notranslate"><span class="pre">CircularMask.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.__init__"><code class="docutils literal notranslate"><span class="pre">CircularMask.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.__module__"><code class="docutils literal notranslate"><span class="pre">CircularMask.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask._post_data"><code class="docutils literal notranslate"><span class="pre">CircularMask._post_data()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.clear"><code class="docutils literal notranslate"><span class="pre">CircularMask.clear()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.draw"><code class="docutils literal notranslate"><span class="pre">CircularMask.draw()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.getParams"><code class="docutils literal notranslate"><span class="pre">CircularMask.getParams()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.move"><code class="docutils literal notranslate"><span class="pre">CircularMask.move()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.moveend"><code class="docutils literal notranslate"><span class="pre">CircularMask.moveend()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.restore"><code class="docutils literal notranslate"><span class="pre">CircularMask.restore()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.save"><code class="docutils literal notranslate"><span class="pre">CircularMask.save()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.setParams"><code class="docutils literal notranslate"><span class="pre">CircularMask.setParams()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.set_cursor"><code class="docutils literal notranslate"><span class="pre">CircularMask.set_cursor()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.set_layer"><code class="docutils literal notranslate"><span class="pre">CircularMask.set_layer()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.CircularMask.CircularMask.update"><code class="docutils literal notranslate"><span class="pre">CircularMask.update()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-sas.qtgui.Plotting.Masks.SectorMask">sas.qtgui.Plotting.Masks.SectorMask module</a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask"><code class="docutils literal notranslate"><span class="pre">SectorMask</span></code></a><ul>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.__annotations__"><code class="docutils literal notranslate"><span class="pre">SectorMask.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.__doc__"><code class="docutils literal notranslate"><span class="pre">SectorMask.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.__init__"><code class="docutils literal notranslate"><span class="pre">SectorMask.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.__module__"><code class="docutils literal notranslate"><span class="pre">SectorMask.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask._post_data"><code class="docutils literal notranslate"><span class="pre">SectorMask._post_data()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.clear"><code class="docutils literal notranslate"><span class="pre">SectorMask.clear()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.draw"><code class="docutils literal notranslate"><span class="pre">SectorMask.draw()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.get_params"><code class="docutils literal notranslate"><span class="pre">SectorMask.get_params()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.move"><code class="docutils literal notranslate"><span class="pre">SectorMask.move()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.moveend"><code class="docutils literal notranslate"><span class="pre">SectorMask.moveend()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.restore"><code class="docutils literal notranslate"><span class="pre">SectorMask.restore()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.save"><code class="docutils literal notranslate"><span class="pre">SectorMask.save()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.set_cursor"><code class="docutils literal notranslate"><span class="pre">SectorMask.set_cursor()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.set_params"><code class="docutils literal notranslate"><span class="pre">SectorMask.set_params()</span></code></a></li>
+<li><a class="reference internal" href="#sas.qtgui.Plotting.Masks.SectorMask.SectorMask.update"><code class="docutils literal notranslate"><span class="pre">SectorMask.update()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-sas.qtgui.Plotting.Masks">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="sas.qtgui.Plotting.html"
+                          title="previous chapter">sas.qtgui.Plotting package</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="sas.qtgui.Plotting.Slicers.html"
+                          title="next chapter">sas.qtgui.Plotting.Slicers package</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/dev/sasview-api/sas.qtgui.Plotting.Masks.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sas.qtgui.Plotting.Slicers.html" title="sas.qtgui.Plotting.Slicers package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="sas.qtgui.Plotting.html" title="sas.qtgui.Plotting package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="modules.html" >SasView</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sas.html" >sas package</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="sas.qtgui.html" >sas.qtgui package</a> &#187;</li>
+          <li class="nav-item nav-item-5"><a href="sas.qtgui.Plotting.html" >sas.qtgui.Plotting package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sas.qtgui.Plotting.Masks package</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

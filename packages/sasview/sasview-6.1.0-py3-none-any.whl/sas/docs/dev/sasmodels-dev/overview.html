@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1. Code Overview &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2. Calculator Interface" href="calculator.html" />
+    <link rel="prev" title="Sasmodels Developers Guide" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="calculator.html" title="2. Calculator Interface"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Sasmodels Developers Guide"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Sasmodels Developers Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>Code Overview</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="code-overview">
+<h1><span class="section-number">1. </span>Code Overview<a class="headerlink" href="#code-overview" title="Link to this heading">¶</a></h1>
+<section id="computational-kernels">
+<h2><span class="section-number">1.1. </span>Computational kernels<a class="headerlink" href="#computational-kernels" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">core</span></code></p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">modelinfo</span></code></p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">kernel</span></code></p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">product</span></code></p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">mixture</span></code></p></li>
+</ul>
+<p>At the heart of <em>sasmodels</em> are the individual computational kernels.  These
+functions take a particular <span class="math notranslate nohighlight">\(q\)</span> value and a set of parameter values and
+return the expected scattering for that <span class="math notranslate nohighlight">\(q\)</span>. The instructions for writing
+a kernel are documented in <a class="reference internal" href="../../user/qtgui/Perspectives/Fitting/plugin.html#writing-a-plugin"><span class="std std-ref">Writing a Plugin Model</span></a>.  The source code for
+the builtin kernels is stored in <em>sasmodels/models</em>.</p>
+<p>The primary interface to the models is through <code class="xref py py-mod docutils literal notranslate"><span class="pre">core</span></code>, which
+provides functions for listing available models, loading the model definition
+and compiling the model.  Use <code class="xref py py-func docutils literal notranslate"><span class="pre">core.load_model()</span></code> to load in
+a model definition and compile it.  This makes use of
+<code class="xref py py-func docutils literal notranslate"><span class="pre">core.load_model_info()</span></code> to load the model definition and
+<code class="xref py py-func docutils literal notranslate"><span class="pre">core.build_model()</span></code> to turn it into a computational kernel model
+<code class="xref py py-class docutils literal notranslate"><span class="pre">kernel.KernelModel</span></code>.</p>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">modelinfo.ModelInfo</span></code> class defines the properties
+of the model including the available model parameters
+<code class="xref py py-class docutils literal notranslate"><span class="pre">modelinfo.ParameterTable</span></code> with individual parameter attributes
+such as units and hard limits defined in <code class="xref py py-class docutils literal notranslate"><span class="pre">modelinfo.Parameter</span></code>.</p>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">product.ProductModel</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">mixture.MixtureModel</span></code> classes
+are derived models, created automatically for models with names like
+“hardsphere*sphere” and “cylinder+sphere”.</p>
+</section>
+<section id="data-loaders">
+<h2><span class="section-number">1.2. </span>Data loaders<a class="headerlink" href="#data-loaders" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">data</span></code></p></li>
+</ul>
+<p>In order to test models a minimal set of data management routines is
+provided in <code class="xref py py-mod docutils literal notranslate"><span class="pre">data</span></code>.  In particular, it provides mock <code class="xref py py-class docutils literal notranslate"><span class="pre">data.Data1D</span></code>
+and <code class="xref py py-class docutils literal notranslate"><span class="pre">data.Data2D</span></code> classes which mimic those classes in <em>SasView</em>.
+The functions <code class="xref py py-func docutils literal notranslate"><span class="pre">data.empty_data1D()</span></code> and <code class="xref py py-func docutils literal notranslate"><span class="pre">data.empty_data2D()</span></code>
+are handy for creating containers with a particular set of <span class="math notranslate nohighlight">\(q\)</span>, <span class="math notranslate nohighlight">\(\Delta q\)</span>
+points which can later be evaluated, and <code class="xref py py-func docutils literal notranslate"><span class="pre">data.plot_theory()</span></code> to show
+the result.  If <em>SasView</em> is available on the path then <code class="xref py py-func docutils literal notranslate"><span class="pre">data.load_data()</span></code>
+can be used to load any data type defined in <em>SasView</em>.  The function
+<code class="xref py py-func docutils literal notranslate"><span class="pre">data.plot_data()</span></code> can plot that data alone without the theory value.</p>
+</section>
+<section id="kernel-execution">
+<h2><span class="section-number">1.3. </span>Kernel execution<a class="headerlink" href="#kernel-execution" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">resolution</span></code></p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">resolution2d</span></code></p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">sesans</span></code></p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">weights</span></code></p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">details</span></code></p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">direct_model</span></code></p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">bumps_model</span></code></p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">sasview_model</span></code></p></li>
+</ul>
+<p>To execute a computational kernel at a particular set of <span class="math notranslate nohighlight">\(q\)</span> values, the
+use <code class="xref py py-meth docutils literal notranslate"><span class="pre">kernel.KernelModel.make_kernel()</span></code>, which returns a callable
+<code class="xref py py-class docutils literal notranslate"><span class="pre">kernel.Kernel</span></code> for that <span class="math notranslate nohighlight">\(q\)</span> vector (or a pair of <span class="math notranslate nohighlight">\(q_x\)</span>, <span class="math notranslate nohighlight">\(q_y\)</span>
+for 2-D datasets).</p>
+<p>The calculated <span class="math notranslate nohighlight">\(q\)</span> values should include the measured
+data points as well as additional <span class="math notranslate nohighlight">\(q\)</span> values required to properly compute the
+<span class="math notranslate nohighlight">\(q\)</span> resolution function.  The <em>Resolution</em> subclasses in <code class="xref py py-mod docutils literal notranslate"><span class="pre">resolution</span></code>
+define the <em>q_calc</em> attribute for this purpose.  These are
+<code class="xref py py-class docutils literal notranslate"><span class="pre">resolution.Perfect1D</span></code> for perfect resolution,
+<code class="xref py py-class docutils literal notranslate"><span class="pre">resolution.Pinhole1D</span></code> for the usual SANS pinhole aperture,
+<code class="xref py py-class docutils literal notranslate"><span class="pre">resolution.Slit1D</span></code> for the usual USANS slit aperture and
+<code class="xref py py-class docutils literal notranslate"><span class="pre">resolution2d.Pinhole2D</span></code> for 2-D pinhole data.
+In addition, <code class="xref py py-class docutils literal notranslate"><span class="pre">resolution2d.Slit2D</span></code> defines 1-D slit smeared data
+for oriented samples, which require calculation at particular <span class="math notranslate nohighlight">\(q_x\)</span> and
+<span class="math notranslate nohighlight">\(q_y\)</span> values instead of <span class="math notranslate nohighlight">\(|q|\)</span> as is the case for orientationally averaged
+USANS.  The <code class="xref py py-class docutils literal notranslate"><span class="pre">sesans.SesansTransform</span></code> class acts like a 1-D resolution,
+having a <em>q_calc</em> attribute that defines the calculated <span class="math notranslate nohighlight">\(q\)</span> values for
+the SANS models that get converted to spin-echo values by the
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">sesans.SesansTransform.apply()</span></code> method.</p>
+<p>Polydispersity is defined by <code class="xref py py-class docutils literal notranslate"><span class="pre">weights.Dispersion</span></code> classes,
+<code class="xref py py-class docutils literal notranslate"><span class="pre">weights.RectangleDispersion</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">weights.ArrayDispersion</span></code>,
+<code class="xref py py-class docutils literal notranslate"><span class="pre">weights.LogNormalDispersion</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">weights.GaussianDispersion</span></code>,
+<code class="xref py py-class docutils literal notranslate"><span class="pre">weights.SchulzDispersion</span></code>.  The <code class="xref py py-func docutils literal notranslate"><span class="pre">weights.get_weights()</span></code>
+function creates a dispersion object of the class matching
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">weights.Dispersion.type</span></code>, and calls it with the current value
+of the parameter.  This returns a vector of values and weights for a
+weighted average polydispersity.</p>
+<p>In order to call the <code class="xref py py-class docutils literal notranslate"><span class="pre">kernel.Kernel</span></code>, the values and weights for
+all parameters must be composed into a <code class="xref py py-class docutils literal notranslate"><span class="pre">details.CallDetails</span></code> object.
+This is a compact vector representation of the entire polydispersity
+loop that can be passed easily to the kernel.  Additionally, the magnetic
+parameters must be converted from polar to cartesian coordinates.  This
+work is done by the <code class="xref py py-func docutils literal notranslate"><span class="pre">details.make_kernel_args()</span></code> function, which returns
+values that can be sent directly to the kernel.  It uses
+<code class="xref py py-func docutils literal notranslate"><span class="pre">details.make_details()</span></code> to set the details object and
+<code class="xref py py-func docutils literal notranslate"><span class="pre">details.convert_magnetism()</span></code> for the coordinate transform.</p>
+<p>In the end, making a simple theory function evaluation requires a lot of
+setup. To make calling them a little easier, the <em>DirectModel</em> and
+<em>BumpsModel</em> interfaces are provided.  See <a class="reference internal" href="../../user/qtgui/Perspectives/Fitting/scripting.html#scripting-interface"><span class="std std-ref">Scripting Interface</span></a>
+for an example.</p>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">direct_model.DirectModel</span></code> interface accepts a data object
+and a kernel model.  Within the class, the <em>_interpret_data()</em> method
+of <code class="xref py py-class docutils literal notranslate"><span class="pre">direct_model.DataMixin</span></code> is called to query the data and set
+the resolution. The <em>_calc_theory()</em> method takes a set of parameter
+values, builds the kernel arguments, calls the kernel, and applies the
+resolution function, returning the predicted value for the data <span class="math notranslate nohighlight">\(q\)</span> values.
+The <code class="xref py py-class docutils literal notranslate"><span class="pre">bumps_model.Experiment</span></code> class is like the DirectModel class,
+but it defines a Fitness class that can be handed directly to the
+bumps optimization and uncertainty analysis program.</p>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">sasview_model.SasviewModel</span></code> class defines a SasView 4.x
+compatible interface to the sasmodels definitions, allowing sasmodels
+to be used directly from SasView.  Over time the SasView shim should
+disappear as SasView access the <code class="xref py py-class docutils literal notranslate"><span class="pre">modelinfo.ModelInfo</span></code> and
+computational kernels directly.</p>
+</section>
+<section id="id1">
+<h2><span class="section-number">1.4. </span>Kernel execution<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">kernelcl</span></code></p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">kerneldll</span></code></p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">kernelpy</span></code></p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">generate</span></code></p></li>
+</ul>
+<p>The kernel functions for the most part do not define polydispersity,
+resolution or magnetism directly.  Instead sasmodels automatically
+applies these, calling the computation kernel as needed.</p>
+<p>The outermost loop is the resolution calculation.  For the 1-D case
+this computes a single vector of <span class="math notranslate nohighlight">\(I(q)\)</span> values and applies the convolution
+to the resulting set.  Since the same <span class="math notranslate nohighlight">\(I(q)\)</span> vector is used to compute the
+convolution at each point, it can be precomputed before the convolution,
+and so the convolution is reasonably efficient.  The 2-D case is not
+that efficient, and instead recomputes the entire shifted/scaled set
+of <span class="math notranslate nohighlight">\(q_x\)</span>, <span class="math notranslate nohighlight">\(q_y\)</span> values many times, or very many times depending on the
+accuracy requested.</p>
+<p>Polydispersity is handled as a mesh over the polydisperse parameters.
+This is the next level of the loop.  For C kernels run in a DLL or
+using OpenCL, the polydisperisty loop is generated separately for each
+model as C code.  Inside the polydispersity loop there is a loop over
+the magnetic cross sections for magnetic models, updating the SLD
+parameters with the effective magnetic SLD for that particular <span class="math notranslate nohighlight">\(q\)</span>
+value. For OpenCL, each <span class="math notranslate nohighlight">\(q\)</span> value loops over the
+polydispersity mesh on a separate processor. For DLL, the outer loop
+cycles through polydispersity, and the inner loop distributes q values
+amongst the processors.  Like the DLL, the Python kernel execution
+cycles over the polydisperse parameters and the magnetic cross sections,
+calling the computation kernel with a vector of <span class="math notranslate nohighlight">\(q\)</span> values.  Assuming
+the kernel code accepts vectors, this can be fast enough (though it is
+painfully slow if not vectorized).</p>
+<p>Further details are provided in the next section,
+<a class="reference internal" href="calculator.html#calculator-interface"><span class="std std-ref">Calculator Interface</span></a></p>
+</section>
+<section id="orientation-and-numerical-integration">
+<span id="orientation-developer"></span><h2><span class="section-number">1.5. </span>Orientation and Numerical Integration<a class="headerlink" href="#orientation-and-numerical-integration" title="Link to this heading">¶</a></h2>
+<p>For 2d data from oriented anisotropic particles, the mean particle
+orientation is defined by angles <span class="math notranslate nohighlight">\(\theta\)</span>, <span class="math notranslate nohighlight">\(\phi\)</span> and <span class="math notranslate nohighlight">\(\Psi\)</span>, which are not
+in general the same as similarly named angles in many form factors. The
+wikipedia page on Euler angles (<a class="reference external" href="https://en.wikipedia.org/wiki/Euler_angles">https://en.wikipedia.org/wiki/Euler_angles</a>)
+lists the different conventions available. To quote: “Different authors may
+use different sets of rotation axes to define Euler angles, or different
+names for the same angles. Therefore, any discussion employing Euler angles
+should always be preceded by their definition.”</p>
+<p>We are using the <span class="math notranslate nohighlight">\(z\)</span>-<span class="math notranslate nohighlight">\(y\)</span>-<span class="math notranslate nohighlight">\(z\)</span> convention with extrinsic rotations
+<span class="math notranslate nohighlight">\(\Psi\)</span>-<span class="math notranslate nohighlight">\(\theta\)</span>-<span class="math notranslate nohighlight">\(\phi\)</span> for the particle orientation and <span class="math notranslate nohighlight">\(x\)</span>-<span class="math notranslate nohighlight">\(y\)</span>-<span class="math notranslate nohighlight">\(z\)</span>
+convention with extrinsic rotations <span class="math notranslate nohighlight">\(\Psi\)</span>-<span class="math notranslate nohighlight">\(\theta\)</span>-<span class="math notranslate nohighlight">\(\phi\)</span> for jitter, with
+jitter applied before particle orientation.</p>
+<p>When computing the orientation dispersity integral, the weights for
+the individual points depends on the map projection used to translate jitter
+angles into latitude/longitude.  The choice of projection is set by
+<em>sasmodels.generate.PROJECTION</em>, with the default <em>PROJECTION=1</em> for
+equirectangular and <em>PROJECTION=2</em> for sinusoidal.  The more complicated
+Guyou and Postel projections are not implemented. See jitter.draw_mesh
+for details.</p>
+<p>For numerical integration within form factors etc. sasmodels is mostly using
+Gaussian quadrature with 20, 76 or 150 points depending on the model. It also
+makes use of symmetries such as calculating only over one quadrant rather
+than the whole sphere. There is often a U-substitution replacing <span class="math notranslate nohighlight">\(\theta\)</span>
+with <span class="math notranslate nohighlight">\(cos(\theta)\)</span> which changes the limits of integration from 0 to <span class="math notranslate nohighlight">\(\pi/2\)</span>
+to 0 to 1 and also conveniently absorbs the <span class="math notranslate nohighlight">\(sin(\theta)\)</span> scale factor in the
+integration. This can cause confusion if checking equations to include in a
+paper or thesis! Most models use the same core kernel code expressed in terms
+of the rotated view (<span class="math notranslate nohighlight">\(q_a\)</span>, <span class="math notranslate nohighlight">\(q_b\)</span>, <span class="math notranslate nohighlight">\(q_c\)</span>) for both the 1D and the 2D models,
+but there are also historical quirks such as the parallelepiped model, which
+has a useless transformation representing <span class="math notranslate nohighlight">\(j_0(a q_a)\)</span> as <span class="math notranslate nohighlight">\(j_0(b q_a a/b)\)</span>.</p>
+<p>Useful testing routines include:</p>
+<p>The <em>sascomp</em> utility is used to view and compare models with different
+parameters and calculation engines. The usual case is to simply plot a
+model that you are developing:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">sascomp</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">model</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Once the obvious problems are addressed, check the numerical precision
+across a variety of randomly generated inputs:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">sascomp</span> <span class="o">-</span><span class="n">engine</span><span class="o">=</span><span class="n">single</span><span class="p">,</span><span class="n">double</span> <span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">model</span><span class="o">.</span><span class="n">py</span> <span class="o">-</span><span class="n">sets</span><span class="o">=</span><span class="mi">10</span>
+</pre></div>
+</div>
+<p>You can compare different parameter values for the same or different models.
+For example when looking along the long axis of a cylinder (<span class="math notranslate nohighlight">\(\theta=0\)</span>),
+dispersity in <span class="math notranslate nohighlight">\(\theta\)</span> should be equivalent to dispersity in <span class="math notranslate nohighlight">\(\phi\)</span>
+when <span class="math notranslate nohighlight">\(\phi=90\)</span>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">sascomp</span> <span class="o">-</span><span class="mi">2</span><span class="n">d</span> <span class="n">cylinder</span> <span class="n">theta</span><span class="o">=</span><span class="mi">0</span> <span class="n">phi</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="mi">90</span> <span class="n">theta_pd_type</span><span class="o">=</span><span class="n">rectangle</span> \\
+<span class="n">phi_pd_type</span><span class="o">=</span><span class="n">rectangle</span> <span class="n">phi_pd</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="mi">1</span> <span class="n">theta_pd</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span> <span class="n">length</span><span class="o">=</span><span class="mi">500</span> <span class="n">radius</span><span class="o">=</span><span class="mi">10</span>
+</pre></div>
+</div>
+<p>It turns out that they are not because the equirectangular map projection
+weights the points by <span class="math notranslate nohighlight">\(\cos(\theta)\)</span> so <span class="math notranslate nohighlight">\(\Delta\theta\)</span> is not identical
+to <span class="math notranslate nohighlight">\(\Delta\phi\)</span>.  Setting <em>PROJECTION=2</em> in <code class="xref py py-mod docutils literal notranslate"><span class="pre">sasmodels.generate</span></code> helps
+somewhat.  Postel would help even more in this case, though leading
+to distortions elsewhere.  See <code class="xref py py-mod docutils literal notranslate"><span class="pre">sasmodels.compare</span></code> for many more details.</p>
+<p><em>sascomp -ngauss=n</em> allows you to set the number of quadrature points used
+for the 1D integration for any model.  For example, a carbon nanotube with
+length 10 <span class="math notranslate nohighlight">\(\mu\)</span>m and radius 1 nm is not computed correctly at high <span class="math notranslate nohighlight">\(q\)</span>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">sascomp</span> <span class="n">cylinder</span> <span class="n">length</span><span class="o">=</span><span class="mi">100000</span> <span class="n">radius</span><span class="o">=</span><span class="mi">10</span> <span class="o">-</span><span class="n">ngauss</span><span class="o">=</span><span class="mi">76</span><span class="p">,</span><span class="mi">500</span> <span class="o">-</span><span class="n">double</span> <span class="o">-</span><span class="n">highq</span>
+</pre></div>
+</div>
+<p>Note: ticket 702 gives some forms for long rods and thin disks that may
+be used in place of the integration, depending on <span class="math notranslate nohighlight">\(q\)</span>, radius and length; if
+the cylinder model is updated with these corrections then above call will show
+no difference.</p>
+<p><em>explore/check1d.py</em> uses sasmodels 1D integration and compares that with a
+rectangle distribution in <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span>, with <span class="math notranslate nohighlight">\(\theta\)</span> limits set to
+<span class="math notranslate nohighlight">\(\pm 90/\sqrt(3)\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span> limits set to <span class="math notranslate nohighlight">\(\pm 180/\sqrt(3)\)</span> [The rectangle
+weight function uses the fact that the distribution width column is labelled
+sigma to decide that the 1-<span class="math notranslate nohighlight">\(\sigma\)</span> width of a rectangular distribution needs to
+be multiplied by <span class="math notranslate nohighlight">\(\sqrt(3)\)</span> to get the corresponding gaussian equivalent, or
+similar reasoning.] This should rotate the sample through the entire
+<span class="math notranslate nohighlight">\(\theta\)</span>-<span class="math notranslate nohighlight">\(\phi\)</span> surface according to the pattern that you see in jitter.py when
+you use ‘rectangle’ rather than ‘gaussian’ for its distribution without
+changing the viewing angle. In order to match the 1-D pattern for an arbitrary
+viewing angle on triaxial shapes, we need to integrate
+over <span class="math notranslate nohighlight">\(\theta\)</span>, <span class="math notranslate nohighlight">\(\phi\)</span> and <span class="math notranslate nohighlight">\(\Psi\)</span>.</p>
+<p><em>sascomp -sphere=n</em> uses the same rectangular distribution as check1d to
+compute the pattern of the <span class="math notranslate nohighlight">\(q_x\)</span>-<span class="math notranslate nohighlight">\(q_y\)</span> grid.  This ought to produce a
+spherically symmetric pattern.</p>
+<p><em>explore/precision.py</em> investigates the accuracy of individual functions
+on the different execution platforms.  This includes the basic special
+functions as well as more complex expressions used in scattering.  In many
+cases the OpenCL function in sasmodels will use a polynomial approximation
+over part of the range to improve accuracy, as shown in:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">explore</span><span class="o">/</span><span class="n">precision</span><span class="o">.</span><span class="n">py</span> <span class="mi">3</span><span class="n">j1</span><span class="o">/</span><span class="n">x</span>
+</pre></div>
+</div>
+<p><em>explore/realspace.py</em> allows you to set up a Monte Carlo simulation of your
+model by sampling random points within and computing the 1D and 2D scattering
+patterns.  This was used to check the core shell parallelepiped example.  This
+is similar to the general sas calculator in sasview, though it uses different
+code.</p>
+<p><em>sasmodels/jitter.py</em> is for exploring different options for handling
+orientation and orientation dispersity.  It uses <em>sasmodels/guyou.py</em> to
+generate the Guyou projection.</p>
+<p><em>explore/asymint.py</em> is a direct implementation of the 1D integration for
+a number of different models.  It calculates the integral for a particular
+<span class="math notranslate nohighlight">\(q\)</span> using several different integration schemes, including mpmath with 100
+bits of precision (33 digits), so you can use it to check the target values
+for the 1D model tests.  This is not a general purpose tool; you will need to
+edit the file to change the model parameters. It does not currently
+apply the <span class="math notranslate nohighlight">\(u=cos(\theta)\)</span> substitution that many models are using
+internally so the 76-point gaussian quadrature may not match the value
+produced by the eqivalent model from sasmodels.</p>
+<p><em>explore/symint.py</em> is for rotationally symmetric models (just cylinder for
+now), so it can compute an entire curve rather than a single <span class="math notranslate nohighlight">\(q\)</span> point.  It
+includes code to compare the long cylinder approximation to cylinder.</p>
+<p><em>explore/rpa.py</em> is for checking different implementations of the RPA model
+against calculations for specific blends.  This is a work in (suspended)
+progress.</p>
+<p>There are a few modules left over in <em>explore</em> that can probably be removed.
+<em>angular_pd.py</em> was an early version of <em>jitter.py</em>.  <em>sc.py</em> and <em>sc.c</em>
+was used to explore different calculations for paracrystal models; it has
+been absorbed into <em>asymint.py</em>. <em>transform_angles.py</em> translates orientation
+parameters from the SasView 3.x definition to sasmodels.</p>
+<p><em>explore/angles.py</em> generates code for the view and jitter transformations.
+Keep this around since it may be needed if we add new projections.</p>
+</section>
+<section id="testing">
+<h2><span class="section-number">1.6. </span>Testing<a class="headerlink" href="#testing" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">model_test</span></code></p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">compare</span></code></p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">compare_many</span></code></p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">rst2html</span></code></p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">list_pars</span></code></p></li>
+</ul>
+<p>Individual models should all have test values to make sure that the
+evaluation is correct.  This is particularly important in the context
+of OpenCL since sasmodels doesn’t control the compiler or the hardware,
+and since GPUs are notorious for preferring speed over precision.  The
+tests can be run as a group using <code class="xref py py-mod docutils literal notranslate"><span class="pre">model_test</span></code> as main:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -m sasmodels.model_test all
+</pre></div>
+</div>
+<p>Individual models can be listed instead of <em>all</em>, which is convenient when
+adding new models.</p>
+<p>The <code class="xref py py-mod docutils literal notranslate"><span class="pre">compare</span></code> module, usually invoked using <em>./sascomp</em> provides a
+rich interface for exploring model accuracy, execution speed and parameter
+ranges.  It also allows different models to be compared.
+The <code class="xref py py-mod docutils literal notranslate"><span class="pre">compare_many</span></code> module does batch comparisons, keeping a list of
+the particular random seeds which lead to large differences in output
+between different computing platforms.</p>
+<p>The <code class="xref py py-mod docutils literal notranslate"><span class="pre">rst2html</span></code> module provides tools for converting model docs to
+html and viewing the html.  This is used by <code class="xref py py-mod docutils literal notranslate"><span class="pre">compare</span></code> to display
+the model description, such as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./sascomp -html sphere
+</pre></div>
+</div>
+<p>This makes debugging the latex much faster, though this may require
+Qt in order for mathjax to work correctly.</p>
+<p>When run as main, it can display arbitrary ReStructuredText files. E.g.,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -m sasmodels.rst2html doc/developer/overview.rst
+</pre></div>
+</div>
+<p>This is handy for sorting out rst and latex syntax.  With some work
+the results could be improved so that it recognizes sphinx roles
+such as <em>mod</em>, <em>class</em> and <em>func</em>, and so that it uses the style sheets
+from the sasmodels docs.</p>
+<p>The <code class="xref py py-mod docutils literal notranslate"><span class="pre">list_pars</span></code> module lists all instances of parameters across
+all models.  This helps to make sure that similar parameters have
+similar names across the different models.  With the verbose flag,
+the particular models which use each named parameter are listed.</p>
+</section>
+<section id="model-conversion">
+<h2><span class="section-number">1.7. </span>Model conversion<a class="headerlink" href="#model-conversion" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">convert</span></code></p></li>
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">conversion_table</span></code></p></li>
+</ul>
+<p>Model definitions are not static.  As needs change or problems are found,
+models may be updated with new model names or may be reparameterized
+with new parameter definitions.  For example, in translating the
+Teubner-Strey model from SasView 3.x to sasmodels, the definition
+in terms of <em>drho</em>, <em>k</em>, <em>c1</em>, <em>c2</em>, <em>a2</em> and prefactor was replaced
+by the defintion in terms of <em>volfraction_a</em>, <em>xi</em>, <em>d</em>, <em>sld_a</em> and
+<em>sld_b</em>.  Within <code class="xref py py-mod docutils literal notranslate"><span class="pre">convert</span></code>, the <em>_hand_convert_3_1_2_to_4_1</em>
+function must be called when loading a 3.x model definition to update it to
+4.1, and then the model should be further updated to 4.2, 5.0, and so on.
+The <code class="xref py py-func docutils literal notranslate"><span class="pre">convert.convert_model()</span></code> function does this, using the conversion
+table in <code class="xref py py-mod docutils literal notranslate"><span class="pre">conversion_table</span></code> (which handled the major renaming from
+SasView 3.x to sasmodels), and using the internal <em>_hand_convert</em> function
+for the more complicated cases.</p>
+</section>
+<section id="other">
+<h2><span class="section-number">1.8. </span>Other<a class="headerlink" href="#other" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><code class="xref py py-mod docutils literal notranslate"><span class="pre">exception</span></code></p></li>
+</ul>
+<p>The <code class="xref py py-func docutils literal notranslate"><span class="pre">exception.annotate_exception()</span></code> function annotates the current
+exception with a context string, such as “while opening myfile.dat” without
+adjusting the traceback.</p>
+<p>The alignment.py module is unused.</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">1. Code Overview</a><ul>
+<li><a class="reference internal" href="#computational-kernels">1.1. Computational kernels</a></li>
+<li><a class="reference internal" href="#data-loaders">1.2. Data loaders</a></li>
+<li><a class="reference internal" href="#kernel-execution">1.3. Kernel execution</a></li>
+<li><a class="reference internal" href="#id1">1.4. Kernel execution</a></li>
+<li><a class="reference internal" href="#orientation-and-numerical-integration">1.5. Orientation and Numerical Integration</a></li>
+<li><a class="reference internal" href="#testing">1.6. Testing</a></li>
+<li><a class="reference internal" href="#model-conversion">1.7. Model conversion</a></li>
+<li><a class="reference internal" href="#other">1.8. Other</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="index.html"
+                          title="previous chapter">Sasmodels Developers Guide</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="calculator.html"
+                          title="next chapter"><span class="section-number">2. </span>Calculator Interface</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/dev/sasmodels-dev/overview.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="calculator.html" title="2. Calculator Interface"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Sasmodels Developers Guide"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Sasmodels Developers Guide</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href=""><span class="section-number">1. </span>Code Overview</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

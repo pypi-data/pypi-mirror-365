@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>triaxial_ellipsoid &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Lamellae Functions" href="../qtgui/Perspectives/Fitting/models/shape-lamellae.html" />
+    <link rel="prev" title="ellipsoid" href="ellipsoid.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../qtgui/Perspectives/Fitting/models/shape-lamellae.html" title="Lamellae Functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ellipsoid.html" title="ellipsoid"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-ellipsoid.html" accesskey="U">Ellipsoid Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">triaxial_ellipsoid</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="triaxial-ellipsoid">
+<span id="id1"></span><h1>triaxial_ellipsoid<a class="headerlink" href="#triaxial-ellipsoid" title="Link to this heading">¶</a></h1>
+<p>Ellipsoid of uniform scattering length density with three independent axes.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>scale</p></td>
+<td><p>Scale factor or Volume fraction</p></td>
+<td><p>None</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>background</p></td>
+<td><p>Source background</p></td>
+<td><p>cm<sup>-1</sup></p></td>
+<td><p>0.001</p></td>
+</tr>
+<tr class="row-even"><td><p>sld</p></td>
+<td><p>Ellipsoid scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>sld_solvent</p></td>
+<td><p>Solvent scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>radius_equat_minor</p></td>
+<td><p>Minor equatorial radius, Ra</p></td>
+<td><p>Å</p></td>
+<td><p>20</p></td>
+</tr>
+<tr class="row-odd"><td><p>radius_equat_major</p></td>
+<td><p>Major equatorial radius, Rb</p></td>
+<td><p>Å</p></td>
+<td><p>400</p></td>
+</tr>
+<tr class="row-even"><td><p>radius_polar</p></td>
+<td><p>Polar radius, Rc</p></td>
+<td><p>Å</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>theta</p></td>
+<td><p>polar axis to beam angle</p></td>
+<td><p>degree</p></td>
+<td><p>60</p></td>
+</tr>
+<tr class="row-even"><td><p>phi</p></td>
+<td><p>rotation about beam</p></td>
+<td><p>degree</p></td>
+<td><p>60</p></td>
+</tr>
+<tr class="row-odd"><td><p>psi</p></td>
+<td><p>rotation about polar axis</p></td>
+<td><p>degree</p></td>
+<td><p>60</p></td>
+</tr>
+</tbody>
+</table>
+<p>The returned value is scaled to units of cm<sup>-1</sup> sr<sup>-1</sup>, absolute scale.</p>
+<p><strong>Definition</strong></p>
+<figure class="align-default" id="id2">
+<img alt="../../_images/triaxial_ellipsoid_geometry.jpg" src="../../_images/triaxial_ellipsoid_geometry.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 42 </span><span class="caption-text">Ellipsoid with <span class="math notranslate nohighlight">\(R_a\)</span> as <em>radius_equat_minor</em>, <span class="math notranslate nohighlight">\(R_b\)</span> as <em>radius_equat_major</em>
+and <span class="math notranslate nohighlight">\(R_c\)</span> as <em>radius_polar</em>.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Given an ellipsoid</p>
+<div class="math notranslate nohighlight">
+\[\frac{X^2}{R_a^2} + \frac{Y^2}{R_b^2} + \frac{Z^2}{R_c^2} = 1\]</div>
+<p>the scattering for randomly oriented particles is defined by the average over
+all orientations <span class="math notranslate nohighlight">\(\Omega\)</span> of:</p>
+<div class="math notranslate nohighlight">
+\[P(q) = \text{scale}(\Delta\rho)^2\frac{V}{4 \pi}\int_\Omega\Phi^2(qr)\,d\Omega
+       + \text{background}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\Phi(qr) &amp;= 3 j_1(qr)/qr = 3 (\sin qr - qr \cos qr)/(qr)^3 \\
+r^2 &amp;= R_a^2e^2 + R_b^2f^2 + R_c^2g^2 \\
+V &amp;= \tfrac{4}{3} \pi R_a R_b R_c\end{split}\]</div>
+<p>The <span class="math notranslate nohighlight">\(e\)</span>, <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span> terms are the projections of the orientation vector on <span class="math notranslate nohighlight">\(X\)</span>,
+<span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(Z\)</span> respectively.  Keeping the orientation fixed at the canonical
+axes, we can integrate over the incident direction using polar angle
+<span class="math notranslate nohighlight">\(-\pi/2 \le \gamma \le \pi/2\)</span> and equatorial angle <span class="math notranslate nohighlight">\(0 \le \phi \le 2\pi\)</span>
+(as defined in ref [1]),</p>
+<blockquote>
+<div><div class="math notranslate nohighlight">
+\[\langle\Phi^2\rangle = \int_0^{2\pi} \int_{-\pi/2}^{\pi/2} \Phi^2(qr)
+                                           \cos \gamma\,d\gamma d\phi\]</div>
+</div></blockquote>
+<p>with <span class="math notranslate nohighlight">\(e = \cos\gamma \sin\phi\)</span>, <span class="math notranslate nohighlight">\(f = \cos\gamma \cos\phi\)</span> and <span class="math notranslate nohighlight">\(g = \sin\gamma\)</span>.
+A little algebra yields</p>
+<div class="math notranslate nohighlight">
+\[r^2 = b^2(p_a \sin^2 \phi \cos^2 \gamma + 1 + p_c \sin^2 \gamma)\]</div>
+<p>for</p>
+<div class="math notranslate nohighlight">
+\[p_a = \frac{a^2}{b^2} - 1 \text{ and } p_c = \frac{c^2}{b^2} - 1\]</div>
+<p>Due to symmetry, the ranges can be restricted to a single quadrant
+<span class="math notranslate nohighlight">\(0 \le \gamma \le \pi/2\)</span> and <span class="math notranslate nohighlight">\(0 \le \phi \le \pi/2\)</span>, scaling the resulting
+integral by 8. The computation is done using the substitution <span class="math notranslate nohighlight">\(u = \sin\gamma\)</span>,
+<span class="math notranslate nohighlight">\(du = \cos\gamma\,d\gamma\)</span>, giving</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\langle\Phi^2\rangle &amp;= 8 \int_0^{\pi/2} \int_0^1 \Phi^2(qr) du d\phi \\
+r^2 &amp;= b^2(p_a \sin^2(\phi)(1 - u^2) + 1 + p_c u^2)\end{split}\]</div>
+<p>Though for convenience we describe the three radii of the ellipsoid as
+equatorial and polar, they may be given in <span class="math notranslate nohighlight">\(any\)</span> size order. To avoid
+multiple solutions, especially with Monte-Carlo fit methods, it may be
+advisable to restrict their ranges. For typical small angle diffraction
+situations there may be a number of closely similar “best fits”, so some
+trial and error, or fixing of some radii at expected values, may help.</p>
+<p>To provide easy access to the orientation of the triaxial ellipsoid, we
+define the axis of the cylinder using the angles <span class="math notranslate nohighlight">\(\theta\)</span>, <span class="math notranslate nohighlight">\(\phi\)</span> and <span class="math notranslate nohighlight">\(\psi\)</span>.
+These angles are defined analogously to the elliptical_cylinder below, note
+that angle <span class="math notranslate nohighlight">\(\phi\)</span> is now NOT the same as in the equations above.</p>
+<figure class="align-default" id="id3">
+<img alt="../../_images/elliptical_cylinder_angle_definition.png" src="../../_images/elliptical_cylinder_angle_definition.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 43 </span><span class="caption-text">Definition of angles for oriented triaxial ellipsoid, where radii are for
+illustration here <span class="math notranslate nohighlight">\(a &lt; b &lt;&lt; c\)</span> and angle <span class="math notranslate nohighlight">\(\Psi\)</span> is a rotation around the
+axis of the particle.</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>For oriented ellipsoids the <em>theta</em>, <em>phi</em> and <em>psi</em> orientation parameters
+will appear when fitting 2D data, see the <a class="reference internal" href="elliptical_cylinder.html#elliptical-cylinder"><span class="std std-ref">elliptical_cylinder</span></a> model
+for further information.</p>
+<figure class="align-default" id="id4">
+<span id="triaxial-ellipsoid-angles"></span><img alt="../../_images/triaxial_ellipsoid_angle_projection.png" src="../../_images/triaxial_ellipsoid_angle_projection.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 44 </span><span class="caption-text">Some examples for an oriented triaxial ellipsoid.</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The radius-of-gyration for this system is  <span class="math notranslate nohighlight">\(R_g^2 = (R_a R_b R_c)^2/5\)</span>.</p>
+<p>The contrast <span class="math notranslate nohighlight">\(\Delta\rho\)</span> is defined as SLD(ellipsoid) - SLD(solvent).  In the
+parameters, <span class="math notranslate nohighlight">\(R_a\)</span> is the minor equatorial radius, <span class="math notranslate nohighlight">\(R_b\)</span> is the major
+equatorial radius, and <span class="math notranslate nohighlight">\(R_c\)</span> is the polar radius of the ellipsoid.</p>
+<p>NB: The 2nd virial coefficient of the triaxial solid ellipsoid is calculated
+after sorting the three radii to give the most appropriate prolate or oblate
+form, from the new polar radius <span class="math notranslate nohighlight">\(R_p = R_c\)</span> and effective equatorial radius,
+<span class="math notranslate nohighlight">\(R_e = \sqrt{R_a R_b}\)</span>, to then be used as the effective radius for <span class="math notranslate nohighlight">\(S(q)\)</span>
+when <span class="math notranslate nohighlight">\(P(q) \cdot S(q)\)</span> is applied.</p>
+<p><strong>Validation</strong></p>
+<p>Validation of our code was done by comparing the output of the
+1D calculation to the angular average of the output of 2D calculation
+over all possible angles.</p>
+<figure class="align-default" id="id5">
+<img alt="../../_images/triaxial_ellipsoid_autogenfig.png" src="../../_images/triaxial_ellipsoid_autogenfig.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 45 </span><span class="caption-text">1D and 2D plots corresponding to the default parameters of the model.</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Source</strong></p>
+<p><a class="reference download internal" download="" href="../../_downloads/58d26b71a58277b75864a8d9744e1503/triaxial_ellipsoid.py"><code class="xref download docutils literal notranslate"><span class="pre">triaxial_ellipsoid.py</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/59ea39bff405fd9a28ca450674bae3bf/triaxial_ellipsoid.c"><code class="xref download docutils literal notranslate"><span class="pre">triaxial_ellipsoid.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/9ee45b8c6371b0a130036ee53e1f050e/gauss76.c"><code class="xref download docutils literal notranslate"><span class="pre">gauss76.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/5224eea2106a0533fa82ac542ccf5579/sas_3j1x_x.c"><code class="xref download docutils literal notranslate"><span class="pre">sas_3j1x_x.c</span></code></a></p>
+<p><strong>References</strong></p>
+<ol class="arabic simple">
+<li><p>Finnigan, J.A., Jacobs, D.J., 1971. <em>Light scattering by ellipsoidal
+particles in solution</em>, J. Phys. D: Appl. Phys. 4, 72-77.
+doi:10.1088/0022-3727/4/1/310</p></li>
+</ol>
+<p><strong>Authorship and Verification</strong></p>
+<ul class="simple">
+<li><p><strong>Author:</strong> NIST IGOR/DANSE <strong>Date:</strong> pre 2010</p></li>
+<li><p><strong>Last Modified by:</strong> Paul Kienzle (improved calculation) <strong>Date:</strong> April 4, 2017</p></li>
+<li><p><strong>Last Reviewed by:</strong> Paul Kienzle &amp; Richard Heenan <strong>Date:</strong>  April 4, 2017</p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="ellipsoid.html"
+                          title="previous chapter">ellipsoid</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../qtgui/Perspectives/Fitting/models/shape-lamellae.html"
+                          title="next chapter">Lamellae Functions</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user/models/triaxial_ellipsoid.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../qtgui/Perspectives/Fitting/models/shape-lamellae.html" title="Lamellae Functions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ellipsoid.html" title="ellipsoid"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-ellipsoid.html" >Ellipsoid Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">triaxial_ellipsoid</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

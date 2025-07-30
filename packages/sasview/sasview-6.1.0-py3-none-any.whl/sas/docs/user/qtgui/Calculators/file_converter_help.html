@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>File Converter Tool &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="MuMag Tool" href="../Utilities/MuMag/mumag_help.html" />
+    <link rel="prev" title="Image Viewer Tool" href="image_viewer_help.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../Utilities/MuMag/mumag_help.html" title="MuMag Tool"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="image_viewer_help.html" title="Image Viewer Tool"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../tools.html" accesskey="U">Tools &amp; Utilities</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">File Converter Tool</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="file-converter-tool">
+<span id="id1"></span><h1>File Converter Tool<a class="headerlink" href="#file-converter-tool" title="Link to this heading">¶</a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
+<p>This tool converts file formats with the Q data and Intensity data stored in separate
+files, into a single CanSAS (XML) or NXcanSAS (HDF5) file.</p>
+<p>It can also convert 2D BSL/OTOKO files into a NXcanSAS file.</p>
+<p>Supported input file formats (examples may be found in the /test/convertible_files folder):</p>
+<ul class="simple">
+<li><p>Single-column ASCII data, with lines that end without any delimiter,
+or with a comma or semi-colon delimiter</p></li>
+<li><p>2D <a class="reference external" href="https://www.isis.stfc.ac.uk/Pages/colette-ascii-file-format-descriptions.pdf">ISIS ASCII formatted</a> data</p></li>
+<li><p><a class="reference external" href="http://www.diamond.ac.uk/Beamlines/Soft-Condensed-Matter/small-angle/SAXS-Software/CCP13/BSL.html">1D BSL/OTOKO format</a> data</p></li>
+<li><p><a class="reference external" href="http://www.diamond.ac.uk/Beamlines/Soft-Condensed-Matter/small-angle/SAXS-Software/CCP13/BSL.html">2D BSL/OTOKO format</a> data</p></li>
+</ul>
+<p>Supported output file formats:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://www.cansas.org/formats/canSAS1d/1.1/doc/">CanSAS</a></p></li>
+<li><p><a class="reference external" href="http://cansas-org.github.io/NXcanSAS/classes/contributed_definitions/NXcanSAS.html">NXcanSAS</a></p></li>
+</ul>
+</section>
+<section id="using-the-tool">
+<h2>Using the Tool<a class="headerlink" href="#using-the-tool" title="Link to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Select the files containing your Q-axis and Intensity-axis data</p></li>
+<li><p>Choose whether the files are in ASCII 1D, ASCII 2D, 1D BSL/OTOKO or 2D BSL/OTOKO format</p></li>
+<li><p>Choose where you would like to save the converted file</p></li>
+<li><p>Optionally, input some metadata such as sample size, detector name, etc</p></li>
+<li><p>Click <em>Convert</em> to save the converted file</p></li>
+</ol>
+<section id="files-with-multiple-frames">
+<h3>Files With Multiple Frames<a class="headerlink" href="#files-with-multiple-frames" title="Link to this heading">¶</a></h3>
+<p>If a BSL/OTOKO file with multiple frames is selected for the Intensity-axis
+file, a dialog will appear asking which frames you would like converted. You
+may enter a start frame, end frame &amp; increment, and all frames in that subset
+will be converted. For example, entering 0, 50 and 10 will convert frames 0,
+10, 20, 30, 40 &amp; 50.</p>
+<p>To convert a single frame, enter the same value for first frame &amp; last frame,
+and 1 as the increment.</p>
+<p>CanSAS XML files can become quite large when exporting multiple frames to a
+single file, so there is an option in the <em>Select Frame</em> dialog to output each
+frame to its own file. The single file option will produce one file with
+multiple <cite>&lt;SASdata&gt;</cite> elements. The multiple file option will output a separate
+file with one <cite>&lt;SASdata&gt;</cite> element for each frame. The frame number will also be
+appended to the file name.</p>
+<p>The multiple file option is not available when exporting to NXcanSAS because
+the HDF5 format is more efficient at handling large amounts of data.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This help document was last changed by Steve King, 08Oct2016</p>
+</div>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">File Converter Tool</a><ul>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#using-the-tool">Using the Tool</a><ul>
+<li><a class="reference internal" href="#files-with-multiple-frames">Files With Multiple Frames</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="image_viewer_help.html"
+                          title="previous chapter">Image Viewer Tool</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../Utilities/MuMag/mumag_help.html"
+                          title="next chapter">MuMag Tool</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user/qtgui/Calculators/file_converter_help.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../Utilities/MuMag/mumag_help.html" title="MuMag Tool"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="image_viewer_help.html" title="Image Viewer Tool"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../tools.html" >Tools &amp; Utilities</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">File Converter Tool</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

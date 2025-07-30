@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>micromagnetic_FF_3D &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="multilayer_vesicle" href="multilayer_vesicle.html" />
+    <link rel="prev" title="linear_pearls" href="linear_pearls.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="multilayer_vesicle.html" title="multilayer_vesicle"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="linear_pearls.html" title="linear_pearls"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-sphere.html" accesskey="U">Sphere Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">micromagnetic_FF_3D</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="micromagnetic-ff-3d">
+<span id="id1"></span><h1>micromagnetic_FF_3D<a class="headerlink" href="#micromagnetic-ff-3d" title="Link to this heading">¶</a></h1>
+<p>Field-dependent magnetic microstructure around imperfections in bulk ferromagnets</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>scale</p></td>
+<td><p>Scale factor or Volume fraction</p></td>
+<td><p>None</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>background</p></td>
+<td><p>Source background</p></td>
+<td><p>cm<sup>-1</sup></p></td>
+<td><p>0.001</p></td>
+</tr>
+<tr class="row-even"><td><p>radius</p></td>
+<td><p>Structural radius of the core</p></td>
+<td><p>Å</p></td>
+<td><p>50</p></td>
+</tr>
+<tr class="row-odd"><td><p>thickness</p></td>
+<td><p>Structural thickness of shell</p></td>
+<td><p>Å</p></td>
+<td><p>40</p></td>
+</tr>
+<tr class="row-even"><td><p>nuc_sld_core</p></td>
+<td><p>Core scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>nuc_sld_shell</p></td>
+<td><p>Scattering length density of shell</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>1.7</p></td>
+</tr>
+<tr class="row-even"><td><p>nuc_sld_solvent</p></td>
+<td><p>Solvent scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>6.4</p></td>
+</tr>
+<tr class="row-odd"><td><p>mag_sld_core</p></td>
+<td><p>Magnetic scattering length density of core</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>mag_sld_shell</p></td>
+<td><p>Magnetic scattering length density of shell</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>1.7</p></td>
+</tr>
+<tr class="row-odd"><td><p>mag_sld_solvent</p></td>
+<td><p>Magnetic scattering length density of solvent</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-even"><td><p>hk_sld_core</p></td>
+<td><p>Anisotropy field of defect</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hi</p></td>
+<td><p>Effective field inside the material</p></td>
+<td><p>T</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>Ms</p></td>
+<td><p>Volume averaged saturation magnetisation</p></td>
+<td><p>T</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>A</p></td>
+<td><p>Average exchange stiffness constant</p></td>
+<td><p>pJ/m</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-even"><td><p>D</p></td>
+<td><p>Average DMI constant</p></td>
+<td><p>mJ/m^2</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>up_i</p></td>
+<td><p>Polarisation incoming beam</p></td>
+<td><p>None</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>up_f</p></td>
+<td><p>Polarisation outgoing beam</p></td>
+<td><p>None</p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>alpha</p></td>
+<td><p>Inclination of field to neutron beam</p></td>
+<td><p>None</p></td>
+<td><p>90</p></td>
+</tr>
+<tr class="row-even"><td><p>beta</p></td>
+<td><p>Rotation of field around neutron beam</p></td>
+<td><p>None</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<p>The returned value is scaled to units of cm<sup>-1</sup> sr<sup>-1</sup>, absolute scale.</p>
+<p><strong>Definition</strong>
+This model is a micromagnetic approach to analyse the SANS that arises from
+nanoscale variations in the magnitude and orientation of the magnetization in
+bulk ferromagnets in the approach to magnetic saturation (single domain state).
+Typical materials are cold-worked elemental magnets, hard and soft magnetic
+nanocomposites, amorphous alloys and precipitates in magnetic steel <a class="footnote-reference brackets" href="#michels2014" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>5<span class="fn-bracket">]</span></a>.
+The magnetic SANS depends on the magnetic interactions, the magnetic microstructure
+(defect/particle size, magnetocrystalline anisotropy, saturation magnetisation)
+and on the applied magnetic field. As shown in <a class="footnote-reference brackets" href="#michels2016" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></a> near magnetic
+saturation the scattering cross-section can be evaluated by means of micromagnetic theory</p>
+<div class="math notranslate nohighlight">
+\[I(\mathbf{Q}) = I_{nuc} + I_{mag}(\mathbf{Q},H),\]</div>
+<p>with the field-independent nuclear and magnetic SANS cross section (due
+to nanoscale spatial variations of the magnetisation).</p>
+<div class="math notranslate nohighlight">
+\[I_{mag}(\mathbf{Q},H)= S_K(Q) R_K(\mathbf{Q}, H_i) + S_M(Q) R_M(\mathbf{Q}, H_i),\]</div>
+<p>with <span class="math notranslate nohighlight">\(H_i\)</span> the internal field, i.e. the external magnetic field corrected for
+demagnetizing effects and the influence of the magnetodipolar field and of the
+magnetic anisotropy <a class="footnote-reference brackets" href="#bick2013" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a>. This magnetic field dependence of the scattering
+reflects the increasing magnetisation misalignment with decreasing
+externally applied magnetic field with a contribution <span class="math notranslate nohighlight">\(S_K \times R_K\)</span> due to
+perturbations around magnetic anisotropy fields and a term <span class="math notranslate nohighlight">\(S_M \times R_M\)</span>
+related to magnetostatic fields. The magnetic moments decorate perturbations in the
+microstructure (precipitates, grain boundaries etc).
+The anisotropy-field function <span class="math notranslate nohighlight">\(S_K\)</span> depends on the Fourier transform of the magnetic
+anisotropy distribution (strength and orientation) in the material, and the
+scattering function of the longitudinal magnetisation <span class="math notranslate nohighlight">\(S_M\)</span> reflects the
+variations of the saturation magnetisation, e.g. jumps at the particle-matrix
+interface. <span class="math notranslate nohighlight">\(R_K\)</span> and <span class="math notranslate nohighlight">\(R_M\)</span> denote the micromagnetic response functions that
+describe the magnetisation distribution around a perturbation in magnetic
+anisotropy and flucutations in the saturation magnetisation value.</p>
+<figure class="align-default" id="id10">
+<img alt="../../_images/micromagnetic_FF.png" src="../../_images/micromagnetic_FF.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 83 </span><span class="caption-text">Magnetisation distribution around (left) a particle with magnetic easy axis
+in the vertical direction and (right) a precipitation with a magnetisation
+that is higher than the matrix phase.</span><a class="headerlink" href="#id10" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The micromagnetic response functions depend on magnetic material parameters <span class="math notranslate nohighlight">\(M_S\)</span>:
+average saturation magnetisation of the material, <span class="math notranslate nohighlight">\(H_i\)</span>: the internal magnetic
+field, <span class="math notranslate nohighlight">\(A\)</span> the average exchange-stiffness constant. In the vicinity of lattice
+imperfection in ferromagnetic materials, antisymmetric Dzyaloshinskii–Moriya
+interaction (DMI) can occur due to the local structural inversion symmetry
+breaking <a class="footnote-reference brackets" href="#arrott1963" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>. DMI with strength <span class="math notranslate nohighlight">\(D\)</span> can give rise to nonuniform spin
+textures resulting in a polarization-dependent asymmetric scattering term for
+polycrystalline ferromagnetic with a centrosymmetric crystal structure <a class="footnote-reference brackets" href="#michels2016" id="id6" role="doc-noteref"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></a>.
+We assume (for simplicity) an isotropic microstructure (for <span class="math notranslate nohighlight">\(S_M\)</span>) and random
+orientation of magnetic easy axes (additionally for <span class="math notranslate nohighlight">\(S_K\)</span>) such that the
+contributions of the magnetic microstructure only depend on the magnitude of <span class="math notranslate nohighlight">\(q\)</span>.
+Considerations for a microstructure with a prefered orientation (texture) can be
+found in <a class="footnote-reference brackets" href="#weissmueller2001" id="id7" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a>. In the code the averaging procedure over the random
+anisotropy is explicitely performed. A specific orientation distribution can be
+implemented by rewriting the model.</p>
+<p>The magnetic field is oriented with an inclination of <span class="math notranslate nohighlight">\(\alpha\)</span> to the neutron beam
+and rotated by <span class="math notranslate nohighlight">\(\beta\)</span>. The model for the nuclear scattering amplitude, saturation
+magnetisation is based on spherical particles with a core shell structure. For
+simplicity, only the core has an effective anisotropy, that is varying randomly
+in direction from particle to particle. The effect of different, more complex
+spatial profiles of the anisotropy can be seen in <a class="footnote-reference brackets" href="#michels2010" id="id8" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>.
+The magnetic scattering length density (SLD) is defined as
+<span class="math notranslate nohighlight">\(\rho_{\mathrm{mag}}=b_H M_S\)</span>, where <span class="math notranslate nohighlight">\(b_H= 2.91*10^{8}A^{-1}m^{-1}\)</span> and <span class="math notranslate nohighlight">\(M_S\)</span>
+is the saturation magnetisation (in <span class="math notranslate nohighlight">\(A/m\)</span>).</p>
+<p>The fraction of “upward” neutrons before (‘up_frac_i’) and after the sample
+(‘up_frac_f’) must range between 0 to 1, with 0.5 denoting an unpolarised beam.
+Note that a fit may result in a negative magnetic SLD, and hence magnetisation,
+when the polarisation state is inverted, i.e. if you have analysed for a <span class="math notranslate nohighlight">\(I_{00}\)</span>
+state wheras your data are <span class="math notranslate nohighlight">\(I_{11}\)</span>. The model allows to construct the 4
+spin-resolved cross sections (non-spin-flip <span class="math notranslate nohighlight">\(I_{00}\)</span>, <span class="math notranslate nohighlight">\(I_{11}\)</span> and spin-flip, here
+<span class="math notranslate nohighlight">\(I_{01}=I_{10}\)</span>), half-polarised SANS (SANSpol, incoming polarised beam <span class="math notranslate nohighlight">\(I_0\)</span> and
+<span class="math notranslate nohighlight">\(I_1\)</span>, no analysis after sample ‘up_frac_f’$=0.5$), and unpolarised beam
+(‘up_frac_i’$=$’up_frac_f’$=0.5$). Differences and other combinations between
+polarised scattering cross section, e.g. to obtain the nuclear-magnetic
+interference scattering, or subtraction of the residual scattering of the high
+field reference state can be constructed with a custom model (Fitting&gt;
+Add/Multiply Model) and using approbriate scales. For dense systems, special
+care has to be taken as the nculear structure factor (arrangement of particles)
+does not need to be identical with the magnetic microstructure e.g. local
+textures and correlations between easy axes (see <a class="footnote-reference brackets" href="#honecker2020" id="id9" role="doc-noteref"><span class="fn-bracket">[</span>7<span class="fn-bracket">]</span></a> for further
+details). The use of structure model is therefore strongly discouraged. Better
+<span class="math notranslate nohighlight">\(I_{nuc}\)</span>, <span class="math notranslate nohighlight">\(S_K\)</span> and <span class="math notranslate nohighlight">\(S_M\)</span> are fit independent from each other in a model-free way.</p>
+<figure class="align-default" id="id11">
+<img alt="../../_images/micromagnetic_FF_3D_autogenfig.png" src="../../_images/micromagnetic_FF_3D_autogenfig.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 84 </span><span class="caption-text">1D plot corresponding to the default parameters of the model.</span><a class="headerlink" href="#id11" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Source</strong></p>
+<p><a class="reference download internal" download="" href="../../_downloads/d898506b306e1e7ac95150e4c8bb88c8/micromagnetic_FF_3D.py"><code class="xref download docutils literal notranslate"><span class="pre">micromagnetic_FF_3D.py</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/d5de17a30cdb051733487ba37a20e8a4/micromagnetic_FF_3D.c"><code class="xref download docutils literal notranslate"><span class="pre">micromagnetic_FF_3D.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/f5750041f6b1e07de145e2b6b92e7bef/magnetic_functions.c"><code class="xref download docutils literal notranslate"><span class="pre">magnetic_functions.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/9ee45b8c6371b0a130036ee53e1f050e/gauss76.c"><code class="xref download docutils literal notranslate"><span class="pre">gauss76.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/024b832c3a96590eb1ed1f7271eab729/core_shell.c"><code class="xref download docutils literal notranslate"><span class="pre">core_shell.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/5224eea2106a0533fa82ac542ccf5579/sas_3j1x_x.c"><code class="xref download docutils literal notranslate"><span class="pre">sas_3j1x_x.c</span></code></a></p>
+<p><strong>References</strong></p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="arrott1963" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">1</a><span class="fn-bracket">]</span></span>
+<ol class="upperalpha simple">
+<li><p>Arrott, J. Appl. Phys. 34, 1108 (1963).</p></li>
+</ol>
+</aside>
+<aside class="footnote brackets" id="weissmueller2001" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">2</a><span class="fn-bracket">]</span></span>
+<ol class="upperalpha simple" start="10">
+<li><p>Weissmueller et al., <em>Phys. Rev. B</em> 63, 214414 (2001).</p></li>
+</ol>
+</aside>
+<aside class="footnote brackets" id="bick2013" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">3</a><span class="fn-bracket">]</span></span>
+<p>J.-P. Bick et al., <em>Appl. Phys. Lett.</em> 102, 022415 (2013).</p>
+</aside>
+<aside class="footnote brackets" id="michels2010" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">4</a><span class="fn-bracket">]</span></span>
+<ol class="upperalpha simple">
+<li><p>Michels et al., <em>Phys. Rev. B</em> 82, 024433 (2010).</p></li>
+</ol>
+</aside>
+<aside class="footnote brackets" id="michels2014" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">5</a><span class="fn-bracket">]</span></span>
+<ol class="upperalpha simple">
+<li><p>Michels, <em>J. Phys.: Condens. Matter</em> 26, 383201 (2014).</p></li>
+</ol>
+</aside>
+<aside class="footnote brackets" id="michels2016" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span>6<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id3">1</a>,<a role="doc-backlink" href="#id6">2</a>)</span>
+<ol class="upperalpha simple">
+<li><p>Michels et al., <em>Phys. Rev. B</em> 94, 054424 (2016).</p></li>
+</ol>
+</aside>
+<aside class="footnote brackets" id="honecker2020" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id9">7</a><span class="fn-bracket">]</span></span>
+<ol class="upperalpha simple" start="4">
+<li><p>Honecker, L. Fernandez Barguin, and P. Bender, <em>Phys. Rev. B</em> 101, 134401 (2020).</p></li>
+</ol>
+</aside>
+</aside>
+<p><strong>Authorship and Verification</strong></p>
+<ul class="simple">
+<li><p><strong>Author:</strong> Dirk Honecker <strong>Date:</strong> January 14, 2021</p></li>
+<li><p><strong>Last Modified by:</strong> Dirk Honecker <strong>Date:</strong> September 23, 2024</p></li>
+<li><p><strong>Last Reviewed by:</strong></p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="linear_pearls.html"
+                          title="previous chapter">linear_pearls</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="multilayer_vesicle.html"
+                          title="next chapter">multilayer_vesicle</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user/models/micromagnetic_FF_3D.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="multilayer_vesicle.html" title="multilayer_vesicle"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="linear_pearls.html" title="linear_pearls"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-sphere.html" >Sphere Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">micromagnetic_FF_3D</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

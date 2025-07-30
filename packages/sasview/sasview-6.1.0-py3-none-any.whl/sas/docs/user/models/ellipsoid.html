@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ellipsoid &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="triaxial_ellipsoid" href="triaxial_ellipsoid.html" />
+    <link rel="prev" title="core_shell_ellipsoid" href="core_shell_ellipsoid.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="triaxial_ellipsoid.html" title="triaxial_ellipsoid"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="core_shell_ellipsoid.html" title="core_shell_ellipsoid"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-ellipsoid.html" accesskey="U">Ellipsoid Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">ellipsoid</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="ellipsoid">
+<span id="id1"></span><h1>ellipsoid<a class="headerlink" href="#ellipsoid" title="Link to this heading">¶</a></h1>
+<p>Ellipsoid of revolution with uniform scattering length density.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>scale</p></td>
+<td><p>Scale factor or Volume fraction</p></td>
+<td><p>None</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>background</p></td>
+<td><p>Source background</p></td>
+<td><p>cm<sup>-1</sup></p></td>
+<td><p>0.001</p></td>
+</tr>
+<tr class="row-even"><td><p>sld</p></td>
+<td><p>Ellipsoid scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>sld_solvent</p></td>
+<td><p>Solvent scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>radius_polar</p></td>
+<td><p>Polar radius</p></td>
+<td><p>Å</p></td>
+<td><p>20</p></td>
+</tr>
+<tr class="row-odd"><td><p>radius_equatorial</p></td>
+<td><p>Equatorial radius</p></td>
+<td><p>Å</p></td>
+<td><p>400</p></td>
+</tr>
+<tr class="row-even"><td><p>theta</p></td>
+<td><p>ellipsoid axis to beam angle</p></td>
+<td><p>degree</p></td>
+<td><p>60</p></td>
+</tr>
+<tr class="row-odd"><td><p>phi</p></td>
+<td><p>rotation about beam</p></td>
+<td><p>degree</p></td>
+<td><p>60</p></td>
+</tr>
+</tbody>
+</table>
+<p>The returned value is scaled to units of cm<sup>-1</sup> sr<sup>-1</sup>, absolute scale.</p>
+<p>The form factor is normalized by the particle volume</p>
+<p><strong>Definition</strong></p>
+<p>The output of the 2D scattering intensity function for oriented ellipsoids
+is given by (Feigin, 1987)</p>
+<div class="math notranslate nohighlight">
+\[P(q,\alpha) = \frac{\text{scale}}{V} F^2(q,\alpha) + \text{background}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[F(q,\alpha) = \Delta \rho V \frac{3(\sin qr  - qr \cos qr)}{(qr)^3}\]</div>
+<p>for</p>
+<div class="math notranslate nohighlight">
+\[r = \left[ R_e^2 \sin^2 \alpha + R_p^2 \cos^2 \alpha \right]^{1/2}\]</div>
+<p><span class="math notranslate nohighlight">\(\alpha\)</span> is the angle between the axis of the ellipsoid and <span class="math notranslate nohighlight">\(\vec q\)</span>,
+<span class="math notranslate nohighlight">\(V = (4/3)\pi R_pR_e^2\)</span> is the volume of the ellipsoid, <span class="math notranslate nohighlight">\(R_p\)</span> is the polar
+radius along the rotational axis of the ellipsoid, <span class="math notranslate nohighlight">\(R_e\)</span> is the equatorial
+radius perpendicular to the rotational axis of the ellipsoid and
+<span class="math notranslate nohighlight">\(\Delta \rho\)</span> (contrast) is the scattering length density difference between
+the scatterer and the solvent.</p>
+<p>For randomly oriented particles use the orientational average,</p>
+<div class="math notranslate nohighlight">
+\[\langle F^2(q) \rangle = \int_{0}^{\pi/2}{F^2(q,\alpha)\sin(\alpha)\,d\alpha}\]</div>
+<p>computed via substitution of <span class="math notranslate nohighlight">\(u=\sin(\alpha)\)</span>, <span class="math notranslate nohighlight">\(du=\cos(\alpha)\,d\alpha\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[\langle F^2(q) \rangle = \int_0^1{F^2(q, u)\,du}\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[r = R_e \left[ 1 + u^2\left(R_p^2/R_e^2 - 1\right)\right]^{1/2}\]</div>
+<p>For 2d data from oriented ellipsoids the direction of the rotation axis of
+the ellipsoid is defined using two angles <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span> as for the
+<a class="reference internal" href="cylinder.html#cylinder-angle-definition"><span class="std std-ref">cylinder orientation figure</span></a>.
+For the ellipsoid, <span class="math notranslate nohighlight">\(\theta\)</span> is the angle between the rotational axis
+and the <span class="math notranslate nohighlight">\(z\)</span> -axis in the <span class="math notranslate nohighlight">\(xz\)</span> plane followed by a rotation by <span class="math notranslate nohighlight">\(\phi\)</span>
+in the <span class="math notranslate nohighlight">\(xy\)</span> plane, for further details of the calculation and angular
+dispersions see <a class="reference internal" href="../qtgui/Perspectives/Fitting/orientation/orientation.html#orientation"><span class="std std-ref">Oriented Particles</span></a>.</p>
+<p>NB: The 2nd virial coefficient of the solid ellipsoid is calculated based
+on the <span class="math notranslate nohighlight">\(R_p\)</span> and <span class="math notranslate nohighlight">\(R_e\)</span> values, and used as the effective radius for
+<span class="math notranslate nohighlight">\(S(q)\)</span> when <span class="math notranslate nohighlight">\(P(q) \cdot S(q)\)</span> is applied.</p>
+<p>The <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span> parameters are not used for the 1D output.</p>
+<p><strong>Validation</strong></p>
+<p>Validation of the code was done by comparing the output of the 1D model
+to the output of the software provided by the NIST (Kline, 2006).</p>
+<p>The implementation of the intensity for fully oriented ellipsoids was
+validated by averaging the 2D output using a uniform distribution
+<span class="math notranslate nohighlight">\(p(\theta,\phi) = 1.0\)</span> and comparing with the output of the 1D calculation.</p>
+<figure class="align-default" id="id2">
+<span id="ellipsoid-comparison-2d"></span><img alt="../../_images/ellipsoid_comparison_2d.jpg" src="../../_images/ellipsoid_comparison_2d.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 40 </span><span class="caption-text">Comparison of the intensity for uniformly distributed ellipsoids
+calculated from our 2D model and the intensity from the NIST SANS
+analysis software. The parameters used were: <em>scale</em> = 1.0,
+<em>radius_polar</em> = 20 Å, <em>radius_equatorial</em> = 400 Å,
+<em>contrast</em> = 3e-6 Å<sup>-2</sup>, and <em>background</em> = 0.0 cm<sup>-1</sup>.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The discrepancy above <span class="math notranslate nohighlight">\(q\)</span> = 0.3 cm<sup>-1</sup> is due to the way the form factors
+are calculated in the c-library provided by NIST. A numerical integration
+has to be performed to obtain <span class="math notranslate nohighlight">\(P(q)\)</span> for randomly oriented particles.
+The NIST software performs that integration with a 76-point Gaussian
+quadrature rule, which will become imprecise at high <span class="math notranslate nohighlight">\(q\)</span> where the amplitude
+varies quickly as a function of <span class="math notranslate nohighlight">\(q\)</span>. The SasView result shown has been
+obtained by summing over 501 equidistant points. Our result was found
+to be stable over the range of <span class="math notranslate nohighlight">\(q\)</span> shown for a number of points higher
+than 500.</p>
+<p>Model was also tested against the triaxial ellipsoid model with equal major
+and minor equatorial radii.  It is also consistent with the cylinder model
+with polar radius equal to length and equatorial radius equal to radius.</p>
+<figure class="align-default" id="id3">
+<img alt="../../_images/ellipsoid_autogenfig.png" src="../../_images/ellipsoid_autogenfig.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 41 </span><span class="caption-text">1D and 2D plots corresponding to the default parameters of the model.</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Source</strong></p>
+<p><a class="reference download internal" download="" href="../../_downloads/e06b4f69be919c11c61b6ea162261bd3/ellipsoid.py"><code class="xref download docutils literal notranslate"><span class="pre">ellipsoid.py</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/c77b417286b45d9b8bb2ece61100f5e7/ellipsoid.c"><code class="xref download docutils literal notranslate"><span class="pre">ellipsoid.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/9ee45b8c6371b0a130036ee53e1f050e/gauss76.c"><code class="xref download docutils literal notranslate"><span class="pre">gauss76.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/5224eea2106a0533fa82ac542ccf5579/sas_3j1x_x.c"><code class="xref download docutils literal notranslate"><span class="pre">sas_3j1x_x.c</span></code></a></p>
+<p><strong>References</strong></p>
+<ol class="arabic simple">
+<li><p>L. A. Feigin and D. I. Svergun. <em>Structure Analysis by Small-Angle X-Ray
+and Neutron Scattering</em>, Plenum Press, New York, 1987</p></li>
+<li><ol class="upperalpha simple">
+<li><p>Isihara. <em>J. Chem. Phys.</em>, 18 (1950) 1446-1449</p></li>
+</ol>
+</li>
+</ol>
+<p><strong>Authorship and Verification</strong></p>
+<ul class="simple">
+<li><p><strong>Author:</strong> NIST IGOR/DANSE <strong>Date:</strong> pre 2010</p></li>
+<li><p><strong>Converted to sasmodels by:</strong> Helen Park <strong>Date:</strong> July 9, 2014</p></li>
+<li><p><strong>Last Modified by:</strong> Paul Kienzle <strong>Date:</strong> March 22, 2017</p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="core_shell_ellipsoid.html"
+                          title="previous chapter">core_shell_ellipsoid</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="triaxial_ellipsoid.html"
+                          title="next chapter">triaxial_ellipsoid</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user/models/ellipsoid.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="triaxial_ellipsoid.html" title="triaxial_ellipsoid"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="core_shell_ellipsoid.html" title="core_shell_ellipsoid"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-ellipsoid.html" >Ellipsoid Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">ellipsoid</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

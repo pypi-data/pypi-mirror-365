@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Preferences &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="SasView User Files" href="sasview_files.html" />
+    <link rel="prev" title="Model Marketplace" href="../../marketplace.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sasview_files.html" title="SasView User Files"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../../marketplace.html" title="Model Marketplace"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../working.html" accesskey="U">Working with SasView</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Preferences</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="preferences">
+<span id="id1"></span><h1>Preferences<a class="headerlink" href="#preferences" title="Link to this heading">¶</a></h1>
+<p>SasView has a number of user-settable options available. For information on a specific preference, navigate to the
+appropriate page heading. Not all preferences are housed here, but will be eventually.</p>
+<p>A number of these preferences will only apply to the current SasView window and will reset when closing. Others,
+labelled <em>persistent</em> in this document, will be retained for the next time SasView is run.</p>
+<p><a class="reference internal" href="#plot-preferences"><span class="std std-ref">Plotting Preferences</span></a>, <a class="reference internal" href="#display-preferences"><span class="std std-ref">Display Preferences</span></a>, <a class="reference internal" href="#gpu-preferences"><span class="std std-ref">GPU Preferences</span></a>, <a class="reference internal" href="#fit-optimizer-preferences"><span class="std std-ref">Fit Optimizer Preferences</span></a></p>
+<section id="plotting-preferences">
+<span id="plot-preferences"></span><h2>Plotting Preferences<a class="headerlink" href="#plotting-preferences" title="Link to this heading">¶</a></h2>
+<p>Plotting preferences only apply to new plots. Existing plots will retain existing settings.</p>
+<p><strong>Use full-width plot legends (most compatible)?</strong>: With this option selected, plot legends will always be the full width
+of the plot it is on. The legend will also be partially transparent to better view the data. <em>persistent</em></p>
+<p><strong>Use truncated legend entries?</strong>: By selecting this option, legend labels are truncated to a single line of length
+<em>Legend entry line length</em> leaving only the beginning and end of the label. The central characters will be replaced with
+an ellipsis and whitespace. <em>persistent</em></p>
+<p><strong>Legend entry line length</strong>: This defines the maximum number of characters to display in a single line of a plot legend
+before wrapping to the next line. <em>persistent</em></p>
+<p><strong>Disable Residuals Display</strong>: When selected, residual plots are not automatically displayed when fits are completed. The plots
+can still be accessed in the data explorer under the data set the fit was performed on. <em>persistent</em></p>
+<p><strong>Disable Polydispersity Plot Display</strong>: When selected, polydispersity plots are not automatically displayed when fits
+are completed. The plots can still be accessed in the data explorer under the data set the fit was performed on. <em>persistent</em></p>
+<p><strong>Show toolbar on all new plots</strong>: When selected, all new plots will open a toolbar on the bottom. The toolbar comes
+from Matplotlib. Note: The toolbar can be enabled and disabled in each individual plot by opening the context menu with
+a right click and selecting ‘Toggle Navigation Menu’</p>
+</section>
+<section id="display-preferences">
+<span id="id2"></span><h2>Display Preferences<a class="headerlink" href="#display-preferences" title="Link to this heading">¶</a></h2>
+<p>The display preferences modify underlying features of our GUI framework, Qt. For more information on each setting,
+please read more on the <a class="reference external" href="https://doc.qt.io/qt-5/highdpi.html#high-dpi-support-in-qt">Qt High DPI Settings</a>.</p>
+<p><strong>QT Screen Scale Factor</strong>: A percent scaling factor that is applied all element sizes within the GUI. A restart of
+SasView is required to take effect. <em>persistent</em></p>
+<p><strong>Automatic Screen Scale Factor</strong>: enables automatic scaling, based on the monitor’s pixel density. This won’t change the
+size of point-sized fonts, since point is a physical measurement unit. Multiple screens may get different scale factors.
+<em>persistent</em></p>
+</section>
+<section id="gpu-preferences">
+<span id="id3"></span><h2>GPU Preferences<a class="headerlink" href="#gpu-preferences" title="Link to this heading">¶</a></h2>
+<p><strong>GPU Options</strong>: If a <em>potential</em> GPU device is present the dialog will show it. The <em>Test</em>
+button can then be used to check if your system has the necessary drivers to
+use it. But also see <a class="reference internal" href="../Perspectives/Fitting/gpu_setup.html#gpu-setup"><span class="std std-ref">GPU Setup</span></a>. <em>persistent</em></p>
+</section>
+<section id="fit-optimizer-preferences">
+<span id="id4"></span><h2>Fit Optimizer Preferences<a class="headerlink" href="#fit-optimizer-preferences" title="Link to this heading">¶</a></h2>
+<p><strong>Default Fitting Algorithm</strong>: The fitting optimizer that will be set when SasView starts. <em>persistent</em></p>
+<p><strong>Active Fitting Algorithm</strong>: The fitting algorithm currently in use. This will default to the <em>Default Fitting Algorithm</em>
+when SasView loads. When this changes, settings for the optimizer will update. More information on the various
+optimizers can be found at <a class="reference internal" href="../Perspectives/Fitting/optimizer.html#optimizer-guide"><span class="std std-ref">Optimizer Selection</span></a></p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Preferences</a><ul>
+<li><a class="reference internal" href="#plotting-preferences">Plotting Preferences</a></li>
+<li><a class="reference internal" href="#display-preferences">Display Preferences</a></li>
+<li><a class="reference internal" href="#gpu-preferences">GPU Preferences</a></li>
+<li><a class="reference internal" href="#fit-optimizer-preferences">Fit Optimizer Preferences</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../../marketplace.html"
+                          title="previous chapter">Model Marketplace</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="sasview_files.html"
+                          title="next chapter">SasView User Files</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user/qtgui/MainWindow/preferences_help.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sasview_files.html" title="SasView User Files"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../../marketplace.html" title="Model Marketplace"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../working.html" >Working with SasView</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Preferences</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

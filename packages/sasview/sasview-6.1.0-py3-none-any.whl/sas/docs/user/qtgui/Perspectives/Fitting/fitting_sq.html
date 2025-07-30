@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Fitting Models with Structure Factors &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Polydispersity &amp; Orientational Distributions" href="pd/polydispersity.html" />
+    <link rel="prev" title="Assessing Fit Quality" href="residuals_help.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pd/polydispersity.html" title="Polydispersity &amp; Orientational Distributions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="residuals_help.html" title="Assessing Fit Quality"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../analysis.html" >Fitting &amp; Other Analyses</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="fitting.html" accesskey="U">Fitting Documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Fitting Models with Structure Factors</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="fitting-models-with-structure-factors">
+<span id="interaction-models"></span><h1>Fitting Models with Structure Factors<a class="headerlink" href="#fitting-models-with-structure-factors" title="Link to this heading">¶</a></h1>
+<p><strong>Interaction models</strong> (previously called product models), or <span class="math notranslate nohighlight">\(P&#64;S\)</span> models
+for short, multiply the form factor <span class="math notranslate nohighlight">\(P(Q)\)</span> by the structure factor <span class="math notranslate nohighlight">\(S(Q)\)</span>,
+modulated by the <strong>effective radius</strong> of the form factor. For the theory
+behind this, see <a class="reference internal" href="theory.html#pstheory"><span class="std std-ref">Theory</span></a> .</p>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Link to this heading">¶</a></h2>
+<p><strong>Except for volfraction, when writing your own</strong> <span class="math notranslate nohighlight">\(P\)</span> <strong>and</strong> <span class="math notranslate nohighlight">\(S\)</span> <strong>models,</strong>
+<strong>DO NOT give your model parameters these names!</strong></p>
+<p>Many parameters are common amongst <span class="math notranslate nohighlight">\(P&#64;S\)</span> models, but take on specific meanings:</p>
+<ul>
+<li><p><em>scale</em>:</p>
+<blockquote>
+<div><p>Overall model scale factor.</p>
+<p>To compute number density <span class="math notranslate nohighlight">\(n\)</span> the volume fraction <span class="math notranslate nohighlight">\(V_f\)</span> (parameterised as
+<strong>volfraction</strong>) is needed.  In most <span class="math notranslate nohighlight">\(P(Q)\)</span> models <span class="math notranslate nohighlight">\(V_f\)</span> is not defined and
+<strong>scale</strong> is used instead. Some <span class="math notranslate nohighlight">\(P(Q)\)</span> models, such as the <em>vesicle</em>, do
+define <strong>volfraction</strong> and so can leave <strong>scale</strong> at 1.0.</p>
+<p>Structure factor models <span class="math notranslate nohighlight">\(S(Q)\)</span> contain <strong>volfraction</strong>. In <span class="math notranslate nohighlight">\(P&#64;S\)</span> models
+this is <em>also</em> used as the volume fraction for the form factor model
+<span class="math notranslate nohighlight">\(P(Q)\)</span>, so these models can also leave <strong>scale</strong> at 1.0.  If <span class="math notranslate nohighlight">\(P(Q)\)</span> already
+has a <strong>volfraction</strong> parameter, it is tied to the <strong>volfraction</strong> for
+<span class="math notranslate nohighlight">\(S(Q)\)</span>.</p>
+<p>If the volume fraction required for <span class="math notranslate nohighlight">\(S(Q)\)</span> is <em>not</em> the volume fraction
+needed to compute the <span class="math notranslate nohighlight">\(n\)</span> for <span class="math notranslate nohighlight">\(P(Q)\)</span>, then leave <strong>volfraction</strong> as the
+<span class="math notranslate nohighlight">\(V_f\)</span> for <span class="math notranslate nohighlight">\(S(Q)\)</span> and use <strong>scale</strong> to define the <span class="math notranslate nohighlight">\(V_f\)</span> for <span class="math notranslate nohighlight">\(P(Q)\)</span> as
+<span class="math notranslate nohighlight">\(V_f\)</span> = <strong>scale</strong>  <span class="math notranslate nohighlight">\(\cdot\)</span>  <strong>volfraction</strong>.  This situation may occur in
+a mixed phase system where the effective volume fraction needed to compute
+the structure is much higher than the true volume fraction.</p>
+</div></blockquote>
+</li>
+<li><p><em>volfraction</em>:</p>
+<blockquote>
+<div><p>The volume fraction of material, <span class="math notranslate nohighlight">\(V_f\)</span>.</p>
+<p>For hollow shapes, <strong>volfraction</strong> still represents the volume fraction of
+material but the <span class="math notranslate nohighlight">\(S(Q)\)</span> calculation needs the volume fraction <em>enclosed by</em>
+<em>the shape.</em>  To remedy this the user-specified <strong>volfraction</strong> is scaled
+by the ratio form:shell computed from the average form volume and average
+shell volume returned from the <span class="math notranslate nohighlight">\(P(Q)\)</span> calculation when calculating <span class="math notranslate nohighlight">\(S(Q)\)</span>.
+The original <strong>volfraction</strong> is divided by the shell volume to compute the
+number density <span class="math notranslate nohighlight">\(n\)</span> used in the <span class="math notranslate nohighlight">\(P&#64;S\)</span> model to get the absolute scaling on
+the final <span class="math notranslate nohighlight">\(I(Q)\)</span>.</p>
+</div></blockquote>
+</li>
+<li><p><em>radius_effective</em>:</p>
+<blockquote>
+<div><p>The radial distance determining the range of the <span class="math notranslate nohighlight">\(S(Q)\)</span> interaction.</p>
+<p>This may be estimated from the “size” parameters <span class="math notranslate nohighlight">\(\mathbf \xi\)</span> describing
+the form of the shape.  For example, in a system containing freely-rotating
+cylinders, the volume of space each cylinder requires to tumble will be
+much larger than the volume of the cylinder itself. Thus the <em>effective</em>
+radius of a cylinder will be larger than either its actual radius or half-
+length.</p>
+<p>If <strong>radius_effective_mode = 0</strong> (see below) it may be sensible to tie or
+constrain <strong>radius_effective</strong> to one or other of the “size” parameters
+describing the form of the shape (although the parameter cannot then be
+polydisperse). But <strong>radius_effective</strong> may also be specified directly,
+independent of the estimate from <span class="math notranslate nohighlight">\(P(Q)\)</span>.</p>
+<p>If <strong>radius_effective</strong> is calculated by <span class="math notranslate nohighlight">\(P(Q)\)</span>, it will be the
+weighted average of the effective radii computed for the polydisperse
+shape parameters, and that average is used to compute <span class="math notranslate nohighlight">\(S(Q)\)</span>. When
+specified directly, the value of <strong>radius_effective</strong> may be
+polydisperse, and <span class="math notranslate nohighlight">\(S(Q)\)</span> will be averaged over a range of effective
+radii. Whether this makes any physical sense will depend on the system.</p>
+</div></blockquote>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<blockquote>
+<div><p>The following additional parameters are only available in SasView 4.3 and
+later.</p>
+</div></blockquote>
+<p><em>radius_effective_mode</em>:</p>
+<blockquote>
+<div><p>Defines how the effective radius (parameter <strong>radius_effective</strong>) should
+be computed from the parameters of the shape.</p>
+<p>When <strong>radius_effective_mode = 0</strong> then the unconstrained
+<strong>radius_effective</strong> parameter in the <span class="math notranslate nohighlight">\(S(Q)\)</span> model is used. <em>This is the</em>
+<em>default in SasView versions 4.2 and earlier</em>. Otherwise, in SasView 4.3
+and later, <strong>radius_effective_mode = k</strong> represents an index in a list of
+alternative <strong>radius_effective</strong> calculations.</p>
+<p>In SasView 4.3 and later <strong>k</strong> must be entered as an integer (and it will
+be necessary to read the source code file to discover what calculations the
+modes represent), but in SasView 5.0 and later the options appear in a
+drop-down box.</p>
+<p>For example, the <em>ellipsoid</em> model defines the following
+<strong>radius_effective_modes</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="o">=&gt;</span> <span class="n">average</span> <span class="n">curvature</span>
+<span class="mi">2</span> <span class="o">=&gt;</span> <span class="n">equivalent</span> <span class="n">volume</span> <span class="n">sphere</span>
+<span class="mi">3</span> <span class="o">=&gt;</span> <span class="nb">min</span> <span class="n">radius</span>
+<span class="mi">4</span> <span class="o">=&gt;</span> <span class="nb">max</span> <span class="n">radius</span>
+</pre></div>
+</div>
+<p>Note: <strong>radius_effective_mode</strong> will only appear in the parameter table if
+the model defines the list of modes, otherwise it will be set permanently
+to 0 for the user-defined effective radius.</p>
+<p><strong>WARNING! If</strong> <span class="math notranslate nohighlight">\(P(Q)\)</span> <strong>is multiplied by</strong> <span class="math notranslate nohighlight">\(S(Q)\)</span> <strong>in the FitPage,</strong>
+<strong>instead of being generated in the Sum|Multi dialog, the</strong>
+<strong>radius_effective used is constrained (equivalent to</strong>
+<strong>radius_effective_mode = 1)</strong>.</p>
+</div></blockquote>
+</div>
+<ul>
+<li><p><em>structure_factor_mode</em>:</p>
+<blockquote>
+<div><p>The type of structure factor calculation to use.</p>
+<p>If the <span class="math notranslate nohighlight">\(P&#64;S\)</span> model supports the <span class="math notranslate nohighlight">\(\beta(Q)\)</span> <em>decoupling correction</em>
+<a class="footnote-reference brackets" href="#kotlarchyk" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> then <strong>structure_factor_mode</strong> will appear in the
+parameter table after the <span class="math notranslate nohighlight">\(S(Q)\)</span> parameters.</p>
+<p>If <strong>structure_factor_mode = 0</strong> then the
+<em>local monodisperse approximation</em> will be used, i.e.:</p>
+<div class="math notranslate nohighlight">
+\[I(Q) = \text{scale} \frac{V_f}{V} P(Q) S(Q) + \text{background}\]</div>
+<p>where <span class="math notranslate nohighlight">\(P(Q) = \langle F(Q)^2 \rangle\)</span>. <em>This is the default in SasView</em>
+<em>versions 4.x and earlier</em>.</p>
+<p>If <strong>structure_factor_mode = 1</strong> then the <span class="math notranslate nohighlight">\(\beta(Q)\)</span> correction will be
+used, i.e.:</p>
+<div class="math notranslate nohighlight">
+\[I(Q) = \text{scale} \frac{V_f}{V} P(Q) [ 1 + \beta(Q) (S(Q) - 1) ]
++ \text{background}\]</div>
+<p>The <span class="math notranslate nohighlight">\(\beta(Q)\)</span> decoupling approximation has the effect of damping the
+oscillations in the normal (local monodisperse) <span class="math notranslate nohighlight">\(S(Q)\)</span>. When <span class="math notranslate nohighlight">\(\beta(Q) = 1\)</span>
+the local monodisperse approximation is recovered. <em>This mode is only</em>
+<em>available in SasView 4.3 and later</em>.</p>
+<p>More mode options may appear in future as more complicated operations are
+added.</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="related-sections">
+<h2>Related sections<a class="headerlink" href="#related-sections" title="Link to this heading">¶</a></h2>
+<p>See also:</p>
+<p><a class="reference internal" href="theory.html#pstheory"><span class="std std-ref">Theory</span></a></p>
+<p><a class="reference internal" href="pd/polydispersity.html#polydispersityhelp"><span class="std std-ref">Polydispersity &amp; Orientational Distributions</span></a></p>
+<p><a class="reference internal" href="resolution.html#resolution-smearing"><span class="std std-ref">Resolution (Smearing) Functions</span></a></p>
+<p><a class="reference internal" href="orientation/orientation.html#orientation"><span class="std std-ref">Oriented Particles</span></a></p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">¶</a></h2>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="kotlarchyk" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
+<p>Kotlarchyk, M.; Chen, S.-H. <em>J. Chem. Phys.</em>, 1983, 79, 2461</p>
+</aside>
+</aside>
+<p><em>Document History</em></p>
+<div class="line-block">
+<div class="line">2019-03-31 Paul Kienzle, Steve King &amp; Richard Heenan</div>
+<div class="line">2021-11-03 Steve King</div>
+<div class="line">2022-10-30 Steve King</div>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Fitting Models with Structure Factors</a><ul>
+<li><a class="reference internal" href="#parameters">Parameters</a></li>
+<li><a class="reference internal" href="#related-sections">Related sections</a></li>
+<li><a class="reference internal" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="residuals_help.html"
+                          title="previous chapter">Assessing Fit Quality</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="pd/polydispersity.html"
+                          title="next chapter">Polydispersity &amp; Orientational Distributions</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/user/qtgui/Perspectives/Fitting/fitting_sq.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pd/polydispersity.html" title="Polydispersity &amp; Orientational Distributions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="residuals_help.html" title="Assessing Fit Quality"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../analysis.html" >Fitting &amp; Other Analyses</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="fitting.html" >Fitting Documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Fitting Models with Structure Factors</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

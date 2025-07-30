@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Corfunc Technical Documentation &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="How To Use Corfunc" href="corfunc-how-to.html" />
+    <link rel="prev" title="Correlation Function Theory" href="corfunc-theory.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="corfunc-how-to.html" title="How To Use Corfunc"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="corfunc-theory.html" title="Correlation Function Theory"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../analysis.html" >Fitting &amp; Other Analyses</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="corfunc_help.html" accesskey="U">Correlation Function Analysis</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Corfunc Technical Documentation</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="corfunc-technical-documentation">
+<span id="corfunc-technical"></span><h1>Corfunc Technical Documentation<a class="headerlink" href="#corfunc-technical-documentation" title="Link to this heading">¶</a></h1>
+<section id="in-brief">
+<h2>In Brief<a class="headerlink" href="#in-brief" title="Link to this heading">¶</a></h2>
+<figure class="align-center">
+<img alt="../../../../_images/tutorial_data_loaded.png" src="../../../../_images/tutorial_data_loaded.png" />
+</figure>
+<p>The correlation function analysis is performed in <strong>3 steps</strong>.</p>
+<p>First, the scattering curve is <strong>extrapolated</strong> to <span class="math notranslate nohighlight">\(Q = 0\)</span> (Guinier) and toward
+<span class="math notranslate nohighlight">\(Q = \infty\)</span> (Porod), the details of the extrapolation is controlled by
+the parameters <cite>Guinier End</cite>, <cite>Porod Start</cite> and <cite>Porod End</cite>, which
+are settable by entering text, or by using the <cite>Adjust</cite> slider.
+There is a smooth transition from the data to the extrapolation, start and end refer to
+the region over which this occurs (see below).
+Parameters for the extrapolation can manually entered in <cite>Extrapolation Parameters</cite> and
+SasView can be told whether to recalcuate the parameters using the <cite>Fit Background</cite>,
+<cite>Fit Guinier</cite> and <cite>Fit Porod</cite> checkboxes.</p>
+<p>Secondly, the data is <strong>transformed</strong> to obtain the projected correlation functions.</p>
+<p>Finally, the transformed data is <strong>interpreted</strong> in terms of an ideal lamellar morphology</p>
+</section>
+<section id="extrapolation">
+<h2>Extrapolation<a class="headerlink" href="#extrapolation" title="Link to this heading">¶</a></h2>
+<section id="small-q">
+<h3>Small Q<a class="headerlink" href="#small-q" title="Link to this heading">¶</a></h3>
+<p>The scattering data is extrapolated to <span class="math notranslate nohighlight">\(q = 0\)</span> by fitting a Guinier function, defined as</p>
+<div class="math notranslate nohighlight">
+\[I(q) = e^{A + Bq^2}\]</div>
+<p>to data up to <span class="math notranslate nohighlight">\(q\)</span> value specified by <cite>Guinier Start</cite>.</p>
+<p>This a Gaussian centred at <span class="math notranslate nohighlight">\(q=0\)</span> (we only ever see the positive half).
+The natural logarithm of the parameter <span class="math notranslate nohighlight">\(A\)</span> is a constant of proportionality
+equal to the scattering intensity at <span class="math notranslate nohighlight">\(q=0\)</span>.
+The parameter <span class="math notranslate nohighlight">\(B\)</span> describes the width of the function and is related to the
+size of the scattering object. For example, in systems of dispersed spherical
+particles it is related to the radius of gyration <span class="math notranslate nohighlight">\(R_g\)</span> by <span class="math notranslate nohighlight">\(B = R_g^2 / 3\)</span>.</p>
+<p><em>Note:</em> The Guinier model makes assumptions that do not hold for all systems
+and so this approximation might not always be accurate.
+If errors from the Guinier model fit occur, they will manifest as a constant offset in the correlation function,
+because low <span class="math notranslate nohighlight">\(q\)</span> values correspond to a long periodicity in <span class="math notranslate nohighlight">\(x\)</span>.
+Empirically, however, inaccuracies in the Guinier region have a very low impact on the
+final analysis, and only some of the lamellar parameters will be affected at all.</p>
+</section>
+<section id="large-q">
+<h3>Large Q<a class="headerlink" href="#large-q" title="Link to this heading">¶</a></h3>
+<p>The data is extrapolated towards <span class="math notranslate nohighlight">\(q = \infty\)</span> by fitting a Porod model, to the region
+between <cite>Porod Start</cite> and <cite>Porod End</cite>. This model is defined by</p>
+<div class="math notranslate nohighlight">
+\[I(q) = K q^{-4} e^{-q^2\sigma^2} + I_{B}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(I_B\)</span> is the background intensity, <span class="math notranslate nohighlight">\(K\)</span> is the Porod constant, and <span class="math notranslate nohighlight">\(\sigma\)</span> is a
+parameter which, in a two phase system, describes the sharpness of the scattering length density
+profile at the interface between phases.</p>
+<p>This model comprises three components, a constant background intensity, the standard Porod law, so</p>
+<div class="math notranslate nohighlight">
+\[I(q) - I_B \propto q^{-4}\]</div>
+<p>and a contribution which is attibutable to the sharpness of the boundaries between regions. so</p>
+<div class="math notranslate nohighlight">
+\[I(q) - I_B \propto e^{-q^2\sigma^2}\]</div>
+<p>SasView will use this formula to extrapolate to very large <span class="math notranslate nohighlight">\(q\)</span> (100
+times the maximum data value). This ensures that the transform used in the
+next stage does not contain artefacts (i.e. from treating secular data as periodic)</p>
+</section>
+<section id="merging">
+<h3>Merging<a class="headerlink" href="#merging" title="Link to this heading">¶</a></h3>
+<p>In the final step before transformation, the experimental and model data are merged together.
+For the Guinier model, this happens on the region between the start of the experimental data and
+the value specified by <cite>Guinier End</cite>.
+For the Porod model, the merging happens between <cite>Porod Start</cite> and <cite>Porod End</cite>.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>From</p></th>
+<th class="head"><p>To</p></th>
+<th class="head"><p>Data</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">0</div>
+<div class="line">Start of data</div>
+<div class="line"><em>Guinier End</em></div>
+<div class="line"><em>Porod Start</em></div>
+<div class="line"><em>Porod End</em></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Start of data</div>
+<div class="line"><em>Guinier End</em></div>
+<div class="line"><em>Porod Start</em></div>
+<div class="line"><em>Porod End</em></div>
+<div class="line">100x end of data</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Guinier Model</div>
+<div class="line">Guinier/Data mix</div>
+<div class="line">Data</div>
+<div class="line">Data/Porod mix</div>
+<div class="line">Porod model</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>A smooth transition is achieved with sigmoid weighting defined as follows.
+We start with two input functions, <span class="math notranslate nohighlight">\(f(x)\)</span> on the ‘left’ and <span class="math notranslate nohighlight">\(g(x)\)</span> on the ‘right’, and these
+are to be smoothed over the range <span class="math notranslate nohighlight">\([a, b]\)</span>.
+We use <span class="math notranslate nohighlight">\(y(x)\)</span> to represent the transition over <span class="math notranslate nohighlight">\([a,b]\)</span>. <span class="math notranslate nohighlight">\(y(x)\)</span> is given by the following convex combination</p>
+<div class="math notranslate nohighlight">
+\[y(x) = h(x) g(x) + (1-h(x))f(x)\]</div>
+<p>where <span class="math notranslate nohighlight">\(h(x)\)</span> is a weighting between the two, with a value of zero at <span class="math notranslate nohighlight">\(a\)</span> and one at <span class="math notranslate nohighlight">\(b\)</span>, defined as</p>
+<div class="math notranslate nohighlight">
+\[h(x) = \frac{1}{1 + \frac{(x-b)^2}{(x-a)^2}}\]</div>
+</section>
+</section>
+<section id="transformation">
+<h2>Transformation<a class="headerlink" href="#transformation" title="Link to this heading">¶</a></h2>
+<p>Corfunc uses a discrete cosine transform on the extrapolated data in order to calculate the
+1D correlation function as:</p>
+<div class="math notranslate nohighlight">
+\[\Gamma _{1}(x) = \frac{1}{Q^{*}} \int_{0}^{\infty }I(q) q^{2} cos(qx) dq\]</div>
+<p>where Q<sup>*</sup> is the Scattering (also called Porod) Invariant.</p>
+<p>The following algorithm is applied:</p>
+<div class="math notranslate nohighlight">
+\[\Gamma(x_k) = 2 \sum_{n=0}^{N-1} x_n \cos{\left[ \frac{\pi}{N}
+\left(n + \frac{1}{2} \right) k \right] } \text{ for } k = 0, 1, \ldots,
+N-1, N\]</div>
+<p>The 3D correlation function is calculated as:</p>
+<div class="math notranslate nohighlight">
+\[\Gamma _{3}(x) = \frac{1}{Q^{*}} \int_{0}^{\infty}I(q) q^{2}
+\frac{sin(qx)}{qx} dq\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is always advisable to inspect Γ<sub>1</sub>(x) and Γ<sub>3</sub>(x)
+for artefacts arising from the extrapolation and transformation processes:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>do they tend to zero as x tends to <span class="math notranslate nohighlight">\(\infty\)</span>?</p></li>
+<li><p>do they smoothly curve onto the ordinate at x = 0? (if not check the value
+of <span class="math notranslate nohighlight">\(\sigma\)</span> is sensible)</p></li>
+<li><p>are there ripples at x values corresponding to 2 <span class="math notranslate nohighlight">\(\pi\)</span> over the two
+q values at which the extrapolated and experimental data are merged?</p></li>
+<li><p>are there any artefacts at x values corresponding to 2 <span class="math notranslate nohighlight">\(\pi\)</span> / q<sub>max</sub> in
+the experimental data?</p></li>
+<li><p>and lastly, do the significant features/peaks in the correlation functions
+actually correspond to anticpated spacings in the sample?!!!</p></li>
+</ul>
+</div></blockquote>
+</div>
+<p>Finally, the program calculates the interface distribution function (IDF) g<sub>1</sub>(x) as
+the discrete cosine transform of:</p>
+<div class="math notranslate nohighlight">
+\[q^{4} I(q)\]</div>
+<p>The IDF is proportional to the second derivative of Γ<sub>1</sub>(x).</p>
+</section>
+<section id="interpretation">
+<h2>Interpretation<a class="headerlink" href="#interpretation" title="Link to this heading">¶</a></h2>
+<p>Once the correlation functions have been calculated <em>SasView</em> will
+try and interpret Γ<sub>1</sub>(x) in terms of an ideal lamellar morphology
+as shown below.</p>
+<figure class="align-center">
+<img alt="../../../../_images/fig2.png" src="../../../../_images/fig2.png" />
+</figure>
+<p><strong>It is for the user to decide if this interpretation has any relevance to their system!</strong></p>
+<p>The structural parameters extracted are:</p>
+<ul class="simple">
+<li><p>Long Period <span class="math notranslate nohighlight">\(= L_p\)</span></p></li>
+<li><p>Average Hard Block Thickness <span class="math notranslate nohighlight">\(= L_c\)</span></p></li>
+<li><p>Average Core Thickness <span class="math notranslate nohighlight">\(= D_0\)</span></p></li>
+<li><p>Average Interface Thickness <span class="math notranslate nohighlight">\(= D_{tr}\)</span></p></li>
+<li><p>Eekhaut Polydispersity <span class="math notranslate nohighlight">\(= \Gamma_{\text{min}}/\Gamma_{\text{max}}\)</span></p></li>
+<li><p>Stribeck Polydispersity <span class="math notranslate nohighlight">\(= \frac{L_c}{(L_c - L_p)\Gamma_{\text{max}}}\)</span></p></li>
+<li><p>Local Crystallinity <span class="math notranslate nohighlight">\(= L_c/L_p\)</span></p></li>
+</ul>
+<p>which lead to:</p>
+<ul class="simple">
+<li><p>Average Soft Block Thickness <span class="math notranslate nohighlight">\(= L_p - L_c = L_a\)</span></p></li>
+<li><p>Average Chord Length <span class="math notranslate nohighlight">\(= ((1/L_c) + (1/L_a))^{-1}\)</span></p></li>
+<li><p>Average Crystalline Chord Length <span class="math notranslate nohighlight">\(= \frac{L_a L_c}{\Phi_{\text{c}} (L_c + L_a)}\)</span></p></li>
+<li><p>Non-Ideality <span class="math notranslate nohighlight">\(= \left(\frac{L_p – L_p*}{L_p}\right)^2\)</span></p></li>
+</ul>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">Corfunc Technical Documentation</a><ul>
+<li><a class="reference internal" href="#in-brief">In Brief</a></li>
+<li><a class="reference internal" href="#extrapolation">Extrapolation</a><ul>
+<li><a class="reference internal" href="#small-q">Small Q</a></li>
+<li><a class="reference internal" href="#large-q">Large Q</a></li>
+<li><a class="reference internal" href="#merging">Merging</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#transformation">Transformation</a></li>
+<li><a class="reference internal" href="#interpretation">Interpretation</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="corfunc-theory.html"
+                          title="previous chapter">Correlation Function Theory</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="corfunc-how-to.html"
+                          title="next chapter">How To Use Corfunc</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/user/qtgui/Perspectives/Corfunc/corfunc-technical.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="corfunc-how-to.html" title="How To Use Corfunc"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="corfunc-theory.html" title="Correlation Function Theory"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../analysis.html" >Fitting &amp; Other Analyses</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="corfunc_help.html" >Correlation Function Analysis</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Corfunc Technical Documentation</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

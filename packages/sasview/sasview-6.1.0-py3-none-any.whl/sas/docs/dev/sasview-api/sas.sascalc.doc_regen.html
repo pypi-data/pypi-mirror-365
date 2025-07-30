@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>sas.sascalc.doc_regen package &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="sas.sascalc.fit package" href="sas.sascalc.fit.html" />
+    <link rel="prev" title="sas.sascalc.data_util package" href="sas.sascalc.data_util.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sas.sascalc.fit.html" title="sas.sascalc.fit package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="sas.sascalc.data_util.html" title="sas.sascalc.data_util package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="modules.html" >SasView</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sas.html" >sas package</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="sas.sascalc.html" accesskey="U">sas.sascalc package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sas.sascalc.doc_regen package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="sas-sascalc-doc-regen-package">
+<h1>sas.sascalc.doc_regen package<a class="headerlink" href="#sas-sascalc-doc-regen-package" title="Link to this heading">¶</a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-sas.sascalc.doc_regen.makedocumentation">
+<span id="sas-sascalc-doc-regen-makedocumentation-module"></span><h2>sas.sascalc.doc_regen.makedocumentation module<a class="headerlink" href="#module-sas.sascalc.doc_regen.makedocumentation" title="Link to this heading">¶</a></h2>
+<p>Creates documentation from .py files</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.makedocumentation.call_all_files">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.makedocumentation.</span></span><span class="sig-name descname"><span class="pre">call_all_files</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sas.sascalc.doc_regen.makedocumentation.call_all_files" title="Link to this definition">¶</a></dt>
+<dd><p>A master method to regenerate all known documentation.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.makedocumentation.call_one_file">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.makedocumentation.</span></span><span class="sig-name descname"><span class="pre">call_one_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">PathLike</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sas.sascalc.doc_regen.makedocumentation.call_one_file" title="Link to this definition">¶</a></dt>
+<dd><p>A master method to regenerate a single file that is passed to the method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>file</strong> – A file name that needs the html regenerated.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.makedocumentation.call_regenmodel">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.makedocumentation.</span></span><span class="sig-name descname"><span class="pre">call_regenmodel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepaths</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">PathLike</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Path</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#sas.sascalc.doc_regen.makedocumentation.call_regenmodel" title="Link to this definition">¶</a></dt>
+<dd><p>Runs regenmodel.py or regentoc.py (specified in parameter regen_py) with all found PY_FILES.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filepath</strong> – A file-path like object or list of file-path like objects to regenerate.</p>
+</dd>
+<dt class="field-even">Return removed_files<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of src files that were removed during the regeneration process.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.makedocumentation.copy_module_resources">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.makedocumentation.</span></span><span class="sig-name descname"><span class="pre">copy_module_resources</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#sas.sascalc.doc_regen.makedocumentation.copy_module_resources" title="Link to this definition">¶</a></dt>
+<dd><p>Obtain the source and build output from within the installed sas module</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.makedocumentation.copy_resources">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.makedocumentation.</span></span><span class="sig-name descname"><span class="pre">copy_resources</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sas.sascalc.doc_regen.makedocumentation.copy_resources" title="Link to this definition">¶</a></dt>
+<dd><p>Find the original documentation location (source and built)</p>
+<p>The source and built docs for SasView could be in a number of locations.
+Search for them in the following locations:
+1. installed within the module
+2. unpacked next to the source
+3. in legacy paths from older installation approaches</p>
+<p>Installed versions are prioritised over uninstalled versions to make sure
+that inconveniently named local directories don’t cause issues.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.makedocumentation.create_user_files_if_needed">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.makedocumentation.</span></span><span class="sig-name descname"><span class="pre">create_user_files_if_needed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sas.sascalc.doc_regen.makedocumentation.create_user_files_if_needed" title="Link to this definition">¶</a></dt>
+<dd><p>Create user documentation directories if necessary and copy built docs there.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.makedocumentation.generate_html">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.makedocumentation.</span></span><span class="sig-name descname"><span class="pre">generate_html</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">single_files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">PathLike</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">PathLike</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rst</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">PathLike</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Popen</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#sas.sascalc.doc_regen.makedocumentation.generate_html" title="Link to this definition">¶</a></dt>
+<dd><p>Generates HTML from an RST using a subprocess. Based off of syntax provided in Makefile found in /sasmodels/doc/</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>single_file</strong> – A file name that needs the html regenerated.
+NOTE: passing in this parameter will result in ONLY the specified file being regenerated.
+The TOC will not be updated correctly, and as such, this arg should only be passed when ‘preview’
+documentation generation is supported in a later version.</p></li>
+<li><p><strong>rst</strong> – Boolean to declare the rile an rst-like file.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.makedocumentation.get_main_docs">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.makedocumentation.</span></span><span class="sig-name descname"><span class="pre">get_main_docs</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Path</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#sas.sascalc.doc_regen.makedocumentation.get_main_docs" title="Link to this definition">¶</a></dt>
+<dd><p>Generates a list of all .py files to be passed into compiling functions found in the main source code, as well as
+in the user plugin model directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of python files</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.makedocumentation.get_py">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.makedocumentation.</span></span><span class="sig-name descname"><span class="pre">get_py</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">directory</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Path</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#sas.sascalc.doc_regen.makedocumentation.get_py" title="Link to this definition">¶</a></dt>
+<dd><p>Find all python files within a directory that are meant for sphinx and return those file-paths as a list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>directory</strong> – A file path-like object to find all python files contained there-in.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of python files found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.makedocumentation.locate_unpacked_resources">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.makedocumentation.</span></span><span class="sig-name descname"><span class="pre">locate_unpacked_resources</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Path</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Path</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#sas.sascalc.doc_regen.makedocumentation.locate_unpacked_resources" title="Link to this definition">¶</a></dt>
+<dd><p>Locate the resources unpacked on disk</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.makedocumentation.make_documentation">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.makedocumentation.</span></span><span class="sig-name descname"><span class="pre">make_documentation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">PathLike</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'.'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Popen</span><span class="p"><span class="pre">[</span></span><span class="pre">bytes</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#sas.sascalc.doc_regen.makedocumentation.make_documentation" title="Link to this definition">¶</a></dt>
+<dd><p>Similar to call_one_file, but will fall back to calling all files and regenerating everything if an error occurs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>target</strong> – A file name that needs the html regenerated.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.makedocumentation.module_copytree">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.makedocumentation.</span></span><span class="sig-name descname"><span class="pre">module_copytree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">PathLike</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">PathLike</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#sas.sascalc.doc_regen.makedocumentation.module_copytree" title="Link to this definition">¶</a></dt>
+<dd><p>Copy the tree from a module to the specified directory</p>
+<p>module: name of the Python module (the “anchor” for importlib.resources)
+src: source name of the resource inside the module
+dest: destination directory for the resources to be copied into; will be</p>
+<blockquote>
+<div><p>created if it doesn’t exist</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.makedocumentation.sync_plugin_models">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.makedocumentation.</span></span><span class="sig-name descname"><span class="pre">sync_plugin_models</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Path</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#sas.sascalc.doc_regen.makedocumentation.sync_plugin_models" title="Link to this definition">¶</a></dt>
+<dd><p>Remove deleted plugin models from source-temp/user/models/src/</p>
+</dd></dl>
+
+</section>
+<section id="module-sas.sascalc.doc_regen.regenmodel">
+<span id="sas-sascalc-doc-regen-regenmodel-module"></span><h2>sas.sascalc.doc_regen.regenmodel module<a class="headerlink" href="#module-sas.sascalc.doc_regen.regenmodel" title="Link to this heading">¶</a></h2>
+<p>Generate ReST docs with figures for each model.</p>
+<p>usage: python genmodels.py path/to/model1.py …</p>
+<p>Output is placed in the directory model, with <em>model1.py</em> producing
+<em>model/model1.rst</em> and <em>model/img/model1.png</em>.</p>
+<p>Set the environment variable SASMODELS_BUILD_CACHE to the path for the
+build cache. That way the figure will only be regenerated if the kernel
+code has changed.  This is useful on a build server where the environment
+is created from scratch each time.  Be sure to clear the cache from time
+to time so it doesn’t get too large.  Also, the cache will need to be
+cleared if the image generation is updated, either because matplotib
+is upgraded or because this file changes.  To accomodate both these
+conditions set the path as the following in your build script:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>SASMODELS_BUILD_CACHE=/tmp/sasbuild_$(shasum genmodel.py | cut -f 1 -d&quot; &quot;)
+</pre></div>
+</div>
+<p>Putting the cache in /tmp allows temp-reaper to clean it up automatically.
+Putting the sha1 hash of this file in the cache directory name means that
+a new cache will be created whenever the text of this file has changed,
+even if it is downloaded from a different branch of the repo.</p>
+<p>The release build should not use any caching.</p>
+<p>This program uses multiprocessing to build the jobs in parallel.  Use
+the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SASMODELS_BUILD_CPUS</span><span class="o">=</span><span class="mi">0</span>  <span class="c1"># one per processor</span>
+<span class="n">SASMODELS_BUILD_CPUS</span><span class="o">=</span><span class="mi">1</span>  <span class="c1"># don&#39;t use multiprocessing</span>
+<span class="n">SASMODELS_BUILD_CPUS</span><span class="o">=</span><span class="n">n</span>  <span class="c1"># use n processes</span>
+</pre></div>
+</div>
+<p>Note that sasmodels with OpenCL is very good at using all the processors
+when generating the model plot, so you should only use a small amount
+of parallelism (maybe 2-4 processes), allowing matplotlib to run in
+parallel.  More parallelism won’t help, and may overwhelm the GPU if you
+have one.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.regenmodel.copy_file">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.regenmodel.</span></span><span class="sig-name descname"><span class="pre">copy_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.doc_regen.regenmodel.copy_file" title="Link to this definition">¶</a></dt>
+<dd><p>Copy from <em>src</em> to <em>dst</em>, making the destination directory if needed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>src</strong> – The original file name to be copied.</p></li>
+<li><p><strong>dst</strong> – The destination to copy the file.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.regenmodel.copy_if_newer">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.regenmodel.</span></span><span class="sig-name descname"><span class="pre">copy_if_newer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.doc_regen.regenmodel.copy_if_newer" title="Link to this definition">¶</a></dt>
+<dd><p>Copy from <em>src</em> to <em>dst</em> if <em>src</em> is newer or <em>dst</em> doesn’t exist.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.regenmodel.figfile">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.regenmodel.</span></span><span class="sig-name descname"><span class="pre">figfile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ModelInfo</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#sas.sascalc.doc_regen.regenmodel.figfile" title="Link to this definition">¶</a></dt>
+<dd><p>Generates a standard file name for generated model figures based on the model info.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.regenmodel.gen_docs">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.regenmodel.</span></span><span class="sig-name descname"><span class="pre">gen_docs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ModelInfo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">outfile</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.doc_regen.regenmodel.gen_docs" title="Link to this definition">¶</a></dt>
+<dd><p>Generate the doc string with the figure inserted before the references.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.regenmodel.link_sources">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.regenmodel.</span></span><span class="sig-name descname"><span class="pre">link_sources</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ModelInfo</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#sas.sascalc.doc_regen.regenmodel.link_sources" title="Link to this definition">¶</a></dt>
+<dd><p>Add link to model sources from the doc tree.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.regenmodel.main">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.regenmodel.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.doc_regen.regenmodel.main" title="Link to this definition">¶</a></dt>
+<dd><p>Process files listed on the command line via <a class="reference internal" href="#sas.sascalc.doc_regen.regenmodel.process_model" title="sas.sascalc.doc_regen.regenmodel.process_model"><code class="xref py py-func docutils literal notranslate"><span class="pre">process_model()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.regenmodel.make_figure">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.regenmodel.</span></span><span class="sig-name descname"><span class="pre">make_figure</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ModelInfo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.doc_regen.regenmodel.make_figure" title="Link to this definition">¶</a></dt>
+<dd><p>Generate the figure file to include in the docs.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.regenmodel.make_figure_cached">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.regenmodel.</span></span><span class="sig-name descname"><span class="pre">make_figure_cached</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ModelInfo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.doc_regen.regenmodel.make_figure_cached" title="Link to this definition">¶</a></dt>
+<dd><p>Cache sasmodels figures between independent builds.</p>
+<p>To enable caching, set <em>SASMODELS_BUILD_CACHE</em> in the environment.
+A (mostly) unique key will be created based on model source and opts.  If
+the png file matching that key exists in the cache it will be copied into
+the documentation tree, otherwise a new png file will be created and copied
+into the cache.</p>
+<p>Be sure to clear the cache from time to time.  Even though the model
+source</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.regenmodel.newer">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.regenmodel.</span></span><span class="sig-name descname"><span class="pre">newer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dst</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">bool</span></span></span><a class="headerlink" href="#sas.sascalc.doc_regen.regenmodel.newer" title="Link to this definition">¶</a></dt>
+<dd><p>Return a boolean whether the src file is newer than the dst file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.regenmodel.plot_1d">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.regenmodel.</span></span><span class="sig-name descname"><span class="pre">plot_1d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">KernelModel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Axes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.doc_regen.regenmodel.plot_1d" title="Link to this definition">¶</a></dt>
+<dd><p>Create a 1-D image based on the model.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.regenmodel.plot_2d">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.regenmodel.</span></span><span class="sig-name descname"><span class="pre">plot_2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">KernelModel</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Axes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.doc_regen.regenmodel.plot_2d" title="Link to this definition">¶</a></dt>
+<dd><p>Create a 2-D image based on the model.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.regenmodel.plot_profile_inset">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.regenmodel.</span></span><span class="sig-name descname"><span class="pre">plot_profile_inset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ModelInfo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ax</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Axes</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.doc_regen.regenmodel.plot_profile_inset" title="Link to this definition">¶</a></dt>
+<dd><p>Plot 1D radial profile as inset plot.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.regenmodel.process_model">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.regenmodel.</span></span><span class="sig-name descname"><span class="pre">process_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">py_file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">PathLike</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#sas.sascalc.doc_regen.regenmodel.process_model" title="Link to this definition">¶</a></dt>
+<dd><p>Generate doc file and image file for the given model definition file.</p>
+<p>Does nothing if the corresponding rst file is newer than <em>py_file</em>.
+Also checks the timestamp on the <em>genmodel.py</em> program (<em>__file__</em>),
+since we want to rerun the generator on all files if we change this
+code.</p>
+<p>If <em>force</em> then generate the rst file regardless of time stamps.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>py_file</strong> – The python model file that will be processed into ReST using sphinx.</p></li>
+<li><p><strong>force</strong> – Regardless of the ReST file age, relative to the python file, force the regeneration.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-sas.sascalc.doc_regen.regentoc">
+<span id="sas-sascalc-doc-regen-regentoc-module"></span><h2>sas.sascalc.doc_regen.regentoc module<a class="headerlink" href="#module-sas.sascalc.doc_regen.regentoc" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.regentoc._add_model">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.regentoc.</span></span><span class="sig-name descname"><span class="pre">_add_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">IO</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.doc_regen.regentoc._add_model" title="Link to this definition">¶</a></dt>
+<dd><p>Add a model file name to an already open file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.regentoc._add_subcategory">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.regentoc.</span></span><span class="sig-name descname"><span class="pre">_add_subcategory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">category_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BinaryIO</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.doc_regen.regentoc._add_subcategory" title="Link to this definition">¶</a></dt>
+<dd><p>Add a subcategory to a ReST file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.regentoc._make_category">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.regentoc.</span></span><span class="sig-name descname"><span class="pre">_make_category</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">category_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BinaryIO</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">IO</span></span></span><a class="headerlink" href="#sas.sascalc.doc_regen.regentoc._make_category" title="Link to this definition">¶</a></dt>
+<dd><p>Generate the base ReST file for a specific model category.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.regentoc._maybe_make_category">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.regentoc.</span></span><span class="sig-name descname"><span class="pre">_maybe_make_category</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">category</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">models</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cat_files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">BinaryIO</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model_toc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">BinaryIO</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.doc_regen.regentoc._maybe_make_category" title="Link to this definition">¶</a></dt>
+<dd><p>Add a category to the list of categories, assuming it isn’t already in the list.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.regentoc.generate_toc">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.regentoc.</span></span><span class="sig-name descname"><span class="pre">generate_toc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model_files</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">PathLike</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.doc_regen.regentoc.generate_toc" title="Link to this definition">¶</a></dt>
+<dd><p>Generate the doc tree and ReST files from a list of model files.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.sascalc.doc_regen.regentoc.main">
+<span class="sig-prename descclassname"><span class="pre">sas.sascalc.doc_regen.regentoc.</span></span><span class="sig-name descname"><span class="pre">main</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">files</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.sascalc.doc_regen.regentoc.main" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-sas.sascalc.doc_regen">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-sas.sascalc.doc_regen" title="Link to this heading">¶</a></h2>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">sas.sascalc.doc_regen package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-sas.sascalc.doc_regen.makedocumentation">sas.sascalc.doc_regen.makedocumentation module</a><ul>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.makedocumentation.call_all_files"><code class="docutils literal notranslate"><span class="pre">call_all_files()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.makedocumentation.call_one_file"><code class="docutils literal notranslate"><span class="pre">call_one_file()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.makedocumentation.call_regenmodel"><code class="docutils literal notranslate"><span class="pre">call_regenmodel()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.makedocumentation.copy_module_resources"><code class="docutils literal notranslate"><span class="pre">copy_module_resources()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.makedocumentation.copy_resources"><code class="docutils literal notranslate"><span class="pre">copy_resources()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.makedocumentation.create_user_files_if_needed"><code class="docutils literal notranslate"><span class="pre">create_user_files_if_needed()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.makedocumentation.generate_html"><code class="docutils literal notranslate"><span class="pre">generate_html()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.makedocumentation.get_main_docs"><code class="docutils literal notranslate"><span class="pre">get_main_docs()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.makedocumentation.get_py"><code class="docutils literal notranslate"><span class="pre">get_py()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.makedocumentation.locate_unpacked_resources"><code class="docutils literal notranslate"><span class="pre">locate_unpacked_resources()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.makedocumentation.make_documentation"><code class="docutils literal notranslate"><span class="pre">make_documentation()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.makedocumentation.module_copytree"><code class="docutils literal notranslate"><span class="pre">module_copytree()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.makedocumentation.sync_plugin_models"><code class="docutils literal notranslate"><span class="pre">sync_plugin_models()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-sas.sascalc.doc_regen.regenmodel">sas.sascalc.doc_regen.regenmodel module</a><ul>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.regenmodel.copy_file"><code class="docutils literal notranslate"><span class="pre">copy_file()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.regenmodel.copy_if_newer"><code class="docutils literal notranslate"><span class="pre">copy_if_newer()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.regenmodel.figfile"><code class="docutils literal notranslate"><span class="pre">figfile()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.regenmodel.gen_docs"><code class="docutils literal notranslate"><span class="pre">gen_docs()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.regenmodel.link_sources"><code class="docutils literal notranslate"><span class="pre">link_sources()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.regenmodel.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.regenmodel.make_figure"><code class="docutils literal notranslate"><span class="pre">make_figure()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.regenmodel.make_figure_cached"><code class="docutils literal notranslate"><span class="pre">make_figure_cached()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.regenmodel.newer"><code class="docutils literal notranslate"><span class="pre">newer()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.regenmodel.plot_1d"><code class="docutils literal notranslate"><span class="pre">plot_1d()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.regenmodel.plot_2d"><code class="docutils literal notranslate"><span class="pre">plot_2d()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.regenmodel.plot_profile_inset"><code class="docutils literal notranslate"><span class="pre">plot_profile_inset()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.regenmodel.process_model"><code class="docutils literal notranslate"><span class="pre">process_model()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-sas.sascalc.doc_regen.regentoc">sas.sascalc.doc_regen.regentoc module</a><ul>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.regentoc._add_model"><code class="docutils literal notranslate"><span class="pre">_add_model()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.regentoc._add_subcategory"><code class="docutils literal notranslate"><span class="pre">_add_subcategory()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.regentoc._make_category"><code class="docutils literal notranslate"><span class="pre">_make_category()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.regentoc._maybe_make_category"><code class="docutils literal notranslate"><span class="pre">_maybe_make_category()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.regentoc.generate_toc"><code class="docutils literal notranslate"><span class="pre">generate_toc()</span></code></a></li>
+<li><a class="reference internal" href="#sas.sascalc.doc_regen.regentoc.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-sas.sascalc.doc_regen">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="sas.sascalc.data_util.html"
+                          title="previous chapter">sas.sascalc.data_util package</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="sas.sascalc.fit.html"
+                          title="next chapter">sas.sascalc.fit package</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/dev/sasview-api/sas.sascalc.doc_regen.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sas.sascalc.fit.html" title="sas.sascalc.fit package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="sas.sascalc.data_util.html" title="sas.sascalc.data_util package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="modules.html" >SasView</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sas.html" >sas package</a> &#187;</li>
+          <li class="nav-item nav-item-4"><a href="sas.sascalc.html" >sas.sascalc package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sas.sascalc.doc_regen package</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

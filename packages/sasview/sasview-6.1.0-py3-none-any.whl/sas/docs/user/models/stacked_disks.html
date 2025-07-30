@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>stacked_disks &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Ellipsoid Functions" href="../qtgui/Perspectives/Fitting/models/shape-ellipsoid.html" />
+    <link rel="prev" title="pringle" href="pringle.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../qtgui/Perspectives/Fitting/models/shape-ellipsoid.html" title="Ellipsoid Functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pringle.html" title="pringle"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-cylinder.html" accesskey="U">Cylinder Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">stacked_disks</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="stacked-disks">
+<span id="id1"></span><h1>stacked_disks<a class="headerlink" href="#stacked-disks" title="Link to this heading">¶</a></h1>
+<p>Form factor for a stacked set of non exfoliated core/shell disks</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>scale</p></td>
+<td><p>Scale factor or Volume fraction</p></td>
+<td><p>None</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>background</p></td>
+<td><p>Source background</p></td>
+<td><p>cm<sup>-1</sup></p></td>
+<td><p>0.001</p></td>
+</tr>
+<tr class="row-even"><td><p>thick_core</p></td>
+<td><p>Thickness of the core disk</p></td>
+<td><p>Å</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>thick_layer</p></td>
+<td><p>Thickness of layer each side of core</p></td>
+<td><p>Å</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-even"><td><p>radius</p></td>
+<td><p>Radius of the stacked disk</p></td>
+<td><p>Å</p></td>
+<td><p>15</p></td>
+</tr>
+<tr class="row-odd"><td><p>n_stacking</p></td>
+<td><p>Number of stacked layer/core/layer disks</p></td>
+<td><p>None</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>sigma_d</p></td>
+<td><p>Sigma of nearest neighbor spacing</p></td>
+<td><p>Å</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>sld_core</p></td>
+<td><p>Core scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>sld_layer</p></td>
+<td><p>Layer scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>sld_solvent</p></td>
+<td><p>Solvent scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-even"><td><p>theta</p></td>
+<td><p>Orientation of the stacked disk axis w/respect incoming beam</p></td>
+<td><p>degree</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>phi</p></td>
+<td><p>Rotation about beam</p></td>
+<td><p>degree</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<p>The returned value is scaled to units of cm<sup>-1</sup> sr<sup>-1</sup>, absolute scale.</p>
+<p><strong>Definition</strong></p>
+<p>This model provides the form factor, <span class="math notranslate nohighlight">\(P(q)\)</span>, for stacked discs (tactoids)
+with a core/layer structure which is constructed itself as <span class="math notranslate nohighlight">\(P(q) S(Q)\)</span>
+multiplying a <span class="math notranslate nohighlight">\(P(q)\)</span> for individual core/layer disks by a structure factor
+<span class="math notranslate nohighlight">\(S(q)\)</span> proposed by Kratky and Porod in 1949<a class="footnote-reference brackets" href="#kratky1949" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> assuming the next
+neighbor distance (d-spacing) in the stack of parallel discs obeys a Gaussian
+distribution. As such the normalization of this “composite” form factor is
+relative to the individual disk volume, not the volume of the stack of disks.
+This model is appropriate for example for non non exfoliated clay particles
+such as Laponite.</p>
+<figure class="align-default" id="id6">
+<img alt="../../_images/stacked_disks_geometry.png" src="../../_images/stacked_disks_geometry.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 36 </span><span class="caption-text">Geometry of a single core/layer disk</span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The scattered intensity <span class="math notranslate nohighlight">\(I(q)\)</span> is calculated as</p>
+<div class="math notranslate nohighlight">
+\[I(q) = N\int_{0}^{\pi /2}\left[ \Delta \rho_t
+\left( V_t f_t(q,\alpha) - V_c f_c(q,\alpha)\right) + \Delta
+\rho_c V_c f_c(q,\alpha)\right]^2 S(q,\alpha)\sin{\alpha}\ d\alpha
++ \text{background}\]</div>
+<p>where the contrast</p>
+<div class="math notranslate nohighlight">
+\[\Delta \rho_i = \rho_i - \rho_\text{solvent}\]</div>
+<p>and <span class="math notranslate nohighlight">\(N\)</span> is the number of individual (single) discs per unit volume, <span class="math notranslate nohighlight">\(\alpha\)</span>
+is the angle between the axis of the disc and <span class="math notranslate nohighlight">\(q\)</span>, and <span class="math notranslate nohighlight">\(V_t\)</span> and <span class="math notranslate nohighlight">\(V_c\)</span> are the
+total volume and the core volume of a single disc, respectively, and</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}f_t(q,\alpha) =
+\left(\frac{\sin(q(d+h)\cos{\alpha})}{q(d+h)\cos{\alpha}}\right)
+\left(\frac{2J_1(qR\sin{\alpha})}{qR\sin{\alpha}} \right)\\f_c(q,\alpha) =
+\left(\frac{\sin(qh)\cos{\alpha})}{qh\cos{\alpha}}\right)
+\left(\frac{2J_1(qR\sin{\alpha})}{qR\sin{\alpha}}\right)\end{aligned}\end{align} \]</div>
+<p>where <span class="math notranslate nohighlight">\(d\)</span> = thickness of the layer (<em>thick_layer</em>),
+<span class="math notranslate nohighlight">\(2h\)</span> = core thickness (<em>thick_core</em>), and <span class="math notranslate nohighlight">\(R\)</span> = radius of the disc (<em>radius</em>).</p>
+<div class="math notranslate nohighlight">
+\[S(q,\alpha) = 1 + \frac{1}{2}\sum_{k=1}^n(n-k)\cos{(kDq\cos{\alpha})}
+\exp\left[ -k(q)^2(D\cos{\alpha}~\sigma_d)^2/2\right]\]</div>
+<p>where <span class="math notranslate nohighlight">\(n\)</span> is the total number of the disc stacked (<em>n_stacking</em>),
+<span class="math notranslate nohighlight">\(D = 2(d+h)\)</span> is the next neighbor center-to-center distance (d-spacing),
+and <span class="math notranslate nohighlight">\(\sigma_d\)</span> = the Gaussian standard deviation of the d-spacing (<em>sigma_d</em>).
+Note that <span class="math notranslate nohighlight">\(D\cos(\alpha)\)</span> is the component of <span class="math notranslate nohighlight">\(D\)</span> parallel to <span class="math notranslate nohighlight">\(q\)</span> and the last
+term in the equation above is effectively a Debye-Waller factor term.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>1. Each assembly in the stack is layer/core/layer, so the spacing of the
+cores is core plus two layers. The 2nd virial coefficient of the cylinder
+is calculated based on the <em>radius</em> and <em>length</em>
+= <em>n_stacking</em> * (<em>thick_core</em> + 2 * <em>thick_layer</em>)
+values, and used as the effective radius for <span class="math notranslate nohighlight">\(S(Q)\)</span> when <span class="math notranslate nohighlight">\(P(Q) * S(Q)\)</span>
+is applied.</p>
+<p>2. the resolution smearing calculation uses 76 Gaussian quadrature points
+to properly smear the model since the function is HIGHLY oscillatory,
+especially around the q-values that correspond to the repeat distance of
+the layers.</p>
+</div>
+<p>2d scattering from oriented stacks is calculated in the same way as for
+cylinders, for further details of the calculation and angular dispersions
+see <a class="reference internal" href="../qtgui/Perspectives/Fitting/orientation/orientation.html#orientation"><span class="std std-ref">Oriented Particles</span></a>.</p>
+<figure class="align-default" id="id7">
+<img alt="../../_images/cylinder_angle_definition.png" src="../../_images/cylinder_angle_definition.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 37 </span><span class="caption-text">Angles <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span> orient the stack of discs relative
+to the beam line coordinates, where the beam is along the <span class="math notranslate nohighlight">\(z\)</span> axis.
+Rotation <span class="math notranslate nohighlight">\(\theta\)</span>, initially in the <span class="math notranslate nohighlight">\(xz\)</span> plane, is carried out first,
+then rotation <span class="math notranslate nohighlight">\(\phi\)</span> about the <span class="math notranslate nohighlight">\(z\)</span> axis. Orientation distributions are
+described as rotations about two perpendicular axes <span class="math notranslate nohighlight">\(\delta_1\)</span> and
+<span class="math notranslate nohighlight">\(\delta_2\)</span> in the frame of the cylinder itself, which when
+<span class="math notranslate nohighlight">\(\theta = \phi = 0\)</span> are parallel to the <span class="math notranslate nohighlight">\(Y\)</span> and <span class="math notranslate nohighlight">\(X\)</span> axes.</span><a class="headerlink" href="#id7" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>Our model is derived from the form factor calculations implemented in a
+C-library provided by the NIST Center for Neutron Research<a class="footnote-reference brackets" href="#kline2006" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p>
+<figure class="align-default" id="id8">
+<img alt="../../_images/stacked_disks_autogenfig.png" src="../../_images/stacked_disks_autogenfig.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 38 </span><span class="caption-text">1D and 2D plots corresponding to the default parameters of the model.</span><a class="headerlink" href="#id8" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Source</strong></p>
+<p><a class="reference download internal" download="" href="../../_downloads/259829cecc927d3a83cbf5d9f4a375df/stacked_disks.py"><code class="xref download docutils literal notranslate"><span class="pre">stacked_disks.py</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/dcb4e4b3513958e8906ae017dc1b98ac/stacked_disks.c"><code class="xref download docutils literal notranslate"><span class="pre">stacked_disks.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/9ee45b8c6371b0a130036ee53e1f050e/gauss76.c"><code class="xref download docutils literal notranslate"><span class="pre">gauss76.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/660768eefaf4e06a52683dd926958ab0/sas_J1.c"><code class="xref download docutils literal notranslate"><span class="pre">sas_J1.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/452c1d4eca138ac30381a8c4b66a9239/polevl.c"><code class="xref download docutils literal notranslate"><span class="pre">polevl.c</span></code></a></p>
+<p><strong>References</strong></p>
+<p>See also Higgins and Benoit <a class="footnote-reference brackets" href="#higgins1994" id="id4" role="doc-noteref"><span class="fn-bracket">[</span>3<span class="fn-bracket">]</span></a> and Guinier and
+Fournet <a class="footnote-reference brackets" href="#guinier1955" id="id5" role="doc-noteref"><span class="fn-bracket">[</span>4<span class="fn-bracket">]</span></a>.</p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="kratky1949" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
+<p>O Kratky and G Porod, <em>J. Colloid Science</em>, 4, (1949) 35</p>
+</aside>
+<aside class="footnote brackets" id="kline2006" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">2</a><span class="fn-bracket">]</span></span>
+<p>S R Kline, <em>J Appl. Cryst.</em>, 39 (2006) 895</p>
+</aside>
+<aside class="footnote brackets" id="higgins1994" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">3</a><span class="fn-bracket">]</span></span>
+<p>J S Higgins and H C Benoit, <em>Polymers and Neutron Scattering</em>,
+Clarendon, Oxford, 1994</p>
+</aside>
+<aside class="footnote brackets" id="guinier1955" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">4</a><span class="fn-bracket">]</span></span>
+<p>A Guinier and G Fournet, <em>Small-Angle Scattering of X-Rays</em>,
+John Wiley and Sons, New York, 1955</p>
+</aside>
+</aside>
+<p><strong>Authorship and Verification</strong></p>
+<ul class="simple">
+<li><p><strong>Author:</strong> NIST IGOR/DANSE <strong>Date:</strong> pre 2010</p></li>
+<li><p><strong>Last Modified by:</strong> Paul Butler and Paul Kienzle <strong>Date:</strong> November 26, 2016</p></li>
+<li><p><strong>Last Reviewed by:</strong> Paul Butler and Paul Kienzle <strong>Date:</strong> November 26, 2016</p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="pringle.html"
+                          title="previous chapter">pringle</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../qtgui/Perspectives/Fitting/models/shape-ellipsoid.html"
+                          title="next chapter">Ellipsoid Functions</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user/models/stacked_disks.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../qtgui/Perspectives/Fitting/models/shape-ellipsoid.html" title="Ellipsoid Functions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pringle.html" title="pringle"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-cylinder.html" >Cylinder Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">stacked_disks</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

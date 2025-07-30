@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>spinodal &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="star_polymer" href="star_polymer.html" />
+    <link rel="prev" title="rpa" href="rpa.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="star_polymer.html" title="star_polymer"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="rpa.html" title="rpa"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-independent.html" accesskey="U">Shape-Independent Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">spinodal</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="spinodal">
+<span id="id1"></span><h1>spinodal<a class="headerlink" href="#spinodal" title="Link to this heading">¶</a></h1>
+<p>Spinodal decomposition model</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>scale</p></td>
+<td><p>Scale factor or Volume fraction</p></td>
+<td><p>None</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>background</p></td>
+<td><p>Source background</p></td>
+<td><p>cm<sup>-1</sup></p></td>
+<td><p>0.001</p></td>
+</tr>
+<tr class="row-even"><td><p>gamma</p></td>
+<td><p>Exponent</p></td>
+<td><p>None</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>q_0</p></td>
+<td><p>Correlation peak position</p></td>
+<td><p>Å<sup>-1</sup></p></td>
+<td><p>0.1</p></td>
+</tr>
+</tbody>
+</table>
+<p>The returned value is scaled to units of cm<sup>-1</sup> sr<sup>-1</sup>, absolute scale.</p>
+<p><strong>Definition</strong></p>
+<p>This model calculates the SAS signal of a phase separating system undergoing
+spinodal decomposition. The scattering intensity <span class="math notranslate nohighlight">\(I(q)\)</span> is calculated as</p>
+<div class="math notranslate nohighlight">
+\[I(q) = I_{max}\frac{(1+\gamma/2)x^2}{\gamma/2+x^{2+\gamma}}+B\]</div>
+<p>where <span class="math notranslate nohighlight">\(x=q/q_0\)</span>, <span class="math notranslate nohighlight">\(q_0\)</span> is the peak position, <span class="math notranslate nohighlight">\(I_{max}\)</span> is the intensity
+at <span class="math notranslate nohighlight">\(q_0\)</span> (parameterised as the <span class="math notranslate nohighlight">\(scale\)</span> parameter), and <span class="math notranslate nohighlight">\(B\)</span> is a flat
+background. The spinodal wavelength, <span class="math notranslate nohighlight">\(\Lambda\)</span>, is given by <span class="math notranslate nohighlight">\(2\pi/q_0\)</span>.</p>
+<p>The definition of <span class="math notranslate nohighlight">\(I_{max}\)</span> in the literature varies. Hashimoto <em>et al</em> (1991)
+define it as</p>
+<div class="math notranslate nohighlight">
+\[I_{max} = \Lambda^3\Delta\rho^2\]</div>
+<p>whereas Meier &amp; Strobl (1987) give</p>
+<div class="math notranslate nohighlight">
+\[I_{max} = V_z\Delta\rho^2\]</div>
+<p>where <span class="math notranslate nohighlight">\(V_z\)</span> is the volume per monomer unit.</p>
+<p>The exponent <span class="math notranslate nohighlight">\(\gamma\)</span> is equal to <span class="math notranslate nohighlight">\(d+1\)</span> for off-critical concentration
+mixtures (smooth interfaces) and <span class="math notranslate nohighlight">\(2d\)</span> for critical concentration mixtures
+(entangled interfaces), where <span class="math notranslate nohighlight">\(d\)</span> is the dimensionality (ie, 1, 2, 3) of the
+system. Thus 2 &lt;= <span class="math notranslate nohighlight">\(\gamma\)</span> &lt;= 6. A transition from <span class="math notranslate nohighlight">\(\gamma=d+1\)</span> to <span class="math notranslate nohighlight">\(\gamma=2d\)</span>
+is expected near the percolation threshold.</p>
+<p>As this function tends to zero as <span class="math notranslate nohighlight">\(q\)</span> tends to zero, in practice it may be
+necessary to combine it with another function describing the low-angle
+scattering, or to simply omit the low-angle scattering from the fit.</p>
+<figure class="align-default" id="id2">
+<img alt="../../_images/spinodal_autogenfig.png" src="../../_images/spinodal_autogenfig.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 122 </span><span class="caption-text">1D plot corresponding to the default parameters of the model.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Source</strong></p>
+<p><a class="reference download internal" download="" href="../../_downloads/264c5d9cdb5e1d44ff222a6c402f86af/spinodal.py"><code class="xref download docutils literal notranslate"><span class="pre">spinodal.py</span></code></a></p>
+<p><strong>References</strong></p>
+<ol class="arabic simple">
+<li><p>H. Furukawa. Dynamics-scaling theory for phase-separating unmixing mixtures:
+Growth rates of droplets and scaling properties of autocorrelation functions.
+<em>Physica A</em> 123, 497 (1984).</p></li>
+<li><p>H. Meier &amp; G. Strobl. Small-Angle X-ray Scattering Study of Spinodal
+Decomposition in Polystyrene/Poly(styrene-co-bromostyrene) Blends.
+<em>Macromolecules</em> 20, 649-654 (1987).</p></li>
+<li><p>T. Hashimoto, M. Takenaka &amp; H. Jinnai. Scattering Studies of Self-Assembling
+Processes of Polymer Blends in Spinodal Decomposition.
+<em>J. Appl. Cryst.</em> 24, 457-466 (1991).</p></li>
+</ol>
+<p><strong>Authorship and Verification</strong></p>
+<ul class="simple">
+<li><p><strong>Author:</strong> Dirk Honecker <strong>Date:</strong> Oct 7, 2016</p></li>
+<li><p><strong>Last Modified by:</strong> Steve King <strong>Date:</strong> Oct 25, 2018</p></li>
+<li><p><strong>Last Reviewed by:</strong> Steve King <strong>Date:</strong> Oct 25, 2018</p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="rpa.html"
+                          title="previous chapter">rpa</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="star_polymer.html"
+                          title="next chapter">star_polymer</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user/models/spinodal.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="star_polymer.html" title="star_polymer"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="rpa.html" title="rpa"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-independent.html" >Shape-Independent Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">spinodal</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

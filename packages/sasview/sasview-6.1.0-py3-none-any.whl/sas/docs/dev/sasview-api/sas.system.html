@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>sas.system package &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="sas.system.config package" href="sas.system.config.html" />
+    <link rel="prev" title="sas.sasview package" href="sas.sasview.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sas.system.config.html" title="sas.system.config package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="sas.sasview.html" title="sas.sasview package"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="modules.html" >SasView</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sas.html" accesskey="U">sas package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sas.system package</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="sas-system-package">
+<h1>sas.system package<a class="headerlink" href="#sas-system-package" title="Link to this heading">¶</a></h1>
+<section id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Link to this heading">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sas.system.config.html">sas.system.config package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sas.system.config.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sas.system.config.html#module-sas.system.config.config">sas.system.config.config module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sas.system.config.html#configs">Configs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sas.system.config.html#brief-outline">Brief Outline</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sas.system.config.html#what-belongs-in-a-config">What Belongs in a Config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sas.system.config.html#making-changes-to-the-config-class">Making Changes to the Config Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sas.system.config.html#other-design-decisions-made-for-the-config-class">Other Design Decisions made for the Config Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sas.system.config.html#sas.system.config.config.Config"><code class="docutils literal notranslate"><span class="pre">Config</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config.Config.__doc__"><code class="docutils literal notranslate"><span class="pre">Config.__doc__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config.Config.__init__"><code class="docutils literal notranslate"><span class="pre">Config.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config.Config.__module__"><code class="docutils literal notranslate"><span class="pre">Config.__module__</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sas.system.config.html#module-sas.system.config.config_meta">sas.system.config.config_meta module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigBase"><code class="docutils literal notranslate"><span class="pre">ConfigBase</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigBase.__annotations__"><code class="docutils literal notranslate"><span class="pre">ConfigBase.__annotations__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigBase.__dict__"><code class="docutils literal notranslate"><span class="pre">ConfigBase.__dict__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigBase.__doc__"><code class="docutils literal notranslate"><span class="pre">ConfigBase.__doc__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigBase.__init__"><code class="docutils literal notranslate"><span class="pre">ConfigBase.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigBase.__module__"><code class="docutils literal notranslate"><span class="pre">ConfigBase.__module__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigBase.__setattr__"><code class="docutils literal notranslate"><span class="pre">ConfigBase.__setattr__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigBase.__weakref__"><code class="docutils literal notranslate"><span class="pre">ConfigBase.__weakref__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigBase._generate_schema"><code class="docutils literal notranslate"><span class="pre">ConfigBase._generate_schema()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigBase._state_copy"><code class="docutils literal notranslate"><span class="pre">ConfigBase._state_copy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigBase.config_filename"><code class="docutils literal notranslate"><span class="pre">ConfigBase.config_filename()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigBase.defaults"><code class="docutils literal notranslate"><span class="pre">ConfigBase.defaults</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigBase.finalise"><code class="docutils literal notranslate"><span class="pre">ConfigBase.finalise()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigBase.load"><code class="docutils literal notranslate"><span class="pre">ConfigBase.load()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigBase.load_from_file_object"><code class="docutils literal notranslate"><span class="pre">ConfigBase.load_from_file_object()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigBase.override_with_defaults"><code class="docutils literal notranslate"><span class="pre">ConfigBase.override_with_defaults()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigBase.save"><code class="docutils literal notranslate"><span class="pre">ConfigBase.save()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigBase.save_to_file_object"><code class="docutils literal notranslate"><span class="pre">ConfigBase.save_to_file_object()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigBase.update"><code class="docutils literal notranslate"><span class="pre">ConfigBase.update()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigBase.validate"><code class="docutils literal notranslate"><span class="pre">ConfigBase.validate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigLocked"><code class="docutils literal notranslate"><span class="pre">ConfigLocked</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigLocked.__doc__"><code class="docutils literal notranslate"><span class="pre">ConfigLocked.__doc__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigLocked.__init__"><code class="docutils literal notranslate"><span class="pre">ConfigLocked.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigLocked.__module__"><code class="docutils literal notranslate"><span class="pre">ConfigLocked.__module__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigLocked.__weakref__"><code class="docutils literal notranslate"><span class="pre">ConfigLocked.__weakref__</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigMeta"><code class="docutils literal notranslate"><span class="pre">ConfigMeta</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigMeta.__annotations__"><code class="docutils literal notranslate"><span class="pre">ConfigMeta.__annotations__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigMeta.__doc__"><code class="docutils literal notranslate"><span class="pre">ConfigMeta.__doc__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigMeta.__module__"><code class="docutils literal notranslate"><span class="pre">ConfigMeta.__module__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.ConfigMeta.__new__"><code class="docutils literal notranslate"><span class="pre">ConfigMeta.__new__()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.MalformedFile"><code class="docutils literal notranslate"><span class="pre">MalformedFile</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.MalformedFile.__doc__"><code class="docutils literal notranslate"><span class="pre">MalformedFile.__doc__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.MalformedFile.__init__"><code class="docutils literal notranslate"><span class="pre">MalformedFile.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.MalformedFile.__module__"><code class="docutils literal notranslate"><span class="pre">MalformedFile.__module__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.config_meta.MalformedFile.__weakref__"><code class="docutils literal notranslate"><span class="pre">MalformedFile.__weakref__</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sas.system.config.html#module-sas.system.config.schema_elements">sas.system.config.schema_elements module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.CoercionError"><code class="docutils literal notranslate"><span class="pre">CoercionError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.CoercionError.__doc__"><code class="docutils literal notranslate"><span class="pre">CoercionError.__doc__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.CoercionError.__init__"><code class="docutils literal notranslate"><span class="pre">CoercionError.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.CoercionError.__module__"><code class="docutils literal notranslate"><span class="pre">CoercionError.__module__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.CoercionError.__weakref__"><code class="docutils literal notranslate"><span class="pre">CoercionError.__weakref__</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaBool"><code class="docutils literal notranslate"><span class="pre">SchemaBool</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaBool.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">SchemaBool.__abstractmethods__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaBool.__doc__"><code class="docutils literal notranslate"><span class="pre">SchemaBool.__doc__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaBool.__module__"><code class="docutils literal notranslate"><span class="pre">SchemaBool.__module__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaBool._abc_impl"><code class="docutils literal notranslate"><span class="pre">SchemaBool._abc_impl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaBool.coerce"><code class="docutils literal notranslate"><span class="pre">SchemaBool.coerce()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaBool.schema_variable_type"><code class="docutils literal notranslate"><span class="pre">SchemaBool.schema_variable_type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaElement"><code class="docutils literal notranslate"><span class="pre">SchemaElement</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaElement.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">SchemaElement.__abstractmethods__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaElement.__dict__"><code class="docutils literal notranslate"><span class="pre">SchemaElement.__dict__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaElement.__doc__"><code class="docutils literal notranslate"><span class="pre">SchemaElement.__doc__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaElement.__eq__"><code class="docutils literal notranslate"><span class="pre">SchemaElement.__eq__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaElement.__hash__"><code class="docutils literal notranslate"><span class="pre">SchemaElement.__hash__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaElement.__module__"><code class="docutils literal notranslate"><span class="pre">SchemaElement.__module__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaElement.__weakref__"><code class="docutils literal notranslate"><span class="pre">SchemaElement.__weakref__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaElement._abc_impl"><code class="docutils literal notranslate"><span class="pre">SchemaElement._abc_impl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaElement.coerce"><code class="docutils literal notranslate"><span class="pre">SchemaElement.coerce()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaElement.validate"><code class="docutils literal notranslate"><span class="pre">SchemaElement.validate()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaError"><code class="docutils literal notranslate"><span class="pre">SchemaError</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaError.__doc__"><code class="docutils literal notranslate"><span class="pre">SchemaError.__doc__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaError.__init__"><code class="docutils literal notranslate"><span class="pre">SchemaError.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaError.__module__"><code class="docutils literal notranslate"><span class="pre">SchemaError.__module__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaError.__weakref__"><code class="docutils literal notranslate"><span class="pre">SchemaError.__weakref__</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaFloat"><code class="docutils literal notranslate"><span class="pre">SchemaFloat</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaFloat.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">SchemaFloat.__abstractmethods__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaFloat.__doc__"><code class="docutils literal notranslate"><span class="pre">SchemaFloat.__doc__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaFloat.__module__"><code class="docutils literal notranslate"><span class="pre">SchemaFloat.__module__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaFloat._abc_impl"><code class="docutils literal notranslate"><span class="pre">SchemaFloat._abc_impl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaFloat.coerce"><code class="docutils literal notranslate"><span class="pre">SchemaFloat.coerce()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaFloat.schema_variable_type"><code class="docutils literal notranslate"><span class="pre">SchemaFloat.schema_variable_type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaInt"><code class="docutils literal notranslate"><span class="pre">SchemaInt</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaInt.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">SchemaInt.__abstractmethods__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaInt.__doc__"><code class="docutils literal notranslate"><span class="pre">SchemaInt.__doc__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaInt.__module__"><code class="docutils literal notranslate"><span class="pre">SchemaInt.__module__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaInt._abc_impl"><code class="docutils literal notranslate"><span class="pre">SchemaInt._abc_impl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaInt.coerce"><code class="docutils literal notranslate"><span class="pre">SchemaInt.coerce()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaInt.schema_variable_type"><code class="docutils literal notranslate"><span class="pre">SchemaInt.schema_variable_type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaList"><code class="docutils literal notranslate"><span class="pre">SchemaList</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaList.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">SchemaList.__abstractmethods__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaList.__doc__"><code class="docutils literal notranslate"><span class="pre">SchemaList.__doc__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaList.__eq__"><code class="docutils literal notranslate"><span class="pre">SchemaList.__eq__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaList.__hash__"><code class="docutils literal notranslate"><span class="pre">SchemaList.__hash__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaList.__init__"><code class="docutils literal notranslate"><span class="pre">SchemaList.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaList.__module__"><code class="docutils literal notranslate"><span class="pre">SchemaList.__module__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaList.__repr__"><code class="docutils literal notranslate"><span class="pre">SchemaList.__repr__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaList._abc_impl"><code class="docutils literal notranslate"><span class="pre">SchemaList._abc_impl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaList.coerce"><code class="docutils literal notranslate"><span class="pre">SchemaList.coerce()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaNonSpecified"><code class="docutils literal notranslate"><span class="pre">SchemaNonSpecified</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaNonSpecified.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">SchemaNonSpecified.__abstractmethods__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaNonSpecified.__doc__"><code class="docutils literal notranslate"><span class="pre">SchemaNonSpecified.__doc__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaNonSpecified.__eq__"><code class="docutils literal notranslate"><span class="pre">SchemaNonSpecified.__eq__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaNonSpecified.__hash__"><code class="docutils literal notranslate"><span class="pre">SchemaNonSpecified.__hash__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaNonSpecified.__init__"><code class="docutils literal notranslate"><span class="pre">SchemaNonSpecified.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaNonSpecified.__module__"><code class="docutils literal notranslate"><span class="pre">SchemaNonSpecified.__module__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaNonSpecified.__repr__"><code class="docutils literal notranslate"><span class="pre">SchemaNonSpecified.__repr__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaNonSpecified._abc_impl"><code class="docutils literal notranslate"><span class="pre">SchemaNonSpecified._abc_impl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaNonSpecified.coerce"><code class="docutils literal notranslate"><span class="pre">SchemaNonSpecified.coerce()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaStr"><code class="docutils literal notranslate"><span class="pre">SchemaStr</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaStr.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">SchemaStr.__abstractmethods__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaStr.__doc__"><code class="docutils literal notranslate"><span class="pre">SchemaStr.__doc__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaStr.__module__"><code class="docutils literal notranslate"><span class="pre">SchemaStr.__module__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaStr._abc_impl"><code class="docutils literal notranslate"><span class="pre">SchemaStr._abc_impl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaStr.coerce"><code class="docutils literal notranslate"><span class="pre">SchemaStr.coerce()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaStr.schema_variable_type"><code class="docutils literal notranslate"><span class="pre">SchemaStr.schema_variable_type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaVariable"><code class="docutils literal notranslate"><span class="pre">SchemaVariable</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaVariable.__abstractmethods__"><code class="docutils literal notranslate"><span class="pre">SchemaVariable.__abstractmethods__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaVariable.__annotations__"><code class="docutils literal notranslate"><span class="pre">SchemaVariable.__annotations__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaVariable.__doc__"><code class="docutils literal notranslate"><span class="pre">SchemaVariable.__doc__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaVariable.__eq__"><code class="docutils literal notranslate"><span class="pre">SchemaVariable.__eq__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaVariable.__hash__"><code class="docutils literal notranslate"><span class="pre">SchemaVariable.__hash__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaVariable.__init__"><code class="docutils literal notranslate"><span class="pre">SchemaVariable.__init__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaVariable.__module__"><code class="docutils literal notranslate"><span class="pre">SchemaVariable.__module__</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaVariable.__repr__"><code class="docutils literal notranslate"><span class="pre">SchemaVariable.__repr__()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaVariable._abc_impl"><code class="docutils literal notranslate"><span class="pre">SchemaVariable._abc_impl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.SchemaVariable.schema_variable_type"><code class="docutils literal notranslate"><span class="pre">SchemaVariable.schema_variable_type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.create_schema_element"><code class="docutils literal notranslate"><span class="pre">create_schema_element()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.pairwise_schema_union"><code class="docutils literal notranslate"><span class="pre">pairwise_schema_union()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="sas.system.config.html#sas.system.config.schema_elements.schema_union"><code class="docutils literal notranslate"><span class="pre">schema_union()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sas.system.config.html#module-sas.system.config">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-sas.system.console">
+<span id="sas-system-console-module"></span><h2>sas.system.console module<a class="headerlink" href="#module-sas.system.console" title="Link to this heading">¶</a></h2>
+<p>Windows console binding for SasView</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.system.console.Singleton">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.system.console.</span></span><span class="sig-name descname"><span class="pre">Singleton</span></span><a class="headerlink" href="#sas.system.console.Singleton" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></p>
+<p>Metaclass indicating that all object instantiations should return the same instance.</p>
+<p>Usage:</p>
+<blockquote>
+<div><p>class Stateful(metaclass=Singleton): …</p>
+</div></blockquote>
+<p>The init will only be triggered for the first instance, so you probably shouldn’t
+parameterize it, or only parameterize it during setup before any other instances
+are created.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.console.Singleton.__annotations__">
+<span class="sig-name descname"><span class="pre">__annotations__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#sas.system.console.Singleton.__annotations__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.console.Singleton.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.console.Singleton.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Call self as a function.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.console.Singleton.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&quot;\n</span>&#160;&#160;&#160; <span class="pre">Metaclass</span> <span class="pre">indicating</span> <span class="pre">that</span> <span class="pre">all</span> <span class="pre">object</span> <span class="pre">instantiations</span> <span class="pre">should</span> <span class="pre">return</span> <span class="pre">the</span> <span class="pre">same</span> <span class="pre">instance.\n\n</span>&#160;&#160;&#160; <span class="pre">Usage:\n\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">class</span> <span class="pre">Stateful(metaclass=Singleton):</span> <span class="pre">...\n\n</span>&#160;&#160;&#160; <span class="pre">The</span> <span class="pre">init</span> <span class="pre">will</span> <span class="pre">only</span> <span class="pre">be</span> <span class="pre">triggered</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">first</span> <span class="pre">instance,</span> <span class="pre">so</span> <span class="pre">you</span> <span class="pre">probably</span> <span class="pre">shouldn't\n</span>&#160;&#160;&#160; <span class="pre">parameterize</span> <span class="pre">it,</span> <span class="pre">or</span> <span class="pre">only</span> <span class="pre">parameterize</span> <span class="pre">it</span> <span class="pre">during</span> <span class="pre">setup</span> <span class="pre">before</span> <span class="pre">any</span> <span class="pre">other</span> <span class="pre">instances\n</span>&#160;&#160;&#160; <span class="pre">are</span> <span class="pre">created.\n</span>&#160;&#160;&#160; <span class="pre">&quot;</span></em><a class="headerlink" href="#sas.system.console.Singleton.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.console.Singleton.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.system.console'</span></em><a class="headerlink" href="#sas.system.console.Singleton.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.console.Singleton._instances">
+<span class="sig-name descname"><span class="pre">_instances</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{}</span></em><a class="headerlink" href="#sas.system.console.Singleton._instances" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.system.console.WindowsConsole">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.system.console.</span></span><span class="sig-name descname"><span class="pre">WindowsConsole</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.console.WindowsConsole" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Windows console object.</p>
+<p>This only creates the console when you read to it or write from it. This reduces
+flashing windows when using the app in a pipeline.</p>
+<p>This presents as an incomplete standard rw file interface.</p>
+<p>Unfortunately it does not regiister as a windows console stdio object so the
+cpython myreadline code does not call PyOS_InputHook during read. The practical
+consequence is that pyplot.ion() does not create an interactive plot, and you
+instead need to call pyplot.pause(0.1) to draw the figure. You can try tracing
+through myreadline.c to see what we need to do to get sys.stdin recognized as
+stdin here: <a class="reference external" href="https://github.com/python/cpython/blob/main/Parser/myreadline.c">https://github.com/python/cpython/blob/main/Parser/myreadline.c</a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.console.WindowsConsole.__dict__">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'sas.system.console',</span> <span class="pre">'__doc__':</span> <span class="pre">'\n</span>&#160;&#160;&#160; <span class="pre">Windows</span> <span class="pre">console</span> <span class="pre">object.\n\n</span>&#160;&#160;&#160; <span class="pre">This</span> <span class="pre">only</span> <span class="pre">creates</span> <span class="pre">the</span> <span class="pre">console</span> <span class="pre">when</span> <span class="pre">you</span> <span class="pre">read</span> <span class="pre">to</span> <span class="pre">it</span> <span class="pre">or</span> <span class="pre">write</span> <span class="pre">from</span> <span class="pre">it.</span> <span class="pre">This</span> <span class="pre">reduces\n</span>&#160;&#160;&#160; <span class="pre">flashing</span> <span class="pre">windows</span> <span class="pre">when</span> <span class="pre">using</span> <span class="pre">the</span> <span class="pre">app</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">pipeline.\n\n</span>&#160;&#160;&#160; <span class="pre">This</span> <span class="pre">presents</span> <span class="pre">as</span> <span class="pre">an</span> <span class="pre">incomplete</span> <span class="pre">standard</span> <span class="pre">rw</span> <span class="pre">file</span> <span class="pre">interface.\n\n</span>&#160;&#160;&#160; <span class="pre">Unfortunately</span> <span class="pre">it</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">regiister</span> <span class="pre">as</span> <span class="pre">a</span> <span class="pre">windows</span> <span class="pre">console</span> <span class="pre">stdio</span> <span class="pre">object</span> <span class="pre">so</span> <span class="pre">the\n</span>&#160;&#160;&#160; <span class="pre">cpython</span> <span class="pre">myreadline</span> <span class="pre">code</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">call</span> <span class="pre">PyOS_InputHook</span> <span class="pre">during</span> <span class="pre">read.</span> <span class="pre">The</span> <span class="pre">practical\n</span>&#160;&#160;&#160; <span class="pre">consequence</span> <span class="pre">is</span> <span class="pre">that</span> <span class="pre">pyplot.ion()</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">create</span> <span class="pre">an</span> <span class="pre">interactive</span> <span class="pre">plot,</span> <span class="pre">and</span> <span class="pre">you\n</span>&#160;&#160;&#160; <span class="pre">instead</span> <span class="pre">need</span> <span class="pre">to</span> <span class="pre">call</span> <span class="pre">pyplot.pause(0.1)</span> <span class="pre">to</span> <span class="pre">draw</span> <span class="pre">the</span> <span class="pre">figure.</span> <span class="pre">You</span> <span class="pre">can</span> <span class="pre">try</span> <span class="pre">tracing\n</span>&#160;&#160;&#160; <span class="pre">through</span> <span class="pre">myreadline.c</span> <span class="pre">to</span> <span class="pre">see</span> <span class="pre">what</span> <span class="pre">we</span> <span class="pre">need</span> <span class="pre">to</span> <span class="pre">do</span> <span class="pre">to</span> <span class="pre">get</span> <span class="pre">sys.stdin</span> <span class="pre">recognized</span> <span class="pre">as\n</span>&#160;&#160;&#160; <span class="pre">stdin</span> <span class="pre">here:</span> <span class="pre">https://github.com/python/cpython/blob/main/Parser/myreadline.c\n</span>&#160;&#160;&#160; <span class="pre">',</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">WindowsConsole.__init__&gt;,</span> <span class="pre">'close_wait':</span> <span class="pre">&lt;function</span> <span class="pre">WindowsConsole.close_wait&gt;,</span> <span class="pre">'_attach_console':</span> <span class="pre">&lt;function</span> <span class="pre">WindowsConsole._attach_console&gt;,</span> <span class="pre">'_read_fd':</span> <span class="pre">&lt;property</span> <span class="pre">object&gt;,</span> <span class="pre">'_write_fd':</span> <span class="pre">&lt;property</span> <span class="pre">object&gt;,</span> <span class="pre">'readline':</span> <span class="pre">&lt;function</span> <span class="pre">WindowsConsole.readline&gt;,</span> <span class="pre">'write':</span> <span class="pre">&lt;function</span> <span class="pre">WindowsConsole.write&gt;,</span> <span class="pre">'flush':</span> <span class="pre">&lt;function</span> <span class="pre">WindowsConsole.flush&gt;,</span> <span class="pre">'read':</span> <span class="pre">&lt;function</span> <span class="pre">WindowsConsole.read&gt;,</span> <span class="pre">'isatty':</span> <span class="pre">&lt;function</span> <span class="pre">WindowsConsole.isatty&gt;,</span> <span class="pre">'readable':</span> <span class="pre">&lt;function</span> <span class="pre">WindowsConsole.readable&gt;,</span> <span class="pre">'writeable':</span> <span class="pre">&lt;function</span> <span class="pre">WindowsConsole.writeable&gt;,</span> <span class="pre">'seekable':</span> <span class="pre">&lt;function</span> <span class="pre">WindowsConsole.seekable&gt;,</span> <span class="pre">'name':</span> <span class="pre">&lt;function</span> <span class="pre">WindowsConsole.name&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'WindowsConsole'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'WindowsConsole'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#sas.system.console.WindowsConsole.__dict__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.console.WindowsConsole.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160;&#160;&#160; <span class="pre">Windows</span> <span class="pre">console</span> <span class="pre">object.\n\n</span>&#160;&#160;&#160; <span class="pre">This</span> <span class="pre">only</span> <span class="pre">creates</span> <span class="pre">the</span> <span class="pre">console</span> <span class="pre">when</span> <span class="pre">you</span> <span class="pre">read</span> <span class="pre">to</span> <span class="pre">it</span> <span class="pre">or</span> <span class="pre">write</span> <span class="pre">from</span> <span class="pre">it.</span> <span class="pre">This</span> <span class="pre">reduces\n</span>&#160;&#160;&#160; <span class="pre">flashing</span> <span class="pre">windows</span> <span class="pre">when</span> <span class="pre">using</span> <span class="pre">the</span> <span class="pre">app</span> <span class="pre">in</span> <span class="pre">a</span> <span class="pre">pipeline.\n\n</span>&#160;&#160;&#160; <span class="pre">This</span> <span class="pre">presents</span> <span class="pre">as</span> <span class="pre">an</span> <span class="pre">incomplete</span> <span class="pre">standard</span> <span class="pre">rw</span> <span class="pre">file</span> <span class="pre">interface.\n\n</span>&#160;&#160;&#160; <span class="pre">Unfortunately</span> <span class="pre">it</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">regiister</span> <span class="pre">as</span> <span class="pre">a</span> <span class="pre">windows</span> <span class="pre">console</span> <span class="pre">stdio</span> <span class="pre">object</span> <span class="pre">so</span> <span class="pre">the\n</span>&#160;&#160;&#160; <span class="pre">cpython</span> <span class="pre">myreadline</span> <span class="pre">code</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">call</span> <span class="pre">PyOS_InputHook</span> <span class="pre">during</span> <span class="pre">read.</span> <span class="pre">The</span> <span class="pre">practical\n</span>&#160;&#160;&#160; <span class="pre">consequence</span> <span class="pre">is</span> <span class="pre">that</span> <span class="pre">pyplot.ion()</span> <span class="pre">does</span> <span class="pre">not</span> <span class="pre">create</span> <span class="pre">an</span> <span class="pre">interactive</span> <span class="pre">plot,</span> <span class="pre">and</span> <span class="pre">you\n</span>&#160;&#160;&#160; <span class="pre">instead</span> <span class="pre">need</span> <span class="pre">to</span> <span class="pre">call</span> <span class="pre">pyplot.pause(0.1)</span> <span class="pre">to</span> <span class="pre">draw</span> <span class="pre">the</span> <span class="pre">figure.</span> <span class="pre">You</span> <span class="pre">can</span> <span class="pre">try</span> <span class="pre">tracing\n</span>&#160;&#160;&#160; <span class="pre">through</span> <span class="pre">myreadline.c</span> <span class="pre">to</span> <span class="pre">see</span> <span class="pre">what</span> <span class="pre">we</span> <span class="pre">need</span> <span class="pre">to</span> <span class="pre">do</span> <span class="pre">to</span> <span class="pre">get</span> <span class="pre">sys.stdin</span> <span class="pre">recognized</span> <span class="pre">as\n</span>&#160;&#160;&#160; <span class="pre">stdin</span> <span class="pre">here:</span> <span class="pre">https://github.com/python/cpython/blob/main/Parser/myreadline.c\n</span>&#160;&#160;&#160; <span class="pre">'</span></em><a class="headerlink" href="#sas.system.console.WindowsConsole.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.console.WindowsConsole.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.console.WindowsConsole.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.console.WindowsConsole.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.system.console'</span></em><a class="headerlink" href="#sas.system.console.WindowsConsole.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.console.WindowsConsole.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#sas.system.console.WindowsConsole.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.console.WindowsConsole._attach_console">
+<span class="sig-name descname"><span class="pre">_attach_console</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.console.WindowsConsole._attach_console" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="sas.system.console.WindowsConsole._read_fd">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_read_fd</span></span><a class="headerlink" href="#sas.system.console.WindowsConsole._read_fd" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="sas.system.console.WindowsConsole._write_fd">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_write_fd</span></span><a class="headerlink" href="#sas.system.console.WindowsConsole._write_fd" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.console.WindowsConsole.close_wait">
+<span class="sig-name descname"><span class="pre">close_wait</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.console.WindowsConsole.close_wait" title="Link to this definition">¶</a></dt>
+<dd><p>Registered with atexit to give users a chance to see the output.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.console.WindowsConsole.flush">
+<span class="sig-name descname"><span class="pre">flush</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.console.WindowsConsole.flush" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.console.WindowsConsole.isatty">
+<span class="sig-name descname"><span class="pre">isatty</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.console.WindowsConsole.isatty" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.console.WindowsConsole.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.console.WindowsConsole.name" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.console.WindowsConsole.read">
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.console.WindowsConsole.read" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.console.WindowsConsole.readable">
+<span class="sig-name descname"><span class="pre">readable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.console.WindowsConsole.readable" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.console.WindowsConsole.readline">
+<span class="sig-name descname"><span class="pre">readline</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.console.WindowsConsole.readline" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.console.WindowsConsole.seekable">
+<span class="sig-name descname"><span class="pre">seekable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.console.WindowsConsole.seekable" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.console.WindowsConsole.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.console.WindowsConsole.write" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.console.WindowsConsole.writeable">
+<span class="sig-name descname"><span class="pre">writeable</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.console.WindowsConsole.writeable" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.system.console.attach_windows_console">
+<span class="sig-prename descclassname"><span class="pre">sas.system.console.</span></span><span class="sig-name descname"><span class="pre">attach_windows_console</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.console.attach_windows_console" title="Link to this definition">¶</a></dt>
+<dd><p>Attach a console to a windows program that does not normally have one.</p>
+<p>Note: Uses a lazy import for win32console so you will to add pywin32
+to requirements.txt and tell the installer to include win32.win32console</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.system.console.demo">
+<span class="sig-prename descclassname"><span class="pre">sas.system.console.</span></span><span class="sig-name descname"><span class="pre">demo</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.console.demo" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.system.console.setup_console">
+<span class="sig-prename descclassname"><span class="pre">sas.system.console.</span></span><span class="sig-name descname"><span class="pre">setup_console</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stderr_as</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'console'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.console.setup_console" title="Link to this definition">¶</a></dt>
+<dd><p>Lazy redirect of stdio to windows console.</p>
+<p>Handling of stderr is defined by the caller:</p>
+<ul class="simple">
+<li><p>console: create a console for stderr even if stdin/stdout are redirected.</p></li>
+<li><p>stdout: redirect stderr to whereever stdout is going</p></li>
+<li><p>null: redirect stderr to the NUL device (untested!!)</p></li>
+<li><p>none: don’t redirect stderr; instead windows displays an error box with stderr contents</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.system.console.setup_console_simple">
+<span class="sig-prename descclassname"><span class="pre">sas.system.console.</span></span><span class="sig-name descname"><span class="pre">setup_console_simple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stderr_to_stdout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.console.setup_console_simple" title="Link to this definition">¶</a></dt>
+<dd><p>Simple version of stdio redirection: always open a console, and don’t pause before closing.</p>
+</dd></dl>
+
+</section>
+<section id="module-sas.system.legal">
+<span id="sas-system-legal-module"></span><h2>sas.system.legal module<a class="headerlink" href="#module-sas.system.legal" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.system.legal.Legal">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.system.legal.</span></span><span class="sig-name descname"><span class="pre">Legal</span></span><a class="headerlink" href="#sas.system.legal.Legal" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.legal.Legal.__dict__">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'sas.system.legal',</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">Legal.__init__&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'Legal'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'Legal'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__doc__':</span> <span class="pre">None,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#sas.system.legal.Legal.__dict__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.legal.Legal.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sas.system.legal.Legal.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.legal.Legal.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.legal.Legal.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.legal.Legal.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.system.legal'</span></em><a class="headerlink" href="#sas.system.legal.Legal.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.legal.Legal.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#sas.system.legal.Legal.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-sas.system.lib">
+<span id="sas-system-lib-module"></span><h2>sas.system.lib module<a class="headerlink" href="#module-sas.system.lib" title="Link to this heading">¶</a></h2>
+<p>Setup third-party libraries (e.g., qt, sasview, periodictable, bumps)</p>
+<p>These functions are used to setup up the GUI and the scripting environment.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.system.lib.reset_sasmodels">
+<span class="sig-prename descclassname"><span class="pre">sas.system.lib.</span></span><span class="sig-name descname"><span class="pre">reset_sasmodels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sas_opencl</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.lib.reset_sasmodels" title="Link to this definition">¶</a></dt>
+<dd><p>Trigger a reload of all sasmodels calculators using the new value of
+sas_opencl. The new value will be saved in the sasview configuration file.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.system.lib.setup_qt_env">
+<span class="sig-prename descclassname"><span class="pre">sas.system.lib.</span></span><span class="sig-name descname"><span class="pre">setup_qt_env</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.lib.setup_qt_env" title="Link to this definition">¶</a></dt>
+<dd><p>Setup the Qt environment.</p>
+<p>The environment values are set by the user and managed by sasview config.</p>
+<p>This function does not import the Qt libraries so it is safe to use from
+a script.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.system.lib.setup_sasmodels">
+<span class="sig-prename descclassname"><span class="pre">sas.system.lib.</span></span><span class="sig-name descname"><span class="pre">setup_sasmodels</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.lib.setup_sasmodels" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize sasmodels settings from the sasview configuration.</p>
+</dd></dl>
+
+</section>
+<section id="module-sas.system.log">
+<span id="sas-system-log-module"></span><h2>sas.system.log module<a class="headerlink" href="#module-sas.system.log" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.system.log.development">
+<span class="sig-prename descclassname"><span class="pre">sas.system.log.</span></span><span class="sig-name descname"><span class="pre">development</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.log.development" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.system.log.print_config">
+<span class="sig-prename descclassname"><span class="pre">sas.system.log.</span></span><span class="sig-name descname"><span class="pre">print_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Logger</span> <span class="pre">config:'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.log.print_config" title="Link to this definition">¶</a></dt>
+<dd><p>When debugging the logging configuration it is handy to see exactly how
+it is configured. To do so you will need to pip install the logging_tree
+package and add <em>log.print_config()</em> at choice points in the code.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.system.log.production">
+<span class="sig-prename descclassname"><span class="pre">sas.system.log.</span></span><span class="sig-name descname"><span class="pre">production</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.log.production" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.system.log.setup_logging">
+<span class="sig-prename descclassname"><span class="pre">sas.system.log.</span></span><span class="sig-name descname"><span class="pre">setup_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.log.setup_logging" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-sas.system.user">
+<span id="sas-system-user-module"></span><h2>sas.system.user module<a class="headerlink" href="#module-sas.system.user" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.system.user._get_user_dir">
+<span class="sig-prename descclassname"><span class="pre">sas.system.user.</span></span><span class="sig-name descname"><span class="pre">_get_user_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">create_if_nonexistent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="headerlink" href="#sas.system.user._get_user_dir" title="Link to this definition">¶</a></dt>
+<dd><p><strong>DEPRECATED</strong> Do not use this function to create new files.</p>
+<p>v6.1.0: This is only used to move files from previous version locations to new locations</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.system.user.copy_old_files_to_new_location">
+<span class="sig-prename descclassname"><span class="pre">sas.system.user.</span></span><span class="sig-name descname"><span class="pre">copy_old_files_to_new_location</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.user.copy_old_files_to_new_location" title="Link to this definition">¶</a></dt>
+<dd><p><strong>Only run at app startup</strong>
+A check to see if files in the old user locations exist and move them if they haven’t already been moved.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.system.user.get_app_dir">
+<span class="sig-prename descclassname"><span class="pre">sas.system.user.</span></span><span class="sig-name descname"><span class="pre">get_app_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">create_if_nonexistent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="headerlink" href="#sas.system.user.get_app_dir" title="Link to this definition">¶</a></dt>
+<dd><p>The directory where the os-specific app data is stored.</p>
+<p>Returns the directory as a pathlib.Path object, creating the directory if it does not already exist.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.system.user.get_app_dir_versioned">
+<span class="sig-prename descclassname"><span class="pre">sas.system.user.</span></span><span class="sig-name descname"><span class="pre">get_app_dir_versioned</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">create_if_nonexistent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="headerlink" href="#sas.system.user.get_app_dir_versioned" title="Link to this definition">¶</a></dt>
+<dd><p>The directory where the version-dependent, os-specific app data is stored.</p>
+<p>Returns the directory as a pathlib.Path object, creating the directory if it does not already exist.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.system.user.get_cache_dir">
+<span class="sig-prename descclassname"><span class="pre">sas.system.user.</span></span><span class="sig-name descname"><span class="pre">get_cache_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">create_if_nonexistent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="headerlink" href="#sas.system.user.get_cache_dir" title="Link to this definition">¶</a></dt>
+<dd><p>The directory where the os-specific cache is stored.</p>
+<p>Returns the directory as a pathlib.Path object, creating the directory if it does not already exist.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.system.user.get_config_dir">
+<span class="sig-prename descclassname"><span class="pre">sas.system.user.</span></span><span class="sig-name descname"><span class="pre">get_config_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">create_if_nonexistent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="headerlink" href="#sas.system.user.get_config_dir" title="Link to this definition">¶</a></dt>
+<dd><p>The directory where os-specific configurations are stored.</p>
+<p>Returns the directory as a pathlib.Path object, creating the directory if it does not already exist.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.system.user.get_dir_and_create_if_needed">
+<span class="sig-prename descclassname"><span class="pre">sas.system.user.</span></span><span class="sig-name descname"><span class="pre">get_dir_and_create_if_needed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">path:</span> <span class="pre">[&lt;class</span> <span class="pre">'pathlib.Path'&gt;,</span> <span class="pre">&lt;module</span> <span class="pre">'posixpath'</span> <span class="pre">(frozen)&gt;,</span> <span class="pre">&lt;class</span> <span class="pre">'str'&gt;],</span> <span class="pre">create_if_nonexistent:</span> <span class="pre">bool</span> <span class="pre">=</span> <span class="pre">True</span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="headerlink" href="#sas.system.user.get_dir_and_create_if_needed" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the requested directory as a pathlib.Path object, creating the directory if it does not already exist.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.system.user.get_log_dir">
+<span class="sig-prename descclassname"><span class="pre">sas.system.user.</span></span><span class="sig-name descname"><span class="pre">get_log_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">create_if_nonexistent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="headerlink" href="#sas.system.user.get_log_dir" title="Link to this definition">¶</a></dt>
+<dd><p>The directory where the os-specific logs are stored.</p>
+<p>Returns the directory as a pathlib.Path object, creating the directory if it does not already exist.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sas.system.user.get_plugin_dir">
+<span class="sig-prename descclassname"><span class="pre">sas.system.user.</span></span><span class="sig-name descname"><span class="pre">get_plugin_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">create_if_nonexistent</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Path</span></span></span><a class="headerlink" href="#sas.system.user.get_plugin_dir" title="Link to this definition">¶</a></dt>
+<dd><p>The directory where the os-specific cache for plugin models is stored.</p>
+<p>Returns the directory as a pathlib.Path object, creating the directory if it does not already exist.</p>
+</dd></dl>
+
+</section>
+<section id="module-sas.system.version">
+<span id="sas-system-version-module"></span><h2>sas.system.version module<a class="headerlink" href="#module-sas.system.version" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-sas.system.web">
+<span id="sas-system-web-module"></span><h2>sas.system.web module<a class="headerlink" href="#module-sas.system.web" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="sas.system.web.WebLinks">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sas.system.web.</span></span><span class="sig-name descname"><span class="pre">WebLinks</span></span><a class="headerlink" href="#sas.system.web.WebLinks" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.web.WebLinks.__dict__">
+<span class="sig-name descname"><span class="pre">__dict__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">mappingproxy({'__module__':</span> <span class="pre">'sas.system.web',</span> <span class="pre">'__init__':</span> <span class="pre">&lt;function</span> <span class="pre">WebLinks.__init__&gt;,</span> <span class="pre">'__dict__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__dict__'</span> <span class="pre">of</span> <span class="pre">'WebLinks'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__weakref__':</span> <span class="pre">&lt;attribute</span> <span class="pre">'__weakref__'</span> <span class="pre">of</span> <span class="pre">'WebLinks'</span> <span class="pre">objects&gt;,</span> <span class="pre">'__doc__':</span> <span class="pre">None,</span> <span class="pre">'__annotations__':</span> <span class="pre">{}})</span></em><a class="headerlink" href="#sas.system.web.WebLinks.__dict__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.web.WebLinks.__doc__">
+<span class="sig-name descname"><span class="pre">__doc__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#sas.system.web.WebLinks.__doc__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sas.system.web.WebLinks.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sas.system.web.WebLinks.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.web.WebLinks.__module__">
+<span class="sig-name descname"><span class="pre">__module__</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'sas.system.web'</span></em><a class="headerlink" href="#sas.system.web.WebLinks.__module__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sas.system.web.WebLinks.__weakref__">
+<span class="sig-name descname"><span class="pre">__weakref__</span></span><a class="headerlink" href="#sas.system.web.WebLinks.__weakref__" title="Link to this definition">¶</a></dt>
+<dd><p>list of weak references to the object</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-sas.system.zenodo">
+<span id="sas-system-zenodo-module"></span><h2>sas.system.zenodo module<a class="headerlink" href="#module-sas.system.zenodo" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-sas.system">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-sas.system" title="Link to this heading">¶</a></h2>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">sas.system package</a><ul>
+<li><a class="reference internal" href="#subpackages">Subpackages</a></li>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-sas.system.console">sas.system.console module</a><ul>
+<li><a class="reference internal" href="#sas.system.console.Singleton"><code class="docutils literal notranslate"><span class="pre">Singleton</span></code></a><ul>
+<li><a class="reference internal" href="#sas.system.console.Singleton.__annotations__"><code class="docutils literal notranslate"><span class="pre">Singleton.__annotations__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.console.Singleton.__call__"><code class="docutils literal notranslate"><span class="pre">Singleton.__call__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.console.Singleton.__doc__"><code class="docutils literal notranslate"><span class="pre">Singleton.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.console.Singleton.__module__"><code class="docutils literal notranslate"><span class="pre">Singleton.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.console.Singleton._instances"><code class="docutils literal notranslate"><span class="pre">Singleton._instances</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.system.console.WindowsConsole"><code class="docutils literal notranslate"><span class="pre">WindowsConsole</span></code></a><ul>
+<li><a class="reference internal" href="#sas.system.console.WindowsConsole.__dict__"><code class="docutils literal notranslate"><span class="pre">WindowsConsole.__dict__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.console.WindowsConsole.__doc__"><code class="docutils literal notranslate"><span class="pre">WindowsConsole.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.console.WindowsConsole.__init__"><code class="docutils literal notranslate"><span class="pre">WindowsConsole.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.console.WindowsConsole.__module__"><code class="docutils literal notranslate"><span class="pre">WindowsConsole.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.console.WindowsConsole.__weakref__"><code class="docutils literal notranslate"><span class="pre">WindowsConsole.__weakref__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.console.WindowsConsole._attach_console"><code class="docutils literal notranslate"><span class="pre">WindowsConsole._attach_console()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.console.WindowsConsole._read_fd"><code class="docutils literal notranslate"><span class="pre">WindowsConsole._read_fd</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.console.WindowsConsole._write_fd"><code class="docutils literal notranslate"><span class="pre">WindowsConsole._write_fd</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.console.WindowsConsole.close_wait"><code class="docutils literal notranslate"><span class="pre">WindowsConsole.close_wait()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.console.WindowsConsole.flush"><code class="docutils literal notranslate"><span class="pre">WindowsConsole.flush()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.console.WindowsConsole.isatty"><code class="docutils literal notranslate"><span class="pre">WindowsConsole.isatty()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.console.WindowsConsole.name"><code class="docutils literal notranslate"><span class="pre">WindowsConsole.name()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.console.WindowsConsole.read"><code class="docutils literal notranslate"><span class="pre">WindowsConsole.read()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.console.WindowsConsole.readable"><code class="docutils literal notranslate"><span class="pre">WindowsConsole.readable()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.console.WindowsConsole.readline"><code class="docutils literal notranslate"><span class="pre">WindowsConsole.readline()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.console.WindowsConsole.seekable"><code class="docutils literal notranslate"><span class="pre">WindowsConsole.seekable()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.console.WindowsConsole.write"><code class="docutils literal notranslate"><span class="pre">WindowsConsole.write()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.console.WindowsConsole.writeable"><code class="docutils literal notranslate"><span class="pre">WindowsConsole.writeable()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sas.system.console.attach_windows_console"><code class="docutils literal notranslate"><span class="pre">attach_windows_console()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.console.demo"><code class="docutils literal notranslate"><span class="pre">demo()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.console.setup_console"><code class="docutils literal notranslate"><span class="pre">setup_console()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.console.setup_console_simple"><code class="docutils literal notranslate"><span class="pre">setup_console_simple()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-sas.system.legal">sas.system.legal module</a><ul>
+<li><a class="reference internal" href="#sas.system.legal.Legal"><code class="docutils literal notranslate"><span class="pre">Legal</span></code></a><ul>
+<li><a class="reference internal" href="#sas.system.legal.Legal.__dict__"><code class="docutils literal notranslate"><span class="pre">Legal.__dict__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.legal.Legal.__doc__"><code class="docutils literal notranslate"><span class="pre">Legal.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.legal.Legal.__init__"><code class="docutils literal notranslate"><span class="pre">Legal.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.legal.Legal.__module__"><code class="docutils literal notranslate"><span class="pre">Legal.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.legal.Legal.__weakref__"><code class="docutils literal notranslate"><span class="pre">Legal.__weakref__</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-sas.system.lib">sas.system.lib module</a><ul>
+<li><a class="reference internal" href="#sas.system.lib.reset_sasmodels"><code class="docutils literal notranslate"><span class="pre">reset_sasmodels()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.lib.setup_qt_env"><code class="docutils literal notranslate"><span class="pre">setup_qt_env()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.lib.setup_sasmodels"><code class="docutils literal notranslate"><span class="pre">setup_sasmodels()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-sas.system.log">sas.system.log module</a><ul>
+<li><a class="reference internal" href="#sas.system.log.development"><code class="docutils literal notranslate"><span class="pre">development()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.log.print_config"><code class="docutils literal notranslate"><span class="pre">print_config()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.log.production"><code class="docutils literal notranslate"><span class="pre">production()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.log.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-sas.system.user">sas.system.user module</a><ul>
+<li><a class="reference internal" href="#sas.system.user._get_user_dir"><code class="docutils literal notranslate"><span class="pre">_get_user_dir()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.user.copy_old_files_to_new_location"><code class="docutils literal notranslate"><span class="pre">copy_old_files_to_new_location()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.user.get_app_dir"><code class="docutils literal notranslate"><span class="pre">get_app_dir()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.user.get_app_dir_versioned"><code class="docutils literal notranslate"><span class="pre">get_app_dir_versioned()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.user.get_cache_dir"><code class="docutils literal notranslate"><span class="pre">get_cache_dir()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.user.get_config_dir"><code class="docutils literal notranslate"><span class="pre">get_config_dir()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.user.get_dir_and_create_if_needed"><code class="docutils literal notranslate"><span class="pre">get_dir_and_create_if_needed()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.user.get_log_dir"><code class="docutils literal notranslate"><span class="pre">get_log_dir()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.user.get_plugin_dir"><code class="docutils literal notranslate"><span class="pre">get_plugin_dir()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-sas.system.version">sas.system.version module</a></li>
+<li><a class="reference internal" href="#module-sas.system.web">sas.system.web module</a><ul>
+<li><a class="reference internal" href="#sas.system.web.WebLinks"><code class="docutils literal notranslate"><span class="pre">WebLinks</span></code></a><ul>
+<li><a class="reference internal" href="#sas.system.web.WebLinks.__dict__"><code class="docutils literal notranslate"><span class="pre">WebLinks.__dict__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.web.WebLinks.__doc__"><code class="docutils literal notranslate"><span class="pre">WebLinks.__doc__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.web.WebLinks.__init__"><code class="docutils literal notranslate"><span class="pre">WebLinks.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.web.WebLinks.__module__"><code class="docutils literal notranslate"><span class="pre">WebLinks.__module__</span></code></a></li>
+<li><a class="reference internal" href="#sas.system.web.WebLinks.__weakref__"><code class="docutils literal notranslate"><span class="pre">WebLinks.__weakref__</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-sas.system.zenodo">sas.system.zenodo module</a></li>
+<li><a class="reference internal" href="#module-sas.system">Module contents</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="sas.sasview.html"
+                          title="previous chapter">sas.sasview package</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="sas.system.config.html"
+                          title="next chapter">sas.system.config package</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/dev/sasview-api/sas.system.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="sas.system.config.html" title="sas.system.config package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="sas.sasview.html" title="sas.sasview package"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../dev.html" >Developer Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="modules.html" >SasView</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="sas.html" >sas package</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">sas.system package</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

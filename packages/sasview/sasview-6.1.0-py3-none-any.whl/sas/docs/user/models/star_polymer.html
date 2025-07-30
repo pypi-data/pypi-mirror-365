@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>star_polymer &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="surface_fractal" href="surface_fractal.html" />
+    <link rel="prev" title="spinodal" href="spinodal.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="surface_fractal.html" title="surface_fractal"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="spinodal.html" title="spinodal"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-independent.html" accesskey="U">Shape-Independent Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">star_polymer</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="star-polymer">
+<span id="id1"></span><h1>star_polymer<a class="headerlink" href="#star-polymer" title="Link to this heading">¶</a></h1>
+<p>Star polymer model with Gaussian statistics</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>scale</p></td>
+<td><p>Scale factor or Volume fraction</p></td>
+<td><p>None</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>background</p></td>
+<td><p>Source background</p></td>
+<td><p>cm<sup>-1</sup></p></td>
+<td><p>0.001</p></td>
+</tr>
+<tr class="row-even"><td><p>rg_squared</p></td>
+<td><p>Ensemble radius of gyration SQUARED of the full polymer</p></td>
+<td><p>Å<sup>2</sup></p></td>
+<td><p>100</p></td>
+</tr>
+<tr class="row-odd"><td><p>arms</p></td>
+<td><p>Number of arms in the model (integer)</p></td>
+<td><p>None</p></td>
+<td><p>3</p></td>
+</tr>
+</tbody>
+</table>
+<p>The returned value is scaled to units of cm<sup>-1</sup> sr<sup>-1</sup>, absolute scale.</p>
+<p><strong>Definition</strong></p>
+<p>Calcuates the scattering from a simple star polymer with f equal Gaussian coil
+arms. A star being defined as a branched polymer with all the branches
+emanating from a common central (in the case of this model) point.  It is
+derived as a special case of on the Benoit model for general branched
+polymers<a class="footnote-reference brackets" href="#benoit1953" id="id2" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> as also used by Richter <em>et al.</em><a class="footnote-reference brackets" href="#richter1989" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>2<span class="fn-bracket">]</span></a></p>
+<p>For a star with <span class="math notranslate nohighlight">\(f\)</span> arms the scattering intensity <span class="math notranslate nohighlight">\(I(q)\)</span> is calculated as</p>
+<div class="math notranslate nohighlight">
+\[I(q) = \frac{2}{fv^2}\left[ v-1+\exp(-v)+\frac{f-1}{2}
+       \left[ 1-\exp(-v)\right]^2\right]\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[v=\frac{uf}{(3f-2)}\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[u = \left\langle R_{g}^2\right\rangle q^2\]</div>
+<p>contains the square of the ensemble average radius-of-gyration of the full
+polymer while v contains the radius of gyration of a single arm <span class="math notranslate nohighlight">\(R_{arm}\)</span>.
+The two are related as:</p>
+<div class="math notranslate nohighlight">
+\[R_{arm}^2 = \frac{f}{3f-2} R_{g}^2\]</div>
+<p>Note that when there is only one arm, <span class="math notranslate nohighlight">\(f = 1\)</span>, the Debye Gaussian coil
+equation is recovered.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Star polymers in solutions tend to have strong interparticle and osmotic
+effects. Thus the Benoit equation may not work well for many real cases.
+A newer model for star polymer incorporating excluded volume has been
+developed by Li et al in arXiv:1404.6269 [physics.chem-ph].  Also, at small
+<span class="math notranslate nohighlight">\(q\)</span> the scattering, i.e. the Guinier term, is not sensitive to the number of
+arms, and hence ‘scale’ here is simply <span class="math notranslate nohighlight">\(I(q=0)\)</span> as described for the
+<a class="reference internal" href="mono_gauss_coil.html#mono-gauss-coil"><span class="std std-ref">mono_gauss_coil</span></a> model, using volume fraction <span class="math notranslate nohighlight">\(\phi\)</span> and volume V
+for the whole star polymer.</p>
+</div>
+<figure class="align-default" id="id4">
+<img alt="../../_images/star_polymer_autogenfig.png" src="../../_images/star_polymer_autogenfig.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 123 </span><span class="caption-text">1D plot corresponding to the default parameters of the model.</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Source</strong></p>
+<p><a class="reference download internal" download="" href="../../_downloads/df7de28ade14b92cea53b7fa3dea8ff6/star_polymer.py"><code class="xref download docutils literal notranslate"><span class="pre">star_polymer.py</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/21236fd24909c9483ee0e4a01db7691e/star_polymer.c"><code class="xref download docutils literal notranslate"><span class="pre">star_polymer.c</span></code></a></p>
+<p><strong>References</strong></p>
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="benoit1953" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">1</a><span class="fn-bracket">]</span></span>
+<p>H Benoit <em>J. Polymer Science</em>, 11, 507-510 (1953)</p>
+</aside>
+<aside class="footnote brackets" id="richter1989" role="doc-footnote">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">2</a><span class="fn-bracket">]</span></span>
+<p>D Richter, B. Farago, J. S. Huang, L. J. Fetters,
+B Ewen <em>Macromolecules</em>, 22, 468-472 (1989)</p>
+</aside>
+</aside>
+<p><strong>Authorship and Verification</strong></p>
+<ul class="simple">
+<li><p><strong>Author:</strong> Kieran Campbell <strong>Date:</strong> July 24, 2012</p></li>
+<li><p><strong>Last Modified by:</strong> Paul Butler <strong>Date:</strong> Auguts 26, 2017</p></li>
+<li><p><strong>Last Reviewed by:</strong> Ziang Li and Richard Heenan <strong>Date:</strong> May 17, 2017</p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="spinodal.html"
+                          title="previous chapter">spinodal</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="surface_fractal.html"
+                          title="next chapter">surface_fractal</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user/models/star_polymer.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="surface_fractal.html" title="surface_fractal"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="spinodal.html" title="spinodal"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-independent.html" >Shape-Independent Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">star_polymer</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

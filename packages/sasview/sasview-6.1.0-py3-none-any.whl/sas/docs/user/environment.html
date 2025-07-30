@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Environment Variables &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Model Marketplace" href="marketplace.html" />
+    <link rel="prev" title="Command Line Interpreter" href="qtgui/Perspectives/Fitting/cli.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="marketplace.html" title="Model Marketplace"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="qtgui/Perspectives/Fitting/cli.html" title="Command Line Interpreter"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="working.html" accesskey="U">Working with SasView</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Environment Variables</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="environment-variables">
+<span id="id1"></span><h1>Environment Variables<a class="headerlink" href="#environment-variables" title="Link to this heading">¶</a></h1>
+<p>SasView creates and uses a number of environment variables:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>SAS_MODELPATH=path</strong></dt><dd><ul>
+<li><p>sets the directory containing custom models</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>SAS_DLL_PATH=path</strong></dt><dd><ul>
+<li><p>sets the path to the compiled modules</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>SAS_WEIGHTS_PATH=~/.sasview/weights</strong></dt><dd><ul>
+<li><p>sets the path to custom distribution files (see <a class="reference internal" href="qtgui/Perspectives/Fitting/pd/polydispersity.html#polydispersityhelp"><span class="std std-ref">Polydispersity &amp; Orientational Distributions</span></a>)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>XDG_CACHE_HOME=~/.cache</strong></dt><dd><ul>
+<li><p>sets the pyopencl cache root (linux only)</p></li>
+<li><p>defined in the appdirs package</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>SAS_COMPILER=tinycc|msvc|mingw|unix</strong></dt><dd><ul>
+<li><p>sets the DLL compiler</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>SAS_OPENCL=vendor:device|none</strong></dt><dd><ul>
+<li><p>sets the target OpenCL device for GPU computations</p></li>
+<li><p>use <em>none</em> to disable</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>SAS_OPENMP=1|0</strong></dt><dd><ul>
+<li><p>turns on/off OpenMP multi-processing of the DLLs</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p><em>Document History</em></p>
+<div class="line-block">
+<div class="line">2018-07-20 Steve King</div>
+</div>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="qtgui/Perspectives/Fitting/cli.html"
+                          title="previous chapter">Command Line Interpreter</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="marketplace.html"
+                          title="next chapter">Model Marketplace</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/user/environment.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="marketplace.html" title="Model Marketplace"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="qtgui/Perspectives/Fitting/cli.html" title="Command Line Interpreter"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="working.html" >Working with SasView</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Environment Variables</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

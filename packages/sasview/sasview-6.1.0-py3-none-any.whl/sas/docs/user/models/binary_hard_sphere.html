@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>binary_hard_sphere &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="core_multi_shell" href="core_multi_shell.html" />
+    <link rel="prev" title="adsorbed_layer" href="adsorbed_layer.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="core_multi_shell.html" title="core_multi_shell"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="adsorbed_layer.html" title="adsorbed_layer"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-sphere.html" accesskey="U">Sphere Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">binary_hard_sphere</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="binary-hard-sphere">
+<span id="id1"></span><h1>binary_hard_sphere<a class="headerlink" href="#binary-hard-sphere" title="Link to this heading">¶</a></h1>
+<p>binary mixture of hard spheres with hard sphere interactions.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>scale</p></td>
+<td><p>Scale factor or Volume fraction</p></td>
+<td><p>None</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>background</p></td>
+<td><p>Source background</p></td>
+<td><p>cm<sup>-1</sup></p></td>
+<td><p>0.001</p></td>
+</tr>
+<tr class="row-even"><td><p>radius_lg</p></td>
+<td><p>radius of large particle</p></td>
+<td><p>Å</p></td>
+<td><p>100</p></td>
+</tr>
+<tr class="row-odd"><td><p>radius_sm</p></td>
+<td><p>radius of small particle</p></td>
+<td><p>Å</p></td>
+<td><p>25</p></td>
+</tr>
+<tr class="row-even"><td><p>volfraction_lg</p></td>
+<td><p>volume fraction of large particle</p></td>
+<td><p>None</p></td>
+<td><p>0.1</p></td>
+</tr>
+<tr class="row-odd"><td><p>volfraction_sm</p></td>
+<td><p>volume fraction of small particle</p></td>
+<td><p>None</p></td>
+<td><p>0.2</p></td>
+</tr>
+<tr class="row-even"><td><p>sld_lg</p></td>
+<td><p>scattering length density of large particle</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>3.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>sld_sm</p></td>
+<td><p>scattering length density of small particle</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>0.5</p></td>
+</tr>
+<tr class="row-even"><td><p>sld_solvent</p></td>
+<td><p>Solvent scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>6.36</p></td>
+</tr>
+</tbody>
+</table>
+<p>The returned value is scaled to units of cm<sup>-1</sup> sr<sup>-1</sup>, absolute scale.</p>
+<p><strong>Definition</strong></p>
+<p>The binary hard sphere model provides the scattering intensity, for binary
+mixture of hard spheres including hard sphere interaction between those
+particles, using rhw Percus-Yevick closure. The calculation is an exact
+multi-component solution that properly accounts for the 3 partial structure
+factors as follows:</p>
+<div class="math notranslate nohighlight">
+\[I(q) = (1-x)f_1^2(q) S_{11}(q) + 2[x(1-x)]^{1/2} f_1(q)f_2(q)S_{12}(q) +
+x\,f_2^2(q)S_{22}(q)\]</div>
+<p>where <span class="math notranslate nohighlight">\(S_{ij}\)</span> are the partial structure factors and <span class="math notranslate nohighlight">\(f_i\)</span> are the scattering
+amplitudes of the particles. The subscript 1 is for the smaller particle and 2
+is for the larger. The number fraction of the larger particle,
+(<span class="math notranslate nohighlight">\(x = n2/(n1+n2)\)</span>, where <span class="math notranslate nohighlight">\(n\)</span> = the number density) is internally calculated
+based on the diameter ratio and the volume fractions.</p>
+<div class="math notranslate nohighlight">
+\begin{align*}
+x &amp;= \frac{(\phi_2 / \phi)\alpha^3}{(1-(\phi_2/\phi) + (\phi_2/\phi)
+\alpha^3)} \\
+\phi &amp;= \phi_1 + \phi_2 = \text{total volume fraction} \\
+\alpha &amp;= R_1/R_2 = \text{size ratio}
+\end{align*}</div><p>The 2D scattering intensity is the same as 1D, regardless of the orientation of
+the <em>q</em> vector which is defined as</p>
+<div class="math notranslate nohighlight">
+\[q = \sqrt{q_x^2 + q_y^2}\]</div>
+<p><strong>NOTE 1:</strong> The volume fractions and the scattering contrasts are loosely
+correlated, so holding as many parameters fixed to known values during fitting
+will improve the robustness of the fit.</p>
+<p><strong>NOTE 2:</strong> Since the calculation uses the Percus-Yevick closure, all of the
+limitations of that closure relation apply here. Specifically, one should be
+wary of results for (total) volume fractions greater than approximately 40%.
+Depending on the size ratios or number fractions, the limit on total volume
+fraction may be lower.</p>
+<p><strong>NOTE 3:</strong> The heavy arithmetic operations also mean that at present the
+function is poorly behaved at very low qr.  In some cases very large qr may
+also be poorly behaved.  These should however be outside any useful region of
+qr.</p>
+<p>The code for this model is based originally on a c-library implementation by the
+NIST Center for Neutron Research (Kline, 2006).</p>
+<p>See the references for details.</p>
+<figure class="align-default" id="id2">
+<img alt="../../_images/binary_hard_sphere_autogenfig.png" src="../../_images/binary_hard_sphere_autogenfig.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 77 </span><span class="caption-text">1D plot corresponding to the default parameters of the model.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Source</strong></p>
+<p><a class="reference download internal" download="" href="../../_downloads/3ea14f090ace5137ba3324cc0a7e25ae/binary_hard_sphere.py"><code class="xref download docutils literal notranslate"><span class="pre">binary_hard_sphere.py</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/b7277b6965458fdec6f74f0ddc18b9d8/binary_hard_sphere.c"><code class="xref download docutils literal notranslate"><span class="pre">binary_hard_sphere.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/5224eea2106a0533fa82ac542ccf5579/sas_3j1x_x.c"><code class="xref download docutils literal notranslate"><span class="pre">sas_3j1x_x.c</span></code></a></p>
+<p><strong>References</strong></p>
+<ol class="arabic simple">
+<li><p>N W Ashcroft and D C Langreth, <em>Physical Review</em>, 156 (1967) 685-692
+[Errata found in <em>Phys. Rev.</em> 166 (1968) 934]</p></li>
+<li><p>S R Kline, <em>J Appl. Cryst.</em>, 39 (2006) 895</p></li>
+</ol>
+<p><strong>Authorship and Verification</strong></p>
+<ul class="simple">
+<li><p><strong>Author:</strong> NIST IGOR/DANSE <strong>Date:</strong> pre 2010</p></li>
+<li><p><strong>Last Modified by:</strong> Paul Butler <strong>Date:</strong> March 20, 2016</p></li>
+<li><p><strong>Last Reviewed by:</strong> Paul Butler <strong>Date:</strong> March 20, 2016</p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="adsorbed_layer.html"
+                          title="previous chapter">adsorbed_layer</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="core_multi_shell.html"
+                          title="next chapter">core_multi_shell</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user/models/binary_hard_sphere.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="core_multi_shell.html" title="core_multi_shell"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="adsorbed_layer.html" title="adsorbed_layer"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-sphere.html" >Sphere Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">binary_hard_sphere</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

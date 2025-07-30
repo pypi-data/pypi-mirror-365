@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>SasView User Files &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Developer Documentation" href="../../../dev/dev.html" />
+    <link rel="prev" title="Preferences" href="preferences_help.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../../dev/dev.html" title="Developer Documentation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="preferences_help.html" title="Preferences"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../working.html" accesskey="U">Working with SasView</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">SasView User Files</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="sasview-user-files">
+<span id="userfiles"></span><h1>SasView User Files<a class="headerlink" href="#sasview-user-files" title="Link to this heading">¶</a></h1>
+<p>During the installation process and while running the app, SasView creates a number of files that are stored outside
+the install location on the end users computer. These files include configurations, plugin models, compiled plugins,
+documentation, and example files. Please refer to the specific section to find where each type of file is stored.</p>
+<p>File paths that start with the ‘~’ character refer to the user directory, which is typically <cite>C:\\Users\&lt;username&gt;</cite> in
+Windows, <cite>/Users/&lt;username&gt;</cite> in MacOS, and <cite>/home/&lt;username&gt;</cite> in most Linux distributions.</p>
+<p>This document is specific to v6.1.0 and beyond. Previous versions of SasView stored user files in the
+<cite>~/.sasview</cite> directory.</p>
+<p><strong>For users who wish to use versions both newer and older than v6.1, do not delete the contents
+of the `~/.sasview` directory.</strong></p>
+<p><a class="reference internal" href="#config-files"><span class="std std-ref">Configuration Files</span></a>, <a class="reference internal" href="#log-files"><span class="std std-ref">Log Files</span></a>, <a class="reference internal" href="#plugin-files"><span class="std std-ref">Plugin Files</span></a>, <a class="reference internal" href="#compiled-files"><span class="std std-ref">Complied Model Files</span></a>, <a class="reference internal" href="#documentation"><span class="std std-ref">Documentation</span></a></p>
+<section id="configuration-files">
+<span id="config-files"></span><h2>Configuration Files<a class="headerlink" href="#configuration-files" title="Link to this heading">¶</a></h2>
+<p>SasView stores two types of config file on the user disk, a general configuration file for each major version of sasview,
+and a categories file that allows the end user to change how their models are organized in the fitting perspective. The
+general configuration file, config-&lt;v&gt;.json is a json file that stores a mapping of config variables to their updated values.
+This file is only generated and stored locally if something in the <a class="reference internal" href="preferences_help.html#preferences"><span class="std std-ref">Preferences</span></a> panel has been modified. The categories
+file, categories.json, stores the user-preferred model organization, allowing a user to add model categories, move models
+into new categories, and not show certain models. More information on this feature is available in <a class="reference internal" href="../Perspectives/Fitting/fitting_help.html#category-manager"><span class="std std-ref">Category Manager</span></a>.</p>
+<dl class="simple">
+<dt>OS-specific file locations for configuration files:</dt><dd><ul class="simple">
+<li><p>Windows: ~/AppData/Local/sasview/SasView/</p></li>
+<li><p>MacOS: ~/Library/Application Support/SasView/</p></li>
+<li><p>Linux: ~/.config/SasView/</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="log-files">
+<span id="id1"></span><h2>Log Files<a class="headerlink" href="#log-files" title="Link to this heading">¶</a></h2>
+<p>SasView creates a time-stamped log file that includes all messages entered into the log explorer, as well as a number of
+other messages related to application startup and shutdown.</p>
+<dl class="simple">
+<dt>OS-specific file locations for log files:</dt><dd><ul class="simple">
+<li><p>Windows: ~/AppData/Local/sasview/SasView/Logs/</p></li>
+<li><p>MacOS: ~/Library/Logs/SasView/</p></li>
+<li><p>Linux: ~/.local/state/SasView/</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="plugin-files">
+<span id="id2"></span><h2>Plugin Files<a class="headerlink" href="#plugin-files" title="Link to this heading">¶</a></h2>
+<p>Plugin models, whether they be written by the user (<a class="reference internal" href="../Perspectives/Fitting/plugin.html#writing-a-plugin"><span class="std std-ref">Writing a Plugin Model</span></a>), downloaded from the
+<a class="reference external" href="https://marketplace.sasview.org/">model marketplace</a>, or sent from another SasView user, should be stored in a
+specific location to allow SasView to find them.</p>
+<dl class="simple">
+<dt>OS-specific file locations for plugin files:</dt><dd><ul class="simple">
+<li><p>Windows: ~/AppData/Local/sasview/SasView/plugin_models/</p></li>
+<li><p>MacOS: ~/Library/Application Support/SasView/plugin_models/</p></li>
+<li><p>Linux: ~/.local/share/SasView/plugin_models</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="complied-model-files">
+<span id="compiled-files"></span><h2>Complied Model Files<a class="headerlink" href="#complied-model-files" title="Link to this heading">¶</a></h2>
+<p>The fitting module, when a model is selected, compiles each model in an on-demand process. The compiled file will include
+all form factors and structure factors used to create the model, and will be compiled based on the GPU optimization
+currently in use. These models are stored in a parallel directory to the plugin models, but end users do not need to add
+any files to this directory.</p>
+<dl class="simple">
+<dt>OS-specific file locations for compiled model files:</dt><dd><ul class="simple">
+<li><p>Windows: ~/AppData/Local/sasview/SasView/compiled_models/</p></li>
+<li><p>MacOS: ~/Library/Application Support/SasView/compiled_models/</p></li>
+<li><p>Linux: ~/.local/share/SasView/compiled_models</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="documentation">
+<span id="id3"></span><h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">¶</a></h2>
+<p>SasView moves its documentation into a user location when launching the app, if the documentation does not already exist.
+Each version of SasView has its own documentation that may be different between versions, so a separate directory is used
+for each version of the doc files.</p>
+<dl class="simple">
+<dt>OS-specific file locations for documentation:</dt><dd><ul class="simple">
+<li><p>Windows: ~/AppData/Local/sasview/SasView/&lt;sasview.version&gt;/doc/</p></li>
+<li><p>MacOS: ~/Library/Application Support/SasView/&lt;sasview.version&gt;/doc/</p></li>
+<li><p>Linux: ~/.local/share/SasView/&lt;sasview.version&gt;/doc/</p></li>
+</ul>
+</dd>
+</dl>
+<span class="target" id="example-data"></span></section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">SasView User Files</a><ul>
+<li><a class="reference internal" href="#configuration-files">Configuration Files</a></li>
+<li><a class="reference internal" href="#log-files">Log Files</a></li>
+<li><a class="reference internal" href="#plugin-files">Plugin Files</a></li>
+<li><a class="reference internal" href="#complied-model-files">Complied Model Files</a></li>
+<li><a class="reference internal" href="#documentation">Documentation</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="preferences_help.html"
+                          title="previous chapter">Preferences</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../../../dev/dev.html"
+                          title="next chapter">Developer Documentation</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/user/qtgui/MainWindow/sasview_files.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../../dev/dev.html" title="Developer Documentation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="preferences_help.html" title="Preferences"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../working.html" >Working with SasView</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">SasView User Files</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

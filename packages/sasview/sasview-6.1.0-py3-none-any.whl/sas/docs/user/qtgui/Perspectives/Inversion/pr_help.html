@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>P(r) Calculation &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Invariant Calculation" href="../Invariant/invariant_help.html" />
+    <link rel="prev" title="References" href="../Fitting/refs.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../Invariant/invariant_help.html" title="Invariant Calculation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../Fitting/refs.html" title="References"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../analysis.html" accesskey="U">Fitting &amp; Other Analyses</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">P(r) Calculation</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="p-r-calculation">
+<span id="p-r-inversion"></span><h1>P(r) Calculation<a class="headerlink" href="#p-r-calculation" title="Link to this heading">¶</a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
+<p>This tool calculates a real-space distance distribution function, <em>P(r)</em>, using
+the inversion approach (Moore, 1980).</p>
+<p><em>P(r)</em> is set to be equal to an expansion of base functions of the type</p>
+<div class="math notranslate nohighlight">
+\[\Phi_{n(r)} = 2 r sin(\frac{\pi n r}{D_{max}})\]</div>
+<p>The coefficient of each base function in the expansion is found by performing
+a least square fit with the following fit function</p>
+<div class="math notranslate nohighlight">
+\[\chi^2=\frac{\sum_i (I_{meas}(Q_i)-I_{th}(Q_i))^2}{error^2}+Reg\_term\]</div>
+<p>where <span class="math notranslate nohighlight">\(I_{meas}(Q_i)\)</span> is the measured scattering intensity and <span class="math notranslate nohighlight">\(I_{th}(Q_i)\)</span> is
+the prediction from the Fourier transform of the <em>P(r)</em> expansion.</p>
+<p>The <span class="math notranslate nohighlight">\(Reg\_term\)</span> term is a regularization term set to the second derivative
+<span class="math notranslate nohighlight">\(d^2P(r)/d^2r\)</span> integrated over <span class="math notranslate nohighlight">\(r\)</span>. It is used to produce a smooth <em>P(r)</em> output.</p>
+</section>
+<section id="using-p-r-inversion">
+<h2>Using P(r) inversion<a class="headerlink" href="#using-p-r-inversion" title="Link to this heading">¶</a></h2>
+<p>The user must enter</p>
+<ul class="simple">
+<li><p><em>Number of terms</em>: the number of base functions in the P(r) expansion.</p></li>
+<li><p><em>Regularization constant</em>: a multiplicative constant to set the size of
+the regularization term.</p></li>
+<li><p><em>Maximum distance</em>: the maximum distance between any two points in the
+system.</p></li>
+</ul>
+<p>P(r) inversion requires that the background be perfectly subtracted.  This is
+often difficult to do well and thus many data sets will include a background.
+For those cases, the user should check the “Estimate background level” option
+and the module will do its best to estimate it. If you know the background value
+for your data, select the “Input manual background level” option. Note that
+this value will be treated as having 0 error.</p>
+<p>The P(r) module is constantly computing in the background what the optimum
+<em>number of terms</em> should be as well as the optimum <em>regularization constant</em>.
+These are constantly updated in the buttons next to the entry boxes on the GUI.
+These are almost always close and unless the user has a good reason to choose
+differently they should just click on the buttons to accept both.  {D_max} must
+still be set by the user.  However, besides looking at the output, the user can
+click the explore button which will bring up a graph of chi^2 vs Dmax over a
+range around the current Dmax.  The user can change the range and the number of
+points to explore in that range.  They can also choose to plot several other
+parameters as a function of Dmax including: I0, Rg, Oscillation parameter,
+background, positive fraction, and 1-sigma positive fraction.</p>
+<p>The p(r) calculator accepts any number of data sets in the p(r) data set combo
+box. Switching between data sets in the combo box allows for individual fits
+and review of fit parameters. The displayed plots will also update to include
+the latest fit results for the selected data set.</p>
+<p>The ‘Calculate All’ button will run the p(r) calculation for each file,
+sequentially. The calculator will estimate the number of terms, background, and
+regularization constant for each file prior to running the p(r) calculation.
+The final results for all data sets are then presented in a savable data table.</p>
+</section>
+<section id="batch-inversion">
+<h2>Batch inversion<a class="headerlink" href="#batch-inversion" title="Link to this heading">¶</a></h2>
+<p>P(r) inversion can be performed on a batch of data files at the same time. To do this, select multiple data files in the data explorer, and toggle the ‘Batch mode’ checkbox.</p>
+<img alt="../../../../_images/batch_inversion_file_selection.png" src="../../../../_images/batch_inversion_file_selection.png" />
+<p>Click ‘Send to’, and all the data you selected will be sent to a new batch tab in the perspective. Clicking ‘calculate all’ will start the calculation. When it is finished, the batch <a class="reference internal" href="../Fitting/fitting_help.html#grid-window"><span class="std std-ref">Grid Window</span></a> appears.</p>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading">¶</a></h2>
+<p>P.B. Moore
+<em>J. Appl. Cryst.</em>, 13 (1980) 168-175</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This help document was last modified by James Crake-Merani, 23 May 2025</p>
+</div>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h3><a href="../../../../index.html">Table of Contents</a></h3>
+    <ul>
+<li><a class="reference internal" href="#">P(r) Calculation</a><ul>
+<li><a class="reference internal" href="#description">Description</a></li>
+<li><a class="reference internal" href="#using-p-r-inversion">Using P(r) inversion</a></li>
+<li><a class="reference internal" href="#batch-inversion">Batch inversion</a></li>
+<li><a class="reference internal" href="#reference">Reference</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../Fitting/refs.html"
+                          title="previous chapter">References</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="../Invariant/invariant_help.html"
+                          title="next chapter">Invariant Calculation</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/user/qtgui/Perspectives/Inversion/pr_help.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../Invariant/invariant_help.html" title="Invariant Calculation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../Fitting/refs.html" title="References"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../../../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../../analysis.html" >Fitting &amp; Other Analyses</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">P(r) Calculation</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>pearl_necklace &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="pringle" href="pringle.html" />
+    <link rel="prev" title="hollow_cylinder" href="hollow_cylinder.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pringle.html" title="pringle"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="hollow_cylinder.html" title="hollow_cylinder"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-cylinder.html" accesskey="U">Cylinder Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">pearl_necklace</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="pearl-necklace">
+<span id="id1"></span><h1>pearl_necklace<a class="headerlink" href="#pearl-necklace" title="Link to this heading">¶</a></h1>
+<p>Colloidal spheres chained together with no preferential orientation</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>scale</p></td>
+<td><p>Scale factor or Volume fraction</p></td>
+<td><p>None</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>background</p></td>
+<td><p>Source background</p></td>
+<td><p>cm<sup>-1</sup></p></td>
+<td><p>0.001</p></td>
+</tr>
+<tr class="row-even"><td><p>radius</p></td>
+<td><p>Mean radius of the chained spheres</p></td>
+<td><p>Å</p></td>
+<td><p>80</p></td>
+</tr>
+<tr class="row-odd"><td><p>edge_sep</p></td>
+<td><p>Mean separation of chained particles</p></td>
+<td><p>Å</p></td>
+<td><p>350</p></td>
+</tr>
+<tr class="row-even"><td><p>thick_string</p></td>
+<td><p>Thickness of the chain linkage</p></td>
+<td><p>Å</p></td>
+<td><p>2.5</p></td>
+</tr>
+<tr class="row-odd"><td><p>num_pearls</p></td>
+<td><p>Number of pearls in the necklace (must be integer)</p></td>
+<td><p>none</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-even"><td><p>sld</p></td>
+<td><p>Scattering length density of the chained spheres</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>sld_string</p></td>
+<td><p>Scattering length density of the chain linkage</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>sld_solvent</p></td>
+<td><p>Scattering length density of the solvent</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>6.3</p></td>
+</tr>
+</tbody>
+</table>
+<p>The returned value is scaled to units of cm<sup>-1</sup> sr<sup>-1</sup>, absolute scale.</p>
+<p>This model provides the form factor for a pearl necklace composed of two
+elements: <em>N</em> pearls (homogeneous spheres of radius <em>R</em>) freely jointed by <em>M</em>
+rods (like strings - with a total mass <em>Mw</em> = <em>M</em> * <em>m</em><sub>r</sub> + <em>N</em> * <em>m</em><sub>s</sub>, and the string segment length (or edge separation) <em>l</em>
+(= <em>A</em> - 2<em>R</em>)). <em>A</em> is the center-to-center pearl separation distance.</p>
+<figure class="align-default" id="id2">
+<img alt="../../_images/pearl_necklace_geometry.jpg" src="../../_images/pearl_necklace_geometry.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 32 </span><span class="caption-text">Pearl Necklace schematic</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Definition</strong></p>
+<p>The output of the scattering intensity function for the pearl_necklace is
+given by (Schweins, 2004)</p>
+<div class="math notranslate nohighlight">
+\[I(q)=\frac{ \text{scale} }{V} \cdot \frac{(S_{ss}(q)+S_{ff}(q)+S_{fs}(q))}
+    {(M \cdot m_f + N \cdot m_s)^2} + \text{bkg}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}S_{ss}(q) &amp;= 2m_s^2\psi^2(q)\left[\frac{N}{1-sin(qA)/qA}-\frac{N}{2}-
+    \frac{1-(sin(qA)/qA)^N}{(1-sin(qA)/qA)^2}\cdot\frac{sin(qA)}{qA}\right] \\
+S_{ff}(q) &amp;= m_r^2\left[M\left\{2\Lambda(q)-\left(\frac{sin(ql/2)}{ql/2}\right)\right\}+
+    \frac{2M\beta^2(q)}{1-sin(qA)/qA}-2\beta^2(q)\cdot
+    \frac{1-(sin(qA)/qA)^M}{(1-sin(qA)/qA)^2}\right] \\
+S_{fs}(q) &amp;= m_r \beta (q) \cdot m_s \psi (q) \cdot 4\left[
+    \frac{N-1}{1-sin(qA)/qA}-\frac{1-(sin(qA)/qA)^{N-1}}{(1-sin(qA)/qA)^2}
+    \cdot \frac{sin(qA)}{qA}\right] \\
+\psi(q) &amp;= 3 \cdot \frac{sin(qR)-(qR)\cdot cos(qR)}{(qR)^3} \\
+\Lambda(q) &amp;= \frac{\int_0^{ql}\frac{sin(t)}{t}dt}{ql} \\
+\beta(q) &amp;= \frac{\int_{qR}^{q(A-R)}\frac{sin(t)}{t}dt}{ql}\end{split}\]</div>
+<p>where the mass <em>m</em><sub>i</sub> is (SLD<sub>i</sub> - SLD<sub>solvent</sub>) *
+(volume of the <em>N</em> pearls/rods). <em>V</em> is the total volume of the necklace.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>num_pearls</em> must be an integer.</p>
+</div>
+<p>The 2D scattering intensity is the same as <span class="math notranslate nohighlight">\(P(q)\)</span> above, regardless of the
+orientation of the <em>q</em> vector.</p>
+<figure class="align-default" id="id3">
+<img alt="../../_images/pearl_necklace_autogenfig.png" src="../../_images/pearl_necklace_autogenfig.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 33 </span><span class="caption-text">1D plot corresponding to the default parameters of the model.</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Source</strong></p>
+<p><a class="reference download internal" download="" href="../../_downloads/a530ad69a73957febf227f8264795458/pearl_necklace.py"><code class="xref download docutils literal notranslate"><span class="pre">pearl_necklace.py</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/6131a11b394906e8672fb75bea7cc3f9/pearl_necklace.c"><code class="xref download docutils literal notranslate"><span class="pre">pearl_necklace.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/5224eea2106a0533fa82ac542ccf5579/sas_3j1x_x.c"><code class="xref download docutils literal notranslate"><span class="pre">sas_3j1x_x.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/8d452b9a5af0e1d22c4fdd83f967d3af/sas_Si.c"><code class="xref download docutils literal notranslate"><span class="pre">sas_Si.c</span></code></a></p>
+<p><strong>References</strong></p>
+<ol class="arabic simple">
+<li><p>R Schweins and K Huber, <em>Particle Scattering Factor of Pearl Necklace Chains</em>,
+<em>Macromol. Symp.</em> 211 (2004) 25-42 2004</p></li>
+<li><ol class="upperalpha simple" start="12">
+<li><p>Onsager, <em>Ann. New York Acad. Sci.</em>, 51 (1949) 627-659</p></li>
+</ol>
+</li>
+</ol>
+<p><strong>Authorship and Verification</strong></p>
+<ul class="simple">
+<li><p><strong>Author:</strong></p></li>
+<li><p><strong>Last Modified by:</strong> Andrew Jackson <strong>Date:</strong> March 28, 2019</p></li>
+<li><p><strong>Last Reviewed by:</strong> Steve King <strong>Date:</strong> March 28, 2019</p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="hollow_cylinder.html"
+                          title="previous chapter">hollow_cylinder</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="pringle.html"
+                          title="next chapter">pringle</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user/models/pearl_necklace.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="pringle.html" title="pringle"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="hollow_cylinder.html" title="hollow_cylinder"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-cylinder.html" >Cylinder Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">pearl_necklace</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>

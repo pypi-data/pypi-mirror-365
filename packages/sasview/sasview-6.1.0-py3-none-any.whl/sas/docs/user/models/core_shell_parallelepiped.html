@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>core_shell_parallelepiped &#8212; SasView 6.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/classic.css?v=2bf1fcf8" />
+    
+    <script src="../../_static/documentation_options.js?v=6340cb70"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="hollow_rectangular_prism" href="hollow_rectangular_prism.html" />
+    <link rel="prev" title="Parallelepiped Functions" href="../qtgui/Perspectives/Fitting/models/shape-parallelepiped.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="hollow_rectangular_prism.html" title="hollow_rectangular_prism"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../qtgui/Perspectives/Fitting/models/shape-parallelepiped.html" title="Parallelepiped Functions"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-parallelepiped.html" accesskey="U">Parallelepiped Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">core_shell_parallelepiped</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="core-shell-parallelepiped">
+<span id="id1"></span><h1>core_shell_parallelepiped<a class="headerlink" href="#core-shell-parallelepiped" title="Link to this heading">¶</a></h1>
+<p>Rectangular solid with a core-shell structure.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Units</p></th>
+<th class="head"><p>Default value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>scale</p></td>
+<td><p>Scale factor or Volume fraction</p></td>
+<td><p>None</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>background</p></td>
+<td><p>Source background</p></td>
+<td><p>cm<sup>-1</sup></p></td>
+<td><p>0.001</p></td>
+</tr>
+<tr class="row-even"><td><p>sld_core</p></td>
+<td><p>Parallelepiped core scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>sld_a</p></td>
+<td><p>Parallelepiped A rim scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>sld_b</p></td>
+<td><p>Parallelepiped B rim scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>sld_c</p></td>
+<td><p>Parallelepiped C rim scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>sld_solvent</p></td>
+<td><p>Solvent scattering length density</p></td>
+<td><p>10<sup>-6</sup>Å<sup>-2</sup></p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-odd"><td><p>length_a</p></td>
+<td><p>Shorter side of the parallelepiped</p></td>
+<td><p>Å</p></td>
+<td><p>35</p></td>
+</tr>
+<tr class="row-even"><td><p>length_b</p></td>
+<td><p>Second side of the parallelepiped</p></td>
+<td><p>Å</p></td>
+<td><p>75</p></td>
+</tr>
+<tr class="row-odd"><td><p>length_c</p></td>
+<td><p>Larger side of the parallelepiped</p></td>
+<td><p>Å</p></td>
+<td><p>400</p></td>
+</tr>
+<tr class="row-even"><td><p>thick_rim_a</p></td>
+<td><p>Thickness of A rim</p></td>
+<td><p>Å</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>thick_rim_b</p></td>
+<td><p>Thickness of B rim</p></td>
+<td><p>Å</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-even"><td><p>thick_rim_c</p></td>
+<td><p>Thickness of C rim</p></td>
+<td><p>Å</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>theta</p></td>
+<td><p>c axis to beam angle</p></td>
+<td><p>degree</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>phi</p></td>
+<td><p>rotation about beam</p></td>
+<td><p>degree</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>psi</p></td>
+<td><p>rotation about c axis</p></td>
+<td><p>degree</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<p>The returned value is scaled to units of cm<sup>-1</sup> sr<sup>-1</sup>, absolute scale.</p>
+<p><strong>Definition</strong></p>
+<p>Calculates the form factor for a rectangular solid with a core-shell structure.
+The thickness and the scattering length density of the shell or “rim” can be
+different on each (pair) of faces. The three dimensions of the core of the
+parallelepiped (strictly here a cuboid) may be given in <em>any</em> size order as
+long as the particles are randomly oriented (i.e. take on all possible
+orientations see notes on 2D below). To avoid multiple fit solutions,
+especially with Monte-Carlo fit methods, it may be advisable to restrict their
+ranges. There may be a number of closely similar “best fits”, so some trial and
+error, or fixing of some dimensions at expected values, may help.</p>
+<p>The form factor is normalized by the particle volume <span class="math notranslate nohighlight">\(V\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[I(q) = \frac{\text{scale}}{V} \langle P(q,\alpha,\beta) \rangle
++ \text{background}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\langle \ldots \rangle\)</span> is an average over all possible orientations
+of the rectangular solid, and the usual <span class="math notranslate nohighlight">\(\Delta \rho^2 \ V^2\)</span> term cannot be
+pulled out of the form factor term due to the multiple slds in the model.</p>
+<p>The core of the solid is defined by the dimensions <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span>, <span class="math notranslate nohighlight">\(C\)</span> here shown
+such that <span class="math notranslate nohighlight">\(A &lt; B &lt; C\)</span>.</p>
+<figure class="align-default" id="id2">
+<img alt="../../_images/parallelepiped_geometry.jpg" src="../../_images/parallelepiped_geometry.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 60 </span><span class="caption-text">Core of the core shell parallelepiped with the corresponding definition
+of sides.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>There are rectangular “slabs” of thickness <span class="math notranslate nohighlight">\(t_A\)</span> that add to the <span class="math notranslate nohighlight">\(A\)</span> dimension
+(on the <span class="math notranslate nohighlight">\(BC\)</span> faces). There are similar slabs on the <span class="math notranslate nohighlight">\(AC\)</span> <span class="math notranslate nohighlight">\((=t_B)\)</span> and <span class="math notranslate nohighlight">\(AB\)</span>
+<span class="math notranslate nohighlight">\((=t_C)\)</span> faces. The projection in the <span class="math notranslate nohighlight">\(AB\)</span> plane is</p>
+<figure class="align-default" id="id3">
+<img alt="../../_images/core_shell_parallelepiped_projection.jpg" src="../../_images/core_shell_parallelepiped_projection.jpg" />
+<figcaption>
+<p><span class="caption-number">Fig. 61 </span><span class="caption-text">AB cut through the core-shell parallelipiped showing the cross secion of
+four of the six shell slabs. As can be seen, this model leaves <strong>“gaps”</strong>
+at the corners of the solid.</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p>The total volume of the solid is thus given as</p>
+<div class="math notranslate nohighlight">
+\[V = ABC + 2t_ABC + 2t_BAC + 2t_CAB\]</div>
+<p>The intensity calculated follows the <a class="reference internal" href="parallelepiped.html#parallelepiped"><span class="std std-ref">parallelepiped</span></a> model, with the
+core-shell intensity being calculated as the square of the sum of the
+amplitudes of the core and the slabs on the edges. The scattering amplitude is
+computed for a particular orientation of the core-shell parallelepiped with
+respect to the scattering vector and then averaged over all possible
+orientations, where <span class="math notranslate nohighlight">\(\alpha\)</span> is the angle between the <span class="math notranslate nohighlight">\(z\)</span> axis and the <span class="math notranslate nohighlight">\(C\)</span> axis
+of the parallelepiped, and <span class="math notranslate nohighlight">\(\beta\)</span> is the angle between the projection of the
+particle in the <span class="math notranslate nohighlight">\(xy\)</span> detector plane and the <span class="math notranslate nohighlight">\(y\)</span> axis.</p>
+<div class="math notranslate nohighlight">
+\[P(q)=\frac {\int_{0}^{\pi/2}\int_{0}^{\pi/2}F^2(q,\alpha,\beta) \ sin\alpha
+\ d\alpha \ d\beta} {\int_{0}^{\pi/2} \ sin\alpha \ d\alpha \ d\beta}\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}F(q,\alpha,\beta)
+&amp;= (\rho_\text{core}-\rho_\text{solvent})
+   S(Q_A, A) S(Q_B, B) S(Q_C, C) \\
+&amp;+ (\rho_\text{A}-\rho_\text{solvent})
+    \left[S(Q_A, A+2t_A) - S(Q_A, A)\right] S(Q_B, B) S(Q_C, C) \\
+&amp;+ (\rho_\text{B}-\rho_\text{solvent})
+    S(Q_A, A) \left[S(Q_B, B+2t_B) - S(Q_B, B)\right] S(Q_C, C) \\
+&amp;+ (\rho_\text{C}-\rho_\text{solvent})
+    S(Q_A, A) S(Q_B, B) \left[S(Q_C, C+2t_C) - S(Q_C, C)\right]\end{split}\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[S(Q_X, L) = L \frac{\sin (\tfrac{1}{2} Q_X L)}{\tfrac{1}{2} Q_X L}\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}Q_A &amp;= q \sin\alpha \sin\beta \\
+Q_B &amp;= q \sin\alpha \cos\beta \\
+Q_C &amp;= q \cos\alpha\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(\rho_\text{core}\)</span>, <span class="math notranslate nohighlight">\(\rho_\text{A}\)</span>, <span class="math notranslate nohighlight">\(\rho_\text{B}\)</span> and <span class="math notranslate nohighlight">\(\rho_\text{C}\)</span>
+are the scattering lengths of the parallelepiped core, and the rectangular
+slabs of thickness <span class="math notranslate nohighlight">\(t_A\)</span>, <span class="math notranslate nohighlight">\(t_B\)</span> and <span class="math notranslate nohighlight">\(t_C\)</span>, respectively. <span class="math notranslate nohighlight">\(\rho_\text{solvent}\)</span>
+is the scattering length of the solvent.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>the code actually implements two substitutions: <span class="math notranslate nohighlight">\(d(cos\alpha)\)</span> is
+substituted for -<span class="math notranslate nohighlight">\(sin\alpha \ d\alpha\)</span> (note that in the
+<a class="reference internal" href="parallelepiped.html#parallelepiped"><span class="std std-ref">parallelepiped</span></a> code this is explicitly implemented with
+<span class="math notranslate nohighlight">\(\sigma = cos\alpha\)</span>), and <span class="math notranslate nohighlight">\(\beta\)</span> is set to <span class="math notranslate nohighlight">\(\beta = u \pi/2\)</span> so that
+<span class="math notranslate nohighlight">\(du = \pi/2 \ d\beta\)</span>.  Thus both integrals go from 0 to 1 rather than 0
+to <span class="math notranslate nohighlight">\(\pi/2\)</span>.</p>
+</div>
+<p><strong>FITTING NOTES</strong></p>
+<ol class="arabic simple">
+<li><p>There are many parameters in this model. Hold as many fixed as possible with
+known values, or you will certainly end up at a solution that is unphysical.</p></li>
+<li><p>The 2nd virial coefficient of the core_shell_parallelepiped is calculated
+based on the the averaged effective radius <span class="math notranslate nohighlight">\((=\sqrt{(A+2t_A)(B+2t_B)/\pi})\)</span>
+and length <span class="math notranslate nohighlight">\((C+2t_C)\)</span> values, after appropriately sorting the three
+dimensions to give an oblate or prolate particle, to give an effective radius
+for <span class="math notranslate nohighlight">\(S(q)\)</span> when <span class="math notranslate nohighlight">\(P(q) * S(q)\)</span> is applied.</p></li>
+<li><p>For 2d data the orientation of the particle is required, described using
+angles <span class="math notranslate nohighlight">\(\theta\)</span>, <span class="math notranslate nohighlight">\(\phi\)</span> and <span class="math notranslate nohighlight">\(\Psi\)</span> as in the diagrams below, where <span class="math notranslate nohighlight">\(\theta\)</span>
+and <span class="math notranslate nohighlight">\(\phi\)</span> define the orientation of the director in the laboratory reference
+frame of the beam direction (<span class="math notranslate nohighlight">\(z\)</span>) and detector plane (<span class="math notranslate nohighlight">\(x-y\)</span> plane), while
+the angle <span class="math notranslate nohighlight">\(\Psi\)</span> is effectively the rotational angle around the particle
+<span class="math notranslate nohighlight">\(C\)</span> axis. For <span class="math notranslate nohighlight">\(\theta = 0\)</span> and <span class="math notranslate nohighlight">\(\phi = 0\)</span>, <span class="math notranslate nohighlight">\(\Psi = 0\)</span> corresponds to the
+<span class="math notranslate nohighlight">\(B\)</span> axis oriented parallel to the y-axis of the detector with <span class="math notranslate nohighlight">\(A\)</span> along
+the x-axis. For other <span class="math notranslate nohighlight">\(\theta\)</span>, <span class="math notranslate nohighlight">\(\phi\)</span> values, the order of rotations
+matters. In particular, the parallelepiped must first be rotated <span class="math notranslate nohighlight">\(\theta\)</span>
+degrees in the <span class="math notranslate nohighlight">\(x-z\)</span> plane before rotating <span class="math notranslate nohighlight">\(\phi\)</span> degrees around the <span class="math notranslate nohighlight">\(z\)</span>
+axis (in the <span class="math notranslate nohighlight">\(x-y\)</span> plane). Applying orientational distribution to the
+particle orientation (i.e  <cite>jitter</cite> to one or more of these angles) can get
+more confusing as <cite>jitter</cite> is defined <strong>NOT</strong> with respect to the laboratory
+frame but the particle reference frame. It is thus highly recommended to
+read <a class="reference internal" href="../qtgui/Perspectives/Fitting/orientation/orientation.html#orientation"><span class="std std-ref">Oriented Particles</span></a> for further details of the calculation and angular
+dispersions.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For 2d, constraints must be applied during fitting to ensure that the
+order of sides chosen is not altered, and hence that the correct definition
+of angles is preserved. For the default choice shown here, that means
+ensuring that the inequality <span class="math notranslate nohighlight">\(A &lt; B &lt; C\)</span> is not violated,  The calculation
+will not report an error, but the results may be not correct.</p>
+</div>
+<figure class="align-default" id="id4">
+<img alt="../../_images/parallelepiped_angle_definition.png" src="../../_images/parallelepiped_angle_definition.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 62 </span><span class="caption-text">Definition of the angles for oriented core-shell parallelepipeds.
+Note that rotation <span class="math notranslate nohighlight">\(\theta\)</span>, initially in the <span class="math notranslate nohighlight">\(x-z\)</span> plane, is carried
+out first, then rotation <span class="math notranslate nohighlight">\(\phi\)</span> about the <span class="math notranslate nohighlight">\(z\)</span> axis, finally rotation
+<span class="math notranslate nohighlight">\(\Psi\)</span> is now around the <span class="math notranslate nohighlight">\(C\)</span> axis of the particle. The neutron or X-ray
+beam is along the <span class="math notranslate nohighlight">\(z\)</span> axis and the detecotr defines the <span class="math notranslate nohighlight">\(x-y\)</span> plane.</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id5">
+<img alt="../../_images/parallelepiped_angle_projection.png" src="../../_images/parallelepiped_angle_projection.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 63 </span><span class="caption-text">Examples of the angles for oriented core-shell parallelepipeds against the
+detector plane.</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Validation</strong></p>
+<p>Cross-checked against hollow rectangular prism and rectangular prism for equal
+thickness overlapping sides, and by Monte Carlo sampling of points within the
+shape for non-uniform, non-overlapping sides.</p>
+<figure class="align-default" id="id6">
+<img alt="../../_images/core_shell_parallelepiped_autogenfig.png" src="../../_images/core_shell_parallelepiped_autogenfig.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 64 </span><span class="caption-text">1D and 2D plots corresponding to the default parameters of the model.</span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><strong>Source</strong></p>
+<p><a class="reference download internal" download="" href="../../_downloads/c5802d6eb49d90e3524207396ff7c121/core_shell_parallelepiped.py"><code class="xref download docutils literal notranslate"><span class="pre">core_shell_parallelepiped.py</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/70f19d7245823a6e4f59cd8a4dc2ecc8/core_shell_parallelepiped.c"><code class="xref download docutils literal notranslate"><span class="pre">core_shell_parallelepiped.c</span></code></a>
+<span class="math notranslate nohighlight">\(\ \star\ \)</span> <a class="reference download internal" download="" href="../../_downloads/9ee45b8c6371b0a130036ee53e1f050e/gauss76.c"><code class="xref download docutils literal notranslate"><span class="pre">gauss76.c</span></code></a></p>
+<p><strong>References</strong></p>
+<ol class="arabic simple">
+<li><p>P Mittelbach and G Porod, <em>Acta Physica Austriaca</em>, 14 (1961) 185-211
+Equations (1), (13-14). (in German)</p></li>
+<li><p>D Singh (2009). <em>Small angle scattering studies of self assembly in
+lipid mixtures</em>, Johns Hopkins University Thesis (2009) 223-225. <a class="reference external" href="http://search.proquest.com/docview/304915826">Available
+from Proquest</a></p></li>
+<li><ol class="upperalpha simple" start="12">
+<li><p>Onsager, <em>Ann. New York Acad. Sci.</em>, 51 (1949) 627-659</p></li>
+</ol>
+</li>
+</ol>
+<p><strong>Authorship and Verification</strong></p>
+<ul class="simple">
+<li><p><strong>Author:</strong> NIST IGOR/DANSE <strong>Date:</strong> pre 2010</p></li>
+<li><p><strong>Converted to sasmodels by:</strong> Miguel Gonzalez <strong>Date:</strong> February 26, 2016</p></li>
+<li><p><strong>Last Modified by:</strong> Paul Kienzle <strong>Date:</strong> October 17, 2017</p></li>
+<li><p><strong>Last Reviewed by:</strong> Paul Butler <strong>Date:</strong> May 24, 2018 - documentation
+updated</p></li>
+</ul>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="../qtgui/Perspectives/Fitting/models/shape-parallelepiped.html"
+                          title="previous chapter">Parallelepiped Functions</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="hollow_rectangular_prism.html"
+                          title="next chapter">hollow_rectangular_prism</a></p>
+  </div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/user/models/core_shell_parallelepiped.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<search id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="Related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="hollow_rectangular_prism.html" title="hollow_rectangular_prism"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../qtgui/Perspectives/Fitting/models/shape-parallelepiped.html" title="Parallelepiped Functions"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../../index.html">SasView 6.1.0 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="../user.html" >SasView User Documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../qtgui/Perspectives/Fitting/models/index.html" >Model Functions</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../qtgui/Perspectives/Fitting/models/shape-parallelepiped.html" >Parallelepiped Functions</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">core_shell_parallelepiped</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+    &#169; Copyright 2025, The SasView Project.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    </div>
+  </body>
+</html>
