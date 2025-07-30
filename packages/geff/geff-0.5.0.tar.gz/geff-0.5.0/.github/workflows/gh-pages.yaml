@@ -1,0 +1,71 @@
+name: Docs
+
+# push to the gh-pages branch whenever there is a new push to main or a new tag
+on:
+  push:
+    branches: [main]
+    tags: ["*"]
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  deployments: write
+
+env:
+  TAG: ${{ contains(github.ref, 'tags') && 'latest' || 'dev'}}
+  SETUPTOOLS_SCM_PRETEND_VERSION: "0.0"
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: configure git
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git fetch origin gh-pages --depth=1
+
+      - id: get_version
+        if: github.event_name == 'push'
+        uses: battila7/get-version-action@v2
+
+      # if this workflow is triggered by a push event, deploy the docs to gh-pages
+      - name: Push changes to gh-pages branch
+        if: github.event_name == 'push'
+        run: uv run --group docs mike deploy ${{ steps.get_version.outputs.version }} $TAG -u -p
+
+      # if triggered by a pull request, build the docs and upload them as an artifact
+      - name: Build docs
+        if: github.event_name == 'pull_request'
+        run: uv run --group docs mkdocs build --strict
+
+      # it's too hard (from a security perspective) to host previews from fork PRs
+      # so we skip unless it's a PR from a branch in the same repository
+      - name: Deploy gh-pages preview # https://github.com/rossjrw/pr-preview-action
+        id: preview-step
+        if: github.event_name == 'pull_request' && github.event.pull_request.state != 'closed' && github.event.pull_request.head.repo.full_name == github.repository
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: ./site/
+          comment: false
+
+      # Post the comment manually
+      - name: Post comment with gh-pages preview
+        if: github.event_name == 'pull_request' && github.event.pull_request.state != 'closed' && github.event.pull_request.head.repo.full_name == github.repository
+        uses: peter-evans/commit-comment@v3
+        with:
+          body: |
+            [PR Preview Action](https://github.com/rossjrw/pr-preview-action) ${{ steps.preview-step.outputs.action-version }}
+            :---:
+            | <p></p> :rocket: View preview at <br> ${{ steps.preview-step.outputs.preview-url }} <br><br>
+            | <h6>Built to branch [`gh-pages`](${{ github.server_url }}/${{ github.repository }}/tree/gh-pages) at ${{ steps.preview-step.outputs.action-start-time }}. <br> Preview will be ready when the [GitHub Pages deployment](${{ github.server_url }}/${{ github.repository }}/deployments) is complete. <br><br> </h6>

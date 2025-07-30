@@ -1,0 +1,166 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools_scm]
+
+[project]
+name = "geff"
+description = "Reference implementation of the Graph Exchange File Format"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT License" }
+dynamic = ['version']
+dependencies = [
+    "typer>=0.14.0",
+    "zarr>=2.18,<4",
+    "pydantic>=2.9",
+    "networkx>=3.2.1",
+    "numpy>=1.24",
+    "numpy>=1.26; python_version >= '3.12'",
+    "numpy>=2.1; python_version >= '3.13'",
+    "numcodecs>=0.13,<0.16",                           # TODO: remove pin once the 16 release is stable
+    "numcodecs>=0.15,<0.16; python_version >= '3.13'", # TODO: remove pin once the 16 release is stable
+]
+
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
+[project.optional-dependencies]
+spatial-graph = ["spatial-graph>=0.0.4"]
+ctc = [
+    "dask>=2024.10",
+    "imagecodecs>=2025.3.30",
+    "scikit-image>=0.23.2",
+    "scikit-image>=0.25; python_version >= '3.13'",
+    "tifffile>=2024.10",
+]
+rx = ["rustworkx>=0.16.0"]
+
+[dependency-groups]
+test = ["pytest>=8.3.4", "pytest-cov>=6.2"]
+test-third-party = [
+    { include-group = "test" },
+    "geff[spatial-graph,ctc,rx]",
+    "lxml>=6.0.0",
+]
+dev = [
+    { include-group = "test-third-party" },
+    "ipython>=8.37.0",
+    "mypy>=1.17.0",
+    "pre-commit>=4.2.0",
+    "ruff>=0.12.5",
+    "types-networkx>=3.5.0.20250728",
+    "types-pyyaml>=6.0.12.20250516",
+]
+docs = [
+    "json-schema-for-humans>=1.4.1",
+    "mike>=2.1.3",
+    "mkdocs-api-autonav>=0.3.0",
+    "mkdocs-include-markdown-plugin>=7.1.6",
+    "mkdocs-material>=9.6.16",
+    "mkdocstrings-python>=1.16.12",
+    "mkdocs-typer>=0.0.3",
+    "ruff>=0.12.5",
+    "typing-extensions>=4.14.1",
+]
+bench = [
+    { include-group = "test" },
+    "pytest-codspeed",
+    "geff[rx, spatial-graph]",
+]
+
+
+[project.urls]
+repository = "https://github.com/live-image-tracking-tools/geff"
+homepage = "https://github.com/live-image-tracking-tools/geff"
+
+# https://docs.astral.sh/ruff/rules/
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+fix = true
+
+[tool.ruff.lint]
+pydocstyle = { convention = "google" }
+extend-select = [
+    "E",    # style errors
+    "W",    # style warnings
+    "F",    # flakes
+    "I",    # isort
+    "UP",   # pyupgrade
+    "C4",   # flake8-comprehensions
+    "B",    # flake8-bugbear
+    "A001", # flake8-builtins
+    "RUF",  # ruff-specific rules
+    "TID",  # tidy imports
+    "TC",   # type checking
+    "D102", # undocumented public method
+    "D103", # undocumented public function
+    "D300", # enforces triple double quotes on docstrings
+    "D414", # empty/missing docstring section
+    "D417", # undocumented parameter
+]
+
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*.py" = ["D"]
+"scripts/*.py" = ["D"]
+
+# https://docs.pytest.org/en/6.2.x/customize.html
+[tool.pytest.ini_options]
+minversion = "7.0"
+testpaths = ["tests"]
+pythonpath = ["tests"]
+filterwarnings = [
+    "error",
+    "ignore:'cgi' is deprecated and slated for removal in Python 3.13",
+    # if needed, add global ignores here, for example:
+    # "ignore:Some message:SomeCategory",
+    "ignore:.*skipping conversion test:ImportWarning:networkx",
+]
+
+
+# https://mypy.readthedocs.io/en/stable/config_file.html
+[tool.mypy]
+files = "src/**/"
+# strict = true
+disallow_any_generics = false
+disallow_subclassing_any = false
+show_error_codes = true
+pretty = true
+
+[tool.pyright]
+# in a pydantic-heavy project, there are many false positives
+reportCallIssue = false
+
+# https://coverage.readthedocs.io/en/6.4/config.html
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "@overload",
+    "except ImportError",
+    "raise NotImplementedError()",
+    "pass",
+]
+[tool.coverage.run]
+source = ["src/geff"]
+omit = ["*/__init__.py"]
+
+[tool.typos.default]
+extend-ignore-identifiers-re = ["(?i)ome"]
+
+[project.scripts]
+geff = "geff._cli:app"
+
+[tool.uv.sources]
+geff = { workspace = true }

@@ -1,0 +1,28 @@
+typer>=0.14.0
+zarr<4,>=2.18
+pydantic>=2.9
+networkx>=3.2.1
+numpy>=1.24
+numcodecs<0.16,>=0.13
+
+[:python_version >= "3.12"]
+numpy>=1.26
+
+[:python_version >= "3.13"]
+numpy>=2.1
+numcodecs<0.16,>=0.15
+
+[ctc]
+dask>=2024.10
+imagecodecs>=2025.3.30
+scikit-image>=0.23.2
+tifffile>=2024.10
+
+[ctc:python_version >= "3.13"]
+scikit-image>=0.25
+
+[rx]
+rustworkx>=0.16.0
+
+[spatial-graph]
+spatial-graph>=0.0.4
