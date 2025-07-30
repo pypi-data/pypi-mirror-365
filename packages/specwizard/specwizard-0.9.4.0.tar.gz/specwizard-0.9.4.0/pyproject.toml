@@ -1,0 +1,42 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "specwizard"
+version = "0.9.4.0"
+authors = [
+    { name="Andres Aramburo-Garcia", email="aramburo@lorentz.leidenuniv.nl" },{name = "Tom Theuns", email = "tom.theuns@durham.ac.uk"},
+]
+description="."
+readme = "README.rst"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "numpy",
+    "scipy",
+    "swiftsimio",
+    "mendeleev",
+    "roman",
+    "swiftsimio",
+    "pyread_eagle",
+    "matplotlib",
+    "hydrangea",
+    "bs4",
+    "pyyaml",
+    "h5py",
+    "requests",
+    "html5lib",
+    "astropy"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/specwizard/specwizard"
+"Bug Tracker" = "https://github.com/specwizard/specwizard/issues"
+
+[tool.setuptools.packages.find]
+exclude = ["docs*", "Examples*"]
