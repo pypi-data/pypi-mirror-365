@@ -1,0 +1,489 @@
+{
+    "$defs": {
+        "ArbitraryFieldRestrictedTransducer": {
+            "additionalProperties": false,
+            "properties": {
+                "lower": {
+                    "default": true,
+                    "title": "Lower",
+                    "type": "boolean"
+                },
+                "unicode_normalization": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/NormalizationEnum"
+                        }
+                    ],
+                    "default": "NFC"
+                },
+                "remove_punctuation": {
+                    "default": "[.,/#!$%^&?*';:{}=\\-_`~()]",
+                    "title": "Remove Punctuation",
+                    "type": "string"
+                },
+                "remove_combining_characters": {
+                    "default": true,
+                    "title": "Remove Combining Characters",
+                    "type": "boolean"
+                },
+                "replace_rules": {
+                    "anyOf": [
+                        {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "type": "object"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Replace Rules"
+                },
+                "input_field": {
+                    "title": "Input Field",
+                    "type": "string"
+                },
+                "output_field": {
+                    "title": "Output Field",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "input_field",
+                "output_field"
+            ],
+            "title": "ArbitraryFieldRestrictedTransducer",
+            "type": "object"
+        },
+        "Audio": {
+            "additionalProperties": true,
+            "properties": {
+                "description": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Description"
+                },
+                "filename": {
+                    "title": "Filename",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "filename"
+            ],
+            "title": "Audio",
+            "type": "object"
+        },
+        "NormalizationEnum": {
+            "enum": [
+                "NFC",
+                "NFD",
+                "NFKC",
+                "NKFD",
+                "none"
+            ],
+            "title": "NormalizationEnum",
+            "type": "string"
+        },
+        "ParserEnum": {
+            "enum": [
+                "json",
+                "csv",
+                "psv",
+                "tsv",
+                "xlsx",
+                "custom",
+                "none"
+            ],
+            "title": "ParserEnum",
+            "type": "string"
+        },
+        "ParserTargets": {
+            "additionalProperties": true,
+            "description": "Your ParserTargets define how to parse your data into a list of DictionaryEntry objects",
+            "properties": {
+                "word": {
+                    "title": "Word",
+                    "type": "string"
+                },
+                "definition": {
+                    "title": "Definition",
+                    "type": "string"
+                },
+                "entryID": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Entryid"
+                },
+                "theme": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Theme"
+                },
+                "secondary_theme": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Secondary Theme"
+                },
+                "img": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Img"
+                },
+                "source": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": "",
+                    "title": "Source"
+                },
+                "audio": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/Audio"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "object"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Audio"
+                },
+                "video": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/Video"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "object"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Video"
+                },
+                "definition_audio": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/Audio"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "object"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Definition Audio"
+                },
+                "example_sentence": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "object"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Example Sentence"
+                },
+                "example_sentence_definition": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "object"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Example Sentence Definition"
+                },
+                "example_sentence_audio": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "anyOf": [
+                                    {
+                                        "items": {
+                                            "$ref": "#/$defs/Audio"
+                                        },
+                                        "type": "array"
+                                    },
+                                    {
+                                        "type": "object"
+                                    }
+                                ]
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "object"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Example Sentence Audio"
+                },
+                "example_sentence_definition_audio": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "anyOf": [
+                                    {
+                                        "items": {
+                                            "$ref": "#/$defs/Audio"
+                                        },
+                                        "type": "array"
+                                    },
+                                    {
+                                        "type": "object"
+                                    }
+                                ]
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "object"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Example Sentence Definition Audio"
+                },
+                "optional": {
+                    "anyOf": [
+                        {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "type": "object"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Optional"
+                }
+            },
+            "required": [
+                "word",
+                "definition"
+            ],
+            "title": "ParserTargets",
+            "type": "object"
+        },
+        "Video": {
+            "additionalProperties": true,
+            "properties": {
+                "description": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Description"
+                },
+                "filename": {
+                    "title": "Filename",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "filename"
+            ],
+            "title": "Video",
+            "type": "object"
+        }
+    },
+    "additionalProperties": false,
+    "properties": {
+        "file_type": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/ParserEnum"
+                }
+            ],
+            "default": "none"
+        },
+        "name": {
+            "default": "YourData",
+            "title": "Name",
+            "type": "string"
+        },
+        "skip_header": {
+            "default": false,
+            "title": "Skip Header",
+            "type": "boolean"
+        },
+        "transducers": {
+            "default": [],
+            "items": {
+                "$ref": "#/$defs/ArbitraryFieldRestrictedTransducer"
+            },
+            "title": "Transducers",
+            "type": "array"
+        },
+        "audio_path": {
+            "anyOf": [
+                {
+                    "format": "uri",
+                    "maxLength": 2083,
+                    "minLength": 1,
+                    "type": "string"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "title": "Audio Path"
+        },
+        "video_path": {
+            "anyOf": [
+                {
+                    "format": "uri",
+                    "maxLength": 2083,
+                    "minLength": 1,
+                    "type": "string"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "title": "Video Path"
+        },
+        "img_path": {
+            "anyOf": [
+                {
+                    "format": "uri",
+                    "maxLength": 2083,
+                    "minLength": 1,
+                    "type": "string"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "title": "Img Path"
+        },
+        "targets": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/ParserTargets"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null
+        },
+        "sheet_name": {
+            "anyOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "title": "Sheet Name"
+        },
+        "json_parser_entrypoint": {
+            "anyOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "default": null,
+            "title": "Json Parser Entrypoint"
+        }
+    },
+    "title": "ResourceManifest",
+    "type": "object"
+}
