@@ -1,0 +1,27 @@
+{
+    "name": "multi-language-app",
+    "version": "1.0.0",
+    "language": "multi",
+    "entry": "main.py",
+    "description": "Çoklu dil desteği olan örnek uygulama",
+    "dependencies": [],
+    "languages": {
+        "python": {
+            "entry": "main.py",
+            "dependencies": ["requests"],
+            "description": "Python backend"
+        },
+        "javascript": {
+            "entry": "frontend/app.js",
+            "dependencies": ["express"],
+            "description": "Node.js frontend"
+        },
+        "rust": {
+            "entry": "backend/main.rs",
+            "dependencies": [],
+            "description": "Rust microservice"
+        }
+    },
+    "build_order": ["rust", "python", "javascript"],
+    "run_order": ["python", "javascript"]
+} 
