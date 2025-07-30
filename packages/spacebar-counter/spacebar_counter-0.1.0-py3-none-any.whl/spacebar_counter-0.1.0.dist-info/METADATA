@@ -1,0 +1,59 @@
+Metadata-Version: 2.4
+Name: spacebar-counter
+Version: 0.1.0
+Summary: A CLI tool to count spacebar presses.
+Author: Your Name
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+Requires-Dist: pynput
+Dynamic: author
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# spacebar-counter
+
+A simple CLI tool to count your spacebar presses.
+
+## Installation
+
+From the project root, run:
+
+```
+pip install -e .
+```
+
+## Usage
+
+After installing, run:
+
+```
+spacebar-counter
+```
+
+Press the spacebar. Each press will be counted and printed to the terminal. Press Ctrl+C to exit.
+
+---
+
+### **How to use your new CLI tool**
+
+1. **Install it locally (from your project root):**
+   ```bash
+   pip install -e .
+   ```
+
+2. **Run the CLI from anywhere:**
+   ```bash
+   spacebar-counter
+   ```
+   - Each spacebar press will be counted and printed to the terminal.
+   - Press Ctrl+C to exit.
+
+---
+
+**All unnecessary dependencies and code have been removed.**  
+You now have a clean, single-purpose CLI tool!
+
+Let me know if you want to add more features, publish to PyPI, or need anything else!
