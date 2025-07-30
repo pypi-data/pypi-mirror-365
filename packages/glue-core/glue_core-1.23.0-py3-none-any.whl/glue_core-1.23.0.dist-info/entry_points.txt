@@ -1,0 +1,10 @@
+[console_scripts]
+glue-config = glue.config_gen:main
+
+[glue.plugins]
+coordinate_helpers = glue.plugins.coordinate_helpers:setup
+data_exporters = glue.core.data_exporters:setup
+dendro_factory = glue.plugins.dendro_viewer:setup
+export_python = glue.plugins.tools:setup
+fits_format = glue.io.formats.fits:setup
+wcs_autolinking = glue.plugins.wcs_autolinking:setup
