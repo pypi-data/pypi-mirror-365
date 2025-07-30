@@ -1,0 +1,110 @@
+[build-system]
+requires = ["hatchling", "runtool"]
+build-backend = "hatchling.build"
+
+[project]
+name = "k6"
+version = "v0.57.0"
+# dynamic = ["version"]
+# description = ''
+# readme = "README.md"
+requires-python = ">=3.8"
+# license = "MIT"
+# keywords = []
+# authors = [
+#   { name = "U.N. Owen", email = "void@some.where" },
+# ]
+# classifiers = [
+#   "Development Status :: 4 - Beta",
+#   "Programming Language :: Python",
+#   "Programming Language :: Python :: 3.8",
+#   "Programming Language :: Python :: 3.9",
+#   "Programming Language :: Python :: 3.10",
+#   "Programming Language :: Python :: 3.11",
+#   "Programming Language :: Python :: 3.12",
+#   "Programming Language :: Python :: Implementation :: CPython",
+#   "Programming Language :: Python :: Implementation :: PyPy",
+# ]
+# dependencies = []
+
+# [project.urls]
+# Documentation = "https://github.com/U.N. Owen/k6#readme"
+# Issues = "https://github.com/U.N. Owen/k6/issues"
+# Source = "https://github.com/U.N. Owen/k6"
+
+# [tool.hatch.version]
+# path = "src/k6/__about__.py"
+
+# [tool.hatch.envs.types]
+# extra-dependencies = [
+#   "mypy>=1.0.0",
+# ]
+# [tool.hatch.envs.types.scripts]
+# check = "mypy --install-types --non-interactive {args:src/k6 tests}"
+
+# [tool.coverage.run]
+# source_pkgs = ["k6", "tests"]
+# branch = true
+# parallel = true
+# omit = [
+#   "src/k6/__about__.py",
+# ]
+
+# [tool.coverage.paths]
+# k6 = ["src/k6", "*/k6/src/k6"]
+# tests = ["tests", "*/k6/tests"]
+
+# [tool.coverage.report]
+# exclude_lines = [
+#   "no cov",
+#   "if __name__ == .__main__.:",
+#   "if TYPE_CHECKING:",
+# ]
+
+# [tool.hatch.build.targets.wheel]
+# packages = []
+
+[tool.hatch.build.targets.wheel.hooks.custom]
+path = "build_hook.py"
+
+# COMMON SETTINGS BELOW
+[tool.hatch.envs.hatch-static-analysis]
+config-path = "none"
+
+[tool.pyright]
+pythonVersion = "3.8"
+
+[tool.mypy]
+python_version = "3.8"
+check_untyped_defs = true
+disallow_any_generics = true
+disallow_incomplete_defs = true
+disallow_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+
+[tool.ruff.lint.isort]
+force-single-line = true
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+  "COM812", # missing-trailing-comma
+  "ISC001", # single-line-implicit-string-concatenation
+  "ERA001",
+  "D",
+  "PTH",
+  "T20",
+  "EXE003",
+]
+
+[tool.ruff.format]
+docstring-code-format = true
+docstring-code-line-length = 100
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["S101"]
