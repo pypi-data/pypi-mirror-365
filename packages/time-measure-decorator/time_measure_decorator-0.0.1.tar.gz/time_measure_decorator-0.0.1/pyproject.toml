@@ -1,0 +1,22 @@
+[project]
+name = "time_measure_decorator"
+version = "0.0.1"
+authors = [
+  { name = "Vadim Bazhov", email = "master@remort.net" },
+]
+description = "A tiny helper to measure execution time of a callable to ease your performance checks."
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+        'Intended Audience :: Developers',
+        'Topic :: Software Development :: Libraries :: Python Modules',
+        'Programming Language :: Python',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.10',
+        'Programming Language :: Python :: 3.11',
+        'Programming Language :: Python :: 3.12',
+]
+
+[project.urls]
+Homepage = "https://github.com/pypa/sampleproject"
+Issues = "https://github.com/pypa/sampleproject/issues"

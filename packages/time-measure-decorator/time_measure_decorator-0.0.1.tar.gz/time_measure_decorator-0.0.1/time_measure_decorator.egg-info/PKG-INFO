@@ -1,0 +1,38 @@
+Metadata-Version: 2.4
+Name: time_measure_decorator
+Version: 0.0.1
+Summary: A tiny helper to measure execution time of a callable to ease your performance checks.
+Author-email: Vadim Bazhov <master@remort.net>
+Project-URL: Homepage, https://github.com/pypa/sampleproject
+Project-URL: Issues, https://github.com/pypa/sampleproject/issues
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+
+# time_measure
+A tiny helper to measure execution time of a callable to ease your performance checks.
+
+# Usage examples
+
+Decorate your function or method with `async_measure_time` and see logs for execution time 
+measures after your function is fnished:
+
+```
+from measure_decorator import async_measure_time
+
+@async_measure_time
+async def coro_that_runs_long(*args, **kwargs):
+    ...
+```
+
+Whenever the `coro_that_runs_long` is done, you can see the following in your app logs:
+
+`Func: coro_that_runs_long. Elapsed time in seconds: 0.10037329500482883`
+
+Happy debugging!
