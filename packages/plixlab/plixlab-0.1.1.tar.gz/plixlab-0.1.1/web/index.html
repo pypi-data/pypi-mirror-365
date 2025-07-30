@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Computing Together</title>
+
+    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon">
+
+
+
+<!--<script defer src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>-->
+
+<script defer type="text/javascript" src="assets/js/bokeh-3.6.2.min.js"></script>
+<script defer type="text/javascript" src="assets/js/bokeh-gl-3.6.2.min.js"></script>
+<script defer type="text/javascript" src="assets/js/bokeh-widgets-3.6.2.min.js"></script>
+<script defer type="text/javascript" src="assets/js/bokeh-tables-3.6.2.min.js"></script>
+<script defer type="text/javascript" src="assets/js/bokeh-api-3.6.2.min.js"></script>
+
+<!--"three/examples/jsm/": "https://unpkg.com/three@v0.158.0/examples/jsm/"-->
+
+
+<script type="importmap">
+    {
+      "imports": {
+        "three": "./assets/js/three.module.js",
+        "three/examples/jsm/loaders/GLTFLoader.js":"./assets/js/GLTFLoader.js",
+        "three/examples/jsm/controls/OrbitControls.js":"./assets/js/OrbitControls.js"
+      }
+    }
+</script>
+
+<!--"three": "https://unpkg.com/three@v0.158.0/build/three.module.js"
+
+<script defer type="module" src="assets/js/OrbitControls.js"></script>
+
+<script defer type="text/javascript" src="assets/js/GLTFLoader.js"></script>
+-->
+
+
+<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="assets/css/all.min.css" rel="stylesheet">
+<script defer src="assets/js/plotly-3.0.1.min.js" charset="utf-8"></script>
+
+ <script defer src="assets/js/3Dmol-min.js"></script>
+<script defer src="assets/js/3Dmol.ui-min.js"></script>
+
+
+
+<link rel="stylesheet" href="assets/css/dark.min.css">
+<script defer src="assets/js/marked.min.js"></script>
+<script defer src="assets/js/highlight.min.js"></script>
+<script defer src="assets/js/index.umd.js"></script>
+<script src="assets/js/clipboard.min.js"></script>
+
+
+
+
+<script type="text/javascript" async
+    defer src="assets/js/tex-mml-chtml.js">
+</script>
+
+<script  src="assets/js/fast-json-patch.min.js"> </script>
+
+<script src="assets/js/msgpackr.js"></script>
+  
+
+
+<!--
+<script src="./assets/js/rfc6902.min.js"></script>
+
+<script type="module" src="assets/js/jsonpatch.min.js"></script>-->
+
+    
+  <script>
+    MathJax = {
+        loader: {
+            load: ['input/tex', 'output/chtml', 'ui/menu', '[tex]/ams']
+        },
+        tex: {
+            packages: {'[+]': ['ams']},
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$']],
+            processEscapes: true
+        }
+    };
+</script>
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({ TeX: { extensions: ["color.js"] }});
+</script>
+
+
+
+
+  <link rel="stylesheet" href="assets/css/plixlab.css">
+  <script type='module' src="assets/js/load.js"></script>
+  <script type='module' src="assets/js/plixlab.js"></script>
+
+
+</head>
+
+<body>
+    <div class="control-div">
+        <div class="row justify-content-center">
+
+            <div class="col-auto btn-col">
+                <button class="button-base" id="embed">
+                    <i class="fas fa-code"></i>
+                </button>
+            </div>
+            
+            <div class="col-auto btn-col">
+                <button class="button-base" id="full-screen">
+                    <i class="fas fa-expand"></i>
+                </button>
+            </div>
+             
+            <div class="col-auto btn-col">
+                <button class="button-base" id="switch-view-btn">
+                    <i class="fa-solid fa-border-all"></i>
+                </button>
+            </div>
+          <!--  <div class="col-auto btn-col">
+                <button class="button-base" id="download">
+                    <i class="fas fa-download"></i>
+                </button>
+            </div>
+            <div class="col-auto btn-col">
+                <button class="button-base" id="download_html">
+                    <i class="fas fa-download"></i>
+                </button>
+            </div>
+            
+            <div class="col-auto btn-col">
+                <button class="button-base" id="share">
+                    <i class="fa-solid fa-square-share-nodes"></i>
+                </button>
+            </div>
+            -->
+        </div>
+    </div>
+
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+            <button id="copyBtn" data-clipboard-text=""><i class="fas fa-copy"></i></button>
+            <p id="modalText"></p>
+        </div>
+    </div>
+    
+    
+
+    <div id="slide-container"></div>
+    <!--<div id="loader" class="loader">
+    <div id="slide-container"></div>
+   </div>-->
+
+  <!-- Embed Modal -->
+<div id="embed-modal" style="display:none; position:fixed; top:10%; left:50%; transform:translateX(-50%);
+  width:600px; background:white; border:1px solid #ccc; padding:20px; z-index:1000; box-shadow:0 2px 10px rgba(0,0,0,0.2)">
+  <h2>Share this Plix</h2>
+
+  <label>
+    <input type="checkbox" id="carousel-toggle" /> Enable carousel mode
+  </label>
+
+  <p><strong>Link:</strong></p>
+  <input type="text" id="embed-link" style="width:100%" readonly />
+  <button class="copy-btn" data-clipboard-target="#embed-link">📋 Copy Link</button>
+
+  <p><strong>Embed Code:</strong></p>
+  <textarea id="embed-code" style="width:100%" rows="5" readonly></textarea>
+  <button class="copy-btn" data-clipboard-target="#embed-code">📋 Copy Embed</button>
+
+  <div style="text-align:right; margin-top:10px">
+    <button onclick="document.getElementById('embed-modal').style.display='none'">Close</button>
+  </div>
+</div>
+
+  
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "plixlab"
+version = "0.1.1"
+description = "Interactive scientific presentations in Python"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+  {name = "Giuseppe Romano", email = "romanog@mit.edu"}
+]
+dependencies = [
+  "requests",
+  "plotly",
+  "matplotlib",
+  "pytest",
+  "pycairo",
+  "bibtexparser==1.4.3",
+  "hash_dict",
+  "jsonpointer",
+  "msgpack",
+  "watchdog",
+  "tornado",
+  "jsonpatch",
+  "dict_hash",
+  "dash_bio",
+  "pandas",
+  "bokeh==3.6.2",
+  "numpy==1.26.4"
+]
+
+[project.optional-dependencies]
+docs = [
+  "sphinx>=7",
+  "sphinx-book-theme",
+  "sphinx-copybutton"
+]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["."]
