@@ -1,0 +1,59 @@
+# GoSQL Development Dependencies
+# Install with: pip install -r requirements-dev.txt
+
+# Runtime dependencies
+-r requirements.txt
+
+# Testing framework
+pytest>=6.0
+pytest-cov>=2.0
+pytest-asyncio>=0.15
+pytest-xdist>=2.0
+pytest-mock>=3.6.0
+
+# Code formatting and linting
+black>=21.0
+flake8>=3.8
+mypy>=0.800
+isort>=5.0
+bandit>=1.7.0
+
+# Pre-commit hooks
+pre-commit>=2.0
+
+# Database connectors for benchmarking
+mysql-connector-python>=8.0
+psycopg2-binary>=2.8
+pyodbc>=4.0
+
+# Data analysis and visualization for benchmarks
+matplotlib>=3.0
+pandas>=1.0
+seaborn>=0.11
+numpy>=1.20.0
+
+# Development and testing infrastructure
+docker>=5.0
+testcontainers>=3.0
+tox>=3.20.0
+
+# Documentation
+sphinx>=4.0
+sphinx-rtd-theme>=1.0
+myst-parser>=0.15
+sphinx-autodoc-typehints>=1.12
+
+# Jupyter for benchmark notebooks
+jupyter>=1.0
+ipykernel>=6.0
+notebook>=6.0
+
+# Build tools
+build>=0.7.0
+twine>=3.4.0
+wheel>=0.36.0
+setuptools>=45.0
+setuptools-scm>=6.2
+
+# Type checking
+types-psutil>=5.8.0

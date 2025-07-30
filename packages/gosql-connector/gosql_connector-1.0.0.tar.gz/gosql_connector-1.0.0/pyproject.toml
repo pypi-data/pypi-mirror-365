@@ -1,0 +1,225 @@
+[build-system]
+requires = [
+    "setuptools>=45",
+    "wheel>=0.36.0",
+    "setuptools-scm[toml]>=6.2"
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gosql-connector"
+dynamic = ["version"]
+description = "High-performance Go-based SQL connector library for Python with 2-3x better performance"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [
+    { name = "CoffeeCMS Team", email = "dev@coffeecms.com" }
+]
+maintainers = [
+    { name = "CoffeeCMS Team", email = "dev@coffeecms.com" }
+]
+keywords = [
+    "database", "sql", "mysql", "postgresql", "mssql", "connector", 
+    "performance", "go", "cgo", "high-performance"
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8", 
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Go",
+    "Topic :: Database",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+requires-python = ">=3.7"
+dependencies = [
+    "psutil>=5.8.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "pytest-cov>=2.0",
+    "pytest-asyncio>=0.15",
+    "black>=21.0",
+    "flake8>=3.8",
+    "mypy>=0.800",
+    "isort>=5.0",
+    "pre-commit>=2.0",
+]
+benchmark = [
+    "mysql-connector-python>=8.0",
+    "psycopg2-binary>=2.8",
+    "pyodbc>=4.0",
+    "matplotlib>=3.0",
+    "pandas>=1.0",
+    "seaborn>=0.11",
+    "jupyter>=1.0",
+]
+test = [
+    "pytest>=6.0",
+    "pytest-asyncio>=0.15",
+    "pytest-xdist>=2.0",
+    "docker>=5.0",
+    "testcontainers>=3.0",
+]
+docs = [
+    "sphinx>=4.0",
+    "sphinx-rtd-theme>=1.0",
+    "myst-parser>=0.15",
+    "sphinx-autodoc-typehints>=1.12",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/coffeecms/gosql"
+"Bug Tracker" = "https://github.com/coffeecms/gosql/issues"
+"Documentation" = "https://gosql.readthedocs.io"
+"Source Code" = "https://github.com/coffeecms/gosql"
+"Changelog" = "https://github.com/coffeecms/gosql/blob/main/CHANGELOG.md"
+"Benchmarks" = "https://github.com/coffeecms/gosql/tree/main/benchmarks"
+
+[project.scripts]
+gosql-benchmark = "gosql.benchmarks.benchmark:main"
+gosql-test = "gosql.tests.test_runner:main"
+
+[tool.setuptools]
+zip-safe = false
+include-package-data = true
+
+[tool.setuptools.packages.find]
+exclude = ["tests*", "benchmarks*", "examples*"]
+
+[tool.setuptools.package-data]
+gosql = [
+    "lib/*.so", "lib/*.dll", "lib/*.dylib", "lib/*.h", "py.typed"
+]
+
+[tool.setuptools_scm]
+write_to = "gosql/_version.py"
+version_scheme = "post-release"
+local_scheme = "dirty-tag"
+
+# Black formatting configuration
+[tool.black]
+line-length = 88
+target-version = ['py37', 'py38', 'py39', 'py310', 'py311']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+  | migrations
+)/
+'''
+
+# isort configuration
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 88
+known_first_party = ["gosql"]
+known_third_party = ["pytest", "psutil"]
+
+# MyPy configuration
+[tool.mypy]
+python_version = "3.7"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+show_error_codes = true
+namespace_packages = true
+exclude = [
+    "build/",
+    "dist/",
+    "tests/",
+    "examples/"
+]
+
+[[tool.mypy.overrides]]
+module = [
+    "psutil.*",
+    "ctypes.*"
+]
+ignore_missing_imports = true
+
+# Pytest configuration
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = [
+    "-ra",
+    "--strict-markers",
+    "--strict-config",
+    "--cov=gosql",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--cov-report=xml",
+]
+testpaths = ["tests"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "benchmark: marks tests as benchmarks",
+    "mysql: marks tests that require MySQL",
+    "postgresql: marks tests that require PostgreSQL", 
+    "mssql: marks tests that require SQL Server",
+]
+filterwarnings = [
+    "error",
+    "ignore::UserWarning",
+    "ignore::DeprecationWarning",
+]
+
+# Coverage configuration
+[tool.coverage.run]
+source = ["gosql"]
+omit = [
+    "*/tests/*",
+    "*/benchmarks/*", 
+    "*/examples/*",
+    "setup.py",
+    "gosql/_version.py"
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+
+[tool.coverage.html]
+directory = "htmlcov"
+
+# Flake8 configuration (in setup.cfg since flake8 doesn't support pyproject.toml yet)
+# See setup.cfg for flake8 configuration
+
+# Bandit security linting
+[tool.bandit]
+exclude_dirs = ["tests", "benchmarks", "examples"]
+skips = ["B101", "B601"]  # Skip assert and shell injection tests in test files
