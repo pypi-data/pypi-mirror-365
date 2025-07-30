@@ -1,0 +1,51 @@
+[build-system]
+# setuptools version required for project configured entirely with pyproject.toml
+requires = ["setuptools>=61.0.0", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name="scityping"
+authors = [
+    {name = "Alexandre René", email = "alex.c.rene@gmail.com"},
+]
+description = "Serializable data types for science applications"
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = ["serialization", "scientific computing", "reproducibility"]
+license = {text = "MPL 2.0"}
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Typing :: Typed"
+]
+dependencies = [
+    "pydantic<2",
+    "valconfig"
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+docs = ["sphinx", "myst-parser", "sphinx-book-theme", "sphinxcontrib-mermaid",
+        "numpy", "scipy", "torch", "pint", "quantities"]
+test = ["coverage", "pytest",
+        "numpy", "scipy", "xarray", "torch",
+        "blosc", "pint", "quantities",
+        "netCDF4"]
+
+[project.urls]
+"Documentation" = "https://scityping.readthedocs.io/"
+"Bug Tracker" = "https://github.com/alcrene/scityping/issues"
+"Source" = "https://github.com/alcrene/scityping"
+
+
+[tool.setuptools_scm]
+write_to = "scityping/_version.py"
