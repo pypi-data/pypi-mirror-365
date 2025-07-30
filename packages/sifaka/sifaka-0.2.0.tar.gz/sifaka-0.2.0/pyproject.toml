@@ -1,0 +1,191 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sifaka"
+version = "0.2.0"
+description = "Simple AI text improvement through research-backed critique with complete observability"
+authors = [{name = "Evan Volgas", email = "evan.volgas@gmail.com"}]
+license = "MIT"
+readme = "README.md"
+requires-python = ">=3.10,<3.14"
+keywords = ["ai", "llm", "validation", "text-improvement", "critique"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+# Core dependencies - minimal for basic functionality
+dependencies = [
+    "pydantic>=2.11.3",
+    "pydantic-ai>=0.0.14",
+    "openai>=1.82.0",
+    "httpx>=0.28.1",
+    "python-dotenv>=1.0.1",
+    "aiofiles>=24.1.0", # Required for FileStorage backend
+    "logfire>=3.21.1",
+    "redis>=6.2.0",
+    "beautifulsoup4>=4.12.0",  # Required for web_search tool
+    "numpy>=1.24.0",  # Required for vector embeddings
+    "typing-extensions>=4.0.0",  # For TypedDict on Python < 3.12
+    "defusedxml>=0.7.1",  # For secure XML parsing
+]
+
+[project.optional-dependencies]
+# Model providers
+anthropic = ["anthropic>=0.50.0"]
+gemini = ["google-generativeai>=0.8.5"]
+
+# Validation
+# TODO: Re-enable guardrails once they release a version with updated griffe dependency
+# The fix is already in their main branch but not yet released
+# guardrails = ["guardrails-ai>=0.6.0"]
+
+# Tool support (temporarily disabled until sifaka-tools is published)
+# tools = ["sifaka-tools>=0.0.1"]
+
+# Storage backends
+redis = ["redis>=5.0.0"]
+
+# Development tools
+dev = [
+    # Testing
+    "pytest>=8.0.2",
+    "pytest-cov>=4.1.0",
+    "pytest-asyncio>=0.21.0",
+    "pytest-mock>=3.14.0",
+    "pytest-xdist>=3.6.1",  # Parallel test execution
+
+    # Code quality
+    "black>=24.2.0",
+    "mypy>=1.9.0",
+    "ruff>=0.3.0",
+    "types-redis>=4.6.0",  # Type stubs for redis
+    "types-aiofiles>=24.1.0",  # Type stubs for aiofiles
+
+    # Interactive development
+    "ipython>=8.0.0",
+    "rich>=13.7.1",  # Better terminal output
+    "ipdb>=0.13.13",  # IPython debugger
+
+    # Documentation
+    "mkdocs>=1.6.0",
+    "mkdocs-material>=9.5.0",
+    "mkdocstrings[python]>=0.25.0",
+
+    # Development utilities
+    "pre-commit>=3.7.1",
+    "watchdog>=4.0.1",  # File watching
+    "python-dotenv>=1.0.1",  # Already in core, but good for dev too
+    "psutil>=5.9.0",  # Process and system monitoring for tests
+    "setuptools>=60.0.0",  # For pkg_resources compatibility
+    "twine>=4.0.0",  # For checking built packages
+]
+
+# All features
+# TODO: Add guardrails back once they release a version with updated griffe dependency
+all = ["sifaka[anthropic,gemini,redis,dev]"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["sifaka*"]
+
+[tool.setuptools.package-data]
+sifaka = ["py.typed"]
+
+[tool.black]
+line-length = 88
+target-version = ['py39', 'py310', 'py311', 'py312']
+
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+
+[tool.ruff.lint]
+# Select specific rules for auto-fixing
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes (unused imports, etc.)
+    "I",    # isort (import sorting)
+]
+
+# Rules to ignore
+ignore = [
+    "E501",   # line too long (handled by formatter)
+]
+
+# Allow autofix for these rules
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.lint.isort]
+known-first-party = ["sifaka"]
+combine-as-imports = true
+
+[tool.ruff.format]
+# Formatting options
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = ["--strict-markers", "--cov=sifaka", "--cov-report=term-missing"]
+testpaths = ["tests"]
+markers = [
+    "slow: marks tests as slow",
+    "integration: marks tests as integration tests",
+    "performance: marks tests as performance tests"
+]
+
+[tool.mypy]
+python_version = "3.10"  # Match the minimum required version
+# Stricter settings for better type safety
+strict = true  # Enable all strict type checking flags
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+show_error_codes = true
+pretty = true
+# Additional strict settings
+disallow_any_generics = true
+disallow_subclassing_any = true
+disallow_untyped_calls = true
+disallow_incomplete_defs = true
+disallow_untyped_decorators = true
+no_implicit_reexport = true
+strict_optional = true
+strict_equality = true
+# Error on missing type annotations
+warn_no_return = true
+warn_unreachable = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+disallow_untyped_defs = false
+
+[[tool.mypy.overrides]]
+module = "sifaka.tests.*"
+disallow_untyped_defs = false
+
+[[tool.mypy.overrides]]
+module = ["dotenv", "openai", "openai.*", "pydantic_ai", "pydantic_ai.*", "logfire", "importlib_metadata", "pytest"]
+ignore_missing_imports = true
+
+[dependency-groups]
+dev = [
+    "bandit>=1.8.6",
+]
