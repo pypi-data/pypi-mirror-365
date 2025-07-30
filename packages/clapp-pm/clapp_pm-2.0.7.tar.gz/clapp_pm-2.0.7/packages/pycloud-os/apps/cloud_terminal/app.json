@@ -1,0 +1,59 @@
+{
+  "id": "cloud_terminal",
+  "name": "Cloud Terminal",
+  "version": "2.0.0",
+  "description": "PyCloud OS için modern, modüler, sistemle entegre terminal uygulaması. Geliştirici dostu CLI ortamı, komut geçmişi, çoklu oturum desteği ile birlikte gelir.",
+  "entry": "main.py",
+  "exec": "python3 main.py",
+  "icon": "icon.png",
+  "category": "Sistem",
+  "developer": "PyCloud OS Team",
+  "license": "MIT",
+  "homepage": "https://pycloudos.dev/apps/cloud_terminal",
+  "tags": [
+    "terminal",
+    "cli",
+    "command",
+    "shell",
+    "sistem",
+    "developer",
+    "modern",
+    "tabs"
+  ],
+  "features": [
+    "Sistem içi komut desteği (clapp, fs, users, mem, notify, thread)",
+    "Komut geçmişi (↑↓ ile gezinme), geçmiş temizleme, komut arama",
+    "Oturum bazlı sekmeler (çoklu terminal penceresi)",
+    "Renkli çıktı desteği, hata mesajı ayrımı (stdout / stderr)",
+    "Autocomplete / öneri (cd, list, clapp komutları gibi)",
+    "Terminal stilleri: hacker, klasik, transparan",
+    "Çıktı kopyalama / temizleme / kaydetme seçenekleri",
+    "Komut sınıflandırma: sistem, dosya, kullanıcı, geliştirici",
+    "Temaya uygun koyu/açık arayüz geçişi"
+  ],
+  "screenshots": [
+    "screenshots/main.png",
+    "screenshots/tabs.png",
+    "screenshots/autocomplete.png",
+    "screenshots/themes.png"
+  ],
+  "requires": [
+    "python3",
+    "pyqt6",
+    "psutil",
+    "core.fs",
+    "core.process",
+    "core.thread",
+    "core.users",
+    "core.config"
+  ],
+  "permissions": {
+    "fs.read": true,
+    "fs.write": true,
+    "processes": true,
+    "threads": true,
+    "system": true,
+    "clipboard": true
+  },
+  "signature": "sha256:modern_cloud_terminal_v2..."
+} 
