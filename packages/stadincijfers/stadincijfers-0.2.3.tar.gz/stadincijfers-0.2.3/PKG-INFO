@@ -1,0 +1,82 @@
+Metadata-Version: 2.4
+Name: stadincijfers
+Version: 0.2.3
+Summary: A python package to make data from stadincijfers easily available for data scientists. 
+Home-page: https://github.com/Team-Data-Antwerpen/stadincijfers.py
+Author: Kay Warrie, Sofie Cromheeke
+Author-email: kaywarrie@gmail.com, sofie.cromheeke@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=2.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pandas
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+Stad in Cijfers, python API
+================
+
+Purpose
+----
+
+A python package to make data from stadincijfers easely available for data scientists. 
+
+Intro
+-----
+
+Via the website 'Stad in cijfers' you can consult statistical data on various themes. In principle for the city of Antwerp, all data on 'Stad in cijfers' is open data and can therefore be used freely, unless stated otherwise.
+
+Many local goverments in Flanders have a website like this:
+
+- Gent: https://gent.buurtmonitor.be
+- Antwerp: https://stadincijfers.antwerpen.be/databank
+- The provinces: https://provincies.incijfers.be
+
+Other websites that use the same platform:
+- IMA-Atlas: https://atlas.ima-aim.be/
+- Bevolkingsonderzoek: https://bevolkingsonderzoek.incijfers.be/
+
+Installation:
+--------------
+
+from [pypi](https://pypi.org/project/stadincijfers/): 
+
+    pip install stadincijfers
+
+or from sources: 
+    
+    git clone https://github.com/warrieka/stadincijfers.py
+    cd stadincijfers.py
+    pip install -r requirements.txt
+    pip install .
+
+Usage:
+-----
+
+1) List periodlevels in the SIC site of Antwerp. 
+```python
+    from stadincijfers import stadincijfers
+    sic = stadincijfers("antwerpen") #or gent or provincies or ima-atlas or bevolkingsonderzoek or url
+    sic.periodlevels() #=> get all periodslevels
+```
+
+2) Export excel: 
+```python
+    from stadincijfers import stadincijfers
+    sic = stadincijfers("antwerpen") #or gent or provincies or url
+    bevdicht = sic.selectiontableasDataframe('bevdicht', geolevel='sector', periodlevel='year', period=2022)
+    bevdicht.to_excel('data\\bevdicht2022.xlsx') # save to excel
+```
+
+
+For more see example jupyter notebook: [example_usage.ipynb](example_usage.ipynb)
