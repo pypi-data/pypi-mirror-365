@@ -1,0 +1,57 @@
+[project]
+name = "hdrezka"
+version = "4.0.3"
+description = "HDRezka Python API"
+authors = [{ name = "Nikita Denissov", email = "nikdissv@proton.me" }]
+license = { file = "LICENSE" }
+readme = "README.md"
+
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "Intended Audience :: Information Technology",
+    "Intended Audience :: Other Audience",
+    "Intended Audience :: Telecommunications Industry",
+    "License :: OSI Approved",
+    "License :: OSI Approved :: MIT License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Internet",
+    "Topic :: Internet :: WWW/HTTP",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Multimedia :: Video"
+]
+keywords = ["HDRezka", "watch online", "api", "stream", "m3u8", "hls"]
+
+requires-python = ">=3.10"
+dependencies = [
+    "httpx (>=0.28.1,<0.29.0)",
+    "beautifulsoup4 (>=4.13.4,<5.0.0)",
+    "lxml (>=6.0.0,<7.0.0); python_version < '3.14'"
+]
+
+[project.urls]
+homepage = "https://github.com/NIKDISSV-Forever/HDRezka"
+repository = "https://github.com/NIKDISSV-Forever/HDRezka"
+documentation = "https://nikdissv-forever.github.io/HDRezka/hdrezka"
+"Bug Tracker" = "https://github.com/NIKDISSV-Forever/HDRezka/issues"
+
+[project.optional-dependencies]
+socks = ["httpx[socks] (>=0.28.1,<0.29.0)"]
+
+[tool.poetry.group.dev.dependencies]
+pdoc3 = "^0.11.6"
+python-dotenv = "^1.1.1"
+twine = "^6.1.0"
+mypy = "^1.17.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

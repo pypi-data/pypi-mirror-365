@@ -1,0 +1,155 @@
+Metadata-Version: 2.3
+Name: hdrezka
+Version: 4.0.3
+Summary: HDRezka Python API
+License: MIT License
+         
+         Copyright (c) 2023-2025 Nikita Denissov
+         
+         Permission is hereby granted, free of charge, to any person obtaining a copy
+         of this software and associated documentation files (the "Software"), to deal
+         in the Software without restriction, including without limitation the rights
+         to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+         copies of the Software, and to permit persons to whom the Software is
+         furnished to do so, subject to the following conditions:
+         
+         The above copyright notice and this permission notice shall be included in all
+         copies or substantial portions of the Software.
+         
+         THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+         IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+         FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+         AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+         LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+         OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+         SOFTWARE.
+Keywords: HDRezka,watch online,api,stream,m3u8,hls
+Author: Nikita Denissov
+Author-email: nikdissv@proton.me
+Requires-Python: >=3.10
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: Intended Audience :: Information Technology
+Classifier: Intended Audience :: Other Audience
+Classifier: Intended Audience :: Telecommunications Industry
+Classifier: License :: OSI Approved
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Programming Language :: Python :: 3.14
+Classifier: Topic :: Internet
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Multimedia :: Video
+Provides-Extra: socks
+Requires-Dist: beautifulsoup4 (>=4.13.4,<5.0.0)
+Requires-Dist: httpx (>=0.28.1,<0.29.0)
+Requires-Dist: httpx[socks] (>=0.28.1,<0.29.0) ; extra == "socks"
+Requires-Dist: lxml (>=6.0.0,<7.0.0) ; python_version < "3.14"
+Project-URL: Bug Tracker, https://github.com/NIKDISSV-Forever/HDRezka/issues
+Project-URL: Documentation, https://nikdissv-forever.github.io/HDRezka/hdrezka
+Project-URL: Homepage, https://github.com/NIKDISSV-Forever/HDRezka
+Project-URL: Repository, https://github.com/NIKDISSV-Forever/HDRezka
+Description-Content-Type: text/markdown
+
+# HDRezka site API
+
+# Install
+
+`pip install HDRezka`
+
+# Example
+
+```python
+import asyncio
+import os
+
+from hdrezka import Search
+from hdrezka.api.http import login_global
+
+
+async def main():
+    await login_global(os.environ['LOGIN_NAME'], os.environ['LOGIN_PASSWORD'])
+    player = await (await Search('Breaking Bad').get_page(1))[0].player
+    # or use url (await Player('series/thriller/646-vo-vse-tyazhkie-2008.html'))
+    print(player.post.info, end='\n\n')
+
+    translator_id = None  # default
+    for name, id_ in player.post.translators.name_id.items():
+        if 'субтитры' in name.casefold(): translator_id = id_; break
+
+    stream = await player.get_stream(1, 1, translator_id, )  # raise AJAXFail if invalid episode or translator
+    video = stream.video
+    print(await video.last_url[-1])  # best quality (.m3u8) (last source)
+    # source - is not a finished link, await will return the link after the redirect
+    print(await video[video.min].last_url[0].mp4, end='\n\n')  # worst quality (.mp4) (first source)
+
+    subtitles = stream.subtitles
+    print(subtitles.default.url)  # subtitles.ru.url or subtitles['Русский'].url
+
+
+if __name__ == '__main__': asyncio.run(main())
+```
+
+# Bypass Blocking
+
+## Custom HOST
+
+```python
+from hdrezka.url import Request
+
+Request.HOST = 'https://hdrezka.club/'
+```
+
+> If the specified domain is protected by Cloudflare, successful response retrieval from the server cannot be guaranteed
+> and may be inconsistent. See [this file](https://github.com/NIKDISSV-Forever/HDRezka/blob/main/mirrors.txt).
+
+# Proxies
+
+> pip install hdrezka[socks]
+>
+> tor
+
+```python
+import httpx
+
+import hdrezka.api.http
+
+hdrezka.api.http.DEFAULT_CLIENT = httpx.AsyncClient(
+    headers={'User-Agent': 'Mozilla/5.0'},
+    proxy='socks5://localhost:9050'
+)
+```
+
+## Log In (recommended for now)
+
+Create an account on HDRezka.
+
+If registration is temporarily disabled, try logging in via social media and resetting your password (so that you have
+one completely).
+
+Call `hdrezka.api.http.login_global` - this function will send a request to `hdrezka.api.http.Request.REDIRECT_URL`,  
+which will redirect to an active mirror. The function will then store the retrieved mirror globally in `Request.HOST`  
+and save the cookies in `hdrezka.api.http.DEFAULT_CLIENT`.
+
+```python
+import os
+
+from hdrezka.api.http import login_global
+
+
+async def main():
+    await login_global(os.environ['LOGIN_NAME'], os.environ['LOGIN_PASSWORD'])
+```
+
+This method will also help if HDRezka considers your IP suspicious, suggests changing your VPN (proxy),
+and returns a 403 error.
+
+# [Documentation](https://nikdissv-forever.github.io/HDRezka/)
+
