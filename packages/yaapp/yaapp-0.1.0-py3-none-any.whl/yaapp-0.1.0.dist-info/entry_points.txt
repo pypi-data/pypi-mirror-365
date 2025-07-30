@@ -1,0 +1,6 @@
+[console_scripts]
+yapp = yapp.cli:main
+
+[yapp.runners]
+cli = yapp.runners.cli:CLIRunner
+fastapi = yapp.runners.fastapi:FastAPIRunner

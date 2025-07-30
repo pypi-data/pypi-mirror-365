@@ -1,0 +1,226 @@
+Metadata-Version: 2.4
+Name: yaapp
+Version: 0.1.0
+Summary: Yet Another Python Package - A library bridging FastAPI and CLI interfaces
+Author: yaapp Team
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/yapp-team/yaapp
+Project-URL: Documentation, https://yapp.readthedocs.io
+Project-URL: Repository, https://github.com/yapp-team/yapp
+Project-URL: Issues, https://github.com/yapp-team/yapp/issues
+Project-URL: Changelog, https://github.com/yapp-team/yapp/blob/main/CHANGELOG.md
+Keywords: cli,web,fastapi,click,bridge
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: fastapi>=0.100.0
+Requires-Dist: click>=8.0.0
+Requires-Dist: uvicorn[standard]>=0.23.0
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: requests>=2.32.4
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Requires-Dist: black>=23.0.0; extra == "dev"
+Requires-Dist: ruff>=0.1.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Requires-Dist: pre-commit>=3.0.0; extra == "dev"
+Provides-Extra: tui
+Requires-Dist: prompt-toolkit>=3.0.0; extra == "tui"
+Requires-Dist: typer>=0.9.0; extra == "tui"
+Requires-Dist: rich>=13.0.0; extra == "tui"
+Dynamic: license-file
+
+# yapp - Yet Another Python Package
+
+A Python library that bridges FastAPI and CLI interfaces, inspired by [fast-agent](https://github.com/evalstate/fast-agent).
+
+## Overview
+
+yapp provides the "missing glue" between FastAPI and CLI development, enabling developers to write functions once and automatically get both web API endpoints and command-line interfaces.
+
+## Features
+
+- **Write Once, Deploy Everywhere**: Single function definitions work as both CLI commands and web endpoints
+- **Decorator-Based**: Clean, declarative syntax using Python decorators
+- **Context-Aware**: Automatically detects whether to run as CLI or web based on environment
+- **Configuration-Driven**: Uses YAML configuration files following fast-agent patterns
+- **Zero Boilerplate**: Minimal configuration required to get started
+
+## Quick Start
+
+### Installation
+
+```bash
+pip install yapp
+```
+
+### Basic Usage
+
+```python
+from yapp import YApp
+
+# Create yapp instance
+app = YApp()
+
+# Method 1: Using as decorator
+@app.expose
+def greet(name: str, formal: bool = False) -> str:
+    """Greet a person."""
+    greeting = "Good day" if formal else "Hello"
+    return f"{greeting}, {name}!"
+
+@app.expose
+class Calculator:
+    """A simple calculator."""
+
+    def add(self, x: int, y: int) -> int:
+        return x + y
+
+# Method 2: Using as method call with dictionary tree
+app.expose(
+    "math": {
+        "subtract": lambda x, y: x - y,
+        "multiply": lambda x, y: x * y
+    },
+    "utils": {
+        "reverse": lambda s: s[::-1]
+    }
+})
+
+if __name__ == "__main__":
+    # Context-aware execution
+    app.run()
+```
+
+### CLI Usage
+
+```bash
+# Framework automatically creates CLI commands
+python app.py greet --name "Alice" --formal
+# Output: Good day, Alice!
+
+python app.py Calculator add --x 5 --y 3
+# Output: 8
+
+python app.py math.subtract --x 10 --y 4
+# Output: 6
+```
+
+### Web Usage
+
+Create a `yapp.yaml` configuration file:
+
+```yaml
+execution_mode: "web"
+server:
+  host: "127.0.0.1"
+  port: 8000
+```
+
+Then run:
+
+```bash
+python app.py
+# Starts FastAPI server with auto-generated endpoints
+```
+
+API endpoints are automatically created:
+- `POST /greet`
+- `POST /Calculator/add`
+- `POST /math/subtract`
+
+## Configuration
+
+yapp uses YAML configuration files following fast-agent patterns:
+
+### yapp.yaml
+
+```yaml
+# Top-level execution settings
+execution_mode: "auto"  # "cli", "web", or "auto"
+execution_engine: "asyncio"
+
+# Server configuration (for web mode)
+server:
+  host: "127.0.0.1"
+  port: 8000
+  reload: true
+
+# CLI configuration
+cli:
+  help_color: true
+  progress_bars: true
+
+# Logging
+logging:
+  type: "console"
+  level: "info"
+```
+
+### yapp.secrets.yaml
+
+```yaml
+# Sensitive configuration (merged with yapp.yaml)
+environment:
+  api_keys:
+    openai: "sk-actual-key-here"
+```
+
+## Context Detection
+
+yapp automatically detects execution context with this priority:
+
+1. **Configuration files** (`yapp.yaml` + `yapp.secrets.yaml`)
+2. **Environment variables** (`YAPP_MODE=web`, `PORT=8000`)
+3. **Command line arguments** (presence of args = CLI mode)
+4. **Default behavior** (CLI mode)
+
+## Architecture
+
+yapp is inspired by fast-agent's architecture and provides:
+
+- **Smart `expose()` method** that works as both decorator and method call
+- **Function registry** with support for nested namespaces
+- **Auto-generation engine** that creates CLI commands and web endpoints
+- **Configuration system** with environment variable support
+- **Context-aware execution** with single entry point
+
+## Development
+
+```bash
+# Clone the repository
+git clone https://github.com/yapp-team/yapp.git
+cd yapp
+
+# Install in development mode
+pip install -e ".[dev]"
+
+# Run tests
+pytest
+
+# Format code
+black src/
+ruff check src/ --fix
+
+# Type checking
+mypy src/
+```
+
+## License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
+## Inspiration
+
+This project is inspired by [fast-agent](https://github.com/evalstate/fast-agent) and follows similar configuration patterns while focusing specifically on bridging CLI and web interfaces.
