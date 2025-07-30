@@ -1,0 +1,14 @@
+{
+  "windows": { "versions": [["10","0"],["11","0"]],
+               "arch": ["x64","arm64"] },
+  "macos":   { "versions": [["13","0"],["14","0"]],
+               "arch": ["x86_64","arm64"] },
+  "linux":   { "distros": ["Ubuntu","Fedora","Arch","Debian"],
+               "arch": ["x86_64","aarch64"] },
+  "android": { "versions": [["12","0"],["13","0"],["14","0"]],
+               "devices": ["Pixel 8 Pro","SM-S918B","OnePlus 11"] },
+  "ios":     { "versions": [["16","0"],["17","0"]],
+               "devices": ["iPhone15,3","iPad14,6"] },
+  "chromeos":{ "versions": [["15572","0"],["15750","0"]],
+               "arch": ["x86_64","arm"] }
+}

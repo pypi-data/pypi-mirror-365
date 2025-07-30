@@ -1,0 +1,40 @@
+{
+  "chrome":  {
+    "min": 138,
+    "max": 141,
+    "engine": "Blink",
+    "channels": ["stable", "beta", "dev", "canary"]
+  },
+  "firefox": {
+    "min": 141,
+    "max": 143,
+    "engine": "Gecko",
+    "channels": ["stable", "beta", "nightly", "esr"]
+  },
+  "safari":  {
+    "min": 16,
+    "max": 19,
+    "engine": "WebKit"
+  },
+  "edge":    {
+    "min": 138,
+    "max": 140,
+    "engine": "Blink",
+    "channels": ["stable", "beta", "dev"]
+  },
+  "opera":   {
+    "min": 120,
+    "max": 121,
+    "engine": "Blink"
+  },
+  "brave":   {
+    "min": 1.80,
+    "max": 1.82,
+    "engine": "Blink"
+  },
+  "yandex":  {
+    "min": 25.7,
+    "max": 25.8,
+    "engine": "Blink"
+  }
+}
