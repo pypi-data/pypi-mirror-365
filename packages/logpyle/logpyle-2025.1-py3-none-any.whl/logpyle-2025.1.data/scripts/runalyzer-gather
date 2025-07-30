@@ -1,0 +1,57 @@
+#!python
+
+
+def main() -> None:
+    import sys
+    from optparse import OptionParser
+
+    from logpyle.runalyzer_gather import (FeatureGatherer, gather_multi_file,
+                                          make_name_map, scan)
+
+    parser = OptionParser(usage="%prog OUTDB DBFILES ...")
+    parser.add_option("-s", "--show-features", action="store_true",
+            help="Only print the features found and quit")
+    parser.add_option("-d", "--dir-features", action="store_true",
+            help="Extract features from directory names")
+    parser.add_option("-f", "--file-features", default=None,
+            metavar="FILENAME",
+            help="Read additional features from file, with lines like: "
+            "'dirname: key=value, key=value'")
+    parser.add_option("-m", "--feature-map", default=None,
+            help="Specify a feature name map.",
+            metavar="F1=FNAME1,F2=FNAME2")
+    parser.add_option("-q", "--quantity-map", default=None,
+            help="Specify a quantity name map.",
+            metavar="Q1=QNAME1,Q2=QNAME2")
+    options, args = parser.parse_args()
+
+    if len(args) < 2:
+        parser.print_help()
+        sys.exit(1)
+
+    outfile = args[0]
+    from os.path import exists
+    infiles = [fn for fn in args[1:] if exists(fn)]
+    not_found_files = [fn for fn in args[1:] if not exists(fn)]
+    if not_found_files:
+        from warnings import warn
+        warn("Warning: The following files were not found and are being ignored:\n  "
+             + "\n  ".join(not_found_files))
+
+    # list of run features as {name: sql_type}
+    fg = FeatureGatherer(options.dir_features, options.file_features)
+    features, dbname_to_run_id = scan(fg, infiles)
+
+    fmap = make_name_map(options.feature_map)
+    qmap = make_name_map(options.quantity_map)
+
+    if options.show_features:
+        for feat_name, feat_type in features.items():
+            print(fmap.get(feat_name, feat_name), feat_type)
+        sys.exit(0)
+
+    gather_multi_file(outfile, infiles, fmap, qmap, fg, features, dbname_to_run_id)
+
+
+if __name__ == "__main__":
+    main()
