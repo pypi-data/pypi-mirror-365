@@ -1,0 +1,17 @@
+Metadata-Version: 2.4
+Name: snz-movie-recsys
+Version: 0.1.2
+Summary: A LangGraph-powered chatbot using tools like OpenAI
+Author-email: Seungho Song <songseungho9258@gmail.com>
+Project-URL: Homepage, https://github.com/Team-SNZ/snz-movie-recsys
+Project-URL: Repository, https://github.com/Team-SNZ/snz-movie-recsys
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: langchain
+Requires-Dist: langgraph
+Requires-Dist: langchain-openai
+Requires-Dist: langchain-tavily
+Requires-Dist: python-dotenv
+
+# snz-movie-recsys
+SNZ 팀의 챗봇 기반 영화 추천 라이브러리
