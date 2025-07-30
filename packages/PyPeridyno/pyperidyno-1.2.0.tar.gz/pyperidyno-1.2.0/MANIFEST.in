@@ -1,0 +1,19 @@
+include LICENSE
+include setup.py
+include media
+include README.rst
+include src/*
+include src/font/*
+include src/example/CodimensionalPD/*
+include src/example/DualParticle/*
+include src/example/HeightField/*
+include src/example/Modeling/*
+include src/example/Peridynamics/*
+include src/example/RigidBody/*
+include src/example/SemiAnalytical/*
+include src/example/SPH/*
+include src/example/Tools/*
+include src/example/Tutorials/*
+include src/example/Volume/*
+
+exclude test/*
