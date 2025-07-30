@@ -1,0 +1,12 @@
+
+[open_py]
+highspy
+pyscipopt
+
+[open_py:sys_platform != "win32"]
+cylp
+
+[public_py]
+gurobipy
+coptpy
+xpress
