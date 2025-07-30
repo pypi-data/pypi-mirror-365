@@ -1,0 +1,16 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Generated rules for Firestore schema
+    // Auto-generated on: {{ generation_timestamp }}
+    // Schema version: {{ schema_version }}
+    
+    {{ collection_rules }}
+    
+    // Default deny rule for unmatched paths
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
