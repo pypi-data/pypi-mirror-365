@@ -1,0 +1,60 @@
+Metadata-Version: 2.1
+Name: zone-hub
+Version: 0.1.0.dev2
+Summary: Zone framework for acceptance testing 
+Home-page: http://10.133.122.70/liuhaijiang/zmclient
+Author: Stefan Zweig
+Author-email: stefan.zweig@gmail.com
+License: Apache License 2.0
+Download-URL: https://pypi.org/project/zone-hub
+Project-URL: Source, http://10.133.122.70/liuhaijiang/zmclient
+Keywords: framework automation-test automation-testing atdd bdd
+Platform: any
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Requires-Python: >=3.8
+Description-Content-Type: text/x-rst
+Requires-Dist: thrift
+Requires-Dist: PyYAML (==6.0.2)
+Provides-Extra: dev
+Requires-Dist: pytest ; extra == 'dev'
+Requires-Dist: black ; extra == 'dev'
+Requires-Dist: furo ; extra == 'dev'
+Requires-Dist: sphinx-autobuild ; extra == 'dev'
+Requires-Dist: codespell ; extra == 'dev'
+Requires-Dist: sphinx-copybutton ; extra == 'dev'
+Requires-Dist: beanbag-docutils (>=2.0) ; extra == 'dev'
+Requires-Dist: pygments-csv-lexer ; extra == 'dev'
+Provides-Extra: docs
+Requires-Dist: furo ; extra == 'docs'
+Requires-Dist: sphinx-autobuild ; extra == 'docs'
+Requires-Dist: codespell ; extra == 'docs'
+Requires-Dist: sphinx-copybutton ; extra == 'docs'
+Requires-Dist: beanbag-docutils (>=2.0) ; extra == 'docs'
+Requires-Dist: pygments-csv-lexer ; extra == 'docs'
+
+Zone-Hub
+==========
+
+参考用例
+-------------------
+
+``pip install zone-hub``
+
+.. code:: python
+
+    # import the library
+    import zone
+
+参考文档
+--------------------
+
+参考文档可以在这里找到：`zone-hub.readthedocs.org <https://zone-hub.readthedocs.org/en/stable/>`__.
+
+
