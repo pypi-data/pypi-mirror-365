@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "klang_bas"
+version = "0.1.2"
+description = "Get current keyboard layout language on Windows"
+readme = "README.md"
+requires-python = ">=3.7"
+license = {text = "MIT"}
+authors = [
+  { name="Abdelrahman", email="abdelrahmanmbartak@gmail.com" }
+]
+dependencies = [
+  "pywin32"
+]
+
+[project.urls]
+Homepage = "https://github.com/AbodyPrmaga/"
+Repository = "https://github.com/AbodyPrmaga/klang"
