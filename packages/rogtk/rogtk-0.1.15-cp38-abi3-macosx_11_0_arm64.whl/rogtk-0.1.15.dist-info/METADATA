@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: rogtk
+Version: 0.1.15
+Classifier: Programming Language :: Rust
+Classifier: Programming Language :: Python :: Implementation :: CPython
+Classifier: Programming Language :: Python :: Implementation :: PyPy
+Requires-Dist: polars>=1.25,!=1.26.*
+Requires-Dist: pytest>=7.0 ; extra == 'test'
+Provides-Extra: test
+Requires-Python: >=3.10
