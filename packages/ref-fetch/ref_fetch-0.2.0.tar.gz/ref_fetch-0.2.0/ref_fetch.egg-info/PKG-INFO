@@ -1,0 +1,38 @@
+Metadata-Version: 2.4
+Name: ref-fetch
+Version: 0.2.0
+Summary: Automates fetching and caching of documentation and source code for specified versions of core standard libraries and third-party packages. It intelligently locates repositories, resolves dependencies, and provides a local, version-controlled reference of your project's entire dependency tree for LLM-assisted development.
+Author-email: roobert <roobert@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/roobert/ref-fetch
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: PyYAML
+Requires-Dist: requests
+Requires-Dist: ddgs
+Requires-Dist: tomli
+Requires-Dist: beautifulsoup4
+Requires-Dist: rich
+Dynamic: license-file
+
+# ref-fetch
+
+Automates fetching and caching of documentation and source code for specified versions of core standard libraries and third-party packages. It intelligently locates repositories, resolves dependencies, and provides a local, version-controlled reference of your project's entire dependency tree for LLM-assisted development.
+
+## Installation
+
+```bash
+pip install ref-fetch
+```
+
+## Usage
+
+```bash
+ref-fetch <ecosystem> [path]
+```
+
+- `ecosystem`: The package ecosystem to process (e.g., `pip`, `npm`, `swift`).
+- `path`: The path to the project directory (defaults to the current directory).
