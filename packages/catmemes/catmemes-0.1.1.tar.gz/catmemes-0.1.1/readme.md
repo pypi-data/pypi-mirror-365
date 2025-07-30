@@ -1,0 +1,40 @@
+# catmeme retriever
+
+In the long history of cat memes, people who have too much spare time (like me) do need a curated collection of good ones.
+
+### Install
+```bash
+pip install catmemes
+```
+Make sure to set terminal font as [cica](https://github.com/miiton/Cica) to better support CJK alignment in ascii art.
+
+
+## CLI ascii cats
+Adopt four ascii cats:
+```
+　　　　 ∧___∧　　　   ∧___∧　　　　　　　　　　            ∧  ∧___
+　　　　(　´∀` )　　　( ・∀・)　　　　　　　　　　　　　　  /(*ﾟーﾟ)./\
+　　　　(　　  )　　  ( 　　 )　　　　　　　　　∧ ∧　 　  /|￣U U￣|\/
+　　　  |  |  | 　 　|  |  | 　　　 ～′￣￣(,,ﾟДﾟ)　 　  |　 　  |/
+　　　　(___)__）　　 (___)__)　　　　  UU￣U U           ￣￣￣￣
+
+        Mona        Moralar          Giko             Shii
+```
+The full collection of derivatives is available [here](https://nonexistentfandomsfandom.neocities.org/AAcats/cast).
+
+
+
+### Usage
+Retrieve a cat by name
+```bash
+ascii-cat update       # fetch cat
+ascii-cat list         # list all cat names
+ascii-cat [cat_name]   # you guys have too much spare time ~
+```
+
+## Iconic cat memes
+
+**Acknowlegement**
+
+Partially inspired by this [Youtube video](https://www.youtube.com/watch?v=PKdUvW8fMj0). In tribute to the iconic feline celebrities who have brought joy to millions.
+And I miss my cat *kupo*.
