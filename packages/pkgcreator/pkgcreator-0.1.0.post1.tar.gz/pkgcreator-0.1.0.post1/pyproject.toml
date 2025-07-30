@@ -1,0 +1,50 @@
+[project]
+name = "pkgcreator"
+version = "0.1.0.post1"
+license = {file = "LICENSE"}
+description = "Create python package structure, necessary files with content, git repository and venv."
+readme = "README.md"
+authors = [{name = "Philipp Meder", email = "148459685+PhilippMeder@users.noreply.github.com"}]
+maintainers = [{name = "Philipp Meder", email = "148459685+PhilippMeder@users.noreply.github.com"}]
+requires-python = ">=3.10"
+dependencies = []
+keywords = ["python", "packaging", "project-setup", "cli", "automation"]
+classifiers = [
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Version Control :: Git",
+    "Topic :: System :: Archiving :: Packaging",
+    "Topic :: System :: Software Distribution",
+]
+
+[project.urls]
+Changelog = "https://github.com/PhilippMeder/pkgcreator/blob/main/CHANGELOG.md"
+Documentation = "https://github.com/PhilippMeder/pkgcreator#readme"
+Download = "https://github.com/PhilippMeder/pkgcreator"
+Homepage = "https://github.com/PhilippMeder/pkgcreator"
+Issues = "https://github.com/PhilippMeder/pkgcreator/issues"
+Releasenotes = "https://github.com/PhilippMeder/pkgcreator/releases"
+Source = "https://github.com/PhilippMeder/pkgcreator.git"
+
+[project.scripts]
+pkgcreator = "pkgcreator.__main__:main"
+
+[project.optional-dependencies]
+full = ["requests"]
+dev = ["pytest", "ruff"]
+
+[tool.ruff]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "B", "N"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
