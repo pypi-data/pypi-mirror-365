@@ -1,0 +1,63 @@
+Metadata-Version: 2.4
+Name: awsdeleter
+Version: 0.1.3
+Summary: A CLI tool to search and delete AWS EC2, S3, and VPC resources by prefix
+Author: Omkar Khatavkar
+Author-email: okhatavkar007@gmail.com
+License: MIT
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: boto3
+Requires-Dist: click
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+
+# AWS Deleter
+
+A CLI tool to delete AWS resources (EC2, S3, VPC) by prefix.
+
+## Installation
+
+Install via pip:
+
+```bash
+pip install awsdeleter
+```
+
+## Usage
+
+Delete resources with a specified prefix:
+
+```bash
+aws_deleter <prefix> --resource <resource_type> --confirm yes
+```
+
+- `<prefix>`: Resource name prefix to search for.
+- `--resource`: Specify resource type (`ec2`, `s3`, `vpc`).
+- `--confirm`: Delete without confirmation.
+
+
+### Example
+
+Delete EC2 instances starting with "test":
+
+```bash
+aws_deleter test --resource ec2 --confirm yes
+```
+
+## License
+
+MIT License. See [LICENSE](LICENSE).
