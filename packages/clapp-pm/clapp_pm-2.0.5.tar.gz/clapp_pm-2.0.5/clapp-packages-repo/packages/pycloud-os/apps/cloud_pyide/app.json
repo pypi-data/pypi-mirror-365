@@ -1,0 +1,67 @@
+{
+  "id": "cloud_pyide",
+  "name": "Cloud PyIDE",
+  "version": "2.1.0",
+  "description": "PyCloud OS için tam özellikli modern Python IDE. Gelişmiş syntax highlighting, 4 tema desteği, kod parçacıkları, plugin sistemi, .app derleme ve gerçek zamanlı kod çalıştırma özellikleri.",
+  "entry": "main.py",
+  "exec": "python3 main.py",
+  "icon": "icon.png",
+  "category": "Geliştirme",
+  "developer": "PyCloud OS Team",
+  "license": "MIT",
+  "homepage": "https://pycloudos.dev/apps/cloud_pyide",
+  "tags": ["ide", "python", "development", "editor", "code", "modern", "syntax-highlighting", "breakpoints", "themes", "snippets", "plugins", "compiler"],
+  "screenshots": [
+    "screenshots/pyide_main.png",
+    "screenshots/pyide_dark_theme.png",
+    "screenshots/pyide_monokai_theme.png",
+    "screenshots/pyide_project.png",
+    "screenshots/pyide_debug.png",
+    "screenshots/pyide_templates.png",
+    "screenshots/pyide_snippets.png",
+    "screenshots/pyide_plugins.png",
+    "screenshots/pyide_compiler.png"
+  ],
+  "requires": [
+    "python3", 
+    "pyqt6",
+    "core.fs",
+    "core.process",
+    "core.config",
+    "core.events"
+  ],
+  "permissions": {
+    "fs.read": true,
+    "fs.write": true,
+    "processes": true,
+    "clipboard": true
+  },
+  "features": [
+    "Modern syntax highlighting with 4 themes (Dark, Light, Monokai, Dracula)",
+    "Line numbers with breakpoint support",
+    "Project management and templates",
+    "Real-time code execution",
+    "Auto-save functionality",
+    "Multi-tab editor support",
+    "Advanced code snippets system with custom snippets",
+    "Plugin system with .plug format support",
+    "PyCloud .app compiler for creating distributable apps",
+    "Find and replace functionality",
+    "Modern UI with responsive design",
+    "Keyboard shortcuts and hotkeys"
+  ],
+  "shortcuts": {
+    "Ctrl+S": "Save file",
+    "Ctrl+O": "Open file",
+    "Ctrl+N": "New file",
+    "Ctrl+Shift+N": "New project",
+    "Ctrl+Shift+O": "Open project",
+    "F5": "Run current file",
+    "F9": "Debug mode",
+    "Ctrl+Shift+P": "Show snippets",
+    "Ctrl+Shift+B": "Compile to .app",
+    "Ctrl+F": "Find text",
+    "Ctrl+H": "Replace text"
+  },
+  "signature": "sha256:b2c3d4e5f6a7..."
+} 
