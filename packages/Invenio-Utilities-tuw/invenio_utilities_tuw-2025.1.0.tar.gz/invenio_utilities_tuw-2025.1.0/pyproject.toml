@@ -1,0 +1,73 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2024-2025 TU Wien.
+#
+# Invenio-Utilities-TUW is free software; you can redistribute it and/or
+# modify it under the terms of the MIT License; see LICENSE file for more
+# details.
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "invenio_utilities_tuw/__init__.py"
+
+[project]
+name = "Invenio-Utilities-tuw"
+dynamic = ["version"]
+description = "Some utilities for InvenioRDM."
+keywords = ["invenio", "cli", "utilities", "tu wien"]
+requires-python = ">=3.12"
+readme = "README.rst"
+license = "MIT"
+authors = [
+    {name = "Team of the Center for Research Data Management (TU Wien)", email = "tudata@tuwien.ac.at"},
+]
+classifiers = [
+    "Environment :: Web Environment",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Development Status :: 5 - Production/Stable",
+]
+dependencies = [
+    "invenio-app-rdm>=12.0.0"
+]
+
+[project.optional-dependencies]
+tests = [
+    "invenio-search[opensearch2]>=2.0.0",
+    "pytest-black>=0.3.0,<0.3.10",
+    "pytest-invenio>=1.4.0",
+    "pytest-ruff>=0.4.1",
+    "sphinx>=4.5",
+]
+
+[project.urls]
+Repository = "https://gitlab.tuwien.ac.at/fairdata/invenio-utilities-tuw"
+
+# entrypoints
+[project.entry-points."flask.commands"]
+tuw = "invenio_utilities_tuw.cli:utilities"
+
+[project.entry-points."invenio_base.apps"]
+invenio_utilities_tuw = "invenio_utilities_tuw:InvenioUtilitiesTUW"
+
+[project.entry-points."invenio_i18n.translations"]
+messages = "invenio_utilities_tuw"
+
+# configuration for tools
+[tool.isort]
+profile = "black"
+
+[tool.pytest.ini_optiions]
+addopts = '--ruff --black --isort --pydocstyle --doctest-glob="*.rst" --doctest-modules --cov=invenio_utilities_tuw --cov-report=term-missing'
+testpaths = "docs tests invenio_utilities_tuw"
+
+[tool.pydocstyle]
+add_ignore = "D401"

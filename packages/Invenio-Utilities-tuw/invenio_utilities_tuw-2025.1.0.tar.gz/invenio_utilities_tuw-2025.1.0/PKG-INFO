@@ -1,0 +1,59 @@
+Metadata-Version: 2.4
+Name: Invenio-Utilities-tuw
+Version: 2025.1.0
+Summary: Some utilities for InvenioRDM.
+Project-URL: Repository, https://gitlab.tuwien.ac.at/fairdata/invenio-utilities-tuw
+Author-email: "Team of the Center for Research Data Management (TU Wien)" <tudata@tuwien.ac.at>
+License-Expression: MIT
+License-File: AUTHORS.rst
+License-File: LICENSE
+Keywords: cli,invenio,tu wien,utilities
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Topic :: Internet :: WWW/HTTP :: Dynamic Content
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.12
+Requires-Dist: invenio-app-rdm>=12.0.0
+Provides-Extra: tests
+Requires-Dist: invenio-search[opensearch2]>=2.0.0; extra == 'tests'
+Requires-Dist: pytest-black<0.3.10,>=0.3.0; extra == 'tests'
+Requires-Dist: pytest-invenio>=1.4.0; extra == 'tests'
+Requires-Dist: pytest-ruff>=0.4.1; extra == 'tests'
+Requires-Dist: sphinx>=4.5; extra == 'tests'
+Description-Content-Type: text/x-rst
+
+..
+    Copyright (C) 2020 - 2021 TU Wien.
+
+    Invenio-Utilities-TUW is free software; you can redistribute it and/or
+    modify it under the terms of the MIT License; see LICENSE file for more
+    details.
+
+=======================
+ Invenio-Utilities-TUW
+=======================
+
+.. image:: https://img.shields.io/github/tag/fair-data-austria/invenio-utilities-tuw.svg
+        :target: https://github.com/fair-data-austria/invenio-utilities-tuw/releases
+
+.. image:: https://img.shields.io/github/license/fair-data-austria/invenio-utilities-tuw.svg
+        :target: https://github.com/fair-data-austria/invenio-utilities-tuw/blob/master/LICENSE
+
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://github.com/psf/black
+
+
+Some CLI utilities (``invenio tuw ...``) for InvenioRDM of varying quality and usefulness.
+
+Features:
+
+* create, update and publish drafts and records
+* list records and drafts accessible to certain users
+* manage deposited files for drafts
+* list registered users
+* etc.

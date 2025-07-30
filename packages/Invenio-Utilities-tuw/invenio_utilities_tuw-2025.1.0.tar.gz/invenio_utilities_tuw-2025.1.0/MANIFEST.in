@@ -1,0 +1,29 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2020-2024 TU Wien.
+#
+# Invenio-Utilities-TUW is free software; you can redistribute it and/or
+# modify it under the terms of the MIT License; see LICENSE file for more
+# details.
+
+# exclude CI/CD stuff
+exclude .gitlab-ci.yml
+exclude sonar-project.properties
+
+include .git-blame-ignore-revs
+include .dockerignore
+include .editorconfig
+include .tx/config
+recursive-include .github/workflows *.yml
+recursive-include invenio_utilities_tuw/translations *.po *.pot *.mo
+
+# added by check-manifest
+include *.rst
+include *.sh
+include *.txt
+include LICENSE
+include Pipfile
+include babel.ini
+include pytest.ini
+recursive-include invenio_utilities_tuw *.html
+recursive-include tests *.py
