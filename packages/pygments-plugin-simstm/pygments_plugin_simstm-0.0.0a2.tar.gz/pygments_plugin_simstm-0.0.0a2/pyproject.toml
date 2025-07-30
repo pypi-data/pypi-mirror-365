@@ -1,0 +1,66 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build]
+sources = ["src"]
+# include = ["src/simstm_lexer.py", "README.md", "pyproject.toml"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["simstm_lexer"]
+
+[project]
+name = "pygments-plugin-simstm"
+version = "0.0.0a2"
+description = "A Pygments lexer plugin for SimStm"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Denis Vasilik", email = "office@eccelerators.com" }]
+requires-python = ">=3.8"
+dependencies = ["pygments>=2.0"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+
+[project.urls]
+# Documentation = ""
+# Issues = ""
+# Source = ""
+
+[project.optional-dependencies]
+dev = ["pytest", "twine"]
+
+[project.entry-points."pygments.lexers"]
+simstm_lexer = "simstm_lexer.simstm_lexer:SimStmLexer"
+
+[tool.hatch.envs.default]
+dependencies = ["pytest"]
+path = "venv"
+
+[tool.hatch.envs.default.scripts]
+test = "pytest -v tests/examplefiles/"
+gen = "pytest -v --gen tests/examplefiles/"
+html = """
+mkdir -p gen &&
+pygmentize -f html -O full,style=monokai    -o ./gen/monokai.html       ../SimStm/command_list.stm && 
+pygmentize -f html -O full,style=vim        -o ./gen/vim.html           ../SimStm/command_list.stm && 
+pygmentize -f html -O full,style=staroffice -o ./gen/staroffice.html    ../SimStm/command_list.stm && 
+pygmentize -f html -O full,style=xcode      -o ./gen/xcode.html         ../SimStm/command_list.stm && 
+pygmentize -f html -O full,style=default    -o ./gen/default.html       ../SimStm/command_list.stm && 
+pygmentize -f html -O full,style=abap       -o ./gen/abap.html          ../SimStm/command_list.stm && 
+pygmentize -f html -O full,style=arduino    -o ./gen/arduino.html       ../SimStm/command_list.stm && 
+pygmentize -f html -O full,style=autumn     -o ./gen/autumn.html        ../SimStm/command_list.stm && 
+pygmentize -f html -O full,style=colorful   -o ./gen/colorful.html      ../SimStm/command_list.stm && 
+pygmentize -f html -O full,style=lovelace   -o ./gen/lovelace.html      ../SimStm/command_list.stm && 
+pygmentize -f html -O full,style=emacs      -o ./gen/emacs.html         ../SimStm/command_list.stm
+"""
+
+[tool.pytest.ini_options]
+# addopts = "-v tests/examplefiles/"
+testpaths = ["tests"]

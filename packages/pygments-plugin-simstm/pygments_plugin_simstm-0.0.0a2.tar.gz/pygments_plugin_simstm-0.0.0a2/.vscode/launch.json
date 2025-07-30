@@ -1,0 +1,22 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: Module",
+            "type": "debugpy",
+            "request": "launch",
+            "module": "pygments",
+            "justMyCode": false,
+            "args": [
+                "-f",
+                "html",
+                "-O",
+                "full,style=monokai",
+                "-o",
+                "./gen/monokai.html",
+                "../SimStm/command_list.stm",
+                "-v"
+            ]
+        }
+    ]
+}

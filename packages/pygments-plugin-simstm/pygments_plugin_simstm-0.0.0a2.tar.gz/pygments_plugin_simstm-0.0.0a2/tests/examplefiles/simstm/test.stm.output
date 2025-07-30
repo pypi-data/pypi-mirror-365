@@ -1,0 +1,1903 @@
+'include'     Keyword.Namespace
+' '           Text.Whitespace
+'"an_include.stm"' Name.Namespace
+'\n'          Text
+
+'\n'          Text
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'a_constA'    Name.Constant
+' '           Text.Whitespace
+'0x03'        Literal.Number.Hex
+'\n'          Text
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'a_constB'    Name.Constant
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'a_constA'    Name.Variable
+'\n'          Text
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'a_constC'    Name.Constant
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'a_varA'      Name.Variable
+'\n'          Text
+
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'a_varA'      Name.Variable
+' '           Text.Whitespace
+'0x05'        Literal.Number.Hex
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'a_varB'      Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'a_varA'      Name.Variable
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'a_varC'      Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'a_constA'    Name.Variable
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'result'      Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'-- a comment' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'an_array'    Name.Variable
+' '           Text.Whitespace
+'16'          Literal.Number.Integer
+' '           Text.Whitespace
+'--  comment' Comment.Single
+'\n'          Text
+
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'file_user_index1' Name.Variable
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'file_user_index2' Name.Variable
+' '           Text.Whitespace
+'4'           Literal.Number.Integer
+'\n'          Text
+
+'file'        Keyword.Declaration
+' '           Text.Whitespace
+'a_fileA'     Name.Variable
+' '           Text.Whitespace
+'"file_name"' Literal.String
+'\n'          Text
+
+'file'        Keyword.Declaration
+' '           Text.Whitespace
+'a_fileB'     Name.Variable
+' '           Text.Whitespace
+'"file_name{}{}"' Literal.String
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'file_user_index1' Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'file_user_index2' Name.Variable
+'\n'          Text
+
+'\n'          Text
+
+'lines'       Keyword.Declaration
+' '           Text.Whitespace
+'a_lines'     Name.Variable
+'\n'          Text
+
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'operand1_and_target' Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'operand2'    Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'ArithProc'   Name.Function
+':'           Keyword.Pseudo
+'\n'          Text
+
+'proc'        Keyword
+'\n'          Text
+
+'    '        Text.Whitespace
+'equ'         Operator
+' '           Text.Whitespace
+'operand1_and_target' Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'operand2'    Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'equ'         Operator
+' '           Text.Whitespace
+'operand1_and_target' Name.Variable
+' '           Text.Whitespace
+'0xF0'        Literal.Number.Hex
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'add'         Operator
+' '           Text.Whitespace
+'operand1_and_target' Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'operand2'    Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'add'         Operator
+' '           Text.Whitespace
+'operand1_and_target' Name.Variable
+' '           Text.Whitespace
+'0xF0'        Literal.Number.Hex
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'sub'         Operator
+' '           Text.Whitespace
+'operand1_and_target' Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'operand2'    Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'sub'         Operator
+' '           Text.Whitespace
+'operand1_and_target' Name.Variable
+' '           Text.Whitespace
+'0xF0'        Literal.Number.Hex
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'mul'         Operator
+' '           Text.Whitespace
+'operand1_and_target' Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'operand2'    Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'mul'         Operator
+' '           Text.Whitespace
+'operand1_and_target' Name.Variable
+' '           Text.Whitespace
+'0xF0'        Literal.Number.Hex
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'div'         Operator
+' '           Text.Whitespace
+'operand1_and_target' Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'operand2'    Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'div'         Operator
+' '           Text.Whitespace
+'operand1_and_target' Name.Variable
+' '           Text.Whitespace
+'0xF0'        Literal.Number.Hex
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'and'         Operator
+' '           Text.Whitespace
+'operand1_and_target' Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'operand2'    Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'and'         Operator
+' '           Text.Whitespace
+'operand1_and_target' Name.Variable
+' '           Text.Whitespace
+'0xF0'        Literal.Number.Hex
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'or'          Operator
+' '           Text.Whitespace
+'operand1_and_target' Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'operand2'    Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'or'          Operator
+' '           Text.Whitespace
+'operand1_and_target' Name.Variable
+' '           Text.Whitespace
+'0xF0'        Literal.Number.Hex
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'xor'         Operator
+' '           Text.Whitespace
+'operand1_and_target' Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'operand2'    Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'xor'         Operator
+' '           Text.Whitespace
+'operand1_and_target' Name.Variable
+' '           Text.Whitespace
+'0xF0'        Literal.Number.Hex
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'shl'         Operator
+' '           Text.Whitespace
+'operand1_and_target' Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'operand2'    Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'shl'         Operator
+' '           Text.Whitespace
+'operand1_and_target' Name.Variable
+' '           Text.Whitespace
+'0xF0'        Literal.Number.Hex
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'shr'         Operator
+' '           Text.Whitespace
+'operand1_and_target' Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'operand2'    Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'shr'         Operator
+' '           Text.Whitespace
+'operand1_and_target' Name.Variable
+' '           Text.Whitespace
+'0xF0'        Literal.Number.Hex
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'inv'         Operator
+' '           Text.Whitespace
+'operand1_and_target' Name.Variable
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'ld'          Operator
+' '           Text.Whitespace
+'operand1_and_target' Name.Variable
+'\n'          Text
+
+'\n'          Text
+
+'end proc'    Keyword
+'\n'          Text
+
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'position'    Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'expected_value' Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'mask_value'  Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'array'       Keyword.Declaration
+' '           Text.Whitespace
+'another_array' Name.Variable
+' '           Text.Whitespace
+'16'          Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'VarVerify'   Name.Function
+':'           Keyword.Pseudo
+'\n'          Text
+
+'proc'        Keyword
+'\n'          Text
+
+'    '        Text.Whitespace
+'var verify'  Keyword
+' '           Text.Whitespace
+'position'    Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'expected_value' Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'mask_value'  Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'var verify'  Keyword
+' '           Text.Whitespace
+'position'    Name.Variable
+' '           Text.Whitespace
+'8'           Literal.Number.Integer
+' '           Text.Whitespace
+'0xFF'        Literal.Number.Hex
+'\n'          Text
+
+'end proc'    Keyword
+'\n'          Text
+
+'\n'          Text
+
+'array_proc'  Name.Function
+':'           Keyword.Pseudo
+'\n'          Text
+
+'proc'        Keyword
+'\n'          Text
+
+'    '        Text.Whitespace
+'array set'   Keyword
+' '           Text.Whitespace
+'an_array'    Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'position'    Name.Variable
+' '           Text.Whitespace
+'0x07'        Literal.Number.Hex
+'\n'          Text
+
+'    '        Text.Whitespace
+'array set'   Keyword
+' '           Text.Whitespace
+'an_array'    Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'position'    Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'a_varA'      Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'array set'   Keyword
+' '           Text.Whitespace
+'an_array'    Name.Variable
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+' '           Text.Whitespace
+'0x07'        Literal.Number.Hex
+'\n'          Text
+
+'    '        Text.Whitespace
+'array set'   Keyword
+' '           Text.Whitespace
+'an_array'    Name.Variable
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'a_varA'      Name.Variable
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'array get'   Keyword
+' '           Text.Whitespace
+'an_array'    Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'position'    Name.Variable
+' '           Text.Whitespace
+'a_varB'      Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'array get'   Keyword
+' '           Text.Whitespace
+'an_array'    Name.Variable
+' '           Text.Whitespace
+'0x20'        Literal.Number.Hex
+'  '          Text.Whitespace
+'a_varB'      Name.Variable
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'array verify' Keyword
+' '           Text.Whitespace
+'an_array'    Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'position'    Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'expected_value' Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'mask_value'  Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'array verify' Keyword
+' '           Text.Whitespace
+'an_array'    Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'position'    Name.Variable
+' '           Text.Whitespace
+'0x07'        Literal.Number.Hex
+' '           Text.Whitespace
+'0xFF'        Literal.Number.Hex
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'array size'  Keyword
+' '           Text.Whitespace
+'an_array'    Name.Variable
+' '           Text.Whitespace
+'a_varB'      Name.Variable
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'array pointer copy' Keyword
+' '           Text.Whitespace
+'an_array'    Name.Variable
+' '           Text.Whitespace
+'another_array' Name.Variable
+'\n'          Text
+
+'end proc'    Keyword
+'\n'          Text
+
+'\n'          Text
+
+'file_proc'   Name.Function
+':'           Keyword.Pseudo
+'\n'          Text
+
+'proc'        Keyword
+'\n'          Text
+
+'    '        Text.Whitespace
+'file writeable' Keyword
+' '           Text.Whitespace
+'a_fileA'     Name.Variable
+' '           Text.Whitespace
+'result'      Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'file readable' Keyword
+' '           Text.Whitespace
+'a_fileA'     Name.Variable
+' '           Text.Whitespace
+'result'      Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'file appendable' Keyword
+' '           Text.Whitespace
+'a_fileA'     Name.Variable
+' '           Text.Whitespace
+'result'      Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'file write'  Keyword
+' '           Text.Whitespace
+'a_fileA'     Name.Variable
+' '           Text.Whitespace
+'a_lines'     Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'file append' Keyword
+' '           Text.Whitespace
+'a_fileB'     Name.Variable
+'  '          Text.Whitespace
+'a_lines'     Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'file read all' Keyword
+' '           Text.Whitespace
+'a_fileA'     Name.Variable
+' '           Text.Whitespace
+'a_lines'     Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'file read'   Keyword
+' '           Text.Whitespace
+'a_fileA'     Name.Variable
+' '           Text.Whitespace
+'a_lines'     Name.Variable
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'\n'          Text
+
+'    '        Text.Whitespace
+'file read end' Keyword
+' '           Text.Whitespace
+'a_fileA'     Name.Variable
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'file pointer copy' Keyword
+' '           Text.Whitespace
+'a_fileA'     Name.Variable
+' '           Text.Whitespace
+'a_fileB'     Name.Variable
+'\n'          Text
+
+'end proc'    Keyword
+'\n'          Text
+
+'\n'          Text
+
+'lines'       Keyword.Declaration
+' '           Text.Whitespace
+'a_lines_target' Name.Variable
+'\n'          Text
+
+'lines'       Keyword.Declaration
+' '           Text.Whitespace
+'a_lines_source' Name.Variable
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'read_size'   Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'lines_proc'  Name.Function
+':'           Keyword.Pseudo
+'\n'          Text
+
+'proc'        Keyword
+'\n'          Text
+
+'    '        Text.Whitespace
+'lines get array' Keyword
+' '           Text.Whitespace
+'a_lines'     Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'position'    Name.Variable
+' '           Text.Whitespace
+'an_array'    Name.Variable
+' '           Text.Whitespace
+'result'      Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'lines get array' Keyword
+' '           Text.Whitespace
+'a_lines'     Name.Variable
+' '           Text.Whitespace
+'8'           Literal.Number.Integer
+' '           Text.Whitespace
+'an_array'    Name.Variable
+' '           Text.Whitespace
+'result'      Name.Variable
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'lines set array' Keyword
+' '           Text.Whitespace
+'a_lines'     Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'position'    Name.Variable
+' '           Text.Whitespace
+'an_array'    Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'lines set array' Keyword
+' '           Text.Whitespace
+'a_lines'     Name.Variable
+' '           Text.Whitespace
+'9'           Literal.Number.Integer
+' '           Text.Whitespace
+'an_array'    Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'lines set message' Keyword
+' '           Text.Whitespace
+'a_lines'     Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'position'    Name.Variable
+' '           Text.Whitespace
+'"abc"'       Literal.String
+'\n'          Text
+
+'    '        Text.Whitespace
+'lines set message' Keyword
+' '           Text.Whitespace
+'a_lines'     Name.Variable
+' '           Text.Whitespace
+'7'           Literal.Number.Integer
+' '           Text.Whitespace
+'"abc"'       Literal.String
+'\n'          Text
+
+'    '        Text.Whitespace
+'lines set message' Keyword
+' '           Text.Whitespace
+'a_lines'     Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'position'    Name.Variable
+' '           Text.Whitespace
+'"abc{}"'     Literal.String
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'a_varB'      Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'lines set message' Keyword
+' '           Text.Whitespace
+'a_lines'     Name.Variable
+' '           Text.Whitespace
+'7'           Literal.Number.Integer
+' '           Text.Whitespace
+'"abc{}"'     Literal.String
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'a_varB'      Name.Variable
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'lines insert array' Keyword
+' '           Text.Whitespace
+'a_lines'     Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'position'    Name.Variable
+' '           Text.Whitespace
+'an_array'    Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'lines insert array' Keyword
+' '           Text.Whitespace
+'a_lines'     Name.Variable
+' '           Text.Whitespace
+'9'           Literal.Number.Integer
+' '           Text.Whitespace
+'an_array'    Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'lines insert message' Keyword
+' '           Text.Whitespace
+'a_lines'     Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'position'    Name.Variable
+' '           Text.Whitespace
+'"abc"'       Literal.String
+'\n'          Text
+
+'    '        Text.Whitespace
+'lines insert message' Keyword
+' '           Text.Whitespace
+'a_lines'     Name.Variable
+' '           Text.Whitespace
+'7'           Literal.Number.Integer
+' '           Text.Whitespace
+'"abc"'       Literal.String
+'\n'          Text
+
+'    '        Text.Whitespace
+'lines insert message' Keyword
+' '           Text.Whitespace
+'a_lines'     Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'position'    Name.Variable
+' '           Text.Whitespace
+'"abc{}"'     Literal.String
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'a_varB'      Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'lines insert message' Keyword
+' '           Text.Whitespace
+'a_lines'     Name.Variable
+' '           Text.Whitespace
+'7'           Literal.Number.Integer
+' '           Text.Whitespace
+'"abc{}"'     Literal.String
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'a_varB'      Name.Variable
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'lines append array' Keyword
+' '           Text.Whitespace
+'a_lines'     Name.Variable
+' '           Text.Whitespace
+'an_array'    Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'lines append message' Keyword
+' '           Text.Whitespace
+'a_lines'     Name.Variable
+' '           Text.Whitespace
+'"abc"'       Literal.String
+'\n'          Text
+
+'    '        Text.Whitespace
+'lines append message' Keyword
+' '           Text.Whitespace
+'a_lines'     Name.Variable
+' '           Text.Whitespace
+'"abc{}"'     Literal.String
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'a_varB'      Name.Variable
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'lines delete' Keyword
+' '           Text.Whitespace
+'a_lines'     Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'position'    Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'lines delete' Keyword
+' '           Text.Whitespace
+'a_lines'     Name.Variable
+' '           Text.Whitespace
+'13'          Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'lines size'  Keyword
+' '           Text.Whitespace
+'a_lines'     Name.Variable
+' '           Text.Whitespace
+'read_size'   Name.Variable
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'lines pointer copy' Keyword
+' '           Text.Whitespace
+'a_lines_target' Name.Variable
+' '           Text.Whitespace
+'a_lines_source' Name.Variable
+'\n'          Text
+
+'end proc'    Keyword
+'\n'          Text
+
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'another_var' Name.Variable
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'if_proc'     Name.Function
+':'           Keyword.Pseudo
+'\n'          Text
+
+'proc'        Keyword
+'\n'          Text
+
+'    '        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'a_varA'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'another_var' Name.Variable
+'\n'          Text
+
+'        '    Text.Whitespace
+'equ'         Operator
+' '           Text.Whitespace
+'a_varA'      Name.Variable
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'\n'          Text
+
+'    '        Text.Whitespace
+'elsif'       Keyword
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'a_varA'      Name.Variable
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'another_var' Name.Variable
+'\n'          Text
+
+'        '    Text.Whitespace
+'equ'         Operator
+' '           Text.Whitespace
+'a_varA'      Name.Variable
+' '           Text.Whitespace
+'6'           Literal.Number.Integer
+'\n'          Text
+
+'    '        Text.Whitespace
+'else'        Keyword
+'\n'          Text
+
+'        '    Text.Whitespace
+'equ'         Operator
+' '           Text.Whitespace
+'a_varA'      Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'a_constA'    Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'end if'      Keyword
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'0x09'        Literal.Number.Hex
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'another_var' Name.Variable
+'\n'          Text
+
+'        '    Text.Whitespace
+'equ'         Operator
+' '           Text.Whitespace
+'a_varA'      Name.Variable
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'\n'          Text
+
+'    '        Text.Whitespace
+'elsif'       Keyword
+' '           Text.Whitespace
+'0x09'        Literal.Number.Hex
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'another_var' Name.Variable
+'\n'          Text
+
+'        '    Text.Whitespace
+'equ'         Operator
+' '           Text.Whitespace
+'a_varA'      Name.Variable
+' '           Text.Whitespace
+'6'           Literal.Number.Integer
+'\n'          Text
+
+'    '        Text.Whitespace
+'else'        Keyword
+'\n'          Text
+
+'        '    Text.Whitespace
+'equ'         Operator
+' '           Text.Whitespace
+'a_varA'      Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'a_constA'    Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'end if'      Keyword
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'a_varA'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x09'        Literal.Number.Hex
+'\n'          Text
+
+'        '    Text.Whitespace
+'equ'         Operator
+' '           Text.Whitespace
+'a_varA'      Name.Variable
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'\n'          Text
+
+'    '        Text.Whitespace
+'elsif'       Keyword
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'a_varA'      Name.Variable
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'0x09'        Literal.Number.Hex
+'\n'          Text
+
+'        '    Text.Whitespace
+'equ'         Operator
+' '           Text.Whitespace
+'a_varA'      Name.Variable
+' '           Text.Whitespace
+'6'           Literal.Number.Integer
+'\n'          Text
+
+'    '        Text.Whitespace
+'else'        Keyword
+'\n'          Text
+
+'        '    Text.Whitespace
+'equ'         Operator
+' '           Text.Whitespace
+'a_varA'      Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'a_constA'    Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'end if'      Keyword
+'\n'          Text
+
+'\n'          Text
+
+'    '        Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'0x09'        Literal.Number.Hex
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'0x09'        Literal.Number.Hex
+'\n'          Text
+
+'        '    Text.Whitespace
+'equ'         Operator
+' '           Text.Whitespace
+'a_varA'      Name.Variable
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'\n'          Text
+
+'    '        Text.Whitespace
+'elsif'       Keyword
+' '           Text.Whitespace
+'0x0A'        Literal.Number.Hex
+' '           Text.Whitespace
+'>'           Operator
+' '           Text.Whitespace
+'0x09'        Literal.Number.Hex
+'\n'          Text
+
+'        '    Text.Whitespace
+'equ'         Operator
+' '           Text.Whitespace
+'a_varA'      Name.Variable
+' '           Text.Whitespace
+'6'           Literal.Number.Integer
+'\n'          Text
+
+'    '        Text.Whitespace
+'else'        Keyword
+'\n'          Text
+
+'        '    Text.Whitespace
+'equ'         Operator
+' '           Text.Whitespace
+'a_varA'      Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'a_constA'    Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'end if'      Keyword
+'\n'          Text
+
+'end proc'    Keyword
+'\n'          Text
+
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'loop'        Keyword
+'_num 1'      Text
+'\n'          Text
+
+'\n'          Text
+
+'loop_return_proc' Name.Function
+':'           Keyword.Pseudo
+'\n'          Text
+
+'proc'        Keyword
+'\n'          Text
+
+'    '        Text.Whitespace
+'loop'        Keyword
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'loop_num'    Name.Variable
+'\n'          Text
+
+'        '    Text.Whitespace
+'if'          Keyword
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'a_varA'      Name.Variable
+' '           Text.Whitespace
+'='           Operator
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'another_var' Name.Variable
+'\n'          Text
+
+'            ' Text.Whitespace
+'return'      Name.Function.Magic
+'\n'          Text
+
+'        '    Text.Whitespace
+'end if'      Keyword
+'\n'          Text
+
+'    '        Text.Whitespace
+'end loop'    Keyword
+'\n'          Text
+
+'end proc'    Keyword
+'\n'          Text
+
+'\n'          Text
+
+'abort_proc'  Name.Function
+':'           Keyword.Pseudo
+'\n'          Text
+
+'proc'        Keyword
+'\n'          Text
+
+'    '        Text.Whitespace
+'abort'       Name.Function.Magic
+'\n'          Text
+
+'end proc'    Keyword
+'\n'          Text
+
+'\n'          Text
+
+'some_proc'   Name.Function
+':'           Keyword.Pseudo
+'\n'          Text
+
+'proc'        Keyword
+'\n'          Text
+
+'    '        Text.Whitespace
+'finish'      Name.Function.Magic
+'\n'          Text
+
+'end proc'    Keyword
+'\n'          Text
+
+'\n'          Text
+
+'a_proc'      Name.Function
+':'           Keyword.Pseudo
+'\n'          Text
+
+'proc'        Keyword
+'\n'          Text
+
+'\n'          Text
+
+'end proc'    Keyword
+'\n'          Text
+
+'\n'          Text
+
+'a_interrupt' Name.Function
+':'           Keyword.Pseudo
+'\n'          Text
+
+'interrupt'   Keyword
+'\n'          Text
+
+'\n'          Text
+
+'end interrupt' Keyword
+'\n'          Text
+
+'\n'          Text
+
+'call_proc'   Name.Function
+':'           Keyword.Pseudo
+'\n'          Text
+
+'proc'        Keyword
+'\n'          Text
+
+'    '        Text.Whitespace
+'call'        Name.Function.Magic
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'some_proc'   Name.Variable
+'\n'          Text
+
+'end proc'    Keyword
+'\n'          Text
+
+'\n'          Text
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'INFO'        Name.Constant
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'seed_var'    Name.Variable
+' '           Text.Whitespace
+'589043'      Literal.Number.Integer
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'rand_var'    Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'rand_min_var' Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'rand_max_var' Name.Variable
+' '           Text.Whitespace
+'1000'        Literal.Number.Integer
+'\n'          Text
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'RESUME_ON_VERIFY_ERROR' Name.Constant
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'const'       Keyword.Declaration
+' '           Text.Whitespace
+'EXIT_ON_VERIFY_ERROR' Name.Constant
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'time_to_wait' Name.Variable
+' '           Text.Whitespace
+'5000'        Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'misc_proc'   Name.Function
+':'           Keyword.Pseudo
+'\n'          Text
+
+'proc'        Keyword
+'\n'          Text
+
+'    '        Text.Whitespace
+'log'         Keyword
+' '           Text.Whitespace
+'message'     Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'INFO'        Name.Variable
+' '           Text.Whitespace
+'"some message"' Literal.String
+'\n'          Text
+
+'    '        Text.Whitespace
+'log'         Keyword
+' '           Text.Whitespace
+'message'     Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'INFO'        Name.Variable
+' '           Text.Whitespace
+'"misc_proc severity: {}"' Literal.String
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'INFO'        Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'log'         Keyword
+' '           Text.Whitespace
+'lines'       Keyword.Declaration
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'a_lines_target' Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'trace'       Name.Function.Magic
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'a_varA'      Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'trace'       Name.Function.Magic
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'    '        Text.Whitespace
+'verbosity'   Name.Function.Magic
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'INFO'        Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'verbosity'   Name.Function.Magic
+' '           Text.Whitespace
+'25'          Literal.Number.Integer
+'\n'          Text
+
+'    '        Text.Whitespace
+'resume'      Name.Function.Magic
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'RESUME_ON_VERIFY_ERROR' Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'resume'      Name.Function.Magic
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'EXIT_ON_VERIFY_ERROR' Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'seed'        Name.Function.Magic
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'seed_var'    Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'seed'        Name.Function.Magic
+' '           Text.Whitespace
+'1397'        Literal.Number.Integer
+'\n'          Text
+
+'    '        Text.Whitespace
+'random'      Name.Function.Magic
+' '           Text.Whitespace
+'rand_var'    Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'rand_min_var' Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'rand_max_var' Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'random'      Name.Function.Magic
+' '           Text.Whitespace
+'rand_var'    Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'rand_max_var' Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'random'      Name.Function.Magic
+' '           Text.Whitespace
+'rand_var'    Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'rand_min_var' Name.Variable
+' '           Text.Whitespace
+'9'           Literal.Number.Integer
+'\n'          Text
+
+'    '        Text.Whitespace
+'random'      Name.Function.Magic
+' '           Text.Whitespace
+'rand_var'    Name.Variable
+' '           Text.Whitespace
+'3'           Literal.Number.Integer
+' '           Text.Whitespace
+'9'           Literal.Number.Integer
+'\n'          Text
+
+'    '        Text.Whitespace
+'wait'        Name.Function.Magic
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'time_to_wait' Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'wait'        Name.Function.Magic
+' '           Text.Whitespace
+'10000'       Literal.Number.Integer
+'\n'          Text
+
+'    '        Text.Whitespace
+'marker'      Name.Function.Magic
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'a_varA'      Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'a_varB'      Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'marker'      Name.Function.Magic
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+' '           Text.Whitespace
+'1'           Literal.Number.Integer
+'\n'          Text
+
+'end proc'    Keyword
+'\n'          Text
+
+'\n'          Text
+
+'signal'      Keyword.Declaration
+' '           Text.Whitespace
+'a_signal'    Name.Variable
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'signal_to_be_set_value' Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'signal_read_value' Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'signal_expected_value' Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'signal_mask_value' Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'signal_proc' Name.Function
+':'           Keyword.Pseudo
+'\n'          Text
+
+'proc'        Keyword
+'\n'          Text
+
+'    '        Text.Whitespace
+'signal write' Keyword
+' '           Text.Whitespace
+'a_signal'    Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'signal_to_be_set_value' Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'signal write' Keyword
+' '           Text.Whitespace
+'a_signal'    Name.Variable
+' '           Text.Whitespace
+'0x1234'      Literal.Number.Hex
+'\n'          Text
+
+'    '        Text.Whitespace
+'signal read' Keyword
+' '           Text.Whitespace
+'a_signal'    Name.Variable
+' '           Text.Whitespace
+'signal_read_value' Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'signal verify' Keyword
+' '           Text.Whitespace
+'a_signal'    Name.Variable
+' '           Text.Whitespace
+'signal_read_value' Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'signal_expected_value' Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'signal_mask_value' Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'signal verify' Keyword
+' '           Text.Whitespace
+'a_signal'    Name.Variable
+' '           Text.Whitespace
+'signal_read_value' Name.Variable
+' '           Text.Whitespace
+'0x0002'      Literal.Number.Hex
+' '           Text.Whitespace
+'0x00FF'      Literal.Number.Hex
+'\n'          Text
+
+'end proc'    Keyword
+'\n'          Text
+
+'\n'          Text
+
+'signal'      Keyword.Declaration
+' '           Text.Whitespace
+'target_signal' Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'signal'      Keyword.Declaration
+' '           Text.Whitespace
+'source_signal' Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'signal_pointer_absolut' Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'signal pointer copy' Keyword
+' '           Text.Whitespace
+'target_signal' Name.Variable
+' '           Text.Whitespace
+'source_signal' Name.Variable
+'\n'          Text
+
+'signal'      Keyword.Declaration
+' '           Text.Whitespace
+'pointer'     Name.Variable
+' '           Text.Whitespace
+'set'         Name.Variable
+' '           Text.Whitespace
+'target_signal' Name.Variable
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'\n'          Text
+
+'signal'      Keyword.Declaration
+' '           Text.Whitespace
+'pointer'     Name.Variable
+' '           Text.Whitespace
+'get'         Name.Variable
+' '           Text.Whitespace
+'a_signal'    Name.Variable
+' '           Text.Whitespace
+'signal_pointer_absolut' Name.Variable
+'\n'          Text
+
+'\n'          Text
+
+'bus'         Keyword.Declaration
+' '           Text.Whitespace
+'a_bus'       Name.Variable
+' '           Text.Whitespace
+'10'          Literal.Number.Integer
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'bus_width'   Name.Variable
+' '           Text.Whitespace
+'32'          Literal.Number.Integer
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'bus_address' Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'bus_to_be_set_value' Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'bus_read_value' Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'bus_expected_value' Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'bus_mask_value' Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'bus_timeout_value' Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'\n'          Text
+
+'bus_proc'    Name.Function
+':'           Keyword.Pseudo
+'\n'          Text
+
+'proc'        Keyword
+'\n'          Text
+
+'    '        Text.Whitespace
+'bus write'   Keyword
+' '           Text.Whitespace
+'a_bus'       Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'bus_width'   Name.Variable
+'  '          Text.Whitespace
+'$'           Keyword.Pseudo
+'bus_address' Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'bus_to_be_set_value' Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'bus write'   Keyword
+' '           Text.Whitespace
+'a_bus'       Name.Variable
+' '           Text.Whitespace
+'16'          Literal.Number.Integer
+' '           Text.Whitespace
+'0x00001000'  Literal.Number.Hex
+' '           Text.Whitespace
+'0x1233'      Literal.Number.Hex
+'\n'          Text
+
+'    '        Text.Whitespace
+'bus read'    Keyword
+'  '          Text.Whitespace
+'a_bus'       Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'bus_width'   Name.Variable
+'  '          Text.Whitespace
+'$'           Keyword.Pseudo
+'bus_address' Name.Variable
+'  '          Text.Whitespace
+'bus_read_value' Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'bus read'    Keyword
+'  '          Text.Whitespace
+'a_bus'       Name.Variable
+' '           Text.Whitespace
+'16'          Literal.Number.Integer
+' '           Text.Whitespace
+'0x00001000'  Literal.Number.Hex
+'  '          Text.Whitespace
+'bus_read_value' Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'bus verify'  Keyword
+' '           Text.Whitespace
+'a_bus'       Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'bus_width'   Name.Variable
+'  '          Text.Whitespace
+'$'           Keyword.Pseudo
+'bus_address' Name.Variable
+' '           Text.Whitespace
+'bus_read_value' Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'bus_expected_value' Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'bus_mask_value' Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'bus verify'  Keyword
+' '           Text.Whitespace
+'a_bus'       Name.Variable
+' '           Text.Whitespace
+'32'          Literal.Number.Integer
+'  '          Text.Whitespace
+'0x00001004'  Literal.Number.Hex
+' '           Text.Whitespace
+'bus_read_value' Name.Variable
+' '           Text.Whitespace
+'0x00050000'  Literal.Number.Hex
+' '           Text.Whitespace
+'0x000FC000'  Literal.Number.Hex
+'\n'          Text
+
+'    '        Text.Whitespace
+'bus'         Keyword.Declaration
+' '           Text.Whitespace
+'timeout'     Name.Variable
+' '           Text.Whitespace
+'set'         Name.Variable
+' '           Text.Whitespace
+'a_bus'       Name.Variable
+' '           Text.Whitespace
+'1000'        Literal.Number.Integer
+'\n'          Text
+
+'    '        Text.Whitespace
+'bus'         Keyword.Declaration
+' '           Text.Whitespace
+'timeout'     Name.Variable
+' '           Text.Whitespace
+'set'         Name.Variable
+' '           Text.Whitespace
+'a_bus'       Name.Variable
+' '           Text.Whitespace
+'$'           Keyword.Pseudo
+'bus_timeout_value' Name.Variable
+'\n'          Text
+
+'    '        Text.Whitespace
+'bus'         Keyword.Declaration
+' '           Text.Whitespace
+'timeout'     Name.Variable
+' '           Text.Whitespace
+'get'         Name.Variable
+' '           Text.Whitespace
+'a_bus'       Name.Variable
+' '           Text.Whitespace
+'bus_timeout_value' Name.Variable
+'\n'          Text
+
+'end proc'    Keyword
+'\n'          Text
+
+'\n'          Text
+
+'bus'         Keyword.Declaration
+' '           Text.Whitespace
+'target_bus'  Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'bus'         Keyword.Declaration
+' '           Text.Whitespace
+'source_bus'  Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'var'         Keyword.Declaration
+' '           Text.Whitespace
+'bus_pointer_absolut' Name.Variable
+' '           Text.Whitespace
+'0'           Literal.Number.Integer
+'\n'          Text
+
+'bus pointer copy' Keyword
+' '           Text.Whitespace
+'target_bus'  Name.Variable
+' '           Text.Whitespace
+'source_bus'  Name.Variable
+'\n'          Text
+
+'bus pointer set' Keyword
+' '           Text.Whitespace
+'target_bus'  Name.Variable
+' '           Text.Whitespace
+'5'           Literal.Number.Integer
+'\n'          Text
+
+'bus pointer get' Keyword
+' '           Text.Whitespace
+'a_bus'       Name.Variable
+' '           Text.Whitespace
+'bus_pointer_absolut' Name.Variable
+'\n'          Text
