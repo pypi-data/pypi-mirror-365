@@ -1,0 +1,29 @@
+[project]
+name = "nlpg"
+version = "0.1.1"
+description = "Ready to use Natural Language Password Generator."
+license = "GPL-3.0"
+license-files = { paths = ['LICENSE'] }
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = []
+
+[project.scripts]
+nlpg = "nlpg.__main__:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+############################## Bump My Version #############################
+[tool.bumpversion]
+current_version = "0.1.1"
+tag = true
+commit = true
+message = "Bump version: {current_version} → {new_version}"
+
+[[tool.bumpversion.files]]
+filename = "src/nlpg/__init__.py"
+search = '__version__ = "v{current_version}"'
+replace = '__version__ = "v{new_version}"'
+
