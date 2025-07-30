@@ -1,0 +1,19 @@
+name: 💡 Feature Request
+description: Suggest a new feature or improvement
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: What do you want to see?
+      description: Clearly describe your idea.
+      placeholder: It would be helpful if...
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Why is this needed?
+      placeholder: This feature would improve SentinelMesh by...

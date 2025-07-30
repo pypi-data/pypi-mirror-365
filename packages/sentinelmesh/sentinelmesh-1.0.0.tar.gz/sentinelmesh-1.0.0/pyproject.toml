@@ -1,0 +1,23 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "sentinelmesh"
+version = "1.0.0"
+description = "A real-time security and policy mesh for MCP-based AI agent communication"
+readme = "README.md"
+license = { file = "LICENSE" }
+authors = [
+  { name = "Rishit Goel", email = "rishit@example.com" }
+]
+requires-python = ">=3.7"
+dependencies = [
+  "streamlit",
+  "pandas",
+  "pyyaml"
+]
+
+[project.scripts]
+sentinelmesh-cli = "sentinelmesh.cli.sentinel_cli:main"
+sentinelmesh-replay = "sentinelmesh.tools.replay_log:main"
