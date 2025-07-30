@@ -1,0 +1,122 @@
+Metadata-Version: 2.4
+Name: range-tools
+Version: 0.1.0a0
+Summary: Utility functions for working with Python's `range` objects.
+Author-email: Jifeng Wu <jifengwu2k@gmail.com>
+License-Expression: MIT
+Project-URL: Homepage, https://github.com/jifengwu2k/range-tools
+Project-URL: Bug Tracker, https://github.com/jifengwu2k/range-tools/issues
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=2
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: canonicalize-range
+Requires-Dist: typing; python_version < "3.5"
+Dynamic: license-file
+
+# `range-tools`
+
+Utility functions for working with Python's `range` objects.
+
+## Functions
+
+### `canonicalize_range(range_object) -> range`
+
+Canonicalize a range object to ensure it contains complete steps from its start value.
+
+**Parameters:**
+
+- `range_object`: The range to be canonicalized
+
+**Returns:**
+
+- A tuple containing:
+    1. The extended range (original range + k steps)
+    2. The extension part (just the added k steps)
+
+**Example:**
+
+```python
+from range_tools import canonicalize_range
+
+# Range may stop before completing the final step
+# Canonicalized range completes the step pattern
+r1 = range(0, 10, 3)  # Contains 0, 3, 6, 9
+canonical_r1 = canonicalize_range(r1)  # Produces range(0, 12, 3), which also contains 0, 3, 6, 9
+assert (canonical_r1.start, canonical_r1.stop, canonical_r1.step) == (0, 12, 3)
+assert list(r1) == list(canonical_r1)
+
+r2 = range(10, 0, -3)  # Contains 10, 7, 4, 1
+canonical_r2 = canonicalize_range(r2)  # Produces range(10, -2, -3), which also contains 10, 7, 4, 1
+assert (canonical_r2.start, canonical_r2.stop, canonical_r2.step) == (10, -2, -3)
+assert list(r2) == list(canonical_r2)
+
+# Range may be empty
+# Canonicalized range makes that explicit with `start = stop`
+r3 = range(10, 0, 3)  # Empty
+canonical_r3 = canonicalize_range(r3)  # Produces range(10, 10, 3), which is also empty
+assert (canonical_r3.start, canonical_r3.stop, canonical_r3.step) == (10, 10, 3)
+assert list(r3) == list(canonical_r3)
+
+r4 = range(0, 10, -3)  # Empty
+canonical_r4 = canonicalize_range(r4)  # Produces range(0, 0, -3), which is also empty
+assert (canonical_r4.start, canonical_r4.stop, canonical_r4.step) == (0, 0, -3)
+assert list(r4) == list(canonical_r4)
+```
+
+### `reverse_range(range_object) -> range`
+
+Creates a canonicalized, reversed version of the range.
+
+**Example:**
+
+```python
+from range_tools import reverse_range
+
+assert reverse_range(range(1, 5, 1)) == range(4, 0, -1)
+assert reverse_range(range(4, 0, -1)) == range(1, 5, 1)
+assert reverse_range(range(1, 5, -1)) == range(1, 1, 1)  # Handles empty ranges
+assert reverse_range(range(4, 0, 1)) == range(4, 4, -1)  # Handles empty ranges
+```
+
+### `extend_range(range_object, k) -> Tuple[range, range]`
+
+Extends a range by k steps and returns both the canonicalized, extended range and the canonicalized extension.
+
+**Parameters:**
+
+- `range_object`: The range to be extended
+- `k`: The number of steps to extend the range by
+
+**Returns:**
+
+- A tuple containing:
+    1. The extended range (original range + k steps)
+    2. The extension part (just the added k steps)
+
+**Example:**
+
+```python
+from range_tools import extend_range
+
+assert extend_range(range(1, 5, 1), 2) == (range(1, 7, 1), range(5, 7, 1))
+assert extend_range(range(1, 5, 1), 0) == (range(1, 5, 1), range(5, 5, 1))  # Handles empty extensions
+assert extend_range(range(1, 5, 1), -2) == (range(1, 3, 1), range(5, 5, 1))  # Handles backward extensions
+assert extend_range(range(1, 5, 1), -10) == (range(1, 1, 1), range(5, 5, 1))  # Clips backward extensions that go too far
+```
+
+## Installation
+
+```bash
+pip install range-tools
+```
+
+## Contributing
+
+Contributions are welcome! Please submit pull requests or open issues on the GitHub repository.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
