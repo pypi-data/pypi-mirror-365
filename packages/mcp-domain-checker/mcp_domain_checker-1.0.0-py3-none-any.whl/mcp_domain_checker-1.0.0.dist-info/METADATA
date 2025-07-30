@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: mcp-domain-checker
+Version: 1.0.0
+Summary: MCP server for checking domain availability
+Requires-Python: >=3.8
+Requires-Dist: mcp>=1.0.0
+Requires-Dist: aiohttp>=3.8.0
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
