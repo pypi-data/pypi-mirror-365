@@ -1,0 +1,9 @@
+[console_scripts]
+pp-terminal=pp_terminal.main:app
+
+[pp_terminal.commands]
+list.accounts=pp_terminal.commands.list_accounts:app
+simulate.interest=pp_terminal.commands.simulate_interest:app
+simulate.vorabpauschale=pp_terminal.commands.simulate_vorabpauschale:app
+validate=pp_terminal.commands.validate:app
+
