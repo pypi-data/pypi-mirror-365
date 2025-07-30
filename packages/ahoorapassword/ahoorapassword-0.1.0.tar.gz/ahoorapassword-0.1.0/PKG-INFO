@@ -1,0 +1,53 @@
+Metadata-Version: 2.4
+Name: ahoorapassword
+Version: 0.1.0
+Summary: A simple password generator that copies output to clipboard automatically.
+Author: AH00RA0
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: colorama
+Requires-Dist: pyperclip
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# ahoorapassword
+
+A simple and colorful password generator written in Python.  
+It supports numeric or full-character passwords and automatically copies the result to the clipboard.
+
+## Features
+- Generate passwords using digits or full characters
+- Auto copy to clipboard
+- Colorful output using `colorama`
+
+## Installation
+
+```
+pip install ahoorapassword
+```
+
+## Usage
+
+```python
+from ahoorapassword import password_new
+
+# Default (12 random characters)
+password_new()
+
+# Only numbers
+password_new(10, typepass="number")
+```
+
+## License
+
+MIT License
