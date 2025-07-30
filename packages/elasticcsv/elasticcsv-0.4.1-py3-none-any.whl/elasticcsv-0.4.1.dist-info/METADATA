@@ -1,0 +1,147 @@
+Metadata-Version: 2.4
+Name: elasticcsv
+Version: 0.4.1
+Summary: elasticsearch csv upload download utility
+Home-page: 
+Author: juguerre
+Author-email: "J. Andres Guerrero" <juguerre@gmail.com>
+License: MIT License
+        
+        Copyright (c) 2021 Juan Andres Guerrero Borrego
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+Requires-Dist: elasticsearch>=8.17.1
+Requires-Dist: pandas>=2.2.3
+Requires-Dist: python-box>=7.3.2
+Requires-Dist: pytz>=2025.1
+Requires-Dist: pyyaml>=6.0.2
+Requires-Dist: requests>=2.32.3
+Requires-Dist: toolz>=1.0.0
+Requires-Dist: tqdm>=4.67.1
+Requires-Dist: typer>=0.15.2
+Requires-Dist: yarl>=1.18.3
+Dynamic: author
+Dynamic: license-file
+Dynamic: requires-python
+
+# Elastic CSV Loader
+
+This command line utility loads csv file into an elasticsearch index, using a provided yaml config file.
+
+`load-csv` considerations:
+
+- CSV files MUST include a header with field names
+- Header field names will be used as elastic index fields
+- A `@timestamp` and `date`  fields will be added to all indexed docs
+  - A `date` logic date could be forced through command parameter.
+- Depending on `elastic_index.data_format.parent_data_object` value, all original csv header fields
+  will be arranged under a `data` parent object.
+
+Indexed data will use the same field names that
+
+`download-index` considerations:
+
+- If csv file is an existing file the download process will **append** data including headers
+- You have to rename or delete previous csv file if you want to start fresh.
+
+## Install
+
+### Dependencies
+
+- `Python` 3.9 or higher
+- `pip` package manager
+
+```shell
+pip install --upgrade elasticcsv
+```
+
+## Run
+
+### Elastic Connection Config
+
+Connection configuration is based in a YAML text file (`connection.yaml`) that must be present in
+command directory.
+
+Sample `connection.yaml`
+
+
+```yaml
+elastic_connection:
+  proxies:
+    http: "http://user:pass@proxy.url:8080"
+    https: "http://user:pass@proxy.url:8080"
+  user: myuser
+  password: mypassword
+  apikey_id: myapikey  # apikeys auth takes precedence over user/password
+  apikey_secret: myapikeysecret
+  node: my.elastic.node
+  schema: https
+  port: 443
+elastic_index:
+  data_format:
+    parent_data_object: true
+```
+
+### Run command
+
+```text
+❯ csv2es load-csv --help
+Usage: csv2es load-csv [OPTIONS]
+
+  Loads csv to elastic index
+
+Options:
+  --csv PATH               CSV File  [required]
+  --csv_offset INT         CSV File offset
+  --sep TEXT               CSV field sepator  [required]
+  --index TEXT             Elastic Index  [required]
+  --csv-date-format TEXT   date format for *_date columns as for ex:
+                           '%Y-%m-%d'
+  --logic_date [%Y-%m-%d]  Date reference for interfaces
+  -d, --delete-if-exists   Flag for deleting index before running load
+  --help                   Show this message and exit.
+
+```
+> Python date formats references: [String Format Time](https://www.geeksforgeeks.org/how-to-format-date-using-strftime-in-python/)
+
+```text
+❯ csv2es download-index --help
+Usage: csv2es download-index [OPTIONS]
+
+  Download index to csv file
+
+Options:
+  --csv PATH              CSV File  [required]
+  --sep TEXT              CSV field sepator  [required]
+  --index TEXT            Elastic Index  [required]
+  -d, --delete-if-exists  Flag for deleting csv file before download
+  --help                  Show this message and exit.
+
+```
+Example:
+
+```text
+csv2es load-csv --csv ./pathtomyfile/file.csv --index myindex --sep ";"
+
+csv2es download-index --csv ./pathtomyfile/file.csv --index myindex --sep ";" -d
+```
