@@ -1,0 +1,11 @@
+[oarepo_model_builder.builders.draft]
+5000-communities_metadata = oarepo_model_builder_communities.builders.communities_metadata:CommunitiesMetadataBuilder
+
+[oarepo_model_builder.builders.record]
+5000-communities_add_to_dependencies = oarepo_model_builder_communities.builders.setup_cfg:CommunitiesSetupCfgBuilder
+
+[oarepo_model_builder.datatypes.components]
+record_communities = oarepo_model_builder_communities.datatypes.components:RECORD_COMMUNITIES_COMPONENTS
+
+[oarepo_model_builder.templates]
+99-record_communities_templates = oarepo_model_builder_communities.builders

@@ -1,0 +1,29 @@
+import copy
+
+
+def test_search(
+    users,
+    minimal_community,
+    logged_client,
+    base_urls,
+    get_or_create_community,
+    create_record_with_community,
+    search_clear,
+):
+    owner = users[0]
+    onwner_client = logged_client(owner)
+
+    minimal_community2 = copy.deepcopy(minimal_community)
+    minimal_community2["slug"] = "second"
+
+    community_1 = get_or_create_community(owner.identity, minimal_community)
+    community_2 = get_or_create_community(owner.identity, minimal_community2)
+
+    record1 = create_record_with_community(owner.identity, community_1, {})
+
+    search_response = onwner_client.get(
+        f"{base_urls['base_record_communities_url']}{record1['id']}/communities",
+    )
+    # situations with more communities are tested in oarepo-requests
+    assert len(search_response.json["hits"]["hits"]) == 1
+    assert search_response.json["hits"]["hits"][0]["id"] == str(community_1.id)
