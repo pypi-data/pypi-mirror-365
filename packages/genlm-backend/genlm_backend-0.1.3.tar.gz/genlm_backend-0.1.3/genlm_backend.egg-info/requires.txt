@@ -1,0 +1,18 @@
+torch
+transformers
+sentencepiece
+protobuf
+accelerate
+bitsandbytes
+numba
+
+[:sys_platform == "linux"]
+vllm<0.8.5,>=0.6.6
+
+[docs]
+mkdocs
+mkdocstrings[python]
+mkdocs-material
+mkdocs-gen-files
+mkdocs-literate-nav
+mkdocs-section-index
