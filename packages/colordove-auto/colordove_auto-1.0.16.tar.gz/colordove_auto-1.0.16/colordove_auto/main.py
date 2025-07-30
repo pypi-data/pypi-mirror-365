@@ -1,0 +1,67 @@
+import threading
+import pytz
+import chardet
+import imaplib
+import logging
+import undetected_chromedriver as uc
+from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from email.header import decode_header
+from bs4 import BeautifulSoup
+
+from .common.library.Queue import Queue
+from .common.library.Logger import Logger
+from .common.library.Env import Env
+
+class Main():
+    def __init__(self):
+        super().__init__()
+
+        # 初始化加载模块
+        self.init_module()
+
+        # 运行
+        self.run()
+
+    def run(self):
+        '''
+        @Desc    : 运行
+        @Author  : 钟水洲
+        @Time    : 2024/05/31 15:42:22
+        '''
+        # 日志
+        Logger()
+
+        # 环境
+        Env()
+
+        # 消费队列
+        Queue()
+
+    def init_module(self):
+        '''
+        @Desc    : 初始化加载模块
+        @Author  : 钟水洲
+        @Time    : 2024/05/31 15:42:22
+        '''
+        # 调用这些模块以防打包丢失
+        _ = threading.Thread
+        _ = uc.Chrome
+        _ = webdriver.Chrome
+        _ = WebDriverWait
+        _ = By
+        _ = EC.title_is
+        _ = decode_header
+        _ = BeautifulSoup
+        _ = pytz.timezone
+        _ = chardet.detect
+        _ = imaplib.IMAP4
+
+if __name__ == '__main__':
+    try:
+        Main()
+    except Exception as e:
+        print(f"error {e}")
+        logging.error(f"程序发生错误: {e}", exc_info=True)
