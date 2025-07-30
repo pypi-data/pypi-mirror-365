@@ -1,0 +1,143 @@
+Metadata-Version: 2.4
+Name: ams-compose
+Version: 0.0.0
+Summary: Dependency management tool for analog/mixed-signal IC design repositories
+Author: ams-compose contributors
+License: MIT
+Project-URL: Homepage, https://github.com/Jianxun/ams-compose
+Project-URL: Repository, https://github.com/Jianxun/ams-compose
+Project-URL: Issues, https://github.com/Jianxun/ams-compose/issues
+Keywords: analog,mixed-signal,ams,ic,design,dependency,management,eda
+Classifier: Development Status :: 3 - Alpha
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Software Distribution
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: GitPython>=3.1.40
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: click>=8.1.0
+Requires-Dist: PyYAML>=6.0.0
+Requires-Dist: pathspec>=0.11.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Requires-Dist: black>=23.0.0; extra == "dev"
+Requires-Dist: isort>=5.12.0; extra == "dev"
+Requires-Dist: flake8>=6.0.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: sphinx>=7.0.0; extra == "docs"
+Requires-Dist: sphinx-rtd-theme>=2.0.0; extra == "docs"
+Requires-Dist: sphinx-autodoc-typehints>=1.24.0; extra == "docs"
+Requires-Dist: myst-parser>=2.0.0; extra == "docs"
+
+# ams-compose
+
+Dependency management tool for analog IC design repositories that enables selective import of IP libraries without copying entire repository structures.
+
+## Overview
+
+ams-compose solves the problem of fragmented analog IP libraries by allowing selective import of specific libraries from repositories without copying unwanted boilerplate code.
+
+### Key Features
+
+- **Selective Library Import**: Extract only the IP libraries you need from any path within a repository
+- **Version Control**: Pin to specific branches, tags, or commits
+- **Smart Install Logic**: Skip libraries that don't need updates
+- **Clean Workspaces**: Automatically filter out VCS directories, development files, and OS artifacts
+- **License Tracking**: Monitor license compliance across imported libraries
+
+### Target Environment
+
+Designed for open source IC toolchains, specifically the IIC-OSIC-TOOLS Docker container environment.
+
+## Installation
+
+Install directly from GitHub:
+
+```bash
+pip install git+https://github.com/Jianxun/ams_compose.git
+```
+
+Or install from source for development:
+
+```bash
+git clone https://github.com/Jianxun/ams_compose.git
+cd ams_compose
+pip install -e .
+```
+
+## Quick Start
+
+1. Initialize a new project:
+
+```bash
+ams-compose init
+```
+
+2. Edit the generated `ams-compose.yaml` configuration file:
+
+```yaml
+# Default directory where libraries will be installed
+library-root: designs/libs
+
+# Library imports - add your dependencies here
+imports:
+  gf180mcu_fd_sc_mcu9t5v0_symbols:
+    repo: https://github.com/peterkinget/gf180mcu_fd_sc_mcu9t5v0_symbols
+    ref: main
+    source_path: .
+    
+  designinit:
+    repo: https://github.com/Jianxun/iic-osic-tools-project-template
+    ref: main
+    source_path: designs/.designinit
+    local_path: designs/.designinit  # optional: override library-root location
+```
+
+3. Install libraries:
+
+```bash
+ams-compose install
+```
+
+## Commands
+
+- `ams-compose init` - Initialize a new ams-compose project
+- `ams-compose install [LIBRARIES...]` - Install libraries from ams-compose.yaml
+  - `--force` - Force reinstall all libraries (ignore up-to-date check)
+  - `--auto-gitignore` - Automatically add .mirror/ to .gitignore (default: enabled)
+- `ams-compose list` - List installed libraries
+  - `--detailed` - Show detailed library information
+- `ams-compose validate` - Validate ams-compose.yaml configuration and installation state
+- `ams-compose clean` - Clean unused mirrors, orphaned libraries, and validate installation
+
+## Configuration
+
+The `ams-compose.yaml` file supports the following structure:
+
+```yaml
+library-root: designs/libs  # Default installation directory
+
+imports:
+  library_name:
+    repo: https://github.com/user/repo  # Git repository URL
+    ref: main                           # Branch, tag, or commit SHA
+    source_path: path/in/repo          # Path within the repository to extract
+    local_path: custom/path            # Optional: override library-root location
+    license: MIT                       # Optional: license information
+```
+
+## License
+
+MIT License
