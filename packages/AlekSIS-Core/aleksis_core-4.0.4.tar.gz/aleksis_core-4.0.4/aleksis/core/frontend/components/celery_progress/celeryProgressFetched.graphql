@@ -1,0 +1,7 @@
+mutation celeryProgressFetched($taskId: String!) {
+  celeryProgressFetched(taskId: $taskId) {
+    celeryProgress {
+      state
+    }
+  }
+}
