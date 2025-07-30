@@ -1,0 +1,34 @@
+Metadata-Version: 2.4
+Name: fauthy-python-sdk
+Version: 0.2.0
+Summary: SDK to consume Fauthy API from a FastAPI application.
+Requires-Python: >=3.13
+Description-Content-Type: text/markdown
+Requires-Dist: pytest>=8.4.0
+Requires-Dist: requests>=2.32.3
+
+# Fauthy Python SDK
+
+## Setup locally
+
+```bash
+uv sync
+```
+
+## Run tests
+
+```bash
+pytest
+```
+
+## Add dependencies
+
+```bash
+uv add <package_name>
+```
+
+Then update `requirements.txt` for Heroku:
+
+```bash
+uv pip compile pyproject.toml -o requirements.txt
+```
