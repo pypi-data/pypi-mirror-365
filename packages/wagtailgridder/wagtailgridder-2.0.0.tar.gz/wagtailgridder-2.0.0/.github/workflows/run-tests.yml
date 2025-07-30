@@ -1,0 +1,30 @@
+# .github/workflows/app.yaml
+name: PyTest
+on: [push, workflow_dispatch]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4.1.7
+
+      - name: Setup Python
+        uses: actions/setup-python@v5.2.0
+        with:
+          python-version: "3.12"
+
+      - name: Install pip and run tests
+        run: |
+          python -m venv --copies --upgrade-deps venv
+          . venv/bin/activate
+          python -m pip install --upgrade pip wheel .[dev]
+          pytest
+
+      - name: Upload coverage artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-coverage
+          path: htmlcov/

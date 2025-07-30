@@ -1,0 +1,9 @@
+{% load include_block from wagtailcore_tags %}
+<div class="row">
+    {% for action_item in self.action_items %}
+        {# The widthratio below is a hack to do division. #}
+        <div class="col-md">
+            {% include_block action_item %}
+        </div>
+    {% endfor %}
+</div>

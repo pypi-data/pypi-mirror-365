@@ -1,0 +1,47 @@
+# Django
+media/*
+db.sqlite3
+htmlcov/
+.coverage
+
+# Python
+*.py[co]
+*.egg*
+venv/
+dist/
+wagtailgridder/_version.py
+
+# Sphinx
+build
+
+# Logs:
+*.log
+
+# IDEs
+.idea
+.vagrant
+.project
+.vscode
+
+# VIM & emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+.elc
+auto-save-list
+tramp
+.\#*
+*.swp
+*.swo
+
+# Mac
+.DS_Store
+._*
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Node modules
+node_modules/
