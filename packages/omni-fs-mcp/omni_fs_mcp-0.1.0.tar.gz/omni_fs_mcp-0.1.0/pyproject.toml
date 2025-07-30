@@ -1,0 +1,46 @@
+[project]
+name = "omni-fs-mcp"
+version = "0.1.0"
+description = "Omni-FS-MCP is an MCP server that supports managing multiple types of file systems, such as local FS, S3, R2, B2, WebDAV, and others, in one MCP server. It is built on top of OpenDAL."
+readme = "README.md"
+authors = [{ name = "Vaayne", email = "liu.vaayne@gmail.com" }]
+license = { text = "MIT" }
+requires-python = ">=3.11"
+
+dependencies = ["mcp>=1.11.0", "opendal>=0.45.20"]
+keywords = ["mcp", "filesystem", "opendal", "s3", "webdav"]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: System :: Filesystems",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[project.urls]
+Homepage = "https://github.com/vaayne/omni-fs-mcp"
+Repository = "https://github.com/vaayne/omni-fs-mcp"
+Issues = "https://github.com/vaayne/omni-fs-mcp/issues"
+
+[tool.uv]
+package = true
+
+[project.scripts]
+omni-fs-mcp = "omni_fs_mcp.mcp_server:main"
+omni-fs-mcp-stdio = "omni_fs_mcp.mcp_server:run_stdio"
+omni-fs-mcp-http = "omni_fs_mcp.mcp_server:run_http"
+
+[build-system]
+requires = ["hatchling>=1.21.0"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/omni_fs_mcp"]
+
+[tool.hatch.build.targets.sdist]
+include = ["/src", "/README.md", "/LICENSE", "/pyproject.toml"]
