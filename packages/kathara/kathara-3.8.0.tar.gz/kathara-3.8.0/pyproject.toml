@@ -1,0 +1,57 @@
+[project]
+name = "kathara"
+version = "3.8.0"
+description = "A lightweight container-based network emulation tool."
+readme = "README.md"
+requires-python = ">=3.9"
+license = 'gpl-3.0'
+license-files = ["LICENSE"]
+keywords = ["NETWORK-EMULATION", "CONTAINERS", "NFV"]
+authors = [
+    { name = "Kathara Framework", email = "contact@kathara.org" }
+]
+
+maintainers = [
+    { name = "Tommaso Caiazzi", email = "contact@kathara.org" },
+    { name = "Mariano Scazzariello", email = "contact@kathara.org" },
+    { name = "Lorenzo Ariemma", email = "contact@kathara.org" },
+]
+
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: Education",
+    "Intended Audience :: Telecommunications Industry",
+    "Topic :: Software Development :: Build Tools",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11"
+]
+
+dependencies = [
+    "binaryornot>=0.4.4",
+    "docker>=7.0.0",
+    "kubernetes>=23.3.0",
+    "requests>=2.22.0",
+    "slug>=2.0",
+    "pyroute2",
+    "rich",
+    "fs>=2.4.16",
+    "chardet",
+    "libtmux>=0.8.2; platform_system == 'darwin' or platform_system == 'linux'",
+    "appscript>=1.1.0; platform_system == 'darwin'",
+    "pypiwin32>=223; platform_system == 'win32'",
+    "windows-curses>=2.1.0; platform_system == 'win32'"
+]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[project.urls]
+"Homepage" = "https://www.kathara.org"
+"Bug Reports" = "https://github.com/KatharaFramework/Kathara/issues"
+"Source" = "https://github.com/KatharaFramework/Kathara"
+
+[build-system]
+requires = ["setuptools>=61.2", "wheel"]
+build-backend = "setuptools.build_meta"
