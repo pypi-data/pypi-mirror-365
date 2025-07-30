@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61", "wheel", "cython"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cyquantx"
+version = "1.1.0"
+description = "cython dimensional analysis and unit tracking utility"
+authors = [
+    { name = "Greg Echelberger", email = "gechelberger@gmail.com" }
+]
+readme = "README.md"
+#license = "MIT" # This works in 3.13 and 3.12 but breaks 3.9,3.10,3.11
+requires-python = ">=3.9"
+keywords = ["c-extension", "SI", "units", "quantities", "dimensional analysis"]
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Cython",
+    "Topic :: Scientific/Engineering",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research"
+]
+
+dependencies = []
+
+[project.optional-dependencies]
+tests = ["pytest", "numpy", "mpmath"]
+dev = ["pytest", "numpy", "mpmath", "cython", "bumpversion", "tox"]
+
+[tool.setuptools]
+packages = { find = { where = ["."] , include = ["cyquant"] } }
+
+[tool.setuptools.package-data]
+cyquant = ["*.pyx", "*.pxd", "*.cpp"]
+
