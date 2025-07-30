@@ -1,0 +1,30 @@
+from pytest_httpserver.httpserver import HTTPServer
+
+from pcss_qapi.auth.oauth_flow import OAuthManager
+
+from tests.utils.auth import setup_server_auth_endpoints
+
+
+def test_oauth_manager(httpserver):
+    httpserver: HTTPServer = setup_server_auth_endpoints(httpserver)
+
+    oauth_man = OAuthManager('banana', httpserver.url_for(''), 60)
+
+    assert oauth_man.client_id == 'banana'
+    assert oauth_man.issuer == httpserver.url_for('')
+    assert oauth_man.min_ttl == 60
+
+    assert oauth_man.device_endpoint == f'{httpserver.url_for("")}/device'
+    assert oauth_man.token_endpoint == f'{httpserver.url_for("")}/token'
+
+    acc, ref = oauth_man.get_device_flow_tokens()
+
+    assert acc is not None
+    assert ref is not None
+
+    acc_refreshed, ref_refreshed = oauth_man.get_refreshed_tokens(ref)
+
+    assert acc is not None
+    assert ref_refreshed is not None
+    assert acc_refreshed != acc
+    assert ref != ref_refreshed
