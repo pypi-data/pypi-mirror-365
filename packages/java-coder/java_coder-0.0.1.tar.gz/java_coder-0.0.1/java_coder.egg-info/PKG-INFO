@@ -1,0 +1,89 @@
+Metadata-Version: 2.4
+Name: java-coder
+Version: 0.0.1
+Summary: A java class file operate tools
+Home-page: https://github.com/chonmb/javacoder
+Author: chonmb
+Author-email: weichonmb@foxmail.com
+License: MIT
+Requires-Python: >=3.6
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+Requires-Dist: javalang
+Dynamic: author
+Dynamic: author-email
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# java-coder
+
+java-coder is a python tool to operate Java source code.
+It provides a series of ways to parse, modified and 
+rebuild Java source code based on `javalang`, targeting Java 8.
+
+the following gives a brief examples to use java-coder.
+
+## Getting Started
+
+```python
+from javacoder.core import operator
+op = operator.ClassOperator(class_path="your_class_path")
+op.preview_class()
+```
+this will load java source code from the java file
+and parse the code and show them.
+
+```python
+from javacoder.core.builder import ClassBuilder
+builder=ClassBuilder("DemoClass")
+builder.field("test1",annotation='JSONField',name="111")
+builder.field("hello")
+builder.extend("ExtendClass")
+builder.implement("Implement1")
+builder.implement("Implement2")
+builder.add_fields_getter_and_setter()
+builder.document("this is a test document")
+builder.annotation("AnnotationDemo2")
+builder.annotation("AnnotationDemo")
+builder.imports("com.path")
+builder.build().preview_class()
+```
+java-coder provides builder tools to create a new class file easily.
+
+```python
+from javacoder.core.builder import InterfaceBuilder
+project_path='your project path'
+builder=InterfaceBuilder("DemoClass")
+builder.author()
+builder.project(project_path)
+builder.extend("Implement1","JPA_DO")
+builder.extend("Header")
+builder.document("this is a test interface")
+builder.annotation("AnnotationDemo2")
+builder.annotation("AnnotationDemo")
+builder.method("hello")
+builder.imports("com.path")
+builder.imports("com.path2",wildcard=True)
+builder.build().preview_class()
+```
+java-coder also provides some useful plugins to generate some infos automatically.
+It also supports you to apply your own plugin.
+
+## Useful tools
+
+java-coder gives some useful tools to make every java coder work easily in daily work.
+
+```python
+from javacoder.core import operator
+from javacoder.utils import generator
+op = operator.ClassOperator(class_path="your_class_path")
+ddl_gen = generator.convert_class_fields_to_db_ddl_builder("table_name")
+print(ddl_gen(class_fields=[i.declarators[0].name for i in op.get_fields()]))
+```
+this will help you generate ddl according to class fields.
