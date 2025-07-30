@@ -1,0 +1,60 @@
+# ==============================================================================
+# pyproject.toml for the Speaker Diarization & Splitting System
+# ==============================================================================
+# This file defines project metadata and dependencies for modern Python packaging.
+# For more information, see: https://packaging.python.org/en/latest/specifications/pyproject-toml/
+
+# The [build-system] section is mandatory and tells tools like pip and uv
+# what backend to use to build the project.
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+# The [project] section contains all the metadata about your project.
+[project]
+name = "speaker-diarization-system"
+version = "1.0.2"
+authors = [
+  { name="Lukium", email="lukium@pm.me" },
+]
+description = "An AI-powered script to identify speakers in an audio file and split them into separate, clean tracks."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { file="LICENSE" }
+keywords = ["diarization", "speaker", "audio", "pyannote", "splitter", "ai"]
+
+# This section lists the project's dependencies without strict version pins.
+# This allows the `setup.py` script to install the latest compatible versions
+# by default. The pinned, "failsafe" versions are kept in `requirements.txt`.
+#
+# NOTE: torch, torchvision, and torchaudio are EXCLUDED here because they
+# require a special installation process (using --extra-index-url) to get
+# the correct GPU-enabled versions. Their installation is handled by the
+# setup.py script and documented in the README.
+dependencies = [
+    "pyannote.audio",
+    "pyannote.core",
+    "pyannote.database",
+    "pyannote.metrics",
+    "pyannote.pipeline",
+    "pytorch-lightning",
+    "torchmetrics",
+    "numpy>=2.0",
+    "python-dotenv",
+    "huggingface_hub",
+    "pydub",
+]
+
+# The [project.urls] section provides helpful links related to your project.
+[project.urls]
+"Homepage" = "https://github.com/lukium/speaker-diarization-system"
+"Bug Tracker" = "https://github.com/lukium/speaker-diarization-system/issues"
+
+# The [project.scripts] section creates command-line executables.
+# After installing this package, a user can run `diarize` from their terminal,
+# which will execute the main() function in split_speakers.py.
+[project.scripts]
+diarize = "split_speakers:main"
+
+[tool.setuptools]
+py-modules = ["split_speakers", "main", "install"]
