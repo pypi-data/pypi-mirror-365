@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: dagster-ibis-bigquery
+Version: 0.1.5
+Summary: Library for interacting with Ibis Tables within a bigquery backend within dagster.
+Author-email: James Blackwell <33688964+j-blackwell@users.noreply.github.com>
+Requires-Python: >=3.10
+Requires-Dist: dagster-gcp-pandas>=0.23.6
+Requires-Dist: dagster-ibis>=0.1.1
+Requires-Dist: dagster<1.10.14,>=1.8
+Requires-Dist: ibis-framework[bigquery]>=10.3.1
+Description-Content-Type: text/markdown
+
+# dagster-ibis-duckdb
+Dagster IO manager for ibis dataframes

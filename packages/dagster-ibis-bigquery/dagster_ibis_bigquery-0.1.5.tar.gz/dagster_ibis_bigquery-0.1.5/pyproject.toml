@@ -1,0 +1,28 @@
+[project]
+name = "dagster-ibis-bigquery"
+version = "0.1.5"
+description = "Library for interacting with Ibis Tables within a bigquery backend within dagster."
+readme = "README.md"
+authors = [
+    { name = "James Blackwell", email = "33688964+j-blackwell@users.noreply.github.com" }
+]
+requires-python = ">=3.10"
+dependencies = [
+    "dagster>=1.8,<1.10.14",
+    "dagster-gcp-pandas>=0.23.6",
+    "ibis-framework[bigquery]>=10.3.1",
+    "dagster-ibis>=0.1.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv.sources]
+dagster-ibis = { workspace = true }
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3.5",
+    "python-dotenv>=1.1.0",
+]
