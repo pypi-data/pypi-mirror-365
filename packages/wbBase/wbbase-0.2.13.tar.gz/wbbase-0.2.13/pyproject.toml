@@ -1,0 +1,100 @@
+[build-system]
+requires = ["setuptools>=61.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wbBase"
+authors = [{name = "Andreas Eigendorf"}]
+description = "Base package for WorkBench applications."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = [
+    "workbench",
+    "wxPython",
+    "GUI",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX",
+    "Environment :: MacOS X :: Cocoa",
+    "Environment :: Win32 (MS Windows)",
+    "Environment :: X11 Applications :: GTK",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: User Interfaces",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "wxpython>=4.2.3",
+    "GitPython>=3.1",
+    "PyYAML>=6.0",
+    "importlib_metadata;python_version<'3.10'",
+]
+dynamic = ["version"]
+
+
+# === setuptools ==================================
+[tool.setuptools]
+package-dir = {"" = "Lib"}
+platforms = [
+    "WIN32",
+    "WIN64",
+    "OSX",
+    "POSIX",
+]
+include-package-data = false
+
+[tool.setuptools.packages.find]
+where = ["Lib"]
+namespaces = false
+
+[tool.setuptools.dynamic]
+version = {attr = "wbBase.__version__"}
+
+# === bumpversion ==================================
+[tool.bumpversion]
+current_version = "0.2.13"
+parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)"
+serialize = ["{major}.{minor}.{patch}"]
+commit = true
+tag = true
+tag_name = "{new_version}"
+tag_message = "Bump version: {current_version} → {new_version}"
+
+[[tool.bumpversion.files]]
+filename = "Lib/wbBase/__init__.py"
+search = '__version__ = "{current_version}"'
+replace = '__version__ = "{new_version}"'
+
+# === pytest ==================================
+[tool.pytest.ini_options]
+minversion = "8.3"
+testpaths = ["tests"]
+
+# === tox ==================================
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+min_version = 4.25
+env_list = 
+	py39
+	py310
+	py311
+	py312
+
+[testenv]
+deps = 
+	pytest
+commands = 
+	pytest
+"""
