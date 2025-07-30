@@ -1,0 +1,26 @@
+{
+    "file_type": "csv",
+    "name": "words",
+    "transducers": [{
+        "input_field": "word",
+        "output_field": "sort_form",
+        "lower": true
+    }],
+    "targets": {
+        "entryID": "0",
+        "definition": "1",
+        "word": "2",
+        "audio": [{
+            "description": "3",
+            "filename": "4"
+        }],
+        "video": [{
+            "description": "5",
+            "filename": "6"
+        }],
+        "theme": "7",
+        "optional": {
+            "Part of Speech": "8"
+        }
+    }
+}

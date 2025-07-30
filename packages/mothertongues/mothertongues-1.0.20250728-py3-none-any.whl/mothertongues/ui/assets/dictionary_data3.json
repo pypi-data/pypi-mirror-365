@@ -1,0 +1,327 @@
+{
+    "config": {
+        "L1": "Danish",
+        "L2": "English",
+        "l1_search_strategy": "weighted_levenstein",
+        "l2_search_strategy": "liblevenstein_automata",
+        "l1_search_config": {
+            "insertionCost": 1.0,
+            "deletionCost": 1.0,
+            "insertionAtBeginningCost": 1.0,
+            "deletionAtEndCost": 1.0,
+            "substitutionCosts": {},
+            "substitutionCostsPath": null,
+            "defaultSubstitutionCost": 1.0
+        },
+        "l2_search_config": null,
+        "l1_stemmer": "none",
+        "l2_stemmer": "snowball_english",
+        "l1_normalization_transducer": {
+            "lower": true,
+            "unicode_normalization": "NFC",
+            "remove_punctuation": "[.,/#!$%^&?*';:{}=\\-_`~()]",
+            "remove_combining_characters": true,
+            "replace_rules": null
+        },
+        "l2_normalization_transducer": {
+            "lower": true,
+            "unicode_normalization": "NFC",
+            "remove_punctuation": "[.,/#!$%^&?*';:{}=\\-_`~()]",
+            "remove_combining_characters": true,
+            "replace_rules": null
+        },
+        "alphabet": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h",
+            "i",
+            "j",
+            "k",
+            "l",
+            "m",
+            "n",
+            "o",
+            "p",
+            "q",
+            "r",
+            "s",
+            "t",
+            "u",
+            "v",
+            "w",
+            "x",
+            "y",
+            "z",
+            "\u00e6",
+            "\u00f8",
+            "\u00e5"
+        ],
+        "optional_field_name": "Optional Info",
+        "credits": null,
+        "build": "1702669429"
+    },
+    "data": [
+        {
+            "word": "farvel",
+            "definition": "goodbye",
+            "entryID": "4",
+            "sorting_form": [
+                5,
+                0,
+                17,
+                21,
+                4,
+                11
+            ],
+            "theme": "greetings",
+            "secondary_theme": "",
+            "img": "",
+            "audio": [],
+            "definition_audio": [],
+            "example_sentence": [],
+            "example_sentence_definition": [],
+            "example_sentence_audio": [],
+            "example_sentence_definition_audio": [],
+            "optional": {
+                "Part of Speech": "interjection"
+            },
+            "source": "words",
+            "sort_form": "farvel"
+        },
+        {
+            "word": "hej",
+            "definition": "hello",
+            "entryID": "3",
+            "sorting_form": [
+                7,
+                4,
+                9
+            ],
+            "theme": "greetings",
+            "secondary_theme": "",
+            "img": "",
+            "audio": [
+                {
+                    "description": "Aidan Pine",
+                    "filename": "hej.mp3"
+                }
+            ],
+            "definition_audio": [],
+            "example_sentence": [],
+            "example_sentence_definition": [],
+            "example_sentence_audio": [],
+            "example_sentence_definition_audio": [],
+            "optional": {
+                "Part of Speech": "interjection"
+            },
+            "source": "words",
+            "sort_form": "hej"
+        },
+        {
+            "word": "ord",
+            "definition": "word",
+            "entryID": "2",
+            "sorting_form": [
+                14,
+                17,
+                3
+            ],
+            "theme": "abstract",
+            "secondary_theme": "",
+            "img": "",
+            "audio": [
+                {
+                    "description": "Aidan Pine",
+                    "filename": "ord.mp3"
+                }
+            ],
+            "definition_audio": [],
+            "example_sentence": [],
+            "example_sentence_definition": [],
+            "example_sentence_audio": [],
+            "example_sentence_definition_audio": [],
+            "optional": {
+                "Part of Speech": "noun"
+            },
+            "source": "words",
+            "sort_form": "ord"
+        },
+        {
+            "word": "tr\u00e6",
+            "definition": "tree",
+            "entryID": "1",
+            "sorting_form": [
+                19,
+                17,
+                26
+            ],
+            "theme": "plants",
+            "secondary_theme": "",
+            "img": "",
+            "audio": [
+                {
+                    "description": "Aidan Pine",
+                    "filename": "tree.mp3"
+                }
+            ],
+            "definition_audio": [],
+            "example_sentence": [
+                "Har du r\u00f8de \u00f8jne?",
+                "D\u00f8de r\u00f8de r\u00f8d\u00f8jede r\u00e5dne r\u00f8gede \u00f8rreder."
+            ],
+            "example_sentence_definition": [
+                "Do you have red eyes?",
+                "Dead, red, red-eyed, rotten, smoked trout."
+            ],
+            "example_sentence_audio": [
+                [
+                    {
+                        "description": "AP",
+                        "filename": "ap_sent1.mp3"
+                    },
+                    {
+                        "description": "AR",
+                        "filename": "ar_sent1.mp3"
+                    }
+                ],
+                [
+                    {
+                        "description": "AP",
+                        "filename": "ap_sent2.mp3"
+                    },
+                    {
+                        "description": "AR",
+                        "filename": "ar_sent2.mp3"
+                    }
+                ]
+            ],
+            "example_sentence_definition_audio": [],
+            "optional": {
+                "Part of Speech": "noun"
+            },
+            "source": "words",
+            "sort_form": "tr\u00e6"
+        }
+    ],
+    "l1_index": {
+        "tr\u00e6": {
+            "1": {
+                "location": [
+                    [
+                        "word",
+                        0
+                    ]
+                ],
+                "score": {
+                    "word": 0.8472978603872037,
+                    "total": 0.8472978603872037
+                }
+            }
+        },
+        "ord": {
+            "2": {
+                "location": [
+                    [
+                        "word",
+                        0
+                    ]
+                ],
+                "score": {
+                    "word": 0.8472978603872037,
+                    "total": 0.8472978603872037
+                }
+            }
+        },
+        "hej": {
+            "3": {
+                "location": [
+                    [
+                        "word",
+                        0
+                    ]
+                ],
+                "score": {
+                    "word": 0.8472978603872037,
+                    "total": 0.8472978603872037
+                }
+            }
+        },
+        "farvel": {
+            "4": {
+                "location": [
+                    [
+                        "word",
+                        0
+                    ]
+                ],
+                "score": {
+                    "word": 0.8472978603872037,
+                    "total": 0.8472978603872037
+                }
+            }
+        }
+    },
+    "l2_index": {
+        "tree": {
+            "1": {
+                "location": [
+                    [
+                        "definition",
+                        0
+                    ]
+                ],
+                "score": {
+                    "definition": 0.8472978603872037,
+                    "total": 0.8472978603872037
+                }
+            }
+        },
+        "word": {
+            "2": {
+                "location": [
+                    [
+                        "definition",
+                        0
+                    ]
+                ],
+                "score": {
+                    "definition": 0.8472978603872037,
+                    "total": 0.8472978603872037
+                }
+            }
+        },
+        "hello": {
+            "3": {
+                "location": [
+                    [
+                        "definition",
+                        0
+                    ]
+                ],
+                "score": {
+                    "definition": 0.8472978603872037,
+                    "total": 0.8472978603872037
+                }
+            }
+        },
+        "goodby": {
+            "4": {
+                "location": [
+                    [
+                        "definition",
+                        0
+                    ]
+                ],
+                "score": {
+                    "definition": 0.8472978603872037,
+                    "total": 0.8472978603872037
+                }
+            }
+        }
+    }
+}

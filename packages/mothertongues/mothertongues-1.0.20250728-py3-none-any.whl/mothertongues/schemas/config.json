@@ -1,0 +1,1192 @@
+{
+    "$defs": {
+        "ArbitraryFieldRestrictedTransducer": {
+            "additionalProperties": false,
+            "properties": {
+                "lower": {
+                    "default": true,
+                    "title": "Lower",
+                    "type": "boolean"
+                },
+                "unicode_normalization": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/NormalizationEnum"
+                        }
+                    ],
+                    "default": "NFC"
+                },
+                "remove_punctuation": {
+                    "default": "[.,/#!$%^&?*';:{}=\\-_`~()]",
+                    "title": "Remove Punctuation",
+                    "type": "string"
+                },
+                "remove_combining_characters": {
+                    "default": true,
+                    "title": "Remove Combining Characters",
+                    "type": "boolean"
+                },
+                "replace_rules": {
+                    "anyOf": [
+                        {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "type": "object"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Replace Rules"
+                },
+                "input_field": {
+                    "title": "Input Field",
+                    "type": "string"
+                },
+                "output_field": {
+                    "title": "Output Field",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "input_field",
+                "output_field"
+            ],
+            "title": "ArbitraryFieldRestrictedTransducer",
+            "type": "object"
+        },
+        "Audio": {
+            "additionalProperties": true,
+            "properties": {
+                "description": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Description"
+                },
+                "filename": {
+                    "title": "Filename",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "filename"
+            ],
+            "title": "Audio",
+            "type": "object"
+        },
+        "CheckableParserTargetFieldNames": {
+            "enum": [
+                "word",
+                "definition",
+                "entryID",
+                "theme",
+                "secondary_theme",
+                "img",
+                "audio",
+                "video",
+                "definition_audio",
+                "example_sentence",
+                "example_sentence_definition",
+                "example_sentence_audio",
+                "example_sentence_definition_audio",
+                "optional"
+            ],
+            "title": "CheckableParserTargetFieldNames",
+            "type": "string"
+        },
+        "Contributor": {
+            "additionalProperties": false,
+            "properties": {
+                "role": {
+                    "title": "Role",
+                    "type": "string"
+                },
+                "name": {
+                    "title": "Name",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "role",
+                "name"
+            ],
+            "title": "Contributor",
+            "type": "object"
+        },
+        "DataSource": {
+            "additionalProperties": false,
+            "properties": {
+                "manifest": {
+                    "$ref": "#/$defs/ResourceManifest"
+                },
+                "resource": {
+                    "anyOf": [
+                        {
+                            "format": "file-path",
+                            "type": "string"
+                        },
+                        {
+                            "items": {
+                                "type": "object"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "items": {
+                                "$ref": "#/$defs/DictionaryEntry"
+                            },
+                            "type": "array"
+                        }
+                    ],
+                    "title": "Resource"
+                }
+            },
+            "required": [
+                "manifest",
+                "resource"
+            ],
+            "title": "DataSource",
+            "type": "object"
+        },
+        "DictionaryEntry": {
+            "additionalProperties": true,
+            "description": "There is a DictionaryEntry created for each entry in your dictionary.\nIt intentionally shares the same data structure as the ParserTargets,\nbut allows for extra fields.",
+            "properties": {
+                "word": {
+                    "title": "Word",
+                    "type": "string"
+                },
+                "definition": {
+                    "title": "Definition",
+                    "type": "string"
+                },
+                "entryID": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "integer"
+                        },
+                        {
+                            "format": "uuid",
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Entryid"
+                },
+                "theme": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": "",
+                    "title": "Theme"
+                },
+                "secondary_theme": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": "",
+                    "title": "Secondary Theme"
+                },
+                "img": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": "",
+                    "title": "Img"
+                },
+                "audio": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/Audio"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": [],
+                    "title": "Audio"
+                },
+                "video": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/Video"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": [],
+                    "title": "Video"
+                },
+                "definition_audio": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/Audio"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": [],
+                    "title": "Definition Audio"
+                },
+                "example_sentence": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": [],
+                    "title": "Example Sentence"
+                },
+                "example_sentence_definition": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": [],
+                    "title": "Example Sentence Definition"
+                },
+                "example_sentence_audio": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "items": {
+                                    "$ref": "#/$defs/Audio"
+                                },
+                                "type": "array"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": [],
+                    "title": "Example Sentence Audio"
+                },
+                "example_sentence_definition_audio": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "items": {
+                                    "$ref": "#/$defs/Audio"
+                                },
+                                "type": "array"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": [],
+                    "title": "Example Sentence Definition Audio"
+                },
+                "optional": {
+                    "anyOf": [
+                        {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "type": "object"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": {},
+                    "title": "Optional"
+                },
+                "source": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": "",
+                    "title": "Source"
+                }
+            },
+            "required": [
+                "word",
+                "definition"
+            ],
+            "title": "DictionaryEntry",
+            "type": "object"
+        },
+        "LanguageConfiguration": {
+            "additionalProperties": false,
+            "properties": {
+                "L1": {
+                    "default": "YourLanguage",
+                    "title": "L1",
+                    "type": "string"
+                },
+                "L2": {
+                    "default": "English",
+                    "title": "L2",
+                    "type": "string"
+                },
+                "l1_search_strategy": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/SearchAlgorithms"
+                        }
+                    ],
+                    "default": "weighted_levenstein"
+                },
+                "l2_search_strategy": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/SearchAlgorithms"
+                        }
+                    ],
+                    "default": "liblevenstein_automata"
+                },
+                "l1_search_config": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/WeightedLevensteinConfig"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                },
+                "l2_search_config": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/WeightedLevensteinConfig"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null
+                },
+                "l1_stemmer": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/StemmerEnum"
+                        }
+                    ],
+                    "default": "none"
+                },
+                "l2_stemmer": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/StemmerEnum"
+                        }
+                    ],
+                    "default": "snowball_english"
+                },
+                "l1_normalization_transducer": {
+                    "$ref": "#/$defs/RestrictedTransducer"
+                },
+                "l2_normalization_transducer": {
+                    "$ref": "#/$defs/RestrictedTransducer"
+                },
+                "alphabet": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "format": "file-path",
+                            "type": "string"
+                        }
+                    ],
+                    "default": [
+                        "a",
+                        "b",
+                        "c",
+                        "d",
+                        "e",
+                        "f",
+                        "g",
+                        "h",
+                        "i",
+                        "j",
+                        "k",
+                        "l",
+                        "m",
+                        "n",
+                        "o",
+                        "p",
+                        "q",
+                        "r",
+                        "s",
+                        "t",
+                        "u",
+                        "v",
+                        "w",
+                        "x",
+                        "y",
+                        "z",
+                        "A",
+                        "B",
+                        "C",
+                        "D",
+                        "E",
+                        "F",
+                        "G",
+                        "H",
+                        "I",
+                        "J",
+                        "K",
+                        "L",
+                        "M",
+                        "N",
+                        "O",
+                        "P",
+                        "Q",
+                        "R",
+                        "S",
+                        "T",
+                        "U",
+                        "V",
+                        "W",
+                        "X",
+                        "Y",
+                        "Z"
+                    ],
+                    "title": "Alphabet"
+                },
+                "optional_field_name": {
+                    "default": "Optional Field",
+                    "title": "Optional Field Name",
+                    "type": "string"
+                },
+                "credits": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/Contributor"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Credits"
+                },
+                "aboutPageImg": {
+                    "anyOf": [
+                        {
+                            "format": "uri",
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": "https://placehold.co/600x400",
+                    "title": "Aboutpageimg"
+                },
+                "aboutPageDescription": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": "Please change this text to describe your dictionary in a bit more detail.",
+                    "title": "Aboutpagedescription"
+                },
+                "build": {
+                    "default": "mothertongues.utils.get_current_time",
+                    "title": "Build",
+                    "type": "string"
+                },
+                "no_sort_characters": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "format": "file-path",
+                            "type": "string"
+                        }
+                    ],
+                    "default": [],
+                    "title": "No Sort Characters"
+                },
+                "sorting_field": {
+                    "default": "sort_form",
+                    "title": "Sorting Field",
+                    "type": "string"
+                },
+                "l1_keys_to_index": {
+                    "default": [
+                        "word"
+                    ],
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "L1 Keys To Index",
+                    "type": "array"
+                },
+                "l2_keys_to_index": {
+                    "default": [
+                        "definition"
+                    ],
+                    "items": {
+                        "type": "string"
+                    },
+                    "title": "L2 Keys To Index",
+                    "type": "array"
+                },
+                "duplicate_fields_subset": {
+                    "default": [
+                        "word",
+                        "entryID"
+                    ],
+                    "items": {
+                        "$ref": "#/$defs/CheckableParserTargetFieldNames"
+                    },
+                    "title": "Duplicate Fields Subset",
+                    "type": "array"
+                },
+                "required_fields": {
+                    "default": [
+                        "word",
+                        "definition"
+                    ],
+                    "items": {
+                        "$ref": "#/$defs/CheckableParserTargetFieldNames"
+                    },
+                    "title": "Required Fields",
+                    "type": "array"
+                }
+            },
+            "title": "LanguageConfiguration",
+            "type": "object"
+        },
+        "NormalizationEnum": {
+            "enum": [
+                "NFC",
+                "NFD",
+                "NFKC",
+                "NKFD",
+                "none"
+            ],
+            "title": "NormalizationEnum",
+            "type": "string"
+        },
+        "ParserEnum": {
+            "enum": [
+                "json",
+                "csv",
+                "psv",
+                "tsv",
+                "xlsx",
+                "custom",
+                "none"
+            ],
+            "title": "ParserEnum",
+            "type": "string"
+        },
+        "ParserTargets": {
+            "additionalProperties": true,
+            "description": "Your ParserTargets define how to parse your data into a list of DictionaryEntry objects",
+            "properties": {
+                "word": {
+                    "title": "Word",
+                    "type": "string"
+                },
+                "definition": {
+                    "title": "Definition",
+                    "type": "string"
+                },
+                "entryID": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Entryid"
+                },
+                "theme": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Theme"
+                },
+                "secondary_theme": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Secondary Theme"
+                },
+                "img": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Img"
+                },
+                "source": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": "",
+                    "title": "Source"
+                },
+                "audio": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/Audio"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "object"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Audio"
+                },
+                "video": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/Video"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "object"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Video"
+                },
+                "definition_audio": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "$ref": "#/$defs/Audio"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "object"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Definition Audio"
+                },
+                "example_sentence": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "object"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Example Sentence"
+                },
+                "example_sentence_definition": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "object"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Example Sentence Definition"
+                },
+                "example_sentence_audio": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "anyOf": [
+                                    {
+                                        "items": {
+                                            "$ref": "#/$defs/Audio"
+                                        },
+                                        "type": "array"
+                                    },
+                                    {
+                                        "type": "object"
+                                    }
+                                ]
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "object"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Example Sentence Audio"
+                },
+                "example_sentence_definition_audio": {
+                    "anyOf": [
+                        {
+                            "items": {
+                                "anyOf": [
+                                    {
+                                        "items": {
+                                            "$ref": "#/$defs/Audio"
+                                        },
+                                        "type": "array"
+                                    },
+                                    {
+                                        "type": "object"
+                                    }
+                                ]
+                            },
+                            "type": "array"
+                        },
+                        {
+                            "type": "object"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Example Sentence Definition Audio"
+                },
+                "optional": {
+                    "anyOf": [
+                        {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "type": "object"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Optional"
+                }
+            },
+            "required": [
+                "word",
+                "definition"
+            ],
+            "title": "ParserTargets",
+            "type": "object"
+        },
+        "ResourceManifest": {
+            "additionalProperties": false,
+            "properties": {
+                "file_type": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/ParserEnum"
+                        }
+                    ],
+                    "default": "none"
+                },
+                "name": {
+                    "default": "YourData",
+                    "title": "Name",
+                    "type": "string"
+                },
+                "skip_header": {
+                    "default": false,
+                    "title": "Skip Header",
+                    "type": "boolean"
+                },
+                "transducers": {
+                    "default": [],
+                    "items": {
+                        "$ref": "#/$defs/ArbitraryFieldRestrictedTransducer"
+                    },
+                    "title": "Transducers",
+                    "type": "array"
+                },
+                "audio_path": {
+                    "anyOf": [
+                        {
+                            "format": "uri",
+                            "maxLength": 2083,
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Audio Path"
+                },
+                "video_path": {
+                    "anyOf": [
+                        {
+                            "format": "uri",
+                            "maxLength": 2083,
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Video Path"
+                },
+                "img_path": {
+                    "anyOf": [
+                        {
+                            "format": "uri",
+                            "maxLength": 2083,
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Img Path"
+                },
+                "targets": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/ParserTargets"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null
+                },
+                "sheet_name": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Sheet Name"
+                },
+                "json_parser_entrypoint": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Json Parser Entrypoint"
+                }
+            },
+            "title": "ResourceManifest",
+            "type": "object"
+        },
+        "RestrictedTransducer": {
+            "additionalProperties": false,
+            "properties": {
+                "lower": {
+                    "default": true,
+                    "title": "Lower",
+                    "type": "boolean"
+                },
+                "unicode_normalization": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/NormalizationEnum"
+                        }
+                    ],
+                    "default": "NFC"
+                },
+                "remove_punctuation": {
+                    "default": "[.,/#!$%^&?*';:{}=\\-_`~()]",
+                    "title": "Remove Punctuation",
+                    "type": "string"
+                },
+                "remove_combining_characters": {
+                    "default": true,
+                    "title": "Remove Combining Characters",
+                    "type": "boolean"
+                },
+                "replace_rules": {
+                    "anyOf": [
+                        {
+                            "additionalProperties": {
+                                "type": "string"
+                            },
+                            "type": "object"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Replace Rules"
+                }
+            },
+            "title": "RestrictedTransducer",
+            "type": "object"
+        },
+        "SearchAlgorithms": {
+            "enum": [
+                "weighted_levenstein",
+                "liblevenstein_automata"
+            ],
+            "title": "SearchAlgorithms",
+            "type": "string"
+        },
+        "StemmerEnum": {
+            "enum": [
+                "snowball_english",
+                "none"
+            ],
+            "title": "StemmerEnum",
+            "type": "string"
+        },
+        "Video": {
+            "additionalProperties": true,
+            "properties": {
+                "description": {
+                    "anyOf": [
+                        {
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Description"
+                },
+                "filename": {
+                    "title": "Filename",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "filename"
+            ],
+            "title": "Video",
+            "type": "object"
+        },
+        "WeightedLevensteinConfig": {
+            "additionalProperties": false,
+            "properties": {
+                "insertionCost": {
+                    "default": 1.0,
+                    "maximum": 1.0,
+                    "minimum": 0.0,
+                    "title": "Insertioncost",
+                    "type": "number"
+                },
+                "deletionCost": {
+                    "default": 1.0,
+                    "maximum": 1.0,
+                    "minimum": 0.0,
+                    "title": "Deletioncost",
+                    "type": "number"
+                },
+                "insertionAtBeginningCost": {
+                    "default": 1.0,
+                    "maximum": 1.0,
+                    "minimum": 0.0,
+                    "title": "Insertionatbeginningcost",
+                    "type": "number"
+                },
+                "deletionAtEndCost": {
+                    "default": 1.0,
+                    "maximum": 1.0,
+                    "minimum": 0.0,
+                    "title": "Deletionatendcost",
+                    "type": "number"
+                },
+                "substitutionCosts": {
+                    "additionalProperties": {
+                        "additionalProperties": {
+                            "maximum": 1.0,
+                            "minimum": 0.0,
+                            "type": "number"
+                        },
+                        "type": "object"
+                    },
+                    "default": {},
+                    "title": "Substitutioncosts",
+                    "type": "object"
+                },
+                "substitutionCostsPath": {
+                    "anyOf": [
+                        {
+                            "format": "file-path",
+                            "type": "string"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "default": null,
+                    "title": "Substitutioncostspath"
+                },
+                "defaultSubstitutionCost": {
+                    "default": 1.0,
+                    "maximum": 1.0,
+                    "minimum": 0.0,
+                    "title": "Defaultsubstitutioncost",
+                    "type": "number"
+                }
+            },
+            "title": "WeightedLevensteinConfig",
+            "type": "object"
+        }
+    },
+    "additionalProperties": false,
+    "properties": {
+        "config": {
+            "$ref": "#/$defs/LanguageConfiguration"
+        },
+        "data": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/DataSource"
+                },
+                {
+                    "items": {
+                        "$ref": "#/$defs/DataSource"
+                    },
+                    "type": "array"
+                }
+            ],
+            "title": "Data"
+        }
+    },
+    "required": [
+        "config",
+        "data"
+    ],
+    "title": "MTDConfiguration",
+    "type": "object"
+}

@@ -1,0 +1,27 @@
+{
+    "file_type": "json",
+    "name": "words",
+    "transducers": [{
+        "input_field": "word",
+        "output_field": "sort_form",
+        "lower": true
+    }],
+    "targets": {
+        "entryID": "entryID",
+        "definition": "definition",
+        "word": "word",
+        "audio": {
+            "listof": "audio",
+            "value": {
+                "description": "description",
+                "filename": "filename"
+            }
+        },
+        "example_sentence": { "listof": "example_sentences" },
+        "example_sentence_definition": { "listof": "example_sentence_definitions" },
+        "theme": "theme",
+        "optional": {
+            "Part of Speech": "optional.\"Part of Speech\""
+        }
+    }
+}
