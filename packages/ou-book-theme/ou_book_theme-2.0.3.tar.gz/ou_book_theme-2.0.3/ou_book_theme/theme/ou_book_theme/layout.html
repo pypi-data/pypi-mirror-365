@@ -1,0 +1,17 @@
+{% extends "sphinx_book_theme/layout.html" %}
+
+{% block css %}
+{{ super() }}
+{% include "ou-head.html" %}
+{% endblock %}
+
+{% block body_tag %}
+{{ super() }}
+{% include "ou-header.html" %}
+{% endblock %}
+
+{% block footer %}
+{{ super() }}
+{% include "ou-footer.html" %}
+<script src="{{ content_root }}ouheaders/js/headerfooter.min.js"></script>
+{% endblock %}
