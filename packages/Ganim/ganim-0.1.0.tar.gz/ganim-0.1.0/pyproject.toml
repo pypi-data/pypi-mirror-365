@@ -1,0 +1,39 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "Ganim"
+version = "0.1.0"
+authors = [
+  { name="perepepeu", email="pedrohenriquerios00@gmail.com" },
+]
+description = "Uma biblioteca Python intuitiva para treinar e usar GANs para geração de imagens."
+readme = "README.md"
+# --- CORREÇÃO FINAL DO AVISO DE LICENÇA ---
+# A forma mais simples e moderna, como o aviso sugere
+license = "MIT"
+requires-python = ">=3.8"
+classifiers = [
+    # A linha de licença foi removida daqui, pois agora está no campo 'license' acima
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Image Processing",
+]
+
+dependencies = [
+    "torch",
+    "torchvision",
+    "numpy",
+    "matplotlib",
+    "opencv-python",
+    "tqdm"
+]
+
+[project.urls]
+Homepage = "https://github.com/perepepeu/Ganim"
+"Bug Tracker" = "https://github.com/perepepeu/Ganim/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
