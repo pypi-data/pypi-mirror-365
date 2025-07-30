@@ -1,0 +1,44 @@
+Metadata-Version: 2.4
+Name: aqua_fetch
+Version: 1.0.0rc3
+Summary: A Unified Python Interface for Water Resource Data Acquisition and harmonization
+Home-page: https://github.com/hyex-research/AquaFetch
+Author: Ather Abbas
+Author-email: ather.abbas.cheema@gmail.com
+Classifier: Development Status :: 4 - Beta
+Classifier: Natural Language :: English
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Operating System :: Microsoft :: Windows
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Description-Content-Type: text/markdown
+License-File: LICENCE.md
+Requires-Dist: pandas<=2.1.4,>=0.25.0
+Requires-Dist: requests
+Provides-Extra: all
+Requires-Dist: easy_mpl; extra == "all"
+Requires-Dist: fiona<=1.10.1; extra == "all"
+Requires-Dist: netCDF4; extra == "all"
+Requires-Dist: xarray<2025.1.0; extra == "all"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: summary
+
+https://github.com/hyex-research/AquaFetch
