@@ -1,0 +1,178 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "datatrack-core"
+version = "1.1.3"
+description = "High-Performance Version Control for Database Schemas with Intelligent Processing"
+readme = "pypiREADME.md"
+requires-python = ">=3.7"
+license = { text = "MIT" }
+authors = [
+  { name = "N R Navaneet", email = "navaneetnr@gmail.com" }
+]
+keywords = [
+  "database",
+  "schema",
+  "version-control",
+  "migration",
+  "diff",
+  "sql",
+  "postgresql",
+  "mysql",
+  "sqlite"
+]
+dependencies = [
+  "typer[all]",
+  "PyYAML",
+  "sqlalchemy",
+  "psycopg2-binary",
+  "pymysql",
+  "pre-commit",
+  "pytest"
+]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Operating System :: OS Independent",
+  "Environment :: Console",
+  "Intended Audience :: Developers",
+  "Intended Audience :: System Administrators",
+  "Topic :: Database :: Front-Ends",
+  "Topic :: Software Development :: Build Tools",
+  "Topic :: Software Development :: Version Control",
+  "Topic :: System :: Systems Administration",
+  "Topic :: Utilities"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/nrnavaneet/datatrack"
+"Documentation" = "https://github.com/nrnavaneet/datatrack/blob/main/README.md"
+"Repository" = "https://github.com/nrnavaneet/datatrack"
+"Bug Tracker" = "https://github.com/nrnavaneet/datatrack/issues"
+"Changelog" = "https://github.com/nrnavaneet/datatrack/releases"
+"Usage Guide" = "https://github.com/nrnavaneet/datatrack/blob/main/docs/USAGE.md"
+"Installation" = "https://github.com/nrnavaneet/datatrack/blob/main/docs/INSTALLATION.md"
+"Contributing" = "https://github.com/nrnavaneet/datatrack/blob/main/docs/contribute/CONTRIBUTING.md"
+"Development" = "https://github.com/nrnavaneet/datatrack/blob/main/docs/DEVELOPMENT.md"
+
+[project.scripts]
+datatrack = "datatrack.cli:app"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.0",
+  "pytest-cov>=4.0",
+  "black>=23.0",
+  "ruff>=0.0.290",
+  "pre-commit>=3.0",
+  "twine>=4.0"
+]
+test = [
+  "pytest>=7.0",
+  "pytest-cov>=4.0",
+  "pytest-mock>=3.10"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["datatrack*"]
+
+[tool.setuptools.package-data]
+datatrack = ["*.yaml", "*.yml", "*.json"]
+
+[tool.black]
+line-length = 88
+target-version = ['py37', 'py38', 'py39', 'py310', 'py311']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.ruff]
+target-version = "py37"
+line-length = 88
+
+[tool.ruff.lint]
+select = [
+  "E",  # pycodestyle errors
+  "W",  # pycodestyle warnings
+  "F",  # pyflakes
+  "B",  # flake8-bugbear
+  "C4", # flake8-comprehensions
+  "UP", # pyupgrade
+]
+ignore = [
+  "E501",  # line too long, handled by black
+  "B008",  # do not perform function calls in argument defaults
+  "C901",  # too complex
+  "I",     # isort (handled by separate isort hook)
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+"tests/**/*" = ["B011"]
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+include_trailing_comma = true
+force_grid_wrap = 0
+use_parentheses = true
+ensure_newline_before_comments = true
+line_length = 88
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+  "--strict-markers",
+  "--strict-config",
+  "--verbose",
+  "-ra"
+]
+markers = [
+  "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+  "integration: marks tests as integration tests",
+  "unit: marks tests as unit tests"
+]
+
+[tool.coverage.run]
+source = ["datatrack"]
+omit = [
+  "*/tests/*",
+  "*/test_*",
+  "setup.py",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+  "pragma: no cover",
+  "def __repr__",
+  "if self.debug:",
+  "if settings.DEBUG",
+  "raise AssertionError",
+  "raise NotImplementedError",
+  "if 0:",
+  "if __name__ == .__main__.:",
+  "class .*\\bProtocol\\):",
+  "@(abc\\.)?abstractmethod",
+]
