@@ -1,0 +1,99 @@
+Metadata-Version: 2.4
+Name: docx-json-replacer
+Version: 0.3.0
+Summary: Replace template text in DOCX files with values from JSON
+Home-page: https://github.com/yourusername/docx-json-replacer
+Author: Your Name
+Author-email: liuspatt <liuspatt@example.com>
+License: MIT
+Project-URL: Homepage, https://github.com/liuspatt/docx-json-replacer
+Project-URL: Repository, https://github.com/liuspatt/docx-json-replacer
+Project-URL: Issues, https://github.com/liuspatt/docx-json-replacer/issues
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: docxtpl>=0.20.0
+Dynamic: author
+Dynamic: home-page
+Dynamic: license-file
+Dynamic: requires-python
+
+# docx-json-replacer
+
+A Python library and CLI tool for replacing template text in DOCX files with values from JSON.
+
+## Installation
+
+```bash
+pip install docx-json-replacer
+# or
+pip3 install docx-json-replacer
+```
+
+
+## Usage
+
+### CLI
+
+```bash
+docx-json-replacer file.docx data.json
+```
+
+This will create `file_replaced.docx` with template placeholders like `{key}` replaced with values from your JSON file.
+
+### Python Library
+
+```python
+from docx_json_replacer import DocxReplacer
+
+replacer = DocxReplacer("template.docx")vb       
+replacer.replace_from_json({"name": "John", "date": "2025-06-25"})
+replacer.save("output.docx")
+```
+
+## Template Format
+
+Use `{{key}}` placeholders in your DOCX file that match keys in your JSON:
+
+**JSON:**
+```json
+{
+  "name": "John Doe",
+  "company": "Example Corp"
+}
+```
+
+**DOCX template:**
+```
+Hello {{name}}, welcome to {{company}}!
+```
+
+**Result:**
+```
+Hello John Doe, welcome to Example Corp!
+```
+
+## Local Development
+
+Run tests:
+```bash
+python -m pytest tests/ -v
+```
+
+Test CLI locally:
+```bash
+python docx_json_replacer/cli.py tests/fixtures/template.docx tests/fixtures/data.json -o output.docx
+```
+
+
+python docx_json_replacer/cli.py tests/fixtures/doc_template.docx tests/fixtures/data.json -o output.docx
