@@ -1,0 +1,20 @@
+[project]
+name = "taxonlib"
+version = "0.0.7"
+authors = [
+    { name = "Laurens Hogeweg", email = "laurens.hogeweg@naturalis.nl" },
+    { name = "Django Brunink", email = "django.brunink@naturalis.nl" },
+]
+description = "A library of tools that help analyse and combine taxa files intended for Naturalis AI MSM deployments"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "Apache-2.0"
+license-files = ["LICENCE*"]
+
+[project.urls]
+Homepage = "https://gitlab.com/naturalis/bii/ai/taxonlib"
+Issues = "https://gitlab.com/naturalis/bii/ai/taxonlib/issues"
