@@ -1,0 +1,14 @@
+[project]
+name = "ragflow-mcp-server-v0-2-0"
+version = "0.2.0"
+description = "RAGFlow MCP Server V0.2.0"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [ "mcp>=1.12.2",]
+
+[build-system]
+requires = [ "hatchling",]
+build-backend = "hatchling.build"
+
+[project.scripts]
+ragflow-mcp-server-v0-2-0 = "ragflow_mcp_server_v0_2_0:main"
