@@ -1,0 +1,16 @@
+exclude .flake8
+exclude .pre-commit-config.yaml
+exclude .readthedocs.yml
+exclude tox.ini
+
+include LICENSE
+include MANIFEST.in
+include README.md
+
+recursive-include teachnoobs_sphinx_grasple *.js
+recursive-include teachbooks_sphinx_grasple *.css
+
+recursive-include sphinx_proof *.json
+recursive-include sphinx_proof *.mo
+recursive-include sphinx_proof *.po
+recursive-include sphinx_proof *.py
