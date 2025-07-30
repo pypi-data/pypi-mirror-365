@@ -1,0 +1,37 @@
+Metadata-Version: 2.4
+Name: plixlab
+Version: 0.1.0
+Summary: Interactive scientific presentations in Python
+Author-email: Giuseppe Romano <romanog@mit.edu>
+License: MIT
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: requests
+Requires-Dist: plotly
+Requires-Dist: matplotlib
+Requires-Dist: pytest
+Requires-Dist: pycairo
+Requires-Dist: bibtexparser==1.4.3
+Requires-Dist: hash_dict
+Requires-Dist: jsonpointer
+Requires-Dist: msgpack
+Requires-Dist: watchdog
+Requires-Dist: tornado
+Requires-Dist: jsonpatch
+Requires-Dist: dict_hash
+Requires-Dist: dash_bio
+Requires-Dist: pandas
+Requires-Dist: bokeh==3.6.2
+Requires-Dist: numpy==1.26.4
+Provides-Extra: docs
+Requires-Dist: sphinx>=7; extra == "docs"
+Requires-Dist: sphinx-book-theme; extra == "docs"
+Requires-Dist: sphinx-copybutton; extra == "docs"
+Dynamic: license-file
+
+# PlixLab
+
+PlixLab is a Python package for interactive presentation
+
+[Documentation](https://www.plixlab.com/docs/index.html)
