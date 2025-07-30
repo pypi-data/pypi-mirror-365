@@ -1,0 +1,58 @@
+## pyproject.toml
+##
+## This file contains the metadata necessary for packaging the POP project
+## as a Python distribution.  The project is built using setuptools and
+## is configured to expose the top‑level modules directly (CartPolar.py,
+## Legendre.py, POP.py, Projection.py and Quadrant.py).
+## Including RBFs512.pkl and img.pkl as package data ensures that
+## the inversion data files are installed alongside.
+
+[build-system]
+requires = [
+    "setuptools>=61",
+    "wheel",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pop_inv"
+version = "0.1.0"
+description = "Polar onion peeling for inverting VMI data"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [
+    { name = "Xligt" },
+]
+keywords = ["polar", "onion", "peeling", "VMI", "inversion"]
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "numpy>=1.17",
+    "scipy>=1.5",
+    "scikit-learn>=0.24",
+]
+
+[project.urls]
+Homepage = "https://github.com/xligt/pop"
+
+[tool.setuptools]
+## Because the code lives as loose .py files at the repo root, we list them
+## under py-modules rather than a package directory.
+py-modules = [
+    "CartPolar",
+    "Legendre",
+    "POP",
+    "Projection",
+    "Quadrant",
+]
+# use "*" to include these data files in the package
+package-data = { "*" = [
+    "RBFs512.pkl",
+    "img.pkl",
+] }
+
