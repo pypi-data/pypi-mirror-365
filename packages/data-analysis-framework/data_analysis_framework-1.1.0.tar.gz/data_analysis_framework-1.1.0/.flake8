@@ -1,0 +1,26 @@
+[flake8]
+max-line-length = 100
+exclude = 
+    .git,
+    __pycache__,
+    venv,
+    .venv,
+    dist,
+    build,
+    *.egg-info,
+    .pytest_cache,
+    notebooks
+
+# Ignore some common issues in demo/example code
+ignore = 
+    E501,
+    F541,
+    F401,
+    F841,
+    W503
+    
+# Be more strict for core source code
+per-file-ignores =
+    src/data_analysis_framework/core/*.py:F401,F841
+    examples/*.py:E501,F541,F401,F841,E722
+    tests/*.py:E501,F401,F841
