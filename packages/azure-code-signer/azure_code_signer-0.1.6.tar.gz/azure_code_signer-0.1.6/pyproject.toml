@@ -1,0 +1,57 @@
+[project]
+name = "azure-code-signer"
+version = "0.1.6"
+description = "A command line tool to code sign files using a code signing certificate stored in Azure Key Vault."
+authors = [
+    {name = "Attie Retief", email = "attie@attieretief.com"}
+]
+license = {text = "MIT"}
+requires-python = ">=3.7"
+readme = "README.md"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: System Administrators",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Security",
+    "Topic :: Security :: Cryptography",
+    "Topic :: Software Development :: Build Tools",
+    "Topic :: System :: Software Distribution",
+    "Operating System :: OS Independent",
+]
+keywords = [
+    "azure",
+    "key-vault",
+    "code-signing",
+    "certificate",
+    "signature",
+    "security",
+    "digital-signature",
+    "cryptography",
+]
+dependencies = [
+    "azure-identity>=1.10.0",
+    "azure-keyvault-certificates>=4.5.0",
+    "azure-keyvault-secrets>=4.5.0",
+    "cryptography>=38.0.0",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/attieretief/azure-code-signer"
+"Bug Tracker" = "https://github.com/attieretief/azure-code-signer/issues"
+"Source Code" = "https://github.com/attieretief/azure-code-signer"
+"Documentation" = "https://github.com/attieretief/azure-code-signer#readme"
+
+[project.scripts]
+azure-code-signer = "src.main:main"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
