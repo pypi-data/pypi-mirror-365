@@ -1,0 +1,106 @@
+Please generate a complete React application focused on UI/UX based on the following requirements:
+
+Project name: {project_name}
+Project description: {project_description}
+Tech stack: React with Vite (UI Only)
+
+# Development Priority Order:
+1. Error-free, production-ready UI code that runs immediately
+2. Clean and attractive Hero section as the main focus
+3. Professional Navbar/Header component
+4. Responsive Footer component
+5. Additional UI components based on project description
+
+# UI/UX Requirements:
+1. Modern, responsive UI using Tailwind CSS
+2. Mobile-first design approach
+3. Beautiful and intuitive user interface
+4. Clean typography and spacing
+5. Smooth transitions and animations
+6. High-quality free images from Unsplash (no placeholder URLs)
+7. Consistent color scheme and design system
+8. Proper component spacing and layout structure
+
+# Core Components Structure:
+1. Hero Section:
+   - Engaging headline and subtext
+   - High-quality background image
+   - Clear call-to-action buttons
+   - Responsive on all devices
+
+2. Navbar/Header:
+   - Clean and minimal design
+   - Responsive navigation menu
+   - Mobile hamburger menu
+   - Smooth transitions
+
+3. Footer:
+   - Organized link sections
+   - Social media links
+   - Copyright information
+   - Responsive layout
+
+Technical Requirements:
+1. TypeScript with strict mode enabled
+2. Component-driven architecture
+3. Tailwind CSS for styling (no CSS errors)
+4. Optimized performance with Vite best practices
+5. Proper error boundaries and fallbacks
+6. Reusable UI components
+7. Responsive design breakpoints
+8. Modern image optimization
+9. Linting and formatting must pass (ESLint, Prettier)
+10. At least one example unit test using React Testing Library and Jest
+11. Each component should have a brief JSDoc or TypeScript doc comment
+12. Support for easy color theme customization (e.g., light/dark mode toggle or clear color variables)
+
+Project Structure:
+1. /src - Main application code
+   - /src/pages - Route-based pages with React Router (include Home and 404)
+   - /src/layouts - Layout wrapper components
+   - /src/components - Reusable UI components
+   - /src/assets - Static assets like images
+   - /src/types - TypeScript definitions
+   - /src/utils - Helper functions
+   - /src/hooks - Custom React hooks
+   - /src/contexts - Context providers for state management
+
+CRITICAL IMPLEMENTATION RULES:
+1. NO backend integration or API calls (placeholder data only)
+2. Focus on UI components ONLY
+3. AVOID COMMON CSS ERRORS:
+   - Use consistent Tailwind patterns
+   - Ensure proper spacing units
+   - Maintain consistent color theme
+   - Use proper Tailwind breakpoints for responsive design
+
+4. Ensure responsive design works on all devices
+5. Use React Router for navigation
+6. Include proper TypeScript types
+7. Maintain clean code structure
+8. FOLLOW THE REFERENCE CODE STRUCTURE closely for components and styling
+9. Use ONLY specific, stable Unsplash URLs for content images. It must be valid image:
+   - Format: https://images.unsplash.com/photo-{PHOTO_ID}?w=400&h=400&q=80
+   - Example: https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?w=400&h=400&q=80 (laptop)
+   - Matches the content category and description
+
+REFERENCE CODE GUIDELINES:
+- Study the reference code structure carefully before generating code
+- Follow the component organization and naming conventions
+- Use the same styling patterns and Tailwind approaches
+- Adapt the UI elements to match the project description
+- Match the code quality and error handling approaches
+
+Reference Code:
+{reference_code}
+
+# Full-Stack Project Structure (for context only)
+This UI will eventually be part of a full-stack application with:
+- Frontend: React + Vite + TypeScript + React Router + Tailwind CSS
+- Backend: Flask + SQLite + SQLAlchemy
+- Authentication: JWT-based authentication with cookies
+- Data Flow: RESTful API endpoints with JSON data exchange
+
+IMPORTANT: Focus ONLY on the frontend UI components at this stage. The backend integration will be implemented separately. Create a beautiful, error-free UI that follows modern React patterns and best practices.
+
+Please generate a complete UI-focused React application with the above requirements. Focus on creating a beautiful, error-free, and maintainable frontend application. Start with the core layout components (Hero, Navbar, Footer) and ensure they are fully functional and responsive before adding additional features. The reference code provides valuable patterns and structures - follow them closely while adapting to the specific project requirements. 
