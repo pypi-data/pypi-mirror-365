@@ -1,0 +1,22 @@
+[build-system]
+requires = ["hatchling >= 1.26"]
+build-backend = "hatchling.build"
+
+
+[project]
+name = "cepton-sdk3"
+version = "3.0.17.14"
+
+dependencies = ["numpy>=1.21"]
+authors = [
+    { name = "Will Lauer", email = "will.lauer@cepton.com" },
+    { name = "Dongyi Liao", email = "dongyi.liao@cepton.com" },
+]
+
+maintainers = [{ name = "Will Lauer", email = "will.lauer@cepton.com" }]
+
+description = "Cepton SDK3"
+readme = "README.md"
+
+license = "MIT"
+license-files = ["LICENSE"]
