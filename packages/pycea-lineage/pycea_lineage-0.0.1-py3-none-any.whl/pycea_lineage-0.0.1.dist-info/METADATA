@@ -1,0 +1,136 @@
+Metadata-Version: 2.4
+Name: pycea-lineage
+Version: 0.0.1
+Summary: Scverse lineage tracing toolkit
+Project-URL: Documentation, https://pycea.readthedocs.io/
+Project-URL: Homepage, https://github.com/YosefLab/pycea
+Project-URL: Source, https://github.com/YosefLab/pycea
+Author: William Colgan
+Maintainer-email: William Colgan <wcolgan@mit.edu>
+License: BSD 3-Clause License
+        
+        Copyright (c) 2024, William Colgan
+        All rights reserved.
+        
+        Redistribution and use in source and binary forms, with or without
+        modification, are permitted provided that the following conditions are met:
+        
+        1. Redistributions of source code must retain the above copyright notice, this
+           list of conditions and the following disclaimer.
+        
+        2. Redistributions in binary form must reproduce the above copyright notice,
+           this list of conditions and the following disclaimer in the documentation
+           and/or other materials provided with the distribution.
+        
+        3. Neither the name of the copyright holder nor the names of its
+           contributors may be used to endorse or promote products derived from
+           this software without specific prior written permission.
+        
+        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+        AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+        IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+        DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+        FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+        DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+        SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+        CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+        OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+        OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+License-File: LICENSE
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Requires-Python: >=3.10
+Requires-Dist: cycler
+Requires-Dist: matplotlib
+Requires-Dist: networkx
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: requests
+Requires-Dist: scanpy>=1.10
+Requires-Dist: scikit-learn
+Requires-Dist: scipy
+Requires-Dist: session-info
+Requires-Dist: treedata>=0.2
+Provides-Extra: dev
+Requires-Dist: pre-commit; extra == 'dev'
+Requires-Dist: twine>=4.0.2; extra == 'dev'
+Provides-Extra: doc
+Requires-Dist: docutils!=0.18.*,!=0.19.*,>=0.8; extra == 'doc'
+Requires-Dist: ipykernel; extra == 'doc'
+Requires-Dist: ipython; extra == 'doc'
+Requires-Dist: myst-nb>=1.1; extra == 'doc'
+Requires-Dist: pandas; extra == 'doc'
+Requires-Dist: setuptools; extra == 'doc'
+Requires-Dist: sphinx-autodoc-typehints; extra == 'doc'
+Requires-Dist: sphinx-book-theme>=1; extra == 'doc'
+Requires-Dist: sphinx-copybutton; extra == 'doc'
+Requires-Dist: sphinx-tabs; extra == 'doc'
+Requires-Dist: sphinx>=4; extra == 'doc'
+Requires-Dist: sphinxcontrib-bibtex>=1; extra == 'doc'
+Requires-Dist: sphinxext-opengraph; extra == 'doc'
+Provides-Extra: test
+Requires-Dist: coverage; extra == 'test'
+Requires-Dist: pytest; extra == 'test'
+Description-Content-Type: text/markdown
+
+[![Tests][badge-tests]][link-tests]
+[![Documentation][badge-docs]][link-docs]
+
+[badge-tests]: https://img.shields.io/github/actions/workflow/status/YosefLab/pycea/test.yaml?branch=main
+[link-tests]: https://github.com/YosefLab/pycea/actions/workflows/test.yml
+[badge-docs]: https://img.shields.io/readthedocs/pycea
+
+<img
+  src="https://raw.githubusercontent.com/YosefLab/pycea/main/docs/_static/img/pycea_logo.svg"
+  class="dark-light" align="right" width="350" alt="image"
+/>
+
+# Pycea - lineage tracing analysis
+
+Scverse lineage tracing analysis toolkit built to work with [TreeData][treedata].
+
+To learn more about pycea, please refer to the [documentation][link-docs] or the [getting started guide][link-getting-started].
+
+## Installation
+
+You need to have Python 3.10 or newer installed on your system. If you don't have
+Python installed, we recommend installing [Mambaforge](https://github.com/conda-forge/miniforge#mambaforge).
+
+There are several alternative options to install pycea:
+
+<!--
+1) Install the latest release of `pycea` from `PyPI <https://pypi.org/project/pycea/>`_:
+
+```bash
+pip install pycea
+```
+-->
+
+1. Install the latest development version:
+
+```bash
+pip install git+https://github.com/YosefLab/pycea.git@main
+```
+
+## Release notes
+
+See the [changelog][changelog].
+
+## Contact
+
+For questions and bug reports please use the [issue tracker][issue-tracker].
+
+## Citation
+
+> t.b.a
+
+[treedata]: https://treedata.readthedocs.io/
+[scverse-discourse]: https://discourse.scverse.org/
+[issue-tracker]: https://github.com/YosefLab/pycea/issues
+[changelog]: https://pycea.readthedocs.io/latest/changelog.html
+[link-docs]: https://pycea.readthedocs.io
+[link-api]: https://pycea.readthedocs.io/latest/api.html
+[link-getting-started]: https://pycea.readthedocs.io/en/latest/notebooks/getting-started.html
