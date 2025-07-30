@@ -1,0 +1,68 @@
+[project]
+name = "django-plugin-django-debug-toolbar"
+version = "0.5.1"
+description = "Django plugin that configures the Django Debug Toolbar"
+readme = "README.md"
+authors = [{name = "Tom Viner"}]
+license = {text = "Apache-2.0"}
+classifiers = [
+    "License :: OSI Approved :: Apache Software License"
+]
+dependencies = [
+    "django",
+    "djp",
+    "django-debug-toolbar<6.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/tomviner/django-plugin-django-debug-toolbar"
+Changelog = "https://github.com/tomviner/django-plugin-django-debug-toolbar/releases"
+Issues = "https://github.com/tomviner/django-plugin-django-debug-toolbar/issues"
+CI = "https://github.com/tomviner/django-plugin-django-debug-toolbar/actions"
+
+[project.entry-points.djp]
+django_plugin_django_debug_toolbar = "django_plugin_django_debug_toolbar"
+
+[tool.setuptools.package-data]
+"*" = ["*.html", "*.js", "*.css"]
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-django",
+    "pytest-cov",
+    "rust-just",
+    "ruff",
+    "typos",
+]
+
+[build-system]
+requires = ["uv_build"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-root = ""
+
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "tests.test_project.settings"
+pythonpath = ["."]
+django_debug_mode = 'keep'
+addopts = [
+    "--cov=django_plugin_django_debug_toolbar",
+    "--cov-report=term-missing",
+    "--cov-fail-under=100"
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+lint.select = [
+    "E",  # pycodestyle Error
+    "W",  # pycodestyle Warning
+    "F",  # Pyflakes
+    "I",  # isort
+    "C90",  # mccabe (code complexity)
+    "T10",  # flake8-debugger
+    "DJ",  # flake8-django
+]
