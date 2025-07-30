@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: dagster-ibis-duckdb
+Version: 0.1.5
+Summary: Library for interacting with Ibis Tables within a duckdb backend within dagster.
+Author-email: James Blackwell <33688964+j-blackwell@users.noreply.github.com>
+Requires-Python: >=3.10
+Requires-Dist: dagster-ibis>=0.1.1
+Requires-Dist: dagster>=1.8
+Requires-Dist: ibis-framework[duckdb]>=10.3.1
+Description-Content-Type: text/markdown
+
+# dagster-ibis-duckdb
+Dagster IO manager for ibis dataframes
