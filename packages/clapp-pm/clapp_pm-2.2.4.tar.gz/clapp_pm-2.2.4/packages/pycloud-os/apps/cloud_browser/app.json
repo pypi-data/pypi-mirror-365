@@ -1,0 +1,39 @@
+{
+  "id": "cloud_browser",
+  "name": "Cloud Browser",
+  "version": "2.0.0",
+  "description": "PyCloud OS için modern sekmeli web tarayıcısı. WebEngine tabanlı, PDF desteği ve yer imi yönetimi ile sade ve hızlı deneyim sunar.",
+  "entry": "main.py",
+  "exec": "python3 main.py",
+  "icon": "icon.png",
+  "category": "İnternet",
+  "developer": "PyCloud OS Team",
+  "license": "MIT",
+  "homepage": "https://pycloudos.dev/apps/cloud_browser",
+  "tags": ["browser", "web", "internet", "webkit", "tabs", "pdf", "bookmarks", "modern"],
+  "features": [
+    "Sekmeli gezinti: yeni sekme, sekme kapatma, geçmiş yönlendirme",
+    "Adres çubuğu ile web navigasyonu",
+    "Geri, ileri, yenile, ana sayfa tuşları",
+    "Koyu/açık tema uyumu",
+    "Yer imi yönetimi: kaydet, düzenle, sil",
+    "Klavye kısayolları (CTRL+T, CTRL+W, CTRL+D)",
+    "PDF görüntüleyici: hem https://...pdf hem file:///...dosya.pdf",
+    "Otomatik MIME türü tanıma: PDF sekmeleri farklı ikonla görünür",
+    "Yer imi ve geçmiş JSON dosyalarında saklanır",
+    "Modern UI tasarımı",
+    "Tam ekran modu desteği",
+    "İndirme yöneticisi",
+    "Güvenlik ve gizlilik ayarları"
+  ],
+  "screenshots": [
+    "screenshots/browser_main.png",
+    "screenshots/browser_tabs.png",
+    "screenshots/browser_bookmarks.png",
+    "screenshots/browser_pdf.png",
+    "screenshots/browser_dark.png"
+  ],
+  "requires": ["python3", "pyqt6", "pyqt6-webengine"],
+  "permissions": ["internet", "filesystem", "downloads"],
+  "signature": "sha256:modern_cloud_browser_v2..."
+} 
