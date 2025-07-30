@@ -1,0 +1,180 @@
+Metadata-Version: 2.4
+Name: logsentinelai
+Version: 0.2.9
+Summary: AI-Powered Log Analyzer - Leverages LLM to analyze log files and detect security events
+Project-URL: Homepage, https://github.com/call518/LogSentinelAI
+Project-URL: Repository, https://github.com/call518/LogSentinelAI.git
+Project-URL: Issues, https://github.com/call518/LogSentinelAI/issues
+Project-URL: Documentation, https://github.com/call518/LogSentinelAI#readme
+Author-email: JungJungIn <call518@gmail.com>
+License: MIT
+License-File: LICENSE
+Keywords: ai,cybersecurity,elasticsearch,llm,log-analysis,security,threat-detection
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: System Administrators
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Security
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Classifier: Topic :: System :: Logging
+Classifier: Topic :: System :: Monitoring
+Requires-Python: >=3.11
+Requires-Dist: aiohttp>=3.12.14
+Requires-Dist: anyio>=4.9.0
+Requires-Dist: distro>=1.9.0
+Requires-Dist: elastic-transport>=8.17.1
+Requires-Dist: elasticsearch>=9.0.2
+Requires-Dist: geoip2>=5.1.0
+Requires-Dist: httpx>=0.28.1
+Requires-Dist: interegular>=0.3.3
+Requires-Dist: iso3166>=2.1.1
+Requires-Dist: jinja2>=3.1.6
+Requires-Dist: jiter>=0.10.0
+Requires-Dist: jsonpath-ng>=1.7.0
+Requires-Dist: maxminddb>=2.7.0
+Requires-Dist: numpy>=2.3.2
+Requires-Dist: ollama>=0.5.1
+Requires-Dist: openai>=1.97.1
+Requires-Dist: outlines-core>=0.1.26
+Requires-Dist: outlines>=1.1.1
+Requires-Dist: paramiko>=3.5.1
+Requires-Dist: pydantic-core>=2.33.2
+Requires-Dist: pydantic>=2.11.7
+Requires-Dist: python-dateutil>=2.9.0.post0
+Requires-Dist: python-dotenv>=1.1.1
+Requires-Dist: requests>=2.32.4
+Requires-Dist: sniffio>=1.3.1
+Requires-Dist: tqdm>=4.67.1
+Requires-Dist: typing-extensions>=4.14.1
+Provides-Extra: dev
+Requires-Dist: black>=23.0; extra == 'dev'
+Requires-Dist: flake8>=6.0; extra == 'dev'
+Requires-Dist: isort>=5.12; extra == 'dev'
+Requires-Dist: mypy>=1.0; extra == 'dev'
+Requires-Dist: pytest-asyncio>=0.21.0; extra == 'dev'
+Requires-Dist: pytest-cov>=4.0; extra == 'dev'
+Requires-Dist: pytest>=7.0; extra == 'dev'
+Description-Content-Type: text/markdown
+
+[![Deploy to PyPI with tag](https://github.com/call518/LogSentinelAI/actions/workflows/pypi-publish.yml/badge.svg)](https://github.com/call518/LogSentinelAI/actions/workflows/pypi-publish.yml)
+
+# LogSentinelAI - AI-Powered Log Analyzer
+
+LogSentinelAI leverages LLM to analyze security events, anomalies, and errors from various logs including Apache, Linux, and converts them into structured data that can be visualized with Elasticsearch/Kibana.
+
+## 🚀 Key Features
+
+### AI-Based Analysis
+- **LLM Providers**: OpenAI API, Ollama, vLLM
+- **Supported Log Types**: HTTP Access, Apache Error, Linux System, TCPDump
+- **Threat Detection**: SQL Injection, XSS, Brute Force, Network Anomaly Detection
+- **Output**: Structured JSON with Pydantic validation
+- **Adaptive Sensitivity**: Automatic detection sensitivity adjustment based on LLM models and log type-specific prompts
+
+### Processing Modes
+- **Batch**: Bulk analysis of historical logs
+- **Real-time**: Sampling-based live monitoring
+- **Access Methods**: Local files, SSH remote
+
+### Data Enrichment
+- **GeoIP**: MaxMind GeoLite2 City lookup (including coordinates, Kibana geo_point support)
+- **Statistics**: IP counts, response codes, various metrics
+- **Multi-language Support**: Configurable result language (default: Korean)
+
+### Enterprise Integration
+- **Storage**: Elasticsearch (ILM policy support)
+- **Visualization**: Kibana dashboard
+- **Deployment**: Docker containers
+
+## Dashboard Example
+
+![Kibana Dashboard](img/ex-dashboard.png)
+
+## 📋 JSON Output Example
+
+![JSON Output](img/ex-json.png)
+
+## System Architecture
+
+```
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Log Sources   │───>│ LogSentinelAI   │───>│ Elasticsearch   │
+│                 │    │   Analysis      │    │                 │
+│ • Local Files   │    │                 │    │ • Security      │
+│ • Remote SSH    │    │ • LLM Analysis  │    │   Events        │
+│ • HTTP Access   │    │ • Outlines      │    │ • Raw Logs      │
+│ • Apache Error  │    │ • Pydantic      │    │ • Metadata      │
+│ • System Logs   │    │   Validation    │    │                 │
+│ • TCPDump       │    │ • Multi-format  │    │                 │
+│   (Auto-detect) │    │   Support       │    │                 │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+                                │                       │
+                                ▼                       ▼
+                       ┌─────────────────┐    ┌─────────────────┐
+                       │ LLM Provider    │    │     Kibana      │
+                       │                 │    │   Dashboard     │
+                       │ • OpenAI        │    │                 │
+                       │ • Ollama        │    │ • Visualization │
+                       │ • vLLM          │    │ • Alerts        │
+                       │                 │    │ • Analytics     │
+                       │                 │    │ • Geo-Map       │
+                       └─────────────────┘    └─────────────────┘
+```
+
+## 📁 Project Structure and Main Python Scripts
+
+### Core Python Components
+
+```
+src/logsentinelai/
+├── __init__.py                    # Package initialization
+├── cli.py                         # Main CLI entry point and command routing
+├── py.typed                       # mypy type hint marker
+│
+├── analyzers/                     # Log type-specific analyzers
+│   ├── __init__.py                # Analyzer package initialization
+│   ├── httpd_access.py            # HTTP access log analyzer (Apache/Nginx)
+│   ├── httpd_apache.py            # Apache error log analyzer
+│   ├── linux_system.py            # Linux system log analyzer (syslog/messages)
+│   └── tcpdump_packet.py          # Network packet capture analyzer
+│
+├── core/                          # Core analysis engine (modularized)
+│   ├── __init__.py                # Core package initialization and integrated import
+│   ├── commons.py                 # Batch/real-time analysis common functions, processing flow definition
+│   ├── config.py                  # Environment variable-based configuration management
+│   ├── llm.py                     # LLM model initialization and interaction
+│   ├── elasticsearch.py           # Elasticsearch integration and data transmission
+│   ├── geoip.py                   # GeoIP lookup and IP enrichment
+│   ├── ssh.py                     # SSH remote log access
+│   ├── monitoring.py              # Real-time log monitoring and processing
+│   ├── utils.py                   # Log processing utilities and helpers
+│   └── prompts.py                 # Log type-specific LLM prompt templates
+│
+└── utils/                         # Utility functions
+    ├── __init__.py                # Utils package initialization
+    └── geoip_downloader.py        # MaxMind GeoIP DB downloader
+```
+
+### CLI Command Mapping
+
+```bash
+# CLI commands are mapped to analyzer scripts:
+logsentinelai-httpd-access   → analyzers/httpd_access.py
+logsentinelai-apache-error   → analyzers/httpd_apache.py  
+logsentinelai-linux-system   → analyzers/linux_system.py
+logsentinelai-tcpdump        → analyzers/tcpdump_packet.py
+logsentinelai-geoip-download → utils/geoip_downloader.py
+```
+
+
+## 🚀 Installation Guide
+
+For installation, environment setup, CLI usage, Elasticsearch/Kibana integration, and all practical guides for LogSentinelAI, please refer to the installation documentation below.
+
+📖 **[Go to Installation and Usage Guide: INSTALL.en.md](./INSTALL.en.md)**
+
+> ⚡️ For additional inquiries, please use GitHub Issues/Discussions!
