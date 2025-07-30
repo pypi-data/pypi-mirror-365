@@ -1,0 +1,75 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "EzQt_Widgets"
+version = "2.2.3.post1"
+description = "Une collection de widgets Qt personnalisés et réutilisables pour PySide6. Fournit des composants graphiques avancés, réutilisables et stylés pour faciliter le développement d'interfaces modernes et ergonomiques."
+readme = "README.md"
+requires-python = ">=3.9,<3.13"
+license = { text = "MIT" }
+authors = [{ name = "Florian Salort", email = "floriansalort@gmail.com" }]
+keywords = ["qt", "pyside6", "widgets", "gui", "interface", "components", "ui", "desktop"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: User Interfaces",
+    "Topic :: Desktop Environment",
+    "Topic :: Software Development :: Widget Sets",
+]
+
+dependencies = [
+    "PySide6>=6.9.1,<7.0.0",
+    "requests>=2.32.4",
+    "click>=8.2.1"
+]
+
+[project.scripts]
+ezqt = "ezqt_widgets.cli.main:cli"
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.2.5",
+    "pytest-cov>=3.0.0", 
+    "pytest-qt>=4.0.0",
+    "coverage>=7.10.0",
+    "build>=1.2.2",
+    "twine>=6.1.0"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "--strict-markers",
+    "--strict-config",
+    "--verbose",
+    "--tb=short",
+    "--cov=ezqt_widgets",
+    "--cov-report=term-missing",
+    "--cov-report=html:htmlcov",
+    "--cov-report=xml"
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests"
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["ezqt_widgets", "ezqt_widgets.*"]
+
+[tool.setuptools.package-data]
+"*" = ["examples/*", "examples/bin/*", "examples/icons/*", "tests/*", "tests/unit/*", "tests/unit/*/*"]
