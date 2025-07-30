@@ -1,0 +1,51 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "genebank-file-generater"
+version = "0.1.1"
+description = "A comprehensive tool for converting DNA FASTA files to annotated GenBank format with automated gene prediction using Augustus"
+readme = "README.md"
+requires-python = ">=3.13"
+license = {text = "AGPL-3.0-or-later"}
+authors = [
+    {name = "GbkGen Development Team"}
+]
+maintainers = [
+    {name = "GbkGen Development Team"}
+]
+keywords = ["bioinformatics", "genbank", "fasta", "gff", "gene-prediction", "augustus", "genomics"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+]
+dependencies = [
+    "biopython>=1.79",
+    "bcbio-gff>=0.7.1",
+]
+
+[project.urls]
+Homepage = "https://github.com/darrengao628/genebank_file_generater"
+Repository = "https://github.com/darrengao628/genebank_file_generater"
+Documentation = "https://github.com/darrengao628/genebank_file_generater#readme"
+"Bug Tracker" = "https://github.com/darrengao628/genebank_file_generater/issues"
+
+[project.scripts]
+gbkgen = "genebank_file_generater.genebank_generater:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["genebank_file_generater"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/genebank_file_generater",
+    "/README.md",
+    "/LICENSE",
+    "/pyproject.toml",
+]
