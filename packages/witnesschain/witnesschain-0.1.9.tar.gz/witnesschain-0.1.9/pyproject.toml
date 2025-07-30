@@ -1,0 +1,20 @@
+[project]
+name = "witnesschain"
+version = "0.1.9"
+description = "tools for accessing witnesschain's infinitywatch network"
+readme = "README.md"
+authors = [
+    { name = "Aswin", email = "43544673+Aswin-ElMagnifico@users.noreply.github.com" },
+    { name = "witnesschain", email = "developers@witnesschain.com" }
+]
+requires-python = ">=3.10.17"
+dependencies = [
+    "aiohttp>=3.12.14",
+]
+
+[project.scripts]
+witnesschain = "witnesschain:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
