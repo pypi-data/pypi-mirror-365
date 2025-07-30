@@ -1,0 +1,14 @@
+include README.md
+include LICENSE
+include requirements.txt
+include pyproject.toml
+recursive-include leme *.py
+recursive-include leme *.md
+recursive-include leme *.txt
+recursive-include leme *.yml
+recursive-include leme *.yaml
+global-exclude __pycache__
+global-exclude *.py[co]
+global-exclude .DS_Store
+global-exclude *.swp
+global-exclude *.swo
