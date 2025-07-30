@@ -1,0 +1,61 @@
+Metadata-Version: 2.3
+Name: digitalis
+Version: 0.2.1
+Summary: Add your description here
+Requires-Dist: cachetools>=6.1.0
+Requires-Dist: lark>=1.2.2
+Requires-Dist: mcap>=1.3.0
+Requires-Dist: mcap-ros2-support>=0.5.5
+Requires-Dist: pointcloud2>=0.2.3
+Requires-Dist: rich-pixels>=3.0.1
+Requires-Dist: textual>=5.0.1
+Requires-Dist: textual-dev>=1.7.0
+Requires-Dist: textual-slider>=0.2.0
+Requires-Dist: textual-speedups>=0.2.0 ; platform_machine == 'arm64' and sys_platform == 'darwin'
+Requires-Dist: websockets>=15.0.1
+Requires-Python: >=3.13
+Description-Content-Type: text/markdown
+
+# Digitalis 🪻
+
+## Debug
+
+```sh
+uv run textual run --dev digitalis.app:main
+```
+
+## TODO
+
+- Image zoom
+- Image rectify via CameraInfo
+- Tabs
+- Split View
+- 3D Pointcloud View
+- Sub-Message views
+- Enum Detection for Tree
+- Diagnostics Summary
+- Plot
+- Map
+- State Transition
+- TF Tree
+- PreLoading
+- Saved Layouts
+- Per View Settings (Right Sidebar)
+- Launcher (Show recent files, connections)
+- Improved WebSocket handling
+  - Pause
+    - Small cache go back intime?
+  - Reconnect
+- PointCloud color by fields & distance?
+- PointCloud custom min and max
+- PointCloud rotation
+  - Yaw
+- Image Annotations
+- LidarScan rendering
+- Log
+- Gauge
+- Indicator
+- Publish
+- View/Set Parameter
+- DataView header with zoombutton and replace view button, settings
+- Fuzzy Search
