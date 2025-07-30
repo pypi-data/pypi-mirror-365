@@ -1,0 +1,23 @@
+[project]
+name = "dvrd_imap"
+version = "1.1.5"
+description = "Object oriented wrapper for imaplib"
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+]
+authors = [{ name = "Dave van Rijn Development", email = "develop@davevanrijn.nl" }]
+dependencies = [
+    "chardet"
+]
+
+[project.urls]
+Homepage = "https://bitbucket.org/Naampie/dvrd-imap"
+Issues = "https://bitbucket.org/Naampie/dvrd-imap/issues"
+
+[build-system]
+requires = ["setuptools>=58.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
