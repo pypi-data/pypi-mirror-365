@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "psyflow"
+version = "0.1.2"
+description = "A utility package for building modular PsychoPy experiments."
+authors = [
+    { name="Zhipeng Cao", email="zhipeng30@foxmail.com" }
+]
+dependencies = [
+    "psychopy",
+    "numpy",
+    "pandas",
+    "click",
+    "cookiecutter",
+    "pyyaml",
+    "pyserial",
+    "edge-tts",
+    "requests",
+    "tiktoken",
+    "openai",
+    "google-generativeai",
+]
+dynamic = ["entry-points"]
+
+[project.scripts]
+psyflow-init = "psyflow.cli:climain"
