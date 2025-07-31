@@ -1,0 +1,322 @@
+Metadata-Version: 2.4
+Name: popsy-ai
+Version: 0.0.7
+Summary: Reddit DM automation CLI using Popsy AI for lead generation and outreach
+Project-URL: Homepage, https://popsy.ai
+Author-email: Popsy AI <support@popsy.ai>
+License: Copyright 2025 Popsy Labs, Inc.
+Keywords: ai,automation,dm,lead-generation,outreach,reddit
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: Other/Proprietary License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Communications
+Classifier: Topic :: Internet :: WWW/HTTP
+Classifier: Topic :: Office/Business
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.9
+Requires-Dist: browserforge>=1.2.3
+Requires-Dist: camoufox[geoip]>=0.4.11
+Requires-Dist: posthog>=3.1.0
+Requires-Dist: requests>=2.31.0
+Description-Content-Type: text/markdown
+
+# Knowledge Report: @cli/popsy_cli/
+
+## Overview
+The `popsy_cli` module is a comprehensive Reddit automation CLI tool that enables automated Direct Message (DM) and comment posting using the Popsy AI API. The module provides both API-based simulation and browser-based automation capabilities.
+
+## Module Structure
+
+### 1. `__init__.py`
+**Location**: `cli/popsy_cli/__init__.py:1-8`
+- Package metadata and version information
+- Author: Popsy AI
+- Basic package initialization
+
+### 2. `api.py` - Core API Client
+**Location**: `cli/popsy_cli/api.py:1-609`
+
+#### Key Components:
+
+**Thread Data Structure** (`api.py:20-34`)
+- `Thread` dataclass representing Reddit threads
+- Fields: id, title, url, author, content, score, reasoning, suggested_dm, suggested_comment, subreddit_name, created_at
+
+**PopsyAPIClient Class** (`api.py:36-255`)
+- Main API client for Popsy Reddit automation
+- Base URL: `https://app.popsy.ai`
+- Authentication via Bearer token
+- Context manager support for proper resource cleanup
+
+**Core Methods**:
+- `fetch_threads()` (`api.py:61-126`): Retrieve threads with extensive filtering options
+- `mark_thread_as_seen()` (`api.py:128-142`): Mark threads as viewed
+- `mark_thread_as_closed()` (`api.py:144-158`): Close processed threads
+- `send_dm()` / `send_comment()` (`api.py:160-190`): Mark messages as sent
+- `queue_dm()` / `unqueue_dm()` (`api.py:192-222`): Queue management for DMs
+- `queue_comment()` / `unqueue_comment()` (`api.py:224-254`): Queue management for comments
+
+**Processing Functions**:
+- `process_threads_for_dm()` (`api.py:287-410`): Automated DM processing with callback support
+- `process_threads_for_comment()` (`api.py:490-607`): Automated comment processing
+- `parse_threads_response()` (`api.py:257-284`): Parse API responses into Thread objects
+
+**Utility Functions**:
+- `setup_logging()` (`api.py:413-444`): Configurable logging setup
+- `show_configuration()` (`api.py:446-487`): Display current configuration
+
+### 3. `dm_automation.py` - Browser Automation
+**Location**: `cli/popsy_cli/dm_automation.py:1-131`
+
+#### Key Components:
+
+**BrowserDMSender Class** (`dm_automation.py:21-111`)
+- Browser automation using Camoufox with human-like behavior
+- Persistent browser context with login session storage
+- macOS fingerprinting for MacBook compatibility
+- Anti-detection features with randomized delays
+
+**Core Methods**:
+- `setup_browser()` (`dm_automation.py:31-54`): Initialize browser with persistent context
+- `send_dm_to_user()` (`dm_automation.py:56-98`): Send DMs via browser automation
+- `close()` (`dm_automation.py:100-110`): Proper browser cleanup
+
+**Features**:
+- Persistent login sessions stored in `browser_data/`
+- Random delays between actions (3-5 seconds)
+- Daily limit detection and handling
+- Human-like cursor movement and typing
+
+### 4. `main.py` - CLI Entry Point
+**Location**: `cli/popsy_cli/main.py:1-317`
+
+#### Key Components:
+
+**Command Structure**:
+- Main command: `popsy`
+- Subcommands: `version`, `run`
+- Comprehensive argument parsing with defaults and configuration file support
+
+**Configuration Management** (`main.py:82-103`):
+- Precedence: CLI args → config file → environment variables → defaults
+- JSON configuration file support (`config.json`)
+- Environment variable support (`POPSY_API_TOKEN`, `BASE_URL`)
+
+**Core Parameters**:
+- `--token`: API authentication
+- `--mode`: DM or comment processing
+- `--browser`: Enable browser automation
+- `--dry-run`: Simulation mode
+- `--min-relevancy`: Relevance score filtering (0-100)
+- `--max-threads`: Processing limits
+- Extensive filtering options for threads
+
+**Key Functions**:
+- `cmd_run()` (`main.py:48-237`): Main execution logic
+- `get_version()` (`main.py:34-39`): Version retrieval
+- Configuration validation and effective value resolution
+
+## Key Features
+
+### 1. **Dual Processing Modes**
+- **DM Mode**: Send direct messages to Reddit users
+- **Comment Mode**: Post comments on Reddit threads
+
+### 2. **Automation Methods**
+- **API Simulation**: Testing and dry-run capabilities
+- **Browser Automation**: Real Reddit interaction via Camoufox
+
+### 3. **Advanced Filtering**
+- Relevancy score filtering
+- Subreddit-specific processing
+- Author deduplication
+- Queue management (sent/queued status)
+- Date and relevance sorting
+
+### 4. **Logging & Monitoring**
+- Comprehensive logging with configurable levels
+- CSV log files for sent messages/comments
+- Processing statistics and error tracking
+- Daily limit detection
+
+### 5. **Configuration Flexibility**
+- Multiple configuration sources with proper precedence
+- JSON configuration files
+- Environment variable support
+- Extensive CLI arguments
+
+## Dependencies
+- `requests`: HTTP client for API communication
+- `camoufox`: Browser automation framework
+- `browserforge`: Browser fingerprinting
+- `dataclasses`: Type definitions
+- Standard library: `argparse`, `json`, `logging`, `csv`, `time`, `random`
+
+## Usage Patterns
+```bash
+# Basic DM automation with browser
+popsy run --token YOUR_TOKEN --mode dm --browser
+
+# Dry run with high relevancy filter
+popsy run --token YOUR_TOKEN --dry-run --min-relevancy 90
+
+# Comment mode with configuration file
+popsy run --config my_config.json --mode comment
+```
+
+## Architecture Strengths
+1. **Modular Design**: Clear separation of concerns across files
+2. **Extensible**: Callback-based processing allows custom implementations
+3. **Robust Error Handling**: Comprehensive exception handling and logging
+4. **Configuration Management**: Flexible configuration with proper precedence
+5. **Context Management**: Proper resource cleanup for browser and API clients
+
+This CLI tool provides a complete solution for Reddit automation with both testing and production capabilities, extensive configuration options, and robust error handling.
+
+---
+
+# Reddit DM Automation - User Guide
+
+## What You Need:
+- MacBook with macOS 10.15 or newer
+- Reddit account
+- Popsy API token
+- 30 minutes for setup
+
+---
+
+## Step 1: Install Python 3.11.9
+
+### Check if you have Python:
+```bash
+python3 --version
+```
+
+### If you don't have Python 3.11.9, install it:
+```bash
+# Install Homebrew first (copy and paste this whole line)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Install Python 3.11.9
+brew install python@3.11
+```
+
+---
+
+## Step 2: Install Required Software
+
+```bash
+# Install the required libraries
+pip3 install requests "camoufox[geoip]" browserforge
+
+# Download the special browser (this takes a few minutes)
+python3 -m camoufox fetch
+```
+
+---
+
+## Step 3: Unzip and go to the folder
+
+```bash
+# Go to the folder
+cd reddit-automation
+```
+
+---
+
+## Step 4: Get Your API Token
+
+1. **Login to Popsy Dashboard**
+2. **Get your API token** from settings
+3. **Set environment variable:**
+```bash
+export POPSY_API_TOKEN="your-token-here"
+```
+
+Or create a config file:
+```bash
+# Create config.json
+{
+  "token": "your-api-token-here",
+  "base_url": "https://app.popsy.ai",
+  "min_relevancy": 10,
+  "max_threads": 5,
+  "show_new": false,
+  "hide_already_dmed": true,
+  "sort_by": "by_relevancy"
+}
+```
+
+---
+
+## Step 5: Test the Connection (NEW Unified CLI)
+
+```bash
+# Test with simulation mode (no actual DMs sent)
+python3 main.py --dry-run --verbose --min-relevancy 80
+
+# Test with detailed debugging
+python3 main.py --debug --dry-run --show-new
+```
+
+---
+
+## Step 6: Choose Your Automation Mode
+
+### 🔹 **API Simulation Mode** (Default - Safe Testing)
+```bash
+# Basic simulation - see what would happen
+python3 main.py --dry-run --verbose
+
+# Live simulation with API tracking
+python3 main.py --min-relevancy 80 --max-threads 3
+```
+
+### 🔹 **Live Browser Automation** (Real DM Sending)
+```bash
+# Live browser automation with visible browser
+python3 main.py --browser --min-relevancy 80 --max-threads 3
+
+# Headless browser automation (background)
+python3 main.py --browser --headless --min-relevancy 9 --max-threads 2
+```
+
+---
+
+## Daily Use Examples:
+
+### **Conservative Automation** (Recommended)
+```bash
+# High-quality leads only, visible browser
+python3 main.py --browser --min-relevancy 90 --max-threads 3 --verbose
+```
+
+### **Testing New Filters**
+```bash
+# Test different relevancy thresholds
+python3 main.py --dry-run --min-relevancy 60 --show-new --verbose
+
+# Test specific subreddit
+python3 main.py --subreddit-id 123 --dry-run --debug
+```
+
+### **Bulk Processing** (Advanced Users)
+```bash
+# Background automation with higher volume
+python3 main.py --browser --headless --min-relevancy 80 --max-threads 10
+```
+
+---
+
+# How to build the package
+
+```bash
+uv build
+uv run twine upload dist/*
+```
