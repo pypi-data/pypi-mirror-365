@@ -1,0 +1,50 @@
+[project]
+name = "polars-root"
+dynamic = ["version"]
+description = "Polars plugin for reading CERN's ROOT file format"
+readme = "README.md"
+authors = [
+	{ name = "Daniel Williams", email = "daniel.mays.williams@gmail.com" },
+]
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+keywords = ["dataframe", "polars", "root"]
+classifiers = [
+	"Programming Language :: Python :: 3 :: Only",
+	"Programming Language :: Python :: 3.10",
+	"Programming Language :: Python :: 3.11",
+	"Programming Language :: Python :: 3.12",
+	"Programming Language :: Python :: 3.13",
+	"Topic :: Scientific/Engineering :: Physics",
+]
+dependencies = [
+	"awkward>=2",
+	"awkward>=2.7 ; python_version >= '3.13'",
+	"pyarrow>=15",
+	"pyarrow>=18 ; python_version >= '3.13'",
+	"uproot>=5.4",
+]
+
+
+[project.urls]
+Homepage = "https://github.com/DanielMaysWilliams/polars-root"
+
+[project.optional-dependencies]
+standard = ["polars>=1.22"]
+u64-idx = ["polars-u64-idx>=1.22"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = ["coverage>=7", "ipython>=8", "pytest>=8", "ruff>=0.11"]
+
+[tool.ruff]
+line-length = 120
+
+[tool.uv]
+conflicts = [[{ extra = "standard" }, { extra = "u64-idx" }]]
+
+[tool.hatch.version]
+path = "src/polars_root/__init__.py"
