@@ -1,0 +1,15 @@
+[project]
+name="fftLoss"
+version="0.0.1"
+authors=[{name="Psyche Halo", email="Psyche@WinsGod.com"},]
+description="The fftLoss @PyTorch is a frequency domain loss function that prevents the problem of weak frequency components being suppressed by strong frequency components when using a regular loss function. "
+readme = "README.md"
+requires-python=">=3.8"
+classifiers=["Programming Language :: Python :: 3", "Operating System :: OS Independent",]
+dependencies=["torch >= 1.7.0",]
+keywords = ["fftLoss", "Loss", "PyTorch", "AI", "neural", "NN", "FFT",]
+[project.urls]
+Homepage="https://github.com/PsycheHalo/fftLoss"
+Issues="https://github.com/PsycheHalo/fftLoss/issues"
+[metadata]
+license_expression = "MPL-2.0"

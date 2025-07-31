@@ -1,0 +1,36 @@
+Metadata-Version: 2.4
+Name: fftLoss
+Version: 0.0.1
+Summary: The fftLoss @PyTorch is a frequency domain loss function that prevents the problem of weak frequency components being suppressed by strong frequency components when using a regular loss function. 
+Author-email: Psyche Halo <Psyche@WinsGod.com>
+Project-URL: Homepage, https://github.com/PsycheHalo/fftLoss
+Project-URL: Issues, https://github.com/PsycheHalo/fftLoss/issues
+Keywords: fftLoss,Loss,PyTorch,AI,neural,NN,FFT
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: torch>=1.7.0
+Dynamic: license-file
+
+# fftLoss
+The fftLoss @PyTorch is a frequency domain loss function that prevents the problem of weak frequency components being suppressed by strong frequency components when using a regular loss function. 
+
+## 思路说明
+在使用MSE等从时域或空域计算的损失函数时,常常得到模糊的结果.这是由于强势频率压制了弱势频率的表达.通过在频域对相位和幅值分别计算差异缓解了这个问题.这使得网络更偏向于生成边缘锐利的结果.
+
+## Install
+```bash
+pip install fftLoss
+```
+
+## Use
+```python
+from fftLoss import fftLoss
+...
+loss=fftLoss(input,target,dim=-1,meanOut=True,norm="ortho",absGain=1,angleGain=1)
+```
+
+## HomePage
+<https://github.com/PsycheHalo/fftLoss/>
