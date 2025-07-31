@@ -1,0 +1,19 @@
+[project]
+name = "ir_forecast"
+version = "0.0.1"
+authors = [
+  { name="Niklas Pulliainen", email="niklas.pulliainen@gmail.com" },
+]
+description = "Fetch historical Euribor data, initialize stochastic prediction models and forecast interest rates with Monte Carlo simulations."
+readme = "README.md"
+requires-python = ">=3.12"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+license-files = ["LICENSE"]
+
+[project.urls]
+Homepage = "https://github.com/Nikkex1/interest-rates"
+Issues = "https://github.com/Nikkex1/interest-rates/issues"
