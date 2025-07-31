@@ -1,0 +1,26 @@
+[project]
+name = "ai-sentinel"
+version = "0.0.2"
+description = "Helpful utilities for AI Sentinel toxicity detection"
+readme = "README.md"
+requires-python = ">=3.11"
+author = "Reetu Raj Harsh, Althea Masetti Zannini"
+author-email = "reeturaj.harsh@domyn.com, althea.masettizannini@domyn.com"
+maintainer = "Reetu Raj Harsh, Althea Masetti Zannini"
+maintainer-email = "reeturaj.harsh@domyn.com, althea.masettizannini@domyn.com"
+dependencies = [
+    "google-genai>=1.9.0",
+    "google-generativeai>=0.8.5",
+    "openai>=0.11.5",
+    "pydantic>=2.11.7",
+    "python-dotenv>=0.10.2",
+    "requests>=2.5.4.1",
+]
+authors = [
+    { name = "Reetu Raj Harsh", email = "reeturaj.harsh@domyn.com" },
+    { name = "Althea Masetti Zannini", email = "althea.masettizannini@domyn.com" },
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
