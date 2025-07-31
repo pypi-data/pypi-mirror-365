@@ -1,0 +1,63 @@
+[project]
+name = "axians-mcp"
+version = "1.2.0"  # ou utilisez dynamic si vous préférez
+description = "MCP server providing tools for weather and iceland"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}  # ou votre licence préférée
+keywords = ["mcp", "server", "weather", "tools"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "requests[socks]>=2.31.0",
+    "beautifulsoup4>=4.12.3",
+    "httpx>=0.28.0",
+    "mcp>=1.8.0,<2.0.0",
+    "fastmcp>=2.3.4,<2.4.0",
+    "python-dotenv>=1.0.1",
+    "markdownify>=0.11.6",
+    "markdown>=3.7.0",
+    "markdown-to-confluence>=0.3.0,<0.4.0",
+    "pydantic>=2.10.6",
+    "trio>=0.29.0",
+    "click>=8.1.7",
+    "uvicorn>=0.27.1",
+    "starlette>=0.37.1",
+    "thefuzz>=0.22.1",
+    "python-dateutil>=2.9.0.post0",
+    "types-python-dateutil>=2.9.0.20241206",
+    "keyring>=25.6.0",
+    "cachetools>=5.0.0",
+    "types-cachetools>=5.5.0.20240820",
+]
+
+[[project.authors]]
+name = "aphily"
+email = "alan.phily@axians.com"
+
+[build-system]
+requires = ["hatchling", "uv-dynamic-versioning>=0.7.0"]
+build-backend = "hatchling.build"
+
+
+[project.scripts]
+axians-mcp = "axians_mcp:main"
+
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
+
+[tool.hatch.build]
+sources = ["src"]
+
+[dependency-groups]
+dev = [
+    "build>=1.2.2.post1",
+    "twine>=6.1.0",
+]
