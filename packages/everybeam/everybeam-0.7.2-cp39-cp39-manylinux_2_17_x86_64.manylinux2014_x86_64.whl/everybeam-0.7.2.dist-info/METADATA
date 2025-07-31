@@ -1,0 +1,65 @@
+Metadata-Version: 2.2
+Name: everybeam
+Version: 0.7.2
+Summary: EveryBeam
+Author-Email: Bram Veenboer <veenboer@astron.nl>, =?utf-8?q?Andr=C3=A9_Offringa?= <offringa@astron.nl>, Sebastiaan van der Tol <tol@astron.nl>, Tammo Jan Dijkema <dijkema@astron.nl>, Jakob Maljaars <jakob.maljaars@stcorp.nl>, Maik Nijhuis <maik.nijhuis@triopsys.nl>
+License: GPLv3+
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Programming Language :: C++
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Scientific/Engineering :: Astronomy
+Project-URL: Homepage, https://git.astron.nl/RD/EveryBeam/
+Project-URL: Documentation, https://everybeam.readthedocs.io/
+Project-URL: Repository, https://git.astron.nl/RD/EveryBeam.git
+Requires-Python: >=3.7
+Requires-Dist: numpy
+Description-Content-Type: text/markdown
+
+# EveryBeam library
+
+This package can be used to compute the beam response for a variety of
+radio telescopes, i.e.:
+
+* LOFAR
+* SKA/OSKAR
+* ATCA
+* GMRT
+* MeerKAT
+* MWA
+* VLA
+
+This package also provides an abstract interface to a selection of beam responses for apperture arrays (LOFAR/OSKAR), and beamformed versions thereof. Currently implemented are:
+
+ * Hamaker LOFAR model
+ * OSKAR spherical wave model
+ * OSKAR-dipole: work in progress
+ * LOBEs: work in progress. A coefficient file is currently only available for a limited number of LOFAR stations. Selecting the LOBEs model defaults back to Hamaker, in case no coefficient file is available.
+
+EveryBeam replaces the stand alone version of the LOFAR station response library (LOFARBeam).
+
+EveryBeam is licensed under the terms of the GNU GPL3 license.
+
+## Documentation and Installation Instructions
+
+[Documentation](https://everybeam.readthedocs.io) along with [installation instructions](https://everybeam.readthedocs.io/en/latest/build-instructions.html) can be found at the provided links.
+
+## Usage with DP3
+
+To use Everybeam within [DP3](https://git.astron.nl/RD/DP3) - the streaming visibility framework - DP3 needs to be compiled against EveryBeam. To do so, make sure DP3 can find EveryBeam by adding the EveryBeam install dir to the `CMAKE_PREFIX_PATH`.
+
+A test measurement set is included in DP3 (`tNDP3-generic.in_MS.tgz`).
+
+To simulate visibilities with a certain element model, use `DP3 DP3.parset` with `DP3.parset` a parset file with the following contents:
+
+    msin=tNDP3-generic.MS
+    msout=.
+    steps=[predict]
+    predict.usebeammodel=True
+    predict.elementmodel=oskardipole
+    predict.sourcedb=tNDP3-generic.MS/sky  # sourcedb file
+
+## Usage with WSClean
+
+To use EveryBeam with [WSClean](https://gitlab.com/aroffringa/wsclean) (for A-term or primary beam corrections), WSClean needs to be compiled against EveryBeam. In order to do so, make sure WSClean can find EveryBeam by adding the EveryBeam install dir to the `CMAKE_PREFIX_PATH`.
