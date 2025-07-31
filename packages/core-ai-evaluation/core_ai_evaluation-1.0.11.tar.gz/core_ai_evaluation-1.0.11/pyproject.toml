@@ -1,0 +1,91 @@
+[project]
+name = "core-ai-evaluation"
+version = "1.0.11"
+description = "Evaluation framework for CoreAI."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "azure-storage-blob>=12.25.1",
+    "google-cloud-storage>=2.18.2",
+    "pydantic>=2.9.2",
+    "pydantic-core>=2.23.4",
+    "python-dotenv>=1.0.1",
+    "langchain-google-vertexai>=2.0.10",
+    "langchain-ollama>=0.2.1",
+    "langchain-openai>=0.3.12",
+    "anthropic>=0.42.0",
+    "structlog>=24.4.0",
+    "toml>=0.10.2",
+    "deepeval>=2.6.5",
+    "datasets>=3.4.1",
+    "bert-score>=0.3.13",
+    "torch==2.2.1",
+    "debugpy>=1.8.13",
+    "numpy<2.0.0",
+    "fastapi>=0.115.12",
+    "uvicorn[standard]>=0.34.2",
+    "gcsfs>=2024.12.0",
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.0.1",
+    "pytest-cov>=6.0.0",
+    "pytest-asyncio>=0.25.3",
+    "pytest>=8.3.3",
+    "ruff>=0.8.1",
+    "mypy>=1.13.0",
+    "hatchling>=1.27.0",
+    "testcontainers[postgres]>=4.9.1",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/core_ai_evaluation"]
+
+[tool.ruff.lint]
+select = [
+    # pycodestyle
+    "E",
+    # Pyflakes
+    "F",
+    # pyupgrade
+    "UP",
+    # flake8-bugbear
+    "B",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+    "FAST",
+    "A"
+]
+
+ignore = [
+    # long lines
+    "E501",
+    # abstract base class
+    "B008",
+    "B024",
+    "A001",
+    "FAST002"
+]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+torch = [
+    { index = "pytorch-cpu" },
+]
+torchvision = [
+    { index = "pytorch-cpu" },
+]
+
+[tool.pytest.ini_options]
+asyncio_default_fixture_loop_scope = "function"
