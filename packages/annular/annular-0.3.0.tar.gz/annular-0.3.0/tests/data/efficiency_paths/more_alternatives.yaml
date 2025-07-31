@@ -1,0 +1,54 @@
+Prosumers:
+  name: Chemical_plant_operator
+  id: Consumer
+  demand:
+    methanation:
+      carrier: hydrogen
+      base:
+        n_profile: base
+        peak: 1
+      flexible:
+        flex+2:
+          n_profile: flex+2
+          peak: 1
+    heating:
+      carrier: heat
+      base:
+        peak: 1
+  assets:
+    electrolyzer:
+      behavior_type: converter
+      input: electricity
+      output: hydrogen
+      installed_capacity: 550
+      efficiency: 1
+    SMR:
+      behavior_type: converter
+      input: methane
+      output: hydrogen
+      installed_capacity: 550
+      efficiency: .8
+    e-boiler:
+      behavior_type: converter
+      input: electricity
+      output: heat
+      installed_capacity: 550
+      efficiency: 1
+    burner:
+      behavior_type: converter
+      input: methane
+      output: heat
+      installed_capacity: 550
+      efficiency: 2
+    other-burner:
+      behavior_type: converter
+      input: biogas
+      output: heat
+      installed_capacity: 550
+      efficiency: 0.5
+    inefficient-burner:
+      behavior_type: converter
+      input: biogas
+      output: heat
+      installed_capacity: 1
+      efficiency: 0.1

@@ -1,0 +1,19 @@
+Prosumers:
+  name: flexible prosumer
+  id: P01
+  demand:
+    rural heat:
+      carrier: heat
+      base:
+        peak: 1000
+      flexible:
+        flex+1:
+          peak: 1
+          n_profile: DE0 0 rural heat
+  assets:
+    DE0 0 urban air heat pump:
+      input: electricity
+      output: heat
+      installed_capacity: 50000
+      efficiency: 1.0
+      behavior_type: converter

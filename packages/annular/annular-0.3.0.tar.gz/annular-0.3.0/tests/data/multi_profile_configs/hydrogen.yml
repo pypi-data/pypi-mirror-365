@@ -1,0 +1,6 @@
+strategy: multi_profile
+demands_path: tests/data/multi_profile/loads_generators_timeseries.csv
+floor_price: 0
+forecasts_path: tests/data/multi_profile/forecast-prices.csv
+carrier_prices_path: tests/data/multi_profile/price_other_carriers.csv
+cronian_config_path: tests/data/multi_profile/prosumers/P01.yaml

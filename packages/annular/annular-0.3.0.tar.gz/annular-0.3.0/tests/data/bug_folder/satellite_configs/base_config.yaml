@@ -1,0 +1,8 @@
+strategy: optimizer
+demands_path: tests/data/bug_folder/loads_generators_timeseries.csv
+floor_price: 0
+forecasts_path: tests/data/bug_folder/forecast-prices.csv
+carrier_prices_path: tests/data/bug_folder/price_other_carriers.csv
+model_config_path: tests/data/bug_folder/prosumers
+horizon_size: 3
+storage_model: simple

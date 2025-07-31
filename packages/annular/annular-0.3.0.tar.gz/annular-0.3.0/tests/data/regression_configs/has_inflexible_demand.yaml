@@ -1,0 +1,16 @@
+Prosumers:
+  name: Chemical_plant_operator
+  id: Consumer
+  demand:
+    methanation:
+      carrier: hydrogen
+      base:
+        n_profile: base
+        peak: 1
+  assets:
+    electrolyzer:
+      behavior_type: converter
+      input: electricity
+      output: hydrogen
+      installed_capacity: 550
+      efficiency: 1

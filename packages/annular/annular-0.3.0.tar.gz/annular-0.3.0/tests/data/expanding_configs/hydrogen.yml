@@ -1,0 +1,9 @@
+strategy: optimizer
+demands_path: tests/data/base-and-flex-demand.csv
+floor_price: 0
+forecasts_path: tests/data/forecast-prices.csv
+carrier_prices_path: tests/data/carrier-prices.csv
+model_config_path: tests/data/satellite_model_configs
+horizon_size: 2
+bid_curve_resolution: 6
+storage_model: simple

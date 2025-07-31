@@ -1,0 +1,40 @@
+# Change pip's cache directory to be inside the project directory since we can
+# only cache local items.
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+test:
+  tags:
+    - python3.11
+  # Specifically use the 3.11 image we've setup in our runner
+  image: python:3.11
+  # https://pip.pypa.io/en/stable/topics/caching/
+  cache:
+    paths:
+      - .cache/pip
+  before_script:
+    - apt-get update
+    - apt-get install -y python3-swiglpk glpk-utils
+    - python -m venv venv
+    - source venv/bin/activate
+    # yamllint disable-line rule:line-length
+    # instruction source: https://stackoverflow.com/questions/64266246/pip-install-a-private-repo-from-gitlab-with-personal-access-token-on-gitlab-ci # yamllint disable-line rule:line-length
+    - echo "machine gitlab.tudelft.nl" > ~/.netrc
+    - echo "login gitlab-ci-token" >> ~/.netrc
+    - echo "password ${CI_JOB_TOKEN}" >> ~/.netrc
+  script:
+    - python -m pip install --editable ".[dev]"
+    - pytest --cov
+  coverage: /TOTAL.*? (100(?:\.0+)?\%|[1-9]?\d(?:\.\d+)?\%)$/
+ruff:
+  tags:
+    - python3.11
+  image: python:3.11
+  cache:
+    paths:
+      - .cache/pip
+  before_script:
+    - python -m venv venv
+    - source venv/bin/activate
+    - python -m pip install ruff
+  script:
+    - ruff check .
