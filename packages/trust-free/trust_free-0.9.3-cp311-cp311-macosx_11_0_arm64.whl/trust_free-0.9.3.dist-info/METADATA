@@ -1,0 +1,126 @@
+Metadata-Version: 2.4
+Name: trust-free
+Version: 0.9.3
+Summary: Transparent, Robust & Ultra-Sparse Trees (TRUST) - Free Version
+Home-page: https://adc-trust-ai.github.io/trust/
+Author: Albert Dorador Chalar
+License: Proprietary - Permissive Binary Only
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.11
+Classifier: License :: Other/Proprietary License
+Classifier: Operating System :: MacOS
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: Topic :: Software Development :: Libraries :: Python Modules
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+Requires-Dist: numpy<2.0.0,>=1.26.4
+Requires-Dist: scipy>=1.16.0
+Requires-Dist: alibi>=0.9.6
+Requires-Dist: category_encoders>=2.8.1
+Requires-Dist: joblib>=1.4.2
+Requires-Dist: matplotlib>=3.10.3
+Requires-Dist: pandas>=2.3.1
+Requires-Dist: pydot>=4.0.1
+Requires-Dist: scikit_learn>=1.7.0
+Requires-Dist: shap>=0.47.2
+Requires-Dist: statsmodels>=0.14.4
+Dynamic: author
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# trust-free
+
+Transparent, Robust & Ultra-Sparse Trees (TRUST) - Free Version
+
+This package provides the free version* of our TRUST algorithm, a SOTA interpretable machine learning model.
+
+Currently designed only for regression tasks. Future releases will also tackle other tasks e.g. classification.
+
+*The free version is slower and is limited to datasets of at most 5,000 rows and 20 columns. It does not include premium functionality like:
+- Large Language Model (LLM) integration for enhanced explanations
+- Signed (+/-) variable importance plots
+- Interaction ALE plots
+- Prediction confidence intervals
+- Out-Of-Distribution detection
+
+## Installation
+
+You can install this package using pip:
+
+```bash
+pip install trust-free
+```
+
+Note: This package includes a precompiled binary and is currently only compatible with macOS 11+ on ARM64 architecture.
+
+## Usage
+
+Here are two basic examples of how to use the TRUST algorithm:
+
+```python
+from trust import TRUST # note the import name is trust, not trust-free
+from sklearn.datasets import make_regression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import r2_score, mean_squared_error
+
+# Example 1: Generate synthetic sparse regression data
+X, y, coefs = make_regression(n_samples=5000, n_features=20, n_informative=10, coef=True, noise=0.1, random_state=123)
+print(coefs)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=123)
+# Instantiate and fit your model
+model = TRUST()
+model.fit(X_train, y_train)
+# Predict and print results
+y_pred = model.predict(X_test)
+print("Predictions:", y_pred[:5])
+print("True y values:", y_test[:5])
+print("test R^2:", r2_score(y_test, y_pred))
+# Obtain prediction explanation for first observation
+model.explain(X_test[0,:], y_pred[0], actual=y_test[0]) 
+# Obtain (conditional) variable importance by Ghost method (Delicado and Pena, 2023)
+model.varImp(X_test, y_test, model, corAnalysis=True)
+
+# Example 2: the famous diabetes dataset (n=442, p=10)
+import pandas as pd
+from sklearn import datasets
+
+Diabetes = pd.DataFrame(datasets.load_diabetes().data)
+Diabetes.columns = datasets.load_diabetes().feature_names
+diab_target = datasets.load_diabetes().target
+Diabetes.insert(len(Diabetes.columns), "Disease_marker", diab_target)
+Diabetes_X = Diabetes.iloc[:,:-1]
+Diabetes_y = Diabetes.iloc[:,-1]
+RLT_Diabetes = TRUST(max_depth=1)
+RLT_Diabetes.fit(Diabetes_X,Diabetes_y)
+y_pred_TRUST = RLT_Diabetes.predict(Diabetes_X)
+# Tree plotting requires Graphviz to be installed in your system path
+# You can use e.g. Homebrew: brew install graphviz or Conda: conda install -c conda-forge graphviz
+RLT_Diabetes.plot_tree("Diabetes") #will save "tree_plot_Diabetes.png" in your working directory
+# Obtain prediction explanation for first observation
+RLT_Diabetes.explain(Diabetes_X.iloc[0,:], y_pred_TRUST[0], actual=Diabetes_y.to_list()[0])
+# Obtain variable importance with 2 different methods: Ghost and permutation
+RLT_Diabetes.varImp(Diabetes_X, Diabetes_y, RLT_Diabetes, corAnalysis=True) #Ghost method
+RLT_Diabetes.varImpPerm(Diabetes_X, Diabetes_y, RLT_Diabetes) #Permutation method
+```
+
+## License
+
+This software is provided under a Proprietary - Permissive Binary Only license. For detailed terms, please refer to the LICENSE file included with the distribution or visit our official website below.
+
+## More Information
+
+For more details, documentation, and information about the full (paid) version of the TRUST algorithm, please visit our official website:
+
+https://adc-trust-ai.github.io/trust/
+
+Further details can be found in our preprint on arxiv:
+
+https://www.arxiv.org/abs/2506.15791
