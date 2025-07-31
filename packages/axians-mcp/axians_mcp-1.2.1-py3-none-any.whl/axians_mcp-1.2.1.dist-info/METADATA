@@ -1,0 +1,220 @@
+Metadata-Version: 2.4
+Name: axians-mcp
+Version: 1.2.1
+Summary: MCP server providing tools for weather and iceland
+Author-email: aphily <alan.phily@axians.com>
+License: MIT
+Keywords: mcp,server,tools,weather
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Requires-Python: >=3.10
+Requires-Dist: beautifulsoup4>=4.12.3
+Requires-Dist: cachetools>=5.0.0
+Requires-Dist: click>=8.1.7
+Requires-Dist: fastmcp<2.4.0,>=2.3.4
+Requires-Dist: httpx>=0.28.0
+Requires-Dist: keyring>=25.6.0
+Requires-Dist: markdown-to-confluence<0.4.0,>=0.3.0
+Requires-Dist: markdown>=3.7.0
+Requires-Dist: markdownify>=0.11.6
+Requires-Dist: mcp<2.0.0,>=1.8.0
+Requires-Dist: pydantic>=2.10.6
+Requires-Dist: python-dateutil>=2.9.0.post0
+Requires-Dist: python-dotenv>=1.0.1
+Requires-Dist: requests[socks]>=2.31.0
+Requires-Dist: starlette>=0.37.1
+Requires-Dist: thefuzz>=0.22.1
+Requires-Dist: trio>=0.29.0
+Requires-Dist: types-cachetools>=5.5.0.20240820
+Requires-Dist: types-python-dateutil>=2.9.0.20241206
+Requires-Dist: uvicorn>=0.27.1
+Description-Content-Type: text/markdown
+
+Axians MCP Server
+A Model Context Protocol (MCP) server that provides weather information tools using the National Weather Service API.
+
+Features
+🌦️ Weather Alerts: Get active weather alerts for any US state
+📊 Weather Forecast: Get detailed weather forecasts for any location (latitude/longitude)
+🚀 FastMCP Framework: Built on the efficient FastMCP framework
+🔧 Multiple Transports: Supports stdio, SSE, and streamable HTTP transports
+Installation
+Using uvx (Recommended)
+bash
+uvx axians-mcp --transport=stdio
+Using pip
+bash
+pip install axians-mcp
+axians-mcp --transport=stdio
+Development Installation
+bash
+git clone <repository-url>
+cd axians-mcp
+uv pip install -e .
+Usage
+Basic Usage
+bash
+# Start the MCP server with stdio transport
+axians-mcp --transport=stdio
+
+# Start with verbose logging
+axians-mcp --verbose --transport=stdio
+
+# Start with custom environment file
+axians-mcp --env-file=.env.custom --transport=stdio
+Available Transports
+stdio: Standard input/output (default, recommended for MCP clients)
+sse: Server-Sent Events
+streamable-http: HTTP streaming
+Environment Configuration
+Create a .env file in your project directory:
+
+env
+TRANSPORT=stdio
+LOG_LEVEL=INFO
+Tools Available
+Weather Alerts
+Get active weather alerts for a US state:
+
+python
+# Example usage in MCP client
+await call_tool("get_alerts", {"state": "CA"})
+Parameters:
+
+state (string): Two-letter US state code (e.g., "CA", "NY", "TX")
+Weather Forecast
+Get detailed weather forecast for a specific location:
+
+python
+# Example usage in MCP client
+await call_tool("get_forecast", {
+    "latitude": 37.7749,
+    "longitude": -122.4194
+})
+Parameters:
+
+latitude (float): Latitude coordinate
+longitude (float): Longitude coordinate
+Command Line Options
+Usage: axians-mcp [OPTIONS]
+
+Options:
+  -v, --verbose          Increase verbosity (can be used multiple times)
+  --env-file PATH        Path to .env file
+  --transport [stdio|sse|streamable-http]
+                         Transport type (default: stdio)
+  --help                 Show this message and exit
+Examples
+Getting Weather Alerts for California
+bash
+# Start the server
+axians-mcp --transport=stdio
+
+# In your MCP client, call:
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "tools/call",
+  "params": {
+    "name": "get_alerts",
+    "arguments": {
+      "state": "CA"
+    }
+  }
+}
+Getting Forecast for San Francisco
+bash
+# In your MCP client, call:
+{
+  "jsonrpc": "2.0",
+  "id": 2,
+  "method": "tools/call",
+  "params": {
+    "name": "get_forecast",
+    "arguments": {
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    }
+  }
+}
+Integration with MCP Clients
+This server is compatible with any MCP client, including:
+
+Claude Desktop: Add to your MCP configuration
+Custom Applications: Use the MCP protocol to integrate weather data
+Development Tools: Great for testing and development workflows
+Claude Desktop Configuration
+Add to your MCP settings:
+
+json
+{
+  "mcpServers": {
+    "axians-weather": {
+      "command": "uvx",
+      "args": ["axians-mcp", "--transport=stdio"]
+    }
+  }
+}
+API Data Source
+This server uses the National Weather Service (NWS) API, which provides:
+
+Real-time weather alerts
+Detailed forecasts
+High-quality, government-sourced weather data
+Free access (no API key required)
+All data is sourced from https://api.weather.gov and follows NWS API guidelines.
+
+Development
+Project Structure
+src/axians_mcp/
+├── __init__.py          # CLI entry point and main configuration
+├── servers/
+│   ├── __init__.py      # Server exports
+│   ├── main.py          # FastMCP server setup
+│   └── weather.py       # Weather tools implementation
+Running Tests
+bash
+# Install development dependencies
+uv pip install -e ".[dev]"
+
+# Run tests (when available)
+pytest
+Building the Package
+bash
+uv run python -m build
+Contributing
+Fork the repository
+Create a feature branch (git checkout -b feature/amazing-feature)
+Commit your changes (git commit -m 'Add amazing feature')
+Push to the branch (git push origin feature/amazing-feature)
+Open a Pull Request
+Requirements
+Python 3.10+
+Internet connection (for NWS API access)
+Dependencies
+fastmcp>=2.3.4: FastMCP framework
+httpx>=0.28.0: HTTP client for API requests
+click>=8.1.7: Command-line interface
+python-dotenv>=1.0.1: Environment variable management
+pydantic>=2.10.6: Data validation
+License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+Support
+For issues and questions:
+
+Check the Issues page
+Create a new issue with detailed information
+Include logs and configuration details
+Changelog
+v0.1.0
+Initial release
+Weather alerts tool
+Weather forecast tool
+Multiple transport support
+FastMCP integration
