@@ -1,0 +1,103 @@
+# HyperUserAgent
+
+**Hyper-UA ─ ultra-realistic User-Agent & fingerprint generator.**
+
+HyperUserAgent is a Python library that generates realistic, statistically-weighted User-Agent strings and browser fingerprints. It's designed to help developers create bots and web scrapers that are less likely to be detected by anti-bot systems.
+
+## Installation
+
+You can install HyperUserAgent using pip:
+
+```bash
+pip install HyperUserAgent
+```
+
+## Usage
+
+Here’s how you can use HyperUserAgent to generate user agents and fingerprints.
+
+### Generating a User Agent
+
+You can generate a user agent for various platforms and browsers.
+
+**Basic Usage**
+
+To generate a random, realistic user agent, you can do the following:
+
+```python
+from HyperUserAgent import HyperUA
+
+# Generate a random user agent
+ua = HyperUA.create()
+print(ua)
+
+# Or, more simply:
+ua = HyperUA.random
+print(ua)
+```
+
+**Generate a Mobile User Agent**
+
+```python
+from HyperUserAgent import HyperUA
+
+# Generate a mobile user agent
+mobile_ua = HyperUA.create(platform="mobile")
+print(mobile_ua)
+```
+
+**Generate for a Specific Browser**
+
+You can also generate user agents for specific browsers. The easiest way is to use the class properties:
+
+```python
+from HyperUserAgent import HyperUA
+
+# Generate a Chrome user agent
+chrome_ua = HyperUA.chrome
+print(chrome_ua)
+
+# Generate a Firefox user agent
+firefox_ua = HyperUA.firefox
+print(firefox_ua)
+```
+
+For more control, you can use the static methods:
+
+```python
+from HyperUserAgent import HyperUA
+
+# Generate a Firefox user agent for a mobile platform
+firefox_mobile_ua = HyperUA.getFirefox(platform="mobile")
+print(firefox_mobile_ua)
+```
+
+### Generating a Browser Fingerprint
+
+HyperUserAgent can also generate a detailed browser fingerprint to accompany a user agent.
+
+```python
+from HyperUserAgent import HyperUA, Fingerprint
+
+# First, create a user agent
+ua = HyperUA.create()
+
+# Generate a fingerprint for the user agent
+fp = Fingerprint.generate(ua)
+
+# Print the fingerprint as a dictionary
+print(fp.to_dict())
+```
+
+## Features
+
+-   **Realistic User-Agent Generation**: Generates user agents that are indistinguishable from real browsers.
+-   **Browser Fingerprinting**: Creates detailed browser fingerprints, including Canvas, WebGL, and more.
+-   **Statistically-Weighted Selection**: User agents are generated based on real-world usage statistics.
+-   **Customizable Generation**: Easily generate user agents for specific browsers, platforms, and versions.
+-   **Wide Range of Supported Browsers**: Supports Chrome, Firefox, Safari, Edge, Opera, Brave, and Yandex.
+-   **Cross-Platform**: Generates user agents for desktop (Windows, macOS, Linux) and mobile (Android, iOS).
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
