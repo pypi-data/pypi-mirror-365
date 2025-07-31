@@ -1,0 +1,65 @@
+Metadata-Version: 2.4
+Name: geo-mcp-server
+Version: 0.5.0
+Summary: DEPRECATED: This package is no longer maintained. Use https://github.com/MCPmed/GEOmcp instead.
+Home-page: https://github.com/MCPmed/GEOmcp
+Author: MCP Developer
+Author-email: developer@example.com
+Keywords: deprecated,bioinformatics,e-utils,gene-expression,geo,mcp,ncbi,geneexpression,mcp-server
+Classifier: Development Status :: 7 - Inactive
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Topic :: Scientific/Engineering :: Bio-Informatics
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: license-file
+Dynamic: requires-python
+Dynamic: summary
+
+# DEPRECATED: geo-mcp-server
+
+## ⚠️ PACKAGE DEPRECATED ⚠️
+
+**This package is no longer maintained and has been deprecated.**
+
+### Migration Notice
+
+Please migrate to the new repository: **https://github.com/MCPmed/GEOmcp**
+
+### What happened?
+
+This `geo-mcp-server` package has been discontinued. All future development and support will happen in the new repository.
+
+### What should you do?
+
+1. **Uninstall this package**: `pip uninstall geo-mcp-server`
+2. **Visit the new repository**: https://github.com/MCPmed/GEOmcp  
+3. **Follow the new installation instructions** in the new repository
+
+### About this package
+
+This was originally a Model Context Protocol (MCP) server for accessing GEO (Gene Expression Omnibus) data through NCBI E-Utils API, but it is now deprecated.
+
+## License
+
+MIT License - see LICENSE file for details.
+
+This project is in active development. Please report issues and contribute to the project on GitHub.
+
+## Keywords
+
+bioinformatics, e-utils, gene-expression, geo, mcp, ncbi, geneexpression, mcp-server
