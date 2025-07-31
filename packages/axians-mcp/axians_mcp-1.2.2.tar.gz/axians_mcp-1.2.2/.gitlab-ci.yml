@@ -1,0 +1,17 @@
+stages:
+  - build-and-publish
+
+build-and-publish:
+  stage: build-and-publish
+  image: python:3.11
+  script:
+    - python -m pip install --upgrade build twine
+    - python -m build
+    - python -m twine upload dist/*
+  variables:
+    TWINE_USERNAME: __token__
+    TWINE_PASSWORD: $PYPI_TOKEN
+  rules:
+    - if: $CI_COMMIT_BRANCH == "master"
+      changes:
+        - pyproject.toml
