@@ -1,0 +1,17 @@
+pydantic-ai-slim[google,mcp]
+mcp-clickhouse
+python-dotenv
+uv
+
+[dev]
+pytest
+pytest-asyncio
+black
+isort
+mypy
+flake8
+types-cachetools
+
+[examples]
+jupyter
+ipython
