@@ -1,0 +1,42 @@
+<div class="bsmc-month" data-year="{{ range.month_start.year }}" data-month="{{ range.month_start.month }}">
+  <table class="table table-bordered align-middle mb-0 bsmc-table">
+    <thead class="table-light">
+      <tr class="text-center">
+        <th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th class="text-primary">토</th><th class="text-primary">일</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for week in weeks %}
+      <tr>
+        {% for day in week %}
+          {% with in_month=day.month == range.month_start.month %}
+          <td class="p-2 {% if not in_month %}text-muted bg-body-tertiary{% endif %}" style="vertical-align: top; min-width:120px;">
+            <div class="d-flex justify-content-between">
+              <span class="small fw-semibold">{{ day.day }}</span>
+            </div>
+            <div class="d-flex flex-column gap-1 mt-1">
+              {% for ev in events_by_date|get_item:day %}
+                {% if ev.color_hex %}
+                  <a class="badge text-dark text-decoration-none bsmc-badge-hex"
+                     href="{{ ev.url|default:'#' }}"
+                     title="{{ ev.title }}"
+                     style="background-color: {{ ev.color_hex }};">{{ ev.title }}</a>
+                {% elif ev.color_variant %}
+                  <a class="badge bg-{{ ev.color_variant }} text-decoration-none"
+                     href="{{ ev.url|default:'#' }}"
+                     title="{{ ev.title }}">{{ ev.title }}</a>
+                {% else %}
+                  <a class="badge bg-primary-subtle text-decoration-none text-primary-emphasis"
+                     href="{{ ev.url|default:'#' }}"
+                     title="{{ ev.title }}">{{ ev.title }}</a>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </td>
+          {% endwith %}
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
