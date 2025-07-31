@@ -1,0 +1,35 @@
+# python stuff
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints
+tox.ini
+*.egg-info/
+
+# project spcecific stuff
+TODOS.md
+builds/
+build/
+
+## results, data or temp files written during runs
+output/
+port_*.txt
+tests/data/
+test/*.json
+
+# pycharm/vscode specific stuff
+.idea
+.vscode/
+
+#datasets for sgd
+*MNIST/raw*
+*raw*
+*cifar-10-batches-py*
+*cifar*.tar.gz
+
+# venvs
+*.lock*
+dist/*
+uv.lock
+*.egg
+*.egg-info/
+*.whl
