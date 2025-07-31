@@ -1,0 +1,116 @@
+Metadata-Version: 2.4
+Name: papertrades
+Version: 1.0.5
+Summary: a package to simulate and analyze paper trades in Python
+Author: Kevin Zhu
+Author-email: kzhu2099@gmail.com
+Maintainer: Kevin Zhu
+Maintainer-email: kzhu2099@gmail.com
+License: MIT License
+        
+        Copyright (c) 2025 Kevin Zhu
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+Project-URL: Homepage, https://github.com/kzhu2099/Paper-Trades
+Project-URL: Issues, https://github.com/kzhu2099/Paper-Trades/issues
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Natural Language :: English
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: matplotlib
+Requires-Dist: pandas
+
+# papertrades
+
+papertrades is a package to simulate and analyze paper trades in Python.
+
+- HomePage: https://github.com/kzhu2099/Paper-Trades
+- Issues: https://github.com/kzhu2099/Paper-Trades/issues
+
+[![PyPI Downloads](https://static.pepy.tech/badge/papertrades)](https://pepy.tech/projects/papertrades)
+
+Author: Kevin Zhu
+
+THIS IS NOT FINANCIAL ADVICE; papertrades IS A TOOL TO SIMULATE THE MARKET FOR EDUCATIONAL PURPOSES.
+
+## Features
+
+- multiple portfolios
+- automatic asset price calculation based on your last trade
+- plotting of the value of your portfolio
+- remaining cash (balance) calculation & value calculation
+- asset breakdown
+
+## Installation
+
+To install papertrades, use pip: ```pip install papertrades```.
+
+However, many prefer to use a virtual environment (or any of their preferred choice).
+
+macOS / Linux:
+
+```sh
+# make your desired directory
+mkdir /path/to/your/directory
+cd /path/to/your/directory
+
+# setup the .venv (or whatever you want to name it)
+pip install virtualenv
+python3 -m venv .venv
+
+# install papertrades
+source .venv/bin/activate
+pip install papertrades
+
+deactivate # when you are completely done
+```
+
+Windows CMD:
+
+```sh
+# make your desired directory
+mkdir C:path\to\your\directory
+cd C:path\to\your\directory
+
+# setup the .venv (or whatever you want to name it)
+pip install virtualenv
+python3 -m venv .venv
+
+# install papertrades
+.venv\Scripts\activate
+pip install papertrades
+
+deactivate # when you are completely done
+```
+
+## Usage
+
+Create a portfolio with a starting balance and a path for its trades.
+Once you make trades, you make save the trades to use later, and load them from the portfolio.
+See the example for complete functionality with all methods!
+
+After a lot of time,
+
+## License
+
+The License is an MIT License found in the LICENSE file.
