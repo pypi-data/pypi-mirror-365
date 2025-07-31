@@ -1,0 +1,48 @@
+[build-system]
+requires = ['setuptools', 'wheel']
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = 'papertrades'
+
+version = '1.0.7'
+
+description = 'a package to simulate and analyze paper trades in Python'
+
+authors = [{name = 'Kevin Zhu'}, {email = 'kzhu2099@gmail.com'}]
+maintainers = [{name = 'Kevin Zhu'}, {email = 'kzhu2099@gmail.com'}]
+
+classifiers = [
+    'Development Status :: 4 - Beta',
+
+    'Intended Audience :: End Users/Desktop',
+
+    'License :: OSI Approved :: MIT License',
+
+    'Natural Language :: English',
+
+    'Operating System :: OS Independent',
+
+    'Programming Language :: Python :: 3',
+]
+
+readme = 'README.md'
+
+license = {file = 'LICENSE'}
+
+requires-python = '>= 3.9'
+
+dependencies = ['matplotlib', 'pandas']
+
+[project.urls]
+Homepage = 'https://github.com/kzhu2099/Paper-Trades'
+Issues = 'https://github.com/kzhu2099/Paper-Trades/issues'
+
+[tool.setuptools.package-data]
+'papertrades.data' = ['*']
+
+[tool.setuptools.packages.find]
+include = ['papertrades', 'papertrades.*']
+
+[tool.setuptools]
+license-files = []
