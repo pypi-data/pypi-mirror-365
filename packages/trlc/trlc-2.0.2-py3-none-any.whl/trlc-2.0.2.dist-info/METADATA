@@ -1,0 +1,103 @@
+Metadata-Version: 2.4
+Name: trlc
+Version: 2.0.2
+Summary: Treat Requirements Like Code
+Home-page: https://github.com/bmw-software-engineering/trlc
+Author: Bayerische Motoren Werke Aktiengesellschaft (BMW AG)
+Author-email: philipp.wullstein-kammler@bmw.de
+License: GNU General Public License v3
+Project-URL: Bug Tracker, https://github.com/bmw-software-engineering/trlc/issues
+Project-URL: Documentation, https://github.com/bmw-software-engineering/trlc#documentation
+Project-URL: Source Code, https://github.com/bmw-software-engineering/trlc
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)
+Classifier: Topic :: Documentation
+Classifier: Topic :: Software Development
+Requires-Python: >=3.8, <=3.13
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: PyVCG[api]==1.0.7
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: project-url
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Treat Requirements Like Code (TRLC)
+TRLC is a domain-specific language developed at BMW for writing (and
+linking) requirements with meta-data.
+
+The repository contains:
+
+* The [language reference
+  manual](https://bmw-software-engineering.github.io/trlc/lrm.html)
+  for TRLC. [Previous versions](https://github.com/bmw-software-engineering/trlc/blob/main/documentation/LRM.md) are also available.
+
+* A pure Python reference implementation of TRLC.
+
+The implementation is not very fast, but designed to be pedantically
+correct in following the language definition. The tools also include a
+powerful static analysis tool to find issues with types and
+user-defined check rules.
+
+The Python implementation can be used for several purposes:
+
+* It can be used to validate other TRLC implementations.
+
+* It can be used to validate a body of requirements (e.g. a CI check
+  that all requirements are well formed)
+
+* The API can be used to write other tools based on TRLC (for example
+  a tool to render the requirements in HTML, a tool to diff
+  requirements or perform an impact analysis, or a tool to perform
+  software traceability, etc.)
+
+## Documentation
+
+### For normal users
+
+* [Tutorial](https://github.com/bmw-software-engineering/trlc/blob/main/documentation/TUTORIAL.md) (read this as a first introduction)
+* [User manual: TRLC linter](https://github.com/bmw-software-engineering/trlc/blob/main/documentation/linter.md) (the user manual for the TRLC static analysis and linter)
+* [Release Notes](https://github.com/bmw-software-engineering/trlc/blob/main/CHANGELOG.md) (read this to find out whats new)
+* [License](https://github.com/bmw-software-engineering/trlc/blob/main/LICENSE)
+
+### For advanced users
+
+* [Language Reference Manual](https://bmw-software-engineering.github.io/trlc/lrm.html)
+  (for language lawyers)
+* [Python API Documentation](https://bmw-software-engineering.github.io/trlc/)
+  (API reference for end-users)
+* [AST Hierarchy](https://bmw-software-engineering.github.io/trlc/ast_hierarchy.svg)
+  (overview over all classes in the AST)
+
+### For TRLC developers
+
+* [Set up development environment](https://github.com/bmw-software-engineering/trlc/blob/main/documentation/dev_setup.md)
+* [Lexer/Parser Hierarchy](https://bmw-software-engineering.github.io/trlc/parser_hierarchy.svg)
+  (overview over all classes releated to the lexing and parsing of TRLC)
+* [Tool Architecture Overview](https://github.com/bmw-software-engineering/trlc/blob/main/documentation/architecture.md)
+* [TRLC Static Checker Slides](https://bmw-software-engineering.github.io/trlc/linter.pdf) (Kinda incomplete, designed to go along with a code walkthrough)
+* [Requirements Coverage Report](https://bmw-software-engineering.github.io/trlc/tracing.html)
+* [Code Coverage Report](https://bmw-software-engineering.github.io/trlc/htmlcov/index.html)
+
+## Dependencies
+
+### Run-time
+* 3.8 <= Python3 <= 3.13
+* [PyVCG](https://pypi.org/project/PyVCG)
+* [PyPI CVC5](https://pypi.org/project/cvc5)
+  (required when using the `--verify` option)
+
+Optional dependency (not installed automatically):
+* [Binary CVC5](https://github.com/cvc5/cvc5/releases/tag/cvc5-1.0.8)
+  (An alternative to PyPI CVC5, make sure to rename the binary to
+  `cvc5` and put it on your PATH).
