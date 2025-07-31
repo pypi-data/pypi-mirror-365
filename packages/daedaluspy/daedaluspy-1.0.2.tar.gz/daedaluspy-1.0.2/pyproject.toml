@@ -1,0 +1,66 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "daedaluspy"
+version = "1.0.2"
+description = "Code generation toolkit for data engineering"
+readme = "README.md"
+requires-python = ">=3.7"
+license = "MIT"
+authors = [
+    {name = "Golden Valley Consulting LTDA", email = "contato@goldenvalleyc.com"}
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Code Generators",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+keywords = ["code-generation", "data-engineering", "python", "cli"]
+dependencies = [
+    # Add runtime dependencies here as needed
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "black",
+    "flake8",
+    "mypy",
+]
+
+[project.urls]
+Homepage = "https://github.com/Golden-Valley-Consulting/daedaluspy"
+Documentation = "https://daedaluspy.readthedocs.io"
+Repository = "https://github.com/Golden-Valley-Consulting/daedaluspy"
+"Bug Tracker" = "https://github.com/Golden-Valley-Consulting/daedaluspy/issues"
+
+[project.scripts]
+daedaluspy = "daedaluspy.cli:main"
+
+[tool.setuptools]
+packages = {find = {include = ["daedaluspy*"]}}
+
+[tool.setuptools.package-data]
+daedaluspy = ["**/*.py", "**/*.txt", "**/*.md"]
+
+[tool.black]
+line-length = 88
+target-version = ['py37']
+
+[tool.mypy]
+python_version = "3.7"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = false
