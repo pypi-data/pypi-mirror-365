@@ -1,0 +1,20 @@
+services:
+  # MCP Memory Server with internal storage (no external mounts)
+  mcp_server:
+    build:
+      context: ..
+      dockerfile: ../Dockerfile
+    container_name: mcp_server_internal
+    ports:
+      - "8787:8787"  # MCP server port
+    environment:
+      - SSE_HOST=0.0.0.0
+      - SSE_PORT=8766
+      - QDRANT_HOST=localhost  # File-based storage inside container
+      - QDRANT_PORT=6333       # Not used
+      - QDRANT_COLLECTION=memory_collection
+      - KUZU_DB_PATH=/app/internal_storage/kuzu/memory_db
+      - QDRANT_STORAGE_PATH=/app/internal_storage/qdrant
+    env_file:
+      - ../.env
+    restart: unless-stopped
