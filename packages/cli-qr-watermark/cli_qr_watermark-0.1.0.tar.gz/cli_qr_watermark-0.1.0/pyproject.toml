@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cli-qr-watermark"
+version = "0.1.0"
+description = "CLI tool to overlay semi-transparent QR codes on images"
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "nazgool87", email = "you@example.com" }]
+dependencies = [
+    "Pillow>=10",
+    "qrcode[pil]>=7",
+    "click>=8",
+    "rich>=13"
+]
+
+[project.scripts]
+qrmark = "qrmark.__main__:cli"
+
+[project.urls]
+Homepage = "https://github.com/nazgool97/cli-qr-watermark"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
