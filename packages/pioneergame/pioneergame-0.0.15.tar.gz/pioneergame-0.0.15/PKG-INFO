@@ -1,0 +1,229 @@
+Metadata-Version: 2.4
+Name: pioneergame
+Version: 0.0.15
+Summary: Simple Pygame wrap for small kids
+Home-page: https://github.com/chebur5581/pioneergame
+Author: chebur5581
+Author-email: chebur5581@gmail.com
+Project-URL: GitHub, https://github.com/chebur5581/pioneergame
+Keywords: Games Pygame kis Learning pioneergame
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Operating System :: Microsoft :: Windows
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: pygame>=2.6.0
+Requires-Dist: setuptools
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: keywords
+Dynamic: project-url
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+РџСЂРѕСЃС‚Р°СЏ РѕР±С‘СЂС‚РєР° pygame РґР»СЏ РґРµС‚РµР№
+
+### Blank. Empty window ###
+
+```python
+from pioneergame import Window
+
+my_window = Window(1200, 700, 'my black window')  # СЃРѕР·РґР°С‘Рј РіР»Р°РІРЅРѕРµ РѕРєРЅРѕ
+
+while True:  # Р±РµСЃРєРѕРЅРµС‡РЅС‹Р№ С†РёРєР» РёРіСЂС‹
+    my_window.fill('black')  # Р·Р°РїРѕР»РЅРµРЅРёРµ СЌРєСЂР°РЅР° С‡С‘СЂРЅС‹Рј
+
+    my_window.update(60)  # РѕР±РЅРѕРІР»РµРЅРёРµ СЌРєСЂР°РЅР° СЃ С‡Р°СЃС‚РѕС‚РѕР№ 60 РєР°РґСЂРѕРІ РІ СЃРµРєСѓРЅРґСѓ
+```
+
+#
+
+### Drawing simple objects ###
+![figures](.\image\figures.png)
+```python
+from pioneergame import Window, Rect, Circle
+
+my_window = Window(1200, 700, 'my black window')  # СЃРѕР·РґР°С‘Рј РіР»Р°РІРЅРѕРµ РѕРєРЅРѕ
+
+# СЃРѕР·РґР°РЅРёРµ СЃРёРЅРµРіРѕ РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР° СЃ С€РёСЂРёРЅРѕР№ 100 Рё РІС‹СЃРѕС‚РѕР№ 50
+block = Rect(my_window, x=10, y=40, width=100, height=50, color='blue')
+
+# СЃРѕР·РґР°РЅРёРµ РѕСЂР°РЅР¶РµРІРѕРіРѕ РєРІР°РґСЂР°С‚Р° СЂР°Р·РјРµСЂРѕРј 60 РЅР° 60, РєРѕС‚РѕСЂС‹Р№ РїРѕС‚РѕРј Р±СѓРґРµРј РґРІРёРіР°С‚СЊ
+moving_square = Rect(my_window, x=100, y=200, width=60, height=60, color='orange')
+
+# СЃРѕР·РґР°РЅРёРµ РєСЂР°СЃРЅРѕРіРѕ РєСЂСѓРіР° СЃ СЂР°РґРёСѓСЃРѕРј 20, РєРѕС‚РѕСЂС‹Р№ С‚РѕР¶Рµ Р±СѓРґРµРј РґРІРёРіР°С‚СЊ
+moving_circle = Circle(my_window, x=1000, y=50, radius=20, color='red')
+
+# СЃРѕР·РґР°РЅРёРµ СЃРµСЂРѕРіРѕ РєРѕР»СЊС†Р° СЃ СЂР°РґРёСѓСЃРѕРј 80 Рё С‚РѕР»С‰РёРЅРѕР№ СЃС‚РµРЅРєРё 5
+bublik = Circle(my_window, x=500, y=350, radius=80, color='grey', thickness=5)
+
+while True:  # Р±РµСЃРєРѕРЅРµС‡РЅС‹Р№ С†РёРєР» РёРіСЂС‹
+    my_window.fill('black')  # Р·Р°РїРѕР»РЅРµРЅРёРµ СЌРєСЂР°РЅР° С‡С‘СЂРЅС‹Рј
+
+    block.draw()  # РѕС‚СЂРёСЃРѕРІРєР° РїСЂСЏРјРѕСѓРіРѕР»СЊРЅРёРєР°
+    moving_square.draw()  # РѕС‚СЂРёСЃРѕРІРєР° РєРІР°РґСЂР°С‚Р°
+    moving_circle.draw()  # РѕС‚СЂРёСЃРѕРІРєР° РєСЂСѓРіР°
+    bublik.draw()
+
+    # РµСЃР»Рё РїСЂР°РІР°СЏ СЃС‚РѕСЂРѕРЅР° РєРІР°РґСЂР°С‚Р° РЅР°С…РѕРґРёС‚СЃСЏ Р»РµРІРµРµ С‡РµРј РїСЂР°РІР°СЏ РіСЂР°РЅРёС†Р° СЌРєСЂР°РЅР°, С‚Рѕ РјС‹ РґРІРёРіР°РµРј РєРІР°РґСЂР°С‚ РІРїСЂР°РІРѕ
+    if moving_square.right < my_window.right:
+        moving_square.x += 5  # РґРІРёР¶РµРЅРёРµ РєРІР°РґСЂР°С‚Р° РІРїСЂР°РІРѕ РЅР° 1 РїРёРєСЃРµР»СЊ
+
+    moving_circle.x -= 1  # РґРІРёР¶РµРЅРёРµ РєСЂСѓРіР° РІ Р»РµРІРѕ
+    moving_circle.y += 1  # РґРІРёР¶РµРЅРёРµ РєСЂСѓРіР° РІРЅРёР·
+
+    my_window.update(60)  # РѕР±РЅРѕРІР»РµРЅРёРµ СЌРєСЂР°РЅР° СЃ С‡Р°СЃС‚РѕС‚РѕР№ 60 РєР°РґСЂРѕРІ РІ СЃРµРєСѓРЅРґСѓ
+
+```
+
+#
+
+### Keyboard and text ###
+![keyboard](.\image\keyboard_and_text.png)
+```python
+from pioneergame import Window, Label
+
+my_window = Window(1200, 700, 'my black window')  # СЃРѕР·РґР°С‘Рј РіР»Р°РІРЅРѕРµ РѕРєРЅРѕ
+
+# СЃРѕР·РґР°РЅРёРµ С‚РµРєСЃС‚Р° Р±РµР»РѕРіРѕ С†РІРµС‚Р°
+my_text = Label(my_window, x=300, y=350, text='РќР°Р¶РјРё СЃС‚СЂРµР»РѕС‡РєСѓ РІРїСЂР°РІРѕ, РІР»РµРІРѕ, РІРІРµСЂС… РёР»Рё РІРЅРёР·', color='white')
+
+while True:  # Р±РµСЃРєРѕРЅРµС‡РЅС‹Р№ С†РёРєР» РёРіСЂС‹
+    my_window.fill('black')  # Р·Р°РїРѕР»РЅРµРЅРёРµ СЌРєСЂР°РЅР° С‡С‘СЂРЅС‹Рј
+
+    my_text.draw()  # РѕС‚СЂРёСЃРѕРІРєР° С‚РµРєСЃС‚Р°
+
+    if my_window.get_key('left'):  # РµСЃР»Рё РЅР°Р¶Р°С‚Р° СЃС‚СЂРµР»РѕС‡РєР° РІР»РµРІРѕ
+        my_text.set_text('Р±С‹Р»Р° РЅР°Р¶Р°С‚Р° СЃС‚СЂРµР»РѕС‡РєР° РІР»РµРІРѕ')  # СѓСЃС‚Р°РЅРѕРІРєР° РЅРѕРІРѕРіРѕ С‚РµРєСЃС‚Р°
+    if my_window.get_key('right'):  # РµСЃР»Рё РЅР°Р¶Р°С‚Р° СЃС‚СЂРµР»РѕС‡РєР° РІРїСЂР°РІРѕ
+        my_text.set_text('Р±С‹Р»Р° РЅР°Р¶Р°С‚Р° СЃС‚СЂРµР»РѕС‡РєР° РІРїСЂР°РІРѕ')
+    if my_window.get_key('up'):  # РµСЃР»Рё РЅР°Р¶Р°С‚Р° СЃС‚СЂРµР»РѕС‡РєР° РІРІРµСЂС…
+        my_text.set_text('Р±С‹Р»Р° РЅР°Р¶Р°С‚Р° СЃС‚СЂРµР»РѕС‡РєР° РІРІРµСЂС…')
+    if my_window.get_key('down'):  # РµСЃР»Рё РЅР°Р¶Р°С‚Р° СЃС‚СЂРµР»РѕС‡РєР° РІРЅРёР·
+        my_text.set_text('Р±С‹Р»Р° РЅР°Р¶Р°С‚Р° СЃС‚СЂРµР»РѕС‡РєР° РІРЅРёР·')
+
+    my_window.update(60)  # РѕР±РЅРѕРІР»РµРЅРёРµ СЌРєСЂР°РЅР° СЃ С‡Р°СЃС‚РѕС‚РѕР№ 60 РєР°РґСЂРѕРІ РІ СЃРµРєСѓРЅРґСѓ
+```
+
+### Fireworks ###
+![fireworks](.\image\fireworks.png)
+```python
+from pioneergame import Window, explode, explosion_update
+
+my_window = Window(1200, 700, 'my black window')  # СЃРѕР·РґР°С‘Рј РіР»Р°РІРЅРѕРµ РѕРєРЅРѕ
+
+while True:  # Р±РµСЃРєРѕРЅРµС‡РЅС‹Р№ С†РёРєР» РёРіСЂС‹
+    my_window.fill('black')  # Р·Р°РїРѕР»РЅРµРЅРёРµ СЌРєСЂР°РЅР° С‡С‘СЂРЅС‹Рј
+
+    if my_window.get_mouse_button('left'):  # РµСЃР»Рё Р±С‹Р»Р° РЅР°Р¶Р°С‚Р° Р»РµРІР°СЏ РєРЅРѕРїРєР° РјС‹С€Рё
+        explode(my_window, pos=my_window.mouse_position(), size=5, color='orange')
+
+    explosion_update()  # РѕР±СЂР°Р±РѕС‚РєР° РІСЃРµС… РІР·СЂС‹РІРѕРІ
+
+    my_window.update(60)  # РѕР±РЅРѕРІР»РµРЅРёРµ СЌРєСЂР°РЅР° СЃ С‡Р°СЃС‚РѕС‚РѕР№ 60 РєР°РґСЂРѕРІ РІ СЃРµРєСѓРЅРґСѓ
+```
+
+### Example. DVD screen ###
+![dvd](.\image\dvd.png)
+```python
+from pioneergame import Window, Label
+
+window = Window(1024, 768, 'DVD test')
+
+dvd = Label(window, 10, 10, 'DVD', 'grey', font='Impact', size=70, italic=True)
+state = Label(window, 10, 10, 'state: IDLE', 'grey', italic=True)
+
+dx, dy = 3, 3
+
+while True:
+    window.fill('black')
+    dvd.draw()
+    state.draw()
+
+    dvd.x += dx
+    dvd.y += dy
+
+    if dvd.left < window.left or dvd.right > window.right:
+        dx *= -1
+    if dvd.top < window.top or dvd.bottom > window.bottom:
+        dy *= -1
+
+    window.update(80)
+```
+
+#
+
+### Ping Pong ###
+
+![pong](.\image\pong.png)
+```python
+from pioneergame import Window, Circle, Rect, Label
+
+window = Window(1024, 768)
+fps = 80
+
+pad1 = Rect(window, 50, 20, 20, 200, color='grey')
+text1 = Label(window, 100, 10, text='0', color='darkgray', size=50)
+score1 = 0
+
+pad2 = Rect(window, 954, 20, 20, 200, color='grey')
+text2 = Label(window, 900, 10, color='darkgray', size=50)
+score2 = 0
+
+ball = Circle(window, 100, 100, radius=10, color='grey')
+ball_speed = 3
+
+dx = ball_speed
+dy = ball_speed
+
+while True:
+    window.fill('black')
+
+    pad1.draw()
+    text1.draw()
+    text1.set_text(score1)
+
+    pad2.draw()
+    text2.draw()
+    text2.set_text(score2)
+
+    ball.draw()
+
+    ball.x += dx
+    ball.y += dy
+
+    if ball.bottom > window.bottom:
+        dy = -dy
+    if ball.top < window.top:
+        dy = -dy
+
+    if ball.right > window.right:
+        score1 = score1 + 1
+        ball.x = 512
+        ball.y = 344
+    if ball.left < window.left:
+        score2 = score2 + 1
+        ball.x = 512
+        ball.y = 344
+
+    if window.get_key('w') and pad1.top > window.top:
+        pad1.y -= 5
+    if window.get_key('s') and pad1.bottom < window.bottom:
+        pad1.y += 5
+
+    if window.get_key('up') and pad2.top > window.top:
+        pad2.y -= 5
+    if window.get_key('down') and pad2.bottom < window.bottom:
+        pad2.y += 5
+
+    if ball.colliderect(pad1):
+        dx = ball_speed
+    if ball.colliderect(pad2):
+        dx = -ball_speed
+
+    window.update(fps)
+```
