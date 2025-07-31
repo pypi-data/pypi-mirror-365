@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: versum
+Version: 0.1.2
+Summary: Add your description here
+Author-email: Arian Ott <arian.ott@ieee.org>
+Requires-Python: >=3.13
+Requires-Dist: argon2-cffi>=25.1.0
+Requires-Dist: bcrypt>=4.3.0
+Requires-Dist: passlib>=1.7.4
+Provides-Extra: dev
+Requires-Dist: coverage>=7.10.1; extra == 'dev'
+Requires-Dist: pytest-xdist>=3.8.0; extra == 'dev'
+Requires-Dist: pytest>=8.4.1; extra == 'dev'
+Requires-Dist: ruff>=0.12.7; extra == 'dev'
+Requires-Dist: twine>=6.1.0; extra == 'dev'
