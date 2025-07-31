@@ -1,0 +1,41 @@
+# Include the README and other documentation files
+include README.md
+include LICENSE
+include CHANGELOG.md
+include requirements.txt
+include pyproject.toml
+
+# Include all Python files in the package
+recursive-include pymbo *.py
+recursive-include pymbo *.md
+
+# Include any additional data files
+recursive-include pymbo/gui *.py
+recursive-include pymbo/core *.py
+recursive-include pymbo/utils *.py
+recursive-include pymbo/screening *.py
+
+# Exclude unnecessary files
+global-exclude __pycache__
+global-exclude *.py[co]
+global-exclude .DS_Store
+global-exclude *.so
+global-exclude .git*
+global-exclude .pytest_cache
+global-exclude build
+global-exclude dist
+global-exclude *.egg-info
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+
+# Include main entry point
+include main.py
+
+# Include test files if any
+recursive-include tests *.py
+
+# Exclude logs and temporary files
+global-exclude *.log
+global-exclude logs/*
+global-exclude tmp/*
+global-exclude temp/*
