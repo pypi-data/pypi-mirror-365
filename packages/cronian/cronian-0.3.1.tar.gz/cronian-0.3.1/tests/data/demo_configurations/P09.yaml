@@ -1,0 +1,55 @@
+Prosumers:
+  name: heat operator
+  id: P09
+  demand:
+    space_heating:
+      carrier: heat
+      base:
+        n_profile: P02_Base_q
+        peak: 500000
+      flexible:
+        flex+2:
+          n_profile: P02_Flex+2_q
+          peak: 500000
+        flex+3:
+          n_profile: P02_Flex+3_q
+          peak: 250000
+  assets:
+    biomass_boiler:
+      behavior_type: converter
+      input: biomass
+      output: heat
+      installed_capacity: 1000
+      efficiency: 0.7
+    heat_pump:
+      behavior_type: converter
+      input: electricity
+      output: heat
+      installed_capacity: 800
+      efficiency: 3.0  # Coefficient of performance (COP) of the heat pump
+    hydrogen_boiler:
+      behavior_type: converter
+      input: hydrogen
+      output: heat
+      installed_capacity: 300
+      efficiency: 0.5
+    chp:
+      behavior_type: converter
+      input: methane
+      output:
+        - heat
+        - electricity
+      installed_capacity: 100
+      efficiency:
+        heat: 0.4
+        electricity: 0.4
+    heat_storage:
+      behavior_type: storage
+      input: heat
+      output: heat
+      energy_capacity: 5000
+      initial_energy: 50
+      charge_capacity: 500
+      discharge_capacity: 500
+      charge_efficiency: 0.8
+      discharge_efficiency: 0.6

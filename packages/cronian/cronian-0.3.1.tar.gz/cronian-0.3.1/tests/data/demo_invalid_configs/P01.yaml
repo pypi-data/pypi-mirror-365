@@ -1,0 +1,17 @@
+Prosumers:
+  name: prosumer 01
+  id: P01
+  # demand:  # Missing required `demand` key.
+  assets:
+    refrigerator:
+      behavior_type: converter
+      input: electricity
+      output: cold
+      installed_capacity: 550
+      efficiency:  # Empty efficiency key
+    electrolyzer:
+      # behavior_type: converter  # Missing required `behavior_type` key.
+      input: electricity
+      output: hydrogen
+      installed_capacity: 550
+      efficiency: 0.7

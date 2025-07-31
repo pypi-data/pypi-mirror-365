@@ -1,0 +1,17 @@
+Prosumers:
+  name: prosumer 07
+  id: P07
+  demand:
+    space_heating:
+      carrier: heat
+      base:
+        n_profile: P01_Base_e
+        peak: 250000
+  assets:
+    hybrid_boiler:  # Multiple-inputs-single-output asset.
+      behavior_type: converter
+      input:
+        - methane
+        - electricity
+      output: heat
+      efficiency: 0.9  # Invalid: Efficiency should be a dictionary with keys for each input.

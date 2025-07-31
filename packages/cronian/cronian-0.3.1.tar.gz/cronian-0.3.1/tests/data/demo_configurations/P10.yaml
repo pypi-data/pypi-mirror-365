@@ -1,0 +1,38 @@
+Prosumers:
+  name: heat operator
+  id: P10
+  demand:
+    space_heating:
+      carrier: heat
+      base:
+        n_profile: P02_Base_q
+        peak: 500000
+    cooling:
+      carrier: cold
+      base:
+        n_profile: P02_Base_q
+        peak: 50000
+    lighting:
+      carrier: light
+      base:
+        n_profile: P02_Base_q
+        peak: 50000
+  assets:
+    light_bulb:
+      behavior_type: converter
+      input: electricity
+      output: light
+      installed_capacity: 1000
+      efficiency: 0.5
+    electric_boiler:
+      behavior_type: converter
+      input: electricity
+      output: heat
+      installed_capacity: 2000
+      efficiency: 0.7
+    refrigerator:
+      behavior_type: converter
+      input: electricity
+      output: cold
+      installed_capacity: 1000
+      efficiency: 0.5

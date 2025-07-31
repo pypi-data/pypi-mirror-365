@@ -1,0 +1,38 @@
+Prosumers:
+  name: Electricity_retailer  # Can produce and consume electricity (can sell and buy, e.g., eneco)
+  id: P07
+  demand:
+    lighting:
+      carrier: light
+      base:
+        n_profile: P01_Base_e
+        peak: 250000
+      flexible:
+        flex+1:
+          n_profile: P01_Flex+1_e
+          peak: 125000
+  assets:
+    light_bulb:
+      behavior_type: converter
+      input: electricity
+      output: light
+      installed_capacity: 1000
+      efficiency: 0.9
+    solar_pv:
+      behavior_type: generator
+      input: solar_resource
+      output: electricity
+      installed_capacity: 3000
+      availability_factor: SOLAR_WEST
+      operational_costs:  # Placeholder (not yet used in the model)
+        a: 0.006  # Quadratic cost coefficient
+        b: 5  # Linear cost coefficient
+    wind_generator:
+      behavior_type: generator
+      input: wind_resource
+      output: electricity
+      installed_capacity: 3000
+      availability_factor: WIND_ONSHORE
+      operational_costs:
+        marginal_cost_quadratic: 0.007
+        marginal_cost_linear: 5

@@ -1,0 +1,16 @@
+Prosumers:
+  name: prosumer 13
+  id: P13
+  demand:  # Has no electric demand.
+    space_heating:
+      carrier: heat
+      base:
+        n_profile: P01_Base_e
+        peak: 250000
+  assets:
+    e_boiler:  # But has an electric asset: e_boiler with input == electricity.
+      behavior_type: converter
+      input: electricity
+      output: heat
+      efficiency: 0.95
+      installed_capacity: 550

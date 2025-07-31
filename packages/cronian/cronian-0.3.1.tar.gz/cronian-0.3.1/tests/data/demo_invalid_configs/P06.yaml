@@ -1,0 +1,37 @@
+Prosumers:
+  name: prosumer 06
+  id: P06
+  demand:
+    cooling:
+      carrier: cold  # No assets produces cooling as output, so cooling demand is unsatisfiable.
+      base:
+        n_profile: P01_Base_e
+        peak: 250000
+  assets:
+    e_boiler:
+      behavior_type: converter
+      input: electricity
+      output: heat
+      installed_capacity: 550
+      efficiency:  # Invalid efficiency: should be a single float value since it has a single input and output.
+        electricity: 0.95
+        heat: 0.9
+    heat_storage:
+      behavior_type: storage
+      input: heat
+      output: heat
+      energy_capacity: 5000
+      initial_energy: 0
+      charge_capacity: 500
+      discharge_capacity: 500
+      # charge_efficiency: 0.9  # Missing required `charge_efficiency` attribute.
+      discharge_efficiency: 0.8
+  Required attributes for storage assets include:
+    - input
+    - output
+    - energy_capacity
+    - initial_energy
+    - charge_capacity
+    - discharge_capacity
+    - charge_efficiency
+    - discharge_efficiency

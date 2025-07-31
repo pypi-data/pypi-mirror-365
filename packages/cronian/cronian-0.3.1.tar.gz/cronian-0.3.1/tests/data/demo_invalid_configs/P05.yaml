@@ -1,0 +1,14 @@
+Prosumers:
+  name: prosumer 05
+  id: P05
+  demand:
+    cooling:
+      carrier: cold
+      base:
+        n_profile: P01_Base_e
+        peak: 250000
+      flexible:
+        flex+1:
+          n_profile: P01_Flex+1_e
+          peak: 125000
+  # assets:  # Missing non-required `assets` key.

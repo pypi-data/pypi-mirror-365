@@ -1,0 +1,24 @@
+Prosumers:
+  name: prosumer 10
+  id: P10
+  demand:
+    space_heating:
+      carrier: heat
+      base:
+        n_profile: P01_Base_e
+        peak: 250000
+  assets:
+    sabatier_machine:  # Multiple-inputs-multiple-outputs assets are not yet supported.
+      behavior_type: converter
+      input:
+        - hydrogen
+        - electricity
+        - CO2
+      output:
+        - heat
+        - methane
+        - H2O
+      efficiency:
+        heat: 0.85
+        methane: 0.9
+        H2O: 0.8

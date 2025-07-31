@@ -1,0 +1,7 @@
+Generators:
+  name: WindOffshore
+  id: G05
+  marginal_cost_quadratic: 0.007
+  marginal_cost_linear: 5
+  installed_capacity: 6000
+  availability_factor: WIND_OFFSHORE  # The timeseries that will be picked up from the timeseries csv file.

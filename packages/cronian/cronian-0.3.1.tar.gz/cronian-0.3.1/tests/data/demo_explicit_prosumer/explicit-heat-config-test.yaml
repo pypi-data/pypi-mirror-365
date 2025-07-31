@@ -1,0 +1,10 @@
+Prosumers: # Explicit heat system operator agent
+  Heat_System_Operator:
+    id: EXHSO
+    Base_load:
+      Peak: 250000 # peak value will be used to convert normalized load time series into actual load time series
+      Normalized: "Base_e" # normalized base (inflexible) load timeseries that needs to be picked up
+    Flexible_loads:
+      Flex+1: # demand can be shifted ahead or delayed by 1 hour
+        Peak: 125000 # 50% of base load
+        Normalized: "Flex+1_e" # normalized flexible load timeseries

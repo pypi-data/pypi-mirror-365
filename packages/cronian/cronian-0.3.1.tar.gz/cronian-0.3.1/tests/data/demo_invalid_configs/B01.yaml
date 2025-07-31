@@ -1,0 +1,29 @@
+Prosumers:
+  name: Battery_operator
+  id: B01
+  assets:  # Invalid battery operator: has an asset (gas boiler) that does not produce `electricity`.
+    battery:
+      behavior_type: storage
+      input: electricity
+      output: electricity
+      energy_capacity: 5000
+      initial_energy: 0
+      charge_capacity: 500
+      discharge_capacity: 500
+      charge_efficiency: 0.9
+      discharge_efficiency: 0.9
+    solar_pv:
+      behavior_type: generator
+      input: light
+      output: electricity
+      installed_capacity: 3000
+      availability_factor: SOLAR_WEST
+      operational_costs:
+        marginal_cost_quadratic: 0
+        marginal_cost_linear: 5
+    gas boiler:
+      behavior_type: converter
+      input: methane
+      output: heat
+      installed_capacity: 3000
+      availability_factor: SOLAR_WEST

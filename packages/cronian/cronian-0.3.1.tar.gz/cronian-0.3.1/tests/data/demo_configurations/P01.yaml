@@ -1,0 +1,109 @@
+Prosumers:
+  name: Energy_hub_operator
+  id: P01  # ID must start with 'P' to be recognized as a prosumer.
+  demand:
+    cooling:
+      carrier: cold
+      base:
+        n_profile: P01_Base_e  # The column name of the demand profile in the timeseries csv file.
+        peak: 250000
+      flexible:
+        flex+1:
+          n_profile: P01_Flex+1_e
+          peak: 125000
+    space_heating:
+      carrier: heat
+      base:
+        n_profile: P02_Base_q
+        peak: 500000
+      flexible:
+        flex+2:
+          n_profile: P02_Flex+2_q
+          peak: 500000
+        flex+3:
+          n_profile: P02_Flex+3_q
+          peak: 250000
+    methanation:
+      carrier: hydrogen
+      base:
+        n_profile: P03_Flex+4_h
+        peak: 100000
+      flexible:
+        flex+4:
+          n_profile: P03_Flex+4_h
+          peak: 100000
+  assets:
+    refrigerator:
+      behavior_type: converter
+      input: electricity
+      output: cold  # Matches the carrier of the cooling demand.
+      installed_capacity: 600
+      efficiency: 0.9
+    heat_pump:
+      behavior_type: converter
+      input: electricity
+      output: heat  # Matches the carrier of the space_heating demand.
+      installed_capacity: 600
+      efficiency: 3.0  # Coefficient-of-performance of the heat pump.
+    chp:
+      behavior_type: converter
+      input: methane
+      output:
+        - electricity
+        - heat  # Matches the carrier of the space_heating demand.
+      installed_capacity: 500
+      efficiency:
+        electricity: 0.4
+        heat: 0.35
+    electrolyzer:
+      behavior_type: converter
+      input: electricity
+      output: hydrogen  # Matches the carrier of the methanation demand.
+      installed_capacity: 1000
+      efficiency: 0.6
+    battery:
+      behavior_type: storage
+      input: electricity
+      output: electricity
+      energy_capacity: 5000
+      initial_energy: 0
+      charge_capacity: 500
+      discharge_capacity: 500
+      charge_efficiency: 0.9
+      discharge_efficiency: 0.8
+    heat_storage:
+      behavior_type: storage
+      input: heat
+      output: heat
+      energy_capacity: 5000
+      initial_energy: 50
+      charge_capacity: 500
+      discharge_capacity: 500
+      charge_efficiency: 0.8
+      discharge_efficiency: 0.6
+    fuel_cell:
+      behavior_type: converter
+      input: hydrogen
+      output: electricity
+      installed_capacity: 200
+      efficiency: 0.5
+    hydrogen_storage:
+      behavior_type: storage
+      input: hydrogen
+      output: hydrogen
+      energy_capacity: 2000
+      initial_energy: 0
+      charge_capacity: 200
+      discharge_capacity: 200
+      charge_efficiency: 0.9
+      discharge_efficiency: 0.9
+    hybrid_boiler:
+      behavior_type: converter
+      input:
+        - methane
+        - electricity
+      output: heat
+      installed_capacity: 800
+      efficiency:
+        methane: 0.4
+        electricity: 0.4

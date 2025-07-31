@@ -1,0 +1,29 @@
+Prosumers:
+  name: Retailer
+  id: P12
+  demand:
+    transport:
+      carrier: electricity
+      base:
+        n_profile: P01_Base_e
+        peak: 250000
+  assets:
+    battery:
+      behavior_type: storage
+      input: electricity
+      output: electricity
+      energy_capacity: 5000
+      initial_energy: 0
+      charge_capacity: 500
+      discharge_capacity: 500
+      charge_efficiency: 0.9
+      discharge_efficiency: 0.9
+    wind_generator:
+      behavior_type: generator
+      input: wind
+      output: electricity
+      installed_capacity: 1000
+      availability_factor: WIND_ONSHORE
+      operational_costs:
+        marginal_cost_quadratic: 0.007
+        marginal_cost_linear: 5

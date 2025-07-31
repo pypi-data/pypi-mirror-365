@@ -1,0 +1,20 @@
+Prosumers:
+  name: Supermarket  # Infeasible prosumer: asset installed_capacity < max demand: 360 < 520.28
+  id: P15
+  demand:
+    cooling:
+      carrier: cold
+      base:
+        n_profile: P01_Base_e
+        peak: 250000
+      flexible:
+        flex+1:
+          n_profile: P01_Flex+1_e
+          peak: 125000
+  assets:
+    refrigerator:
+      behavior_type: converter
+      input: electricity
+      output: cold
+      installed_capacity: 400
+      efficiency: 0.9

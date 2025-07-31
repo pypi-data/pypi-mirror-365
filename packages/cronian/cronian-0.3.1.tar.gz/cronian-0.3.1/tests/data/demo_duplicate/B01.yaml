@@ -1,0 +1,32 @@
+Prosumers:
+  name: Battery_operator1  # Can not have end_use and demand, they only provide services to the grid.
+  id: B01  # ID must start with 'B' to be recognized as a battery operator.
+  assets:
+    battery:
+      behavior_type: storage
+      input: electricity
+      output: electricity
+      energy_capacity: 5000
+      initial_energy: 0
+      charge_capacity: 500
+      discharge_capacity: 500
+      charge_efficiency: 0.9
+      discharge_efficiency: 0.9
+    solar_pv:
+      behavior_type: generator
+      input: light
+      output: electricity
+      installed_capacity: 3000
+      availability_factor: SOLAR_WEST
+      operational_costs:
+        a: 0.006
+        b: 5
+    wind_generator:
+      behavior_type: generator
+      input: wind
+      output: electricity
+      installed_capacity: 3000
+      availability_factor: WIND_ONSHORE
+      operational_costs:
+        marginal_cost_quadratic: 0.007
+        marginal_cost_linear: 5

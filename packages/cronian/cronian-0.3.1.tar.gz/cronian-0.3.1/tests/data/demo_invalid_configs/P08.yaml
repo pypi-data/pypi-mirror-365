@@ -1,0 +1,19 @@
+Prosumers:
+  name: prosumer 08
+  id: P08
+  demand:
+    space_heating:
+      carrier: heat
+      base:
+        n_profile: P01_Base_e
+        peak: 250000
+  assets:
+    fuel_cell:  # Single-input-multiple-outputs asset.
+      behavior_type: converter
+      input: electricity
+      output:
+        - electricity
+        - heat
+      efficiency:
+        electricity: 0.95
+        # heat: 0.9  # Missing efficiency for one output: "heat".

@@ -1,0 +1,32 @@
+Prosumers:
+  name: EV_aggregator
+  id: P06
+  demand:
+    transport:
+      carrier: electricity
+      base:
+        n_profile: P01_Base_e
+        peak: 250000
+      flexible:  # Demand of EVs doing DSM without V2G (they charge flexibly but do not discharge back to grid).
+        flex+1:
+          n_profile: P01_Flex+1_e
+          peak: 125000
+  assets:
+    EV:
+      behavior_type: converter
+      input: electricity
+      output: electricity
+      installed_capacity: 2000  # Aggregated EV charger capacity (for non-V2G EVs).
+      efficiency: 1
+    battery:  # EVs doing V2G are modeled as `moving` batteries (storage).
+      behavior_type: storage
+      input: electricity
+      output: electricity
+      energy_capacity: 5000
+      initial_energy: 10
+      charge_capacity: 500
+      discharge_capacity: 500
+      charge_efficiency: 0.9
+      discharge_efficiency: 0.9
+      minimum_SOC: 0.01  # Minimum state of charge (10%) of EVs doing V2G. Can also be a timeseries.
+      availability: 0.8  # 80% of the EVs doing V2G will be available for feeding to the grid at any time.

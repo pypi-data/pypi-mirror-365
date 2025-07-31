@@ -1,0 +1,59 @@
+Prosumers:
+  name: Heat_system_operator
+  id: P02
+  demand:
+    hot_water:
+      carrier: heat
+      base:
+        peak: 300
+      flexible:
+        flex+2:
+          n_profile: P02_Flex+2_q
+          peak: 125000
+        flex+3:
+          peak: 50
+  assets:
+    geothermal_well:
+      behavior_type: generator
+      input: water_and_electricity
+      output: heat
+      installed_capacity: 1000
+      availability_factor: WIND_ONSHORE
+    heat_pump:
+      behavior_type: converter
+      input: electricity
+      output: heat
+      installed_capacity: 30
+      efficiency: 3.5  # Coefficient of performance (COP) of the heat pump
+    e_boiler:
+      behavior_type: converter
+      input: electricity
+      output: heat
+      installed_capacity: 200
+      efficiency: 0.4
+    gas_boiler:
+      behavior_type: converter
+      input: methane
+      output: heat
+      installed_capacity: 100
+      efficiency: 0.4
+    chp:
+      behavior_type: converter
+      input: methane
+      output:
+        - heat
+        - electricity
+      installed_capacity: 1000
+      efficiency:
+        heat: 0.4
+        electricity: 0.4
+    heat_storage:
+      behavior_type: storage
+      input: heat
+      output: heat
+      energy_capacity: 5000
+      initial_energy: 50
+      charge_capacity: 500
+      discharge_capacity: 500
+      charge_efficiency: 0.8
+      discharge_efficiency: 0.65

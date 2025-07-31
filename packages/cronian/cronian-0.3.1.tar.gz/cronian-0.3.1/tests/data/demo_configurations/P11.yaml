@@ -1,0 +1,42 @@
+Prosumers:
+  name: heat operator
+  id: P11
+  demand:
+    methanation:
+      carrier: hydrogen
+      base:
+        n_profile: P03_Flex+4_h
+        peak: 100000
+  assets:
+    electrolyzer:
+      behavior_type: converter
+      input: electricity
+      output: hydrogen
+      installed_capacity: 2000
+      efficiency: 0.7
+    hydrogen_storage:
+      behavior_type: storage
+      input: hydrogen
+      output: hydrogen
+      energy_capacity: 5000
+      initial_energy: 50
+      charge_capacity: 500
+      discharge_capacity: 500
+      charge_efficiency: 0.8
+      discharge_efficiency: 0.6
+    fuel_cell:
+      behavior_type: converter
+      input: hydrogen
+      output: electricity
+      installed_capacity: 1000
+      efficiency: 0.5
+    battery:
+      behavior_type: storage
+      input: electricity
+      output: electricity
+      energy_capacity: 5000
+      initial_energy: 0
+      charge_capacity: 500
+      discharge_capacity: 500
+      charge_efficiency: 0.9
+      discharge_efficiency: 0.8

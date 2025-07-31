@@ -1,0 +1,14 @@
+Prosumers:
+  name: Battery_operator2
+  id: B01  # Duplicate ID with B01.yaml
+  assets:
+    battery:
+      behavior_type: storage
+      input: electricity
+      output: electricity
+      energy_capacity: 5000
+      initial_energy: 0
+      charge_capacity: 500
+      discharge_capacity: 500
+      charge_efficiency: 0.9
+      discharge_efficiency: 0.9

@@ -1,0 +1,27 @@
+Prosumers:
+  name: prosumer 03
+  id: P03
+  demand:
+    cooling:
+      # carrier: cold  # Missing required `carrier` key under `demand`.
+      base:
+        n_profile: P01_Base_e
+        peak: 250000
+      flexible:
+        flex+1:
+          n_profile: P01_Flex+1_e
+          peak: 125000
+  notes:  # Tests does not allow any empty values even for non-required keys.
+  assets:
+    refrigerator:
+      behavior_type: converter
+      input: electricity
+      output: cold
+      installed_capacity: 550
+      efficiency: 0.9
+    freezer:  # Missing one of the required attributes: {"input", "output", "installed_capacity", "efficiency"}
+      behavior_type: converter
+      # input: electricity  
+      output: cold
+      installed_capacity: 550
+      efficiency: 0.9

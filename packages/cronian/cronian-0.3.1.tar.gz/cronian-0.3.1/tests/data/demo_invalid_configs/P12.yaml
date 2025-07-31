@@ -1,0 +1,16 @@
+Prosumers:
+  name: prosumer 12  # Irrelevant: has no electric demand and no electric assets (with input/output == electricity).
+  id: P12
+  demand:  # Has no electric demand.
+    space_heating:
+      carrier: heat
+      base:
+        n_profile: P01_Base_e
+        peak: 250000
+  assets:
+    gas_boiler:
+      behavior_type: converter
+      input: methane
+      output: heat
+      efficiency: 0.95
+      installed_capacity: 550

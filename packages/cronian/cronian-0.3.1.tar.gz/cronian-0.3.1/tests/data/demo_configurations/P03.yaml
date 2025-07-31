@@ -1,0 +1,33 @@
+Prosumers:
+  name: Steel_plant1_operator
+  id: P03
+  demand:
+    steel_production:
+      carrier: heat
+      base:
+        n_profile: P01_Base_e
+        peak: 250000
+      flexible:
+        flex+1:
+          n_profile: P01_Flex+1_e
+          peak: 125000
+        flex+2:
+          n_profile: P01_Flex+1_e
+          peak: 125000
+  assets:
+    electric_arc_furnace:
+      behavior_type: converter
+      input: electricity
+      output: heat
+      installed_capacity: 2000
+      efficiency: 0.7
+    battery:
+      behavior_type: storage
+      input: electricity
+      output: electricity
+      energy_capacity: 5000
+      initial_energy: 10
+      charge_capacity: 500
+      discharge_capacity: 500
+      charge_efficiency: 0.9
+      discharge_efficiency: 0.9

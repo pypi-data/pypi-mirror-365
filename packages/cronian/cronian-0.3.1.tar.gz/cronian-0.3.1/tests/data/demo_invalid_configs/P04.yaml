@@ -1,0 +1,13 @@
+Prosumers:
+  name: prosumer 04
+  id: P04
+  demand:
+    heat:
+      carrier: heat
+      # base:  # Missing both base and flexible demand.
+  assets:
+    geothermal:  # Missing one of the required attributes: {"output", "installed_capacity", "availability_factor"}
+      behavior_type: generator
+      output: heat
+      installed_capacity: 550
+      # availability_factor: WIND_ONSHORE  # Distributed VRE generators must have availability_factor.
