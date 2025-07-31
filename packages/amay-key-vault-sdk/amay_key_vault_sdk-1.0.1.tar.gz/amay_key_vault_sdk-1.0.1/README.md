@@ -1,0 +1,367 @@
+# Key Vault Python SDK
+
+A Python SDK for securely accessing your Key Vault API keys and values. This SDK provides a simple interface for retrieving encrypted secrets programmatically.
+
+## Installation
+
+### Option 1: Install from PyPI (Recommended)
+```bash
+pip install amay-key-vault-sdk
+```
+
+### Option 2: Install from GitHub
+```bash
+pip install git+https://github.com/amaykorade/key-vault.git#subdirectory=python-sdk
+```
+
+### Option 3: Install locally for development
+```bash
+git clone https://github.com/amaykorade/key-vault.git
+cd key-vault/python-sdk
+pip install -e .
+```
+
+## Quick Start
+
+### Step 1: Get Your API Token
+1. Login to your Key Vault application
+2. Navigate to the "API" page
+3. Copy your API token
+
+### Step 2: Install and Initialize
+```python
+from key_vault_sdk import KeyVault
+
+# Initialize the SDK
+kv = KeyVault(
+    api_url="https://yourdomain.com/api",
+    token="your-api-token-here"
+)
+```
+
+### Step 3: Retrieve Secrets
+```python
+# Get a specific secret value by name
+secret_value = kv.get_key_by_name("folder-id", "DB_URL")
+print("Secret retrieved successfully")
+
+# Or get all keys in a folder
+result = kv.list_keys(folder_id="folder-id")
+print("Available keys:", [k['name'] for k in result['keys']])
+```
+
+## API Reference
+
+### Constructor
+
+```python
+KeyVault(api_url: str, token: str, timeout: int = 30)
+```
+
+**Parameters:**
+- `api_url` (str): Base URL of your Key Vault API
+- `token` (str): Your API token for authentication
+- `timeout` (int, optional): Request timeout in seconds (default: 30)
+
+### Methods
+
+#### `list_keys(folder_id: str, limit: int = 20, offset: int = 0)`
+
+List all keys in a folder.
+
+```python
+result = kv.list_keys(folder_id="folder-123", limit=50)
+print(f"Found {len(result['keys'])} keys")
+print(f"Total keys: {result['total']}")
+```
+
+**Returns:** Dictionary with `keys`, `total`, `limit`, and `offset`
+
+#### `get_key(key_id: str, include_value: bool = False)`
+
+Get a specific key by ID.
+
+```python
+# Get key metadata only
+key = kv.get_key("key-123")
+
+# Get key with decrypted value
+key_with_value = kv.get_key("key-123", include_value=True)
+print(key_with_value['value'])  # The actual secret value
+```
+
+**Returns:** Key object with metadata and optionally the value
+
+#### `get_key_by_name(folder_id: str, key_name: str)`
+
+Get a key's value by name (convenience method).
+
+```python
+secret_value = kv.get_key_by_name("folder-id", "database-password")
+# Returns the decrypted value directly
+```
+
+**Returns:** The decrypted secret value as string
+
+#### `get_multiple_keys(folder_id: str, key_names: List[str])`
+
+Get multiple keys by name.
+
+```python
+keys = kv.get_multiple_keys(
+    folder_id="folder-123",
+    key_names=["stripe-key", "database-password", "api-secret"]
+)
+print(f"Retrieved {len(keys)} keys")
+```
+
+**Returns:** Dictionary mapping key names to their values
+
+#### `list_folders()`
+
+List all folders.
+
+```python
+folders = kv.list_folders()
+for folder in folders:
+    print(f"Folder: {folder['name']} (ID: {folder['id']})")
+```
+
+**Returns:** List of folder objects
+
+#### `test_connection()`
+
+Test the connection to the Key Vault API.
+
+```python
+if kv.test_connection():
+    print("Connection successful!")
+else:
+    print("Connection failed!")
+```
+
+**Returns:** True if connection is successful
+
+## Usage Examples
+
+### Basic Secret Retrieval
+
+```python
+from key_vault_sdk import KeyVault
+
+kv = KeyVault(
+    api_url="https://yourdomain.com/api",
+    token="your-api-token"
+)
+
+# Get database password
+db_password = kv.get_key_by_name("prod-folder", "database-password")
+
+# Use the secret (never log it!)
+connect_to_database(db_password)
+```
+
+### Get Database URL from Key Vault
+
+```python
+async def get_database_url():
+    try:
+        # First, list keys to find the one you want
+        result = kv.list_keys(folder_id="your-folder-id")
+        
+        # Find the key by name
+        db_url_key = next((key for key in result['keys'] if key['name'] == 'DB_URL'), None)
+        
+        if db_url_key:
+            # Get the actual value
+            key_with_value = kv.get_key(db_url_key['id'], include_value=True)
+            print("Database URL retrieved successfully")
+            return key_with_value['value']
+        else:
+            raise Exception("DB_URL key not found")
+    except Exception as error:
+        print(f"Error fetching database URL: {error}")
+        raise error
+
+# Use it
+database_url = get_database_url()
+```
+
+### Environment-Specific Secrets
+
+```python
+import os
+from key_vault_sdk import KeyVault
+
+environment = os.getenv('NODE_ENV', 'development')
+folder_id = 'prod-folder' if environment == 'production' else 'dev-folder'
+
+kv = KeyVault(
+    api_url="https://yourdomain.com/api",
+    token="your-api-token"
+)
+
+secrets = {
+    'database': kv.get_key_by_name(folder_id, 'DB_URL'),
+    'api_key': kv.get_key_by_name(folder_id, 'API_KEY'),
+    'jwt_secret': kv.get_key_by_name(folder_id, 'JWT_SECRET')
+}
+```
+
+### List and Process Multiple Keys
+
+```python
+# Get all keys in a folder
+result = kv.list_keys(folder_id="config-folder")
+
+# Process each key
+for key in result['keys']:
+    if key['type'] == 'API_KEY':
+        value = kv.get_key(key['id'], include_value=True)
+        print(f"Setting up {key['name']}...")
+        # Use the secret value
+```
+
+### Error Handling
+
+```python
+from key_vault_sdk import KeyVault, KeyVaultError, KeyVaultAuthError, KeyVaultNotFoundError
+
+try:
+    secret = kv.get_key_by_name("folder-id", "secret-name")
+    # Use secret
+except KeyVaultNotFoundError:
+    print("Secret not found")
+except KeyVaultAuthError:
+    print("Invalid API token")
+except KeyVaultError as e:
+    print(f"Failed to retrieve secret: {e}")
+```
+
+## Security Best Practices
+
+### Never Log Secrets
+
+```python
+# ❌ Wrong - never log secret values
+secret = kv.get_key_by_name("folder", "password")
+print(f"Password: {secret}")
+
+# ✅ Correct - only log success/failure
+secret = kv.get_key_by_name("folder", "password")
+print("Password retrieved successfully")
+```
+
+### Use Environment Variables
+
+```python
+import os
+from key_vault_sdk import KeyVault
+
+# Store API token in environment variables
+kv = KeyVault(
+    api_url=os.getenv('KEY_VAULT_API_URL'),
+    token=os.getenv('KEY_VAULT_TOKEN')
+)
+```
+
+### Handle Errors Gracefully
+
+```python
+def get_secret(folder_id, key_name):
+    try:
+        return kv.get_key_by_name(folder_id, key_name)
+    except Exception as error:
+        print(f"Failed to get secret {key_name}: {error}")
+        # Return fallback or raise based on your needs
+        raise error
+```
+
+## Error Codes
+
+| Error | Description | Solution |
+|-------|-------------|----------|
+| `KeyVaultAuthError` | Invalid or missing API token | Check your API token |
+| `KeyVaultNotFoundError` | Key doesn't exist in folder | Verify key name and folder ID |
+| `KeyVaultError` | General API errors | Check API URL and network |
+
+## Direct API Usage (Alternative to SDK)
+
+If you prefer to use direct API calls instead of the SDK:
+
+```python
+import requests
+
+BASE_URL = "https://yourdomain.com"
+API_TOKEN = "your-api-token-here"
+
+def get_database_url():
+    try:
+        # 1. List folders to get folder ID
+        folders_response = requests.get(
+            f"{BASE_URL}/api/folders",
+            headers={
+                'Authorization': f'Bearer {API_TOKEN}',
+                'Content-Type': 'application/json'
+            }
+        )
+        
+        folders_data = folders_response.json()
+        folder_id = folders_data['folders'][0]['id']
+        
+        # 2. List keys in the folder
+        keys_response = requests.get(
+            f"{BASE_URL}/api/keys?folderId={folder_id}",
+            headers={
+                'Authorization': f'Bearer {API_TOKEN}',
+                'Content-Type': 'application/json'
+            }
+        )
+        
+        keys_data = keys_response.json()
+        
+        # 3. Find the DB_URL key
+        db_url_key = next((key for key in keys_data['keys'] if key['name'] == 'DB_URL'), None)
+        
+        if db_url_key:
+            # 4. Get the actual value
+            key_value_response = requests.get(
+                f"{BASE_URL}/api/keys/{db_url_key['id']}?includeValue=true",
+                headers={
+                    'Authorization': f'Bearer {API_TOKEN}',
+                    'Content-Type': 'application/json'
+                }
+            )
+            
+            key_value_data = key_value_response.json()
+            print("Database URL retrieved successfully")
+            return key_value_data['key']['value']
+    except Exception as error:
+        print(f"Error: {error}")
+        raise error
+
+# Use it
+database_url = get_database_url()
+```
+
+## API Endpoints Reference
+
+- `GET /api/folders` - List all folders
+- `GET /api/keys?folderId={id}` - List keys in a folder
+- `GET /api/keys/{keyId}?includeValue=true` - Get key with value
+
+## Changelog
+
+### Version 1.0.1 (2025-07-30)
+- **Bug Fix**: Fixed URL construction issue that was causing API requests to fail with HTML responses
+- **Improvement**: Replaced `urljoin` with direct string concatenation to preserve `/api` path in URLs
+- **Impact**: Resolves issue where SDK was hitting wrong endpoints (e.g., `/folders` instead of `/api/folders`)
+
+### Version 1.0.0 (2025-07-23)
+- Initial release
+- Basic SDK functionality for accessing Key Vault API
+- Support for listing folders, keys, and retrieving key values
+
+## License
+
+MIT License - see LICENSE file for details. 
