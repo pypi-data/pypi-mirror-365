@@ -1,0 +1,295 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "name": "Kubiya",
+  "logo": {
+    "dark": "https://hrkldgcnsxl9tiki.public.blob.vercel-storage.com/favicon-2-X8NQW2G1yJ778HqbzNjq0JGJrAPSmU.ico",
+    "light": "https://hrkldgcnsxl9tiki.public.blob.vercel-storage.com/favicon-2-X8NQW2G1yJ778HqbzNjq0JGJrAPSmU.ico"
+  },
+  "favicon": "/assets/favicon.png",
+  "colors": {
+    "primary": "#1f2937",
+    "light": "#6b7280",
+    "dark": "#111827"
+  },
+  "topbarLinks": [
+    {
+      "name": "Platform",
+      "url": "https://app.kubiya.ai"
+    },
+    {
+      "name": "GitHub",
+      "url": "https://github.com/kubiyabot/workflow_sdk"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Get Started",
+    "url": "https://app.kubiya.ai",
+    "style": "roundedRectangle"
+  },
+
+
+  "anchors": [
+    {
+      "name": "Blog",
+      "icon": "newspaper",
+      "url": "https://kubiya.ai/blog"
+    },
+    {
+      "name": "Changelog",
+      "icon": "clock",
+      "url": "/changelog"
+    }
+  ],
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude"
+    ]
+  },
+  "api": {
+    "mdx": {
+      "server": ["https://api.kubiya.ai/api/v1", "http://localhost:8001"],
+      "auth": {
+        "method": "key",
+        "name": "Authorization",
+        "inputPrefix": "UserKey "
+      }
+    },
+    "playground": {
+      "mode": "show"
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Introduction",
+            "pages": [
+              "getting-started/welcome",
+              "getting-started/installation", 
+              "getting-started/quickstart"
+            ]
+          },
+          {
+            "group": "Core Concepts",
+            "pages": [
+              "concepts/platform-overview",
+              "concepts/workflows",
+              "concepts/runners",
+              {
+                "group": "Runners",
+                "pages": [
+                  "concepts/runners/helm-chart"
+                ]
+              },
+              "concepts/integrations",
+              "concepts/deterministic-workflows",
+              "concepts/why-kubiya",
+              "concepts/agent-frameworks-comparison"
+            ]
+          },
+          {
+            "group": "Workflows",
+            "pages": [
+              "workflows/overview",
+              "workflows/architecture",
+              "workflows/dsl-reference",
+              "workflows/examples",
+              "workflows/advanced"
+            ]
+          },
+          {
+            "group": "MCP Integration",
+            "pages": [
+              "mcp/overview",
+              "mcp/quickstart",
+              "mcp/serverless-architecture",
+              "mcp/infrastructure-compatibility",
+              "mcp/agent-integration-examples",
+              "mcp/deployment-guide",
+              "mcp/agent-server",
+              "mcp/authentication",
+              "mcp/tools-reference",
+              "mcp/examples"
+            ]
+          },
+          {
+            "group": "Full-Stack Agents",
+            "pages": [
+              "mcp/full-stack-agents/overview",
+              "mcp/full-stack-agents/architecture",
+              "mcp/full-stack-agents/quickstart",
+              "mcp/full-stack-agents/examples",
+              {
+                "group": "Existing Frameworks",
+                "pages": [
+                  "mcp/full-stack-agents/existing-frameworks/overview",
+                  "mcp/full-stack-agents/existing-frameworks/langgraph"
+                ]
+              }
+            ]
+          },
+          {
+            "group": "Streaming UI",
+            "pages": [
+              "mcp/streaming-ui/overview",
+              "mcp/streaming-ui/vercel-ai-sdk"
+            ]
+          },
+          {
+            "group": "Tutorials",
+            "pages": [
+              "tutorials/ai-powered-automation",
+              "tutorials/full-stack-ai"
+            ]
+          },
+          {
+            "group": "Resources",
+            "pages": [
+              "cli-reference",
+              "changelog",
+              "migration-guide",
+              "updates"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "APIs",
+        "groups": [
+          {
+            "group": "Kubiya Platform APIs",
+            "pages": [
+              "api-reference/platform/overview",
+              "api-reference/platform/authentication",
+              "api-reference/platform/agents",
+              "api-reference/platform/tasks",
+              "api-reference/platform/sources",
+              "api-reference/platform/runners",
+              "api-reference/platform/knowledge"
+            ]
+          },
+          {
+            "group": "MCP Server APIs",
+            "pages": [
+              "api-reference/mcp/overview",
+              "api-reference/mcp/tools",
+              "api-reference/mcp/protocol"
+            ]
+          },
+          {
+            "group": "Agent Server APIs",
+            "pages": [
+              "api-reference/agent-servers/overview",
+              "api-reference/agent-servers/discovery",
+              "api-reference/agent-servers/orchestration",
+              "api-reference/agent-servers/compose"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "SDK",
+        "groups": [
+          {
+            "group": "SDK Reference",
+            "pages": [
+              "sdk/overview",
+              "sdk/api-reference",
+              "sdk/examples",
+              "sdk/contributing",
+              "sdk/changelog"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "footerSocials": {
+    "github": "https://github.com/kubiyabot",
+    "linkedin": "https://www.linkedin.com/company/kubiya",
+    "twitter": "https://x.com/KubiyaDevOps"
+  },
+
+  "search": {
+    "prompt": "Search documentation..."
+  },
+  "metadata": {
+    "og:title": "Kubiya Documentation",
+    "og:description": "Build intelligent automation workflows with Kubiya's powerful SDK",
+    "og:image": "/assets/og-image.png",
+    "twitter:card": "summary_large_image"
+  },
+  "analytics": {
+    "gtm": {
+      "tagId": "GTM-XXXXXXX"
+    }
+  },
+  "feedback": {
+    "thumbsRating": true,
+    "suggestEdit": true,
+    "raiseIssue": true
+  },
+  "modeToggle": {
+    "default": "system",
+    "isHidden": false
+  },
+  "custom": {
+    "css": ["/style.css"]
+  },
+  "theme": "mint",
+  "redirects": [
+    {
+      "source": "/providers/adk",
+      "destination": "/providers/adk/getting-started"
+    },
+    {
+      "source": "/api",
+      "destination": "/api-reference/agent-servers/overview"
+    },
+    {
+      "source": "/full-stack-agents",
+      "destination": "/mcp/full-stack-agents/overview"
+    },
+    {
+      "source": "/full-stack-agents/overview",
+      "destination": "/mcp/full-stack-agents/overview"
+    },
+    {
+      "source": "/full-stack-agents/architecture",
+      "destination": "/mcp/full-stack-agents/architecture"
+    },
+    {
+      "source": "/full-stack-agents/quickstart",
+      "destination": "/mcp/full-stack-agents/quickstart"
+    },
+    {
+      "source": "/full-stack-agents/examples",
+      "destination": "/mcp/full-stack-agents/examples"
+    },
+    {
+      "source": "/agent-servers",
+      "destination": "/full-stack-agents/agent-servers"
+    },
+    {
+      "source": "/streaming",
+      "destination": "/providers/adk/streaming"
+    },
+    {
+      "source": "/frontend",
+      "destination": "/mcp/streaming-ui/overview"
+    },
+    {
+      "source": "/frontend/vercel-ai-sdk",
+      "destination": "/mcp/streaming-ui/vercel-ai-sdk"
+    },
+    {
+      "source": "/deployment/helm-chart",
+      "destination": "/concepts/runners/helm-chart"
+    }
+  ]
+}
