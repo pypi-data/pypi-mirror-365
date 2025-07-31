@@ -1,0 +1,68 @@
+Metadata-Version: 2.1
+Name: dump-hls
+Version: 1.0.1
+Summary: A python package to dump any HLS stream as it is
+Home-page: https://github.com/milliele/DumpHls
+Author: milliele
+Author-email: milliele@qq.com
+License: Apache Software License 2.0
+Requires-Dist: click
+Requires-Dist: aioresponses
+Requires-Dist: joblib
+Requires-Dist: asyncio
+Requires-Dist: aiohttp
+Requires-Dist: tqdm
+Requires-Dist: requests
+
+Copyright (c) 2024, milliele
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+
+Description: # Dump HLS
+        
+        A python package to dump any HLS stream as it is
+        
+        ## Usage
+        ### Installation
+        * From source code: `make install`
+        * From PyPI: `pip install dump_hls`
+        
+        
+        ## Development
+        Install dependencies:
+        ```shell
+        make deps
+        ```
+        
+        Run tests:
+        ```shell
+        make test
+        ```
+        
+        Other scripts:
+        ```shell
+        make help
+        ```
+        
+        ## Credits
+        
+        This package was created with [Cookiecutter](https://github.com/cookiecutter/cookiecutter) and the `pypackage` project template of 
+        [cookiecutter-templates]().
+        
+        
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
