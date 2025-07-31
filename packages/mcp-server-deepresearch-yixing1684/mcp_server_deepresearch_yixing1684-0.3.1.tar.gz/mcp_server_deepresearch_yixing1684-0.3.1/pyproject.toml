@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mcp-server-deepresearch-yixing1684"
+version = "0.3.1"
+description = "My trial project for MCP deployment"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "mcp>=1.12.2",
+    "openai>=1.97.1",
+    "openai-agents>=0.2.4",
+    "pydantic>=2.11.7",
+]
+
+[project.scripts]
+mcp-server-deepresearch-yixing1684 = "mcp_server_deepresearch:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
