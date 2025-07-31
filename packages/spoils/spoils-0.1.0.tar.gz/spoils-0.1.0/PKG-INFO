@@ -1,0 +1,44 @@
+Metadata-Version: 2.4
+Name: spoils
+Version: 0.1.0
+Summary: Multiple Processes in a Single Container
+Author-email: "Bugsink B.V." <info@bugsink.com>
+License-Expression: BSD-3-Clause
+Project-URL: homepage, https://github.com/bugsink/spoils
+Project-URL: repository, https://github.com/bugsink/spoils
+Project-URL: issues, https://github.com/bugsink/spoils/issues
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: bandit
+Dynamic: license-file
+
+# spoils (bandit extensions)
+
+A lightweight collection of additional security checks for [Bandit](https://github.com/PyCQA/bandit).
+
+## Add-ons
+
+* **B...: No `os.path.join` misuse**
+  Detects unvalidated or unsafe usage of `os.path.join` calls in your codebase.
+
+## Installation
+
+```bash
+pip install spoils
+```
+
+## Usage
+
+Once installed, Bandit will automatically pick up the new checks:
+
+```bash
+bandit -r your_project/
+```
+
+Issues will be reported with their B-number and descriptive message.
+
+## Future Add-ons
+
+More community-driven checks are coming soon! Got an idea or contribution? Feel free to file an issue or submit a pull request.
