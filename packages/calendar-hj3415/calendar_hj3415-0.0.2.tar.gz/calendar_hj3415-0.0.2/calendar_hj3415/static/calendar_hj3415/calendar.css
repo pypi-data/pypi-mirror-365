@@ -1,0 +1,16 @@
+/* static/bootstrap_modalcalendar/calendar.css */
+
+/* 사이트 테마와 연동: 기본은 Bootstrap primary, 필요 시 페이지에서 --mc-accent를 재정의 */
+:root {
+  --mc-accent: var(--bs-primary);
+}
+
+/* 모달 공간감/테이블 간격 */
+.bsmc-modal .modal-header .btn { padding: .25rem .5rem; }
+.bsmc-table td { height: 120px; }
+
+/* HEX 배지 대비 보정(어두운 배경일 수 있으므로 글자색 자동화가 어려워 최소 가이드만) */
+.bsmc-badge-hex { border: 1px solid rgba(0,0,0,.08); }
+
+/* 요일 강조 등 선택적 포인트 컬러 */
+.bsmc-month thead th { color: var(--mc-accent); }
