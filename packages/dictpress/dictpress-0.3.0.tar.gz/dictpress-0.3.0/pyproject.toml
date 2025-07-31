@@ -1,0 +1,43 @@
+[project]
+authors = [{ name = "Allen Chou", email = "f1470891079@gmail.com" }]
+dependencies = []
+description = "A Python library designed for deep-merging, updating, and compressing dictionaries."
+license = { text = "MIT" }
+name = "dictpress"
+readme = "README.md"
+requires-python = ">=3.11,<4"
+version = "0.3.0"
+
+[project.urls]
+Homepage = "https://github.com/allen2c/dictpress"
+"PyPI" = "https://pypi.org/project/dictpress/"
+Repository = "https://github.com/allen2c/dictpress"
+
+[tool.poetry.extras]
+all = []
+
+[tool.poetry.group.dev.dependencies]
+black = { extras = ["jupyter"], version = "*" }
+codepress = "*"
+isort = "*"
+poetry-plugin-export = "*"
+pytest = "*"
+pytest-asyncio = "*"
+pytest-cov = "*"
+pytest-env = "*"
+pytest-xdist = "*"
+rich = "*"
+rich-color-support = "*"
+setuptools = ">=69"
+twine = ">=6"
+
+[tool.isort]
+profile = "black"
+
+[tool.flake8]
+ignore = ["E203", "E704", "W503"]
+max-line-length = 88
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=2.0.0,<3.0.0"]
