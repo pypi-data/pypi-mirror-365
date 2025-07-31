@@ -1,0 +1,22 @@
+[CDF-25307] 🤖 Add agents Acl (#1779)
+
+# Description
+
+Adds AgentsAcl as a capability type.
+
+## Changelog
+
+- [x] Patch
+- [ ] Minor
+- [ ] Skip
+
+## cdf
+
+### Improved
+
+- When running `cdf build`, you no longer get a `ResourceFormatWarning`
+when you have a group with an AgentsAcl.
+
+## templates
+
+No changes.
