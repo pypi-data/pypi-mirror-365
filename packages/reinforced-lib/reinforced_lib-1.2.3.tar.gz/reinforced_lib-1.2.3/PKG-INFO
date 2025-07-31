@@ -1,0 +1,584 @@
+Metadata-Version: 2.4
+Name: reinforced-lib
+Version: 1.2.3
+Summary: Reinforcement learning library
+Author-email: Maksymilian Wojnar <mwojnar@agh.edu.pl>, Wojciech Ciężobka <wciezobka@agh.edu.pl>, Krzysztof Rusek <krusek@agh.edu.pl>
+License: Attribution 4.0 International
+        
+        =======================================================================
+        
+        Creative Commons Corporation ("Creative Commons") is not a law firm and
+        does not provide legal services or legal advice. Distribution of
+        Creative Commons public licenses does not create a lawyer-client or
+        other relationship. Creative Commons makes its licenses and related
+        information available on an "as-is" basis. Creative Commons gives no
+        warranties regarding its licenses, any material licensed under their
+        terms and conditions, or any related information. Creative Commons
+        disclaims all liability for damages resulting from their use to the
+        fullest extent possible.
+        
+        Using Creative Commons Public Licenses
+        
+        Creative Commons public licenses provide a standard set of terms and
+        conditions that creators and other rights holders may use to share
+        original works of authorship and other material subject to copyright
+        and certain other rights specified in the public license below. The
+        following considerations are for informational purposes only, are not
+        exhaustive, and do not form part of our licenses.
+        
+             Considerations for licensors: Our public licenses are
+             intended for use by those authorized to give the public
+             permission to use material in ways otherwise restricted by
+             copyright and certain other rights. Our licenses are
+             irrevocable. Licensors should read and understand the terms
+             and conditions of the license they choose before applying it.
+             Licensors should also secure all rights necessary before
+             applying our licenses so that the public can reuse the
+             material as expected. Licensors should clearly mark any
+             material not subject to the license. This includes other CC-
+             licensed material, or material used under an exception or
+             limitation to copyright. More considerations for licensors:
+        	wiki.creativecommons.org/Considerations_for_licensors
+        
+             Considerations for the public: By using one of our public
+             licenses, a licensor grants the public permission to use the
+             licensed material under specified terms and conditions. If
+             the licensor's permission is not necessary for any reason--for
+             example, because of any applicable exception or limitation to
+             copyright--then that use is not regulated by the license. Our
+             licenses grant only permissions under copyright and certain
+             other rights that a licensor has authority to grant. Use of
+             the licensed material may still be restricted for other
+             reasons, including because others have copyright or other
+             rights in the material. A licensor may make special requests,
+             such as asking that all changes be marked or described.
+             Although not required by our licenses, you are encouraged to
+             respect those requests where reasonable. More_considerations
+             for the public:
+        	wiki.creativecommons.org/Considerations_for_licensees
+        
+        =======================================================================
+        
+        Creative Commons Attribution 4.0 International Public License
+        
+        By exercising the Licensed Rights (defined below), You accept and agree
+        to be bound by the terms and conditions of this Creative Commons
+        Attribution 4.0 International Public License ("Public License"). To the
+        extent this Public License may be interpreted as a contract, You are
+        granted the Licensed Rights in consideration of Your acceptance of
+        these terms and conditions, and the Licensor grants You such rights in
+        consideration of benefits the Licensor receives from making the
+        Licensed Material available under these terms and conditions.
+        
+        
+        Section 1 -- Definitions.
+        
+          a. Adapted Material means material subject to Copyright and Similar
+             Rights that is derived from or based upon the Licensed Material
+             and in which the Licensed Material is translated, altered,
+             arranged, transformed, or otherwise modified in a manner requiring
+             permission under the Copyright and Similar Rights held by the
+             Licensor. For purposes of this Public License, where the Licensed
+             Material is a musical work, performance, or sound recording,
+             Adapted Material is always produced where the Licensed Material is
+             synched in timed relation with a moving image.
+        
+          b. Adapter's License means the license You apply to Your Copyright
+             and Similar Rights in Your contributions to Adapted Material in
+             accordance with the terms and conditions of this Public License.
+        
+          c. Copyright and Similar Rights means copyright and/or similar rights
+             closely related to copyright including, without limitation,
+             performance, broadcast, sound recording, and Sui Generis Database
+             Rights, without regard to how the rights are labeled or
+             categorized. For purposes of this Public License, the rights
+             specified in Section 2(b)(1)-(2) are not Copyright and Similar
+             Rights.
+        
+          d. Effective Technological Measures means those measures that, in the
+             absence of proper authority, may not be circumvented under laws
+             fulfilling obligations under Article 11 of the WIPO Copyright
+             Treaty adopted on December 20, 1996, and/or similar international
+             agreements.
+        
+          e. Exceptions and Limitations means fair use, fair dealing, and/or
+             any other exception or limitation to Copyright and Similar Rights
+             that applies to Your use of the Licensed Material.
+        
+          f. Licensed Material means the artistic or literary work, database,
+             or other material to which the Licensor applied this Public
+             License.
+        
+          g. Licensed Rights means the rights granted to You subject to the
+             terms and conditions of this Public License, which are limited to
+             all Copyright and Similar Rights that apply to Your use of the
+             Licensed Material and that the Licensor has authority to license.
+        
+          h. Licensor means the individual(s) or entity(ies) granting rights
+             under this Public License.
+        
+          i. Share means to provide material to the public by any means or
+             process that requires permission under the Licensed Rights, such
+             as reproduction, public display, public performance, distribution,
+             dissemination, communication, or importation, and to make material
+             available to the public including in ways that members of the
+             public may access the material from a place and at a time
+             individually chosen by them.
+        
+          j. Sui Generis Database Rights means rights other than copyright
+             resulting from Directive 96/9/EC of the European Parliament and of
+             the Council of 11 March 1996 on the legal protection of databases,
+             as amended and/or succeeded, as well as other essentially
+             equivalent rights anywhere in the world.
+        
+          k. You means the individual or entity exercising the Licensed Rights
+             under this Public License. Your has a corresponding meaning.
+        
+        
+        Section 2 -- Scope.
+        
+          a. License grant.
+        
+               1. Subject to the terms and conditions of this Public License,
+                  the Licensor hereby grants You a worldwide, royalty-free,
+                  non-sublicensable, non-exclusive, irrevocable license to
+                  exercise the Licensed Rights in the Licensed Material to:
+        
+                    a. reproduce and Share the Licensed Material, in whole or
+                       in part; and
+        
+                    b. produce, reproduce, and Share Adapted Material.
+        
+               2. Exceptions and Limitations. For the avoidance of doubt, where
+                  Exceptions and Limitations apply to Your use, this Public
+                  License does not apply, and You do not need to comply with
+                  its terms and conditions.
+        
+               3. Term. The term of this Public License is specified in Section
+                  6(a).
+        
+               4. Media and formats; technical modifications allowed. The
+                  Licensor authorizes You to exercise the Licensed Rights in
+                  all media and formats whether now known or hereafter created,
+                  and to make technical modifications necessary to do so. The
+                  Licensor waives and/or agrees not to assert any right or
+                  authority to forbid You from making technical modifications
+                  necessary to exercise the Licensed Rights, including
+                  technical modifications necessary to circumvent Effective
+                  Technological Measures. For purposes of this Public License,
+                  simply making modifications authorized by this Section 2(a)
+                  (4) never produces Adapted Material.
+        
+               5. Downstream recipients.
+        
+                    a. Offer from the Licensor -- Licensed Material. Every
+                       recipient of the Licensed Material automatically
+                       receives an offer from the Licensor to exercise the
+                       Licensed Rights under the terms and conditions of this
+                       Public License.
+        
+                    b. No downstream restrictions. You may not offer or impose
+                       any additional or different terms or conditions on, or
+                       apply any Effective Technological Measures to, the
+                       Licensed Material if doing so restricts exercise of the
+                       Licensed Rights by any recipient of the Licensed
+                       Material.
+        
+               6. No endorsement. Nothing in this Public License constitutes or
+                  may be construed as permission to assert or imply that You
+                  are, or that Your use of the Licensed Material is, connected
+                  with, or sponsored, endorsed, or granted official status by,
+                  the Licensor or others designated to receive attribution as
+                  provided in Section 3(a)(1)(A)(i).
+        
+          b. Other rights.
+        
+               1. Moral rights, such as the right of integrity, are not
+                  licensed under this Public License, nor are publicity,
+                  privacy, and/or other similar personality rights; however, to
+                  the extent possible, the Licensor waives and/or agrees not to
+                  assert any such rights held by the Licensor to the limited
+                  extent necessary to allow You to exercise the Licensed
+                  Rights, but not otherwise.
+        
+               2. Patent and trademark rights are not licensed under this
+                  Public License.
+        
+               3. To the extent possible, the Licensor waives any right to
+                  collect royalties from You for the exercise of the Licensed
+                  Rights, whether directly or through a collecting society
+                  under any voluntary or waivable statutory or compulsory
+                  licensing scheme. In all other cases the Licensor expressly
+                  reserves any right to collect such royalties.
+        
+        
+        Section 3 -- License Conditions.
+        
+        Your exercise of the Licensed Rights is expressly made subject to the
+        following conditions.
+        
+          a. Attribution.
+        
+               1. If You Share the Licensed Material (including in modified
+                  form), You must:
+        
+                    a. retain the following if it is supplied by the Licensor
+                       with the Licensed Material:
+        
+                         i. identification of the creator(s) of the Licensed
+                            Material and any others designated to receive
+                            attribution, in any reasonable manner requested by
+                            the Licensor (including by pseudonym if
+                            designated);
+        
+                        ii. a copyright notice;
+        
+                       iii. a notice that refers to this Public License;
+        
+                        iv. a notice that refers to the disclaimer of
+                            warranties;
+        
+                         v. a URI or hyperlink to the Licensed Material to the
+                            extent reasonably practicable;
+        
+                    b. indicate if You modified the Licensed Material and
+                       retain an indication of any previous modifications; and
+        
+                    c. indicate the Licensed Material is licensed under this
+                       Public License, and include the text of, or the URI or
+                       hyperlink to, this Public License.
+        
+               2. You may satisfy the conditions in Section 3(a)(1) in any
+                  reasonable manner based on the medium, means, and context in
+                  which You Share the Licensed Material. For example, it may be
+                  reasonable to satisfy the conditions by providing a URI or
+                  hyperlink to a resource that includes the required
+                  information.
+        
+               3. If requested by the Licensor, You must remove any of the
+                  information required by Section 3(a)(1)(A) to the extent
+                  reasonably practicable.
+        
+               4. If You Share Adapted Material You produce, the Adapter's
+                  License You apply must not prevent recipients of the Adapted
+                  Material from complying with this Public License.
+        
+        
+        Section 4 -- Sui Generis Database Rights.
+        
+        Where the Licensed Rights include Sui Generis Database Rights that
+        apply to Your use of the Licensed Material:
+        
+          a. for the avoidance of doubt, Section 2(a)(1) grants You the right
+             to extract, reuse, reproduce, and Share all or a substantial
+             portion of the contents of the database;
+        
+          b. if You include all or a substantial portion of the database
+             contents in a database in which You have Sui Generis Database
+             Rights, then the database in which You have Sui Generis Database
+             Rights (but not its individual contents) is Adapted Material; and
+        
+          c. You must comply with the conditions in Section 3(a) if You Share
+             all or a substantial portion of the contents of the database.
+        
+        For the avoidance of doubt, this Section 4 supplements and does not
+        replace Your obligations under this Public License where the Licensed
+        Rights include other Copyright and Similar Rights.
+        
+        
+        Section 5 -- Disclaimer of Warranties and Limitation of Liability.
+        
+          a. UNLESS OTHERWISE SEPARATELY UNDERTAKEN BY THE LICENSOR, TO THE
+             EXTENT POSSIBLE, THE LICENSOR OFFERS THE LICENSED MATERIAL AS-IS
+             AND AS-AVAILABLE, AND MAKES NO REPRESENTATIONS OR WARRANTIES OF
+             ANY KIND CONCERNING THE LICENSED MATERIAL, WHETHER EXPRESS,
+             IMPLIED, STATUTORY, OR OTHER. THIS INCLUDES, WITHOUT LIMITATION,
+             WARRANTIES OF TITLE, MERCHANTABILITY, FITNESS FOR A PARTICULAR
+             PURPOSE, NON-INFRINGEMENT, ABSENCE OF LATENT OR OTHER DEFECTS,
+             ACCURACY, OR THE PRESENCE OR ABSENCE OF ERRORS, WHETHER OR NOT
+             KNOWN OR DISCOVERABLE. WHERE DISCLAIMERS OF WARRANTIES ARE NOT
+             ALLOWED IN FULL OR IN PART, THIS DISCLAIMER MAY NOT APPLY TO YOU.
+        
+          b. TO THE EXTENT POSSIBLE, IN NO EVENT WILL THE LICENSOR BE LIABLE
+             TO YOU ON ANY LEGAL THEORY (INCLUDING, WITHOUT LIMITATION,
+             NEGLIGENCE) OR OTHERWISE FOR ANY DIRECT, SPECIAL, INDIRECT,
+             INCIDENTAL, CONSEQUENTIAL, PUNITIVE, EXEMPLARY, OR OTHER LOSSES,
+             COSTS, EXPENSES, OR DAMAGES ARISING OUT OF THIS PUBLIC LICENSE OR
+             USE OF THE LICENSED MATERIAL, EVEN IF THE LICENSOR HAS BEEN
+             ADVISED OF THE POSSIBILITY OF SUCH LOSSES, COSTS, EXPENSES, OR
+             DAMAGES. WHERE A LIMITATION OF LIABILITY IS NOT ALLOWED IN FULL OR
+             IN PART, THIS LIMITATION MAY NOT APPLY TO YOU.
+        
+          c. The disclaimer of warranties and limitation of liability provided
+             above shall be interpreted in a manner that, to the extent
+             possible, most closely approximates an absolute disclaimer and
+             waiver of all liability.
+        
+        
+        Section 6 -- Term and Termination.
+        
+          a. This Public License applies for the term of the Copyright and
+             Similar Rights licensed here. However, if You fail to comply with
+             this Public License, then Your rights under this Public License
+             terminate automatically.
+        
+          b. Where Your right to use the Licensed Material has terminated under
+             Section 6(a), it reinstates:
+        
+               1. automatically as of the date the violation is cured, provided
+                  it is cured within 30 days of Your discovery of the
+                  violation; or
+        
+               2. upon express reinstatement by the Licensor.
+        
+             For the avoidance of doubt, this Section 6(b) does not affect any
+             right the Licensor may have to seek remedies for Your violations
+             of this Public License.
+        
+          c. For the avoidance of doubt, the Licensor may also offer the
+             Licensed Material under separate terms or conditions or stop
+             distributing the Licensed Material at any time; however, doing so
+             will not terminate this Public License.
+        
+          d. Sections 1, 5, 6, 7, and 8 survive termination of this Public
+             License.
+        
+        
+        Section 7 -- Other Terms and Conditions.
+        
+          a. The Licensor shall not be bound by any additional or different
+             terms or conditions communicated by You unless expressly agreed.
+        
+          b. Any arrangements, understandings, or agreements regarding the
+             Licensed Material not stated herein are separate from and
+             independent of the terms and conditions of this Public License.
+        
+        
+        Section 8 -- Interpretation.
+        
+          a. For the avoidance of doubt, this Public License does not, and
+             shall not be interpreted to, reduce, limit, restrict, or impose
+             conditions on any use of the Licensed Material that could lawfully
+             be made without permission under this Public License.
+        
+          b. To the extent possible, if any provision of this Public License is
+             deemed unenforceable, it shall be automatically reformed to the
+             minimum extent necessary to make it enforceable. If the provision
+             cannot be reformed, it shall be severed from this Public License
+             without affecting the enforceability of the remaining terms and
+             conditions.
+        
+          c. No term or condition of this Public License will be waived and no
+             failure to comply consented to unless expressly agreed to by the
+             Licensor.
+        
+          d. Nothing in this Public License constitutes or may be interpreted
+             as a limitation upon, or waiver of, any privileges and immunities
+             that apply to the Licensor or You, including from the legal
+             processes of any jurisdiction or authority.
+        
+        
+        =======================================================================
+        
+        Creative Commons is not a party to its public
+        licenses. Notwithstanding, Creative Commons may elect to apply one of
+        its public licenses to material it publishes and in those instances
+        will be considered the “Licensor.” The text of the Creative Commons
+        public licenses is dedicated to the public domain under the CC0 Public
+        Domain Dedication. Except for the limited purpose of indicating that
+        material is shared under a Creative Commons public license or as
+        otherwise permitted by the Creative Commons policies published at
+        creativecommons.org/policies, Creative Commons does not authorize the
+        use of the trademark "Creative Commons" or any other trademark or logo
+        of Creative Commons without its prior written consent including,
+        without limitation, in connection with any unauthorized modifications
+        to any of its public licenses or any other arrangements,
+        understandings, or agreements concerning use of licensed material. For
+        the avoidance of doubt, this paragraph does not form part of the
+        public licenses.
+        
+        Creative Commons may be contacted at creativecommons.org.
+        
+Keywords: deep-reinforcement-learning,jax,library,machine-learning,reinforcement-learning
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Education
+Classifier: Intended Audience :: Science/Research
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Typing :: Typed
+Requires-Python: <4,>=3.12
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: cloudpickle~=3.1.1
+Requires-Dist: gymnasium~=1.1.1
+Requires-Dist: jax-ai-stack~=2025.2.5
+Requires-Dist: lz4~=4.4.3
+Requires-Dist: matplotlib~=3.10.1
+Requires-Dist: tensorboardX~=2.6.2.2
+Requires-Dist: wandb~=0.19.8
+Provides-Extra: docs
+Requires-Dist: sphinx~=8.1.3; extra == "docs"
+Requires-Dist: sphinx-rtd-theme~=3.0.2; extra == "docs"
+Provides-Extra: full
+Requires-Dist: joblib~=1.4.2; extra == "full"
+Requires-Dist: pygame~=2.6.1; extra == "full"
+Requires-Dist: seaborn~=0.13.2; extra == "full"
+Requires-Dist: tensorflow~=2.18.0; extra == "full"
+Dynamic: license-file
+
+# Reinforced-lib: Reinforcement learning library
+
+[![PyPI version][pypi-badge]][pypi]
+[![License: CC-BY 4.0][license-badge]][license]
+[![build and test][tests-badge]][github-actions]
+[![Documentation Status][rtd-badge]][documentation]
+[![DOI](https://img.shields.io/badge/DOI-10.1016/j.softx.2024.101706-blue.svg)](https://doi.org/10.1016/j.softx.2024.101706)
+
+[pypi-badge]: https://img.shields.io/pypi/v/reinforced-lib
+[pypi]: https://pypi.org/project/reinforced-lib/
+[license-badge]: https://img.shields.io/badge/Licenses-CC_BY_4.0-brightgreen
+[license]: https://github.com/m-wojnar/reinforced-lib/blob/main/LICENSE
+[tests-badge]: https://github.com/m-wojnar/reinforced-lib/actions/workflows/python-package.yml/badge.svg
+[github-actions]: https://github.com/m-wojnar/reinforced-lib/actions
+[rtd-badge]: https://readthedocs.org/projects/reinforced-lib/badge/?version=latest
+[documentation]: https://reinforced-lib.readthedocs.io/en/latest/
+
+**Introducing Reinforced-lib:** a lightweight Python library for the rapid development of reinforcement-learning (RL) 
+solutions. It is open-source, prioritizes ease of use, provides comprehensive documentation, and offers both deep 
+reinforcement learning (DRL) and classic non-neural agents. Built on [JAX](https://jax.readthedocs.io/en/latest/), 
+it facilitates exporting trained models to embedded devices, and makes it great for research and prototyping with RL 
+algorithms. Access to JAX's just-in-time (JIT) compilation ensures high-performance results.
+
+## Installation
+
+You can install the latest version of Reinforced-lib from PyPI:
+
+```bash
+pip install reinforced-lib
+```
+
+To have easy access to the [example files](https://github.com/m-wojnar/reinforced-lib/tree/main/examples)
+you can clone the source code from our repository, and then install it locally with pip:
+
+```bash
+git clone git@github.com:m-wojnar/reinforced-lib.git
+cd reinforced-lib
+pip install -e .
+```
+
+In the spirit of making Reinforced-lib a lightweight solution, we include only the necessary dependencies in the base 
+requirements. To fully benefit from Reinforced-lib's conveniences, such as TF Lite export, install with the "full" suffix:
+
+```bash
+pip install ".[full]"
+```
+
+## Key components
+
+Reinforced-lib facilitates seamless interaction between RL agents and the environment. Here are the key components 
+within of the library, represented in the API as different modules.
+
+- **RLib** - The core module which provides a simple and intuitive interface to manage agents, use extensions, 
+  and configure the logging system. Even if you're not an RL expert, *RLib* makes it easy to  implement the 
+  agent-environment interaction loop.
+
+- **Agents** - Choose from a variety of RL agents available in the *Agents* module. These agents are designed to be 
+  versatile and work with any environment. If needed, you can even create your own agents using our documented recipes.
+
+- **Extensions** - Enhance agent observations with domain-specific knowledge by adding a suitable extension from the 
+  *Extensions* module. This module enables seamless agent switching and parameter tuning without extensive reconfiguration.
+
+- **Loggers** - This module allows you to monitor agent-environment interactions. Customize and adapt logging to your 
+  specific needs, capturing training metrics, internal agent state, or environment observations. The library includes 
+  various loggers for creating plots and output files, simplifying visualization and data processing.
+
+The figure below provides a visual representation of Reinforced-lib and the data-flow between its modules.
+
+<img src="docs/resources/data-flow.png" width="600">
+
+## JAX Backend
+
+Our library is built on top of JAX, a high-performance numerical computing library. JAX makes it easy to implement 
+RL algorithms efficiently. It provides powerful transformations, including JIT compilation, automatic differentiation, 
+vectorization, and parallelization. Our library is fully compatible with DeepMind's JAX ecosystem, granting access to 
+state-of-the-art RL models and helper libraries. JIT compilation significantly accelerates execution and ensures 
+portability across different architectures (CPUs, GPUs, TPUs) without requiring code modifications. 
+JAX offers another benefit through its robust pseudorandom number generator system, employed in our library to 
+guarantee result reproducibility. This critical aspect of scientific research is frequently underestimated but 
+remains highly significant.
+
+## Edge Device Export
+
+Reinforced-lib is designed to work seamlessly on wireless, low-powered devices, where resources are limited. It's the 
+perfect solution for energy-constrained environments that may struggle with other ML frameworks. You can export your 
+trained models to [TensorFlow Lite](https://www.tensorflow.org/lite) with ease, reducing runtime overhead and 
+optimizing performance. This means you can deploy RL agents on resource-limited devices efficiently.
+
+## Example code
+
+Experience the simplicity of our library and witness the fundamental agent-environment interaction loop with our 
+straightforward example. This code can by used to train a deep Q-learning agent on the `CartPole-v1` environment 
+effortlessly using Reinforced-lib.
+
+```python
+import gymnasium as gym
+import optax
+from chex import Array
+from flax import linen as nn
+
+from reinforced_lib import RLib
+from reinforced_lib.agents.deep import DQN
+from reinforced_lib.exts import Gymnasium
+
+
+class QNetwork(nn.Module):
+    @nn.compact
+    def __call__(self, x: Array) -> Array:
+        x = nn.Dense(256)(x)
+        x = nn.relu(x)
+        return nn.Dense(2)(x)
+
+
+if __name__ == '__main__':
+    rl = RLib(
+        agent_type=DQN,
+        agent_params={
+            'q_network': QNetwork(),
+            'optimizer': optax.rmsprop(3e-4, decay=0.95, eps=1e-2),
+        },
+        ext_type=Gymnasium,
+        ext_params={'env_id': 'CartPole-v1'}
+    )
+
+    for epoch in range(300):
+        env = gym.make('CartPole-v1', render_mode='human')
+
+        _, _ = env.reset()
+        action = env.action_space.sample()
+        terminal = False
+
+        while not terminal:
+            env_state = env.step(action.item())
+            action = rl.sample(*env_state)
+            terminal = env_state[2] or env_state[3]
+```
+
+## Citing Reinforced-lib
+
+To cite this repository, please use the following BibTeX entry for the Reinforced-lib paper:
+
+```bibtex
+@article{reinforcedlib2022,
+  author = {Maksymilian Wojnar and Szymon Szott and Krzysztof Rusek and Wojciech Ciezobka},
+  title = {{R}einforced-lib: {R}apid prototyping of reinforcement learning solutions},
+  journal = {SoftwareX},
+  volume = {26},
+  pages = {101706},
+  year = {2024},
+  issn = {2352-7110},
+  doi = {https://doi.org/10.1016/j.softx.2024.101706},
+  url = {https://www.sciencedirect.com/science/article/pii/S2352711024000773}
+}
+```
