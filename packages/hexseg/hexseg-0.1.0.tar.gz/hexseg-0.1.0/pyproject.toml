@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hexseg"
+version = "0.1.0"
+description = "Spatial crime segmentation utilities"
+readme = "README.md"
+authors = [ { name="Your Name", email="you@example.com" } ]
+requires-python = ">=3.8"
+dependencies = [
+  "pandas",
+  "numpy",
+  "geopandas",
+  "h3",
+  "shapely",
+  "scikit-learn",
+  "networkx",
+  "folium"
+]
+
+[tool.setuptools.packages.find]
+where   = ["src"]
+include = ["hexseg*"]
+exclude = ["data*", "notebooks*"]
