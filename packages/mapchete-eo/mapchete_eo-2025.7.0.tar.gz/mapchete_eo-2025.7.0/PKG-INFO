@@ -1,0 +1,38 @@
+Metadata-Version: 2.4
+Name: mapchete-eo
+Version: 2025.7.0
+Summary: mapchete EO data reader
+Project-URL: Homepage, https://gitlab.eox.at/maps/mapchete_eo
+Author-email: Joachim Ungar <joachim.ungar@eox.at>, Petr Sevcik <petr.sevcik@eox.at>
+License-Expression: MIT
+License-File: LICENSE
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering :: GIS
+Requires-Dist: blend-modes
+Requires-Dist: click
+Requires-Dist: croniter
+Requires-Dist: lxml
+Requires-Dist: mapchete[complete]>=2025.6.0
+Requires-Dist: opencv-python
+Requires-Dist: pillow
+Requires-Dist: pydantic
+Requires-Dist: pystac-client>=0.7.5
+Requires-Dist: pystac[urllib3]>=1.12.2
+Requires-Dist: retry
+Requires-Dist: rtree
+Requires-Dist: scipy
+Requires-Dist: tqdm
+Requires-Dist: xarray
+Provides-Extra: test
+Requires-Dist: pytest-coverage; extra == 'test'
+Requires-Dist: pytest-lazy-fixture; extra == 'test'
+Requires-Dist: pytest<8; extra == 'test'
+Description-Content-Type: text/markdown
+
+# Mapchete EO driver
+
