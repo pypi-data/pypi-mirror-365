@@ -1,0 +1,80 @@
+[build-system]
+requires = ["setuptools>=61.2"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llg3d"
+authors = [
+    { name = "Clémentine Courtès", email = "clementine.courtes@math.unistra.fr" },
+    { name = "Matthieu Boileau", email = "matthieu.boileau@math.unistra.fr" },
+]
+description = "Solveur pour l'équation de Landau-Lifshitz-Gilbert stochastique en 3D"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+requires-python = ">=3.9"
+dependencies = ["numpy", "matplotlib", "scipy"]
+dynamic = ["version"]
+
+
+[project.readme]
+file = "README.md"
+content-type = "text/markdown"
+
+[project.urls]
+Homepage = "https://gitlab.math.unistra.fr/llg3d/llg3d"
+
+[project.scripts]
+llg3d = "llg3d.main:main"
+"llg3d.post" = "llg3d.post.temperature:main"
+"llg3d.plot_results" = "llg3d.post.plot_results:main"
+
+[project.optional-dependencies]
+mpi = ["mpi4py"]
+opencl = ["pyopencl", "mako"]
+jax = [
+    "jax[cuda] ; sys_platform != 'darwin'",
+    "jax[cpu] ; sys_platform == 'darwin'",
+]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+namespaces = false
+
+[tool.setuptools.dynamic.version]
+attr = "llg3d.__version__"
+
+[tool.coverage.run]
+parallel = true
+source = ["src/"]
+
+[dependency-groups]
+dev = [
+    { include-group = "lint" },
+    { include-group = "test" },
+    { include-group = "doc" },
+]
+test = ["pytest", "pytest-cov", "pytest-mpi"]
+lint = ["ruff"]
+doc = [
+    "Sphinx >= 7.2.2",
+    "sphinx-design",
+    "myst-parser",
+    "furo",
+    "nbsphinx",
+    "sphinx-copybutton",
+    "sphinx-autobuild",
+    "sphinx-prompt",
+    "sphinx-last-updated-by-git",
+    "sphinxcontrib-programoutput",
+    "sphinxcontrib-bibtex",
+    "ipython",
+]

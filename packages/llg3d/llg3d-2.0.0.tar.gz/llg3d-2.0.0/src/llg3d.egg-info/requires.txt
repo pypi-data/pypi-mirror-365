@@ -1,0 +1,18 @@
+numpy
+matplotlib
+scipy
+
+[jax]
+
+[jax:sys_platform != "darwin"]
+jax[cuda]
+
+[jax:sys_platform == "darwin"]
+jax[cpu]
+
+[mpi]
+mpi4py
+
+[opencl]
+pyopencl
+mako

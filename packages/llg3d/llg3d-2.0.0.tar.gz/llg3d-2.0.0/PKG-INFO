@@ -1,0 +1,37 @@
+Metadata-Version: 2.4
+Name: llg3d
+Version: 2.0.0
+Summary: Solveur pour l'équation de Landau-Lifshitz-Gilbert stochastique en 3D
+Author-email: Clémentine Courtès <clementine.courtes@math.unistra.fr>, Matthieu Boileau <matthieu.boileau@math.unistra.fr>
+Project-URL: Homepage, https://gitlab.math.unistra.fr/llg3d/llg3d
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+License-File: AUTHORS
+Requires-Dist: numpy
+Requires-Dist: matplotlib
+Requires-Dist: scipy
+Provides-Extra: mpi
+Requires-Dist: mpi4py; extra == "mpi"
+Provides-Extra: opencl
+Requires-Dist: pyopencl; extra == "opencl"
+Requires-Dist: mako; extra == "opencl"
+Provides-Extra: jax
+Requires-Dist: jax[cuda]; sys_platform != "darwin" and extra == "jax"
+Requires-Dist: jax[cpu]; sys_platform == "darwin" and extra == "jax"
+Dynamic: license-file
+
+# LLG3D: A solver for the stochastic Landau-Lifshitz-Gilbert equation in 3D
+
+[![pipeline status](https://gitlab.math.unistra.fr/llg3d/llg3d/badges/main/pipeline.svg)](https://gitlab.math.unistra.fr/llg3d/llg3d/-/commits/main)
+[![coverage report](https://gitlab.math.unistra.fr/llg3d/llg3d/badges/main/coverage.svg)](https://llg3d.pages.math.unistra.fr/llg3d/coverage)
+[![Latest Release](https://gitlab.math.unistra.fr/llg3d/llg3d/-/badges/release.svg)](https://gitlab.math.unistra.fr/llg3d/llg3d/-/releases)
+[![Doc](https://img.shields.io/badge/doc-sphinx-blue)](https://llg3d.pages.math.unistra.fr/llg3d/)
+[![SWH](https://archive.softwareheritage.org/badge/origin/https://gitlab.math.unistra.fr/llg3d/llg3d/)](https://archive.softwareheritage.org/browse/origin/?origin_url=https://gitlab.math.unistra.fr/llg3d/llg3d)
+
+LLG3D is written in Python and may run in parallel using MPI, OpenCL or JAX.
+
+See the [documentation](https://llg3d.pages.math.unistra.fr/llg3d/).
