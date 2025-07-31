@@ -1,0 +1,14 @@
+pymongo>=3.7.0
+zope.dottedname
+python-dateutil
+pytz
+Faker
+
+[asyncio]
+motor>=2.0.0
+
+[test]
+pytest
+pytest-asyncio
+pytest-cov
+coveralls
