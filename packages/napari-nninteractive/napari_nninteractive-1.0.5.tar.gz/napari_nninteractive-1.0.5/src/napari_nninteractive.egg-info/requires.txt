@@ -1,0 +1,16 @@
+torch
+numpy
+qtpy
+napari-nifti
+huggingface_hub
+hf_transfer
+nnInteractive>=1.0.0
+napari_toolkit
+
+[testing]
+tox
+pytest
+pytest-cov
+pytest-qt
+napari
+pyqt5
