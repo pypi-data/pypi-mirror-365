@@ -1,0 +1,16 @@
+[project]
+name = "easybrevo"
+version = "0.1.2"
+description = "Use Brevo API with Python (the easy way)"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "markdown>=3.8.2",
+    "prettyconf>=2.3.0",
+    "requests>=2.32.4",
+]
+
+[dependency-groups]
+dev = [
+    "ipython>=9.4.0",
+]
